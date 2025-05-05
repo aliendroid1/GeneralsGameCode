@@ -439,10 +439,10 @@ Int W3DDisplay::getDisplayModeCount(void)
 	{	minBitDepth=32;
 	}
 */
-	for (int res = 0; res < resolutions.Count ();  res ++)
+	for (int res = 0; res < resolutions.Count();  res ++)
 	{
 		// Is this the resolution we are looking for?
-		if (resolutions[res].BitDepth >= 24 && resolutions[res].Width >= 800 && (fabs((Real)resolutions[res].Width/(Real)resolutions[res].Height - 1.3333f)) < 0.01f)	//only accept 4:3 aspect ratio modes.
+		if (resolutions[res].BitDepth >= 24 && resolutions[res].Width >= 800)	//only accept 4:3 aspect ratio modes.
 		{	
 			numResolutions++;
 		}
@@ -460,7 +460,7 @@ void W3DDisplay::getDisplayModeDescription(Int modeIndex, Int *xres, Int *yres, 
 	for (int res = 0; res < resolutions.Count ();  res ++)
 	{
 		// Is this the resolution we are looking for?
-		if (resolutions[res].BitDepth >= 24 && resolutions[res].Width >= 800 && (fabs((Real)resolutions[res].Width/(Real)resolutions[res].Height - 1.3333f)) < 0.01f)	//only accept 4:3 aspect ratio modes.
+		if (resolutions[res].BitDepth >= 24 && resolutions[res].Width >= 800)	//only accept 4:3 aspect ratio modes.
 		{	
 			if (numResolutions == modeIndex)
 			{	//found the mode
@@ -498,14 +498,16 @@ void Reset_D3D_Device(bool active)
 				//reloading all textures.
 				if (osvi.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS)
 				{	//only do this on Win9x boxes because it makes alt-tab very slow.
-						WW3D::_Invalidate_Textures();
+						WW3D::_Invalidate_Textures()                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ;
 				}
 			}
 		}
 		else
 		{
 			//switch to windowed mode whenever the user alt-tabs out of game. Don't restore assets after reset since we'll do it when returning.
-			WW3D::Set_Render_Device( WW3D::Get_Render_Device(),TheDisplay->getWidth(),TheDisplay->getHeight(),TheDisplay->getBitDepth(),TheDisplay->getWindowed(),true, true, false);
+			WW3D::Set_Render_Device( WW3D::Get_Render_Device(),TheDisplay->getWidth(),TheDisplay->getHeight(),TheDisplay->getBitDepth(),1,true, true, false);
+			//WW3D::Set_Render_Device(WW3D::Get_Render_Device(), TheDisplay->getWidth(), TheDisplay->getHeight(), TheDisplay->getBitDepth(),TheDisplay->getWindowed(), true, true, false);
+
 		}
 	}
 }
@@ -1698,9 +1700,9 @@ AGAIN:
 		// for now, use constant time steps to avoid animations running independent of framerate
 		syncTime += TheW3DFrameLengthInMsec;
 		// allow W3D to update its internals
-		//	WW3D::Sync( GetTickCount() );
+			WW3D::Sync( GetTickCount() );
 	}
-	WW3D::Sync( syncTime );
+	//WW3D::Sync( syncTime );
 
 	// Fast & Frozen time limits the time to 33 fps.
 	Int minTime = 30;
@@ -1764,6 +1766,18 @@ AGAIN:
 		{
 			//USE_PERF_TIMER(BigAssRenderLoop)
 			static Bool couldRender = true;
+
+			//if (TheGlobalData->m_breakTheMovie != FALSE)
+			//{
+			//	DEBUG_LOG(("Could not do WW3D::Begin_Render()! TheGlobalData->m_breakTheMovie != FALSE\n"));
+			//}
+			//if (TheGlobalData->m_disableRender != false)
+			//{
+			//	DEBUG_LOG(("Could not do WW3D::Begin_Render()! TheGlobalData->m_disableRender != false\n"));
+			//}
+
+
+
 			if ((TheGlobalData->m_breakTheMovie == FALSE) && (TheGlobalData->m_disableRender == false) && WW3D::Begin_Render( true, true, Vector3( 0.0f, 0.0f, 0.0f ), TheWaterTransparency->m_minWaterOpacity ) == WW3D_ERROR_OK)		
 			{
 				
@@ -1870,6 +1884,7 @@ AGAIN:
 				{
 					couldRender = false;
 					DEBUG_LOG(("Could not do WW3D::Begin_Render()!  Are we ALT-Tabbed out?\n"));
+
 				}
 			}
 		}

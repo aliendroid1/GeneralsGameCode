@@ -1,48 +1,63 @@
 
-# Command & Conquer Generals (inc. Zero Hour) Source Code
+# Community version of C&C Generals + Zero Hour
 
-This repository includes source code for Command & Conquer Generals, and its expansion pack Zero Hour. This release provides support to the Steam Workshop for both games ([C&C Generals](https://steamcommunity.com/workshop/browse/?appid=2229870) and [C&C Generals - Zero Hour](https://steamcommunity.com/workshop/browse/?appid=2732960)).
-
-
-## Dependencies
-
-If you wish to rebuild the source code and tools successfully you will need to find or write new replacements (or remove the code using them entirely) for the following libraries;
-
-- DirectX SDK (Version 9.0 or higher) (expected path `\Code\Libraries\DirectX\`)
-- STLport (4.5.3) - (expected path `\Code\Libraries\STLport-4.5.3`)
-- 3DSMax 4 SDK - (expected path `\Code\Libraries\Max4SDK\`)
-- NVASM - (expected path `\Code\Tools\NVASM\`)
-- BYTEmark - (expected path `\Code\Libraries\Source\Benchmark`)
-- RAD Miles Sound System SDK - (expected path `\Code\Libraries\Source\WWVegas\Miles6\`)
-- RAD Bink SDK - (expected path `\Code\GameEngineDevice\Include\VideoDevice\Bink`)
-- SafeDisk API - (expected path `\Code\GameEngine\Include\Common\SafeDisk` and `\Code\Tools\Launcher\SafeDisk\`)
-- Miles Sound System "Asimp3" - (expected path `\Code\Libraries\WPAudio\Asimp3`)
-- GameSpy SDK - (expected path `\Code\Libraries\Source\GameSpy\`)
-- ZLib (1.1.4) - (expected path `\Code\Libraries\Source\Compression\ZLib\`)
-- LZH-Light (1.0) - (expected path `\Code\Libraries\Source\Compression\LZHCompress\CompLibSource` and `CompLibHeader`)
+This repository includes the in development source code from TheSuperHackers' community fork of Command & Conquer Generals, and its expansion pack Zero Hour.
 
 
-## Compiling (Win32 Only)
 
-To use the compiled binaries, you must own the game. The C&C Ultimate Collection is available for purchase on [EA App](https://www.ea.com/en-gb/games/command-and-conquer/command-and-conquer-the-ultimate-collection/buy/pc) or [Steam](https://store.steampowered.com/bundle/39394/Command__Conquer_The_Ultimate_Collection/).
+---
 
-The quickest way to build all configurations in the project is to open `rts.dsw` in Microsoft Visual Studio C++ 6.0 (SP6 recommended for binary matching to Generals patch 1.08 and Zero Hour patch 1.04) and select Build -> Batch Build, then hit the “Rebuild All” button.
+## Quick Build Instructions
 
-If you wish to compile the code under a modern version of Microsoft Visual Studio, you can convert the legacy project file to a modern MSVC solution by opening `rts.dsw` in Microsoft Visual Studio .NET 2003, and then opening the newly created project and solution file in MSVC 2015 or newer.
+The Visual Studio 2022 version is the easiest to build and should be the most stable on modern systems.
 
-NOTE: As modern versions of MSVC enforce newer revisions of the C++ standard, you will need to make extensive changes to the codebase before it successfully compiles, even more so if you plan on compiling for the Win64 platform.
-
-When the workspace has finished building, the compiled binaries will be copied to the folder called `/Run/` found in the root of each games directory. 
+However if you wish to play multiplayer with those using the original game you will need the Visual Studio 2006 version for a compatibality.
 
 
-## Known Issues
-
-Windows has a policy where executables that contain words “version”, “update” or “install” in their filename will require UAC Elevation to run. This will affect “versionUpdate” and “buildVersionUpdate” projects from running as post-build events. Renaming the output binary name for these projects to not include these words should resolve the issue for you.
 
 
-## STLport
-STLport will require changes to successfully compile this source code. The file [stlport.diff](stlport.diff) has been provided for you so you can review and apply these changes. Please make sure you are using STLport 4.5.3 before attempting to apply the patch.
 
+### Through Visual Studio 2022
+1. **Download** [Visual Studio 22](https://visualstudio.microsoft.com/) and **Run** the installer
+2. During installation **Select** 'Desktop Development with C++' under 'Workloads'.
+	- Make sure the 'C++ MFC' option is selected under installation details
+	- For _vcpkg_ builds, you also must have **vcpkg** installed, which you can find under individual components.
+3. **Launch** Visual Studio 2022 and **Click** 'Clone a repository'.
+4. Under 'Respository location' **Paste https://github.com/TheSuperHackers/GeneralsGameCode** using ctrl+v and **Click** 'clone'.
+5. **Select** the appropriate build configuration.
+	- If you just want to play the game then the option you want to choose is most likely `Build Windows 32bit Release`.
+6. **Select** the target you want to build:
+  - `generalsv.exe(Generals\Release\generalsv.exe)` to build the base Generals.
+  - `generalszh.exe(GeneralsMD\Release\generalszh.exe)` to build Zero Hour
+7. **Build** the project by clicking on the `Build` menu and selecting `Build generals`.
+- The compiled executable will be placed in the build folder. Example: `build/win32/GeneralsMD/Release`
+- Install the game executable in the game directory by clicking on the `Install` in `Build` menu. This will copy the
+  executable to the game directory.
+
+
+### More Build Instructions
+For more detailed build instructions or instructions for other builds, check out the [Build Guides](https://github.com/TheSuperHackers/GeneralsGameCode/wiki/build_guides) section in our [Project Wiki](https://github.com/TheSuperHackers/GeneralsGameCode/wiki).
+
+---
+## Running The Game
+
+The executable needs access to game assets, and libraries for video and sound to run succesfully.
+
+We are working on FFmpeg and OpenAL integration so future builds won't have dependencies on propreitery libraries for video and sound.
+
+Hopefully in the future we will have free community made replacements for the game assets as well. 
+
+For now you still need to own the game to get the game assets and library files. The C&C Ultimate Collection is available for purchase on [EA App](https://www.ea.com/en-gb/games/command-and-conquer/command-and-conquer-the-ultimate-collection/buy/pc) or [Steam](https://store.steampowered.com/bundle/39394/Command__Conquer_The_Ultimate_Collection/).
+
+---
+
+## More Informartion
+
+For other information about the project such as how you can contribute, check out our [Wiki](https://github.com/TheSuperHackers/GeneralsGameCode/wiki). 
+
+Interested in becoming a member of our community, join [our Discord](https://discord.gg/MBZ7xSsDTs)
+
+---
 
 ## License
 
