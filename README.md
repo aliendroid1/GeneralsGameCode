@@ -8,7 +8,7 @@ This repository includes the in development source code from TheSuperHackers' co
 
 The Visual Studio 2022 version is the easiest to build and should be the most stable on modern systems.
 
-However if you wish to play multiplayer with those using the original game you will need the Visual Studio 2006 version for a compatibality.
+However if you wish to play multiplayer with those using the original game you will need the Visual Studio 2006 version for compatibality.
 
 
 ### Building with Visual Studio 2022
