@@ -506,8 +506,7 @@ Int W3DDisplay::getDisplayModeCount(void)
 	for (int res = 0; res < resolutions.Count ();  res ++)
 	{
 		// Is this the resolution we are looking for?
-		if (resolutions[res].BitDepth >= 24 && resolutions[res].Width >= MIN_DISPLAY_RESOLUTION_X 
-      && IS_FOUR_BY_THREE_ASPECT( (Real)resolutions[res].Width, (Real)resolutions[res].Height ) )	//only accept 4:3 aspect ratio modes.
+		if (resolutions[res].BitDepth >= 24 && resolutions[res].Width >= MIN_DISPLAY_RESOLUTION_X )	//accept all aspect ratio modes.
 		{	
 			numResolutions++;
 		}
@@ -525,8 +524,7 @@ void W3DDisplay::getDisplayModeDescription(Int modeIndex, Int *xres, Int *yres, 
 	for (int res = 0; res < resolutions.Count ();  res ++)
 	{
 		// Is this the resolution we are looking for?
-		if ( resolutions[res].BitDepth >= 24 && resolutions[res].Width >= MIN_DISPLAY_RESOLUTION_X 
-      && IS_FOUR_BY_THREE_ASPECT( (Real)resolutions[res].Width, (Real)resolutions[res].Height ) )	//only accept 4:3 aspect ratio modes.
+		if ( resolutions[res].BitDepth >= 24 && resolutions[res].Width >= MIN_DISPLAY_RESOLUTION_X )	// accept all aspect ratio modes.
 		{	
 			if (numResolutions == modeIndex)
 			{	//found the mode
@@ -551,12 +549,12 @@ void W3DDisplay::setGamma(Real gamma, Real bright, Real contrast, Bool calibrate
 /*Giant hack in order to keep the game from getting stuck when alt-tabbing*/
 void Reset_D3D_Device(bool active)
 {
-	if (TheDisplay && WW3D::Is_Initted() && !TheDisplay->getWindowed())
+	if (TheDisplay && WW3D::Is_Initted())
 	{
 		if (active)
 		{	
 			//switch back to desired mode when user alt-tabs back into game
-			WW3D::Set_Render_Device( WW3D::Get_Render_Device(),TheDisplay->getWidth(),TheDisplay->getHeight(),TheDisplay->getBitDepth(),TheDisplay->getWindowed(),true, true);
+			WW3D::Set_Render_Device( WW3D::Get_Render_Device(),TheDisplay->getWidth(),TheDisplay->getHeight(),TheDisplay->getBitDepth(),1,true, true);
 			OSVERSIONINFO	osvi;
 			osvi.dwOSVersionInfoSize=sizeof(OSVERSIONINFO);
 			if (GetVersionEx(&osvi))
@@ -571,7 +569,7 @@ void Reset_D3D_Device(bool active)
 		else
 		{
 			//switch to windowed mode whenever the user alt-tabs out of game. Don't restore assets after reset since we'll do it when returning.
-			WW3D::Set_Render_Device( WW3D::Get_Render_Device(),TheDisplay->getWidth(),TheDisplay->getHeight(),TheDisplay->getBitDepth(),TheDisplay->getWindowed(),true, true, false);
+			WW3D::Set_Render_Device( WW3D::Get_Render_Device(),TheDisplay->getWidth(),TheDisplay->getHeight(),TheDisplay->getBitDepth(),1,true, true, false);
 		}
 	}
 }
