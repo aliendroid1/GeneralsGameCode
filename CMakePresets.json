@@ -7,52 +7,6 @@
     },
     "configurePresets": [
         {
-            "name": "vc6",
-            "displayName": "Windows 32bit VC6 Release",
-            "generator": "NMake Makefiles",
-            "hidden": false,
-            "binaryDir": "${sourceDir}/build/${presetName}",
-            "cacheVariables": {
-                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
-                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL",
-                "CMAKE_MSVC_DEBUG_INFORMATION_FORMAT": "$<$<CONFIG:Release,Debug,RelWithDebInfo>:ProgramDatabase>",
-                "CMAKE_BUILD_TYPE": "Release",
-                "RTS_FLAGS": "/W3"
-            },
-            "vendor": {
-                "jetbrains.com/clion": {
-                    "toolchain": "Visual Studio 6"
-                }
-            }
-        },
-        {
-            "name": "vc6-profile",
-            "displayName": "Windows 32bit VC6 Profile",
-            "hidden": false,
-            "inherits": "vc6",
-            "cacheVariables": {
-                "RTS_BUILD_OPTION_PROFILE": "ON"
-            }
-        },
-        {
-            "name": "vc6-internal",
-            "displayName": "Windows 32bit VC6 Internal",
-            "inherits": "vc6",
-            "cacheVariables": {
-                "RTS_BUILD_OPTION_INTERNAL": "ON"
-            }
-        },
-        {
-            "name": "vc6-debug",
-            "displayName": "Windows 32bit VC6 Debug",
-            "hidden": false,
-            "inherits": "vc6",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug",
-                "RTS_BUILD_OPTION_DEBUG": "ON"
-            }
-        },
-        {
             "name": "default",
             "displayName": "Default Config (don't use directly!)",
             "generator": "Ninja Multi-Config",
@@ -160,39 +114,9 @@
             "cacheVariables": {
                 "RTS_BUILD_OPTION_DEBUG": "ON"
             }
-        },
-        {
-            "name": "unix",
-            "inherits": "default-vcpkg",
-            "hidden": false,
-            "displayName": "Unix 32bit VCPKG Release"
         }
     ],
     "buildPresets": [
-        {
-            "name": "vc6",
-            "configurePreset": "vc6",
-            "displayName": "Build Windows 32bit VC6 Release",
-            "description": "Build Windows 32bit VC6 Release"
-        },
-        {
-            "name": "vc6-internal",
-            "configurePreset": "vc6-internal",
-            "displayName": "Build Windows 32bit VC6 Internal",
-            "description": "Build Windows 32bit VC6 Internal"
-        },
-        {
-            "name": "vc6-profile",
-            "configurePreset": "vc6-profile",
-            "displayName": "Build Windows 32bit VC6 Profile",
-            "description": "Build Windows 32bit VC6 Profile"
-        },
-        {
-            "name": "vc6-debug",
-            "configurePreset": "vc6-debug",
-            "displayName": "Build Windows 32bit VC6 Debug",
-            "description": "Build Windows 32bit VC6 Debug"
-        },
         {
             "name": "win32",
             "configurePreset": "win32",
@@ -248,68 +172,9 @@
             "displayName": "Build Windows 32bit VCPKG Debug",
             "description": "Build Windows 32bit VCPKG Debug",
             "configuration": "Debug"
-        },
-        {
-            "name": "unix",
-            "configurePreset": "unix",
-            "displayName": "Build Unix 32bit VCPKG Release",
-            "description": "Build Unix 32bit VCPKG Release",
-            "configuration": "Release"
         }
     ],
     "workflowPresets": [
-        {
-            "name": "vc6",
-            "steps": [
-                {
-                    "type": "configure",
-                    "name": "vc6"
-                },
-                {
-                    "type": "build",
-                    "name": "vc6"
-                }
-            ]
-        },
-        {
-            "name": "vc6-debug",
-            "steps": [
-                {
-                    "type": "configure",
-                    "name": "vc6-debug"
-                },
-                {
-                    "type": "build",
-                    "name": "vc6-debug"
-                }
-            ]
-        },
-        {
-            "name": "vc6-internal",
-            "steps": [
-                {
-                    "type": "configure",
-                    "name": "vc6-internal"
-                },
-                {
-                    "type": "build",
-                    "name": "vc6-internal"
-                }
-            ]
-        },
-        {
-            "name": "vc6-profile",
-            "steps": [
-                {
-                    "type": "configure",
-                    "name": "vc6-profile"
-                },
-                {
-                    "type": "build",
-                    "name": "vc6-profile"
-                }
-            ]
-        },
         {
             "name": "win32",
             "steps": [
@@ -411,19 +276,6 @@
                 {
                     "type": "build",
                     "name": "win32-vcpkg-debug"
-                }
-            ]
-        },
-        {
-            "name": "unix",
-            "steps": [
-                {
-                    "type": "configure",
-                    "name": "unix"
-                },
-                {
-                    "type": "build",
-                    "name": "unix"
                 }
             ]
         }

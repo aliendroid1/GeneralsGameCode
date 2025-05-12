@@ -695,6 +695,7 @@ void W3DDisplay::init( void )
 		// Getting the device at the default bit depth (32) didn't work, so try
 		// getting a 16 bit display.  (Voodoo 1-3 only supported 16 bit.) jba.
 		setBitDepth( 16 );
+		DEBUG_ASSERTCRASH(0, ("Unable to set bit depth 32\n"));
 		if( WW3D::Set_Render_Device( 0, 
 																 getWidth(), 
 																 getHeight(), 

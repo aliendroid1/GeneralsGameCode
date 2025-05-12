@@ -56,16 +56,13 @@
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 #include "matrix3d.h"
-
 #include <math.h>
 #include <assert.h>
 #include <stdlib.h>
-//#include <stdio.h>
 #include "vector3.h"
 #include "matrix3.h"
 #include "matrix4.h"
 #include "quat.h"
-#include "d3dx8math.h"
 
 // some static matrices which are sometimes useful
 const Matrix3D Matrix3D::Identity
@@ -513,15 +510,8 @@ void Matrix3D::Obj_Look_At(const Vector3 &p,const Vector3 &t,float roll)
  *=============================================================================================*/
 void Matrix3D::Get_Inverse(Matrix3D & inv) const
 {
-	// TODO: Implement the general purpose inverse function here (once we need it :-)
-	//Get_Orthogonal_Inverse(inv);
-
 	Matrix4x4	mat4(*this);
-	Matrix4x4	mat4Inv;
-
-	float det;
-	D3DXMatrixInverse((D3DXMATRIX *)&mat4Inv, &det, (D3DXMATRIX*)&mat4);
-
+	Matrix4x4	mat4Inv = mat4.Inverse();
 	inv.Row[0][0]=mat4Inv[0][0];
 	inv.Row[0][1]=mat4Inv[0][1];
 	inv.Row[0][2]=mat4Inv[0][2];

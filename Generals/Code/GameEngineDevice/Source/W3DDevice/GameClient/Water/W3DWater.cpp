@@ -747,47 +747,6 @@ HRESULT WaterRenderObjClass::generateIndexBuffer(Int sizeX, Int sizeY)
 			i+=2;
 		}
 	}
-
-	/*Old way
-	Int step=1;
-	Int psize=(size-1)/step;
-
-	m_numIndices=psize*((psize+1)*2)+(psize*2)-2;
-
-
-	Int x,z,s_toggle=1;
-	for (z=step; z<size; z+=step)
-	{
-		if (s_toggle)
-		{
-			for (x=0; x<(size-step); x+=step)
-			{
-				*pIndices++=(WORD)((z-0)*size+(x));
-				*pIndices++=(WORD)((z-step)*size+(x));
-			}
-				*pIndices++=(WORD)((z-0)*size+(size-1));
-			*pIndices++=(WORD)((z-step)*size+(size-1));
-			// insert additional degenerate to start next row
-			*pIndices++=pIndices[-2];
-			*pIndices++=pIndices[-1];
-		}
-		else
-		{
-			*pIndices++=(WORD)((z-step)*size+(size-1));
-			*pIndices++=(WORD)((z-0)*size+(size-1));
-			for (x=size-1; x>0; x-=step)
-			{
-				*pIndices++=(WORD)((z-step)*size+(x-step));
-				*pIndices++=(WORD)((z-0)*size+(x-step));
-			}
-			// insert additional degenerate to start next row
-			*pIndices++=pIndices[-1];
-			*pIndices++=pIndices[-1];
-		}
-
-		s_toggle=!s_toggle;
-	}
-*/
 	if (FAILED(hr=m_indexBufferD3D->Unlock())) return hr;
 
 	return S_OK;
@@ -902,53 +861,51 @@ void WaterRenderObjClass::ReAcquireResources(void)
 	if (m_waterTrackSystem)
 		m_waterTrackSystem->ReAcquireResources();
 
-	if (W3DShaderManager::getChipset() >= DC_GENERIC_PIXEL_SHADER_1_1)
-	{
-		ID3DXBuffer *compiledShader;
-		const char *shader = 
-			"ps.1.1\n \
-			tex t0 \n\
-			tex t1	\n\
-			tex t2	\n\
-			tex t3\n\
-			mul r0,v0,t0 ; blend vertex color into t0. \n\
-			mul r1, t1, t2 ; mul\n\
-			add r0.rgb, r0, t3\n\
-			+mul r0.a, r0, t3\n\
-			add r0.rgb, r0, r1\n";
-		hr = D3DXAssembleShader( shader, strlen(shader), 0, NULL, &compiledShader, NULL);
-		if (hr==0) {
-			hr = 	DX8Wrapper::_Get_D3D_Device8()->CreatePixelShader((DWORD*)compiledShader->GetBufferPointer(), &m_riverWaterPixelShader);
-			compiledShader->Release();
-		}
-		shader = 
-			"ps.1.1\n \
-			tex t0 \n\
-			tex t1	\n\
-			texbem t2, t1 ; use t1 as env map adjustment on t2.\n\
-			mul r0,v0,t0 ; blend vertex color into t0. \n\
-			mul r1.rgb,t2,c0 ; reduce t2 (environment mapped reflection) by constant\n\
-			add r0.rgb, r0, r1";
-		hr = D3DXAssembleShader( shader, strlen(shader), 0, NULL, &compiledShader, NULL);
-		if (hr==0) {
-			hr = 	DX8Wrapper::_Get_D3D_Device8()->CreatePixelShader((DWORD*)compiledShader->GetBufferPointer(), &m_waterPixelShader);
-			compiledShader->Release();
-		}
-		shader = 
-			"ps.1.1\n \
-			tex t0 ;get water texture\n\
-			tex t1 ;get white highlights on black background\n\
-			tex t2 ;get white highlights with more tiling\n\
-			tex t3	; get black shroud \n\
-			mul r0,v0,t0 ; blend vertex color and alpha into base texture. \n\
-			mad r0.rgb, t1, t2, r0	; blend sparkles and noise \n\
-			mul r0.rgb, r0, t3 ; blend in black shroud \n\
-			;\n";
-		hr = D3DXAssembleShader( shader, strlen(shader), 0, NULL, &compiledShader, NULL);
-		if (hr==0) {
-			hr = 	DX8Wrapper::_Get_D3D_Device8()->CreatePixelShader((DWORD*)compiledShader->GetBufferPointer(), &m_trapezoidWaterPixelShader);
-			compiledShader->Release();
-		}
+
+	ID3DXBuffer *compiledShader;
+	const char *shader = 
+		"ps.1.1\n \
+		tex t0 \n\
+		tex t1	\n\
+		tex t2	\n\
+		tex t3\n\
+		mul r0,v0,t0 ; blend vertex color into t0. \n\
+		mul r1, t1, t2 ; mul\n\
+		add r0.rgb, r0, t3\n\
+		+mul r0.a, r0, t3\n\
+		add r0.rgb, r0, r1\n";
+	hr = D3DXAssembleShader( shader, strlen(shader), 0, NULL, &compiledShader, NULL);
+	if (hr==0) {
+		hr = 	DX8Wrapper::_Get_D3D_Device8()->CreatePixelShader((DWORD*)compiledShader->GetBufferPointer(), &m_riverWaterPixelShader);
+		compiledShader->Release();
+	}
+	shader = 
+		"ps.1.1\n \
+		tex t0 \n\
+		tex t1	\n\
+		texbem t2, t1 ; use t1 as env map adjustment on t2.\n\
+		mul r0,v0,t0 ; blend vertex color into t0. \n\
+		mul r1.rgb,t2,c0 ; reduce t2 (environment mapped reflection) by constant\n\
+		add r0.rgb, r0, r1";
+	hr = D3DXAssembleShader( shader, strlen(shader), 0, NULL, &compiledShader, NULL);
+	if (hr==0) {
+		hr = 	DX8Wrapper::_Get_D3D_Device8()->CreatePixelShader((DWORD*)compiledShader->GetBufferPointer(), &m_waterPixelShader);
+		compiledShader->Release();
+	}
+	shader = 
+		"ps.1.1\n \
+		tex t0 ;get water texture\n\
+		tex t1 ;get white highlights on black background\n\
+		tex t2 ;get white highlights with more tiling\n\
+		tex t3	; get black shroud \n\
+		mul r0,v0,t0 ; blend vertex color and alpha into base texture. \n\
+		mad r0.rgb, t1, t2, r0	; blend sparkles and noise \n\
+		mul r0.rgb, r0, t3 ; blend in black shroud \n\
+		;\n";
+	hr = D3DXAssembleShader( shader, strlen(shader), 0, NULL, &compiledShader, NULL);
+	if (hr==0) {
+		hr = 	DX8Wrapper::_Get_D3D_Device8()->CreatePixelShader((DWORD*)compiledShader->GetBufferPointer(), &m_trapezoidWaterPixelShader);
+		compiledShader->Release();
 	}
 
 }

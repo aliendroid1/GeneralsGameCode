@@ -40,7 +40,7 @@
 
 #include "dx8indexbuffer.h"
 #include "dx8wrapper.h"
-#include "dx8caps.h"
+//#include "dx8caps.h"
 #include "sphere.h"
 #include "thread.h"
 

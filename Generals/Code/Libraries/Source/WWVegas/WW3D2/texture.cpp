@@ -37,21 +37,21 @@
 
 #include "texture.h"
 
-#include <d3d8.h>
-#include <stdio.h>
-#include <d3dx8core.h>
+//#include <d3d8.h>
+//#include <stdio.h>
+//#include <d3dx8core.h>
 #include "dx8wrapper.h"
-#include "TARGA.H"
-#include <nstrdup.h>
+//#include "TARGA.H"
+//#include <nstrdup.h>
 #include "w3d_file.h"
 #include "assetmgr.h"
 #include "formconv.h"
 #include "textureloader.h"
 #include "missingtexture.h"
-#include "ffactory.h"
-#include "dx8caps.h"
+//#include "ffactory.h"
+//#include "dx8caps.h"
 #include "dx8texman.h"
-#include "meshmatdesc.h"
+//#include "meshmatdesc.h"
 
 /*
 ** Definitions of static members:

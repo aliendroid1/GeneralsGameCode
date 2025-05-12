@@ -75,7 +75,7 @@
 #include "formconv.h"
 #include "dx8texman.h"
 #include "bound.h"
-#include "dx8webbrowser.h"
+
 
 
 const int DEFAULT_RESOLUTION_WIDTH = 640;

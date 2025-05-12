@@ -23,7 +23,7 @@
 #include "texture.h"
 #include "ffactory.h"
 #include "wwstring.h"
-#include	"bufffile.h"
+#include"bufffile.h"
 #include "ww3d.h"
 #include "assetmgr.h"
 #include "dx8wrapper.h"
@@ -49,34 +49,24 @@ TextureLoadTaskClass* TextureLoadTaskClass::FreeTaskListHead;
 
 static bool Is_Format_Compressed(WW3DFormat texture_format,bool allow_compression)
 {
-	// Verify that the user isn't requesting compressed texture without hardware support
-
-	bool compressed=false;
-	if (texture_format!=WW3D_FORMAT_UNKNOWN) {
-		if (!DX8Wrapper::Get_Current_Caps()->Support_DXTC() || !allow_compression) {
-			WWASSERT(texture_format!=WW3D_FORMAT_DXT1);
-			WWASSERT(texture_format!=WW3D_FORMAT_DXT2);
-			WWASSERT(texture_format!=WW3D_FORMAT_DXT3);
-			WWASSERT(texture_format!=WW3D_FORMAT_DXT4);
-			WWASSERT(texture_format!=WW3D_FORMAT_DXT5);
-		}
-		if (texture_format==WW3D_FORMAT_DXT1 ||
-			texture_format==WW3D_FORMAT_DXT2 ||
-			texture_format==WW3D_FORMAT_DXT3 ||
-			texture_format==WW3D_FORMAT_DXT4 ||
-			texture_format==WW3D_FORMAT_DXT5) {
-			compressed=true;
-		}
+	// Proceed only if the texture format hasn't been defined as non-compressed.
+	if (!allow_compression)
+	{
+		WWASSERT(texture_format != WW3D_FORMAT_DXT1);
+		WWASSERT(texture_format != WW3D_FORMAT_DXT2);
+		WWASSERT(texture_format != WW3D_FORMAT_DXT3);
+		WWASSERT(texture_format != WW3D_FORMAT_DXT4);
+		WWASSERT(texture_format != WW3D_FORMAT_DXT5);
 	}
-
-	// If hardware supports DXTC compression, load a compressed texture. Proceed only if the texture format hasn't been
-	// defined as non-compressed.
-	compressed|=(
-		texture_format==WW3D_FORMAT_UNKNOWN &&
-		DX8Wrapper::Get_Current_Caps()->Support_DXTC() &&
-		allow_compression);
-
-	return compressed;
+	if (texture_format == WW3D_FORMAT_DXT1 ||
+		texture_format == WW3D_FORMAT_DXT2 ||
+		texture_format == WW3D_FORMAT_DXT3 ||
+		texture_format == WW3D_FORMAT_DXT4 ||
+		texture_format == WW3D_FORMAT_DXT5) 
+	{
+		return true;
+	}
+	return (texture_format==WW3D_FORMAT_UNKNOWN && allow_compression);
 }
 
 // ----------------------------------------------------------------------------

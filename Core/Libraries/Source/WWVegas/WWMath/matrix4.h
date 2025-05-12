@@ -538,44 +538,152 @@ WWINLINE Matrix4x4 Matrix4x4::Transpose() const
  * HISTORY:                                                                                    * 
  *   06/02/1997 GH  : Created.                                                                 * 
  *=============================================================================================*/
-WWINLINE Matrix4x4 Matrix4x4::Inverse() const    // Gauss-Jordan elimination with partial pivoting
+
+
+
+
+inline bool invert4by4matrix(const Matrix4x4& m, Matrix4x4& inv_m)
 {
-	WWASSERT_PRINT(0,"Matrix4x4::Inverse does not work, re-implement!");
 
-	Matrix4x4 a(*this);				// As a evolves from original mat into identity
-	Matrix4x4 b(true);				// b evolves from identity into inverse(a)
-	int i, j, i1;
+	inv_m[0][0] = m[1][1] * m[2][2] * m[3][3] -
+		m[1][1] * m[2][3] * m[3][2] -
+		m[2][1] * m[1][2] * m[3][3] +
+		m[2][1] * m[1][3] * m[3][2] +
+		m[3][1] * m[1][2] * m[2][3] -
+		m[3][1] * m[1][3] * m[2][2];
 
-	// Loop over cols of a from left to right, eliminating above and below diagonal
-	for (j=0; j<4; j++) {
+	inv_m[1][0] = -m[1][0] * m[2][2] * m[3][3] +
+		m[1][0] * m[2][3] * m[3][2] +
+		m[2][0] * m[1][2] * m[3][3] -
+		m[2][0] * m[1][3] * m[3][2] -
+		m[3][0] * m[1][2] * m[2][3] +
+		m[3][0] * m[1][3] * m[2][2];
 
-		// Find largest pivot in column j among rows j..3
-		i1 = j;
-		for (i=j+1; i<4; i++) {
-			if (WWMath::Fabs(a[i][j]) > WWMath::Fabs(a[i1][j])) {
-				i1 = i;
-			}
-		}
+	inv_m[2][0] = m[1][0] * m[2][1] * m[3][3] -
+		m[1][0] * m[2][3] * m[3][1] -
+		m[2][0] * m[1][1] * m[3][3] +
+		m[2][0] * m[1][3] * m[3][1] +
+		m[3][0] * m[1][1] * m[2][3] -
+		m[3][0] * m[1][3] * m[2][1];
 
-		// Swap rows i1 and j in a and b to put pivot on diagonal
-		Swap(a.Row[i1], a.Row[j]);
-		Swap(b.Row[i1], b.Row[j]);
+	inv_m[3][0] = -m[1][0] * m[2][1] * m[3][2] +
+		m[1][0] * m[2][2] * m[3][1] +
+		m[2][0] * m[1][1] * m[3][2] -
+		m[2][0] * m[1][2] * m[3][1] -
+		m[3][0] * m[1][1] * m[2][2] +
+		m[3][0] * m[1][2] * m[2][1];
 
-		// Scale row j to have a unit diagonal
-		if (a[j][j]==0.) {
-			//ALGEBRA_ERROR("Matrix4x4::inverse: singular matrix; can't invert\n");
-		}
-		b.Row[j] /= a.Row[j][j];
-		a.Row[j] /= a.Row[j][j];
+	inv_m[0][1] = -m[0][1] * m[2][2] * m[3][3] +
+		m[0][1] * m[2][3] * m[3][2] +
+		m[2][1] * m[0][2] * m[3][3] -
+		m[2][1] * m[0][3] * m[3][2] -
+		m[3][1] * m[0][2] * m[2][3] +
+		m[3][1] * m[0][3] * m[2][2];
 
-		// Eliminate off-diagonal elems in col j of a, doing identical ops to b
-		for (i=0; i<4; i++) {
-			if (i != j) {
-				b.Row[i] -= a[i][j] * b.Row[j];
-				a.Row[i] -= a[i][j] * a.Row[j];
-			}
+	inv_m[1][1] = m[0][0] * m[2][2] * m[3][3] -
+		m[0][0] * m[2][3] * m[3][2] -
+		m[2][0] * m[0][2] * m[3][3] +
+		m[2][0] * m[0][3] * m[3][2] +
+		m[3][0] * m[0][2] * m[2][3] -
+		m[3][0] * m[0][3] * m[2][2];
+
+	inv_m[2][1] = -m[0][0] * m[2][1] * m[3][3] +
+		m[0][0] * m[2][3] * m[3][1] +
+		m[2][0] * m[0][1] * m[3][3] -
+		m[2][0] * m[0][3] * m[3][1] -
+		m[3][0] * m[0][1] * m[2][3] +
+		m[3][0] * m[0][3] * m[2][1];
+
+	inv_m[3][1] = m[0][0] * m[2][1] * m[3][2] -
+		m[0][0] * m[2][2] * m[3][1] -
+		m[2][0] * m[0][1] * m[3][2] +
+		m[2][0] * m[0][2] * m[3][1] +
+		m[3][0] * m[0][1] * m[2][2] -
+		m[3][0] * m[0][2] * m[2][1];
+
+	inv_m[0][2] = m[0][1] * m[1][2] * m[3][3] -
+		m[0][1] * m[1][3] * m[3][2] -
+		m[1][1] * m[0][2] * m[3][3] +
+		m[1][1] * m[0][3] * m[3][2] +
+		m[3][1] * m[0][2] * m[1][3] -
+		m[3][1] * m[0][3] * m[1][2];
+
+	inv_m[1][2] = -m[0][0] * m[1][2] * m[3][3] +
+		m[0][0] * m[1][3] * m[3][2] +
+		m[1][0] * m[0][2] * m[3][3] -
+		m[1][0] * m[0][3] * m[3][2] -
+		m[3][0] * m[0][2] * m[1][3] +
+		m[3][0] * m[0][3] * m[1][2];
+
+	inv_m[2][2] = m[0][0] * m[1][1] * m[3][3] -
+		m[0][0] * m[1][3] * m[3][1] -
+		m[1][0] * m[0][1] * m[3][3] +
+		m[1][0] * m[0][3] * m[3][1] +
+		m[3][0] * m[0][1] * m[1][3] -
+		m[3][0] * m[0][3] * m[1][1];
+
+	inv_m[3][2] = -m[0][0] * m[1][1] * m[3][2] +
+		m[0][0] * m[1][2] * m[3][1] +
+		m[1][0] * m[0][1] * m[3][2] -
+		m[1][0] * m[0][2] * m[3][1] -
+		m[3][0] * m[0][1] * m[1][2] +
+		m[3][0] * m[0][2] * m[1][1];
+
+	inv_m[0][3] = -m[0][1] * m[1][2] * m[2][3] +
+		m[0][1] * m[1][3] * m[2][2] +
+		m[1][1] * m[0][2] * m[2][3] -
+		m[1][1] * m[0][3] * m[2][2] -
+		m[2][1] * m[0][2] * m[1][3] +
+		m[2][1] * m[0][3] * m[1][2];
+
+	inv_m[1][3] = m[0][0] * m[1][2] * m[2][3] -
+		m[0][0] * m[1][3] * m[2][2] -
+		m[1][0] * m[0][2] * m[2][3] +
+		m[1][0] * m[0][3] * m[2][2] +
+		m[2][0] * m[0][2] * m[1][3] -
+		m[2][0] * m[0][3] * m[1][2];
+
+	inv_m[2][3] = -m[0][0] * m[1][1] * m[2][3] +
+		m[0][0] * m[1][3] * m[2][1] +
+		m[1][0] * m[0][1] * m[2][3] -
+		m[1][0] * m[0][3] * m[2][1] -
+		m[2][0] * m[0][1] * m[1][3] +
+		m[2][0] * m[0][3] * m[1][1];
+
+	inv_m[3][3] = m[0][0] * m[1][1] * m[2][2] -
+		m[0][0] * m[1][2] * m[2][1] -
+		m[1][0] * m[0][1] * m[2][2] +
+		m[1][0] * m[0][2] * m[2][1] +
+		m[2][0] * m[0][1] * m[1][2] -
+		m[2][0] * m[0][2] * m[1][1];
+
+	double det = m[0][0] * inv_m[0][0] +
+		m[0][1] * inv_m[1][0] +
+		m[0][2] * inv_m[2][0] +
+		m[0][3] * inv_m[3][0];
+
+	if (det == 0)
+		return false;
+
+	det = 1.0 / det;
+
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			inv_m[i][j] = inv_m[i][j] * det;
 		}
 	}
+
+	return true;
+}
+
+
+WWINLINE Matrix4x4 Matrix4x4::Inverse() const    // Gauss-Jordan elimination with partial pivoting
+{
+	Matrix4x4 a(*this);
+	Matrix4x4 b;
+	invert4by4matrix(a, b);
 	return b;
 }
 

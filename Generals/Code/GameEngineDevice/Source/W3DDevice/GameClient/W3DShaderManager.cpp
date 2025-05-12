@@ -72,7 +72,7 @@
 #include "d3dx8tex.h"
 #include "dx8caps.h"
 #include "Common/GameLOD.h"
-#include "benchmark.h"
+
 
 #ifdef RTS_INTERNAL
 // for occasional debugging...
@@ -138,43 +138,33 @@ W3DFilterInterface *ScreenBWFilterList[]=
 
 Int ScreenBWFilter::init(void)
 {
-	Int res;
 	HRESULT hr;
 
 	m_dwBWPixelShader = NULL;
 	m_curFadeFrame = 0;
 
-	if (!W3DShaderManager::canRenderToTexture()) {
-		// Have to be able to render to texture.
+	if (!W3DShaderManager::canRenderToTexture())
 		return false;
-	}
 
-	if ((res=W3DShaderManager::getChipset()) != 0)
+	//this shader needs some assets that need to be loaded
+	//shader decleration
+	DWORD Declaration[]=
 	{
-		if (res >= DC_GENERIC_PIXEL_SHADER_1_1)
-		{
-			//this shader needs some assets that need to be loaded
-			//shader decleration
-			DWORD Declaration[]=
-			{
-				(D3DVSD_STREAM(0)),
-				(D3DVSD_REG(0, D3DVSDT_FLOAT3)), // Position
-				(D3DVSD_REG(1, D3DVSDT_D3DCOLOR)), // Diffuse
-				(D3DVSD_REG(2, D3DVSDT_FLOAT2)), //  Texture Coordinates
-				(D3DVSD_END())
-			};
+		(D3DVSD_STREAM(0)),
+		(D3DVSD_REG(0, D3DVSDT_FLOAT3)), // Position
+		(D3DVSD_REG(1, D3DVSDT_D3DCOLOR)), // Diffuse
+		(D3DVSD_REG(2, D3DVSDT_FLOAT2)), //  Texture Coordinates
+		(D3DVSD_END())
+	};
 
-			//Monochrome pixel shader.
-			hr = W3DShaderManager::LoadAndCreateD3DShader("shaders\\monochrome.pso", &Declaration[0], 0, false, &m_dwBWPixelShader);
-			if (FAILED(hr))
-				return FALSE;
+	//Monochrome pixel shader.
+	hr = W3DShaderManager::LoadAndCreateD3DShader("shaders\\monochrome.pso", &Declaration[0], 0, false, &m_dwBWPixelShader);
+	if (FAILED(hr))
+		return FALSE;
 
-			W3DFilters[FT_VIEW_BW_FILTER]=&screenBWFilter;
+	W3DFilters[FT_VIEW_BW_FILTER]=&screenBWFilter;
 
-			return TRUE;
-		}
-	}
-	return FALSE;
+	return TRUE;
 }
 
 Bool ScreenBWFilter::preRender(Bool &skipRender, CustomScenePassModes &scenePassMode)
@@ -349,21 +339,14 @@ Int ScreenBWFilter::shutdown(void)
 /**Alternate version of the above filter which does not require pixel shaders - good for older cards*/
 Int ScreenBWFilterDOT3::init(void)
 {
-	Int res;
-
 	m_curFadeFrame = 0;
 
-	if (!W3DShaderManager::canRenderToTexture()) {
-		// Have to be able to render to texture.
+	if (!W3DShaderManager::canRenderToTexture()) 
 		return false;
-	}
 
-	if ((res=W3DShaderManager::getChipset()) != 0)
-	{
-			W3DFilters[FT_VIEW_BW_FILTER]=&screenBWFilterDOT3;
-			return TRUE;
-	}
-	return FALSE;
+
+	W3DFilters[FT_VIEW_BW_FILTER]=&screenBWFilterDOT3;
+	return TRUE;
 }
 
 Bool ScreenBWFilterDOT3::preRender(Bool &skipRender, CustomScenePassModes &scenePassMode)
@@ -1530,10 +1513,10 @@ Int TerrainShader2Stage::set(Int pass)
 
 Int TerrainShader8Stage::init( void )
 {	
-	ChipsetType res;
 
 	//this shader will also use the 2Stage shader for some of the passes so initialize it too.
-	if (terrainShader2Stage.init() && (res=W3DShaderManager::getChipset()) >= DC_TNT && res <= DC_GEFORCE2)
+	//if (terrainShader2Stage.init() && (res=W3DShaderManager::getChipset()) >= DC_TNT && res <= DC_GEFORCE2)
+	if (terrainShader2Stage.init())
 	{
 		W3DShaders[W3DShaderManager::ST_TERRAIN_BASE]=&terrainShader8Stage;
 		W3DShadersPassCount[W3DShaderManager::ST_TERRAIN_BASE]=1;
@@ -1700,50 +1683,45 @@ Int TerrainShaderPixelShader::shutdown(void)
 
 Int TerrainShaderPixelShader::init( void )
 {	
-	Int res;
-
 	//this shader will also use the 2Stage shader for some of the passes so initialize it too.
-	if (terrainShader2Stage.init() && (res=W3DShaderManager::getChipset()) >= DC_GENERIC_PIXEL_SHADER_1_1)
+	if (terrainShader2Stage.init())
 	{
-		if (res >= DC_GENERIC_PIXEL_SHADER_1_1)
+		//this shader needs some assets that need to be loaded
+		//shader decleration
+		DWORD Declaration[]=
 		{
-			//this shader needs some assets that need to be loaded
-			//shader decleration
-			DWORD Declaration[]=
-			{
-				(D3DVSD_STREAM(0)),
-				(D3DVSD_REG(0, D3DVSDT_FLOAT3)), // Position
-				(D3DVSD_REG(1, D3DVSDT_D3DCOLOR)), // Diffuse
-				(D3DVSD_REG(2, D3DVSDT_FLOAT2)), //  Texture Coordinates
-				(D3DVSD_REG(3, D3DVSDT_FLOAT2)), //  Texture Coordinates
-				(D3DVSD_END())
-			};
+			(D3DVSD_STREAM(0)),
+			(D3DVSD_REG(0, D3DVSDT_FLOAT3)), // Position
+			(D3DVSD_REG(1, D3DVSDT_D3DCOLOR)), // Diffuse
+			(D3DVSD_REG(2, D3DVSDT_FLOAT2)), //  Texture Coordinates
+			(D3DVSD_REG(3, D3DVSDT_FLOAT2)), //  Texture Coordinates
+			(D3DVSD_END())
+		};
 
-			//base version which doesn't apply any noise textures.
-			HRESULT hr = W3DShaderManager::LoadAndCreateD3DShader("shaders\\terrain.pso", &Declaration[0], 0, false, &m_dwBasePixelShader);
-			if (FAILED(hr))
-				return FALSE;
+		//base version which doesn't apply any noise textures.
+		HRESULT hr = W3DShaderManager::LoadAndCreateD3DShader("shaders\\terrain.pso", &Declaration[0], 0, false, &m_dwBasePixelShader);
+		if (FAILED(hr))
+			return FALSE;
 
-			//version which blends 1 noise texture.
-			hr = W3DShaderManager::LoadAndCreateD3DShader("shaders\\terrainnoise.pso", &Declaration[0], 0, false, &m_dwBaseNoise1PixelShader);
-			if (FAILED(hr))
-				return FALSE;
+		//version which blends 1 noise texture.
+		hr = W3DShaderManager::LoadAndCreateD3DShader("shaders\\terrainnoise.pso", &Declaration[0], 0, false, &m_dwBaseNoise1PixelShader);
+		if (FAILED(hr))
+			return FALSE;
 
-			//version which blends 2 noise textures.
-			hr = W3DShaderManager::LoadAndCreateD3DShader("shaders\\terrainnoise2.pso", &Declaration[0], 0, false, &m_dwBaseNoise2PixelShader);
-			if (FAILED(hr))
-				return FALSE;
+		//version which blends 2 noise textures.
+		hr = W3DShaderManager::LoadAndCreateD3DShader("shaders\\terrainnoise2.pso", &Declaration[0], 0, false, &m_dwBaseNoise2PixelShader);
+		if (FAILED(hr))
+			return FALSE;
 
-			W3DShaders[W3DShaderManager::ST_TERRAIN_BASE]=&terrainShaderPixelShader;
-			W3DShaders[W3DShaderManager::ST_TERRAIN_BASE_NOISE1]=&terrainShaderPixelShader;
-			W3DShaders[W3DShaderManager::ST_TERRAIN_BASE_NOISE2]=&terrainShaderPixelShader;
-			W3DShaders[W3DShaderManager::ST_TERRAIN_BASE_NOISE12]=&terrainShaderPixelShader;
-			W3DShadersPassCount[W3DShaderManager::ST_TERRAIN_BASE]=1;
-			W3DShadersPassCount[W3DShaderManager::ST_TERRAIN_BASE_NOISE1]=1;
-			W3DShadersPassCount[W3DShaderManager::ST_TERRAIN_BASE_NOISE2]=1;
-			W3DShadersPassCount[W3DShaderManager::ST_TERRAIN_BASE_NOISE12]=1;
-			return TRUE;
-		}
+		W3DShaders[W3DShaderManager::ST_TERRAIN_BASE]=&terrainShaderPixelShader;
+		W3DShaders[W3DShaderManager::ST_TERRAIN_BASE_NOISE1]=&terrainShaderPixelShader;
+		W3DShaders[W3DShaderManager::ST_TERRAIN_BASE_NOISE2]=&terrainShaderPixelShader;
+		W3DShaders[W3DShaderManager::ST_TERRAIN_BASE_NOISE12]=&terrainShaderPixelShader;
+		W3DShadersPassCount[W3DShaderManager::ST_TERRAIN_BASE]=1;
+		W3DShadersPassCount[W3DShaderManager::ST_TERRAIN_BASE_NOISE1]=1;
+		W3DShadersPassCount[W3DShaderManager::ST_TERRAIN_BASE_NOISE2]=1;
+		W3DShadersPassCount[W3DShaderManager::ST_TERRAIN_BASE_NOISE12]=1;
+		return TRUE;
 	}
 	return FALSE;
 }
@@ -1992,12 +1970,10 @@ Int RoadShaderPixelShader::shutdown(void)
 
 Int RoadShaderPixelShader::init( void )
 {	
-	Int res;
-
 	//this shader will also use the 2Stage shader for some of the passes so initialize it too.
-	if (roadShader2Stage.init() && (res=W3DShaderManager::getChipset()) >= DC_GENERIC_PIXEL_SHADER_1_1)
+	if (roadShader2Stage.init())
 	{
-		if (res >= DC_GENERIC_PIXEL_SHADER_1_1)
+		if (TRUE)
 		{
 			//this shader needs some assets that need to be loaded
 			//shader decleration
@@ -2360,8 +2336,7 @@ void W3DShaderManager::init(void)
 	D3DSURFACE_DESC desc;
 	// For now, check & see if we are gf3 or higher on the food chain.
 
-	Int res=0;
-	if ((res=W3DShaderManager::getChipset()) != 0)
+	if (TRUE)
 	{
 		//Some of our effects require an offscreen render target, so try creating it here.
 		HRESULT hr=DX8Wrapper::_Get_D3D_Device8()->GetRenderTarget(&m_oldRenderSurface);
@@ -2418,8 +2393,6 @@ void W3DShaderManager::init(void)
 				break;	//found a working shader
 		}
 	}
-
-	DEBUG_LOG(("ShaderManager ChipsetID %d\n", res));
 }
 
 // W3DShaderManager::shutdown =======================================================
@@ -2648,95 +2621,7 @@ IDirect3DTexture8 *W3DShaderManager::getRenderTexture(void)
 	return m_renderTexture;
 }
 
-#define DC_NVIDIA_VENDOR_ID 0x10DE
-#define DC_3DFX_VENDOR_ID	0x121A
-#define DC_ATI_VENDOR_ID	0x1002
 
-// W3DShaderManager::ChipsetType =======================================================
-/** Returns the chipset used by the currently active rendering device.  Can be useful
-	for coding around specific driver bugs.
- */
-//=============================================================================
-ChipsetType W3DShaderManager::getChipset( void )
-{
-	//check if globaldata has an override for current chipset
-	if (TheGlobalData && TheGlobalData->m_chipSetType != DC_UNKNOWN)
-		return (ChipsetType)TheGlobalData->m_chipSetType;
-
-	ChipsetType chip=DC_UNKNOWN;
-	IDirect3D8* d3d8Interface=DX8Wrapper::_Get_D3D8();
-
-	if (d3d8Interface && DX8Wrapper::_Get_D3D_Device8())
-	{
-
-		D3DADAPTER_IDENTIFIER8 did;
-		::ZeroMemory(&did, sizeof(D3DADAPTER_IDENTIFIER8));
-	/*	HRESULT res = */ d3d8Interface->GetAdapterIdentifier(0,D3DENUM_NO_WHQL_LEVEL,&did);
-		
-		if(did.VendorId == DC_NVIDIA_VENDOR_ID)
-		{
-			if (did.DeviceId == 0x20)
-				return DC_TNT;
-   
-			if (did.DeviceId >= 0x28 && did.DeviceId < 0x100)
-				return DC_TNT2;
-
-			if ( (did.DeviceId >= 0x100 && did.DeviceId <= 0x103) ||	//GeForce
-				 (did.DeviceId >= 0x110 && did.DeviceId <= 0x113) ||	//GeForce2 MX
-						 (did.DeviceId >= 0x150 && did.DeviceId <= 0x153) )	//GeForce2
-           		return DC_GEFORCE2;
-
-			if (did.DeviceId >= 0x200 && did.DeviceId < 0x250)
-				return DC_GEFORCE3;
-
-			if (did.DeviceId >= 0x250)
-				return DC_GEFORCE4;
-		}
-		else
-		if(did.VendorId == DC_3DFX_VENDOR_ID)
-		{
-			if (did.DeviceId == 0x0002)
-				return DC_VOODOO2;
-			if (did.DeviceId == 0x0005)
-				return DC_VOODOO3;
-			if (did.DeviceId == 0x0008)	///@todo: Just guessing on this one - find actual Voodoo4 deviceID.
-				return DC_VOODOO4;
-			if (did.DeviceId == 0x0009)
-				return DC_VOODOO5;
-		}
-		else
-		if(did.VendorId == DC_ATI_VENDOR_ID)
-		{
-			if (did.DeviceId == 0x5144)
-				return DC_RADEON;
-			if (did.DeviceId == 0x514C)
-				return DC_RADEON_8500;
-			if (did.DeviceId == 0x4e44)
-				return DC_RADEON_9700;
-		}
-
-		//None of the vendor specific ID's matched so use generic means to classify the card
-		Int maxTextures=DX8Wrapper::Get_Current_Caps()->Get_Max_Simultaneous_Textures();
-		Real pixelShaderVersion;
-
-		char buf[256];
-
-		//Convert version to Real
-		sprintf(buf,"%d.%d",DX8Wrapper::Get_Current_Caps()->Get_Pixel_Shader_Major_Version(),DX8Wrapper::Get_Current_Caps()->Get_Pixel_Shader_Minor_Version());
-		sscanf(buf,"%f",&pixelShaderVersion);
-
-		if (maxTextures >= 4)
-		{	if (pixelShaderVersion >= 1.1f)
-				chip=DC_GENERIC_PIXEL_SHADER_1_1;
-			if (pixelShaderVersion >= 1.4f)
-				chip=DC_GENERIC_PIXEL_SHADER_1_4;
-			if (maxTextures >= 8 && pixelShaderVersion >= 2.0f)
-				chip=DC_GENERIC_PIXEL_SHADER_2_0;
-		}
-	}	//D3D8 interface and device exist. 
-	
-	return chip;
-}
 
 //=============================================================================
 // WaterRenderObjClass::LoadAndCreateShader
@@ -2799,118 +2684,5 @@ HRESULT W3DShaderManager::LoadAndCreateD3DShader(const char* strFilePath, const 
 	return S_OK;
 }
 
-//For the MP test, we're enforcing high min-spec requirements that need to be verified.
-#define MIN_INTEL_CPU_FREQ	1300
-#define MIN_AMD_CPU_FREQ	1100
-#define MIN_ACCEPTED_FREQUENCY	1300
-#define MIN_ACCEPTED_MEMORY	(1024*1024*256)	//256 MB
-#define MIN_ACCEPTED_TEXTURE_MEMORY	(1024*1024*30)	//30 MB
 
-/**Hack to give gameengine access to this function*/
-Bool testMinimumRequirements(ChipsetType *videoChipType, CpuType *cpuType, Int *cpuFreq, Int *numRAM, Real *intBenchIndex, Real *floatBenchIndex, Real *memBenchIndex)
-{
-	return W3DShaderManager::testMinimumRequirements(videoChipType,cpuType,cpuFreq,numRAM,intBenchIndex,floatBenchIndex,memBenchIndex);
-}
 
-Bool W3DShaderManager::testMinimumRequirements(ChipsetType *videoChipType, CpuType *cpuType, Int *cpuFreq, Int *numRAM, Real *intBenchIndex, Real *floatBenchIndex, Real *memBenchIndex)
-{
-	if (videoChipType)
-		*videoChipType = getChipset();
-
-	if (cpuType)
-	{
-		*cpuType = XX;	//unknown
-
-		//Check if it's an Athlon
-		if (CPUDetectClass::Get_Processor_Manufacturer() == CPUDetectClass::MANUFACTURER_AMD &&
-				CPUDetectClass::Get_AMD_Processor() >= CPUDetectClass::AMD_PROCESSOR_ATHLON_025)
-				*cpuType = K7;
-
-		//Check if it's a P3
-		if (CPUDetectClass::Get_Processor_Manufacturer() == CPUDetectClass::MANUFACTURER_INTEL &&
-				CPUDetectClass::Get_Intel_Processor() >= CPUDetectClass::INTEL_PROCESSOR_PENTIUM_III_MODEL_7)
-				*cpuType = P3;
-		//Check if it's a P4
-		if (CPUDetectClass::Get_Processor_Manufacturer() == CPUDetectClass::MANUFACTURER_INTEL &&
-				CPUDetectClass::Get_Intel_Processor() >= CPUDetectClass::INTEL_PROCESSOR_PENTIUM4)
-				*cpuType = P4;
-	}
-
-	if (cpuFreq)
-		*cpuFreq=CPUDetectClass::Get_Processor_Speed();
-
-	if (numRAM)
-		*numRAM=CPUDetectClass::Get_Total_Physical_Memory();
-
-	if (intBenchIndex && floatBenchIndex && memBenchIndex)
-	{
-		RunBenchmark(0, NULL, floatBenchIndex, intBenchIndex, memBenchIndex);
-	}
-
-	return TRUE;
-}
-
-/**Try to guess how well the video card will handle the game assuming very fast CPU*/
-StaticGameLODLevel W3DShaderManager::getGPUPerformanceIndex(void)
-{
-	ChipsetType	chipType;
-	StaticGameLODLevel detailSetting=STATIC_GAME_LOD_LOW;	//assume lowest settings for now.
-
-	if ((chipType=getChipset()) != DC_UNKNOWN)
-	{	//a known video card so we can make some assumptions
-		if (chipType >=	DC_GEFORCE2)
-			detailSetting=STATIC_GAME_LOD_LOW;	//these cards need multiple terrain passes.
-		if (chipType >= DC_GENERIC_PIXEL_SHADER_1_1)	//these cards can do terrain in single pass.
-			detailSetting=STATIC_GAME_LOD_HIGH;
-	}
-
-	return detailSetting;
-}
-
-/**We need a hardware independent method to compare different CPU's.  For lack of anything better, we'll
-use time to calculate PIE using a slow random number algorithm.*/
-
-/**Used to test function call overhead*/
-void add(float *sum,float *addend)
-{
-	*sum = *sum + *addend;
-}
-
-/**Returns seconds needed to run the test*/
-Real W3DShaderManager::GetCPUBenchTime(void)
-{
-	float ztot, yran, ymult, ymod, x, y, z, pi, prod;
-    long int low, ixran, itot, j, iprod;
-
-  	__int64 endTime64,freq64,startTime64;
-	QueryPerformanceFrequency((LARGE_INTEGER *)&freq64);
-	QueryPerformanceCounter((LARGE_INTEGER *)&startTime64);
-
-    ztot = 0.0;
-    low = 1;
-    ixran = 1907;
-    yran = 5813.0;
-    ymult = 1307.0;
-    ymod = 5471.0;
-    itot = 560000;	//total iterations. This value ends up running at ~30 fps on our P4-2.2Ghz.
-
-    for(j=1; j<=itot; j++)
-    {
-		iprod = 27611 * ixran;
-		ixran = iprod - 74383*(long int)(iprod/74383);
-		x = (float)ixran / 74383.0;
-		prod = ymult * yran;
-		yran = (prod - ymod*(long int)(prod/ymod));
-		y = yran / ymod;
-		z = x*x + y*y;
-		add(&ztot,&z);
-		if ( z <= 1.0 )
-		{
-		  low = low + 1;
-		}
-	}
-	pi = 4.0 * (float)low/(float)itot;
-
-	QueryPerformanceCounter((LARGE_INTEGER *)&endTime64);
-	return ((double)(endTime64-startTime64)/(double)(freq64));
-}
