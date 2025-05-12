@@ -45,7 +45,7 @@ add_library(stlport INTERFACE)
 include(cmake/config.cmake)
 include(cmake/lzhl.cmake)
 
-add_subdirectory(Dependencies/SafeDisc)
+#add_subdirectory(Dependencies/SafeDisc)
 add_subdirectory(Dependencies/Utility)
 
 add_subdirectory(Dependencies/dx8-src)
@@ -60,9 +60,7 @@ add_subdirectory(resources)
 
 add_subdirectory(Core)
 
-if(RTS_BUILD_GENERALS)
-    add_subdirectory(Generals)
-endif()
+add_subdirectory(Generals)
 
 feature_summary(WHAT ENABLED_FEATURES DESCRIPTION "Enabled features:")
 feature_summary(WHAT DISABLED_FEATURES DESCRIPTION "Disabled features:")

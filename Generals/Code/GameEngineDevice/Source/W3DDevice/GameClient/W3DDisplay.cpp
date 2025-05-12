@@ -628,30 +628,12 @@ void W3DDisplay::init( void )
 //============================================================================
 	Int lindex;
 	for (lindex=0; lindex<TheGlobalData->m_numGlobalLights; lindex++) 
-	{	m_myLight[lindex] = NEW_REF( LightClass, (LightClass::DIRECTIONAL) );
-	}
+		m_myLight[lindex] = NEW_REF( LightClass, (LightClass::DIRECTIONAL) );
 
 	setTimeOfDay( TheGlobalData->m_timeOfDay );	//set each light to correct values for given time
 
 	for (lindex=0; lindex<TheGlobalData->m_numGlobalLights; lindex++) 
-	{	m_3DScene->setGlobalLight( m_myLight[lindex], lindex );
-	}
-
-#ifdef SAMPLE_DYNAMIC_LIGHT
-	theDynamicLight = NEW_REF(W3DDynamicLight, ());
-	Real red = 1;
-	Real green = 1;
-	Real blue = 0;
-	if(red==0 && blue==0 && green==0) {
-		red = green = blue = 1;
-	}
-	theDynamicLight->Set_Ambient( Vector3( red, green, blue ) );
-	theDynamicLight->Set_Diffuse( Vector3( red, green, blue) );
-	theDynamicLight->Set_Position(Vector3(0, 0, 4));
-	theDynamicLight->Set_Far_Attenuation_Range(1, 8);
-	// Note: Don't Add_Render_Object dynamic lights. 
-	m_3DScene->addDynamicLight( theDynamicLight );
-#endif
+		m_3DScene->setGlobalLight( m_myLight[lindex], lindex );
 
 	// create a new asset manager
 	m_assetManager = NEW W3DAssetManager;	
