@@ -44,12 +44,12 @@
 class Object;
 class Player;
 class SpecialPowerTemplate;
-enum SpecialPowerType CPP_11(: Int);
-enum WeaponSlotType CPP_11(: Int);
-enum CommandSourceType CPP_11(: Int);
-enum CanAttackResult CPP_11(: Int);
+enum SpecialPowerType : Int;
+enum WeaponSlotType : Int;
+enum CommandSourceType : Int;
+enum CanAttackResult : Int;
 
-enum CanEnterType CPP_11(: Int)
+enum CanEnterType : Int
 {
 	CHECK_CAPACITY,
 	DONT_CHECK_CAPACITY,

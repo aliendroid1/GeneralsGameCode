@@ -46,12 +46,12 @@
 #define __WEBBROWSER_H__
 
 #include "Common/SubsystemInterface.h"
-#include <atlbase.h>
+//#include <atlbase.h>
 #include <windows.h>
 #include <Common/GameMemory.h>
 #include "EABrowserDispatch/BrowserDispatch.h"
 #include "FEBDispatch.h"
-#include <Lib/BaseType.h>
+//#include <Lib/BaseType.h>
 
 class GameWindow;
 
@@ -113,9 +113,9 @@ class WebBrowser :
 	// IUnknown methods
 	//---------------------------------------------------------------------------
 	protected:
-		HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid, void** ppvObject) IUNKNOWN_NOEXCEPT;
-		ULONG STDMETHODCALLTYPE AddRef(void) IUNKNOWN_NOEXCEPT;
-		ULONG STDMETHODCALLTYPE Release(void) IUNKNOWN_NOEXCEPT;
+		HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid, void** ppvObject) noexcept;
+		ULONG STDMETHODCALLTYPE AddRef(void) noexcept;
+		ULONG STDMETHODCALLTYPE Release(void) noexcept;
 
 	//---------------------------------------------------------------------------
 	// IBrowserDispatch methods

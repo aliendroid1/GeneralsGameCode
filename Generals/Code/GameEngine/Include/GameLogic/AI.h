@@ -51,11 +51,11 @@ class PolygonTrigger;
 class UpgradeTemplate;
 class WeaponTemplate;
 
-enum GUICommandType CPP_11(: Int);
-enum HackerAttackMode CPP_11(: Int);
-enum WeaponSetType CPP_11(: Int);
-enum WeaponLockType CPP_11(: Int);
-enum SpecialPowerType CPP_11(: Int);
+enum GUICommandType : Int;
+enum HackerAttackMode : Int;
+enum WeaponSetType : Int;
+enum WeaponLockType : Int;
+enum SpecialPowerType : Int;
 
 typedef std::vector<ObjectID> VecObjectID;
 typedef VecObjectID::iterator VecObjectIDIt;
@@ -63,7 +63,7 @@ typedef VecObjectID::iterator VecObjectIDIt;
 typedef std::list<Object *> ListObjectPtr;
 typedef ListObjectPtr::iterator ListObjectPtrIt;
 
-enum AIDebugOptions CPP_11(: Int)
+enum AIDebugOptions : Int
 {
 	AI_DEBUG_NONE = 0, 
 	AI_DEBUG_PATHS,

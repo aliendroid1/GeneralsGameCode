@@ -39,12 +39,12 @@
 *
 ******************************************************************************/
 
-#include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
+//#include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
 //#include "WinMain.h"
 #include "GameNetwork/WOLBrowser/WebBrowser.h"
-#include "GameClient/GameWindow.h"
-#include "GameClient/Display.h"
+//#include "GameClient/GameWindow.h"
+//#include "GameClient/Display.h"
 
 #ifdef RTS_INTERNAL
 // for occasional debugging...
@@ -237,7 +237,7 @@ WebBrowserURL * WebBrowser::makeNewURL(AsciiString tag)
 *
 ******************************************************************************/
 
-STDMETHODIMP WebBrowser::QueryInterface(REFIID iid, void** ppv) IUNKNOWN_NOEXCEPT
+STDMETHODIMP WebBrowser::QueryInterface(REFIID iid, void** ppv) noexcept
 {
 	*ppv = NULL;
 
@@ -270,7 +270,7 @@ STDMETHODIMP WebBrowser::QueryInterface(REFIID iid, void** ppv) IUNKNOWN_NOEXCEP
 *
 ******************************************************************************/
 
-ULONG STDMETHODCALLTYPE WebBrowser::AddRef(void) IUNKNOWN_NOEXCEPT
+ULONG STDMETHODCALLTYPE WebBrowser::AddRef(void) noexcept
 {
 	return ++mRefCount;
 }
@@ -290,7 +290,7 @@ ULONG STDMETHODCALLTYPE WebBrowser::AddRef(void) IUNKNOWN_NOEXCEPT
 *
 ******************************************************************************/
 
-ULONG STDMETHODCALLTYPE WebBrowser::Release(void) IUNKNOWN_NOEXCEPT
+ULONG STDMETHODCALLTYPE WebBrowser::Release(void) noexcept
 {
 	DEBUG_ASSERTCRASH(mRefCount > 0, ("Negative reference count"));
 	--mRefCount;

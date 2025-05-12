@@ -26,9 +26,9 @@
 // The game scripting engine.  Interprets scripts.
 // Author: John Ahlquist, Nov. 2001
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
+//#include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
-#include "Common/DataChunk.h"
+//#include "Common/DataChunk.h"
 #include "Common/file.h"
 #include "Common/FileSystem.h"
 #include "Common/GameEngine.h"
@@ -43,9 +43,9 @@
 #include "Common/ThingTemplate.h"
 #include "Common/Xfer.h"
 
-#include "GameClient/MessageBox.h"
-#include "GameClient/Shell.h"
-#include "GameClient/View.h"
+//#include "GameClient/MessageBox.h"
+//#include "GameClient/Shell.h"
+//#include "GameClient/View.h"
 
 #include "GameLogic/GameLogic.h"
 #include "GameLogic/Module/AIUpdate.h"

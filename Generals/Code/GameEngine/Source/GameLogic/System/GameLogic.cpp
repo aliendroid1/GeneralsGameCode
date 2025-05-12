@@ -27,10 +27,10 @@
 // Author: Michael S. Booth, October 2000
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-#include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
+//#include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
 #include "Common/AudioAffect.h"
-#include "Common/AudioHandleSpecialValues.h"
+//#include "Common/AudioHandleSpecialValues.h"
 #include "Common/BuildAssistant.h"
 #include "Common/CopyProtection.h"
 #include "Common/CRCDebug.h"
@@ -76,16 +76,16 @@
 #include "GameLogic/AI.h"
 #include "GameLogic/AIPathfind.h"
 #include "GameLogic/CaveSystem.h"
-#include "GameLogic/CrateSystem.h"
-#include "GameLogic/FPUControl.h"
+//#include "GameLogic/CrateSystem.h"
+//#include "GameLogic/FPUControl.h"
 #include "GameLogic/GameLogic.h"
 #include "GameLogic/Locomotor.h"
 #include "GameLogic/Object.h"
 #include "GameLogic/Module/AIUpdate.h"
-#include "GameLogic/Module/BodyModule.h"
+//#include "GameLogic/Module/BodyModule.h"
 #include "GameLogic/Module/CreateModule.h"
 #include "GameLogic/Module/DestroyModule.h"
-#include "GameLogic/Module/OpenContain.h"
+//#include "GameLogic/Module/OpenContain.h"
 #include "GameLogic/PartitionManager.h"
 #include "GameLogic/PolygonTrigger.h"
 #include "GameLogic/ScriptActions.h"
