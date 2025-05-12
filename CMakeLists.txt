@@ -56,7 +56,7 @@ add_subdirectory(Dependencies/gamespy-src)
 add_subdirectory(Dependencies/miles-src)
 
 
-add_subdirectory(resources)
+#add_subdirectory(resources)
 
 add_subdirectory(Core)
 

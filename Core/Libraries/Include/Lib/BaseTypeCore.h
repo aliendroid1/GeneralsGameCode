@@ -46,10 +46,10 @@
 */
 
 // "unreferenced inline function has been removed" Yea, so what?
-#pragma warning(disable : 4514)
+//#pragma warning(disable : 4514)
 
 // Unreferenced local function removed.
-#pragma warning(disable : 4505)
+//#pragma warning(disable : 4505)
 
 // 'unreferenced formal parameter'
 #pragma warning(disable : 4100)
