@@ -24,15 +24,6 @@ add_feature_info(DebugBuild RTS_BUILD_OPTION_DEBUG "Building as a \"Debug\" buil
 add_feature_info(AddressSanitizer RTS_BUILD_OPTION_ASAN "Building with address sanitizer")
 add_feature_info(FFmpegSupport RTS_BUILD_OPTION_FFMPEG "Building with FFmpeg support")
 
-if(RTS_BUILD_ZEROHOUR)
-    option(RTS_BUILD_ZEROHOUR_TOOLS "Build tools for Zero Hour" ON)
-    option(RTS_BUILD_ZEROHOUR_EXTRAS "Build extra tools/tests for Zero Hour" OFF)
-    option(RTS_BUILD_ZEROHOUR_DOCS "Build documentation for Zero Hour" OFF)
-
-    add_feature_info(ZeroHourTools RTS_BUILD_ZEROHOUR_TOOLS "Build Zero Hour Mod Tools")
-    add_feature_info(ZeroHourExtras RTS_BUILD_ZEROHOUR_EXTRAS "Build Zero Hour Extra Tools/Tests")
-    add_feature_info(ZeroHourDocs RTS_BUILD_ZEROHOUR_DOCS "Build Zero Hour Documentation")
-endif()
 
 if(RTS_BUILD_GENERALS)
     option(RTS_BUILD_GENERALS_TOOLS "Build tools for Generals" ON)
@@ -44,10 +35,8 @@ if(RTS_BUILD_GENERALS)
     add_feature_info(GeneralsDocs RTS_BUILD_GENERALS_DOCS "Build Generals Documentation")
 endif()
 
-if(NOT IS_VS6_BUILD)
-    # Because we set CMAKE_CXX_STANDARD_REQUIRED and CMAKE_CXX_EXTENSIONS in the compilers.cmake this should be enforced.
-    target_compile_features(core_config INTERFACE cxx_std_20)
-endif()
+
+target_compile_features(core_config INTERFACE cxx_std_20)
 
 target_compile_options(core_config INTERFACE ${RTS_FLAGS})
 
@@ -56,9 +45,7 @@ if(MSVC)
     target_compile_definitions(core_config INTERFACE _CRT_NONSTDC_NO_WARNINGS _CRT_SECURE_NO_WARNINGS $<$<CONFIG:DEBUG>:_DEBUG_CRT>)
 endif()
 
-if(UNIX)
-    target_compile_definitions(core_config INTERFACE _UNIX)
-endif()
+
 
 if(RTS_BUILD_OPTION_DEBUG)
     target_compile_definitions(core_config INTERFACE RTS_DEBUG WWDEBUG DEBUG)

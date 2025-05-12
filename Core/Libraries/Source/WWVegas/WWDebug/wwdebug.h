@@ -111,7 +111,7 @@ void					WWDebug_DBWin32_Message_Handler( const char * message);
 */
 
 // TheSuperHackers @compile feliwir 12/04/2025 Both Debug headers are identical. Use ZH.
-#include "../../../../../GeneralsMD/Code/GameEngine/Include/Common/Debug.h"
+#include "../../../../../Generals/Code/GameEngine/Include/Common/Debug.h"
 
 #ifdef DEBUG_LOGGING
 #define WWDEBUG_SAY(x)							DEBUG_LOG(x)

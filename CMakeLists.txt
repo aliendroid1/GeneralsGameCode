@@ -38,41 +38,27 @@ include(cmake/compilers.cmake)
 
 include(FetchContent)
 
-# Find/Add build dependencies and stubs shared by all projects
-if((WIN32 OR "${CMAKE_SYSTEM}" MATCHES "Windows") AND ${CMAKE_SIZEOF_VOID_P} EQUAL 4)
-    include(cmake/miles.cmake)
-    include(cmake/bink.cmake)
-    include(cmake/dx8.cmake)
-    include(cmake/dbghelp.cmake)
-endif()
 
-# Define a dummy stlport target when not on VC6.
-if (IS_VS6_BUILD)
-    include(cmake/stlport.cmake)
-else()
-    add_library(stlport INTERFACE)
-endif()
+
+add_library(stlport INTERFACE)
 
 include(cmake/config.cmake)
-include(cmake/gamespy.cmake)
 include(cmake/lzhl.cmake)
 
-add_subdirectory(Dependencies/Benchmark)
-if (IS_VS6_BUILD)
-    # The original max sdk does not compile against a modern compiler.
-    # If there is a desire to make this work, then a fixed max sdk needs to be created.
-    add_subdirectory(Dependencies/MaxSDK)
-endif()
 add_subdirectory(Dependencies/SafeDisc)
 add_subdirectory(Dependencies/Utility)
+
+add_subdirectory(Dependencies/dx8-src)
+add_subdirectory(Dependencies/bink-src)
+add_subdirectory(Dependencies/dbghelp-src)
+add_subdirectory(Dependencies/gamespy-src)
+#add_subdirectory(Dependencies/lzhl-src)
+add_subdirectory(Dependencies/miles-src)
+
+
 add_subdirectory(resources)
 
 add_subdirectory(Core)
-
-# Add main build targets
-if(RTS_BUILD_ZEROHOUR)
-    add_subdirectory(GeneralsMD)
-endif()
 
 if(RTS_BUILD_GENERALS)
     add_subdirectory(Generals)

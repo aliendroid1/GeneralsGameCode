@@ -23,7 +23,5 @@ add_subdirectory(Libraries)
 # Base GameEngine library
 add_subdirectory(GameEngine)
 
-# Platform specific GameEngine code
-# add_subdirectory(GameEngineDevice)
 
-add_subdirectory(Tools)
+
