@@ -33,8 +33,7 @@ endif()
 # Top level project, doesn't really affect anything.
 project(genzh LANGUAGES C CXX)
 
-# This file handles extra settings wanted/needed for different compilers.
-#include(cmake/compilers.cmake)
+
 
 include(FetchContent)
 
@@ -44,7 +43,7 @@ add_library(stlport INTERFACE)
 
 include(cmake/config.cmake)
 include(cmake/lzhl.cmake)
-
+include(cmake/zlib.cmake)
     
 add_subdirectory(Dependencies/Utility)
 
@@ -52,7 +51,7 @@ add_subdirectory(Dependencies/dx8)
 add_subdirectory(Dependencies/bink)
 add_subdirectory(Dependencies/dbghelp)
 add_subdirectory(Dependencies/gamespy-src)
-#add_subdirectory(Dependencies/lzhl-src)
+#add_subdirectory(Dependencies/lzhl-src/CompLibHeader)
 add_subdirectory(Dependencies/miles)
 
 

@@ -1,11 +1,6 @@
-set(ZLIB_DIR ${CMAKE_CURRENT_BINARY_DIR}/_deps/zlib-1.1.4-src/ZLib)
+set(ZLIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Dependencies/zlib-1.1.4-src/ZLib)
 
-FetchContent_Populate(zlib DOWNLOAD_EXTRACT_TIMESTAMP
-    GIT_REPOSITORY https://github.com/TheSuperHackers/zlib-1.1.4
-    GIT_TAG        ac753eee3990a2f592bd4807ff0b30ff572c2104
-    SOURCE_DIR     ${ZLIB_DIR}
-)
-    
+
 add_library(libzlib STATIC)
 
 target_sources(libzlib PRIVATE

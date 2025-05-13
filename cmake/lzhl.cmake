@@ -1,11 +1,6 @@
-set(LZHL_DIR ${CMAKE_CURRENT_BINARY_DIR}/_deps/lzhl-src/CompLibHeader)
+set(LZHL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Dependencies/lzhl-src/CompLibHeader)
 
-FetchContent_Populate(lzhl DOWNLOAD_EXTRACT_TIMESTAMP
-    GIT_REPOSITORY https://github.com/TheSuperHackers/lzhl-1.0
-    GIT_TAG        dfd96e2ca64adaddb35dd4ebadd6add7d5586783
-    SOURCE_DIR     ${LZHL_DIR}
-)
-
+ 
 add_library(liblzhl STATIC)
 
 target_sources(liblzhl PRIVATE

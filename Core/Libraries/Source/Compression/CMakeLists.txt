@@ -39,12 +39,8 @@ target_link_libraries(core_compression PUBLIC
     liblzhl
 )
 
-find_package(ZLIB)
-if (ZLIB_FOUND)
-    # Adds zlib from vcpkg
-    target_link_libraries(core_compression PUBLIC ZLIB::ZLIB)
-else()
-    # Adds zlib from github repository
-    include(${CMAKE_SOURCE_DIR}/cmake/zlib.cmake)
-    target_link_libraries(core_compression PUBLIC libzlib)
-endif()
+
+# Adds zlib from github repository
+#include(${CMAKE_SOURCE_DIR}/cmake/zlib.cmake)
+target_link_libraries(core_compression PUBLIC libzlib)
+
