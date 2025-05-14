@@ -187,7 +187,6 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
 				isWinMainActive = wParam;	
 				if (TheGameEngine)
 					TheGameEngine->setIsActive(isWinMainActive);
-				Reset_D3D_Device(isWinMainActive);
 				if (isWinMainActive)
 				{	//restore mouse cursor to our custom version.
 					if (TheWin32Mouse)
@@ -468,7 +467,7 @@ static CriticalSection critSec1, critSec2, critSec3, critSec4, critSec5;
 Int APIENTRY WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
                       LPSTR lpCmdLine, Int nCmdShow )
 {
-	checkProtection();
+
 
 	try {
 
@@ -579,7 +578,7 @@ Int APIENTRY WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 			AsciiString(VERSION_BUILDUSER), AsciiString(VERSION_BUILDLOC),
 			AsciiString(__TIME__), AsciiString(__DATE__));
 
-
+		//SetProcessDPIAware(); 
 
 		// TheSuperHackers @refactor The instance mutex now lives in its own class.
 
@@ -611,9 +610,6 @@ Int APIENTRY WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		delete TheVersion;
 		TheVersion = NULL;
 
-	#ifdef MEMORYPOOL_DEBUG
-		TheMemoryPoolFactory->debugMemoryReport(REPORT_POOLINFO | REPORT_POOL_OVERFLOW | REPORT_SIMPLE_LEAKS, 0, 0);
-	#endif
 	#if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 		TheMemoryPoolFactory->memoryPoolUsageReport("AAAMemStats");
 	#endif
