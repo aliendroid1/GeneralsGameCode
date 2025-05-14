@@ -52,7 +52,6 @@ static void drawFramerateBar(void);
 #include "Common/GameLOD.h"
 #include "Common/DrawModule.h"
 #include "GameLogic/AIPathfind.h"
-
 #include "GameClient/Drawable.h"
 #include "GameClient/GameText.h"
 #include "GameClient/GraphDraw.h"
@@ -60,7 +59,6 @@ static void drawFramerateBar(void);
 #include "GameClient/Mouse.h"
 #include "GameClient/GlobalLanguage.h"
 #include "GameClient/Water.h"
-
 #include "GameNetwork/NetworkInterface.h"
 #include "Common/ModelState.h"
 #include "Lib/BaseType.h"
@@ -98,13 +96,8 @@ static void drawFramerateBar(void);
 #include "WW3D2/meshmdl.h"
 #include "WW3D2/rddesc.h"
 #include "TARGA.H"
-#include "Lib/BaseType.h"
-
 #include "GameLogic/ScriptEngine.h"		// For TheScriptEngine - jkmcd
 #include "GameLogic/GameLogic.h"
-#ifdef DUMP_PERF_STATS
-#include "GameLogic/PartitionManager.h"
-#endif
 
 #include "WinMain.h"
 
@@ -125,189 +118,6 @@ static Real theLightYOffset = 0.07f;
 static Int theFlashCount = 0;
 #endif
 
-//*****************************************************************************************
-//*****************************************************************************************
-//**** Start Statistical Dump *************************************************************
-//*****************************************************************************************
-
-#ifdef DUMP_PERF_STATS
-
-#include <cstdarg>
-
-class StatDumpClass
-{
-public:
-	StatDumpClass( const char *fname );
-	~StatDumpClass();
-	void dumpStats();
-
-protected:
-	FILE *m_fp;
-};
-
-//=============================================================================
-//Open the file once at the beginning of the game -- everything appends to it.
-//=============================================================================
-StatDumpClass::StatDumpClass( const char *fname )
-{
-	char buffer[ _MAX_PATH ];
-	GetModuleFileName( NULL, buffer, sizeof( buffer ) );
-	char *pEnd = buffer + strlen( buffer );
-	while( pEnd != buffer )
-	{
-		if( *pEnd == '\\' )
-		{
-			*pEnd = 0;
-			break;
-		}
-		pEnd--;
-	}
-	AsciiString fullPath;
-	fullPath.format( "%s\\%s", buffer, fname );
-	m_fp = fopen( fullPath.str(), "wt" );
-}
-
-//=============================================================================
-//Close the file at the end of the application 
-//=============================================================================
-StatDumpClass::~StatDumpClass()
-{
-	if( m_fp )
-	{
-		fclose( m_fp );
-	}
-}
-
-static const char *getCurrentTimeString(void)
-{
-	time_t aclock;
-	time(&aclock);
-	struct tm *newtime = localtime(&aclock);
-	return asctime(newtime);
-}
-
-//=============================================================================
-//Dump the stats
-//=============================================================================
-void StatDumpClass::dumpStats()
-{
-	if( !m_fp )
-	{
-		return;
-	}
-
-	//static char buf[1024];
-	fprintf( m_fp, "----------------------------------------------------------------\n" );
-	fprintf( m_fp, "Performance Statistical Dump -- Frame %d\n", TheGameLogic->getFrame() );
-	fprintf( m_fp, "Time:\t%s", getCurrentTimeString() );
-	fprintf( m_fp, "Map:\t%s\n", TheGlobalData->m_mapName.str());
-	fprintf( m_fp, "Side:\t%s\n", ThePlayerList->getLocalPlayer()->getSide().str());
-	fprintf( m_fp, "----------------------------------------------------------------\n" );
-
-	//FPS
-	Real fps = TheDisplay->getAverageFPS();
-	fprintf( m_fp, "Average FPS: %.1f (%.5f msec)\n", fps, 1000.0f / fps );
-
-	//Rendering stats
-	fprintf( m_fp, "Draws: %d Skins: %d SortedPolys: %d SkinPolys: %d\n",(Int)Debug_Statistics::Get_Draw_Calls(),
-		(Int)Debug_Statistics::Get_DX8_Skin_Renders(),
-		(Int)Debug_Statistics::Get_Sorting_Polygons(), (Int)Debug_Statistics::Get_DX8_Skin_Polygons());
-
-	//Object stats
-	UnsignedInt objCount = TheGameLogic->getObjectCount();
-	UnsignedInt objScreenCount = TheGameClient->getRenderedObjectCount();
-	fprintf( m_fp, "Objects: %d in world (%d onscreen)\n", objCount, objScreenCount );
-
-	//AI stats
-	UnsignedInt numAI, numMoving, numAttacking, numWaitingForPath, overallFailedPathfinds;
-	TheGameLogic->getAIMetricsStatistics( &numAI, &numMoving, &numAttacking, &numWaitingForPath, &overallFailedPathfinds );
-	fprintf( m_fp, "\n" );
-	fprintf( m_fp, "AI Statistics:\n" );
-	fprintf( m_fp, "  Total AI Objects: %d\n", numAI );
-	fprintf( m_fp, "    -moving: %d\n", numMoving );
-	fprintf( m_fp, "    -attacking: %d\n", numAttacking );
-	fprintf( m_fp, "    -waiting for path: %d\n", numWaitingForPath );
-	fprintf( m_fp, "  Total failed pathfinds: %d\n", overallFailedPathfinds );
-	fprintf( m_fp, "\n" );
-
-	// Script stats
-	Real timeLastFrame, slowScript1, slowScript2;
-	AsciiString slowScripts = TheScriptEngine->getStats(&timeLastFrame, &slowScript1, &slowScript2);
-	fprintf( m_fp, "\n" );
-	fprintf( m_fp, "Script Engine Statistics:\n" );
-	fprintf( m_fp, "  Total time last frame: %.5f msec\n", timeLastFrame*1000 );
-	fprintf( m_fp, "    -Slowest 2 scripts %s\n", slowScripts.str() );
-	fprintf( m_fp, "    -Slowest 2 script times %.5f msec, %.5f msec \n", slowScript1*1000, slowScript2*1000 );
-	fprintf( m_fp, "\n" );
-
-
-
-	//PartitionMgr stats
-	double gcoTimeThisFrameTotal, gcoTimeThisFrameAvg;
-	ThePartitionManager->getPMStats(gcoTimeThisFrameTotal, gcoTimeThisFrameAvg);
-	fprintf(m_fp, "Partition Manager Statistics:\n");
-	fprintf(m_fp, "  Total time for object scans this frame is %.5f msec\n", gcoTimeThisFrameTotal);
-	fprintf(m_fp, "  Avg time per object scan this frame is %.5f msec\n", gcoTimeThisFrameAvg);
-	fprintf( m_fp, "\n" );
-
-	// setup texture stats
-	Debug_Statistics::Record_Texture_Mode(Debug_Statistics::RECORD_TEXTURE_SIMPLE/*RECORD_TEXTURE_NONE*/);
-
-	fprintf( m_fp, "Video Statistics:\n" );
-	//Particle system stats
-	fprintf( m_fp, "  Particle Systems: %d\n", TheParticleSystemManager->getParticleSystemCount() );
-	Int totalParticles = TheParticleSystemManager->getParticleCount();
-	Int onScreenParticleCount = TheParticleSystemManager->getOnScreenParticleCount();
-	fprintf( m_fp, "  Particles: %d in world (%d onscreen)\n", totalParticles, onScreenParticleCount );
-
-	// polygons this frame	
-	Int polyPerFrame = Debug_Statistics::Get_DX8_Polygons();
-	Int polyPerSecond = (Int)(polyPerFrame * fps);
-	fprintf( m_fp, "  Polygons: %d per frame (%d per second)\n", polyPerFrame, polyPerSecond );
-
-	// vertices this frame
-	fprintf( m_fp, "  Vertices: %d\n", Debug_Statistics::Get_DX8_Vertices() );
-
-	//
-	// I'm adjusting the texture memory usage counter by subtracting 
-	// out the terrain alpha texture (since it's really == terrain texture).
-	//
-	fprintf( m_fp, "  Video RAM: %d\n", Debug_Statistics::Get_Record_Texture_Size() - 1376256 );
-
-	// terrain stats
-	fprintf( m_fp, "  3-Way Blends: %d, Shoreline Blends: %d\n", TheTerrainRenderObject->getNumExtraBlendTiles(), TheTerrainRenderObject->getNumShoreLineTiles() );
-
-	fprintf( m_fp, "\n" );
-
-#if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
-	TheAudio->audioDebugDisplay( NULL, NULL, m_fp );
-	fprintf( m_fp, "\n" );
-#endif
-	
-#ifdef MEMORYPOOL_DEBUG
-	//Report memory usage.
-	TheMemoryPoolFactory->debugMemoryReport( REPORT_FACTORYINFO | REPORT_POOLINFO, 0, 0, m_fp );
-#else
-	fprintf( m_fp, "Memory Report -- unavailable (build doesn't have MEMORYPOOL_DEBUG defined)\n" );
-#endif
-	fprintf( m_fp, "\n" );
-
-	fprintf( m_fp, "%s", TheSubsystemList->dumpTimesForAll().str());
-
-	fprintf( m_fp, "----------------------------------------------------------------\n" );
-	fprintf( m_fp, "END -- Frame %d\n", TheGameLogic->getFrame() );
-	fprintf( m_fp, "----------------------------------------------------------------\n\n\n" );
-	fflush(m_fp);
-}
-
-StatDumpClass TheStatDump("StatisticsDump.txt");
-
-#endif //DUMP_PERF_STATS
-
-//*****************************************************************************************
-//**** End Statistical Dump ***************************************************************
-//*****************************************************************************************
-//*****************************************************************************************
 
 
 
@@ -426,26 +236,11 @@ Int W3DDisplay::getDisplayModeCount(void)
 	const DynamicVectorClass <ResolutionDescClass> &resolutions=devDesc.Enumerate_Resolutions();
 
 	Int numResolutions=0;
-/*	Bool needStencil=false;
-	Bool needDestinationAlpha=false;
-	Int minBitDepth=16;
-	
-	//Walk through all resolutions and determine which ones are compatible with other settings
-	//chosen by user.  For example, 32-bit may be required for shadows, occlusion, soft water edge, etc.
-	if (TheGlobalData->m_useShadowVolumes || (TheGlobalData->m_enableBehindBuildingMarkers && TheGameLogic->getShowBehindBuildingMarkers()))
-		needStencil=true;
-
-	if (TheGlobalData->m_showSoftWaterEdge)
-	{	minBitDepth=32;
-	}
-*/
 	for (int res = 0; res < resolutions.Count ();  res ++)
 	{
 		// Is this the resolution we are looking for?
-		if (resolutions[res].BitDepth >= 24 && resolutions[res].Width >= 800 )//accept all aspect ratio modes.
-		{	
+		if (resolutions[res].BitDepth >= 32 && resolutions[res].Width >= 800 )//accept all aspect ratio modes.
 			numResolutions++;
-		}
 	}
 
 	return numResolutions;
@@ -482,33 +277,7 @@ void W3DDisplay::setGamma(Real gamma, Real bright, Real contrast, Bool calibrate
 	DX8Wrapper::Set_Gamma(gamma,bright,contrast,calibrate, false);
 }
 
-/*Giant hack in order to keep the game from getting stuck when alt-tabbing*/
-void Reset_D3D_Device(bool active)
-{
-	if (TheDisplay && WW3D::Is_Initted() && !TheDisplay->getWindowed())
-	{
-		if (active)
-		{	
-			//switch back to desired mode when user alt-tabs back into game
-			WW3D::Set_Render_Device( WW3D::Get_Render_Device(),TheDisplay->getWidth(),TheDisplay->getHeight(),TheDisplay->getBitDepth(),TheDisplay->getWindowed(),true, true);
-			OSVERSIONINFO	osvi;
-			osvi.dwOSVersionInfoSize=sizeof(OSVERSIONINFO);
-			if (GetVersionEx(&osvi))
-			{	//check if we're running Win9x variant since they have buggy alt-tab that requires
-				//reloading all textures.
-				if (osvi.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS)
-				{	//only do this on Win9x boxes because it makes alt-tab very slow.
-						WW3D::_Invalidate_Textures();
-				}
-			}
-		}
-		else
-		{
-			//switch to windowed mode whenever the user alt-tabs out of game. Don't restore assets after reset since we'll do it when returning.
-			WW3D::Set_Render_Device( WW3D::Get_Render_Device(),TheDisplay->getWidth(),TheDisplay->getHeight(),TheDisplay->getBitDepth(),1,true, true, false);
-		}
-	}
-}
+
 
 /** Set resolution of display */
 //=============================================================================
@@ -667,25 +436,14 @@ void W3DDisplay::init( void )
 	setHeight( TheGlobalData->m_yResolution );
 	setBitDepth( W3D_DISPLAY_DEFAULT_BIT_DEPTH );
 
-	if( WW3D::Set_Render_Device( 0, 
-															 getWidth(), 
-															 getHeight(), 
-															 getBitDepth(), 
-															 getWindowed(), 
-															 true ) != WW3D_ERROR_OK ) 
+	if(  WW3D::Set_Render_Device( 0, getWidth(),  getHeight(), getBitDepth(),  getWindowed(), true ) != WW3D_ERROR_OK ) 
 	{
 		// Getting the device at the default bit depth (32) didn't work, so try
 		// getting a 16 bit display.  (Voodoo 1-3 only supported 16 bit.) jba.
 		setBitDepth( 16 );
 		DEBUG_ASSERTCRASH(0, ("Unable to set bit depth 32\n"));
-		if( WW3D::Set_Render_Device( 0, 
-																 getWidth(), 
-																 getHeight(), 
-																 getBitDepth(), 
-																 getWindowed(), 
-																 true ) != WW3D_ERROR_OK ) 
+		if( WW3D::Set_Render_Device( 0,  getWidth(), getHeight(), getBitDepth(), getWindowed(), true ) != WW3D_ERROR_OK ) 
 		{
-
 			WW3D::Shutdown();
 			WWMath::Shutdown();
 			throw ERROR_INVALID_D3D;	//failed to initialize.  User probably doesn't have DX 8.1
@@ -695,22 +453,8 @@ void W3DDisplay::init( void )
 
 	}  // end if
 
-	//Check if level was never set and default to setting most suitable for system.
-	if (TheGameLODManager->getStaticLODLevel() == STATIC_GAME_LOD_UNKNOWN)
-		TheGameLODManager->setStaticLODLevel(TheGameLODManager->findStaticLODLevel());
-	else
-	{	//Static LOD level was applied during GameLOD manager init except for texture reduction
-		//which needs to be applied here.
-		Int txtReduction=TheWritableGlobalData->m_textureReductionFactor;
-		if (txtReduction > 0)
-		{		WW3D::Set_Texture_Reduction(txtReduction,6);
-				//Tell LOD manager that texture reduction was applied.
-				TheGameLODManager->setCurrentTextureReduction(txtReduction);
-		}
-	}
-
-	if (TheGlobalData->m_displayGamma != 1.0f)
-		setGamma(TheGlobalData->m_displayGamma,0.0f,1.0f,FALSE);
+	//if (TheGlobalData->m_displayGamma != 1.0f)
+	//	setGamma(TheGlobalData->m_displayGamma,0.0f,1.0f,FALSE);
 
 	initAssets();
 	init2DScene();
@@ -745,10 +489,9 @@ void W3DDisplay::init( void )
 	// we're now online
 	m_initialized = true;
 	if( TheGlobalData->m_displayDebug )
-	{
 		m_debugDisplayCallback = StatDebugDisplay;
-	}
-}  // end init
+
+} 
 
 // W3DDisplay::reset ===========================================================
 /** Reset the W3D display system.  Here we need to
@@ -900,20 +643,6 @@ void W3DDisplay::gatherDebugStats( void )
 
 	s_timeSinceLastUpdateInSecs = ((double)(time64 - s_lastUpdateTime64) / (double)(freq64));
 
-#ifdef EXTENDED_STATS
-		static FILE *pListFile = NULL;
-		static Int64 lastFrameTime=0;
-		static samples = 0;
-		if (pListFile == NULL) {
-			pListFile = fopen("FrameRateLog.txt", "w");
-		}
-		samples++;
-		if (pListFile && lastFrameTime && samples<100) {
-			float timeSinceLastFrame = (float)((double)(time64-lastFrameTime) / (double)(freq64));
-			fprintf(pListFile, "%d ", (int)(1/timeSinceLastFrame));
-		}
-		lastFrameTime = time64;
-#endif
 
 	// we update stats on a delay
 	const Real UPDATE_RATE_SECS = 2.0;
@@ -968,134 +697,6 @@ void W3DDisplay::gatherDebugStats( void )
 
 		Int polyPerFrame = Debug_Statistics::Get_DX8_Polygons();
 
-#ifdef EXTENDED_STATS
-		static float gameOverheadMS = 0.0f;
-		static float consoleMS = 0.0f;
-		static float threeDOverheadMS = 0.0f;
-		static float terrainMS = 0.0f;
-		static float objectMS = 0.0f;
-		static float overlapMS = 0.0f;
-		static int  extendedStats = 0;
-		const int SHOW_STATS_TIME=12; // show extended stats for 5 cycles == 10 seconds.
-		static enum {disabled, sync, gameOverhead, console, threeDOverhead, terrain, objects, overlap, normal} statMode = disabled;
-
-		if (statMode == sync) {
-			extendedStats = SHOW_STATS_TIME;
-			statMode = gameOverhead;
-		} else if (statMode == gameOverhead) {
-			gameOverheadMS = ms;
-			statMode = console;
-			DX8Wrapper::stats.m_disableTerrain = true;
-			DX8Wrapper::stats.m_disableOverhead = true;
-			DX8Wrapper::stats.m_disableWater = true;
-			DX8Wrapper::stats.m_disableObjects = true;
-			DX8Wrapper::stats.m_disableConsole = false;
-			DX8Wrapper::stats.m_debugLinesToShow = 1;
-		} else if (statMode == console) {
-			consoleMS = ms;
-			statMode = threeDOverhead;
-			DX8Wrapper::stats.m_disableTerrain = true;
-			DX8Wrapper::stats.m_disableOverhead = true;
-			DX8Wrapper::stats.m_disableWater = true;
-			DX8Wrapper::stats.m_disableObjects = true;
-			DX8Wrapper::stats.m_disableConsole = true;
-			DX8Wrapper::stats.m_debugLinesToShow = 1;
-		} else if (statMode == threeDOverhead) {				 
-			threeDOverheadMS = ms;
-			statMode = terrain;
-			DX8Wrapper::stats.m_disableTerrain = false;
-			DX8Wrapper::stats.m_disableOverhead = true;
-			DX8Wrapper::stats.m_disableWater = true;
-			DX8Wrapper::stats.m_disableObjects = true;
-			DX8Wrapper::stats.m_disableConsole = true;
-			DX8Wrapper::stats.m_debugLinesToShow = 1;
-		} else if (statMode == terrain) {
-			terrainMS = ms;
-			statMode = objects;
-			DX8Wrapper::stats.m_disableOverhead = true;
-			DX8Wrapper::stats.m_disableTerrain = true;
-			DX8Wrapper::stats.m_disableWater = true;
-			DX8Wrapper::stats.m_disableObjects = false;
-			DX8Wrapper::stats.m_disableConsole = true;
-			DX8Wrapper::stats.m_debugLinesToShow = 1;
-		} else if (statMode == objects) {
-			objectMS = ms;
-			statMode = overlap;
-			DX8Wrapper::stats.m_disableOverhead = false;
-			DX8Wrapper::stats.m_disableTerrain = false;
-			DX8Wrapper::stats.m_disableWater = false;
-			DX8Wrapper::stats.m_disableObjects = false;
-			DX8Wrapper::stats.m_disableConsole = true;
-			DX8Wrapper::stats.m_sleepTime = (int)(terrainMS);
-			DX8Wrapper::stats.m_debugLinesToShow = 1;
-		} else if (statMode == overlap) {
-			overlapMS = ms;
-			statMode = normal;
-			DX8Wrapper::stats.m_disableOverhead = false;
-			DX8Wrapper::stats.m_disableTerrain = false;
-			DX8Wrapper::stats.m_disableWater = false;
-			DX8Wrapper::stats.m_disableObjects = false;
-			DX8Wrapper::stats.m_disableConsole = true;
-			DX8Wrapper::stats.m_sleepTime = 0;
-			DX8Wrapper::stats.m_debugLinesToShow = 1;
-		} else if (statMode == normal) {
-			overlapMS = (ms + ((int)terrainMS) - overlapMS );
-			statMode = disabled;
-			extendedStats = SHOW_STATS_TIME;
-
-			// Done collecting stats. Re-enable stuff
-			DX8Wrapper::stats.m_disableConsole = false;
-			DX8Wrapper::stats.m_debugLinesToShow = -1;
-		} else if (!DX8Wrapper::stats.m_showingStats) {
-			// start collecting extended info. 
-			DX8Wrapper::stats.m_showingStats = true;
-			DX8Wrapper::stats.m_disableOverhead = false;
-			DX8Wrapper::stats.m_disableTerrain = true;
-			DX8Wrapper::stats.m_disableWater = true;
-			DX8Wrapper::stats.m_disableObjects = true;
-			DX8Wrapper::stats.m_disableConsole = true;
-			DX8Wrapper::stats.m_debugLinesToShow = 1;
-			statMode = sync;
-			gameOverheadMS = 0.0f;
-			threeDOverheadMS = 0.0f;
-			terrainMS = 0.0f;
-			objectMS = 0.0f;
-		}
-		if (statMode != disabled) {
-			unibuffer.format(L"FPS: %.2f, %.2fms - Collecting extended stats.", fps, ms);
-		} else if (extendedStats>0) {
-			extendedStats--;
-			unibuffer.format( L"FPS: %.2f, %.2fms - OH %.2fms, Console %.2fms, 3D OH %.2fms, Terrain %.2fms, Obs %.2fms, CPU %.2fms", 
-				fps, ms, gameOverheadMS, consoleMS, threeDOverheadMS, terrainMS, objectMS, overlapMS);
-			if (extendedStats==SHOW_STATS_TIME-2) {
-				char bufferA[ 256 ];
-				sprintf( bufferA, "FPS: %.2f, %.2fms - OH %.2fms, Console %.2fms, 3D OH %.2fms, Terrain %.2fms, Obs %.2fms, CPU %.2fms\n", 
-					fps, ms, gameOverheadMS, consoleMS, threeDOverheadMS, terrainMS, objectMS, overlapMS);
-				::OutputDebugString(bufferA);
-				if (pListFile) {
-					fprintf(pListFile, "\n%s", bufferA);
-				}				
-				sprintf( bufferA, "Polygons: per frame %d, per second %d\n", polyPerFrame,
-						(Int)(polyPerFrame*fps));
-				::OutputDebugString(bufferA);
-				if (pListFile) {
-					fprintf(pListFile, "%s", bufferA);
-					fflush(pListFile);
-				}				
-			}
-		} 
- 		if (pListFile) {
-			fprintf(pListFile, "\nFPS: %.2f, %.2fms\n", fps, ms);
-			fflush(pListFile);
-		}				
-		if (pListFile) {
-			samples = 0;
-			if (statMode != disabled) {
-				fprintf(pListFile, "Stat%d-", statMode);
-			} 
-		}				
-
-#endif
 		// check for debug D3D
 		Bool debugD3D=false;
 		RegistryClass registry ("Software\\Microsoft\\Direct3d");
@@ -1394,14 +995,6 @@ void W3DDisplay::drawDebugStats( void )
 	Color dropColor = GameMakeColor( 0, 0, 0, 255 );
 
 	int linesOfStrings = DisplayStringCount;
-#ifdef EXTENDED_STATS
-	if (DX8Wrapper::stats.m_debugLinesToShow > -1) 
-	{
-		linesOfStrings = DX8Wrapper::stats.m_debugLinesToShow;
-	}
-
-#endif
-
 
 	Int w, h;
 	for (int i = 0; i < linesOfStrings; i++)
@@ -1582,17 +1175,7 @@ void W3DDisplay::draw( void )
 	{
 		calculateTerrainLOD();
 	}
-#ifdef EXTENDED_STATS
-AGAIN:
-#endif
 
-#ifdef DUMP_PERF_STATS
-	if( TheGlobalData->m_dumpPerformanceStatistics )
-	{
-		TheStatDump.dumpStats();
-		TheWritableGlobalData->m_dumpPerformanceStatistics = FALSE;
-	}
-#endif
 
 	// compute debug statistics for display later
 	if ( m_debugDisplayCallback == StatDebugDisplay 
@@ -1603,12 +1186,7 @@ AGAIN:
 	{
 		gatherDebugStats();
 	}
-#ifdef EXTENDED_STATS
-	else 
-	{
-		DX8Wrapper::stats.m_showingStats = false;
-	}
-#endif
+
 
 #ifdef SAMPLE_DYNAMIC_LIGHT
 	Vector3 loc;
@@ -1840,10 +1418,7 @@ AGAIN:
 				}
 #endif
 
-#ifdef PERF_TIMERS
-				TheGraphDraw->render();
-				TheGraphDraw->clear();
-#endif
+
 				// render is all done!
 				WW3D::End_Render();	
 			}
@@ -2877,36 +2452,7 @@ void W3DDisplay::takeScreenShot(void)
 	height=bounds.bottom-bounds.top;
 
 	char *image=NEW char[3*width*height];
-#ifdef CAPTURE_TO_TARGA
-	//bytes are mixed in targa files, not rgb order.
-	for (y=0; y<height; y++)
-	{
-		for (x=0; x<width; x++)
-		{
-			// index for image
-			index=3*(x+y*width);
-			// index for fb
-			index2=y*lrect.Pitch+4*x;
-
-			image[index]=*((char *) lrect.pBits + index2+2);
-			image[index+1]=*((char *) lrect.pBits + index2+1);
-			image[index+2]=*((char *) lrect.pBits + index2+0);
-		}
-	}
-
-	fb->Release();
-
-	Targa targ;
-	memset(&targ.Header,0,sizeof(targ.Header));
-	targ.Header.Width=width;
-	targ.Header.Height=height;
-	targ.Header.PixelDepth=24;
-	targ.Header.ImageType=TGA_TRUECOLOR;
-	targ.SetImage(image);
-	targ.YFlip();
-
-	targ.Save(pathname,TGAF_IMAGE,false);
-#else	//capturing to bmp file
+	//capturing to bmp file
 	//bmp is same byte order
 	for (y=0; y<height; y++)
 	{
@@ -2948,7 +2494,6 @@ void W3DDisplay::takeScreenShot(void)
 			}
 	}
 	CreateBMPFile(pathname, image, width, height);
-#endif
 
 	delete [] image;
 

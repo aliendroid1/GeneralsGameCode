@@ -149,17 +149,17 @@ endif()
 
 
 # Game Memory features
-option(RTS_GAMEMEMORY_ENABLE "Enables the memory pool and dynamic memory allocator." ON)
+option(RTS_GAMEMEMORY_ENABLE "Enables the memory pool and dynamic memory allocator." OFF)
 
 # Memory pool features
 option(RTS_MEMORYPOOL_OVERRIDE_MALLOC "Enables the Dynamic Memory Allocator for malloc calls." OFF)
-option(RTS_MEMORYPOOL_MPSB_DLINK "Adds a backlink to MemoryPoolSingleBlock. Makes it faster to free raw DMA blocks, but increases memory consumption." ON)
+option(RTS_MEMORYPOOL_MPSB_DLINK "Adds a backlink to MemoryPoolSingleBlock. Makes it faster to free raw DMA blocks, but increases memory consumption." OFF)
 
 # Memory pool debugs
-option(RTS_MEMORYPOOL_DEBUG "Enables Memory Pool debug." ON)
-option(RTS_MEMORYPOOL_DEBUG_CUSTOM_NEW "Enables a custom new operator for the Memory Pool." ON)
+option(RTS_MEMORYPOOL_DEBUG "Enables Memory Pool debug." OFF)
+option(RTS_MEMORYPOOL_DEBUG_CUSTOM_NEW "Enables a custom new operator for the Memory Pool." OFF)
 option(RTS_MEMORYPOOL_DEBUG_CHECKPOINTING "Records checkpoint information about the history of memory allocations." OFF)
-option(RTS_MEMORYPOOL_DEBUG_BOUNDINGWALL "Enables bounding wall checks around memory chunks to find memory trampling." ON)
+option(RTS_MEMORYPOOL_DEBUG_BOUNDINGWALL "Enables bounding wall checks around memory chunks to find memory trampling." OFF)
 option(RTS_MEMORYPOOL_DEBUG_STACKTRACE "Enables stack trace collection for allocations. Reduces runtime performance significantly." OFF)
 option(RTS_MEMORYPOOL_DEBUG_INTENSE_VERIFY "Enables intensive verifications after nearly every memory operation. OFF by default, since it slows down things a lot, but is worth turning on for really obscure memory corruption issues." OFF)
 option(RTS_MEMORYPOOL_DEBUG_CHECK_BLOCK_OWNERSHIP "Enables debug to verify that a block actually belongs to the pool it is called with. This is great for debugging, but can be realllly slow, so is OFF by default." OFF)

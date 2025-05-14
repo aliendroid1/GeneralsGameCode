@@ -470,8 +470,10 @@ void DebugCrash(const char *format, ...)
 	char theCrashBuffer[ LARGE_BUFFER ];	
 	if (theDebugFlags == 0)
 	{
-		if (!DX8Wrapper_IsWindowed) {
-			if (ApplicationHWnd) {
+		if (!DX8Wrapper_IsWindowed)
+		{
+			if (ApplicationHWnd) 
+			{
 				ShowWindow(ApplicationHWnd, SW_HIDE);
 			}
 		}
@@ -482,9 +484,9 @@ void DebugCrash(const char *format, ...)
 	strcat(theCrashBuffer, "ASSERTION FAILURE: ");
 
 	va_list arg;
-  va_start(arg, format);
-  vsprintf(theCrashBuffer + strlen(theCrashBuffer), format, arg);
-  va_end(arg);
+	va_start(arg, format);
+	vsprintf(theCrashBuffer + strlen(theCrashBuffer), format, arg);
+	va_end(arg);
 
 	if (strlen(theCrashBuffer) >= sizeof(theCrashBuffer))
 	{

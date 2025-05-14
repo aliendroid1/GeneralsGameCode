@@ -35,12 +35,7 @@ target_link_libraries(core_compression PRIVATE
 )
 
 
-target_link_libraries(core_compression PUBLIC
-    liblzhl
-)
+target_link_libraries(core_compression PUBLIC liblzhl)
 
-
-# Adds zlib from github repository
-#include(${CMAKE_SOURCE_DIR}/cmake/zlib.cmake)
 target_link_libraries(core_compression PUBLIC libzlib)
 

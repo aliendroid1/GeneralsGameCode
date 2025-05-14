@@ -122,10 +122,7 @@ GameClient::GameClient()
 //-------------------------------------------------------------------------------------------------
 GameClient::~GameClient()
 {
-#ifdef PERF_TIMERS
-	delete TheGraphDraw;
-	TheGraphDraw = NULL;
-#endif
+
 
 	if (TheDrawGroupInfo) 
 	{
