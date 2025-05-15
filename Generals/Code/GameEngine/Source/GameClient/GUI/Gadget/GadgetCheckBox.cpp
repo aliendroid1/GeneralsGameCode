@@ -294,9 +294,9 @@ WindowMsgHandledType GadgetCheckBoxSystem( GameWindow *window, UnsignedInt msg,
 																					mData1, 
 																					window->winGetWindowId() );
 			if( mData1 == FALSE )
-				*(Bool*)mData2 = FALSE;
+				*(bool*)mData2 = FALSE;
 			else
-				*(Bool*)mData2 = TRUE;
+				*(bool*)mData2 = TRUE;
 			
 			break;
 

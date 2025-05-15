@@ -230,7 +230,7 @@ Dict::Dict(Int numPairsToPreAllocate) : m_data(0)
 		This is currently true, but if that assumption ever changes, all hell
 		will break loose. So we do a quick check to assure this...
 	*/
-	DEBUG_ASSERTCRASH(sizeof(Bool) <= sizeof(void*) &&
+	DEBUG_ASSERTCRASH(sizeof(bool) <= sizeof(void*) &&
 										sizeof(Int) <= sizeof(void*) &&
 										sizeof(Real) <= sizeof(void*) &&
 										sizeof(AsciiString) <= sizeof(void*) &&

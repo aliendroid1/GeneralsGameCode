@@ -604,7 +604,7 @@ Object::~Object()
 //-------------------------------------------------------------------------------------------------
 void localIsHero( Object *obj, void* userData )
 {
-	bool *hero = (Bool*)userData;
+	bool *hero = (bool*)userData;
 	
 	if( obj && obj->isKindOf( KINDOF_HERO ) )
 	{

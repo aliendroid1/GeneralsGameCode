@@ -182,7 +182,7 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
 				gDoPaint = false;
 		break;
 		case WM_ACTIVATEAPP:
-			if ( (Bool)wParam != isWinMainActive)
+			if ( (bool)wParam != isWinMainActive)
 			{	
 				isWinMainActive = wParam;	
 				if (TheGameEngine)

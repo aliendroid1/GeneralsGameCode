@@ -2862,8 +2862,8 @@ static void listingGamesCallback(PEER peer, PEERBool success, const char * name,
 
 	if (server && (msg == PEER_ADD || msg == PEER_UPDATE))
 	{
-		bool hasPassword = (Bool)SBServerGetIntValue(server, PW_STR, FALSE);
-		bool allowObservers = (Bool)SBServerGetIntValue(server, OBS_STR, FALSE);
+		bool hasPassword = (bool)SBServerGetIntValue(server, PW_STR, FALSE);
+		bool allowObservers = (bool)SBServerGetIntValue(server, OBS_STR, FALSE);
 		const char *verStr = SBServerGetStringValue(server, "gamever", "000000");
 		const char *exeStr = SBServerGetStringValue(server, EXECRC_STR, "000000");
 		const char *iniStr = SBServerGetStringValue(server, INICRC_STR, "000000");

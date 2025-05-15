@@ -116,7 +116,7 @@ private:
 	void writeCacheINI( bool userDir );
 
 	static const char * m_mapCacheName;
-	std::map<AsciiString, Bool> m_seen;
+	std::map<AsciiString, bool> m_seen;
 
 	std::set<AsciiString> m_allowedMaps;
 };

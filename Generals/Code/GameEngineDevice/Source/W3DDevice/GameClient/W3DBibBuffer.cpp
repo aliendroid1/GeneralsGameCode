@@ -142,7 +142,7 @@ void W3DBibBuffer::loadBibsInVertexAndIndexBuffers(void)
 		}
 		for (curBib=0; curBib<m_numBibs; curBib++) {
 			if (m_bibs[curBib].m_unused) continue;
-			if (m_bibs[curBib].m_highlight != (Bool)doHighlight) continue;
+			if (m_bibs[curBib].m_highlight != (bool)doHighlight) continue;
 			Int startVertex = m_curNumBibVertices;
 			Int i;
 			Int numVertex = 4;

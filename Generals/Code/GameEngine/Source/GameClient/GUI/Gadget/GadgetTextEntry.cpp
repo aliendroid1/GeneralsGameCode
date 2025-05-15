@@ -407,7 +407,7 @@ WindowMsgHandledType GadgetTextEntrySystem( GameWindow *window, UnsignedInt msg,
 																					mData1, 
 																					window->winGetWindowId() );
 
-			*(Bool*)mData2 = TRUE;
+			*(bool*)mData2 = TRUE;
 			break;
 
 		default:

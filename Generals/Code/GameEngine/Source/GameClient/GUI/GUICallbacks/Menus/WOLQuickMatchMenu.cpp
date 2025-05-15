@@ -262,7 +262,7 @@ void UpdateStartButton(void)
 	Int numMaps = GadgetListBoxGetNumEntries(listboxMapSelect);
 	for ( Int i=0; i<numMaps; ++i )
 	{
-		if ((Bool)GadgetListBoxGetItemData(listboxMapSelect, i, 0))
+		if ((bool)GadgetListBoxGetItemData(listboxMapSelect, i, 0))
 		{
 			buttonStart->winEnable(TRUE);
 			return;
@@ -674,7 +674,7 @@ static void saveQuickMatchOptions( void )
 		{
 			const MapMetaData *md = (const MapMetaData *)GadgetListBoxGetItemData(listboxMapSelect, row, 1);
 			if(md)
-				pref.setMapSelected(md->m_fileName, (Bool)GadgetListBoxGetItemData(listboxMapSelect, row));
+				pref.setMapSelected(md->m_fileName, (bool)GadgetListBoxGetItemData(listboxMapSelect, row));
 			row++;
 		}
 	}
@@ -1799,7 +1799,7 @@ WindowMsgHandledType WOLQuickMatchMenuSystem( GameWindow *window, UnsignedInt ms
 					const LadderInfo *li = getLadderInfo();
 					if (selected >= 0 && (!li || !li->randomMaps))
 					{
-						bool wasSelected = (Bool)GadgetListBoxGetItemData(control, selected, 0);
+						bool wasSelected = (bool)GadgetListBoxGetItemData(control, selected, 0);
 						GadgetListBoxSetItemData(control, (void *)(!wasSelected), selected, 0);
 						Int width = 10;
 						Int height = 10;

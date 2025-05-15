@@ -454,7 +454,7 @@ WindowMsgHandledType GadgetHorizontalSliderSystem( GameWindow *window, UnsignedI
 																					mData1, 
 																					window->winGetWindowId() );
 
-			*(Bool*)mData2 = TRUE;
+			*(bool*)mData2 = TRUE;
 			break;
 
 		}  // end focus msg

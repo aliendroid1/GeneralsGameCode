@@ -627,7 +627,7 @@ WindowMsgHandledType GadgetComboBoxSystem( GameWindow *window, UnsignedInt msg,
 			// we need to tell the text entry box to take the focus.
 			TheWindowManager->winSendSystemMsg( editBox, GWM_INPUT_FOCUS, mData1, (WindowMsgData)&wantsFocus );
 			
-			*(Bool*)mData2 = TRUE;
+			*(bool*)mData2 = TRUE;
 			break;
 
 		}  // end input focus

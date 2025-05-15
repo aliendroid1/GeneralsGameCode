@@ -69,8 +69,8 @@ static const UnsignedInt startTimeOffset = 6;
 static const UnsignedInt endTimeOffset = startTimeOffset + sizeof(replay_time_t);
 static const UnsignedInt framesOffset = endTimeOffset + sizeof(replay_time_t);
 static const UnsignedInt desyncOffset = framesOffset + sizeof(UnsignedInt);
-static const UnsignedInt quitEarlyOffset = desyncOffset + sizeof(Bool);
-static const UnsignedInt disconOffset = quitEarlyOffset + sizeof(Bool);
+static const UnsignedInt quitEarlyOffset = desyncOffset + sizeof(bool);
+static const UnsignedInt disconOffset = quitEarlyOffset + sizeof(bool);
 
 void RecorderClass::logGameStart(AsciiString options)
 {
@@ -141,11 +141,11 @@ void RecorderClass::logPlayerDisconnect(UnicodeString player, Int slot)
 	}
 	UnsignedInt fileSize = ftell(m_file);
 	// move to appropriate offset
-	if (!fseek(m_file, disconOffset + slot*sizeof(Bool), SEEK_SET))
+	if (!fseek(m_file, disconOffset + slot*sizeof(bool), SEEK_SET))
 	{
 		// save off discon status
 		bool b = TRUE;
-		fwrite(&b, sizeof(Bool), 1, m_file);
+		fwrite(&b, sizeof(bool), 1, m_file);
 	}
 	// move back to end of stream
 #ifdef DEBUG_CRASHING
@@ -190,7 +190,7 @@ void RecorderClass::logCRCMismatch( void )
 	{
 		// save off desync status
 		bool b = TRUE;
-		fwrite(&b, sizeof(Bool), 1, m_file);
+		fwrite(&b, sizeof(bool), 1, m_file);
 	}
 	// move back to end of stream
 #ifdef DEBUG_CRASHING
@@ -563,11 +563,11 @@ void RecorderClass::startRecording(GameDifficulty diff, Int originalGameMode, In
 	fwrite(&frames, sizeof(UnsignedInt), 1, m_file);	// reserve space for duration in frames
 
 	bool b = FALSE;
-	fwrite(&b, sizeof(Bool), 1, m_file);	// reserve space for flag (true if we desync)
-	fwrite(&b, sizeof(Bool), 1, m_file);	// reserve space for flag (true if we quit early)
+	fwrite(&b, sizeof(bool), 1, m_file);	// reserve space for flag (true if we desync)
+	fwrite(&b, sizeof(bool), 1, m_file);	// reserve space for flag (true if we quit early)
 	for (Int i=0; i<MAX_SLOTS; ++i)
 	{
-		fwrite(&b, sizeof(Bool), 1, m_file);	// reserve space for flag (true if player i disconnects)
+		fwrite(&b, sizeof(bool), 1, m_file);	// reserve space for flag (true if player i disconnects)
 	}
 
 	// Print out the name of the replay.
@@ -842,11 +842,11 @@ bool RecorderClass::readReplayHeader(ReplayHeader& header)
 
 	fread(&header.frameDuration, sizeof(UnsignedInt), 1, m_file);
 
-	fread(&header.desyncGame, sizeof(Bool), 1, m_file);
-	fread(&header.quitEarly, sizeof(Bool), 1, m_file);
+	fread(&header.desyncGame, sizeof(bool), 1, m_file);
+	fread(&header.quitEarly, sizeof(bool), 1, m_file);
 	for (Int i=0; i<MAX_SLOTS; ++i)
 	{
-		fread(&(header.playerDiscons[i]), sizeof(Bool), 1, m_file);
+		fread(&(header.playerDiscons[i]), sizeof(bool), 1, m_file);
 	}
 
 	// Read the Replay Name.  We don't actually do anything with it.  Oh well.

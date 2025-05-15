@@ -325,7 +325,7 @@ UnsignedInt NetPacket::GetGameCommandSize(NetCommandMsg *msg) {
 		} else if (type == ARGUMENTDATATYPE_REAL) {
 			msglen += arg->getArgCount() * sizeof(Real);
 		} else if (type == ARGUMENTDATATYPE_BOOLEAN) {
-			msglen += arg->getArgCount() * sizeof(Bool);
+			msglen += arg->getArgCount() * sizeof(bool);
 		} else if (type == ARGUMENTDATATYPE_OBJECTID) {
 			msglen += arg->getArgCount() * sizeof(ObjectID);
 		} else if (type == ARGUMENTDATATYPE_DRAWABLEID) {
@@ -4898,7 +4898,7 @@ bool NetPacket::isRoomForGameMessage(NetCommandRef *msg, GameMessage *gmsg) {
 		} else if (type == ARGUMENTDATATYPE_REAL) {
 			msglen += arg->getArgCount() * sizeof(Real);
 		} else if (type == ARGUMENTDATATYPE_BOOLEAN) {
-			msglen += arg->getArgCount() * sizeof(Bool);
+			msglen += arg->getArgCount() * sizeof(bool);
 		} else if (type == ARGUMENTDATATYPE_OBJECTID) {
 			msglen += arg->getArgCount() * sizeof(ObjectID);
 		} else if (type == ARGUMENTDATATYPE_DRAWABLEID) {

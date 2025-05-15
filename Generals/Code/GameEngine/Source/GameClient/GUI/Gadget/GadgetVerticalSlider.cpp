@@ -444,7 +444,7 @@ WindowMsgHandledType GadgetVerticalSliderSystem( GameWindow *window, UnsignedInt
 																					mData1, 
 																					window->winGetWindowId() );
 
-			*(Bool*)mData2 = TRUE;
+			*(bool*)mData2 = TRUE;
 			break;
 
 		// ------------------------------------------------------------------------

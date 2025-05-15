@@ -250,9 +250,9 @@ UnsignedInt	GameInfo::getMapCRC( void ) const								{ return m_mapCRC; }
 UnsignedInt	GameInfo::getMapSize( void ) const							{ return m_mapSize; }
 Int					GameInfo::getMapContentsMask( void ) const			{ return m_mapMask; }
 Int					GameInfo::getSeed( void ) const									{ return m_seed; }
-Bool				GameInfo::isInGame( void ) const								{ return m_inGame; }
+bool				GameInfo::isInGame( void ) const								{ return m_inGame; }
 void				GameInfo::setInGame( void )											{ m_inGame = true; }
-Bool				GameInfo::isGameInProgress( void ) const				{ return m_inProgress; }
+bool				GameInfo::isGameInProgress( void ) const				{ return m_inProgress; }
 void				GameInfo::setGameInProgress( bool inProgress )	{ m_inProgress = inProgress; }
 
 AsciiString GameInfoToAsciiString( const GameInfo *game );

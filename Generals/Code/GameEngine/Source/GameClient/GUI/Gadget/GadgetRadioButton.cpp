@@ -328,7 +328,7 @@ WindowMsgHandledType GadgetRadioButtonSystem( GameWindow *window, UnsignedInt ms
 			{
 
 				// do we want to send a selected message?
-				if( (Bool)mData1 == TRUE )
+				if( (bool)mData1 == TRUE )
 				{
 
 					TheWindowManager->winSendSystemMsg( window->winGetOwner(), 
@@ -391,7 +391,7 @@ WindowMsgHandledType GadgetRadioButtonSystem( GameWindow *window, UnsignedInt ms
 																					mData1, 
 																					window->winGetWindowId() );
 
-			*(Bool*)mData2 = TRUE;
+			*(bool*)mData2 = TRUE;
 			break;
 
 		}  // end focus

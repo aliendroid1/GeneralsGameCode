@@ -1756,7 +1756,7 @@ bool HeightMapRenderObjClass::Cast_Ray(RayCollisionTestClass & raytest)
 
 				tri.Compute_Normal();
 
-				hit = hit || (Bool)CollisionMath::Collide(raytest.Ray, tri, raytest.Result);
+				hit = hit || (bool)CollisionMath::Collide(raytest.Ray, tri, raytest.Result);
 
 				if (raytest.Result->StartBad)
 					return true;
@@ -1770,7 +1770,7 @@ bool HeightMapRenderObjClass::Cast_Ray(RayCollisionTestClass & raytest)
 
 				tri.Compute_Normal();
 
-				hit = hit || (Bool)CollisionMath::Collide(raytest.Ray, tri, raytest.Result);
+				hit = hit || (bool)CollisionMath::Collide(raytest.Ray, tri, raytest.Result);
 
 				if (hit)
 					raytest.Result->SurfaceType = SURFACE_TYPE_DEFAULT;	///@todo: WW3D uses this to return dirt, grass, etc.  Do we need this?

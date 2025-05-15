@@ -6579,7 +6579,7 @@ void ScriptActions::executeAction( ScriptAction *pAction )
 			return;
 
 		case ScriptAction::CAMERA_TETHER_NAMED: 
-			doCameraTetherNamed(pAction->getParameter(0)->getString(), (Bool)(pAction->getParameter(1)->getInt()), pAction->getParameter(2)->getReal());
+			doCameraTetherNamed(pAction->getParameter(0)->getString(), (bool)(pAction->getParameter(1)->getInt()), pAction->getParameter(2)->getReal());
 			return;
 
 		case ScriptAction::CAMERA_STOP_TETHER_NAMED: 

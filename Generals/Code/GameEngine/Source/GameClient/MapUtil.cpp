@@ -483,7 +483,7 @@ bool MapCache::clearUnseenMaps( AsciiString dirName )
 	dirName.toLower();
 	bool erasedSomething = FALSE;
 
-	std::map<AsciiString, Bool>::iterator it = m_seen.begin();
+	std::map<AsciiString, bool>::iterator it = m_seen.begin();
 
 	while (it != m_seen.end())
 	{

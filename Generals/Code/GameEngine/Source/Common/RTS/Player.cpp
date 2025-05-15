@@ -2755,7 +2755,7 @@ bool Player::hasRadar() const
 //------------------------------------------------------------------------------------------------
 static void doPowerDisable( Object *obj, void *userData )
 {
-	bool disabling = *((Bool*)userData);
+	bool disabling = *((bool*)userData);
 	if( obj && obj->isKindOf(KINDOF_POWERED) )
 	{
 		if( disabling )

@@ -620,7 +620,7 @@ void INI::parseAngularVelocityReal( INI *ini, void * /*instance*/,
 //-------------------------------------------------------------------------------------------------
 void INI::parseBool( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
 {
-	*(Bool*)store = INI::scanBool(ini->getNextToken());
+	*(bool*)store = INI::scanBool(ini->getNextToken());
 }
 
 //-------------------------------------------------------------------------------------------------
