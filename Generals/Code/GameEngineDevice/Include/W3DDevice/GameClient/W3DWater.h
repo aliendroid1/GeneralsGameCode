@@ -86,11 +86,11 @@ public:
 	virtual int						Class_ID(void) const;
 	virtual void					Render(RenderInfoClass & rinfo);
 /// @todo: Add methods for collision detection with water surface
-//	virtual Bool					Cast_Ray(RayCollisionTestClass & raytest);
-//	virtual Bool					Cast_AABox(AABoxCollisionTestClass & boxtest);
-//	virtual Bool					Cast_OBBox(OBBoxCollisionTestClass & boxtest);
-//	virtual Bool					Intersect_AABox(AABoxIntersectionTestClass & boxtest);
-//	virtual Bool					Intersect_OBBox(OBBoxIntersectionTestClass & boxtest);
+//	virtual bool					Cast_Ray(RayCollisionTestClass & raytest);
+//	virtual bool					Cast_AABox(AABoxCollisionTestClass & boxtest);
+//	virtual bool					Cast_OBBox(OBBoxCollisionTestClass & boxtest);
+//	virtual bool					Intersect_AABox(AABoxIntersectionTestClass & boxtest);
+//	virtual bool					Intersect_OBBox(OBBoxIntersectionTestClass & boxtest);
 
 	virtual void					Get_Obj_Space_Bounding_Sphere(SphereClass & sphere) const;
     virtual void					Get_Obj_Space_Bounding_Box(AABoxClass & aabox) const;
@@ -124,7 +124,7 @@ public:
 	inline void setGridVertexHeight(Int x, Int y, Real value); 
 	inline void getGridVertexHeight(Int x, Int y, Real *value)
 	{	if (m_meshData)	*value=m_meshData[(y+1)*(m_gridCellsX+1+2)+x+1].height+ Get_Position().Z;}
-	inline Bool worldToGridSpace(Real worldX, Real worldY, Real &gridX, Real &gridY);	///<convert from world coordinates to grid's local coordinate system.
+	inline bool worldToGridSpace(Real worldX, Real worldY, Real &gridX, Real &gridY);	///<convert from world coordinates to grid's local coordinate system.
 
 	void replaceSkyboxTexture(const AsciiString& oldTexName, const AsciiString& newTextName);
 
@@ -189,8 +189,8 @@ protected:
 	};
 	WaterMeshData *m_meshData;  ///< heightmap data for 3D Mesh based water.
 	UnsignedInt m_meshDataSize;	///< size of m_meshData 
-	Bool m_meshInMotion;				///< TRUE once we've messed with velocities and are in motion
-	Bool m_doWaterGrid;	///< allows/prevents water grid rendering.
+	bool m_meshInMotion;				///< TRUE once we've messed with velocities and are in motion
+	bool m_doWaterGrid;	///< allows/prevents water grid rendering.
 
 	Vector2	m_gridDirectionX;			///<vector along water grid's x-axis (scaled to world-space)
 	Vector2	m_gridDirectionY;			///<vector along water grid's y-axis (scaled to world-space)
@@ -217,8 +217,8 @@ protected:
 	TextureClass *m_waterSparklesTexture;
 	Real m_riverXOffset;
 	Real m_riverYOffset;
-	Bool m_drawingRiver;
-	Bool m_disableRiver;
+	bool m_drawingRiver;
+	bool m_disableRiver;
 	TextureClass *m_riverAlphaEdge;
 
 	TimeOfDay m_tod;	///<time of day setting for reflected cloud layer
@@ -251,7 +251,7 @@ protected:
 	void renderMirror(CameraClass *cam);	///< Draw reflected scene into texture
 	void drawSea(RenderInfoClass & rinfo);	///< Draw the surface of the water
 	///bounding box of frustum clipped polygon plane
-	Bool getClippedWaterPlane(CameraClass *cam, AABoxClass *box);
+	bool getClippedWaterPlane(CameraClass *cam, AABoxClass *box);
 
 	void setupFlatWaterShader(void);
 	void setupJbaWaterShader(void);
@@ -259,7 +259,7 @@ protected:
 
 	//Methods used for GeForce3 specific water
 	HRESULT generateIndexBuffer(int sizeX, int sizeY);	///<Generate static index buufer
-	HRESULT generateVertexBuffer( Int sizeX, Int sizeY, Int vertexSize, Bool doFill);///<Generate static vertex buffer
+	HRESULT generateVertexBuffer( Int sizeX, Int sizeY, Int vertexSize, bool doFill);///<Generate static vertex buffer
 
 	// snapshot methods for save/load
 	virtual void crc( Xfer *xfer );
@@ -269,7 +269,7 @@ protected:
 };
 
 //Public inline function declarations
-inline Bool WaterRenderObjClass::worldToGridSpace(Real worldX, Real worldY, Real &gridX, Real &gridY)
+inline bool WaterRenderObjClass::worldToGridSpace(Real worldX, Real worldY, Real &gridX, Real &gridY)
 {
 	Real dx,dy;
 	Real ooGridCellSize = 1.0f/m_gridCellSize;

@@ -65,10 +65,10 @@
 // These are for debugger window
 static int st_LastCurrentFrame;
 static int st_CurrentFrame;
-static Bool st_CanAppCont;
-static Bool st_AppIsFast = false;
-static void _appendMessage(const AsciiString& str, Bool isTrueMessage = true, Bool shouldPause = false);
-static void _adjustVariable(const AsciiString& str, Int value, Bool shouldPause = false);
+static bool st_CanAppCont;
+static bool st_AppIsFast = false;
+static void _appendMessage(const AsciiString& str, bool isTrueMessage = true, bool shouldPause = false);
+static void _adjustVariable(const AsciiString& str, Int value, bool shouldPause = false);
 static void _updateFrameNumber( void );
 static HMODULE st_DebugDLL;
 // That's it for debugger window
@@ -98,7 +98,7 @@ static void _reloadTextures( void );
 
 static HMODULE st_ParticleDLL;
 ParticleSystem *st_particleSystem;
-Bool st_particleSystemNeedsStopping = FALSE; ///< Set along with st_particleSystem if the particle system has infinite life
+bool st_particleSystemNeedsStopping = FALSE; ///< Set along with st_particleSystem if the particle system has infinite life
 #define ARBITRARY_BUFF_SIZE	128
 #define FORMAT_STRING "%.2f"
 #define FORMAT_STRING_LEADING_STRING		"%s%.2f"
@@ -113,7 +113,7 @@ Bool st_particleSystemNeedsStopping = FALSE; ///< Set along with st_particleSyst
 //typedef __declspec(dllimport) void __cdecl (*VTProc)();
 	typedef void (*VTProc)();
 	
-	static Bool						st_EnableVTune = false;
+	static bool						st_EnableVTune = false;
 	static HMODULE				st_vTuneDLL = NULL;
 	static VTProc VTPause = NULL;
 	static VTProc VTResume = NULL;
@@ -5164,7 +5164,7 @@ ObjectTypes *ScriptEngine::getObjectTypes(const AsciiString& objectTypeList)
 /** If addObject is false, remove the object. If it is true, add the object. */
 /** If the object removed is the last object, then the list is removed as well. */
 //-------------------------------------------------------------------------------------------------
-void ScriptEngine::doObjectTypeListMaintenance(const AsciiString& objectTypeList, const AsciiString& objectType, Bool addObject)
+void ScriptEngine::doObjectTypeListMaintenance(const AsciiString& objectTypeList, const AsciiString& objectType, bool addObject)
 {
 	ObjectTypes *currentObjectTypeVec = getObjectTypes(objectTypeList);
 	
@@ -5295,7 +5295,7 @@ Object * ScriptEngine::getUnitNamed(const AsciiString& unitName)
 //-------------------------------------------------------------------------------------------------
 /** didUnitExist */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptEngine::didUnitExist(const AsciiString& unitName)
+bool ScriptEngine::didUnitExist(const AsciiString& unitName)
 {
 	for (VecNamedRequestsIt it = m_namedObjects.begin(); it != m_namedObjects.end(); ++it) {
 		if (unitName == (it->first)) {
@@ -5615,7 +5615,7 @@ Script  *ScriptEngine::findScript(const AsciiString& name)
 //-------------------------------------------------------------------------------------------------
 /** Evaluates a counter condition */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptEngine::evaluateCounter( Condition *pCondition )
+bool ScriptEngine::evaluateCounter( Condition *pCondition )
 {
 	DEBUG_ASSERTCRASH(pCondition->getNumParameters() >= 3, ("Not enough parameters.\n"));
 	DEBUG_ASSERTCRASH(pCondition->getConditionType() == Condition::COUNTER, ("Wrong condition.\n"));
@@ -5737,7 +5737,7 @@ void ScriptEngine::subCounter( ScriptAction *pAction )
 //-------------------------------------------------------------------------------------------------
 /** Evaluates a flag */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptEngine::evaluateFlag( Condition *pCondition )
+bool ScriptEngine::evaluateFlag( Condition *pCondition )
 {
 	DEBUG_ASSERTCRASH(pCondition->getNumParameters() >= 2, ("Not enough parameters.\n"));
 	DEBUG_ASSERTCRASH(pCondition->getConditionType() == Condition::FLAG, ("Wrong condition.\n"));
@@ -5747,8 +5747,8 @@ Bool ScriptEngine::evaluateFlag( Condition *pCondition )
 		pCondition->getParameter(0)->friend_setInt(flagNdx);
 	}
 	Int value = pCondition->getParameter(1)->getInt();
-	Bool boolVal = (value!=0);
-	Bool boolFlag = (m_flags[flagNdx].value != 0);
+	bool boolVal = (value!=0);
+	bool boolFlag = (m_flags[flagNdx].value != 0);
 	
 	if (boolVal == boolFlag) {
 		return true;
@@ -5774,7 +5774,7 @@ void ScriptEngine::setFlag( ScriptAction *pAction )
 		flagNdx = allocateFlag(pAction->getParameter(0)->getString());
 		pAction->getParameter(0)->friend_setInt(flagNdx);
 	}
-	Bool value = pAction->getParameter(1)->getInt();
+	bool value = pAction->getParameter(1)->getInt();
 	m_flags[flagNdx].value = value;
 }
 
@@ -5783,7 +5783,7 @@ void ScriptEngine::setFlag( ScriptAction *pAction )
 //-------------------------------------------------------------------------------------------------
 /** Finds a named attack info.  Note - may return null. */
 //-------------------------------------------------------------------------------------------------
-AttackPriorityInfo * ScriptEngine::findAttackInfo(const AsciiString& name, Bool addIfNotFound)
+AttackPriorityInfo * ScriptEngine::findAttackInfo(const AsciiString& name, bool addIfNotFound)
 {
 	// Note - m_attackPriorityInfo[0] is the default info, with an empty name.
 	Int i;
@@ -5994,7 +5994,7 @@ void ScriptEngine::removeObjectTypes(ObjectTypes *typesToRemove)
 //-------------------------------------------------------------------------------------------------
 /** Evaluates a timer */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptEngine::evaluateTimer( Condition *pCondition )
+bool ScriptEngine::evaluateTimer( Condition *pCondition )
 {
 	DEBUG_ASSERTCRASH(pCondition->getNumParameters() >= 1, ("Not enough parameters.\n"));
 	DEBUG_ASSERTCRASH(pCondition->getConditionType() == Condition::TIMER_EXPIRED, ("Wrong condition.\n"));
@@ -6014,7 +6014,7 @@ Bool ScriptEngine::evaluateTimer( Condition *pCondition )
 //-------------------------------------------------------------------------------------------------
 /** Starts a timer. */
 //-------------------------------------------------------------------------------------------------
-void ScriptEngine::setTimer( ScriptAction *pAction, Bool millisecondTimer, Bool random )
+void ScriptEngine::setTimer( ScriptAction *pAction, bool millisecondTimer, bool random )
 {
 	DEBUG_ASSERTCRASH(pAction->getNumParameters() >= 2, ("Not enough parameters.\n"));
 	Int counterNdx = pAction->getParameter(0)->getInt();
@@ -6073,7 +6073,7 @@ void ScriptEngine::restartTimer( ScriptAction *pAction )
 //-------------------------------------------------------------------------------------------------
 /** adjusts a timer. */
 //-------------------------------------------------------------------------------------------------
-void ScriptEngine::adjustTimer( ScriptAction *pAction, Bool millisecondTimer, Bool add)
+void ScriptEngine::adjustTimer( ScriptAction *pAction, bool millisecondTimer, bool add)
 {
 	DEBUG_ASSERTCRASH(pAction->getNumParameters() >= 2, ("Not enough parameters.\n"));
 	Int counterNdx = pAction->getParameter(1)->getInt();
@@ -6190,7 +6190,7 @@ void ScriptEngine::checkConditionsForTeamNames(Script *pScript)
 					AsciiString teamName = pCondition->getParameter(i)->getString();
 					TeamPrototype *proto = TheTeamFactory->findTeamPrototype(teamName);
 					if (proto==NULL) continue; // Undefined team - don't bother.
-					Bool singleton = proto->getIsSingleton();
+					bool singleton = proto->getIsSingleton();
 					if (proto->getTemplateInfo()->m_maxInstances < 2) {
 						singleton = true;
 					}
@@ -6335,7 +6335,7 @@ void ScriptEngine::executeScript( Script *pScript )
 //-------------------------------------------------------------------------------------------------
 /** Evaluates a condition */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptEngine::evaluateCondition( Condition *pCondition )
+bool ScriptEngine::evaluateCondition( Condition *pCondition )
 {
 	switch (pCondition->getConditionType()) {
 		default: 
@@ -6553,7 +6553,7 @@ void ScriptEngine::signalUIInteract(const AsciiString& hookName)
 //-------------------------------------------------------------------------------------------------
 /** Determine whether a video has completed */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptEngine::isVideoComplete( const AsciiString& completedVideo, Bool removeFromList )
+bool ScriptEngine::isVideoComplete( const AsciiString& completedVideo, bool removeFromList )
 {
 	ListAsciiStringIt findIt = std::find(m_completedVideo.begin(), m_completedVideo.end(), completedVideo);
 	if (findIt != m_completedVideo.end()) {
@@ -6568,7 +6568,7 @@ Bool ScriptEngine::isVideoComplete( const AsciiString& completedVideo, Bool remo
 //-------------------------------------------------------------------------------------------------
 /** Determine whether a speech has completed */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptEngine::isSpeechComplete( const AsciiString& testSpeech, Bool removeFromList )
+bool ScriptEngine::isSpeechComplete( const AsciiString& testSpeech, bool removeFromList )
 {
 	ListAsciiStringUINTIt findIt;
 	for (findIt = m_testingSpeech.begin(); findIt != m_testingSpeech.end(); ++findIt) {
@@ -6603,7 +6603,7 @@ Bool ScriptEngine::isSpeechComplete( const AsciiString& testSpeech, Bool removeF
 //-------------------------------------------------------------------------------------------------
 /** Determine whether a sound has completed */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptEngine::isAudioComplete( const AsciiString& testAudio, Bool removeFromList )
+bool ScriptEngine::isAudioComplete( const AsciiString& testAudio, bool removeFromList )
 {
 	ListAsciiStringUINTIt findIt;
 	for (findIt = m_testingAudio.begin(); findIt != m_testingAudio.end(); ++findIt) {
@@ -6638,7 +6638,7 @@ Bool ScriptEngine::isAudioComplete( const AsciiString& testAudio, Bool removeFro
 //-------------------------------------------------------------------------------------------------
 /** Determine whether a special power has been started */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptEngine::isSpecialPowerTriggered( Int playerIndex, const AsciiString& completedPower, Bool removeFromList, ObjectID sourceObj )
+bool ScriptEngine::isSpecialPowerTriggered( Int playerIndex, const AsciiString& completedPower, bool removeFromList, ObjectID sourceObj )
 {
 	if (playerIndex < 0 || playerIndex >= MAX_PLAYER_COUNT)
 		return FALSE;
@@ -6663,7 +6663,7 @@ Bool ScriptEngine::isSpecialPowerTriggered( Int playerIndex, const AsciiString& 
 //-------------------------------------------------------------------------------------------------
 /** Determine whether a special power has reached a midpoint (not required for all special powers!) */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptEngine::isSpecialPowerMidway( Int playerIndex, const AsciiString& completedPower, Bool removeFromList, ObjectID sourceObj )
+bool ScriptEngine::isSpecialPowerMidway( Int playerIndex, const AsciiString& completedPower, bool removeFromList, ObjectID sourceObj )
 {
 	if (playerIndex < 0 || playerIndex >= MAX_PLAYER_COUNT)
 		return FALSE;
@@ -6688,7 +6688,7 @@ Bool ScriptEngine::isSpecialPowerMidway( Int playerIndex, const AsciiString& com
 //-------------------------------------------------------------------------------------------------
 /** Determine whether a special power has been finished */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptEngine::isSpecialPowerComplete( Int playerIndex, const AsciiString& completedPower, Bool removeFromList, ObjectID sourceObj )
+bool ScriptEngine::isSpecialPowerComplete( Int playerIndex, const AsciiString& completedPower, bool removeFromList, ObjectID sourceObj )
 {
 	if (playerIndex < 0 || playerIndex >= MAX_PLAYER_COUNT)
 		return FALSE;
@@ -6713,7 +6713,7 @@ Bool ScriptEngine::isSpecialPowerComplete( Int playerIndex, const AsciiString& c
 //-------------------------------------------------------------------------------------------------
 /** Determine whether an upgrade has been completed */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptEngine::isUpgradeComplete( Int playerIndex, const AsciiString& upgrade, Bool removeFromList, ObjectID sourceObj )
+bool ScriptEngine::isUpgradeComplete( Int playerIndex, const AsciiString& upgrade, bool removeFromList, ObjectID sourceObj )
 {
 	if (playerIndex < 0 || playerIndex >= MAX_PLAYER_COUNT)
 		return FALSE;
@@ -6739,7 +6739,7 @@ Bool ScriptEngine::isUpgradeComplete( Int playerIndex, const AsciiString& upgrad
 //-------------------------------------------------------------------------------------------------
 /** Determine whether a general has been chosen */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptEngine::isGeneralChosen( Int playerIndex, const AsciiString& generalName, Bool removeFromList, ObjectID sourceObj )
+bool ScriptEngine::isGeneralChosen( Int playerIndex, const AsciiString& generalName, bool removeFromList, ObjectID sourceObj )
 {
 	if (playerIndex < 0 || playerIndex >= MAX_PLAYER_COUNT)
 		return FALSE;
@@ -6764,7 +6764,7 @@ Bool ScriptEngine::isGeneralChosen( Int playerIndex, const AsciiString& generalN
 //-------------------------------------------------------------------------------------------------
 /** Determine whether a science has been chosen */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptEngine::isScienceAcquired( Int playerIndex, ScienceType science, Bool removeFromList )
+bool ScriptEngine::isScienceAcquired( Int playerIndex, ScienceType science, bool removeFromList )
 {
 	if (playerIndex < 0 || playerIndex >= MAX_PLAYER_COUNT)
 		return FALSE;
@@ -6858,14 +6858,14 @@ void ScriptEngine::adjustToppleDirection( Object *object, Coord3D *direction)
 //-------------------------------------------------------------------------------------------------
 /** Evaluates a list of conditions */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptEngine::evaluateConditions( Script *pScript, Team *thisTeam, Player *player )
+bool ScriptEngine::evaluateConditions( Script *pScript, Team *thisTeam, Player *player )
 {
 	LatchRestore<Team*> latch(m_callingTeam, thisTeam);
 	if (thisTeam) player = thisTeam->getControllingPlayer();
 	if (player==NULL) player=m_currentPlayer;
 	LatchRestore<Player*> latch2(m_currentPlayer, player);
 	OrCondition *pConditionHead = pScript->getOrCondition();
-	Bool testValue = false;
+	bool testValue = false;
 
 #ifdef DEBUG_LOGGING
 #define COLLECT_CONDITION_EVAL_TIMES
@@ -6881,7 +6881,7 @@ Bool ScriptEngine::evaluateConditions( Script *pScript, Team *thisTeam, Player *
 	for (pCurCondition = pConditionHead; pCurCondition; pCurCondition = pCurCondition->getNextOrCondition()) {
 		Condition *pCondition = pCurCondition->getFirstAndCondition();
 		if (!pCondition) continue; // No conditions, so go to the next or.
-		Bool andTerm = true; 
+		bool andTerm = true; 
 		while (pCondition && andTerm) {
 			if (!evaluateCondition(pCondition)) {
 				andTerm = false;
@@ -7026,7 +7026,7 @@ void ScriptEngine::appendSequentialScript(const SequentialScript *scriptToSequen
 	newSequentialScript->m_currentInstruction = -1;
 	
 	VecSequentialScriptPtrIt it;
-	Bool found = false;
+	bool found = false;
 	for (it = m_sequentialScripts.begin(); it != m_sequentialScripts.end(); ++it) {
 		SequentialScript *seqScript = (*it);
 		if (!seqScript) {
@@ -7162,7 +7162,7 @@ void ScriptEngine::evaluateAndProgressAllSequentialScripts( void )
 {
 	VecSequentialScriptPtrIt it;
 	SequentialScript* lastScript = NULL;
-	Bool itAdvanced = false;
+	bool itAdvanced = false;
 
 	Int spinCount = 0;
 	for (it = m_sequentialScripts.begin(); it != m_sequentialScripts.end(); /* empty */) {
@@ -7221,7 +7221,7 @@ void ScriptEngine::evaluateAndProgressAllSequentialScripts( void )
 				
 				// We want to supress messages if we're repeatedly waiting for an event to occur, cause 
 				// it KILLS our debug framerate.
-				Bool displayMessage = TRUE;
+				bool displayMessage = TRUE;
 
 				// Time to progress to the next task.
 				if (seqScript->m_dontAdvanceInstruction) {
@@ -7341,7 +7341,7 @@ void ScriptEngine::evaluateAndProgressAllSequentialScripts( void )
 	m_currentPlayer = NULL;
 }
 
-ScriptEngine::VecSequentialScriptPtrIt ScriptEngine::cleanupSequentialScript(VecSequentialScriptPtrIt it, Bool cleanDanglers)
+ScriptEngine::VecSequentialScriptPtrIt ScriptEngine::cleanupSequentialScript(VecSequentialScriptPtrIt it, bool cleanDanglers)
 {
 	SequentialScript *seqScript;
 	seqScript = (*it);
@@ -7373,19 +7373,19 @@ ScriptEngine::VecSequentialScriptPtrIt ScriptEngine::cleanupSequentialScript(Vec
 	return it;
 }
 
-Bool ScriptEngine::hasUnitCompletedSequentialScript( Object *object, const AsciiString& sequentialScriptName )
+bool ScriptEngine::hasUnitCompletedSequentialScript( Object *object, const AsciiString& sequentialScriptName )
 {
 
 	return FALSE;
 }
 
-Bool ScriptEngine::hasTeamCompletedSequentialScript( Team *team, const AsciiString& sequentialScriptName )
+bool ScriptEngine::hasTeamCompletedSequentialScript( Team *team, const AsciiString& sequentialScriptName )
 {
 
 	return FALSE;
 }
 
-Bool ScriptEngine::getEnableVTune() const
+bool ScriptEngine::getEnableVTune() const
 {
 #ifdef DO_VTUNE_STUFF
 	return st_EnableVTune;
@@ -7563,7 +7563,7 @@ void ScriptEngine::particleEditorUpdate( void )
 
 	_updateCurrentParticleCount();
 	
-	Bool busyWait = false;
+	bool busyWait = false;
 	do {
 		if (m_firstUpdate) {
 			_appendAllParticleSystems();
@@ -7680,7 +7680,7 @@ void ScriptEngine::particleEditorUpdate( void )
 //-------------------------------------------------------------------------------------------------
 /** Is time frozen by a script? */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptEngine::isTimeFrozenScript( void )
+bool ScriptEngine::isTimeFrozenScript( void )
 {
 	return m_freezeByScript;
 }
@@ -7704,9 +7704,9 @@ void ScriptEngine::doUnfreezeTime( void )
 //-------------------------------------------------------------------------------------------------
 /** For Debug and Internal builds, returns whether to continue (!pause), for release, returns false */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptEngine::isTimeFrozenDebug(void)
+bool ScriptEngine::isTimeFrozenDebug(void)
 {
-	typedef Bool (*funcptr)(void);
+	typedef bool (*funcptr)(void);
 
 	if (st_DebugDLL) {
 		if (st_LastCurrentFrame != st_CurrentFrame) {
@@ -7728,9 +7728,9 @@ Bool ScriptEngine::isTimeFrozenDebug(void)
 //-------------------------------------------------------------------------------------------------
 /** For Debug and Internal builds, returns whether we are running fast (skipping draw) */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptEngine::isTimeFast(void)
+bool ScriptEngine::isTimeFast(void)
 {
-	typedef Bool (*funcptr)(void);
+	typedef bool (*funcptr)(void);
 
 	if (st_DebugDLL) {
 		FARPROC proc = GetProcAddress(st_DebugDLL, "CanAppContinue");
@@ -7766,7 +7766,7 @@ void ScriptEngine::forceUnfreezeTime(void)
 	}
 }
 
-void ScriptEngine::AppendDebugMessage(const AsciiString& strToAdd, Bool forcePause)
+void ScriptEngine::AppendDebugMessage(const AsciiString& strToAdd, bool forcePause)
 {
 #ifdef INTENSE_DEBUG
 	DEBUG_LOG(("-SCRIPT- %d %s\n", TheGameLogic->getFrame(), strToAdd.str()));
@@ -7792,7 +7792,7 @@ void ScriptEngine::AppendDebugMessage(const AsciiString& strToAdd, Bool forcePau
 	((funcptr)proc)(msg.str());
 }
 
-void ScriptEngine::AdjustDebugVariableData(const AsciiString& variableName, Int value, Bool forcePause)
+void ScriptEngine::AdjustDebugVariableData(const AsciiString& variableName, Int value, bool forcePause)
 {
 	_adjustVariable(variableName, value, (forcePause != 0));
 }
@@ -8617,7 +8617,7 @@ void ScriptEngine::debugVictory( void )
 }
 //#endif
 
-Bool ScriptEngine::hasShownMPLocalDefeatWindow(void)
+bool ScriptEngine::hasShownMPLocalDefeatWindow(void)
 {
 	return m_shownMPLocalDefeatWindow;
 }
@@ -8631,7 +8631,7 @@ void ScriptEngine::markMPLocalDefeatWindowShown(void)
 /** Misc helper functions (ParticleEdit, etc) */
 // ------------------------------------------------------------------------------------------------
 
-void _appendMessage(const AsciiString& str, Bool isTrueMessage, Bool shouldPause)
+void _appendMessage(const AsciiString& str, bool isTrueMessage, bool shouldPause)
 {
 	typedef void (*funcptr)(const char*);
 
@@ -8664,7 +8664,7 @@ void _appendMessage(const AsciiString& str, Bool isTrueMessage, Bool shouldPause
 	((funcptr)proc)(msg.str());
 }
 
-void _adjustVariable(const AsciiString& str, Int value, Bool shouldPause)
+void _adjustVariable(const AsciiString& str, Int value, bool shouldPause)
 {
 	typedef void (*funcptr)(const char*, const char*);
 	if (!st_DebugDLL) {

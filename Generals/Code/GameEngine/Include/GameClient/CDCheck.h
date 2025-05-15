@@ -34,7 +34,7 @@
 
 typedef void (*gameStartCallback) (void);
 
-Bool IsFirstCDPresent(void);
+bool IsFirstCDPresent(void);
 void CheckForCDAtGameStart( gameStartCallback callback );
 
 #endif //__CDCHECK_H_

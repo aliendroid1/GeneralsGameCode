@@ -163,7 +163,7 @@ void W3DDisplayString::draw( Int x, Int y, Color color, Color dropColor )
 }
 void W3DDisplayString::draw( Int x, Int y, Color color, Color dropColor, Int xDrop, Int yDrop )
 {
-	Bool needNewPolys = FALSE;
+	bool needNewPolys = FALSE;
 
 	// sanity
 	if( getTextLength() == 0 )	
@@ -382,7 +382,7 @@ void W3DDisplayString::setWordWrap( Int wordWrap )
 		notifyTextChanged();
 }// void setWordWrap( Int wordWrap )
 
-void W3DDisplayString::setUseHotkey( Bool useHotkey, Color hotKeyColor )
+void W3DDisplayString::setUseHotkey( bool useHotkey, Color hotKeyColor )
 {
 	m_useHotKey = useHotkey;
 	m_hotKeyColor = hotKeyColor;
@@ -393,7 +393,7 @@ void W3DDisplayString::setUseHotkey( Bool useHotkey, Color hotKeyColor )
 // W3DDisplayString::setWordWrapCentered ======================================
 /** Set the whether or not we want to center each new line in a text string */
 //=============================================================================
-void W3DDisplayString::setWordWrapCentered( Bool isCentered )
+void W3DDisplayString::setWordWrapCentered( bool isCentered )
 {
 	// set the Word Wrap
 	 if( m_textRenderer.Set_Word_Wrap_Centered(isCentered) )

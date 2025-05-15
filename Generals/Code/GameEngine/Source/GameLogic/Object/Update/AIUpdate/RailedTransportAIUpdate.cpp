@@ -277,7 +277,7 @@ void RailedTransportAIUpdate::aiDoCommand( const AICommandParms *parms )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-void RailedTransportAIUpdate::setInTransit( Bool inTransit )
+void RailedTransportAIUpdate::setInTransit( bool inTransit )
 {
 	Object *us = getObject();
 	DockUpdateInterface *dui = us->getDockUpdateInterface();

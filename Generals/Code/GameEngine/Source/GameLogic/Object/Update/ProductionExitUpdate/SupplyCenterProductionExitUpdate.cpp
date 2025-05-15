@@ -134,7 +134,7 @@ void SupplyCenterProductionExitUpdate::exitObjectViaDoor( Object *newObj, ExitDo
 }
 
 
-Bool SupplyCenterProductionExitUpdate::getExitPosition( Coord3D& exitPosition ) const
+bool SupplyCenterProductionExitUpdate::getExitPosition( Coord3D& exitPosition ) const
 {
 	const Object *obj = getObject();
 	if (!obj)
@@ -158,7 +158,7 @@ Bool SupplyCenterProductionExitUpdate::getExitPosition( Coord3D& exitPosition ) 
 
 
 //-------------------------------------------------------------------------------------------------
-Bool SupplyCenterProductionExitUpdate::getNaturalRallyPoint( Coord3D& rallyPoint, Bool offset ) const
+bool SupplyCenterProductionExitUpdate::getNaturalRallyPoint( Coord3D& rallyPoint, bool offset ) const
 {
 	const SupplyCenterProductionExitUpdateModuleData *data = getSupplyCenterProductionExitUpdateModuleData();
 	Vector3 p;

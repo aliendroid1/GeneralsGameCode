@@ -105,10 +105,10 @@ class IMEManager : public IMEManagerInterface
 		virtual void					detatch( void );								///< detatch IME from current window
 		virtual void					enable( void );									///< Enable IME
 		virtual void					disable( void );								///< Disable IME
-		virtual Bool					isEnabled( void );							///< Is IME enabled
-		virtual Bool					isAttachedTo( GameWindow *window );	///< Is the manager attached toa window
+		virtual bool					isEnabled( void );							///< Is IME enabled
+		virtual bool					isAttachedTo( GameWindow *window );	///< Is the manager attached toa window
 		virtual GameWindow*		getWindow( void );							///< Returns the window we are currently attached to
-		virtual Bool					isComposing( void );						///< Manager is currently composing new input string
+		virtual bool					isComposing( void );						///< Manager is currently composing new input string
 		virtual void					getCompositionString( UnicodeString &string ); ///< Return the current composition string
 		virtual Int						getCompositionCursorPosition( void );			///< Returns the composition cursor position 
 		virtual Int						getIndexBase( void );						///< Get index base for candidate list
@@ -122,7 +122,7 @@ class IMEManager : public IMEManagerInterface
 
 
 		/// Checks for and services IME messages. Returns TRUE if message serviced
-		virtual Bool serviceIMEMessage(	void *windowsHandle, 
+		virtual bool serviceIMEMessage(	void *windowsHandle, 
 												UnsignedInt message,
 												Int wParam,
 												Int lParam );
@@ -367,7 +367,7 @@ Char*		IMEManager::getMessageName( IMEManager::MessageInfo *msgTable, Int value 
 void		IMEManager::buildFlagsString( IMEManager::MessageInfo *msgTable, Int value, AsciiString &string )
 {
 	string.clear();
-	Bool first = TRUE;
+	bool first = TRUE;
 
 	if ( msgTable )
 	{
@@ -668,7 +668,7 @@ void IMEManager::detatch( void )
 // IMEManager::serviceIMEMessage
 //============================================================================
 
-Bool IMEManager::serviceIMEMessage(	void *windowsHandle, UnsignedInt message,	Int wParam,	Int lParam )
+bool IMEManager::serviceIMEMessage(	void *windowsHandle, UnsignedInt message,	Int wParam,	Int lParam )
 {
 
 	DEBUG_ASSERTCRASH( windowsHandle == ApplicationHWnd, ("Unexpected window handle for IMEManager") );
@@ -1014,7 +1014,7 @@ void IMEManager::disable( void )
 // IMEManager::isEnabled
 //============================================================================
 
-Bool IMEManager::isEnabled( void )
+bool IMEManager::isEnabled( void )
 {
 	return m_context != NULL && m_disabled == 0;
 }
@@ -1023,7 +1023,7 @@ Bool IMEManager::isEnabled( void )
 // IMEManager::isAttached
 //============================================================================
 
-Bool IMEManager::isAttachedTo( GameWindow *window )
+bool IMEManager::isAttachedTo( GameWindow *window )
 {
 	return m_window == window;
 }
@@ -1073,7 +1073,7 @@ WideChar IMEManager::convertCharToWide( WPARAM wParam )
 // IMEManager::isComposing
 //============================================================================
 
-Bool IMEManager::isComposing( void )
+bool IMEManager::isComposing( void )
 {
 	return m_composing;
 }
@@ -1362,7 +1362,7 @@ void IMEManager::updateCandidateList( Int candidateFlags  )
 	{
 		if ( candidateFlags & candidate )
 		{
-			Bool unicode = TRUE;
+			bool unicode = TRUE;
 			unsigned long listCount = 0;
 
 			Int size = ImmGetCandidateListCountW( m_context, &listCount );
@@ -1389,7 +1389,7 @@ void IMEManager::updateCandidateList( Int candidateFlags  )
 			
 			CANDIDATELIST *clist = (CANDIDATELIST*) buffer;
 
-			Bool ok = TRUE ;
+			bool ok = TRUE ;
 			Int bytesCopied;
 
 			if ( unicode )

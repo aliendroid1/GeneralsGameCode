@@ -147,7 +147,7 @@ Dict::DictPair* Dict::findPairByKey(NameKeyType key) const
 }
 
 // -----------------------------------------------------
-Dict::DictPair *Dict::ensureUnique(int numPairsNeeded, Bool preserveData, DictPair *pairToTranslate)
+Dict::DictPair *Dict::ensureUnique(int numPairsNeeded, bool preserveData, DictPair *pairToTranslate)
 {
 	if (m_data &&
 			m_data->m_refCount == 1 &&
@@ -266,7 +266,7 @@ Dict::DataType Dict::getType(NameKeyType key) const
 }
 
 // -----------------------------------------------------
-Bool Dict::getBool(NameKeyType key, Bool *exists/*=NULL*/) const
+bool Dict::getBool(NameKeyType key, bool *exists/*=NULL*/) const
 {
 	validate();
 	DictPair* pair = findPairByKey(key);
@@ -281,7 +281,7 @@ Bool Dict::getBool(NameKeyType key, Bool *exists/*=NULL*/) const
 }
 
 // -----------------------------------------------------
-Int Dict::getInt(NameKeyType key, Bool *exists/*=NULL*/) const
+Int Dict::getInt(NameKeyType key, bool *exists/*=NULL*/) const
 {
 	validate();
 	DictPair* pair = findPairByKey(key);
@@ -296,7 +296,7 @@ Int Dict::getInt(NameKeyType key, Bool *exists/*=NULL*/) const
 }
 
 // -----------------------------------------------------
-Real Dict::getReal(NameKeyType key, Bool *exists/*=NULL*/) const
+Real Dict::getReal(NameKeyType key, bool *exists/*=NULL*/) const
 {
 	validate();
 	DictPair* pair = findPairByKey(key);
@@ -311,7 +311,7 @@ Real Dict::getReal(NameKeyType key, Bool *exists/*=NULL*/) const
 }
 
 // -----------------------------------------------------
-AsciiString Dict::getAsciiString(NameKeyType key, Bool *exists/*=NULL*/) const
+AsciiString Dict::getAsciiString(NameKeyType key, bool *exists/*=NULL*/) const
 {
 	validate();
 	DictPair* pair = findPairByKey(key);
@@ -326,7 +326,7 @@ AsciiString Dict::getAsciiString(NameKeyType key, Bool *exists/*=NULL*/) const
 }
 
 // -----------------------------------------------------
-UnicodeString Dict::getUnicodeString(NameKeyType key, Bool *exists/*=NULL*/) const
+UnicodeString Dict::getUnicodeString(NameKeyType key, bool *exists/*=NULL*/) const
 {
 	validate();
 	DictPair* pair = findPairByKey(key);
@@ -341,7 +341,7 @@ UnicodeString Dict::getUnicodeString(NameKeyType key, Bool *exists/*=NULL*/) con
 }
 
 // -----------------------------------------------------
-Bool Dict::getNthBool(Int n) const
+bool Dict::getNthBool(Int n) const
 {
 	validate();
 	DEBUG_ASSERTCRASH(n >= 0 && n < getPairCount(), ("n out of range\n"));
@@ -463,7 +463,7 @@ void Dict::sortPairs()
 }
 
 // -----------------------------------------------------
-void Dict::setBool(NameKeyType key, Bool value)
+void Dict::setBool(NameKeyType key, bool value)
 {
 	validate();
 	DictPair* pair = setPrep(key, DICT_BOOL);
@@ -513,7 +513,7 @@ void Dict::setUnicodeString(NameKeyType key, const UnicodeString& value)
 }
 
 // -----------------------------------------------------
-Bool Dict::remove(NameKeyType key)
+bool Dict::remove(NameKeyType key)
 {
 	validate();
 	DictPair* pair = findPairByKey(key);

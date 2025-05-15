@@ -102,7 +102,7 @@ protected:
 
 	virtual void removeAllInfluence( void );			///< remove any influence we had on all objects we've affected
 	virtual void doScan( void );									///< do a scan
-	virtual void effectLogic( Object *obj, Bool giving, 
+	virtual void effectLogic( Object *obj, bool giving, 
 														const PropagandaTowerBehaviorModuleData *modData);///< give/remove effect on object
 
 	UnsignedInt m_lastScanFrame;									///< last frame we did a scan on

@@ -65,7 +65,7 @@ static WindowLayout *quitMenuLayout = NULL;
 static WindowLayout *fullQuitMenuLayout = NULL;
 static WindowLayout *noSaveLoadQuitMenuLayout = NULL;
 
-static Bool isVisible = FALSE;
+static bool isVisible = FALSE;
 
 static GameWindow *quitConfirmationWindow = NULL;
 

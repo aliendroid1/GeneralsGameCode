@@ -54,7 +54,7 @@ public:
 
 protected:
 
-	virtual Bool isSpecificRiderFreeToExit( Object *obj );
+	virtual bool isSpecificRiderFreeToExit( Object *obj );
 
 };
 

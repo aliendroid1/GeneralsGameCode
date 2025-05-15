@@ -198,12 +198,12 @@ void Win32BIGFileSystem::closeAllArchiveFiles() {
 void Win32BIGFileSystem::closeAllFiles() {
 }
 
-Bool Win32BIGFileSystem::loadBigFilesFromDirectory(AsciiString dir, AsciiString fileMask, Bool overwrite) {
+bool Win32BIGFileSystem::loadBigFilesFromDirectory(AsciiString dir, AsciiString fileMask, bool overwrite) {
 
 	FilenameList filenameList;
 	TheLocalFileSystem->getFileListInDirectory(dir, AsciiString(""), fileMask, filenameList, TRUE);
 
-	Bool actuallyAdded = FALSE;
+	bool actuallyAdded = FALSE;
 	FilenameListIter it = filenameList.begin();
 	while (it != filenameList.end()) {
 		ArchiveFile *archiveFile = openArchiveFile((*it).str());

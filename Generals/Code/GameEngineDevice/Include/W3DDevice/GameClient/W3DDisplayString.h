@@ -83,9 +83,9 @@ public:
 	void getSize( Int *width, Int *height );		///< get render size
 	Int	getWidth( Int charPos = -1);
 	void setWordWrap( Int wordWrap );						///< set the word wrap width
-	void setWordWrapCentered( Bool isCentered ); ///< If this is set to true, the text on a new line is centered
+	void setWordWrapCentered( bool isCentered ); ///< If this is set to true, the text on a new line is centered
 	void setFont( GameFont *font );							///< set a font for display
-	void setUseHotkey( Bool useHotkey, Color hotKeyColor = 0xffffffff );
+	void setUseHotkey( bool useHotkey, Color hotKeyColor = 0xffffffff );
 	void setClipRegion( IRegion2D *region );		///< clip text in this region
 
 protected:
@@ -98,10 +98,10 @@ protected:
 
 	Render2DSentenceClass m_textRenderer;  ///< for drawing text
 	Render2DSentenceClass m_textRendererHotKey;  ///< for drawing text
-	Bool m_textChanged;  ///< when contents of string change this is TRUE
-	Bool m_fontChanged;  ///< when font has chagned this is TRUE
+	bool m_textChanged;  ///< when contents of string change this is TRUE
+	bool m_fontChanged;  ///< when font has chagned this is TRUE
 	UnicodeString m_hotkey;		///< holds the current hotkey marker.
-	Bool m_useHotKey;
+	bool m_useHotKey;
 	ICoord2D m_hotKeyPos;
 	Color m_hotKeyColor;
 	ICoord2D m_textPos;  ///< current text pos set in text renderer

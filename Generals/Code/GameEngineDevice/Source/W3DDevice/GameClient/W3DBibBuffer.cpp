@@ -303,7 +303,7 @@ void W3DBibBuffer::removeHighlighting(void)
 //=============================================================================
 /** Adds a bib.   */
 //=============================================================================
-void W3DBibBuffer::addBib(Vector3 corners[4], ObjectID id, Bool highlight)
+void W3DBibBuffer::addBib(Vector3 corners[4], ObjectID id, bool highlight)
 {
 	Int bibIndex;
 	for (bibIndex=0; bibIndex<m_numBibs; bibIndex++) {
@@ -341,7 +341,7 @@ void W3DBibBuffer::addBib(Vector3 corners[4], ObjectID id, Bool highlight)
 //=============================================================================
 /** Adds a bib.   */
 //=============================================================================
-void W3DBibBuffer::addBibDrawable(Vector3 corners[4], DrawableID id, Bool highlight)
+void W3DBibBuffer::addBibDrawable(Vector3 corners[4], DrawableID id, bool highlight)
 {
 	Int bibIndex;
 	for (bibIndex=0; bibIndex<m_numBibs; bibIndex++) {

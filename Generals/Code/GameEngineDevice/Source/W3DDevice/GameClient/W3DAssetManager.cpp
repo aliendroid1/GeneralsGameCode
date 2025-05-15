@@ -581,7 +581,7 @@ First 16 pixels are a palette composed of 24-Bit RGB values.
 Any pixels in remainder of image that use these 24-bit values
 will be remapped using a pre-defined formula.
 */
-void W3DAssetManager::Remap_Palette(SurfaceClass *surface, const int color, Bool doPaletteOnly, Bool useAlpha)
+void W3DAssetManager::Remap_Palette(SurfaceClass *surface, const int color, bool doPaletteOnly, bool useAlpha)
 {
 //	unsigned int x;
 	SurfaceClass::SurfaceDescription sd;
@@ -694,9 +694,9 @@ RenderObjClass * W3DAssetManager::Create_Render_Obj(
 	GetPrecisionTimer(&startTime64);
 	#endif
 
-	Bool reallyscale = (WWMath::Fabs(scale - ident_scale) > scale_epsilon);
-	Bool reallycolor = (color & 0xFFFFFF) != 0;	//black is not a valid color and assumes no custom coloring.
-	Bool reallytexture = (oldTexture != NULL && newTexture != NULL);
+	bool reallyscale = (WWMath::Fabs(scale - ident_scale) > scale_epsilon);
+	bool reallycolor = (color & 0xFFFFFF) != 0;	//black is not a valid color and assumes no custom coloring.
+	bool reallytexture = (oldTexture != NULL && newTexture != NULL);
 
 	// base case, no scale or color
 	if (!reallyscale && !reallycolor && !reallytexture) 
@@ -1019,7 +1019,7 @@ HAnimClass *	W3DAssetManager::Get_HAnim(const char * name)
 //---------------------------------------------------------------------
 /** Generals specific code to generate customized render objects for each team color
 */
-void W3DAssetManager::Make_HLOD_Unique(RenderObjClass *robj, Bool geometry, Bool colors)
+void W3DAssetManager::Make_HLOD_Unique(RenderObjClass *robj, bool geometry, bool colors)
 {
 	int num_sub = robj->Get_Num_Sub_Objects();
 	for(int i = 0; i < num_sub; i++) {
@@ -1032,7 +1032,7 @@ void W3DAssetManager::Make_HLOD_Unique(RenderObjClass *robj, Bool geometry, Bool
 //---------------------------------------------------------------------
 /** Generals specific code to generate customized render objects for each team color
 */
-void W3DAssetManager::Make_Unique(RenderObjClass *robj, Bool geometry, Bool colors)
+void W3DAssetManager::Make_Unique(RenderObjClass *robj, bool geometry, bool colors)
 {
 	switch (robj->Class_ID())	{	
 	case RenderObjClass::CLASSID_MESH:
@@ -1046,7 +1046,7 @@ void W3DAssetManager::Make_Unique(RenderObjClass *robj, Bool geometry, Bool colo
 
 //---------------------------------------------------------------------
 /** Determine what method is used to apply house color to this mesh (if any) */
-static Bool getMeshColorMethods(MeshClass *mesh, Bool &vertexColor, Bool &textureColor)
+static bool getMeshColorMethods(MeshClass *mesh, bool &vertexColor, bool &textureColor)
 {
 	vertexColor = false;
 	textureColor = false;
@@ -1078,11 +1078,11 @@ static Bool getMeshColorMethods(MeshClass *mesh, Bool &vertexColor, Bool &textur
 //---------------------------------------------------------------------
 /** Generals specific code to generate customized render objects for each team color
 */
-void W3DAssetManager::Make_Mesh_Unique(RenderObjClass *robj, Bool geometry, Bool colors)
+void W3DAssetManager::Make_Mesh_Unique(RenderObjClass *robj, bool geometry, bool colors)
 {
 	int i;
 	MeshClass *mesh=(MeshClass*) robj;
-	Bool isVertexColor, isTextureColor;
+	bool isVertexColor, isTextureColor;
 
 	//figure out what type of coloring this mesh requires (if any)
 	if ((colors && getMeshColorMethods(mesh,isVertexColor,isTextureColor)) || geometry)
@@ -1229,7 +1229,7 @@ void W3DAssetManager::Report_Used_Font3DDatas( void )
 // Uniqing
 //---------------------------------------------------------------------
 
-void W3DAssetManager::Make_Mesh_Unique(RenderObjClass *robj, Bool geometry, Bool colors)
+void W3DAssetManager::Make_Mesh_Unique(RenderObjClass *robj, bool geometry, bool colors)
 {
 	int i;
 	MeshClass *mesh=(MeshClass*) robj;
@@ -1259,7 +1259,7 @@ void W3DAssetManager::Make_Mesh_Unique(RenderObjClass *robj, Bool geometry, Bool
 	REF_PTR_RELEASE(model);
 }
 
-void W3DAssetManager::Make_HLOD_Unique(RenderObjClass *robj, Bool geometry, Bool colors)
+void W3DAssetManager::Make_HLOD_Unique(RenderObjClass *robj, bool geometry, bool colors)
 {
 	int num_sub = robj->Get_Num_Sub_Objects();
 	for(int i = 0; i < num_sub; i++) {
@@ -1269,7 +1269,7 @@ void W3DAssetManager::Make_HLOD_Unique(RenderObjClass *robj, Bool geometry, Bool
 	}
 }
 
-void W3DAssetManager::Make_Unique(RenderObjClass *robj, Bool geometry, Bool colors)
+void W3DAssetManager::Make_Unique(RenderObjClass *robj, bool geometry, bool colors)
 {
 	switch (robj->Class_ID())	{	
 	case RenderObjClass::CLASSID_MESH:
@@ -1299,9 +1299,9 @@ static inline void Munge_Texture_Name(char *newname, const char *oldname, const 
 
 RenderObjClass * W3DAssetManager::Create_Render_Obj(const char * name,float scale, const Vector3 &hsv_shift)
 {
-	Bool isGranny = false;
-	Bool reallyscale = (WWMath::Fabs(scale - ident_scale) > scale_epsilon);
-	Bool reallyhsv_shift = (WWMath::Fabs(hsv_shift.X - ident_HSV.X) > H_epsilon ||
+	bool isGranny = false;
+	bool reallyscale = (WWMath::Fabs(scale - ident_scale) > scale_epsilon);
+	bool reallyhsv_shift = (WWMath::Fabs(hsv_shift.X - ident_HSV.X) > H_epsilon ||
 		WWMath::Fabs(hsv_shift.Y - ident_HSV.Y) > S_epsilon || WWMath::Fabs(hsv_shift.Z - ident_HSV.Z) > V_epsilon);
 
 	// base case, no scale or hue shifting
@@ -1399,7 +1399,7 @@ TextureClass * W3DAssetManager::Get_Texture_With_HSV_Shift(const char * filename
 {
 	WWPROFILE( "W3DAssetManager::Get_Texture with HSV shift" );
 
-	Bool is_hsv_shift = (WWMath::Fabs(hsv_shift.X - ident_HSV.X) > H_epsilon ||
+	bool is_hsv_shift = (WWMath::Fabs(hsv_shift.X - ident_HSV.X) > H_epsilon ||
 		WWMath::Fabs(hsv_shift.Y - ident_HSV.Y) > S_epsilon || WWMath::Fabs(hsv_shift.Z - ident_HSV.Z) > V_epsilon);
 
 	if (!is_hsv_shift) {

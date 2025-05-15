@@ -118,7 +118,7 @@ void LANAPI::handleGameAnnounce( LANMessage *msg, UnsignedInt senderIP )
 				game->setName(UnicodeString(msg->GameInfo.gameName));
 				addGame(game);
 			}
-			Bool success = ParseGameOptionsString(game,AsciiString(msg->GameInfo.options));
+			bool success = ParseGameOptionsString(game,AsciiString(msg->GameInfo.options));
 			game->setGameInProgress(msg->GameInfo.inProgress);
 			game->setIsDirectConnect(msg->GameInfo.isDirectConnect);
 			game->setLastHeard(timeGetTime());
@@ -142,7 +142,7 @@ void LANAPI::handleGameAnnounce( LANMessage *msg, UnsignedInt senderIP )
 			game->setName(UnicodeString(msg->GameInfo.gameName));
 			addGame(game);
 		}
-		Bool success = ParseGameOptionsString(game,AsciiString(msg->GameInfo.options));
+		bool success = ParseGameOptionsString(game,AsciiString(msg->GameInfo.options));
 		game->setGameInProgress(msg->GameInfo.inProgress);
 		game->setIsDirectConnect(msg->GameInfo.isDirectConnect);
 		game->setLastHeard(timeGetTime());
@@ -229,7 +229,7 @@ void LANAPI::handleRequestJoin( LANMessage *msg, UnsignedInt senderIP )
 		else
 		{
 			int player;
-			Bool canJoin = true;
+			bool canJoin = true;
 
 			// see if the CRCs match
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)

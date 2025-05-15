@@ -131,13 +131,13 @@ DumbProjectileBehavior::~DumbProjectileBehavior()
 }
 
 //-------------------------------------------------------------------------------------------------
-inline Bool within(Real min, Real val, Real max)
+inline bool within(Real min, Real val, Real max)
 {
 	return min <= val && val <= max;
 }
 
 //-------------------------------------------------------------------------------------------------
-inline Bool notWithin(Real min, Real val, Real max)
+inline bool notWithin(Real min, Real val, Real max)
 {
 	return val < min || val > max;
 }
@@ -147,18 +147,18 @@ inline Bool notWithin(Real min, Real val, Real max)
 #define NO_ONLY_RETURN_CLIPPED_PITCHES
 
 //-------------------------------------------------------------------------------------------------
-static Bool calcTrajectory(
+static bool calcTrajectory(
 	const Coord3D& start,		// in: where the projectile starts
 	const Coord3D& end,			// in: where the projectile wants to end up
 	Real velocity,					// in: the initial speed of the projectile
 	Real minPitch,					// in: min pitch (-PI/2)
 	Real maxPitch,					// in: max pitch (-PI/2)
-	Bool preferShortPitch,	// in: prefer the shorter or longer path?
+	bool preferShortPitch,	// in: prefer the shorter or longer path?
 	Real& angle,						// out: the angle to aim
 	Real& pitch							// out: the pitch to aim for 
 )
 {
-	Bool exactTarget = false;
+	bool exactTarget = false;
 
 	angle = 0.0f;
 	pitch = 0.0f;
@@ -248,7 +248,7 @@ static Bool calcTrajectory(
 		// ok, NOW... since dz is virtually NEVER zero, do a little approximation
 		// to get a better guess. (solving the equations directly are hard and
 		// it's simpler to approximate)
-		Bool tooClose = false;
+		bool tooClose = false;
 		Real vx, vz, root;
 
 		vz = velocity*sinPitches[preferred];
@@ -401,7 +401,7 @@ void DumbProjectileBehavior::projectileFireAtObjectOrPosition( const Object *vic
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-Bool DumbProjectileBehavior::calcFlightPath(Bool recalcNumSegments)
+bool DumbProjectileBehavior::calcFlightPath(Bool recalcNumSegments)
 {
 	const DumbProjectileBehaviorModuleData* d = getDumbProjectileBehaviorModuleData();
 
@@ -411,7 +411,7 @@ Bool DumbProjectileBehavior::calcFlightPath(Bool recalcNumSegments)
 	controlPoints[3] = m_flightPathEnd;
 
 	Real highestInterveningTerrain;
-	Bool onMap = ThePartitionManager->estimateTerrainExtremesAlongLine( controlPoints[0], controlPoints[3], NULL, &highestInterveningTerrain, NULL, NULL );
+	bool onMap = ThePartitionManager->estimateTerrainExtremesAlongLine( controlPoints[0], controlPoints[3], NULL, &highestInterveningTerrain, NULL, NULL );
 	if( !onMap )
 	{
 		return false;
@@ -461,7 +461,7 @@ Bool DumbProjectileBehavior::calcFlightPath(Bool recalcNumSegments)
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-Bool DumbProjectileBehavior::projectileHandleCollision( Object *other )
+bool DumbProjectileBehavior::projectileHandleCollision( Object *other )
 {
 	const DumbProjectileBehaviorModuleData* d = getDumbProjectileBehaviorModuleData();
 

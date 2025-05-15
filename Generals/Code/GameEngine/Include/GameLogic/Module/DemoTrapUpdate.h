@@ -84,7 +84,7 @@ public:
 protected:
 
 	Int m_nextScanFrames;
-	Bool m_detonated;
+	bool m_detonated;
 };
 
 

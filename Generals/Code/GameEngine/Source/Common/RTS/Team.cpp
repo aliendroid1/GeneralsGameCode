@@ -163,7 +163,7 @@ void TeamRelationMap::loadPostProcess( void )
 // ------------------------------------------------------------------------
 // ------------------------------------------------------------------------
 // STATIC FUNCTIONS ///////////////////////////////////////////////////////////
-static Bool locoSetMatches(LocomotorSurfaceTypeMask lstm, UnsignedInt surfaceBitFlags)
+static bool locoSetMatches(LocomotorSurfaceTypeMask lstm, UnsignedInt surfaceBitFlags)
 {
 	surfaceBitFlags = surfaceBitFlags & 0x01 | ((surfaceBitFlags & 0x02) << 2);
 	return (surfaceBitFlags & lstm) != 0;
@@ -230,14 +230,14 @@ void TeamFactory::initFromSides(SidesList *sides)
 
 		AsciiString tname = d->getAsciiString(TheKey_teamName);
 		AsciiString oname = d->getAsciiString(TheKey_teamOwner);
-		Bool singleton = d->getBool(TheKey_teamIsSingleton);
+		bool singleton = d->getBool(TheKey_teamIsSingleton);
 		initTeam(tname, oname, singleton, d);
 	}
 
 }
 
 // ------------------------------------------------------------------------
-void TeamFactory::initTeam(const AsciiString& name, const AsciiString& owner, Bool isSingleton, Dict *d)
+void TeamFactory::initTeam(const AsciiString& name, const AsciiString& owner, bool isSingleton, Dict *d)
 {
 	DEBUG_ASSERTCRASH(findTeamPrototype(name)==NULL,("team already exists"));
 	Player *pOwner = ThePlayerList->findPlayerWithNameKey(NAMEKEY(owner));
@@ -617,7 +617,7 @@ fclose( fp );
 TeamTemplateInfo::TeamTemplateInfo(Dict *d) :
 	m_numUnitsInfo(0)
 {
-	Bool exists;
+	bool exists;
 	Int min, max;
 	AsciiString templateName;
 	min = d->getInt(TheKey_teamUnitMinCount1, &exists);
@@ -804,7 +804,7 @@ void TeamTemplateInfo::loadPostProcess( void )
 TeamPrototype::TeamPrototype( TeamFactory *tf, 
 															const AsciiString &name, 
 															Player *ownerPlayer, 
-															Bool isSingleton, 
+															bool isSingleton, 
 															Dict *d, 
 															TeamPrototypeID id ) : 
 	m_id(id),
@@ -901,7 +901,7 @@ void TeamPrototype::setControllingPlayer(Player *newController)
 }
 
 // ------------------------------------------------------------------------
-void TeamPrototype::countObjectsByThingTemplate(Int numTmplates, const ThingTemplate* const* things, Bool ignoreDead, Int *counts, Bool ignoreUnderConstruction) const
+void TeamPrototype::countObjectsByThingTemplate(Int numTmplates, const ThingTemplate* const* things, bool ignoreDead, Int *counts, bool ignoreUnderConstruction) const
 {
 	for (DLINK_ITERATOR<Team> iter = iterate_TeamInstanceList(); !iter.done(); iter.advance())
 	{
@@ -1012,7 +1012,7 @@ Int TeamPrototype::countTeamInstances( void )
 
 
 // ------------------------------------------------------------------------
-Bool TeamPrototype::hasAnyBuildings() const
+bool TeamPrototype::hasAnyBuildings() const
 {
 	for (DLINK_ITERATOR<Team> iter = iterate_TeamInstanceList(); !iter.done(); iter.advance())
 	{
@@ -1022,7 +1022,7 @@ Bool TeamPrototype::hasAnyBuildings() const
 }
 
 // ------------------------------------------------------------------------
-Bool TeamPrototype::hasAnyBuildings(KindOfMaskType kindOf) const
+bool TeamPrototype::hasAnyBuildings(KindOfMaskType kindOf) const
 {
 	for (DLINK_ITERATOR<Team> iter = iterate_TeamInstanceList(); !iter.done(); iter.advance())
 	{
@@ -1032,7 +1032,7 @@ Bool TeamPrototype::hasAnyBuildings(KindOfMaskType kindOf) const
 }
 
 // ------------------------------------------------------------------------
-Bool TeamPrototype::hasAnyUnits() const
+bool TeamPrototype::hasAnyUnits() const
 {
 	for (DLINK_ITERATOR<Team> iter = iterate_TeamInstanceList(); !iter.done(); iter.advance())
 	{
@@ -1042,7 +1042,7 @@ Bool TeamPrototype::hasAnyUnits() const
 }
 
 // ------------------------------------------------------------------------
-Bool TeamPrototype::hasAnyObjects() const
+bool TeamPrototype::hasAnyObjects() const
 {
 	for (DLINK_ITERATOR<Team> iter = iterate_TeamInstanceList(); !iter.done(); iter.advance())
 	{
@@ -1059,7 +1059,7 @@ void TeamPrototype::updateState(void)
 		iter.cur()->updateState();
 	}
 	/* remove empty teams. */
-	Bool done = false;
+	bool done = false;
 	while (!done) {
 		done = true;
 		for (DLINK_ITERATOR<Team> iter = iterate_TeamInstanceList(); !iter.done(); iter.advance())
@@ -1096,7 +1096,7 @@ void TeamPrototype::updateState(void)
 }
 
 // ------------------------------------------------------------------------
-Bool TeamPrototype::hasAnyBuildFacility() const
+bool TeamPrototype::hasAnyBuildFacility() const
 {
 	for (DLINK_ITERATOR<Team> iter = iterate_TeamInstanceList(); !iter.done(); iter.advance())
 	{
@@ -1125,7 +1125,7 @@ void TeamPrototype::moveTeamTo(Coord3D destination)
 }
 
 // ------------------------------------------------------------------------
-Bool TeamPrototype::evaluateProductionCondition(void)
+bool TeamPrototype::evaluateProductionCondition(void)
 {
 	if (m_productionConditionAlwaysFalse) {
 		// Set if we don't have a script.
@@ -1552,7 +1552,7 @@ Object *Team::getTeamTargetObject(void)
 }
 
 // ------------------------------------------------------------------------
-Bool Team::removeOverrideTeamRelationship( TeamID teamID )
+bool Team::removeOverrideTeamRelationship( TeamID teamID )
 {
 	if (!m_teamRelations->m_map.empty())
 	{
@@ -1585,7 +1585,7 @@ void Team::setOverridePlayerRelationship( Int playerIndex, Relationship r )
 }
 
 // ------------------------------------------------------------------------
-Bool Team::removeOverridePlayerRelationship( Int playerIndex )
+bool Team::removeOverridePlayerRelationship( Int playerIndex )
 {
 	if (!m_playerRelations->m_map.empty())
 	{
@@ -1608,7 +1608,7 @@ Bool Team::removeOverridePlayerRelationship( Int playerIndex )
 }
 
 // ------------------------------------------------------------------------
-void Team::countObjectsByThingTemplate(Int numTmplates, const ThingTemplate* const* things, Bool ignoreDead, Int *counts, Bool ignoreUnderConstruction) const
+void Team::countObjectsByThingTemplate(Int numTmplates, const ThingTemplate* const* things, bool ignoreDead, Int *counts, bool ignoreUnderConstruction) const
 {
 	for (DLINK_ITERATOR<Object> iter = iterate_TeamMemberList(); !iter.done(); iter.advance())
 	{
@@ -1685,7 +1685,7 @@ void Team::iterateObjects( ObjectIterateFunc func, void *userData )
 }
 
 // ------------------------------------------------------------------------
-Bool Team::hasAnyBuildings() const
+bool Team::hasAnyBuildings() const
 {
 	for (DLINK_ITERATOR<Object> iter = iterate_TeamMemberList(); !iter.done(); iter.advance())
 	{
@@ -1702,7 +1702,7 @@ Bool Team::hasAnyBuildings() const
 }
 
 // ------------------------------------------------------------------------
-Bool Team::hasAnyBuildings(KindOfMaskType kindOf) const
+bool Team::hasAnyBuildings(KindOfMaskType kindOf) const
 {
 	for (DLINK_ITERATOR<Object> iter = iterate_TeamMemberList(); !iter.done(); iter.advance())
 	{
@@ -1720,7 +1720,7 @@ Bool Team::hasAnyBuildings(KindOfMaskType kindOf) const
 }
 
 // ------------------------------------------------------------------------
-Bool Team::hasAnyUnits() const
+bool Team::hasAnyUnits() const
 {
 	for (DLINK_ITERATOR<Object> iter = iterate_TeamMemberList(); !iter.done(); iter.advance())
 	{
@@ -1745,9 +1745,9 @@ Bool Team::hasAnyUnits() const
 }
 
 // ------------------------------------------------------------------------
-Bool Team::isIdle() const
+bool Team::isIdle() const
 {
-	Bool idle = true; // assume idle.
+	bool idle = true; // assume idle.
 	for (DLINK_ITERATOR<Object> iter = iterate_TeamMemberList(); !iter.done(); iter.advance())
 	{
 		AIUpdateInterface *ai = iter.cur()->getAIUpdateInterface();
@@ -1766,7 +1766,7 @@ Bool Team::isIdle() const
 }
 
 // ------------------------------------------------------------------------
-Bool Team::hasAnyObjects() const
+bool Team::hasAnyObjects() const
 {
 	for (DLINK_ITERATOR<Object> iter = iterate_TeamMemberList(); !iter.done(); iter.advance())
 	{
@@ -1831,7 +1831,7 @@ void Team::updateState(void)
 	if (m_checkEnemySighted) {
 		m_prevSeeEnemy = m_seeEnemy;
 		m_seeEnemy = false;
-		Bool anyAliveInTeam = false; // If we're all dead, don't do all clear.
+		bool anyAliveInTeam = false; // If we're all dead, don't do all clear.
 		// only consider enemies.
 		for (DLINK_ITERATOR<Object> iter = iterate_TeamMemberList(); !iter.done(); iter.advance())
 		{
@@ -1891,8 +1891,8 @@ void Team::updateState(void)
 	// Do onIdle checks.
 	if (!pInfo->m_scriptOnIdle.isEmpty()) 
 	{
-		Bool isIdle = true;
-		Bool anyAliveInTeam = false; // If we're all dead, don't do all clear.
+		bool isIdle = true;
+		bool anyAliveInTeam = false; // If we're all dead, don't do all clear.
 		for (DLINK_ITERATOR<Object> iter = iterate_TeamMemberList(); !iter.done(); iter.advance())
 		{
 			if (iter.cur()->isEffectivelyDead()) {
@@ -1929,14 +1929,14 @@ void Team::notifyTeamOfObjectDeath( void )
 }
 
 // ------------------------------------------------------------------------
-Bool Team::didAllEnter(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const
+bool Team::didAllEnter(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const
 {
 	// If any units entered or exited, they set this flag.
 	if (!m_enteredOrExited) return false;
 
-	Bool anyConsidered = false;
-	Bool entered = false;
-	Bool outside = false;
+	bool anyConsidered = false;
+	bool entered = false;
+	bool outside = false;
 	for (DLINK_ITERATOR<Object> iter = iterate_TeamMemberList(); !iter.done(); iter.advance())
 	{
 		AIUpdateInterface *ai = iter.cur()->getAIUpdateInterface();
@@ -1975,7 +1975,7 @@ Bool Team::didAllEnter(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) co
 }
 
 // ------------------------------------------------------------------------
-Bool Team::didPartialEnter(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const
+bool Team::didPartialEnter(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const
 {
 	// If any units entered or exited, they set this flag.
 	if (!m_enteredOrExited) return false;
@@ -2011,7 +2011,7 @@ Bool Team::didPartialEnter(PolygonTrigger *pTrigger, UnsignedInt whichToConsider
 }
 
 // ------------------------------------------------------------------------
-Bool Team::didPartialExit(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const
+bool Team::didPartialExit(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const
 {
 	// If any units entered or exited, they set this flag.
 	if (!m_enteredOrExited) return false;
@@ -2047,15 +2047,15 @@ Bool Team::didPartialExit(PolygonTrigger *pTrigger, UnsignedInt whichToConsider)
 }
 
 // ------------------------------------------------------------------------
-Bool Team::didAllExit(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const
+bool Team::didAllExit(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const
 {
 	// If any units entered or exited, they set this flag.
 	if (!m_enteredOrExited) 
 		return false;
 
-	Bool anyConsidered = false;
-	Bool exited = false;
-	Bool inside = false;
+	bool anyConsidered = false;
+	bool exited = false;
+	bool inside = false;
 	for (DLINK_ITERATOR<Object> iter = iterate_TeamMemberList(); !iter.done(); iter.advance())
 	{
 		AIUpdateInterface *ai = iter.cur()->getAIUpdateInterface();
@@ -2094,15 +2094,15 @@ Bool Team::didAllExit(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) con
 }
 
 // ------------------------------------------------------------------------
-Bool Team::allInside(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const
+bool Team::allInside(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const
 {
 	// empty teams are not inside.
 	if (!hasAnyObjects()) {
 		return false;
 	}
 
-	Bool anyConsidered = false;
-	Bool anyOutside = false;
+	bool anyConsidered = false;
+	bool anyOutside = false;
 	for (DLINK_ITERATOR<Object> iter = iterate_TeamMemberList(); !iter.done(); iter.advance())
 	{
 		AIUpdateInterface *ai = iter.cur()->getAIUpdateInterface();
@@ -2138,10 +2138,10 @@ Bool Team::allInside(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) cons
 }
 
 // ------------------------------------------------------------------------
-Bool Team::noneInside(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const
+bool Team::noneInside(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const
 {
-	Bool anyConsidered = false;
-	Bool anyInside = false;
+	bool anyConsidered = false;
+	bool anyInside = false;
 	for (DLINK_ITERATOR<Object> iter = iterate_TeamMemberList(); !iter.done(); iter.advance())
 	{
 		AIUpdateInterface *ai = iter.cur()->getAIUpdateInterface();
@@ -2178,11 +2178,11 @@ Bool Team::noneInside(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) con
 }
 
 // ------------------------------------------------------------------------
-Bool Team::someInsideSomeOutside(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const
+bool Team::someInsideSomeOutside(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const
 {
-	Bool anyConsidered = false;
-	Bool anyInside = false;
-	Bool anyOutside = false;
+	bool anyConsidered = false;
+	bool anyInside = false;
+	bool anyOutside = false;
 	for (DLINK_ITERATOR<Object> iter = iterate_TeamMemberList(); !iter.done(); iter.advance())
 	{
 		AIUpdateInterface *ai = iter.cur()->getAIUpdateInterface();
@@ -2311,7 +2311,7 @@ void Team::transferUnitsTo(Team *newTeam)
 }
 
 // ------------------------------------------------------------------------
-static Bool isInBuildVariations(const ThingTemplate* ttWithVariations, const ThingTemplate* b)
+static bool isInBuildVariations(const ThingTemplate* ttWithVariations, const ThingTemplate* b)
 {
 	const std::vector<AsciiString>& bv = ttWithVariations->getBuildVariations();
 	if (bv.empty())
@@ -2344,7 +2344,7 @@ Object *Team::tryToRecruit(const ThingTemplate *tTemplate, const Coord3D *teamHo
 		if (obj->getControllingPlayer() != myPlayer) 
 			continue;
 		Team *team = obj->getTeam();
-		Bool isDefaultTeam = false;
+		bool isDefaultTeam = false;
 		if (team == myPlayer->getDefaultTeam()) {
 			isDefaultTeam = true;
 		}
@@ -2354,7 +2354,7 @@ Object *Team::tryToRecruit(const ThingTemplate *tTemplate, const Coord3D *teamHo
 		if (team->getPrototype()->getTemplateInfo()->m_productionPriority>=getPrototype()->getTemplateInfo()->m_productionPriority) {
 			continue;
 		}
-		Bool teamIsRecruitable = isDefaultTeam;	 // Default team always recruitable.
+		bool teamIsRecruitable = isDefaultTeam;	 // Default team always recruitable.
 		if (team->getPrototype()->getTemplateInfo()->m_isAIRecruitable) {
 			teamIsRecruitable = true; 
 		}
@@ -2466,7 +2466,7 @@ void Team::killTeam(void)
 }
 
 // ------------------------------------------------------------------------
-Bool Team::damageTeamMembers(Real amount) 
+bool Team::damageTeamMembers(Real amount) 
 {
 	for (DLINK_ITERATOR<Object> iter = iterate_TeamMemberList(); !iter.done(); iter.advance())
 	{
@@ -2508,7 +2508,7 @@ void Team::moveTeamTo(Coord3D destination)
 }
 
 // ------------------------------------------------------------------------
-Bool Team::hasAnyBuildFacility() const
+bool Team::hasAnyBuildFacility() const
 {
 	for (DLINK_ITERATOR<Object> iter = iterate_TeamMemberList(); !iter.done(); iter.advance())
 	{

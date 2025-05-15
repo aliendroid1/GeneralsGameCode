@@ -48,7 +48,7 @@ NetCommandRef * NetPacket::ConstructNetCommandMsgFromRawData(UnsignedByte *data,
 	UnsignedByte relay = 0;
 
 	Int offset = 0;
-	Bool notDone = TRUE;
+	bool notDone = TRUE;
 	NetCommandRef *ref = NULL;
 	NetCommandMsg *msg = NULL;
 
@@ -1965,7 +1965,7 @@ void NetPacket::setAddress(Int addr, Int port) {
  * Adds this command to the packet.  Returns false if there wasn't enough room
  * in the packet for this message, true otherwise.
  */
-Bool NetPacket::addCommand(NetCommandRef *msg) {
+bool NetPacket::addCommand(NetCommandRef *msg) {
 	// This is where the fun begins...
 
 	NetCommandMsg *cmdMsg = msg->getCommand();
@@ -2047,8 +2047,8 @@ R = Relay
 D = Command Data
 Z = Repeat last command
 */
-Bool NetPacket::addFrameResendRequestCommand(NetCommandRef *msg) {
-	Bool needNewCommandID = FALSE;
+bool NetPacket::addFrameResendRequestCommand(NetCommandRef *msg) {
+	bool needNewCommandID = FALSE;
 	if (isRoomForFrameResendRequestMessage(msg)) {
 		NetFrameResendRequestCommandMsg *cmdMsg = (NetFrameResendRequestCommandMsg *)(msg->getCommand());
 
@@ -2127,9 +2127,9 @@ Bool NetPacket::addFrameResendRequestCommand(NetCommandRef *msg) {
 	return FALSE;
 }
 
-Bool NetPacket::isRoomForFrameResendRequestMessage(NetCommandRef *msg) {
+bool NetPacket::isRoomForFrameResendRequestMessage(NetCommandRef *msg) {
 	Int len = 0;
-	Bool needNewCommandID = FALSE;
+	bool needNewCommandID = FALSE;
 	NetFrameResendRequestCommandMsg *cmdMsg = (NetFrameResendRequestCommandMsg *)(msg->getCommand());
 	if (m_lastCommandType != cmdMsg->getNetCommandType()) {
 		++len;
@@ -2158,8 +2158,8 @@ Bool NetPacket::isRoomForFrameResendRequestMessage(NetCommandRef *msg) {
 	return TRUE;
 }
 
-Bool NetPacket::addDisconnectScreenOffCommand(NetCommandRef *msg) {
-	Bool needNewCommandID = FALSE;
+bool NetPacket::addDisconnectScreenOffCommand(NetCommandRef *msg) {
+	bool needNewCommandID = FALSE;
 	if (isRoomForDisconnectScreenOffMessage(msg)) {
 		NetDisconnectScreenOffCommandMsg *cmdMsg = (NetDisconnectScreenOffCommandMsg *)(msg->getCommand());
 
@@ -2238,9 +2238,9 @@ Bool NetPacket::addDisconnectScreenOffCommand(NetCommandRef *msg) {
 	return FALSE;
 }
 
-Bool NetPacket::isRoomForDisconnectScreenOffMessage(NetCommandRef *msg) {
+bool NetPacket::isRoomForDisconnectScreenOffMessage(NetCommandRef *msg) {
 	Int len = 0;
-	Bool needNewCommandID = FALSE;
+	bool needNewCommandID = FALSE;
 	NetDisconnectScreenOffCommandMsg *cmdMsg = (NetDisconnectScreenOffCommandMsg *)(msg->getCommand());
 	if (m_lastCommandType != cmdMsg->getNetCommandType()) {
 		++len;
@@ -2269,8 +2269,8 @@ Bool NetPacket::isRoomForDisconnectScreenOffMessage(NetCommandRef *msg) {
 	return TRUE;
 }
 
-Bool NetPacket::addDisconnectFrameCommand(NetCommandRef *msg) {
-	Bool needNewCommandID = FALSE;
+bool NetPacket::addDisconnectFrameCommand(NetCommandRef *msg) {
+	bool needNewCommandID = FALSE;
 	if (isRoomForDisconnectFrameMessage(msg)) {
 		NetDisconnectFrameCommandMsg *cmdMsg = (NetDisconnectFrameCommandMsg *)(msg->getCommand());
 
@@ -2349,9 +2349,9 @@ Bool NetPacket::addDisconnectFrameCommand(NetCommandRef *msg) {
 	return FALSE;
 }
 
-Bool NetPacket::isRoomForDisconnectFrameMessage(NetCommandRef *msg) {
+bool NetPacket::isRoomForDisconnectFrameMessage(NetCommandRef *msg) {
 	Int len = 0;
-	Bool needNewCommandID = FALSE;
+	bool needNewCommandID = FALSE;
 	NetDisconnectFrameCommandMsg *cmdMsg = (NetDisconnectFrameCommandMsg *)(msg->getCommand());
 	if (m_lastCommandType != cmdMsg->getNetCommandType()) {
 		++len;
@@ -2380,8 +2380,8 @@ Bool NetPacket::isRoomForDisconnectFrameMessage(NetCommandRef *msg) {
 	return TRUE;
 }
 
-Bool NetPacket::addFileCommand(NetCommandRef *msg) {
-	Bool needNewCommandID = FALSE;
+bool NetPacket::addFileCommand(NetCommandRef *msg) {
+	bool needNewCommandID = FALSE;
 	if (isRoomForFileMessage(msg)) {
 		NetFileCommandMsg *cmdMsg = (NetFileCommandMsg *)(msg->getCommand());
 
@@ -2454,9 +2454,9 @@ Bool NetPacket::addFileCommand(NetCommandRef *msg) {
 	return FALSE;
 }
 
-Bool NetPacket::isRoomForFileMessage(NetCommandRef *msg) {
+bool NetPacket::isRoomForFileMessage(NetCommandRef *msg) {
 	Int len = 0;
-	Bool needNewCommandID = FALSE;
+	bool needNewCommandID = FALSE;
 	NetFileCommandMsg *cmdMsg = (NetFileCommandMsg *)(msg->getCommand());
 	if (m_lastCommandType != cmdMsg->getNetCommandType()) {
 		len += sizeof(UnsignedByte) + sizeof(UnsignedByte);
@@ -2484,8 +2484,8 @@ Bool NetPacket::isRoomForFileMessage(NetCommandRef *msg) {
 	return TRUE;
 }
 
-Bool NetPacket::addFileAnnounceCommand(NetCommandRef *msg) {
-	Bool needNewCommandID = FALSE;
+bool NetPacket::addFileAnnounceCommand(NetCommandRef *msg) {
+	bool needNewCommandID = FALSE;
 	if (isRoomForFileAnnounceMessage(msg)) {
 		NetFileAnnounceCommandMsg *cmdMsg = (NetFileAnnounceCommandMsg *)(msg->getCommand());
 
@@ -2563,9 +2563,9 @@ Bool NetPacket::addFileAnnounceCommand(NetCommandRef *msg) {
 	return FALSE;
 }
 
-Bool NetPacket::isRoomForFileAnnounceMessage(NetCommandRef *msg) {
+bool NetPacket::isRoomForFileAnnounceMessage(NetCommandRef *msg) {
 	Int len = 0;
-	Bool needNewCommandID = FALSE;
+	bool needNewCommandID = FALSE;
 	NetFileAnnounceCommandMsg *cmdMsg = (NetFileAnnounceCommandMsg *)(msg->getCommand());
 	if (m_lastCommandType != cmdMsg->getNetCommandType()) {
 		len += sizeof(UnsignedByte) + sizeof(UnsignedByte);
@@ -2593,8 +2593,8 @@ Bool NetPacket::isRoomForFileAnnounceMessage(NetCommandRef *msg) {
 	return TRUE;
 }
 
-Bool NetPacket::addFileProgressCommand(NetCommandRef *msg) {
-	Bool needNewCommandID = FALSE;
+bool NetPacket::addFileProgressCommand(NetCommandRef *msg) {
+	bool needNewCommandID = FALSE;
 	if (isRoomForFileProgressMessage(msg)) {
 		NetFileProgressCommandMsg *cmdMsg = (NetFileProgressCommandMsg *)(msg->getCommand());
 
@@ -2665,9 +2665,9 @@ Bool NetPacket::addFileProgressCommand(NetCommandRef *msg) {
 	return FALSE;
 }
 
-Bool NetPacket::isRoomForFileProgressMessage(NetCommandRef *msg) {
+bool NetPacket::isRoomForFileProgressMessage(NetCommandRef *msg) {
 	Int len = 0;
-	Bool needNewCommandID = FALSE;
+	bool needNewCommandID = FALSE;
 	NetFileProgressCommandMsg *cmdMsg = (NetFileProgressCommandMsg *)(msg->getCommand());
 	if (m_lastCommandType != cmdMsg->getNetCommandType()) {
 		len += sizeof(UnsignedByte) + sizeof(UnsignedByte);
@@ -2694,8 +2694,8 @@ Bool NetPacket::isRoomForFileProgressMessage(NetCommandRef *msg) {
 	return TRUE;
 }
 
-Bool NetPacket::addWrapperCommand(NetCommandRef *msg) {
-	Bool needNewCommandID = FALSE;
+bool NetPacket::addWrapperCommand(NetCommandRef *msg) {
+	bool needNewCommandID = FALSE;
 	if (isRoomForWrapperMessage(msg)) {
 		NetWrapperCommandMsg *cmdMsg = (NetWrapperCommandMsg *)(msg->getCommand());
 
@@ -2797,9 +2797,9 @@ Bool NetPacket::addWrapperCommand(NetCommandRef *msg) {
 	return FALSE;
 }
 
-Bool NetPacket::isRoomForWrapperMessage(NetCommandRef *msg) {
+bool NetPacket::isRoomForWrapperMessage(NetCommandRef *msg) {
 	Int len = 0;
-	Bool needNewCommandID = FALSE;
+	bool needNewCommandID = FALSE;
 	NetWrapperCommandMsg *cmdMsg = (NetWrapperCommandMsg *)(msg->getCommand());
 	if (m_lastCommandType != cmdMsg->getNetCommandType()) {
 		len += sizeof(UnsignedByte) + sizeof(UnsignedByte);
@@ -2834,8 +2834,8 @@ Bool NetPacket::isRoomForWrapperMessage(NetCommandRef *msg) {
 /**
  * Add a TimeOutGameStart  to the packet. Returns true if successful.
  */
-Bool NetPacket::addTimeOutGameStartMessage(NetCommandRef *msg) {
-	Bool needNewCommandID = FALSE;
+bool NetPacket::addTimeOutGameStartMessage(NetCommandRef *msg) {
+	bool needNewCommandID = FALSE;
 	if (isRoomForLoadCompleteMessage(msg)) {
 		NetCommandMsg *cmdMsg = (NetCommandMsg *)(msg->getCommand());
 
@@ -2901,7 +2901,7 @@ Bool NetPacket::addTimeOutGameStartMessage(NetCommandRef *msg) {
 /**
  * Returns true if there is room in the packet for this command.
  */
-Bool NetPacket::isRoomForTimeOutGameStartMessage(NetCommandRef *msg) {
+bool NetPacket::isRoomForTimeOutGameStartMessage(NetCommandRef *msg) {
 	Int len = 0;
 	NetCommandMsg *cmdMsg = (NetCommandMsg *)(msg->getCommand());
 	if (m_lastCommandType != cmdMsg->getNetCommandType()) {
@@ -2928,8 +2928,8 @@ Bool NetPacket::isRoomForTimeOutGameStartMessage(NetCommandRef *msg) {
 /**
  * Add a Progress command to the packet. Returns true if successful.
  */
-Bool NetPacket::addLoadCompleteMessage(NetCommandRef *msg) {
-	Bool needNewCommandID = FALSE;
+bool NetPacket::addLoadCompleteMessage(NetCommandRef *msg) {
+	bool needNewCommandID = FALSE;
 	if (isRoomForLoadCompleteMessage(msg)) {
 		NetCommandMsg *cmdMsg = (NetCommandMsg *)(msg->getCommand());
 
@@ -2995,7 +2995,7 @@ Bool NetPacket::addLoadCompleteMessage(NetCommandRef *msg) {
 /**
  * Returns true if there is room in the packet for this command.
  */
-Bool NetPacket::isRoomForLoadCompleteMessage(NetCommandRef *msg) {
+bool NetPacket::isRoomForLoadCompleteMessage(NetCommandRef *msg) {
 	Int len = 0;
 	NetCommandMsg *cmdMsg = (NetCommandMsg *)(msg->getCommand());
 	if (m_lastCommandType != cmdMsg->getNetCommandType()) {
@@ -3023,7 +3023,7 @@ Bool NetPacket::isRoomForLoadCompleteMessage(NetCommandRef *msg) {
 /**
  * Add a Progress command to the packet. Returns true if successful.
  */
-Bool NetPacket::addProgressMessage(NetCommandRef *msg) {
+bool NetPacket::addProgressMessage(NetCommandRef *msg) {
 	if (isRoomForProgressMessage(msg)) {
 		NetProgressCommandMsg *cmdMsg = (NetProgressCommandMsg *)(msg->getCommand());
 
@@ -3081,7 +3081,7 @@ Bool NetPacket::addProgressMessage(NetCommandRef *msg) {
 /**
  * Returns true if there is room in the packet for this command.
  */
-Bool NetPacket::isRoomForProgressMessage(NetCommandRef *msg) {
+bool NetPacket::isRoomForProgressMessage(NetCommandRef *msg) {
 	Int len = 0;
 	NetProgressCommandMsg *cmdMsg = (NetProgressCommandMsg *)(msg->getCommand());
 	if (m_lastCommandType != cmdMsg->getNetCommandType()) {
@@ -3106,8 +3106,8 @@ Bool NetPacket::isRoomForProgressMessage(NetCommandRef *msg) {
 
 
 
-Bool NetPacket::addDisconnectVoteCommand(NetCommandRef *msg) {
-	Bool needNewCommandID = FALSE;
+bool NetPacket::addDisconnectVoteCommand(NetCommandRef *msg) {
+	bool needNewCommandID = FALSE;
 
 //	DEBUG_LOG_LEVEL(DEBUG_LEVEL_NET, ("NetPacket::addDisconnectVoteCommand - entering...\n"));
 	//  need type, player id, relay, command id, slot number
@@ -3189,9 +3189,9 @@ Bool NetPacket::addDisconnectVoteCommand(NetCommandRef *msg) {
 /**
  * Returns true if there is room for this player disconnect command in this packet.
  */
-Bool NetPacket::isRoomForDisconnectVoteMessage(NetCommandRef *msg) {
+bool NetPacket::isRoomForDisconnectVoteMessage(NetCommandRef *msg) {
 	Int len = 0;
-	Bool needNewCommandID = FALSE;
+	bool needNewCommandID = FALSE;
 	NetDisconnectVoteCommandMsg *cmdMsg = (NetDisconnectVoteCommandMsg *)(msg->getCommand());
 	if (m_lastCommandType != cmdMsg->getNetCommandType()) {
 		++len;
@@ -3219,7 +3219,7 @@ Bool NetPacket::isRoomForDisconnectVoteMessage(NetCommandRef *msg) {
 	return TRUE;
 }
 
-Bool NetPacket::addDisconnectChatCommand(NetCommandRef *msg) {
+bool NetPacket::addDisconnectChatCommand(NetCommandRef *msg) {
 	// type, player, id, relay, data
 	// data format: 1 byte string length, string (two bytes per character)
 //	DEBUG_LOG_LEVEL(DEBUG_LEVEL_NET, ("NetPacket::addDisconnectChatCommand - Entering...\n"));
@@ -3285,7 +3285,7 @@ Bool NetPacket::addDisconnectChatCommand(NetCommandRef *msg) {
 	return FALSE;
 }
 
-Bool NetPacket::isRoomForDisconnectChatMessage(NetCommandRef *msg) {
+bool NetPacket::isRoomForDisconnectChatMessage(NetCommandRef *msg) {
 	Int len = 0;
 	NetDisconnectChatCommandMsg *cmdMsg = (NetDisconnectChatCommandMsg *)(msg->getCommand());
 	if (m_lastCommandType != cmdMsg->getNetCommandType()) {
@@ -3310,8 +3310,8 @@ Bool NetPacket::isRoomForDisconnectChatMessage(NetCommandRef *msg) {
 	return TRUE;
 }
 
-Bool NetPacket::addChatCommand(NetCommandRef *msg) {
-	Bool needNewCommandID = FALSE;
+bool NetPacket::addChatCommand(NetCommandRef *msg) {
+	bool needNewCommandID = FALSE;
 	if (isRoomForChatMessage(msg)) {
 		NetChatCommandMsg *cmdMsg = (NetChatCommandMsg *)(msg->getCommand());
 //		DEBUG_LOG_LEVEL(DEBUG_LEVEL_NET, ("NetPacket::addDisconnectChatCommand - adding run ahead command\n"));
@@ -3402,8 +3402,8 @@ Bool NetPacket::addChatCommand(NetCommandRef *msg) {
 	return FALSE;
 }
 
-Bool NetPacket::isRoomForChatMessage(NetCommandRef *msg) {
-	Bool needNewCommandID = FALSE;
+bool NetPacket::isRoomForChatMessage(NetCommandRef *msg) {
+	bool needNewCommandID = FALSE;
 	Int len = 0;
 	NetChatCommandMsg *cmdMsg = (NetChatCommandMsg *)(msg->getCommand());
 	if (m_lastCommandType != cmdMsg->getNetCommandType()) {
@@ -3436,7 +3436,7 @@ Bool NetPacket::isRoomForChatMessage(NetCommandRef *msg) {
 	return TRUE;
 }
 
-Bool NetPacket::addPacketRouterAckCommand(NetCommandRef *msg) {
+bool NetPacket::addPacketRouterAckCommand(NetCommandRef *msg) {
 	//  need type, player id, relay, command id, slot number
 	if (isRoomForPacketRouterAckMessage(msg)) {
 		NetPacketRouterAckCommandMsg *cmdMsg = (NetPacketRouterAckCommandMsg *)(msg->getCommand());
@@ -3496,7 +3496,7 @@ Bool NetPacket::addPacketRouterAckCommand(NetCommandRef *msg) {
 /**
  * Returns true if there is room for this packet router ack command in this packet.
  */
-Bool NetPacket::isRoomForPacketRouterAckMessage(NetCommandRef *msg) {
+bool NetPacket::isRoomForPacketRouterAckMessage(NetCommandRef *msg) {
 	Int len = 0;
 	NetPacketRouterAckCommandMsg *cmdMsg = (NetPacketRouterAckCommandMsg *)(msg->getCommand());
 	if (m_lastCommandType != cmdMsg->getNetCommandType()) {
@@ -3518,7 +3518,7 @@ Bool NetPacket::isRoomForPacketRouterAckMessage(NetCommandRef *msg) {
 	return TRUE;
 }
 
-Bool NetPacket::addPacketRouterQueryCommand(NetCommandRef *msg) {
+bool NetPacket::addPacketRouterQueryCommand(NetCommandRef *msg) {
 	//  need type, player id, relay, command id, slot number
 	if (isRoomForPacketRouterQueryMessage(msg)) {
 		NetPacketRouterQueryCommandMsg *cmdMsg = (NetPacketRouterQueryCommandMsg *)(msg->getCommand());
@@ -3578,7 +3578,7 @@ Bool NetPacket::addPacketRouterQueryCommand(NetCommandRef *msg) {
 /**
  * Returns true if there is room for this packet router query command in this packet.
  */
-Bool NetPacket::isRoomForPacketRouterQueryMessage(NetCommandRef *msg) {
+bool NetPacket::isRoomForPacketRouterQueryMessage(NetCommandRef *msg) {
 	Int len = 0;
 	NetPacketRouterQueryCommandMsg *cmdMsg = (NetPacketRouterQueryCommandMsg *)(msg->getCommand());
 	if (m_lastCommandType != cmdMsg->getNetCommandType()) {
@@ -3600,8 +3600,8 @@ Bool NetPacket::isRoomForPacketRouterQueryMessage(NetCommandRef *msg) {
 	return TRUE;
 }
 
-Bool NetPacket::addDisconnectPlayerCommand(NetCommandRef *msg) {
-	Bool needNewCommandID = FALSE;
+bool NetPacket::addDisconnectPlayerCommand(NetCommandRef *msg) {
+	bool needNewCommandID = FALSE;
 
 //	DEBUG_LOG_LEVEL(DEBUG_LEVEL_NET, ("NetPacket::addDisconnectPlayerCommand - entering...\n"));
 	//  need type, player id, relay, command id, slot number
@@ -3683,9 +3683,9 @@ Bool NetPacket::addDisconnectPlayerCommand(NetCommandRef *msg) {
 /**
  * Returns true if there is room for this player disconnect command in this packet.
  */
-Bool NetPacket::isRoomForDisconnectPlayerMessage(NetCommandRef *msg) {
+bool NetPacket::isRoomForDisconnectPlayerMessage(NetCommandRef *msg) {
 	Int len = 0;
-	Bool needNewCommandID = FALSE;
+	bool needNewCommandID = FALSE;
 	NetDisconnectPlayerCommandMsg *cmdMsg = (NetDisconnectPlayerCommandMsg *)(msg->getCommand());
 	if (m_lastCommandType != cmdMsg->getNetCommandType()) {
 		++len;
@@ -3716,7 +3716,7 @@ Bool NetPacket::isRoomForDisconnectPlayerMessage(NetCommandRef *msg) {
 /**
  * Add a keep alive command to the packet. Returns true if successful.
  */
-Bool NetPacket::addDisconnectKeepAliveCommand(NetCommandRef *msg) {
+bool NetPacket::addDisconnectKeepAliveCommand(NetCommandRef *msg) {
 	if (isRoomForDisconnectKeepAliveMessage(msg)) {
 		NetDisconnectKeepAliveCommandMsg *cmdMsg = (NetDisconnectKeepAliveCommandMsg *)(msg->getCommand());
 
@@ -3771,7 +3771,7 @@ Bool NetPacket::addDisconnectKeepAliveCommand(NetCommandRef *msg) {
 /**
  * Returns true if there is room in the packet for this command.
  */
-Bool NetPacket::isRoomForDisconnectKeepAliveMessage(NetCommandRef *msg) {
+bool NetPacket::isRoomForDisconnectKeepAliveMessage(NetCommandRef *msg) {
 	Int len = 0;
 	NetDisconnectKeepAliveCommandMsg *cmdMsg = (NetDisconnectKeepAliveCommandMsg *)(msg->getCommand());
 	if (m_lastCommandType != cmdMsg->getNetCommandType()) {
@@ -3796,7 +3796,7 @@ Bool NetPacket::isRoomForDisconnectKeepAliveMessage(NetCommandRef *msg) {
 /**
  * Add a keep alive command to the packet. Returns true if successful.
  */
-Bool NetPacket::addKeepAliveCommand(NetCommandRef *msg) {
+bool NetPacket::addKeepAliveCommand(NetCommandRef *msg) {
 	if (isRoomForKeepAliveMessage(msg)) {
 		NetKeepAliveCommandMsg *cmdMsg = (NetKeepAliveCommandMsg *)(msg->getCommand());
 
@@ -3851,7 +3851,7 @@ Bool NetPacket::addKeepAliveCommand(NetCommandRef *msg) {
 /**
  * Returns true if there is room in the packet for this command.
  */
-Bool NetPacket::isRoomForKeepAliveMessage(NetCommandRef *msg) {
+bool NetPacket::isRoomForKeepAliveMessage(NetCommandRef *msg) {
 	Int len = 0;
 	NetKeepAliveCommandMsg *cmdMsg = (NetKeepAliveCommandMsg *)(msg->getCommand());
 	if (m_lastCommandType != cmdMsg->getNetCommandType()) {
@@ -3876,8 +3876,8 @@ Bool NetPacket::isRoomForKeepAliveMessage(NetCommandRef *msg) {
 /**
  * Add a run ahead command to the packet. Returns true if successful.
  */
-Bool NetPacket::addRunAheadCommand(NetCommandRef *msg) {
-	Bool needNewCommandID = FALSE;
+bool NetPacket::addRunAheadCommand(NetCommandRef *msg) {
+	bool needNewCommandID = FALSE;
 	if (isRoomForRunAheadMessage(msg)) {
 		NetRunAheadCommandMsg *cmdMsg = (NetRunAheadCommandMsg *)(msg->getCommand());
 		//DEBUG_LOG_LEVEL(DEBUG_LEVEL_NET, ("NetPacket::addRunAheadCommand - adding run ahead command\n"));
@@ -3967,9 +3967,9 @@ Bool NetPacket::addRunAheadCommand(NetCommandRef *msg) {
 /**
  * Returns true if there is room for this run ahead command in this packet.
  */
-Bool NetPacket::isRoomForRunAheadMessage(NetCommandRef *msg) {
+bool NetPacket::isRoomForRunAheadMessage(NetCommandRef *msg) {
 	Int len = 0;
-	Bool needNewCommandID = FALSE;
+	bool needNewCommandID = FALSE;
 	NetRunAheadCommandMsg *cmdMsg = (NetRunAheadCommandMsg *)(msg->getCommand());
 	if (m_lastCommandType != cmdMsg->getNetCommandType()) {
 		++len;
@@ -4002,8 +4002,8 @@ Bool NetPacket::isRoomForRunAheadMessage(NetCommandRef *msg) {
 /**
  * Add a DestroyPlayer command to the packet. Returns true if successful.
  */
-Bool NetPacket::addDestroyPlayerCommand(NetCommandRef *msg) {
-	Bool needNewCommandID = FALSE;
+bool NetPacket::addDestroyPlayerCommand(NetCommandRef *msg) {
+	bool needNewCommandID = FALSE;
 	if (isRoomForDestroyPlayerMessage(msg)) {
 		NetDestroyPlayerCommandMsg *cmdMsg = (NetDestroyPlayerCommandMsg *)(msg->getCommand());
 
@@ -4088,9 +4088,9 @@ Bool NetPacket::addDestroyPlayerCommand(NetCommandRef *msg) {
 /**
  * Returns true if there is room for this DestroyPlayer command in this packet.
  */
-Bool NetPacket::isRoomForDestroyPlayerMessage(NetCommandRef *msg) {
+bool NetPacket::isRoomForDestroyPlayerMessage(NetCommandRef *msg) {
 	Int len = 0;
-	Bool needNewCommandID = FALSE;
+	bool needNewCommandID = FALSE;
 	NetDestroyPlayerCommandMsg *cmdMsg = (NetDestroyPlayerCommandMsg *)(msg->getCommand());
 	if (m_lastCommandType != cmdMsg->getNetCommandType()) {
 		++len;
@@ -4122,8 +4122,8 @@ Bool NetPacket::isRoomForDestroyPlayerMessage(NetCommandRef *msg) {
 /**
  * Add a run ahead metrics command to the packet. Returns true if successful.
  */
-Bool NetPacket::addRunAheadMetricsCommand(NetCommandRef *msg) {
-	Bool needNewCommandID = FALSE;
+bool NetPacket::addRunAheadMetricsCommand(NetCommandRef *msg) {
+	bool needNewCommandID = FALSE;
 	if (isRoomForRunAheadMetricsMessage(msg)) {
 		NetRunAheadMetricsCommandMsg *cmdMsg = (NetRunAheadMetricsCommandMsg *)(msg->getCommand());
 //		DEBUG_LOG_LEVEL(DEBUG_LEVEL_NET, ("NetPacket::addRunAheadMetricsCommand - adding run ahead metrics for player %d, fps = %d, latency = %f\n", cmdMsg->getPlayerID(), cmdMsg->getAverageFps(), cmdMsg->getAverageLatency()));
@@ -4202,9 +4202,9 @@ Bool NetPacket::addRunAheadMetricsCommand(NetCommandRef *msg) {
 /**
  * Returns true if there is enough room in the packet to fit this message.
  */
-Bool NetPacket::isRoomForRunAheadMetricsMessage(NetCommandRef *msg) {
+bool NetPacket::isRoomForRunAheadMetricsMessage(NetCommandRef *msg) {
 	Int len = 0;
-	Bool needNewCommandID = FALSE;
+	bool needNewCommandID = FALSE;
 	NetRunAheadMetricsCommandMsg *cmdMsg = (NetRunAheadMetricsCommandMsg *)(msg->getCommand());
 	if (m_lastCommandType != cmdMsg->getNetCommandType()) {
 		++len;
@@ -4235,8 +4235,8 @@ Bool NetPacket::isRoomForRunAheadMetricsMessage(NetCommandRef *msg) {
 /**
  * Add a player leave command to the packet. Returns true if successful.
  */
-Bool NetPacket::addPlayerLeaveCommand(NetCommandRef *msg) {
-	Bool needNewCommandID = FALSE;
+bool NetPacket::addPlayerLeaveCommand(NetCommandRef *msg) {
+	bool needNewCommandID = FALSE;
 	if (isRoomForPlayerLeaveMessage(msg)) {
 		NetPlayerLeaveCommandMsg *cmdMsg = (NetPlayerLeaveCommandMsg *)(msg->getCommand());
 //		DEBUG_LOG_LEVEL(DEBUG_LEVEL_NET, ("NetPacket::addPlayerLeaveCommand - adding player leave command for player %d\n", cmdMsg->getLeavingPlayerID()));
@@ -4321,9 +4321,9 @@ Bool NetPacket::addPlayerLeaveCommand(NetCommandRef *msg) {
 /**
  * Returns true if there is enough room in the packet to fit this message.
  */
-Bool NetPacket::isRoomForPlayerLeaveMessage(NetCommandRef *msg) {
+bool NetPacket::isRoomForPlayerLeaveMessage(NetCommandRef *msg) {
 	Int len = 0;
-	Bool needNewCommandID = FALSE;
+	bool needNewCommandID = FALSE;
 	NetPlayerLeaveCommandMsg *cmdMsg = (NetPlayerLeaveCommandMsg *)(msg->getCommand());
 	if (m_lastCommandType != cmdMsg->getNetCommandType()) {
 		++len;
@@ -4355,8 +4355,8 @@ Bool NetPacket::isRoomForPlayerLeaveMessage(NetCommandRef *msg) {
 /**
  * Add this frame command message. Returns true if successful.
  */
-Bool NetPacket::addFrameCommand(NetCommandRef *msg) {
-	Bool needNewCommandID = FALSE;
+bool NetPacket::addFrameCommand(NetCommandRef *msg) {
+	bool needNewCommandID = FALSE;
 	if (isFrameRepeat(msg)) {
 		if (m_packetLen >= MAX_PACKET_SIZE) {
 			return FALSE;
@@ -4460,9 +4460,9 @@ Bool NetPacket::addFrameCommand(NetCommandRef *msg) {
 /**
  * Returns true if there is enough room in this packet for this frame message.
  */
-Bool NetPacket::isRoomForFrameMessage(NetCommandRef *msg) {
+bool NetPacket::isRoomForFrameMessage(NetCommandRef *msg) {
 	Int len = 0;
-	Bool needNewCommandID = FALSE;
+	bool needNewCommandID = FALSE;
 	NetFrameCommandMsg *cmdMsg = (NetFrameCommandMsg *)(msg->getCommand());
 	if (m_lastCommandType != cmdMsg->getNetCommandType()) {
 		++len;
@@ -4491,7 +4491,7 @@ Bool NetPacket::isRoomForFrameMessage(NetCommandRef *msg) {
 	return TRUE;
 }
 
-Bool NetPacket::isFrameRepeat(NetCommandRef *msg) {
+bool NetPacket::isFrameRepeat(NetCommandRef *msg) {
 	if (m_lastCommand == NULL) {
 		return FALSE;
 	}
@@ -4518,7 +4518,7 @@ Bool NetPacket::isFrameRepeat(NetCommandRef *msg) {
 /**
  * Add an ack "both" command.
  */
-Bool NetPacket::addAckBothCommand(NetCommandRef *msg) {
+bool NetPacket::addAckBothCommand(NetCommandRef *msg) {
 	NetAckBothCommandMsg *ackmsg = (NetAckBothCommandMsg *)(msg->getCommand());
 	return addAckCommand(msg, ackmsg->getCommandID(), ackmsg->getOriginalPlayerID());
 }
@@ -4526,7 +4526,7 @@ Bool NetPacket::addAckBothCommand(NetCommandRef *msg) {
 /**
  * Add an ack stage 1 command.
  */
-Bool NetPacket::addAckStage1Command(NetCommandRef *msg) {
+bool NetPacket::addAckStage1Command(NetCommandRef *msg) {
 	NetAckStage1CommandMsg *ackmsg = (NetAckStage1CommandMsg *)(msg->getCommand());
 	return addAckCommand(msg, ackmsg->getCommandID(), ackmsg->getOriginalPlayerID());
 }
@@ -4534,7 +4534,7 @@ Bool NetPacket::addAckStage1Command(NetCommandRef *msg) {
 /**
  * Add an ack stage 2 command.
  */
-Bool NetPacket::addAckStage2Command(NetCommandRef *msg) {
+bool NetPacket::addAckStage2Command(NetCommandRef *msg) {
 	NetAckStage2CommandMsg *ackmsg = (NetAckStage2CommandMsg *)(msg->getCommand());
 	return addAckCommand(msg, ackmsg->getCommandID(), ackmsg->getOriginalPlayerID());
 }
@@ -4542,7 +4542,7 @@ Bool NetPacket::addAckStage2Command(NetCommandRef *msg) {
 /**
  * Add this ack command to the packet.  Returns true if successful.
  */
-Bool NetPacket::addAckCommand(NetCommandRef *msg, UnsignedShort commandID, UnsignedByte originalPlayerID) {
+bool NetPacket::addAckCommand(NetCommandRef *msg, UnsignedShort commandID, UnsignedByte originalPlayerID) {
 	if (isAckRepeat(msg)) {
 		if (m_packetLen >= MAX_PACKET_SIZE) {
 			return FALSE;
@@ -4604,7 +4604,7 @@ Bool NetPacket::addAckCommand(NetCommandRef *msg, UnsignedShort commandID, Unsig
 /**
  * Returns true if there is enough room in the packet for this ack message.
  */
-Bool NetPacket::isRoomForAckMessage(NetCommandRef *msg) {
+bool NetPacket::isRoomForAckMessage(NetCommandRef *msg) {
 	Int len = 0;
 	NetCommandMsg *cmdMsg = msg->getCommand();
 	if (m_lastCommandType != cmdMsg->getNetCommandType()) {
@@ -4625,7 +4625,7 @@ Bool NetPacket::isRoomForAckMessage(NetCommandRef *msg) {
 	return TRUE;
 }
 
-Bool NetPacket::isAckRepeat(NetCommandRef *msg) {
+bool NetPacket::isAckRepeat(NetCommandRef *msg) {
 	if (m_lastCommand == NULL) {
 		return FALSE;
 	}
@@ -4644,7 +4644,7 @@ Bool NetPacket::isAckRepeat(NetCommandRef *msg) {
 	return FALSE;
 }
 
-Bool NetPacket::isAckBothRepeat(NetCommandRef *msg) {
+bool NetPacket::isAckBothRepeat(NetCommandRef *msg) {
 	NetAckBothCommandMsg *ack = (NetAckBothCommandMsg *)(msg->getCommand());
 	NetAckBothCommandMsg *lastAck = (NetAckBothCommandMsg *)(m_lastCommand->getCommand());
 	if (lastAck->getCommandID() != (ack->getCommandID() - 1)) {
@@ -4659,7 +4659,7 @@ Bool NetPacket::isAckBothRepeat(NetCommandRef *msg) {
 	return TRUE;
 }
 
-Bool NetPacket::isAckStage1Repeat(NetCommandRef *msg) {
+bool NetPacket::isAckStage1Repeat(NetCommandRef *msg) {
 	NetAckStage2CommandMsg *ack = (NetAckStage2CommandMsg *)(msg->getCommand());
 	NetAckStage2CommandMsg *lastAck = (NetAckStage2CommandMsg *)(m_lastCommand->getCommand());
 	if (lastAck->getCommandID() != (ack->getCommandID() - 1)) {
@@ -4674,7 +4674,7 @@ Bool NetPacket::isAckStage1Repeat(NetCommandRef *msg) {
 	return TRUE;
 }
 
-Bool NetPacket::isAckStage2Repeat(NetCommandRef *msg) {
+bool NetPacket::isAckStage2Repeat(NetCommandRef *msg) {
 	NetAckStage2CommandMsg *ack = (NetAckStage2CommandMsg *)(msg->getCommand());
 	NetAckStage2CommandMsg *lastAck = (NetAckStage2CommandMsg *)(m_lastCommand->getCommand());
 	if (lastAck->getCommandID() != (ack->getCommandID() - 1)) {
@@ -4692,8 +4692,8 @@ Bool NetPacket::isAckStage2Repeat(NetCommandRef *msg) {
 /**
  * Adds this game command to the packet.  Returns true if successful.
  */
-Bool NetPacket::addGameCommand(NetCommandRef *msg) {
-	Bool retval = FALSE;
+bool NetPacket::addGameCommand(NetCommandRef *msg) {
+	bool retval = FALSE;
 	NetGameCommandMsg *cmdMsg = (NetGameCommandMsg *)(msg->getCommand());
 	// get the game message from the NetCommandMsg
 	GameMessage *gmsg = cmdMsg->constructGameMessage();
@@ -4703,7 +4703,7 @@ Bool NetPacket::addGameCommand(NetCommandRef *msg) {
 	if (isRoomForGameMessage(msg, gmsg)) {
 		// Now we know there is enough room, put the new game message into the packet.
 
-		Bool needNewCommandID = FALSE; // this is to allow us to force the starting command ID to be respecified with this command.
+		bool needNewCommandID = FALSE; // this is to allow us to force the starting command ID to be respecified with this command.
 
 		// If necessary, put the NetCommandType into the packet.
 		if (m_lastCommandType != cmdMsg->getNetCommandType()) {
@@ -4858,13 +4858,13 @@ void NetPacket::writeGameMessageArgumentToPacket(GameMessageArgumentDataType typ
 /**
  * Returns true if there is enough room in this packet for this message.
  */
-Bool NetPacket::isRoomForGameMessage(NetCommandRef *msg, GameMessage *gmsg) {
+bool NetPacket::isRoomForGameMessage(NetCommandRef *msg, GameMessage *gmsg) {
 	// Calculate how much space the NetCommandMsg will take in this packet.
 	Int msglen = 0;
 
 	NetGameCommandMsg *cmdMsg = (NetGameCommandMsg *)(msg->getCommand());
 
-	Bool needNewCommandID = FALSE;
+	bool needNewCommandID = FALSE;
 
 	if (m_lastFrame != cmdMsg->getExecutionFrame()) {
 		msglen += sizeof(UnsignedInt) + sizeof(UnsignedByte);
@@ -5282,7 +5282,7 @@ void NetPacket::readGameMessageArgumentFromPacket(GameMessageArgumentDataType ty
 		msg->addArgument(type, arg);
 	} else if (type == ARGUMENTDATATYPE_BOOLEAN) {
 		GameMessageArgumentType arg;
-		Bool thebool;
+		bool thebool;
 		memcpy(&thebool, data + i, sizeof(thebool));
 		i += sizeof(thebool);
 		arg.boolean = thebool;

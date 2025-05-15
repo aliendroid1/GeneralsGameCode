@@ -153,7 +153,7 @@ WaveGuideUpdate::~WaveGuideUpdate( void )
 /** Start the waveguide moving along its waypoint path, bringing water destruction and havok
 	* upon the land */
 // ------------------------------------------------------------------------------------------------
-Bool WaveGuideUpdate::startMoving( void )
+bool WaveGuideUpdate::startMoving( void )
 {
 	Object *waveGuide = getObject();
 	Waypoint *waypoint;
@@ -245,7 +245,7 @@ Bool WaveGuideUpdate::startMoving( void )
 // ------------------------------------------------------------------------------------------------
 /** The wave guide has started moving ... this is called once */
 // ------------------------------------------------------------------------------------------------
-Bool WaveGuideUpdate::initWaveGuide( void )
+bool WaveGuideUpdate::initWaveGuide( void )
 {
 
 	// start the waveguide movement
@@ -486,7 +486,7 @@ void WaveGuideUpdate::doShoreEffects( void )
 	static const ParticleSystemTemplate *right = TheParticleSystemManager->findTemplate( "WaveSplashRight01" );
 	ParticleSystem *particleSystem;
 	Real terrainZ;
-	Bool underWater = TRUE;
+	bool underWater = TRUE;
 	Coord3D *point;
 	for( i = 0; i < m_shapePointCount; i++ )
 	{

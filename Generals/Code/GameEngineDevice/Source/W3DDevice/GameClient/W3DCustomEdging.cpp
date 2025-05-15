@@ -207,7 +207,7 @@ void W3DCustomEdging::loadEdgingsInVertexAndIndexBuffers(WorldHeightMap *pMap, I
 
 			UnsignedByte alpha[4];
 			float UA[4], VA[4];
-			Bool flipForBlend;
+			bool flipForBlend;
 			pMap->getAlphaUVData(column-pMap->getDrawOrgX(), row-pMap->getDrawOrgY(), UA, VA, alpha, &flipForBlend, false);
 
 
@@ -343,7 +343,7 @@ void W3DCustomEdging::clearAllEdging(void)
 void W3DCustomEdging::drawEdging(WorldHeightMap *pMap, Int minX, Int maxX, Int minY, Int maxY,  
 		TextureClass * terrainTexture, TextureClass * cloudTexture, TextureClass * noiseTexture) 
 {
-	static Bool foo = false;
+	static bool foo = false;
 	if (foo) {
 		return;
 	}

@@ -54,7 +54,7 @@ static InGameChatType inGameChatType;
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-void ShowInGameChat( Bool immediate )
+void ShowInGameChat( bool immediate )
 {
 	if (TheGameLogic->isInReplayGame())
 		return;
@@ -103,7 +103,7 @@ void ResetInGameChat( void )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-void HideInGameChat( Bool immediate )
+void HideInGameChat( bool immediate )
 {
 	if (chatWindow)
 	{
@@ -144,7 +144,7 @@ void SetInGameChatType( InGameChatType chatType )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool IsInGameChatActive() {
+bool IsInGameChatActive() {
 	if (chatWindow != NULL) {
 		if (chatWindow->winIsHidden() == FALSE) {
 			return TRUE;
@@ -159,7 +159,7 @@ int getQR2HostingStatus(void);
 }
 extern int isThreadHosting;
 
-Bool handleInGameSlashCommands(UnicodeString uText)
+bool handleInGameSlashCommands(UnicodeString uText)
 {
 	AsciiString message;
 	message.translate(uText);
@@ -187,9 +187,9 @@ Bool handleInGameSlashCommands(UnicodeString uText)
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-void ToggleInGameChat( Bool immediate )
+void ToggleInGameChat( bool immediate )
 {
-	static Bool justHid = false;
+	static bool justHid = false;
 	if (justHid)
 	{
 		justHid = false;
@@ -204,7 +204,7 @@ void ToggleInGameChat( Bool immediate )
 
 	if (chatWindow)
 	{
-		Bool show = chatWindow->winIsHidden();
+		bool show = chatWindow->winIsHidden();
 		if (show)
 			ShowInGameChat( immediate );
 		else
@@ -308,7 +308,7 @@ WindowMsgHandledType InGameChatSystem( GameWindow *window, UnsignedInt msg,
 		//---------------------------------------------------------------------------------------------
 		case GGM_FOCUS_CHANGE:
 		{
-//			Bool focus = (Bool) mData1;
+//			bool focus = (Bool) mData1;
 			//if (focus)
 				//TheWindowManager->winSetGrabWindow( chatTextEntry );
 			break;

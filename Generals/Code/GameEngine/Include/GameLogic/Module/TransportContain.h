@@ -77,7 +77,7 @@ public:
 	TransportContain( Thing *thing, const ModuleData* moduleData );
 	// virtual destructor prototype provided by memory pool declaration
 
-	virtual Bool isValidContainerFor( const Object* obj, Bool checkCapacity) const;
+	virtual bool isValidContainerFor( const Object* obj, bool checkCapacity) const;
 
 	virtual void onCapture( Player *oldOwner, Player *newOwner ); // have to kick everyone out on capture.
 	virtual void onContaining( Object *obj );		///< object now contains 'obj'
@@ -88,22 +88,22 @@ public:
 
 	virtual Int getExtraSlotsInUse( void ) { return m_extraSlotsInUse; }///< Transports have the ability to carry guys how take up more than spot.
 
-	virtual Bool isExitBusy() const;	///< Contain style exiters are getting the ability to space out exits, so ask this before reserveDoor as a kind of no-commitment check.
+	virtual bool isExitBusy() const;	///< Contain style exiters are getting the ability to space out exits, so ask this before reserveDoor as a kind of no-commitment check.
 	virtual ExitDoorType reserveDoorForExit( const ThingTemplate* objType, Object *specificObject );
 	virtual void unreserveDoorForExit( ExitDoorType exitDoor );
-	virtual Bool isDisplayedOnControlBar() const {return TRUE;}///< Does this container display its contents on the ControlBar?
+	virtual bool isDisplayedOnControlBar() const {return TRUE;}///< Does this container display its contents on the ControlBar?
 
 protected:
 
 	// exists primarily for TransportContain to override
 	virtual void killRidersWhoAreNotFreeToExit();
-	virtual Bool isSpecificRiderFreeToExit(Object* obj);
+	virtual bool isSpecificRiderFreeToExit(Object* obj);
 
 private:
 
 	void createPayload();
 	
-	Bool m_payloadCreated;	
+	bool m_payloadCreated;	
 	Int m_extraSlotsInUse;
 	UnsignedInt m_frameExitNotBusy;
 

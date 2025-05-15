@@ -148,7 +148,7 @@ typedef UnsignedInt DamageTypeFlags;
 const DamageTypeFlags DAMAGE_TYPE_FLAGS_ALL = 0xffffffff;
 const DamageTypeFlags DAMAGE_TYPE_FLAGS_NONE = 0x00000000;
 
-inline Bool getDamageTypeFlag(DamageTypeFlags flags, DamageType dt)
+inline bool getDamageTypeFlag(DamageTypeFlags flags, DamageType dt)
 {
 	return (flags & (1UL << (dt - 1))) != 0;
 }
@@ -237,7 +237,7 @@ typedef UnsignedInt DeathTypeFlags;
 const DeathTypeFlags DEATH_TYPE_FLAGS_ALL = 0xffffffff;
 const DeathTypeFlags DEATH_TYPE_FLAGS_NONE = 0x00000000;
 
-inline Bool getDeathTypeFlag(DeathTypeFlags flags, DeathType dt)
+inline bool getDeathTypeFlag(DeathTypeFlags flags, DeathType dt)
 {
 	return (flags & (1UL << (dt - 1))) != 0;
 }
@@ -316,7 +316,7 @@ public:
 	*/
 	Real m_actualDamageDealt;
 	Real m_actualDamageClipped;			///< (see comment for m_actualDamageDealt)
-	Bool m_noEffect;								///< if true, no damage was done at all (generally due to being InactiveBody)
+	bool m_noEffect;								///< if true, no damage was done at all (generally due to being InactiveBody)
 
 protected:
 

@@ -86,7 +86,7 @@ public:
 protected:
 
 	/// get the next event available in the buffer
-	virtual UnsignedByte getMouseEvent( MouseIO *result, Bool flush );
+	virtual UnsignedByte getMouseEvent( MouseIO *result, bool flush );
 
 	/// translate a win32 mouse event to our own info
 	void translateEvent( UnsignedInt eventIndex, MouseIO *result );
@@ -106,7 +106,7 @@ protected:
 															 incremented to the next index */
 	MouseCursor m_currentWin32Cursor;	///< keep track of last cursor image sent to D3D.
 	Int m_directionFrame;	///< current frame of directional cursor (frome 0 points up).
-	Bool m_lostFocus;		///< flag if window has lost focues and mouse should stop being updated.	
+	bool m_lostFocus;		///< flag if window has lost focues and mouse should stop being updated.	
 };  // end Win32Mouse 
 
 // INLINING ///////////////////////////////////////////////////////////////////

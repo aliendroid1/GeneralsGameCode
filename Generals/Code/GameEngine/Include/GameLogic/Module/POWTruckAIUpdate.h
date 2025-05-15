@@ -126,7 +126,7 @@ protected:
 	virtual void updateCollectingTarget( void );
 	virtual void updateReturnPrisoners( void );
 
-	virtual Bool validateTarget( const Object *target );	///< is 'target' a valid object to collect
+	virtual bool validateTarget( const Object *target );	///< is 'target' a valid object to collect
 	virtual void doReturnPrisoners( void );								///< initiate a return prisoners to base
 	virtual void doReturnToPrison( Object *prison );			///< initiate a return to prison (no prisoner dump off)
 	virtual Object *findBestPrison( void );								///< find the best prison for us given our current position

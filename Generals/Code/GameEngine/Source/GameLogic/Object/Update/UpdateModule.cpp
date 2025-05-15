@@ -134,9 +134,9 @@ void UpdateModule::xfer( Xfer *xfer )
 
 #ifdef FIX_OLD_SAVES
 	#ifdef ALLOW_NONSLEEPY_UPDATES
-		Bool thisModuleIsNowSleepy = (m_nextCallFrameAndPhase != 0);
+		bool thisModuleIsNowSleepy = (m_nextCallFrameAndPhase != 0);
 	#else
-		const Bool thisModuleIsNowSleepy = true;
+		const bool thisModuleIsNowSleepy = true;
 	#endif
 #endif
 

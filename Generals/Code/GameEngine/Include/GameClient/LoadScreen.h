@@ -106,7 +106,7 @@ private:
 	Int m_currentObjectiveLine;
 	Int m_currentObjectiveLineCharacter;
 	Int m_currentObjectiveWidthOffset;
-	Bool m_finishedObjectiveText;
+	bool m_finishedObjectiveText;
 	
 	UnicodeString m_unicodeObjectiveLines[MAX_OBJECTIVE_LINES];
 

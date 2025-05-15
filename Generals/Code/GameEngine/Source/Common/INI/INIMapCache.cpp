@@ -43,10 +43,10 @@ class MapMetaDataReader
 public:
 	Region3D m_extent;
 	Int m_numPlayers;
-	Bool m_isMultiplayer;
+	bool m_isMultiplayer;
 	AsciiString m_asciiDisplayName;
 
-	Bool m_isOfficial;
+	bool m_isOfficial;
 	WinTimeStamp m_timestamp;
 	UnsignedInt m_filesize;
 	UnsignedInt m_CRC;

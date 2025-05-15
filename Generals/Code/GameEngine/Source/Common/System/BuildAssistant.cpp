@@ -93,7 +93,7 @@ ObjectSellInfo::~ObjectSellInfo( void )
 //-------------------------------------------------------------------------------------------------
 /** Is this object a dozer */
 //-------------------------------------------------------------------------------------------------
-static Bool isDozer( Object *obj )
+static bool isDozer( Object *obj )
 {
 	// sanity
 	if( obj == NULL )
@@ -485,7 +485,7 @@ void BuildAssistant::buildObjectLineNow( Object *constructorObject, const ThingT
 struct SampleBuildData
 {
 	Region3D mapRegion;
-	Bool terrainRestricted; ///< one of the terrain tiles prevents building
+	bool terrainRestricted; ///< one of the terrain tiles prevents building
 	Real hiZ;								///< highest sample point used
 	Real loZ;								///< lowest sample point used
 };
@@ -663,7 +663,7 @@ void BuildAssistant::iterateFootprint( const ThingTemplate *build,
 //-------------------------------------------------------------------------------------------------
 /** Check for objects preventing building at this location.  */
 //-------------------------------------------------------------------------------------------------
-Bool BuildAssistant::isLocationClearOfObjects( const Coord3D *worldPos, 
+bool BuildAssistant::isLocationClearOfObjects( const Coord3D *worldPos, 
 																											 const ThingTemplate *build,
 																											 Real angle,
 																											 Object *builderObject,
@@ -675,7 +675,7 @@ Bool BuildAssistant::isLocationClearOfObjects( const Coord3D *worldPos,
 																											 build->getTemplateGeometryInfo(),
 																											 angle );
 	Object *them;
-	Bool onlyCheckEnemies = (options == NO_ENEMY_OBJECT_OVERLAP);
+	bool onlyCheckEnemies = (options == NO_ENEMY_OBJECT_OVERLAP);
 	MemoryPoolObjectHolder hold(iter);
 	for( them = iter->first(); them; them = iter->next() )
 	{
@@ -738,7 +738,7 @@ Bool BuildAssistant::isLocationClearOfObjects( const Coord3D *worldPos,
 		}
 	}
 
-	Bool checkMyExit = false;
+	bool checkMyExit = false;
 	Coord3D myExitPos;
 	GeometryInfo myBounds = build->getTemplateGeometryInfo();
 	myBounds.setMajorRadius(myBounds.getMajorRadius()+myExtraWidth);
@@ -773,7 +773,7 @@ Bool BuildAssistant::isLocationClearOfObjects( const Coord3D *worldPos,
 		Real themFactoryExitWidth = them->getTemplate()->getFactoryExitWidth();
 		Real hisExtraWidth = them->getTemplate()->getFactoryExtraBibWidth();
 
-		Bool checkHisExit = false;
+		bool checkHisExit = false;
 		Coord3D hisExitPos;
 		GeometryInfo hisBounds = them->getGeometryInfo();
 		hisBounds.setMajorRadius(hisBounds.getMajorRadius()+hisExtraWidth);
@@ -1168,7 +1168,7 @@ BuildAssistant::TileBuildInfo *BuildAssistant::buildTiledLocations( const ThingT
 	* the world after drawing a line of where we want the object(s) placed.  The objects
 	* are placed "tiled" in a line */
 //-------------------------------------------------------------------------------------------------
-Bool BuildAssistant::isLineBuildTemplate( const ThingTemplate *tTemplate )
+bool BuildAssistant::isLineBuildTemplate( const ThingTemplate *tTemplate )
 {
 	// sanity
 	if( tTemplate == NULL )
@@ -1187,7 +1187,7 @@ Bool BuildAssistant::isLineBuildTemplate( const ThingTemplate *tTemplate )
 	* a production building.  The player must have satisfied the prereqs for 'whatToBuild' 
   * This does NOT check available money (see canMakeUnit) */
 //-------------------------------------------------------------------------------------------------
-Bool BuildAssistant::isPossibleToMakeUnit( Object *builder, const ThingTemplate *whatToBuild ) const
+bool BuildAssistant::isPossibleToMakeUnit( Object *builder, const ThingTemplate *whatToBuild ) const
 {
 
 	// sanity
@@ -1302,8 +1302,8 @@ CanMakeType BuildAssistant::canMakeUnit( Object *builder, const ThingTemplate *w
 	// make sure we're not maxed out for this type of unit.
 	if (whatToBuild->getMaxSimultaneousOfType() != 0)
 	{
-		const Bool ignoreDead = true;
-		const Bool ignoreUnderConstruction = FALSE;// Most people don't want to count under construction, but I totally do
+		const bool ignoreDead = true;
+		const bool ignoreUnderConstruction = FALSE;// Most people don't want to count under construction, but I totally do
 		Int existingCount;
 		player->countObjectsByThingTemplate(1, &whatToBuild, ignoreDead, &existingCount, ignoreUnderConstruction);
 		if (existingCount >= whatToBuild->getMaxSimultaneousOfType())
@@ -1328,7 +1328,7 @@ CanMakeType BuildAssistant::canMakeUnit( Object *builder, const ThingTemplate *w
 /** Some objects will be automatically removed when something is built on them so they
 	* aren't considered as obstacles when placing them */
 // ------------------------------------------------------------------------------------------------
-Bool BuildAssistant::isRemovableForConstruction( Object *obj )
+bool BuildAssistant::isRemovableForConstruction( Object *obj )
 {
 
 	// sanity
@@ -1388,7 +1388,7 @@ void BuildAssistant::clearRemovableForConstruction( const ThingTemplate *whatToB
 	* moveObjects will move objects that are owned by the player. It will also return false if 
     the association with the object is enemy. (We can move neutral things) */
 // ------------------------------------------------------------------------------------------------
-Bool BuildAssistant::moveObjectsForConstruction( const ThingTemplate *whatToBuild, 
+bool BuildAssistant::moveObjectsForConstruction( const ThingTemplate *whatToBuild, 
 																								 const Coord3D *pos,
 																								 Real angle,
 																								 Player *playerToBuild )
@@ -1402,7 +1402,7 @@ Bool BuildAssistant::moveObjectsForConstruction( const ThingTemplate *whatToBuil
 			ThePartitionManager->iteratePotentialCollisions( pos,
 																											 gi,
 																											 angle );
-	Bool anyUnmovables = false;
+	bool anyUnmovables = false;
 	MemoryPoolObjectHolder hold( iter );
 
 	Real radius = sqrt(pow(gi.getMajorRadius(), 2) + pow(gi.getMinorRadius(), 2)); 

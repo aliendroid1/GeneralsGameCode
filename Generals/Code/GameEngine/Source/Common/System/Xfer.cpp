@@ -109,10 +109,10 @@ void Xfer::xferUnsignedByte( UnsignedByte *unsignedByteData )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-void Xfer::xferBool( Bool *boolData )
+void Xfer::xferBool( bool *boolData )
 {
 
-	xferImplementation( boolData, sizeof( Bool ) ); 
+	xferImplementation( boolData, sizeof( bool ) ); 
 
 }  // end xferBool
 

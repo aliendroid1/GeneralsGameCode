@@ -68,13 +68,13 @@ Int ExperienceTracker::getExperienceValue( const Object* killer ) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ExperienceTracker::isTrainable() const
+bool ExperienceTracker::isTrainable() const
 {
 	return m_parent->getTemplate()->isTrainable();
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ExperienceTracker::isAcceptingExperiencePoints() const
+bool ExperienceTracker::isAcceptingExperiencePoints() const
 {
 	return isTrainable() || (m_experienceSink != INVALID_ID);
 }
@@ -119,7 +119,7 @@ void ExperienceTracker::setVeterancyLevel( VeterancyLevel newLevel )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ExperienceTracker::gainExpForLevel(Int levelsToGain, Bool canScaleForBonus)
+bool ExperienceTracker::gainExpForLevel(Int levelsToGain, bool canScaleForBonus)
 {
 	Int newLevel = (Int)m_currentLevel + levelsToGain;
 	if (newLevel > LEVEL_LAST)
@@ -135,7 +135,7 @@ Bool ExperienceTracker::gainExpForLevel(Int levelsToGain, Bool canScaleForBonus)
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ExperienceTracker::canGainExpForLevel(Int levelsToGain) const
+bool ExperienceTracker::canGainExpForLevel(Int levelsToGain) const
 {
 	Int newLevel = (Int)m_currentLevel + levelsToGain;
 	// return true if we can gain levels, even if we can't gain ALL the levels requested
@@ -145,7 +145,7 @@ Bool ExperienceTracker::canGainExpForLevel(Int levelsToGain) const
 }
 
 //-------------------------------------------------------------------------------------------------
-void ExperienceTracker::addExperiencePoints( Int experienceGain, Bool canScaleForBonus)
+void ExperienceTracker::addExperiencePoints( Int experienceGain, bool canScaleForBonus)
 {
 	if( m_experienceSink != INVALID_ID )
 	{

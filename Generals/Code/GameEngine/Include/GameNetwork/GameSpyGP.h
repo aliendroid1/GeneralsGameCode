@@ -42,6 +42,6 @@ void GameSpyUpdateBuddyOverlay(void);
 
 extern GPConnection *TheGPConnection;
 
-Bool IsGameSpyBuddy(GPProfile id);
+bool IsGameSpyBuddy(GPProfile id);
 
 #endif // __GAMESPYGP_H__

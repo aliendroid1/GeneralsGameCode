@@ -180,7 +180,7 @@ public:
 	Int getNumIndices(void) {return m_numRoadIndices;}
 #ifdef LOAD_TEST_ASSETS
 	void setAutoLoaded(void) {m_isAutoLoaded = true;};
-	Bool isAutoLoaded(void) {return m_isAutoLoaded;};
+	bool isAutoLoaded(void) {return m_isAutoLoaded;};
 	AsciiString getPath(void) {return(m_texturePath);};
 	void loadTestTexture(void);
 #endif
@@ -203,7 +203,7 @@ public:
 	/// Empties the road buffer.
 	void clearAllRoads(void);
 	/// Draws the roads.  Uses terrain bounds for culling.
-	void drawRoads(CameraClass * camera, TextureClass *cloudTexture, TextureClass *noiseTexture, Bool wireframe,
+	void drawRoads(CameraClass * camera, TextureClass *cloudTexture, TextureClass *noiseTexture, bool wireframe,
 																	Int minX, Int maxX, Int minY, Int maxY, RefRenderObjListIterator *pDynamicLightsIterator);
 	/// Sets the map pointer.
 	void setMap(WorldHeightMap *pMap);
@@ -233,7 +233,7 @@ protected:
 	Int			m_curNumRoadIndices;	///<Number of indices used in current road type;
 
 	void addMapObjects(void);
-	void addMapObject(RoadSegment *pRoad, Bool updateTheCounts);
+	void addMapObject(RoadSegment *pRoad, bool updateTheCounts);
 	void adjustStacking(Int topUniqueID, Int bottomUniqueID);
 	Int findCrossTypeJoinVector(Vector2 loc, Vector2 *joinVector, Int uniqueID);
 	void flipTheRoad(RoadSegment *pRoad) {TRoadPt tmp=pRoad->m_pt1; pRoad->m_pt1 = pRoad->m_pt2; pRoad->m_pt2 = tmp;}; ///< Flips the loc1 and loc2 info.
@@ -249,19 +249,19 @@ protected:
 	void insertCurveSegments(void);
 	void insertTeeIntersections(void);
 	void insertTee(Vector2 loc, Int index1, Real scale);
-	Bool insertY(Vector2 loc, Int index1, Real scale);
+	bool insertY(Vector2 loc, Int index1, Real scale);
 	void insert4Way(Vector2 loc, Int index1, Real scale);
 	void offset4Way(TRoadPt *pc1, TRoadPt *pc2, TRoadPt *pc3, TRoadPt *pr3, TRoadPt *pc4, Vector2 loc, Vector2 alignVector, Real widthInTexture); 
 	void offset3Way(TRoadPt *pc1, TRoadPt *pc2, TRoadPt *pc3, Vector2 loc, Vector2 upVector, Vector2 teeVector, Real widthInTexture);
 	void offsetY(TRoadPt *pc1, TRoadPt *pc2, TRoadPt *pc3, Vector2 loc, Vector2 upVector, Real widthInTexture);
-	void offsetH(TRoadPt *pc1, TRoadPt *pc2, TRoadPt *pc3, Vector2 loc, Vector2 upVector, Vector2 teeVector, Bool flip, Bool mirror, Real widthInTexture);
+	void offsetH(TRoadPt *pc1, TRoadPt *pc2, TRoadPt *pc3, Vector2 loc, Vector2 upVector, Vector2 teeVector, bool flip, bool mirror, Real widthInTexture);
 	void preloadRoadsInVertexAndIndexBuffers(void); ///< Fills the index and vertex buffers for drawing.
 	void preloadRoadSegment(RoadSegment *pRoad); ///< Fills the index and vertex buffers for drawing 1 segment.
 	void loadCurve(RoadSegment *pRoad, Vector2 loc1, Vector2 loc2, Real scale); ///< Fills the index and vertex buffers for drawing 1 fade.
-	void loadTee(RoadSegment *pRoad, Vector2 loc1, Vector2 loc2, Bool is4way, Real scale); ///< Fills the index and vertex buffers for drawing 1 tee intersection.
+	void loadTee(RoadSegment *pRoad, Vector2 loc1, Vector2 loc2, bool is4way, Real scale); ///< Fills the index and vertex buffers for drawing 1 tee intersection.
 	void loadY(RoadSegment *pRoad, Vector2 loc1, Vector2 loc2, Real scale); ///< Fills the index and vertex buffers for drawing 1 Y intersection.
 	void loadAlphaJoin(RoadSegment *pRoad, Vector2 loc1, Vector2 loc2, Real scale); ///< Fills the index and vertex buffers for drawing 1 alpha blend cap.
-	void loadH(RoadSegment *pRoad, Vector2 loc1, Vector2 loc2, Bool flip, Real scale); ///< Fills the index and vertex buffers for drawing 1 h tee intersection.
+	void loadH(RoadSegment *pRoad, Vector2 loc1, Vector2 loc2, bool flip, Real scale); ///< Fills the index and vertex buffers for drawing 1 h tee intersection.
 	void loadFloatSection(RoadSegment *pRoad, Vector2 loc, 
 														Vector2 roadVector, Real height, Real left, Real right, Real uOffset, Real vOffset, Real scale);
 	void loadFloat4PtSection(RoadSegment *pRoad, Vector2 loc, 

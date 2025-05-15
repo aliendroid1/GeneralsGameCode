@@ -69,7 +69,7 @@ public:
 
 private:
 
-	void doActivationWork( Bool setting );
+	void doActivationWork( bool setting );
 
 	UnsignedInt m_deactivateFrame;
 };

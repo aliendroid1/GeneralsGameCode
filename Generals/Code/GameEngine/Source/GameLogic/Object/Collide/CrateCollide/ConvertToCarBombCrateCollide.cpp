@@ -57,7 +57,7 @@ ConvertToCarBombCrateCollide::~ConvertToCarBombCrateCollide( void )
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-Bool ConvertToCarBombCrateCollide::isValidToExecute( const Object *other ) const
+bool ConvertToCarBombCrateCollide::isValidToExecute( const Object *other ) const
 {
 	if( !CrateCollide::isValidToExecute(other) )
 	{
@@ -107,7 +107,7 @@ Bool ConvertToCarBombCrateCollide::isValidToExecute( const Object *other ) const
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-Bool ConvertToCarBombCrateCollide::executeCrateBehavior( Object *other )
+bool ConvertToCarBombCrateCollide::executeCrateBehavior( Object *other )
 {
 	//Check to make sure that the other object is also the goal object in the AIUpdateInterface
 	//in order to prevent an unintentional conversion simply by having the terrorist walk too close

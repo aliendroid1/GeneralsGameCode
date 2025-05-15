@@ -119,7 +119,7 @@ UserPreferences::~UserPreferences( void )
 }
 
 #define LINE_LEN 2048
-Bool UserPreferences::load(AsciiString fname)
+bool UserPreferences::load(AsciiString fname)
 {
 //	if (strstr(fname.str(), "\\"))
 //		throw INI_INVALID_DATA;	// must be a leaf name
@@ -154,7 +154,7 @@ Bool UserPreferences::load(AsciiString fname)
 	return false;
 }
 
-Bool UserPreferences::write( void )
+bool UserPreferences::write( void )
 {
 	if (m_filename.isEmpty())
 		return false;
@@ -174,7 +174,7 @@ Bool UserPreferences::write( void )
 	return false;
 }
 
-Bool UserPreferences::getBool(AsciiString key, Bool defaultValue) const
+bool UserPreferences::getBool(AsciiString key, bool defaultValue) const
 {
 	AsciiString val = getAsciiString(key, AsciiString::TheEmptyString);
 	if (val.isEmpty())
@@ -219,7 +219,7 @@ AsciiString UserPreferences::getAsciiString(AsciiString key, AsciiString default
 	return it->second;
 }
 
-void UserPreferences::setBool(AsciiString key, Bool val)
+void UserPreferences::setBool(AsciiString key, bool val)
 {
 	(*this)[key] = boolAsStr(val);
 }
@@ -255,12 +255,12 @@ QuickMatchPreferences::~QuickMatchPreferences()
 {
 }
 
-void QuickMatchPreferences::setMapSelected(const AsciiString& mapName, Bool selected)
+void QuickMatchPreferences::setMapSelected(const AsciiString& mapName, bool selected)
 {
 	(*this)[AsciiStringToQuotedPrintable(mapName)] = (selected)?"1":"0";
 }
 
-Bool QuickMatchPreferences::isMapSelected(const AsciiString& mapName)
+bool QuickMatchPreferences::isMapSelected(const AsciiString& mapName)
 {
 	Int ret;
 	QuickMatchPreferences::const_iterator it = find(AsciiStringToQuotedPrintable(mapName));
@@ -546,7 +546,7 @@ void CustomMatchPreferences::setPreferredFaction(Int val)
 	(*this)["PlayerTemplate"] = s;
 }
 
-Bool CustomMatchPreferences::usesSystemMapDir(void)
+bool CustomMatchPreferences::usesSystemMapDir(void)
 {
 	CustomMatchPreferences::const_iterator it = find("UseSystemMapDir");
 	if (it == end())
@@ -565,7 +565,7 @@ void CustomMatchPreferences::setUsesSystemMapDir(Bool val)
 	(*this)["UseSystemMapDir"] = s;
 }
 
-Bool CustomMatchPreferences::usesLongGameList(void)
+bool CustomMatchPreferences::usesLongGameList(void)
 {
 	return TRUE;
 	CustomMatchPreferences::const_iterator it = find("UseLongGameList");
@@ -585,7 +585,7 @@ void CustomMatchPreferences::setUsesLongGameList(Bool val)
 	(*this)["UseLongGameList"] = s;
 }
 
-Bool CustomMatchPreferences::allowsObservers(void)
+bool CustomMatchPreferences::allowsObservers(void)
 {
 	CustomMatchPreferences::const_iterator it = find("AllowObservers");
 	if (it == end())
@@ -604,7 +604,7 @@ void CustomMatchPreferences::setAllowsObserver(Bool val)
 	(*this)["AllowObservers"] = s;
 }
 
-Bool CustomMatchPreferences::getDisallowAsianText( void )
+bool CustomMatchPreferences::getDisallowAsianText( void )
 {
 	CustomMatchPreferences::const_iterator it = find("DisallowAsianText");
 	if (it == end())
@@ -631,7 +631,7 @@ void CustomMatchPreferences::setDisallowAsianText(Bool val)
 
 }
 
-Bool CustomMatchPreferences::getDisallowNonAsianText( void )
+bool CustomMatchPreferences::getDisallowNonAsianText( void )
 {
 	CustomMatchPreferences::const_iterator it = find("DisallowNonAsianText");
 	if (it == end())
@@ -643,7 +643,7 @@ Bool CustomMatchPreferences::getDisallowNonAsianText( void )
 	return FALSE;
 }
 
-void CustomMatchPreferences::setDisallowNonAsianText( Bool val )
+void CustomMatchPreferences::setDisallowNonAsianText( bool val )
 {
 	AsciiString s;
 	s.format("%d", val);
@@ -712,7 +712,7 @@ void GameSpyMiscPreferences::setCachedStats( AsciiString val )
 	setAsciiString("CachedStats", val);
 }
 
-Bool GameSpyMiscPreferences::getQuickMatchResLocked( void )
+bool GameSpyMiscPreferences::getQuickMatchResLocked( void )
 {
 	return getBool("QMResLock", FALSE);
 }
@@ -739,7 +739,7 @@ IgnorePreferences::~IgnorePreferences()
 {
 }
 
-void IgnorePreferences::setIgnore(const AsciiString& userName, Int profileID, Bool ignore)
+void IgnorePreferences::setIgnore(const AsciiString& userName, Int profileID, bool ignore)
 {
 	AsciiString strVal;
 	strVal.format("%d", profileID);
@@ -782,13 +782,13 @@ LadderPreferences::~LadderPreferences()
 {
 }
 
-Bool LadderPreferences::loadProfile( Int profileID )
+bool LadderPreferences::loadProfile( Int profileID )
 {
 	clear();
 	m_ladders.clear();
 	AsciiString userPrefFilename;
 	userPrefFilename.format("GeneralsOnline\\Ladders%d.ini", profileID);
-	Bool success = load(userPrefFilename);
+	bool success = load(userPrefFilename);
 	if (!success)
 		return success;
 

@@ -100,12 +100,12 @@ public:
 		
 		struct
 		{
-			Bool restrictGameList;
+			bool restrictGameList;
 		} gameList;
 
 		struct
 		{
-			Bool isAction;
+			bool isAction;
 		} message;
 
 		struct
@@ -118,10 +118,10 @@ public:
 			UnsignedInt exeCRC;
 			UnsignedInt iniCRC;
 			UnsignedInt gameVersion;
-			Bool allowObservers;
+			bool allowObservers;
 			UnsignedShort ladPort;
 			UnsignedInt ladPassCRC;
-			Bool restrictGameList;
+			bool restrictGameList;
 		} stagingRoomCreation;
 
 		struct
@@ -138,7 +138,7 @@ public:
 
 		struct
 		{
-			Bool isStagingRoom;
+			bool isStagingRoom;
 		} UTM;
 
 		struct
@@ -167,7 +167,7 @@ public:
 			Int losses;
 			Int rankPoints;
 			Int side;
-			Bool preorder;
+			bool preorder;
 		} statsToPush;
 
 	};
@@ -287,7 +287,7 @@ public:
 		struct
 		{
 			Int id;
-			Bool ok;
+			bool ok;
 		} joinGroupRoom;
 		
 		struct
@@ -298,15 +298,15 @@ public:
 		struct
 		{
 			Int id;
-			Bool ok;
-			Bool isHostPresent;
+			bool ok;
+			bool isHostPresent;
 			Int result; // for failures
 		} joinStagingRoom;
 		
 		struct
 		{
-			Bool isPrivate;
-			Bool isAction;
+			bool isPrivate;
+			bool isAction;
 			Int profileID;
 		} message;
 
@@ -329,9 +329,9 @@ public:
 		{
 			Int id;
 			Int action;
-			Bool isStaging;
-			Bool requiresPassword;
-			Bool allowObservers;
+			bool isStaging;
+			bool requiresPassword;
+			bool allowObservers;
 			UnsignedInt version;
 			UnsignedInt exeCRC;
 			UnsignedInt iniCRC;
@@ -370,15 +370,15 @@ public:
 	virtual ~GameSpyPeerMessageQueueInterface() {}
 	virtual void startThread( void ) = 0;
 	virtual void endThread( void ) = 0;
-	virtual Bool isThreadRunning( void ) = 0;
-	virtual Bool isConnected( void ) = 0;
-	virtual Bool isConnecting( void ) = 0;
+	virtual bool isThreadRunning( void ) = 0;
+	virtual bool isConnected( void ) = 0;
+	virtual bool isConnecting( void ) = 0;
 
 	virtual void addRequest( const PeerRequest& req ) = 0;
-	virtual Bool getRequest( PeerRequest& req ) = 0;
+	virtual bool getRequest( PeerRequest& req ) = 0;
 
 	virtual void addResponse( const PeerResponse& resp ) = 0;
-	virtual Bool getResponse( PeerResponse& resp ) = 0;
+	virtual bool getResponse( PeerResponse& resp ) = 0;
 
 	virtual SerialAuthResult getSerialAuthResult( void ) = 0;
 

@@ -159,7 +159,7 @@ GameMessageDisposition PlaceEventTranslator::translateGameMessage(const GameMess
 				Coord3D world;
 				Real angle;
 				ICoord2D anchorStart, anchorEnd;
-				Bool isLineBuild = TheBuildAssistant->isLineBuildTemplate( build );
+				bool isLineBuild = TheBuildAssistant->isLineBuildTemplate( build );
 
 				// get the angle of the drawable at the cursor to use as the initial angle
 				angle = TheInGameUI->getPlacementAngle();

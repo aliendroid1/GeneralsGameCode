@@ -125,7 +125,7 @@ void DefaultProductionExitUpdate::exitObjectViaDoor( Object *newObj, ExitDoorTyp
 
 
 
-Bool DefaultProductionExitUpdate::getExitPosition( Coord3D& exitPosition ) const
+bool DefaultProductionExitUpdate::getExitPosition( Coord3D& exitPosition ) const
 {
 	const Object *obj = getObject();
 	if (!obj)
@@ -148,7 +148,7 @@ Bool DefaultProductionExitUpdate::getExitPosition( Coord3D& exitPosition ) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool DefaultProductionExitUpdate::getNaturalRallyPoint( Coord3D& rallyPoint, Bool offset ) const
+bool DefaultProductionExitUpdate::getNaturalRallyPoint( Coord3D& rallyPoint, bool offset ) const
 {
 	const DefaultProductionExitUpdateModuleData *data = getDefaultProductionExitUpdateModuleData();
 	Vector3 p;

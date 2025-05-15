@@ -114,8 +114,8 @@ void W3DTreeBuffer::cull(CameraClass * camera)
 	m_cameraLookAtVector.Set(x,y,z);
 
 	for (curTree=0; curTree<m_numTrees; curTree++) {
-		Bool doKey = false;	// We calculate the key when a tree becomes visible.
-		Bool visible = !camera->Cull_Sphere(m_trees[curTree].bounds);
+		bool doKey = false;	// We calculate the key when a tree becomes visible.
+		bool visible = !camera->Cull_Sphere(m_trees[curTree].bounds);
 		if (visible!=m_trees[curTree].visible) {
 			m_trees[curTree].visible=visible;
 			m_anythingChanged = true;
@@ -151,7 +151,7 @@ void W3DTreeBuffer::cullMirror(CameraClass * camera)
 			m_trees[curTree].visible = false;
 			continue;
 		}
-		Bool visible = !camera->Cull_Sphere(m_trees[curTree].bounds);
+		bool visible = !camera->Cull_Sphere(m_trees[curTree].bounds);
 		m_trees[curTree].visible=visible;
 	}
 }
@@ -167,7 +167,7 @@ void W3DTreeBuffer::sort(Int numIterations)
 {
 	// sort in descending order.
 	Int iter;
-	Bool swap = false;
+	bool swap = false;
 	for (iter = 0; iter<numIterations; iter++) {
 		Int cur = 0;
 		// Note - only sorts the visible trees.
@@ -207,7 +207,7 @@ Int W3DTreeBuffer::doLighting(Vector3 *loc, Real r, Real g, Real b, SphereClass 
 	shadeR = r;
 	shadeG = g;
 	shadeB = b;
-	Bool didLight = false;
+	bool didLight = false;
 	for (pDynamicLightsIterator->First(); !pDynamicLightsIterator->Is_Done(); pDynamicLightsIterator->Next())
 	{		
 		W3DDynamicLight *pLight = (W3DDynamicLight*)pDynamicLightsIterator->Peek_Obj();
@@ -327,7 +327,7 @@ void W3DTreeBuffer::loadTreesInVertexAndIndexBuffers(RefRenderObjListIterator *p
 		if (type<0 || m_typeMesh[type] == 0) {
 			type = 0;
 		}
-		Bool doVertexLighting = false;
+		bool doVertexLighting = false;
 
 #if 0 // no dynamic lighting.
 		for (pDynamicLightsIterator->First(); !pDynamicLightsIterator->Is_Done(); pDynamicLightsIterator->Next())
@@ -367,7 +367,7 @@ void W3DTreeBuffer::loadTreesInVertexAndIndexBuffers(RefRenderObjListIterator *p
 
 		// If we are doing reduced resolution terrain, do reduced
 		// poly trees.
-		Bool doPanel = (TheGlobalData->m_useHalfHeightMap || TheGlobalData->m_stretchTerrain);
+		bool doPanel = (TheGlobalData->m_useHalfHeightMap || TheGlobalData->m_stretchTerrain);
 
 		if (doPanel) {
 			if (m_trees[curTree].rotates) {
@@ -608,7 +608,7 @@ void W3DTreeBuffer::clearAllTrees(void)
 /** Adds a tree.  Name is the W3D model name, supported models are
 ALPINE, DECIDUOUS and SHRUB. */
 //=============================================================================
-void W3DTreeBuffer::addTree(Coord3D loc, Real scale, Real angle, AsciiString name, Bool mirrorVisible)
+void W3DTreeBuffer::addTree(Coord3D loc, Real scale, Real angle, AsciiString name, bool mirrorVisible)
 {
 	if (m_numTrees >= MAX_TREES) {
 		return;  

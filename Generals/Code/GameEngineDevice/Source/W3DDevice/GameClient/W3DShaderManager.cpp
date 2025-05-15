@@ -108,7 +108,7 @@ W3DShaderManager::ShaderTypes W3DShaderManager::m_currentShader;
 FilterTypes W3DShaderManager::m_currentFilter=FT_NULL_FILTER; ///< Last filter that was set.
 Int W3DShaderManager::m_currentShaderPass;
 
-Bool W3DShaderManager::m_renderingToTexture = false;
+bool W3DShaderManager::m_renderingToTexture = false;
 IDirect3DSurface8 *W3DShaderManager::m_oldRenderSurface=NULL;	///<previous render target
 IDirect3DTexture8 *W3DShaderManager::m_renderTexture=NULL;		///<texture into which rendering will be redirected.
 IDirect3DSurface8 *W3DShaderManager::m_newRenderSurface=NULL;	///<new render target inside m_renderTexture
@@ -167,14 +167,14 @@ Int ScreenBWFilter::init(void)
 	return TRUE;
 }
 
-Bool ScreenBWFilter::preRender(Bool &skipRender, CustomScenePassModes &scenePassMode)
+bool ScreenBWFilter::preRender(Bool &skipRender, CustomScenePassModes &scenePassMode)
 {
 	skipRender = false;
 	W3DShaderManager::startRenderToTexture();
 	return true;
 }
 
-Bool ScreenBWFilter::postRender(enum FilterModes mode, Coord2D &scrollDelta,Bool &doExtraRender)
+bool ScreenBWFilter::postRender(enum FilterModes mode, Coord2D &scrollDelta,Bool &doExtraRender)
 {
 	IDirect3DTexture8 * tex =	W3DShaderManager::endRenderToTexture();
 	DEBUG_ASSERTCRASH(tex, ("Require rendered texture."));
@@ -349,14 +349,14 @@ Int ScreenBWFilterDOT3::init(void)
 	return TRUE;
 }
 
-Bool ScreenBWFilterDOT3::preRender(Bool &skipRender, CustomScenePassModes &scenePassMode)
+bool ScreenBWFilterDOT3::preRender(Bool &skipRender, CustomScenePassModes &scenePassMode)
 {
 	skipRender = false;
 	W3DShaderManager::startRenderToTexture();
 	return true;
 }
 
-Bool ScreenBWFilterDOT3::postRender(enum FilterModes mode, Coord2D &scrollDelta,Bool &doExtraRender)
+bool ScreenBWFilterDOT3::postRender(enum FilterModes mode, Coord2D &scrollDelta,Bool &doExtraRender)
 {
 	IDirect3DTexture8 * tex =	W3DShaderManager::endRenderToTexture();
 	DEBUG_ASSERTCRASH(tex, ("Require rendered texture."));
@@ -515,7 +515,7 @@ Int ScreenCrossFadeFilter::m_curFadeFrame;
 Real ScreenCrossFadeFilter::m_curFadeValue;
 Int ScreenCrossFadeFilter::m_fadeDirection;
 TextureClass *ScreenCrossFadeFilter::m_fadePatternTexture=NULL;
-Bool ScreenCrossFadeFilter::m_skipRender = FALSE;
+bool ScreenCrossFadeFilter::m_skipRender = FALSE;
 
 ScreenCrossFadeFilter screenCrossFadeFilter;
 
@@ -551,7 +551,7 @@ Int ScreenCrossFadeFilter::init(void)
 	return TRUE;
 }
 
-Bool ScreenCrossFadeFilter::updateFadeLevel(void)
+bool ScreenCrossFadeFilter::updateFadeLevel(void)
 {
 	if (m_fadeDirection > 0)
 	{	//turning effect on
@@ -591,7 +591,7 @@ Bool ScreenCrossFadeFilter::updateFadeLevel(void)
 	return true;
 }
 
-Bool ScreenCrossFadeFilter::preRender(Bool &skipRender, CustomScenePassModes &scenePassMode)
+bool ScreenCrossFadeFilter::preRender(Bool &skipRender, CustomScenePassModes &scenePassMode)
 {
 	if (updateFadeLevel())
 	{	//if fade has not completed
@@ -605,7 +605,7 @@ Bool ScreenCrossFadeFilter::preRender(Bool &skipRender, CustomScenePassModes &sc
 	return true;
 }
 
-Bool ScreenCrossFadeFilter::postRender(enum FilterModes mode, Coord2D &scrollDelta,Bool &doExtraRender)
+bool ScreenCrossFadeFilter::postRender(enum FilterModes mode, Coord2D &scrollDelta,Bool &doExtraRender)
 {
 	IDirect3DTexture8 * tex;
 
@@ -754,7 +754,7 @@ Int ScreenCrossFadeFilter::shutdown(void)
 ScreenMotionBlurFilter screenMotionBlurFilter;
 
 Coord3D ScreenMotionBlurFilter::m_zoomToPos;
-Bool ScreenMotionBlurFilter::m_zoomToValid = false;
+bool ScreenMotionBlurFilter::m_zoomToValid = false;
 
 ScreenMotionBlurFilter::ScreenMotionBlurFilter():
 m_decrement(false),
@@ -780,14 +780,14 @@ Int ScreenMotionBlurFilter::init(void)
 	return true;
 }
 
-Bool ScreenMotionBlurFilter::preRender(Bool &skipRender, CustomScenePassModes &scenePassMode)
+bool ScreenMotionBlurFilter::preRender(Bool &skipRender, CustomScenePassModes &scenePassMode)
 {
 	skipRender = m_skipRender;
 	W3DShaderManager::startRenderToTexture();
 	return true;
 }
 
-Bool ScreenMotionBlurFilter::postRender(enum FilterModes mode, Coord2D &scrollDelta,Bool &doExtraRender)
+bool ScreenMotionBlurFilter::postRender(enum FilterModes mode, Coord2D &scrollDelta,Bool &doExtraRender)
 {
 	IDirect3DTexture8 * tex =	W3DShaderManager::endRenderToTexture();
 	DEBUG_ASSERTCRASH(tex, ("Require rendered texture."));
@@ -796,7 +796,7 @@ Bool ScreenMotionBlurFilter::postRender(enum FilterModes mode, Coord2D &scrollDe
 
 	LPDIRECT3DDEVICE8 pDev=DX8Wrapper::_Get_D3D_Device8();
 
-	Bool continueEffect = true;
+	bool continueEffect = true;
 	struct _TRANS_LIT_TEX_VERTEX {
 		D3DXVECTOR4 p;
 		DWORD color;   // diffuse color    
@@ -845,7 +845,7 @@ Bool ScreenMotionBlurFilter::postRender(enum FilterModes mode, Coord2D &scrollDe
 	Coord2D center;
 	center.x = 0.5f;
 	center.y = 0.5f;
-	Bool pan = false;
+	bool pan = false;
 	if (mode>=FM_VIEW_MB_PAN_ALPHA) {
 		Real len = sqrt(scrollDelta.x*scrollDelta.x + scrollDelta.y*scrollDelta.y);
 		//center.x += 0.5f * (scrollDelta.x/len);
@@ -950,7 +950,7 @@ Bool ScreenMotionBlurFilter::postRender(enum FilterModes mode, Coord2D &scrollDe
 	return continueEffect;
 }
 
-Bool ScreenMotionBlurFilter::setup(enum FilterModes mode)
+bool ScreenMotionBlurFilter::setup(enum FilterModes mode)
 {
 
 	m_additive = false;
@@ -1244,8 +1244,8 @@ public:
 	virtual Int set(Int pass);		///<setup shader for the specified rendering pass.
 	virtual Int init(void);			///<perform any one time initialization and validation
 	virtual void reset(void);		///<do any custom resetting necessary to bring W3D in sync.
-	void updateNoise1 (D3DXMATRIX *destMatrix,D3DXMATRIX *curViewInverse, Bool doUpdate=true);	///<generate the uv coordinates for Noise1 (i.e clouds)
-	void updateNoise2 (D3DXMATRIX *destMatrix,D3DXMATRIX *curViewInverse, Bool doUpdate=true);	///<generate the uv coordinates for Noise2 (i.e lightmap)
+	void updateNoise1 (D3DXMATRIX *destMatrix,D3DXMATRIX *curViewInverse, bool doUpdate=true);	///<generate the uv coordinates for Noise1 (i.e clouds)
+	void updateNoise2 (D3DXMATRIX *destMatrix,D3DXMATRIX *curViewInverse, bool doUpdate=true);	///<generate the uv coordinates for Noise2 (i.e lightmap)
 } terrainShader2Stage;
 
 ///8 stage terrain shader which only works on certain Nvidia cards.
@@ -1320,7 +1320,7 @@ void TerrainShader2Stage::reset(void)
 	DX8Wrapper::Set_DX8_Texture_Stage_State( 1, D3DTSS_TEXCOORDINDEX, D3DTSS_TCI_PASSTHRU|1);
 }
 
-void TerrainShader2Stage::updateNoise1(D3DXMATRIX *destMatrix,D3DXMATRIX *curViewInverse, Bool doUpdate)
+void TerrainShader2Stage::updateNoise1(D3DXMATRIX *destMatrix,D3DXMATRIX *curViewInverse, bool doUpdate)
 {
 	#define STRETCH_FACTOR ((float)(1/(63.0*MAP_XY_FACTOR/2))) /* covers 63/2 tiles */
 
@@ -1354,7 +1354,7 @@ void TerrainShader2Stage::updateNoise1(D3DXMATRIX *destMatrix,D3DXMATRIX *curVie
 	*destMatrix *= offset;
 }
 
-void TerrainShader2Stage::updateNoise2(D3DXMATRIX *destMatrix,D3DXMATRIX *curViewInverse, Bool doUpdate)
+void TerrainShader2Stage::updateNoise2(D3DXMATRIX *destMatrix,D3DXMATRIX *curViewInverse, bool doUpdate)
 {
 			
 	D3DXMATRIX scale;
@@ -2472,10 +2472,10 @@ void W3DShaderManager::resetShader(ShaderTypes shader)
 /** Call to view filter shaders before rendering starts.
  */
 //=============================================================================
-Bool W3DShaderManager::filterPreRender(FilterTypes filter, Bool &skipRender, CustomScenePassModes &scenePassMode)
+bool W3DShaderManager::filterPreRender(FilterTypes filter, bool &skipRender, CustomScenePassModes &scenePassMode)
 {
 	if (W3DFilters[filter])
-	{	Bool result=W3DFilters[filter]->preRender(skipRender,scenePassMode);
+	{	bool result=W3DFilters[filter]->preRender(skipRender,scenePassMode);
 		if (result)
 			m_currentFilter = filter;
 		return result;
@@ -2487,7 +2487,7 @@ Bool W3DShaderManager::filterPreRender(FilterTypes filter, Bool &skipRender, Cus
 /** Call to view filter shaders after rendering is complete.
  */
 //=============================================================================
-Bool W3DShaderManager::filterPostRender(FilterTypes filter, enum FilterModes mode, Coord2D &scrollDelta, Bool &doExtraRender)
+bool W3DShaderManager::filterPostRender(FilterTypes filter, enum FilterModes mode, Coord2D &scrollDelta, bool &doExtraRender)
 {
 	if (W3DFilters[filter])
 		return W3DFilters[filter]->postRender(mode, scrollDelta,doExtraRender);
@@ -2500,8 +2500,8 @@ Bool W3DShaderManager::filterPostRender(FilterTypes filter, enum FilterModes mod
 /** Call to view filter shaders after rendering is complete.
  */
 //=============================================================================
-	static Bool filterSetup(FilterTypes filter, enum FilterModes mode);
-Bool W3DShaderManager::filterSetup(FilterTypes filter, enum FilterModes mode)
+	static bool filterSetup(FilterTypes filter, enum FilterModes mode);
+bool W3DShaderManager::filterSetup(FilterTypes filter, enum FilterModes mode)
 {
 	if (W3DFilters[filter])
 		return W3DFilters[filter]->setup(mode);
@@ -2628,7 +2628,7 @@ IDirect3DTexture8 *W3DShaderManager::getRenderTexture(void)
 //=============================================================================
 /** Loads and creates a D3D pixel or vertex shader.*/
 //=============================================================================
-HRESULT W3DShaderManager::LoadAndCreateD3DShader(const char* strFilePath, const DWORD* pDeclaration, DWORD Usage, Bool ShaderType, DWORD* pHandle)
+HRESULT W3DShaderManager::LoadAndCreateD3DShader(const char* strFilePath, const DWORD* pDeclaration, DWORD Usage, bool ShaderType, DWORD* pHandle)
 {
 	try
 	{

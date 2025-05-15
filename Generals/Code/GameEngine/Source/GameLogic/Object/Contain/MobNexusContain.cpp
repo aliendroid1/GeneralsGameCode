@@ -135,7 +135,7 @@ MobNexusContain::~MobNexusContain( void )
 	can this container contain this kind of object? 
 	and, if checkCapacity is TRUE, does this container have enough space left to hold the given unit?
 */
-Bool MobNexusContain::isValidContainerFor(const Object* rider, Bool checkCapacity) const
+bool MobNexusContain::isValidContainerFor(const Object* rider, bool checkCapacity) const
 {
 
 	// sanity
@@ -422,9 +422,9 @@ void MobNexusContain::unreserveDoorForExit( ExitDoorType exitDoor )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool MobNexusContain::tryToEvacuate( Bool exposeStealthedUnits )
+bool MobNexusContain::tryToEvacuate( bool exposeStealthedUnits )
 {
-	Bool exitedAnyone = false;
+	bool exitedAnyone = false;
 	ContainedItemsList::const_iterator it = getContainList().begin();
 	while( it != getContainList().end() )
 	{

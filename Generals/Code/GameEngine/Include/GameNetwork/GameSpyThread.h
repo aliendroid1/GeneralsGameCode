@@ -48,17 +48,17 @@ public:
 	void Thread_Function();
 
 	AsciiString getNextShellScreen( void );
-	Bool showLocaleSelect( void );
+	bool showLocaleSelect( void );
 
 	void setNextShellScreen( AsciiString nextShellScreen );
-	void setShowLocaleSelect( Bool val );
+	void setShowLocaleSelect( bool val );
 
 private:
 	AsciiString m_nick, m_pass, m_email;
-	Bool m_doLogin, m_readStats, m_updateWins, m_updateLosses, m_updateLocale;
+	bool m_doLogin, m_readStats, m_updateWins, m_updateLosses, m_updateLocale;
 	AsciiString m_locale, m_wins, m_losses;
 	AsciiString m_nextShellScreen;
-	Bool m_showLocaleSelect;
+	bool m_showLocaleSelect;
 };
 
 extern GameSpyThreadClass *TheGameSpyThread;

@@ -151,7 +151,7 @@ void ProcessAnimateWindowSlideFromRight::initAnimateWindow( wnd::AnimateWindow *
 
 
 //-----------------------------------------------------------------------------
-Bool ProcessAnimateWindowSlideFromRight::updateAnimateWindow( wnd::AnimateWindow *animWin )
+bool ProcessAnimateWindowSlideFromRight::updateAnimateWindow( wnd::AnimateWindow *animWin )
 {
 	
 	if(!animWin)
@@ -199,7 +199,7 @@ Bool ProcessAnimateWindowSlideFromRight::updateAnimateWindow( wnd::AnimateWindow
 	return FALSE;
 }
 
-Bool ProcessAnimateWindowSlideFromRight::reverseAnimateWindow( wnd::AnimateWindow *animWin )
+bool ProcessAnimateWindowSlideFromRight::reverseAnimateWindow( wnd::AnimateWindow *animWin )
 {
 	
 	if(!animWin)
@@ -328,7 +328,7 @@ void ProcessAnimateWindowSlideFromLeft::initAnimateWindow( wnd::AnimateWindow *a
 	animWin->setAnimData(startPos, endPos, curPos, restPos, vel, timeGetTime() + animWin->getDelay(), 0);
 }
 
-Bool ProcessAnimateWindowSlideFromLeft::updateAnimateWindow( wnd::AnimateWindow *animWin )
+bool ProcessAnimateWindowSlideFromLeft::updateAnimateWindow( wnd::AnimateWindow *animWin )
 {
 	
 	if(!animWin)
@@ -377,7 +377,7 @@ Bool ProcessAnimateWindowSlideFromLeft::updateAnimateWindow( wnd::AnimateWindow 
 	return FALSE;
 }
 
-Bool ProcessAnimateWindowSlideFromLeft::reverseAnimateWindow( wnd::AnimateWindow *animWin )
+bool ProcessAnimateWindowSlideFromLeft::reverseAnimateWindow( wnd::AnimateWindow *animWin )
 {
 	
 	if(!animWin)
@@ -506,7 +506,7 @@ void ProcessAnimateWindowSlideFromTop::initAnimateWindow( wnd::AnimateWindow *an
 	animWin->setAnimData(startPos, endPos, curPos, restPos, vel, timeGetTime() + animWin->getDelay(), 0);
 }
 
-Bool ProcessAnimateWindowSlideFromTop::updateAnimateWindow( wnd::AnimateWindow *animWin )
+bool ProcessAnimateWindowSlideFromTop::updateAnimateWindow( wnd::AnimateWindow *animWin )
 {
 	
 	if(!animWin)
@@ -556,7 +556,7 @@ Bool ProcessAnimateWindowSlideFromTop::updateAnimateWindow( wnd::AnimateWindow *
 	return FALSE;
 }
 
-Bool ProcessAnimateWindowSlideFromTop::reverseAnimateWindow( wnd::AnimateWindow *animWin )
+bool ProcessAnimateWindowSlideFromTop::reverseAnimateWindow( wnd::AnimateWindow *animWin )
 {
 	
 	if(!animWin)
@@ -686,7 +686,7 @@ void ProcessAnimateWindowSlideFromBottom::initAnimateWindow( wnd::AnimateWindow 
 	animWin->setAnimData(startPos, endPos, curPos, restPos, vel, timeGetTime() + animWin->getDelay(), 0);
 }
 
-Bool ProcessAnimateWindowSlideFromBottom::updateAnimateWindow( wnd::AnimateWindow *animWin )
+bool ProcessAnimateWindowSlideFromBottom::updateAnimateWindow( wnd::AnimateWindow *animWin )
 {
 	
 	if(!animWin)
@@ -736,7 +736,7 @@ Bool ProcessAnimateWindowSlideFromBottom::updateAnimateWindow( wnd::AnimateWindo
 	return FALSE;
 }
 
-Bool ProcessAnimateWindowSlideFromBottom::reverseAnimateWindow( wnd::AnimateWindow *animWin )
+bool ProcessAnimateWindowSlideFromBottom::reverseAnimateWindow( wnd::AnimateWindow *animWin )
 {
 	
 	if(!animWin)
@@ -886,7 +886,7 @@ void ProcessAnimateWindowSlideFromBottomTimed::initAnimateWindow( wnd::AnimateWi
 	animWin->setAnimData(startPos, endPos, curPos, restPos, vel, now + delay, now + m_maxDuration + delay);
 }
 
-Bool ProcessAnimateWindowSlideFromBottomTimed::updateAnimateWindow( wnd::AnimateWindow *animWin )
+bool ProcessAnimateWindowSlideFromBottomTimed::updateAnimateWindow( wnd::AnimateWindow *animWin )
 {
 	
 	if(!animWin)
@@ -942,7 +942,7 @@ Bool ProcessAnimateWindowSlideFromBottomTimed::updateAnimateWindow( wnd::Animate
 	return FALSE;
 }
 
-Bool ProcessAnimateWindowSlideFromBottomTimed::reverseAnimateWindow( wnd::AnimateWindow *animWin )
+bool ProcessAnimateWindowSlideFromBottomTimed::reverseAnimateWindow( wnd::AnimateWindow *animWin )
 {
 	return updateAnimateWindow(animWin);
 }
@@ -1020,7 +1020,7 @@ void ProcessAnimateWindowSpiral::initAnimateWindow( wnd::AnimateWindow *animWin 
 }
 
 //-----------------------------------------------------------------------------
-Bool ProcessAnimateWindowSpiral::updateAnimateWindow( wnd::AnimateWindow *animWin )
+bool ProcessAnimateWindowSpiral::updateAnimateWindow( wnd::AnimateWindow *animWin )
 {
 	
 	if(!animWin)
@@ -1074,7 +1074,7 @@ Bool ProcessAnimateWindowSpiral::updateAnimateWindow( wnd::AnimateWindow *animWi
 }
 
 //-----------------------------------------------------------------------------
-Bool ProcessAnimateWindowSpiral::reverseAnimateWindow( wnd::AnimateWindow *animWin )
+bool ProcessAnimateWindowSpiral::reverseAnimateWindow( wnd::AnimateWindow *animWin )
 {
 	
 	if(!animWin)
@@ -1202,7 +1202,7 @@ void ProcessAnimateWindowSlideFromTopFast::initAnimateWindow( wnd::AnimateWindow
 	animWin->setAnimData(startPos, endPos, curPos, restPos, vel, timeGetTime() + animWin->getDelay(), 0);
 }
 
-Bool ProcessAnimateWindowSlideFromTopFast::updateAnimateWindow( wnd::AnimateWindow *animWin )
+bool ProcessAnimateWindowSlideFromTopFast::updateAnimateWindow( wnd::AnimateWindow *animWin )
 {
 	
 	if(!animWin)
@@ -1252,7 +1252,7 @@ Bool ProcessAnimateWindowSlideFromTopFast::updateAnimateWindow( wnd::AnimateWind
 	return FALSE;
 }
 
-Bool ProcessAnimateWindowSlideFromTopFast::reverseAnimateWindow( wnd::AnimateWindow *animWin )
+bool ProcessAnimateWindowSlideFromTopFast::reverseAnimateWindow( wnd::AnimateWindow *animWin )
 {
 	
 	if(!animWin)
@@ -1410,7 +1410,7 @@ void ProcessAnimateWindowSlideFromRightFast::initAnimateWindow( wnd::AnimateWind
 
 
 //-----------------------------------------------------------------------------
-Bool ProcessAnimateWindowSlideFromRightFast::updateAnimateWindow( wnd::AnimateWindow *animWin )
+bool ProcessAnimateWindowSlideFromRightFast::updateAnimateWindow( wnd::AnimateWindow *animWin )
 {
 	
 	if(!animWin)
@@ -1458,7 +1458,7 @@ Bool ProcessAnimateWindowSlideFromRightFast::updateAnimateWindow( wnd::AnimateWi
 	return FALSE;
 }
 
-Bool ProcessAnimateWindowSlideFromRightFast::reverseAnimateWindow( wnd::AnimateWindow *animWin )
+bool ProcessAnimateWindowSlideFromRightFast::reverseAnimateWindow( wnd::AnimateWindow *animWin )
 {
 	
 	if(!animWin)

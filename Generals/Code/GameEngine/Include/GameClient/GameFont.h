@@ -71,7 +71,7 @@ public:
 	virtual void reset( void );
 	virtual void update( void ) { }
 
-	GameFont *getFont( AsciiString name, Int pointSize, Bool bold );  ///< get a font pointer
+	GameFont *getFont( AsciiString name, Int pointSize, bool bold );  ///< get a font pointer
 
 	GameFont *firstFont( void );  ///< return first font
 	GameFont *nextFont( GameFont *font );  ///< get next font in library
@@ -85,7 +85,7 @@ protected:
 	void unlinkFont( GameFont *font );  ///< remove font from list
 
 	/// load the font data pointer based on everything else we already have set
-	virtual Bool loadFontData( GameFont *font ) = 0;
+	virtual bool loadFontData( GameFont *font ) = 0;
 	/// release the font data pointer
 	virtual void releaseFontData( GameFont *font ) { };
 

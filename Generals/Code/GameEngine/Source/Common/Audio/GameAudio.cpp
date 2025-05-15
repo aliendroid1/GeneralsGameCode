@@ -499,7 +499,7 @@ AudioHandle AudioManager::addAudioEvent(const AudioEventRTS *eventToAdd)
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool AudioManager::isValidAudioEvent(const AudioEventRTS *eventToCheck) const
+bool AudioManager::isValidAudioEvent(const AudioEventRTS *eventToCheck) const
 {
 	if (eventToCheck->getEventName().isEmpty()) {
 		return false;
@@ -511,7 +511,7 @@ Bool AudioManager::isValidAudioEvent(const AudioEventRTS *eventToCheck) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool AudioManager::isValidAudioEvent( AudioEventRTS *eventToCheck ) const
+bool AudioManager::isValidAudioEvent( AudioEventRTS *eventToCheck ) const
 {
 	if( eventToCheck->getEventName().isEmpty() ) 
 	{
@@ -596,7 +596,7 @@ void AudioManager::removeAudioEvent(AudioHandle audioEvent)
 }
 
 //-------------------------------------------------------------------------------------------------
-void AudioManager::setAudioEventEnabled( AsciiString eventToAffect, Bool enable )
+void AudioManager::setAudioEventEnabled( AsciiString eventToAffect, bool enable )
 {
 	setAudioEventVolumeOverride(eventToAffect, (enable ? -1.0f : 0.0f) );
 }
@@ -648,7 +648,7 @@ void AudioManager::removeDisabledEvents()
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool AudioManager::isCurrentlyPlaying( AudioHandle audioEvent )
+bool AudioManager::isCurrentlyPlaying( AudioHandle audioEvent )
 {
 	return true;
 }
@@ -676,7 +676,7 @@ AsciiString AudioManager::translateUnsignedIntToSpeakerType( UnsignedInt speaker
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool AudioManager::isOn( AudioAffect whichToGet ) const
+bool AudioManager::isOn( AudioAffect whichToGet ) const
 {
 	if (whichToGet & AudioAffect_Music) {
 		return m_musicOn;
@@ -691,7 +691,7 @@ Bool AudioManager::isOn( AudioAffect whichToGet ) const
 }
 
 //-------------------------------------------------------------------------------------------------
-void AudioManager::setOn( Bool turnOn, AudioAffect whichToAffect )
+void AudioManager::setOn( bool turnOn, AudioAffect whichToAffect )
 {
 	if (whichToAffect & AudioAffect_Music) {
 		m_musicOn = turnOn;
@@ -799,7 +799,7 @@ const Coord3D *AudioManager::getListenerPosition( void ) const
 }
 
 //-------------------------------------------------------------------------------------------------
-AudioRequest *AudioManager::allocateAudioRequest( Bool useAudioEvent )
+AudioRequest *AudioManager::allocateAudioRequest( bool useAudioEvent )
 {
 	AudioRequest *audioReq = newInstance(AudioRequest);
 	audioReq->m_usePendingEvent = useAudioEvent;
@@ -960,7 +960,7 @@ Real AudioManager::getAudioLengthMS( const AudioEventRTS *event )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool AudioManager::isMusicAlreadyLoaded(void) const
+bool AudioManager::isMusicAlreadyLoaded(void) const
 {
 	const AudioEventInfo *musicToLoad = NULL;
 	AudioEventInfoHash::const_iterator it;
@@ -999,7 +999,7 @@ void AudioManager::findAllAudioEventsOfType( AudioType audioType, std::vector<Au
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool AudioManager::isCurrentProviderHardwareAccelerated()
+bool AudioManager::isCurrentProviderHardwareAccelerated()
 {
 	for (Int i = 0; i < MAX_HW_PROVIDERS; ++i) {
 		if (getProviderName(getSelectedProvider()) == TheAudio->getAudioSettings()->m_preferred3DProvider[i]) {
@@ -1011,13 +1011,13 @@ Bool AudioManager::isCurrentProviderHardwareAccelerated()
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool AudioManager::isCurrentSpeakerTypeSurroundSound()
+bool AudioManager::isCurrentSpeakerTypeSurroundSound()
 {
 	return (getSpeakerType() == TheAudio->getAudioSettings()->m_defaultSpeakerType3D);
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool AudioManager::shouldPlayLocally(const AudioEventRTS *audioEvent)
+bool AudioManager::shouldPlayLocally(const AudioEventRTS *audioEvent)
 {
 	Player *localPlayer = ThePlayerList->getLocalPlayer();
 	if( !localPlayer->isPlayerActive() ) 

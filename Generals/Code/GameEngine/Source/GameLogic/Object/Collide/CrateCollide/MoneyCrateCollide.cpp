@@ -51,7 +51,7 @@ MoneyCrateCollide::~MoneyCrateCollide( void )
 }  
 
 //-------------------------------------------------------------------------------------------------
-Bool MoneyCrateCollide::executeCrateBehavior( Object *other )
+bool MoneyCrateCollide::executeCrateBehavior( Object *other )
 {
 	UnsignedInt money = getMoneyCrateCollideModuleData()->m_moneyProvided;
 

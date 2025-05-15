@@ -139,7 +139,7 @@ StealthUpdate::~StealthUpdate( void )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool StealthUpdate::allowedToStealth() const
+bool StealthUpdate::allowedToStealth() const
 {
 	const Object *self = getObject();
 	UnsignedInt flags = getStealthUpdateModuleData()->m_stealthLevel;
@@ -356,7 +356,7 @@ UpdateSleepTime StealthUpdate::update( void )
 	if( m_xferRestoreDisguise == TRUE )
 	{
 		Drawable *draw = getObject()->getDrawable();
-		Bool wasHidden = FALSE;
+		bool wasHidden = FALSE;
 
 		// hack! if drawable was hidden (such as if we're inside a container) we must keep that state
 		if( draw && draw->isDrawableEffectivelyHidden() )
@@ -506,7 +506,7 @@ UpdateSleepTime StealthUpdate::update( void )
 	}
 
 
-	Bool detectedStatusChangedThisFrame = FALSE;
+	bool detectedStatusChangedThisFrame = FALSE;
 	if (m_detectionExpiresFrame > now)
 	{
 		// if this is the first time being detected, play stealth off sound
@@ -697,7 +697,7 @@ void StealthUpdate::changeVisualDisguise()
 
 	Drawable *draw = self->getDrawable();
 	// We need to maintain our selection across the un/disguise, so pull selected out here.
-	Bool selected = draw->isSelected();
+	bool selected = draw->isSelected();
 
 	if( m_disguiseAsTemplate )
 	{
@@ -787,7 +787,7 @@ void StealthUpdate::changeVisualDisguise()
 			self->forceRefreshSubObjectUpgradeStatus();
 		}
 
-		Bool successfulReveal = false;
+		bool successfulReveal = false;
 		AIUpdateInterface *ai = self->getAI();
 		if( ai )
 		{

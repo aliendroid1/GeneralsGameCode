@@ -76,7 +76,7 @@ extern void MapSelectorTooltip(GameWindow *window, WinInstanceData *instData,	Un
 
 
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
-extern Bool g_debugSlots;
+extern bool g_debugSlots;
 void slotListDebugLog(const char *fmt, ...)
 {
 	static char buf[1024];
@@ -136,11 +136,11 @@ void SendStatsToOtherPlayers(const GameInfo *game)
 }
 
 // PRIVATE DATA ///////////////////////////////////////////////////////////////////////////////////
-static Bool isShuttingDown = false;
-static Bool buttonPushed = false;
+static bool isShuttingDown = false;
+static bool buttonPushed = false;
 static const char *nextScreen = NULL;
-static Bool raiseMessageBoxes = false;
-static Bool launchGameNext = FALSE;
+static bool raiseMessageBoxes = false;
+static bool launchGameNext = FALSE;
 
 // window ids ------------------------------------------------------------------------------
 static NameKeyType parentWOLGameSetupID = NAMEKEY_INVALID;
@@ -257,7 +257,7 @@ void PopBackToLobby( void )
 	}
 }
 
-void updateMapStartSpots( GameInfo *myGame, GameWindow *buttonMapStartPositions[], Bool onLoadScreen = FALSE );
+void updateMapStartSpots( GameInfo *myGame, GameWindow *buttonMapStartPositions[], bool onLoadScreen = FALSE );
 void positionStartSpots( GameInfo *myGame, GameWindow *buttonMapStartPositions[], GameWindow *mapWindow);
 void positionStartSpots(AsciiString mapName, GameWindow *buttonMapStartPositions[], GameWindow *mapWindow);
 void WOLPositionStartSpots( void )
@@ -391,7 +391,7 @@ static void playerTooltip(GameWindow *window,
 		return;
 	}
 
-	Bool isLocalPlayer = slot == game->getGameSpySlot(game->getLocalSlotNum());
+	bool isLocalPlayer = slot == game->getGameSpySlot(game->getLocalSlotNum());
 
 	AsciiString localeIdentifier;
 	localeIdentifier.format("WOL:Locale%2.2d", stats.locale);
@@ -539,7 +539,7 @@ static void handleColorSelection(int index)
 
 		if (color >= -1 && color < TheMultiplayerSettings->getNumColors())
 		{
-			Bool colorAvailable = TRUE;
+			bool colorAvailable = TRUE;
 			if(color != -1 )
 			{
 				for(Int i=0; i <MAX_SLOTS; i++)
@@ -656,7 +656,7 @@ static void handleStartPositionSelection(Int player, int startPos)
 
 		if (startPos == slot->getStartPos())
 			return;
-		Bool skip = FALSE;
+		bool skip = FALSE;
 		if (startPos < 0)
 		{
 			skip = TRUE;
@@ -664,7 +664,7 @@ static void handleStartPositionSelection(Int player, int startPos)
 
 		if(!skip)
 		{	
-			Bool isAvailable = TRUE;
+			bool isAvailable = TRUE;
 			for(Int i = 0; i < MAX_SLOTS; ++i)
 			{
 				if(i != player && myGame->getSlot(i)->getStartPos() == startPos)
@@ -754,8 +754,8 @@ static void handleTeamSelection(int index)
 
 static void StartPressed(void)
 {
-	Bool isReady = TRUE;
-	Bool allHaveMap = TRUE;
+	bool isReady = TRUE;
+	bool allHaveMap = TRUE;
 	Int playerCount = 0;
 	Int humanCount = 0;
 	GameSpyStagingRoom *myGame = TheGameSpyInfo->getCurrentStagingRoom();
@@ -765,7 +765,7 @@ static void StartPressed(void)
 	// see if everyone's accepted and count the number of players in the game
 	UnicodeString mapDisplayName;
 	const MapMetaData *mapData = TheMapCache->findMap( myGame->getMap() );
-	Bool willTransfer = TRUE;
+	bool willTransfer = TRUE;
 	if (mapData)
 	{
 		mapDisplayName.format(L"%ls", mapData->m_displayName.str());
@@ -1164,10 +1164,10 @@ void DeinitWOLGameGadgets( void )
 	}
 }
 
-static Bool initDone = false;
+static bool initDone = false;
 UnsignedInt lastSlotlistTime = 0;
 UnsignedInt enterTime = 0;
-Bool initialAcceptEnable = FALSE;
+bool initialAcceptEnable = FALSE;
 //-------------------------------------------------------------------------------------------------
 /** Initialize the Lan Game Options Menu */
 //-------------------------------------------------------------------------------------------------
@@ -1391,7 +1391,7 @@ void WOLGameSetupMenuShutdown( WindowLayout *layout, void *userData )
 	isShuttingDown = true;
 
 	// if we are shutting down for an immediate pop, skip the animations
-	Bool popImmediate = *(Bool *)userData;
+	bool popImmediate = *(Bool *)userData;
 	if( popImmediate )
 	{
 
@@ -1450,7 +1450,7 @@ void WOLGameSetupMenuUpdate( WindowLayout * layout, void *userData)
 			}
 
 			Int allowedMessages = TheGameSpyInfo->getMaxMessagesPerUpdate();
-			Bool sawImportantMessage = FALSE;
+			bool sawImportantMessage = FALSE;
 			PeerResponse resp;
 			while (allowedMessages-- && !sawImportantMessage && TheGameSpyPeerMessageQueue->getResponse( resp ))
 			{
@@ -1483,7 +1483,7 @@ void WOLGameSetupMenuUpdate( WindowLayout * layout, void *userData)
 			return; // if we're in game, all we care about is if we've been disconnected from the chat server
 		}
 
-		Bool isHosting = TheGameSpyInfo->amIHost(); // only while in game setup screen
+		bool isHosting = TheGameSpyInfo->amIHost(); // only while in game setup screen
 		isHosting = isHosting || (TheGameSpyGame && TheGameSpyGame->isInGame() && TheGameSpyGame->amIHost()); // while in game
 		if (!isHosting && !lastSlotlistTime && timeGetTime() > enterTime + 10000)
 		{
@@ -1537,7 +1537,7 @@ void WOLGameSetupMenuUpdate( WindowLayout * layout, void *userData)
 		PeerResponse resp;
 
 		Int allowedMessages = TheGameSpyInfo->getMaxMessagesPerUpdate();
-		Bool sawImportantMessage = FALSE;
+		bool sawImportantMessage = FALSE;
 		while (allowedMessages-- && !sawImportantMessage)
 		{
 
@@ -1793,7 +1793,7 @@ void WOLGameSetupMenuUpdate( WindowLayout * layout, void *userData)
 					{
 						// slotlist
 						GameSpyStagingRoom *game = TheGameSpyInfo->getCurrentStagingRoom();
-						Bool isValidSlotList = game && game->getSlot(0) && game->getSlot(0)->isPlayer( resp.nick.c_str() ) && !TheGameSpyInfo->amIHost();
+						bool isValidSlotList = game && game->getSlot(0) && game->getSlot(0)->isPlayer( resp.nick.c_str() ) && !TheGameSpyInfo->amIHost();
 						if (!isValidSlotList)
 						{
 							SLOTLIST_DEBUG_LOG(("Not a valid slotlist\n"));
@@ -1825,7 +1825,7 @@ void WOLGameSetupMenuUpdate( WindowLayout * layout, void *userData)
 						else // isValidSlotList
 						{
 							Int oldLocalSlotNum = (game->isInGame()) ? game->getLocalSlotNum() : -1;
-							Bool wasInGame = oldLocalSlotNum >= 0;
+							bool wasInGame = oldLocalSlotNum >= 0;
 							AsciiString oldMap = game->getMap();
 							UnsignedInt oldMapCRC, newMapCRC;
 							oldMapCRC = game->getMapCRC();
@@ -1848,7 +1848,7 @@ void WOLGameSetupMenuUpdate( WindowLayout * layout, void *userData)
 									ports[i] = 0;
 								}
 							}
-							Bool optionsOK = ParseAsciiStringToGameInfo(game, options.str());
+							bool optionsOK = ParseAsciiStringToGameInfo(game, options.str());
 							if (TheNAT)
 							{
 								for (i=0; i<MAX_SLOTS; ++i)
@@ -1869,7 +1869,7 @@ void WOLGameSetupMenuUpdate( WindowLayout * layout, void *userData)
 								}
 							}
 							Int newLocalSlotNum = (game->isInGame()) ? game->getLocalSlotNum() : -1;
-							Bool isInGame = newLocalSlotNum >= 0;
+							bool isInGame = newLocalSlotNum >= 0;
 							if (!optionsOK)
 							{
 								SLOTLIST_DEBUG_LOG(("Options are bad!  bailing!\n"));
@@ -1918,7 +1918,7 @@ void WOLGameSetupMenuUpdate( WindowLayout * layout, void *userData)
 										UnicodeString text;
 										UnicodeString mapDisplayName;
 										const MapMetaData *mapData = TheMapCache->findMap( game->getMap() );
-										Bool willTransfer = TRUE;
+										bool willTransfer = TRUE;
 										if (mapData)
 										{
 											mapDisplayName.format(L"%ls", mapData->m_displayName.str());
@@ -2059,14 +2059,14 @@ void WOLGameSetupMenuUpdate( WindowLayout * layout, void *userData)
 							}
 							else if (!strcmp(resp.command.c_str(), "MAP"))
 							{
-								Bool hasMap = atoi(resp.commandOptions.c_str());
+								bool hasMap = atoi(resp.commandOptions.c_str());
 								game->getSlot(slotNum)->setMapAvailability(hasMap);
 								if (!hasMap)
 								{
 									// tell the host the user doesn't have the map
 									UnicodeString mapDisplayName;
 									const MapMetaData *mapData = TheMapCache->findMap( game->getMap() );
-									Bool willTransfer = TRUE;
+									bool willTransfer = TRUE;
 									if (mapData)
 									{
 										mapDisplayName.format(L"%ls", mapData->m_displayName.str());
@@ -2091,8 +2091,8 @@ void WOLGameSetupMenuUpdate( WindowLayout * layout, void *userData)
 								AsciiString options = resp.commandOptions.c_str();
 								options.trim();
 
-								Bool change = false;
-								Bool shouldUnaccept = false;
+								bool change = false;
+								bool shouldUnaccept = false;
 								AsciiString key;
 								options.nextToken(&key, "=");
 								Int val = atoi(options.str()+1);
@@ -2107,7 +2107,7 @@ void WOLGameSetupMenuUpdate( WindowLayout * layout, void *userData)
 								{
 									if (val >= -1 && val < TheMultiplayerSettings->getNumColors() && val != slot->getColor() && slot->getPlayerTemplate() != PLAYERTEMPLATE_OBSERVER)
 									{
-										Bool colorAvailable = TRUE;
+										bool colorAvailable = TRUE;
 										if(val != -1 )
 										{
 											for(Int i=0; i <MAX_SLOTS; i++)
@@ -2152,7 +2152,7 @@ void WOLGameSetupMenuUpdate( WindowLayout * layout, void *userData)
 								{
 									if (val >= -1 && val < MAX_SLOTS && val != slot->getStartPos() && slot->getPlayerTemplate() != PLAYERTEMPLATE_OBSERVER)
 									{
-										Bool startPosAvailable = TRUE;
+										bool startPosAvailable = TRUE;
 										if(val != -1)
 										{
 											for(Int i=0; i <MAX_SLOTS; i++)
@@ -2309,7 +2309,7 @@ int getQR2HostingStatus(void);
 }
 extern int isThreadHosting;
 
-Bool handleGameSetupSlashCommands(UnicodeString uText)
+bool handleGameSetupSlashCommands(UnicodeString uText)
 {
 	AsciiString message;
 	message.translate(uText);
@@ -2474,9 +2474,9 @@ WindowMsgHandledType WOLGameSetupMenuSystem( GameWindow *window, UnsignedInt msg
 							}
 							else if( myGame->getSlot(i)->getState() != pos )
 							{
-								Bool wasAI = (myGame->getSlot(i)->isAI());
+								bool wasAI = (myGame->getSlot(i)->isAI());
 								myGame->getSlot(i)->setState(SlotState(pos));
-								Bool isAI = (myGame->getSlot(i)->isAI());
+								bool isAI = (myGame->getSlot(i)->isAI());
 								myGame->resetAccepted();
 								if (wasAI ^ isAI)
 									PopulatePlayerTemplateComboBox(i, comboBoxPlayerTemplate, myGame, wasAI && myGame->getAllowObservers());

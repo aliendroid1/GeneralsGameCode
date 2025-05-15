@@ -75,7 +75,7 @@
 #include "Common/MiniLog.h"
 //#define PERF_TEST
 static LogClass s_perfLog("QMPerf.txt");
-static Bool s_inQM = FALSE;
+static bool s_inQM = FALSE;
 #define PERF_LOG(x) s_perfLog.log x
 #else // DEBUG_LOGGING
 #define PERF_LOG(x) {}
@@ -127,11 +127,11 @@ static GameWindow *staticTextNumPlayers = NULL;
 static GameWindow *comboBoxSide = NULL;
 static GameWindow *comboBoxColor = NULL;
 
-static Bool isShuttingDown = false;
-static Bool buttonPushed = false;
+static bool isShuttingDown = false;
+static bool buttonPushed = false;
 static const char *nextScreen = NULL;
-static Bool raiseMessageBoxes = false;
-static Bool isInInit = FALSE;
+static bool raiseMessageBoxes = false;
+static bool isInInit = FALSE;
 static const Image *selectedImage = NULL;
 static const Image *unselectedImage = NULL;
 
@@ -157,7 +157,7 @@ static MapListboxIndex mapListboxIndex;
 #endif
 
 
-static Bool isInfoShown(void)
+static bool isInfoShown(void)
 {
 	static NameKeyType parentStatsID = NAMEKEY("WOLQuickMatchMenu.wnd:ParentStats");
 	GameWindow *parentStats = TheWindowManager->winGetWindowFromId( parentWOLQuickMatch, parentStatsID );
@@ -378,7 +378,7 @@ void HandleQMLadderSelection(Int ladderID)
 	pref.write();
 }
 
-static inline Bool isValidLadder( const LadderInfo *lad )
+static inline bool isValidLadder( const LadderInfo *lad )
 {
 	if (lad && lad->index > 0 && lad->validQM)
 	{
@@ -602,7 +602,7 @@ static void populateQuickMatchMapSelectListbox( QuickMatchPreferences& pref )
 		{
 			UnicodeString displayName;
 			displayName = md->m_displayName;
-			Bool isSelected = pref.isMapSelected(theMap);
+			bool isSelected = pref.isMapSelected(theMap);
 			if (li && li->randomMaps)
 				isSelected = TRUE;
 			Int width = 10;
@@ -964,7 +964,7 @@ void WOLQuickMatchMenuShutdown( WindowLayout *layout, void *userData )
 	isShuttingDown = true;
 
 	// if we are shutting down for an immediate pop, skip the animations
-	Bool popImmediate = *(Bool *)userData;
+	bool popImmediate = *(Bool *)userData;
 	if( popImmediate )
 	{
 
@@ -1063,7 +1063,7 @@ void WOLQuickMatchMenuUpdate( WindowLayout * layout, void *userData)
 			}
 
 			Int allowedMessages = TheGameSpyInfo->getMaxMessagesPerUpdate();
-			Bool sawImportantMessage = FALSE;
+			bool sawImportantMessage = FALSE;
 			PeerResponse resp;
 			while (allowedMessages-- && !sawImportantMessage && TheGameSpyPeerMessageQueue->getResponse( resp ))
 			{
@@ -1128,7 +1128,7 @@ void WOLQuickMatchMenuUpdate( WindowLayout * layout, void *userData)
 #endif // PERF_TEST
 
 		Int allowedMessages = TheGameSpyInfo->getMaxMessagesPerUpdate();
-		Bool sawImportantMessage = FALSE;
+		bool sawImportantMessage = FALSE;
 		PeerResponse resp;
 		while (allowedMessages-- && !sawImportantMessage && TheGameSpyPeerMessageQueue->getResponse( resp ))
 		{
@@ -1799,7 +1799,7 @@ WindowMsgHandledType WOLQuickMatchMenuSystem( GameWindow *window, UnsignedInt ms
 					const LadderInfo *li = getLadderInfo();
 					if (selected >= 0 && (!li || !li->randomMaps))
 					{
-						Bool wasSelected = (Bool)GadgetListBoxGetItemData(control, selected, 0);
+						bool wasSelected = (Bool)GadgetListBoxGetItemData(control, selected, 0);
 						GadgetListBoxSetItemData(control, (void *)(!wasSelected), selected, 0);
 						Int width = 10;
 						Int height = 10;

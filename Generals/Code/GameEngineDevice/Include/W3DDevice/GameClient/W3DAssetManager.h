@@ -64,7 +64,7 @@ public:
 	virtual RenderObjClass * Create_Render_Obj(const char * name);
 	// unique to W3DAssetManager
 	virtual HAnimClass *	Get_HAnim(const char * name);
-	virtual bool Load_3D_Assets( const char * filename ); // This CANNOT be Bool, as it will not inherit properly if you make Bool == Int
+	virtual bool Load_3D_Assets( const char * filename ); // This CANNOT be Bool, as it will not inherit properly if you make bool == Int
 	virtual TextureClass *			Get_Texture(
 		const char * filename, 
 		MipCountType mip_level_count=MIP_LEVELS_ALL,
@@ -83,21 +83,21 @@ public:
 	int replacePrototypeTexture(RenderObjClass *robj, const char * oldname, const char * newname);
 
 private:
-	void Make_Mesh_Unique(RenderObjClass *robj,Bool geometry, Bool colors);
-	void Make_HLOD_Unique(RenderObjClass *robj,Bool geometry, Bool colors);
-	void Make_Unique(RenderObjClass *robj,Bool geometry, Bool colors);
+	void Make_Mesh_Unique(RenderObjClass *robj,Bool geometry, bool colors);
+	void Make_HLOD_Unique(RenderObjClass *robj,Bool geometry, bool colors);
+	void Make_Unique(RenderObjClass *robj,Bool geometry, bool colors);
 
 	//'Generals' customizations
 	int Recolor_Asset(RenderObjClass *robj, const int color);
 	int Recolor_Mesh(RenderObjClass *robj, const int color);
 	int Recolor_HLOD(RenderObjClass *robj, const int color);
 	void Recolor_Vertex_Material(VertexMaterialClass *vmat, const int color);
-	void Make_Mesh_Unique(RenderObjClass *robj, Bool colors);
-	void Make_HLOD_Unique(RenderObjClass *robj, Bool colors);
+	void Make_Mesh_Unique(RenderObjClass *robj, bool colors);
+	void Make_HLOD_Unique(RenderObjClass *robj, bool colors);
 	TextureClass * Find_Texture(const char * name, const int color);
 	TextureClass * Recolor_Texture(TextureClass *texture, const int color);
 	TextureClass * Recolor_Texture_One_Time(TextureClass *texture, const int color);
-	void Remap_Palette(SurfaceClass *surface, const int color, Bool doPaletteOnly, Bool useAlpha);
+	void Remap_Palette(SurfaceClass *surface, const int color, bool doPaletteOnly, bool useAlpha);
 	int replaceAssetTexture(RenderObjClass *robj, TextureClass *oldTex, TextureClass *newTex);
 	int replaceHLODTexture(RenderObjClass *robj, TextureClass *oldTex, TextureClass *newTex);
 	int replaceMeshTexture(RenderObjClass *robj, TextureClass *oldTex, TextureClass *newTex);

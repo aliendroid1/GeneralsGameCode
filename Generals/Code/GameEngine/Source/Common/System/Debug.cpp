@@ -139,7 +139,7 @@ static const char *prepBuffer(const char* format, char *buffer);
 static void doLogOutput(const char *buffer);
 #endif
 #ifdef DEBUG_CRASHING
-static int doCrashBox(const char *buffer, Bool logResult);
+static int doCrashBox(const char *buffer, bool logResult);
 #endif
 static void whackFunnyCharacters(char *buf);
 #ifdef DEBUG_STACKTRACE
@@ -151,7 +151,7 @@ static void doStackDump();
 // ----------------------------------------------------------------------------
 
 // ----------------------------------------------------------------------------
-inline Bool ignoringAsserts()
+inline bool ignoringAsserts()
 {
 #ifdef DEBUG_CRASHING
 	return !DX8Wrapper_IsWindowed || (TheGlobalData&&TheGlobalData->m_debugIgnoreAsserts);
@@ -264,7 +264,7 @@ static void doLogOutput(const char *buffer)
 */
 // ----------------------------------------------------------------------------
 #ifdef DEBUG_CRASHING
-static int doCrashBox(const char *buffer, Bool logResult)
+static int doCrashBox(const char *buffer, bool logResult)
 {
 	int result;
 

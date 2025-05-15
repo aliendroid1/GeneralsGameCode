@@ -101,7 +101,7 @@ public:
 	
 	void updateMips(void);
 
-	Bool hasRGBDataForWidth(Int width);
+	bool hasRGBDataForWidth(Int width);
 	UnsignedByte *getRGBDataForWidth(Int width);
 };
 

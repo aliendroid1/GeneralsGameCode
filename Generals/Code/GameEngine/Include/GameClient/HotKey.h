@@ -96,7 +96,7 @@ public:
 	//-----------------------------------------------------------------------------------------------
 
 	void addHotKey( GameWindow *win, const AsciiString& key);
-	Bool executeHotKey( const AsciiString& key); // called fromt eh HotKeyTranslator
+	bool executeHotKey( const AsciiString& key); // called fromt eh HotKeyTranslator
 	
 	AsciiString searchHotKey( const AsciiString& label);
 	AsciiString searchHotKey( const UnicodeString& uStr );

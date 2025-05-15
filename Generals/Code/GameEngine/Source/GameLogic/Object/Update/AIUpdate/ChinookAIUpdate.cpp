@@ -223,7 +223,7 @@ protected:
 	}
 
 public:
-	ChinookTakeoffOrLandingState( StateMachine *machine, Bool landing ) : m_landing(landing), State( machine, "ChinookTakeoffOrLandingState" ) 
+	ChinookTakeoffOrLandingState( StateMachine *machine, bool landing ) : m_landing(landing), State( machine, "ChinookTakeoffOrLandingState" ) 
 	{
 		m_destLoc.zero();
 	}
@@ -250,7 +250,7 @@ public:
 		loco->setUltraAccurate(true);
 
 		m_destLoc = *obj->getPosition();
-		const Bool onlyHealthyBridges = true;	// ignore dead bridges.
+		const bool onlyHealthyBridges = true;	// ignore dead bridges.
 		PathfindLayerEnum layerAtDest = TheTerrainLogic->getHighestLayerForDestination(&m_destLoc, onlyHealthyBridges);
 		m_destLoc.z = TheTerrainLogic->getLayerHeight(m_destLoc.x, m_destLoc.y, layerAtDest);
 		if (m_landing)
@@ -529,7 +529,7 @@ public:
 				info.ropeSpeed = 0.0f;
 				info.ropeLen = 1.0f;
 
-				const Bool onlyHealthyBridges = true;	// ignore dead bridges.
+				const bool onlyHealthyBridges = true;	// ignore dead bridges.
 				PathfindLayerEnum layerAtDest = TheTerrainLogic->getHighestLayerForDestination(&ropePos[i], onlyHealthyBridges);
 
 				info.ropeLenMax = ropePos[i].z - TheTerrainLogic->getLayerHeight(ropePos[i].x, ropePos[i].y, layerAtDest) - d->m_ropeFinalHeight;
@@ -919,14 +919,14 @@ void ChinookAIUpdate::setAirfieldForHealing(ObjectID id)
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ChinookAIUpdate::isIdle() const
+bool ChinookAIUpdate::isIdle() const
 {
 	// we need to do this because we enter an idle state briefly between takeoff/landing in these cases,
 	// but scripting relies on us never claiming to be "idle"...
 	if (m_hasPendingCommand)
 		return false;
 
-	Bool result = SupplyTruckAIUpdate::isIdle();
+	bool result = SupplyTruckAIUpdate::isIdle();
 
 	if (result && m_flightStatus == CHINOOK_LANDED)
 	{
@@ -940,13 +940,13 @@ Bool ChinookAIUpdate::isIdle() const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ChinookAIUpdate::isCurrentlyFerryingSupplies() const
+bool ChinookAIUpdate::isCurrentlyFerryingSupplies() const
 {
 	return SupplyTruckAIUpdate::isCurrentlyFerryingSupplies();
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ChinookAIUpdate::isAvailableForSupplying() const
+bool ChinookAIUpdate::isAvailableForSupplying() const
 {
 	if (!SupplyTruckAIUpdate::isAvailableForSupplying())
 		return false;
@@ -959,7 +959,7 @@ Bool ChinookAIUpdate::isAvailableForSupplying() const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ChinookAIUpdate::isAllowedToAdjustDestination() const
+bool ChinookAIUpdate::isAllowedToAdjustDestination() const
 {
 	 if (m_flightStatus == CHINOOK_LANDED)
 		return false;
@@ -991,7 +991,7 @@ AIFreeToExitType ChinookAIUpdate::getAiFreeToExit(const Object* exiter) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ChinookAIUpdate::chooseLocomotorSet(LocomotorSetType wst)
+bool ChinookAIUpdate::chooseLocomotorSet(LocomotorSetType wst)
 {
 	if (m_flightStatus == CHINOOK_LANDED)
 		wst = LOCOMOTORSET_TAXIING;
@@ -1029,7 +1029,7 @@ UpdateSleepTime ChinookAIUpdate::update()
 		ContainModuleInterface* contain = getObject()->getContain();
 		if( contain )
 		{
-			Bool waitingToEnterOrExit = contain->hasObjectsWantingToEnterOrExit();
+			bool waitingToEnterOrExit = contain->hasObjectsWantingToEnterOrExit();
 			if (m_hasPendingCommand)
 			{
 				AICommandParms parms(AICMD_MOVE_TO_POSITION, CMD_FROM_AI);	// values don't matter, will be wiped by next line
@@ -1139,7 +1139,7 @@ void ChinookAIUpdate::aiDoCommand(const AICommandParms* parms)
 		return;
 	}
 
-	Bool passItThru = true;
+	bool passItThru = true;
 	switch (parms->m_cmd)
 	{
 		case AICMD_IDLE:

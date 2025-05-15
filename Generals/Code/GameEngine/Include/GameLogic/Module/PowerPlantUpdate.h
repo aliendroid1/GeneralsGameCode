@@ -69,7 +69,7 @@ class PowerPlantUpdateInterface
 
 public:
 
-	virtual void extendRods( Bool extend ) = 0;
+	virtual void extendRods( bool extend ) = 0;
 
 };
 
@@ -91,12 +91,12 @@ public:
 	// interface housekeeping
 	virtual PowerPlantUpdateInterface* getPowerPlantUpdateInterface() { return this; }
 
-	void extendRods( Bool extend );									 ///< extend the rods from this object
+	void extendRods( bool extend );									 ///< extend the rods from this object
 	virtual UpdateSleepTime update( void ); ///< Here's the actual work of Upgrading
 
 protected:
 
-	Bool m_extended;										 ///< TRUE when extend is all done
+	bool m_extended;										 ///< TRUE when extend is all done
 
 };
 

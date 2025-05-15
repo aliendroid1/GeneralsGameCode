@@ -427,7 +427,7 @@ void NeutronMissileUpdate::doAttack( void )
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-Bool NeutronMissileUpdate::projectileHandleCollision( Object *other )
+bool NeutronMissileUpdate::projectileHandleCollision( Object *other )
 {
 	Object* obj = getObject();
 
@@ -490,7 +490,7 @@ UpdateSleepTime NeutronMissileUpdate::update( void )
 	}
 
 	Coord3D oldPos = *getObject()->getPosition();
-	Bool oldPosValid = (m_state == ATTACK);	// not valid till *after* we've launched
+	bool oldPosValid = (m_state == ATTACK);	// not valid till *after* we've launched
 	switch( m_state )
 	{
 		case PRELAUNCH:

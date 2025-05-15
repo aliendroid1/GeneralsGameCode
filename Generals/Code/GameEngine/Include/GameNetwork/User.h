@@ -41,8 +41,8 @@ public:
 	User() {}
 	User(UnicodeString name, UnsignedInt addr, UnsignedInt port);
 	User &operator= (const User *other);
-	Bool operator== (const User *other);
-	Bool operator!= (const User *other);
+	bool operator== (const User *other);
+	bool operator!= (const User *other);
 
 	inline UnicodeString GetName() { return m_name; }
 	void setName(UnicodeString name);

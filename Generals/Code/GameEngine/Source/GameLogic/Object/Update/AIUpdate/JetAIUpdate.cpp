@@ -86,7 +86,7 @@ enum JetAIStateType : Int
 };
 
 //-------------------------------------------------------------------------------------------------
-static Bool isOutOfSpecialReloadAmmo(Object* jet)
+static bool isOutOfSpecialReloadAmmo(Object* jet)
 {
 	// if we have at least one special reload weapon,
 	// AND all such weapons are out of ammo,
@@ -139,7 +139,7 @@ protected:
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterHasParkingPlace"; }
 #endif
-	virtual Bool allow(Object *objOther)
+	virtual bool allow(Object *objOther)
 	{
 		ParkingPlaceBehaviorInterface* pp = getPP(objOther->getID());
 		if (pp != NULL && pp->reserveSpace(m_id, 0.0f, NULL))
@@ -191,10 +191,10 @@ protected:
 	virtual void xfer( Xfer *xfer ){XferVersion cv = 1;	XferVersion v = cv; xfer->xferVersion( &v, cv );}
 	virtual void loadPostProcess(){};
 private:
-	const Bool m_landing;
+	const bool m_landing;
 
 public:
-	JetAwaitingRunwayState( StateMachine *machine, Bool landing ) : m_landing(landing), State( machine, "JetAwaitingRunwayState") { }
+	JetAwaitingRunwayState( StateMachine *machine, bool landing ) : m_landing(landing), State( machine, "JetAwaitingRunwayState") { }
 
 	virtual StateReturnType onEnter()
 	{
@@ -396,7 +396,7 @@ EMPTY_DTOR(JetOrHeliReturningToDeadAirfieldState)
 // This solution uses the 
 // http://www.faqs.org/faqs/graphics/algorithms-faq/ 
 // Subject 1.03
-static Bool intersectInfiniteLine2D
+static bool intersectInfiniteLine2D
 (
 	Real ax, Real ay, Real ao, 
 	Real cx, Real cy, Real co, 
@@ -461,7 +461,7 @@ public:
 			return STATE_FAILURE;	// full?
 		
 		Coord3D intermedPt;
-		Bool intermed = false;
+		bool intermed = false;
 		Real orient = atan2(ppinfo.runwayPrep.y - ppinfo.parkingSpace.y, ppinfo.runwayPrep.x - ppinfo.parkingSpace.x);
 		if (fabs(stdAngleDiff(orient, ppinfo.parkingOrientation)) > PI/128)
 		{
@@ -553,7 +553,7 @@ private:
 	Bool			m_landingSoundPlayed;
 
 public:
-	JetTakeoffOrLandingState( StateMachine *machine, Bool landing ) : m_landing(landing), AIFollowPathState( machine, "JetTakeoffOrLandingState" ) { }
+	JetTakeoffOrLandingState( StateMachine *machine, bool landing ) : m_landing(landing), AIFollowPathState( machine, "JetTakeoffOrLandingState" ) { }
 
 	virtual StateReturnType onEnter()
 	{
@@ -789,7 +789,7 @@ private:
 	Real			m_parkingOrientation;
 	Bool			m_landing;
 public:
-	HeliTakeoffOrLandingState( StateMachine *machine, Bool landing ) : m_landing(landing), 
+	HeliTakeoffOrLandingState( StateMachine *machine, bool landing ) : m_landing(landing), 
 		State( machine, "HeliTakeoffOrLandingState" ), m_index(0)
 		{ 
 			m_parkingLoc.zero();
@@ -1082,7 +1082,7 @@ private:
 	Bool					m_resetTimer;
 	Bool					m_afterburners;
 
-	Bool findWaiter()
+	bool findWaiter()
 	{
 		Object* jet = getMachineOwner();
 		ParkingPlaceBehaviorInterface* pp = getPP(getMachineOwner()->getProducerID());
@@ -1293,7 +1293,7 @@ public:
 	{
 		Object* jet = getMachineOwner();
 		UnsignedInt now = TheGameLogic->getFrame();
-		Bool allDone = true;
+		bool allDone = true;
 		for (Int i = 0; i < WEAPONSLOT_COUNT;	++i)
 		{
 			Weapon* w = jet->getWeaponInWeaponSlot((WeaponSlotType)i);
@@ -1552,7 +1552,7 @@ JetAIUpdate::~JetAIUpdate()
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool JetAIUpdate::isIdle() const
+bool JetAIUpdate::isIdle() const
 {
 	// we need to do this because we enter an idle state briefly between takeoff/landing in these cases,
 	// but scripting relies on us never claiming to be "idle"...
@@ -1715,7 +1715,7 @@ UpdateSleepTime JetAIUpdate::update()
 	if (draw != NULL)
 	{
 		StateID id = getStateMachine()->getCurrentStateID();
-		Bool needToCheckMinHeight = (id >= JETAISTATETYPE_FIRST && id <= JETAISTATETYPE_LAST) || 
+		bool needToCheckMinHeight = (id >= JETAISTATETYPE_FIRST && id <= JETAISTATETYPE_LAST) || 
 																	!jet->isAboveTerrain() ||
 																	!getFlag(ALLOW_AIR_LOCO);
 		if (needToCheckMinHeight)
@@ -1813,7 +1813,7 @@ UpdateSleepTime JetAIUpdate::update()
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool JetAIUpdate::chooseLocomotorSet(LocomotorSetType wst)
+bool JetAIUpdate::chooseLocomotorSet(LocomotorSetType wst)
 {
 	const JetAIUpdateModuleData* d = getJetAIUpdateModuleData();
 	if (!getFlag(ALLOW_AIR_LOCO))
@@ -1851,7 +1851,7 @@ void JetAIUpdate::setLocomotorGoalNone()
 }
 
 //----------------------------------------------------------------------------------------
-Bool JetAIUpdate::getSneakyTargetingOffset(Coord3D* offset) const
+bool JetAIUpdate::getSneakyTargetingOffset(Coord3D* offset) const
 {
 	if (m_attackersMissExpireFrame != 0 && TheGameLogic->getFrame() < m_attackersMissExpireFrame)
 	{
@@ -1932,8 +1932,8 @@ void JetAIUpdate::positionLockon()
 	Real elapsedTimeSumPrev = 0.5f * (elapsed-1) * (elapsed);
 	Real elapsedTimeSumCurr = elapsedTimeSumPrev + elapsed;
 	Real factor = d->m_lockonFreq / d->m_lockonTime;
-	Bool lastPhase = ((Int)(factor * elapsedTimeSumPrev) & 1) != 0;
-	Bool thisPhase = ((Int)(factor * elapsedTimeSumCurr) & 1) != 0;
+	bool lastPhase = ((Int)(factor * elapsedTimeSumPrev) & 1) != 0;
+	bool thisPhase = ((Int)(factor * elapsedTimeSumCurr) & 1) != 0;
 
 	if (lastPhase && (!thisPhase)) 
 	{
@@ -1969,7 +1969,7 @@ void JetAIUpdate::buildLockonDrawableIfNecessary()
 }
 
 //----------------------------------------------------------------------------------------
-void JetAIUpdate::addTargeter(ObjectID id, Bool add)
+void JetAIUpdate::addTargeter(ObjectID id, bool add)
 {
 	const JetAIUpdateModuleData* d = getJetAIUpdateModuleData();
 	UnsignedInt lockonTime = d->m_lockonTime;
@@ -2003,13 +2003,13 @@ void JetAIUpdate::addTargeter(ObjectID id, Bool add)
 }
 
 //----------------------------------------------------------------------------------------
-Bool JetAIUpdate::isTemporarilyPreventingAimSuccess() const
+bool JetAIUpdate::isTemporarilyPreventingAimSuccess() const
 {
 	return m_untargetableExpireFrame != 0 && (TheGameLogic->getFrame() < m_untargetableExpireFrame);
 }
 
 //----------------------------------------------------------------------------------------
-Bool JetAIUpdate::isAllowedToMoveAwayFromUnit() const
+bool JetAIUpdate::isAllowedToMoveAwayFromUnit() const
 {
 	// parked (or landing) units don't get to do this.
 	if (!getFlag(ALLOW_AIR_LOCO) || getFlag(TAKEOFF_IN_PROGRESS) || getFlag(LANDING_IN_PROGRESS))
@@ -2019,7 +2019,7 @@ Bool JetAIUpdate::isAllowedToMoveAwayFromUnit() const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool JetAIUpdate::isDoingGroundMovement(void) const
+bool JetAIUpdate::isDoingGroundMovement(void) const
 {
 	// srj per jba: Air units should never be doing ground movement, even when taxiing...
 	// (exception: see getTreatAsAircraftForLocoDistToGoal)
@@ -2027,7 +2027,7 @@ Bool JetAIUpdate::isDoingGroundMovement(void) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool JetAIUpdate::getTreatAsAircraftForLocoDistToGoal() const
+bool JetAIUpdate::getTreatAsAircraftForLocoDistToGoal() const
 {
 	// exception to isDoingGroundMovement: should never treat as aircraft for dist-to-goal when taxiing.
 	if (getFlag(TAXI_IN_PROGRESS))
@@ -2044,7 +2044,7 @@ Bool JetAIUpdate::getTreatAsAircraftForLocoDistToGoal() const
 /**
  * Follow the path defined by the given array of points
  */
-void JetAIUpdate::privateFollowPath( const std::vector<Coord3D>* path, Object *ignoreObject, CommandSourceType cmdSource, Bool exitProduction )
+void JetAIUpdate::privateFollowPath( const std::vector<Coord3D>* path, Object *ignoreObject, CommandSourceType cmdSource, bool exitProduction )
 {
 	if (exitProduction)
 	{
@@ -2154,7 +2154,7 @@ void JetAIUpdate::privateGetRepaired( Object *repairDepot, CommandSourceType cmd
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool JetAIUpdate::isParkedAt(const Object* obj) const
+bool JetAIUpdate::isParkedAt(const Object* obj) const
 {
 	if (!getFlag(ALLOW_AIR_LOCO) &&
 			!getObject()->isKindOf(KINDOF_PRODUCED_AT_HELIPAD) &&

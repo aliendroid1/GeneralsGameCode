@@ -76,7 +76,7 @@ WaterHandle TerrainLogic::m_gridWaterHandle;
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
 Waypoint::Waypoint(WaypointID id, AsciiString name, const Coord3D *pLoc, AsciiString label1, AsciiString label2, 
-									 AsciiString label3, Bool biDirectional) :
+									 AsciiString label3, bool biDirectional) :
 m_name(name),
 m_pNext(NULL),
 m_location(*pLoc),
@@ -452,7 +452,7 @@ Bridge::~Bridge()
 //-------------------------------------------------------------------------------------------------
 /** isPointOnBridge - see if point is on bridge. */
 //-------------------------------------------------------------------------------------------------
-Bool Bridge::isPointOnBridge(const Coord3D *pLoc)
+bool Bridge::isPointOnBridge(const Coord3D *pLoc)
 {
 	if (pLoc->x < m_bounds.lo.x) return(false);
 	if (pLoc->x > m_bounds.hi.x) return(false);
@@ -485,7 +485,7 @@ Bool Bridge::isPointOnBridge(const Coord3D *pLoc)
 	*				FALSE - Line does not intersect the region
 	*/
 //-------------------------------------------------------------------------------------------------
-Bool LineInRegion( const Coord2D *p1, const Coord2D *p2, const Region2D *clipRegion )
+bool LineInRegion( const Coord2D *p1, const Coord2D *p2, const Region2D *clipRegion )
 {
 	enum { CLIP_LEFT  = 0x01,
 				CLIP_RIGHT  = 0x02,
@@ -633,7 +633,7 @@ Bool LineInRegion( const Coord2D *p1, const Coord2D *p2, const Region2D *clipReg
 
 }  // end LineInRegion
 
-static Bool PointInRegion2D( const Coord3D *pt, const Region2D *clipRegion )
+static bool PointInRegion2D( const Coord3D *pt, const Region2D *clipRegion )
 {
 	return (pt->x>=clipRegion->lo.x && 
 					pt->y>=clipRegion->lo.y &&
@@ -645,7 +645,7 @@ static Bool PointInRegion2D( const Coord3D *pt, const Region2D *clipRegion )
 //-------------------------------------------------------------------------------------------------
 /** isCellOnEnd - see if cell is on the end of the bridge. */
 //-------------------------------------------------------------------------------------------------
-Bool Bridge::isCellOnEnd(const Region2D *cell)
+bool Bridge::isCellOnEnd(const Region2D *cell)
 {
 	Coord3D endVector;
 	endVector.x = m_bridgeInfo.fromRight.x - m_bridgeInfo.fromLeft.x;
@@ -697,7 +697,7 @@ Bool Bridge::isCellOnEnd(const Region2D *cell)
 //-------------------------------------------------------------------------------------------------
 /** isCellOnSide - see if cell is on the end of the bridge. */
 //-------------------------------------------------------------------------------------------------
-Bool Bridge::isCellOnSide(const Region2D *cell)
+bool Bridge::isCellOnSide(const Region2D *cell)
 {
 	Coord3D endVector;
 	endVector.x = m_bridgeInfo.fromRight.x - m_bridgeInfo.fromLeft.x;
@@ -771,7 +771,7 @@ Bool Bridge::isCellOnSide(const Region2D *cell)
 //-------------------------------------------------------------------------------------------------
 /** isCellEntryPoint - Is a pathfind cell a spot to move onto the bridge. */
 //-------------------------------------------------------------------------------------------------
-Bool Bridge::isCellEntryPoint(const Region2D *cell)
+bool Bridge::isCellEntryPoint(const Region2D *cell)
 {
 	Coord3D endVector;
 	endVector.x = m_bridgeInfo.fromRight.x - m_bridgeInfo.fromLeft.x;
@@ -892,7 +892,7 @@ void Bridge::updateDamageState( void )
 					for (obj = TheGameLogic->getFirstObject(); obj; obj=obj->getNextObject()) {
 						if (obj->getLayer() == m_layer) {
 							// don't consider the bridge health, 'cuz it's already dead. (srj)
-							const Bool considerBridgeHealth = false;
+							const bool considerBridgeHealth = false;
 							if (TheTerrainLogic->objectInteractsWithBridgeLayer(obj, obj->getLayer(), considerBridgeHealth)) 
 							{
 								// srj sez: if we use this threshold, then stuff on the bridge apron doesn't die but
@@ -1038,7 +1038,7 @@ void TerrainLogic::update( void )
 				 damageAmount,
 				 targetHeight,
 				 currentHeight;
-		Bool finalTransition,
+		bool finalTransition,
 				 doDamageThisFrame = (TheGameLogic->getFrame() % LOGICFRAMES_PER_SECOND) == 0;
 
 		for( Int i = m_numWaterToUpdate - 1; i >= 0; --i )
@@ -1123,7 +1123,7 @@ void TerrainLogic::update( void )
 //-------------------------------------------------------------------------------------------------
 /** newMap */
 //-------------------------------------------------------------------------------------------------
-void TerrainLogic::newMap( Bool saveGame )
+void TerrainLogic::newMap( bool saveGame )
 {
 
 	// Set waypoint's z value, now that the height map is loaded.
@@ -1139,7 +1139,7 @@ void TerrainLogic::newMap( Bool saveGame )
 	/// @todo Mark W, remove this when you have water plane placements in the map done (Colin)
 	//
 	Waypoint *waypoint = getWaypointByName( "WaveGuide1" );
-	Bool enable = FALSE;
+	bool enable = FALSE;
 	if( waypoint )
 		enable = TRUE;
 	enableWaterGrid( enable );
@@ -1148,7 +1148,7 @@ void TerrainLogic::newMap( Bool saveGame )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-void TerrainLogic::enableWaterGrid( Bool enable )
+void TerrainLogic::enableWaterGrid( bool enable )
 {
 
 	// set our internal variable we can query
@@ -1251,7 +1251,7 @@ void TerrainLogic::enableWaterGrid( Bool enable )
 /** device independent terrain logic load.  If query is true, we are just loading it to get
 look at some data rather than running a game, so don't pass this load to the client. */
 //-------------------------------------------------------------------------------------------------
-Bool TerrainLogic::loadMap( AsciiString filename, Bool query )
+bool TerrainLogic::loadMap( AsciiString filename, bool query )
 {
 
 	// sanity
@@ -1326,7 +1326,7 @@ Bool TerrainLogic::loadMap( AsciiString filename, Bool query )
 //-------------------------------------------------------------------------------------------------
 /** Reads in the waypoint chunk */
 //-------------------------------------------------------------------------------------------------
-Bool TerrainLogic::parseWaypointDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
+bool TerrainLogic::parseWaypointDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 	TerrainLogic *pThis = (TerrainLogic *)userData;
 	return pThis->parseWaypointData(file, info, userData);
@@ -1335,7 +1335,7 @@ Bool TerrainLogic::parseWaypointDataChunk(DataChunkInput &file, DataChunkInfo *i
 //-------------------------------------------------------------------------------------------------
 /** Reads in the waypoint chunk */
 //-------------------------------------------------------------------------------------------------
-Bool TerrainLogic::parseWaypointData(DataChunkInput &file, DataChunkInfo *info, void *userData)
+bool TerrainLogic::parseWaypointData(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 	Int numWaypointLinks = file.readInt();
 	Int i;
@@ -1356,12 +1356,12 @@ void TerrainLogic::addWaypoint(MapObject *pMapObj)
 	Coord3D loc = *pMapObj->getLocation();
 	// Snap the waypoint down to the terrain.
 	loc.z = getGroundHeight(loc.x, loc.y);
-	Bool exists;
+	bool exists;
 	AsciiString label1, label2, label3;
 	label1 = pMapObj->getProperties()->getAsciiString(TheKey_waypointPathLabel1, &exists);
 	label2 = pMapObj->getProperties()->getAsciiString(TheKey_waypointPathLabel2, &exists);
 	label3 = pMapObj->getProperties()->getAsciiString(TheKey_waypointPathLabel3, &exists);
-	Bool biDirectional;
+	bool biDirectional;
 	biDirectional = pMapObj->getProperties()->getBool(TheKey_waypointPathBiDirectional, &exists);
 	DEBUG_ASSERTCRASH(pMapObj->isWaypoint(), ("not a waypoint"));
 	Waypoint *pWay = newInstance(Waypoint)(pMapObj->getWaypointID(), pMapObj->getWaypointName(), 
@@ -1426,7 +1426,7 @@ void TerrainLogic::deleteWaypoints(void)
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool TerrainLogic::isClearLineOfSight(const Coord3D& pos, const Coord3D& posOther) const
+bool TerrainLogic::isClearLineOfSight(const Coord3D& pos, const Coord3D& posOther) const
 {
 	DEBUG_CRASH(("implement ME"));
 	return false;
@@ -1447,7 +1447,7 @@ Real TerrainLogic::getGroundHeight( Real x, Real y, Coord3D* normal ) const
 //-------------------------------------------------------------------------------------------------
 /** default get height for terrain logic */
 //-------------------------------------------------------------------------------------------------
-Real TerrainLogic::getLayerHeight( Real x, Real y, PathfindLayerEnum layer, Coord3D* normal, Bool clip ) const
+Real TerrainLogic::getLayerHeight( Real x, Real y, PathfindLayerEnum layer, Coord3D* normal, bool clip ) const
 {
 	if( normal )
 		normal->zero();
@@ -1459,7 +1459,7 @@ Real TerrainLogic::getLayerHeight( Real x, Real y, PathfindLayerEnum layer, Coor
 //-------------------------------------------------------------------------------------------------
 /** default isCliffCell for terrain logic */
 //-------------------------------------------------------------------------------------------------
-Bool TerrainLogic::isCliffCell( Real x, Real y) const
+bool TerrainLogic::isCliffCell( Real x, Real y) const
 {
 
 	return false;
@@ -1512,7 +1512,7 @@ void makeAlignToNormalMatrix( Real angle, const Coord3D& pos, const Coord3D& nor
 /** given angle and position, return the matrix aligning this
 	* position with the ground */
 //-------------------------------------------------------------------------------------------------
-PathfindLayerEnum TerrainLogic::alignOnTerrain( Real angle, const Coord3D& pos, Bool stickToGround, Matrix3D& mtx)
+PathfindLayerEnum TerrainLogic::alignOnTerrain( Real angle, const Coord3D& pos, bool stickToGround, Matrix3D& mtx)
 {
 	Coord3D terrainNormal;
 	PathfindLayerEnum layer;
@@ -1596,7 +1596,7 @@ Waypoint *TerrainLogic::getClosestWaypointOnPath( const Coord3D *pos, AsciiStrin
 	}
 
 	for( Waypoint *way = m_waypointListHead; way; way = way->getNext() ) {
-		Bool match = false;
+		bool match = false;
 		if (label.compareNoCase(way->getPathLabel1())==0) match = true;
 		if (label.compareNoCase(way->getPathLabel2())==0) match = true;
 		if (label.compareNoCase(way->getPathLabel3())==0) match = true;
@@ -1619,14 +1619,14 @@ Waypoint *TerrainLogic::getClosestWaypointOnPath( const Coord3D *pos, AsciiStrin
 //-------------------------------------------------------------------------------------------------
 /** Return true if the waypoint path containing pWay is labeled with the label. */
 //-------------------------------------------------------------------------------------------------
-Bool TerrainLogic::isPurposeOfPath( Waypoint *pWay, AsciiString label )
+bool TerrainLogic::isPurposeOfPath( Waypoint *pWay, AsciiString label )
 {
 	if (label.isEmpty() || pWay==NULL) {
 		DEBUG_LOG(("***Warning - asking for empth path label.\n"));
 		return false;
 	}
 
-	Bool match = false;
+	bool match = false;
 	if (label == pWay->getPathLabel1()) match = true;
 	if (label == pWay->getPathLabel2()) match = true;
 	if (label == pWay->getPathLabel3()) match = true;
@@ -1668,7 +1668,7 @@ Bridge * TerrainLogic::findBridgeAt( const Coord3D *pLoc) const
 //-------------------------------------------------------------------------------------------------
 /** Finds the bridge at a given x/y coordinate.  On a layer. */
 //-------------------------------------------------------------------------------------------------
-Bridge * TerrainLogic::findBridgeLayerAt( const Coord3D *pLoc, PathfindLayerEnum layer, Bool clip) const
+Bridge * TerrainLogic::findBridgeLayerAt( const Coord3D *pLoc, PathfindLayerEnum layer, bool clip) const
 {
 	if (layer == LAYER_GROUND) 
 		return NULL;
@@ -1722,7 +1722,7 @@ PathfindLayerEnum TerrainLogic::getLayerForDestination(const Coord3D *pos)
 //-------------------------------------------------------------------------------------------------
 // this is just like getLayerForDestination, but always return the highest layer that will be <= z at that point
 // (unlike getLayerForDestination, which will return the closest layer)
-PathfindLayerEnum TerrainLogic::getHighestLayerForDestination(const Coord3D *pos, Bool onlyHealthyBridges)
+PathfindLayerEnum TerrainLogic::getHighestLayerForDestination(const Coord3D *pos, bool onlyHealthyBridges)
 {
 	PathfindLayerEnum bestLayer = LAYER_GROUND;
 	Real bestDistance = pos->z - getGroundHeight(pos->x, pos->y);	// NOT fabs in this case.
@@ -1759,7 +1759,7 @@ PathfindLayerEnum TerrainLogic::getHighestLayerForDestination(const Coord3D *pos
 //-------------------------------------------------------------------------------------------------
 /** Determines whether the object interacts with the bridge on specified layer. */
 //-------------------------------------------------------------------------------------------------
-Bool TerrainLogic::objectInteractsWithBridgeLayer(Object *obj, Int layer, Bool considerBridgeHealth) const
+bool TerrainLogic::objectInteractsWithBridgeLayer(Object *obj, Int layer, bool considerBridgeHealth) const
 {
 	if (layer == LAYER_GROUND) return false;
 	if (layer == LAYER_WALL) {
@@ -1775,7 +1775,7 @@ Bool TerrainLogic::objectInteractsWithBridgeLayer(Object *obj, Int layer, Bool c
 
 	while (pBridge ) {
 		if (pBridge->getLayer() == layer) {
-			Bool match = false;
+			bool match = false;
 			if (pBridge->isPointOnBridge(obj->getPosition()) ) {
 				match = true;
 			}
@@ -1820,14 +1820,14 @@ Bool TerrainLogic::objectInteractsWithBridgeLayer(Object *obj, Int layer, Bool c
 //-------------------------------------------------------------------------------------------------
 /** Determines whether the object interacts with the bridge on specified layer. */
 //-------------------------------------------------------------------------------------------------
-Bool TerrainLogic::objectInteractsWithBridgeEnd(Object *obj, Int layer) const
+bool TerrainLogic::objectInteractsWithBridgeEnd(Object *obj, Int layer) const
 {
 	if (layer == LAYER_GROUND) return NULL;
 	Bridge *pBridge = getFirstBridge();
 
 	while (pBridge ) {
 		if (pBridge->getLayer() == layer) {
-			Bool match = false;
+			bool match = false;
 
 			Real radius = obj->getGeometryInfo().getMinorRadius();
 			radius += PATHFIND_CELL_SIZE_F/2.0f;
@@ -1876,7 +1876,7 @@ void TerrainLogic::updateBridgeDamageStates( void )
 //-------------------------------------------------------------------------------------------------
 /** Checks if a bridge is repaired. */
 //-------------------------------------------------------------------------------------------------
-Bool TerrainLogic::isBridgeRepaired(const Object *bridge)
+bool TerrainLogic::isBridgeRepaired(const Object *bridge)
 {
 	if (!bridge) return false;
 	ObjectID id = bridge->getID();
@@ -1901,7 +1901,7 @@ Bool TerrainLogic::isBridgeRepaired(const Object *bridge)
 //-------------------------------------------------------------------------------------------------
 /** Checks if a bridge is broken. */
 //-------------------------------------------------------------------------------------------------
-Bool TerrainLogic::isBridgeBroken( const Object *bridge )
+bool TerrainLogic::isBridgeBroken( const Object *bridge )
 {
 	if (!bridge) return false;
 	ObjectID id = bridge->getID();
@@ -2140,7 +2140,7 @@ Coord3D TerrainLogic::findFarthestEdgePoint( const Coord3D *farthestFrom ) const
 //-------------------------------------------------------------------------------------------------
 /** See if a location is underwater, and what the water height is. */
 //-------------------------------------------------------------------------------------------------
-Bool TerrainLogic::isUnderwater( Real x, Real y, Real *waterZ, Real *terrainZ )
+bool TerrainLogic::isUnderwater( Real x, Real y, Real *waterZ, Real *terrainZ )
 {
 
 	// get the water handle at this location
@@ -2289,7 +2289,7 @@ Real TerrainLogic::getWaterHeight( const WaterHandle *water )
 	* underwater will be damaged by the amount provided in the parameter 'damageAmount' */
 // ------------------------------------------------------------------------------------------------
 void TerrainLogic::setWaterHeight( const WaterHandle *water, Real height, Real damageAmount,
-																	 Bool forcePathfindUpdate )
+																	 bool forcePathfindUpdate )
 {
 
 	// sanity
@@ -2691,7 +2691,7 @@ void TerrainLogic::flattenTerrain(Object *obj)
 			for (i=iMin.x; i<=iMax.x; i++) {
 				for (j=0; j<=iMax.y; j++) {
 					Vector3	testPt(i*MAP_XY_FACTOR, j*MAP_XY_FACTOR, 0);
-					Bool match = false;
+					bool match = false;
 					unsigned char flags;
 					if (Point_In_Triangle_2D(topLeft, topRight, bottomLeft, testPt, 0, 1, flags)) {
 						match = true;
@@ -2717,7 +2717,7 @@ void TerrainLogic::flattenTerrain(Object *obj)
 			for (i=iMin.x; i<=iMax.x; i++) {
 				for (j=0; j<=iMax.y; j++) {
 					Vector3	testPt(i*MAP_XY_FACTOR, j*MAP_XY_FACTOR, 0);
-					Bool match = false;
+					bool match = false;
 					unsigned char flags;
 					if (Point_In_Triangle_2D(topLeft, topRight, bottomLeft, testPt, 0, 1, flags)) {
 						match = true;
@@ -2782,7 +2782,7 @@ void TerrainLogic::flattenTerrain(Object *obj)
 			for (i=iMin.x; i<=iMax.x; i++) {
 				for (j=0; j<=iMax.y; j++) {
 					Vector3	testPt(i*MAP_XY_FACTOR, j*MAP_XY_FACTOR, 0);
-					Bool match = false;
+					bool match = false;
 					Real dx = testPt.X - pos->x;
 					Real dy = testPt.Y - pos->y;
 					if ( dx*dx+dy*dy<radiusSqr) {
@@ -2800,7 +2800,7 @@ void TerrainLogic::flattenTerrain(Object *obj)
 			for (i=iMin.x; i<=iMax.x; i++) {
 				for (j=0; j<=iMax.y; j++) {
 					Vector3	testPt(i*MAP_XY_FACTOR, j*MAP_XY_FACTOR, 0);
-					Bool match = false;
+					bool match = false;
 					Real dx = testPt.X - pos->x;
 					Real dy = testPt.Y - pos->y;
 					if ( dx*dx+dy*dy<radiusSqr) {

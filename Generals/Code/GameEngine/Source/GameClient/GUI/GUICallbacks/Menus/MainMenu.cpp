@@ -96,8 +96,8 @@ enum
 	DROPDOWN_COUNT // keep last
 };
 
-static Bool raiseMessageBoxes = TRUE;
-static Bool campaignSelected = FALSE;
+static bool raiseMessageBoxes = TRUE;
+static bool campaignSelected = FALSE;
 #if defined RTS_DEBUG || defined RTS_INTERNAL
 static NameKeyType campaignID = NAMEKEY_INVALID;
 static GameWindow *buttonCampaign = NULL;
@@ -175,9 +175,9 @@ static GameWindow *buttonHard = NULL;
 static GameWindow *buttonDiffBack = NULL;
 static GameWindow *dropDownWindows[DROPDOWN_COUNT];
 
-static Bool buttonPushed = FALSE;
-static Bool isShuttingDown = FALSE;
-static Bool startGame = FALSE;
+static bool buttonPushed = FALSE;
+static bool isShuttingDown = FALSE;
+static bool startGame = FALSE;
 static Int	initialGadgetDelay = 210;
 enum
 {
@@ -194,16 +194,16 @@ static Int showFade = FALSE;
 static Int dropDown = DROPDOWN_NONE;
 static Int pendingDropDown = DROPDOWN_NONE;
 static AnimateWindowManager *localAnimateWindowManager = NULL;
-static Bool notShown = TRUE;
-static Bool FirstTimeRunningTheGame = TRUE;
+static bool notShown = TRUE;
+static bool FirstTimeRunningTheGame = TRUE;
 
-static Bool showLogo = FALSE;
+static bool showLogo = FALSE;
 static Int  showFrames = 0;
 static Int  showSide = SHOW_NONE;
-static Bool logoIsShown = FALSE;
-static Bool justEntered = FALSE;
+static bool logoIsShown = FALSE;
+static bool justEntered = FALSE;
 
-static Bool dontAllowTransitions = FALSE;
+static bool dontAllowTransitions = FALSE;
 
 //Added by Saad
 const Int /*TIME_OUT = 15,*/ CORNER = 10;
@@ -211,12 +211,12 @@ void AcceptResolution();
 void DeclineResolution();
 GameWindow *resAcceptMenu = NULL;
 extern DisplaySettings oldDispSettings, newDispSettings;
-extern Bool dispChanged;
+extern bool dispChanged;
 //static time_t timeStarted = 0, currentTime = 0;
 //
 
 void diffReverseSide( void );
-void HandleCanceledDownload( Bool resetDropDown )
+void HandleCanceledDownload( bool resetDropDown )
 {
 	buttonPushed = FALSE;
 	if (resetDropDown)
@@ -570,7 +570,7 @@ void MainMenuInit( WindowLayout *layout, void *userData )
 	if (!checkedForUpdate)
 	{
 		DWORD state = 0;
-		Bool isConnected = InternetGetConnectedState(&state, 0);
+		bool isConnected = InternetGetConnectedState(&state, 0);
 		if (isConnected && !(state & INTERNET_CONNECTION_MODEM_BUSY))
 		{
 			// wohoo - we're connected!  fire off a check for updates
@@ -651,7 +651,7 @@ void MainMenuShutdown( WindowLayout *layout, void *userData )
 	CancelPatchCheckCallback();
 
 	// if we are shutting down for an immediate pop, skip the animations
-	Bool popImmediate = *(Bool *)userData;
+	bool popImmediate = *(Bool *)userData;
 	
 //	if(winVidManager)
 	//		delete winVidManager;
@@ -677,7 +677,7 @@ void MainMenuShutdown( WindowLayout *layout, void *userData )
 //		localAnimateWindowManager->reverseAnimateWindow();
 }  // end MainMenuShutdown
 
-extern Bool DontShowMainMenu;
+extern bool DontShowMainMenu;
 
 ////////////////////////////////////////////////////////////////////////////
 //Added By Sadullah Nader
@@ -1009,8 +1009,8 @@ void PrintOffsetsFromControlBarParent( void );
 WindowMsgHandledType MainMenuSystem( GameWindow *window, UnsignedInt msg, 
 										 WindowMsgData mData1, WindowMsgData mData2 )
 {
-	static Bool triedToInitWOLAPI = FALSE;
-	static Bool canInitWOLAPI = FALSE;
+	static bool triedToInitWOLAPI = FALSE;
+	static bool canInitWOLAPI = FALSE;
 	
 	switch( msg ) 
 	{

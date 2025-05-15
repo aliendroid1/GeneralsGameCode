@@ -100,9 +100,9 @@ public:
 
 	virtual void projectileLaunchAtObjectOrPosition(const Object *victim, const Coord3D* victimPos, const Object *launcher, WeaponSlotType wslot, Int specificBarrelToUse, const WeaponTemplate* detWeap, const ParticleSystemTemplate* exhaustSysOverride);
 	virtual void projectileFireAtObjectOrPosition( const Object *victim, const Coord3D *victimPos, const WeaponTemplate *detWeap, const ParticleSystemTemplate* exhaustSysOverride );
-	virtual Bool projectileIsArmed() const { return m_isArmed; }											///< return true if the missile is armed and ready to explode
+	virtual bool projectileIsArmed() const { return m_isArmed; }											///< return true if the missile is armed and ready to explode
 	virtual ObjectID projectileGetLauncherID() const { return m_launcherID; }				///< Return firer of missile. Returns 0 if not yet fired.
-	virtual Bool projectileHandleCollision( Object *other );
+	virtual bool projectileHandleCollision( Object *other );
 	virtual const Coord3D *getVelocity() const { return &m_vel; }		///< get current velocity
 
 	virtual UpdateSleepTime update();
@@ -122,10 +122,10 @@ private:
 	Coord3D m_vel;
 
 	UnsignedInt m_stateTimestamp;				///< time of state change
-	Bool m_isLaunched;							
-	Bool m_isArmed;											///< if true, missile will explode on contact
+	bool m_isLaunched;							
+	bool m_isArmed;											///< if true, missile will explode on contact
 	Real m_noTurnDistLeft;				///< when zero, ok to start turning
-	Bool m_reachedIntermediatePos;
+	bool m_reachedIntermediatePos;
 	UnsignedInt m_frameAtLaunch;
 	Real m_heightAtLaunch;
 	RadiusDecal	m_deliveryDecal;

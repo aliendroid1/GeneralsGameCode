@@ -183,12 +183,12 @@ static void drawHiliteBar( const Image *left, const Image *right,
 //=============================================================================
 static void drawListBoxText( GameWindow *window, WinInstanceData *instData,
 														 Int x, Int y, Int width, Int height,
-														 Bool useImages )
+														 bool useImages )
 {
 	Int drawY;
 	ListboxData *list = (ListboxData *)window->winGetUserData();
 	Int i;
-	Bool selected;
+	bool selected;
 	Int listLineHeight;
 	Color textColor;
 //	W3DGameWindow *w3dWindow = static_cast<W3DGameWindow *>(window);

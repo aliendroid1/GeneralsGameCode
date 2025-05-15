@@ -36,7 +36,7 @@ class File;
 
 struct AsciiStringLessThan
 {
-	Bool operator()(AsciiString a, AsciiString b) const
+	bool operator()(AsciiString a, AsciiString b) const
 	{
 		return (a.compareNoCase(b) < 0);
 	}
@@ -44,7 +44,7 @@ struct AsciiStringLessThan
 
 struct UnicodeStringLessThan
 {
-	Bool operator()(UnicodeString a, UnicodeString b) const
+	bool operator()(UnicodeString a, UnicodeString b) const
 	{
 		return (a.compareNoCase(b) < 0);
 	}
@@ -52,9 +52,9 @@ struct UnicodeStringLessThan
 
 struct UnicodeStringsEqual
 {
-	Bool operator()(UnicodeString a, UnicodeString b) const
+	bool operator()(UnicodeString a, UnicodeString b) const
 	{
-		Bool retval = (a.compareNoCase(b) == 0);
+		bool retval = (a.compareNoCase(b) == 0);
 		DEBUG_LOG(("Comparing %ls with %ls, return value is ", a.str(), b.str()));
 		if (retval) {
 			DEBUG_LOG(("true.\n"));
@@ -82,7 +82,7 @@ public:
 	void filterLine(UnicodeString &line);
 
 protected:
-	Bool readWord(File *file1, WideChar *buf);
+	bool readWord(File *file1, WideChar *buf);
 	void unHaxor(UnicodeString &word);
 	LangMap m_wordList;
 	LangMap m_subWordList;

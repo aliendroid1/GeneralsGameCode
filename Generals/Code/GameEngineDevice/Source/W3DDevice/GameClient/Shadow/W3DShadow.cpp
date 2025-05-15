@@ -64,7 +64,7 @@ Vector3 LightPosWorld[ MAX_SHADOW_LIGHTS ] =
 };
 
 //DECLARE_PERF_TIMER(shadowsRender)
-void DoShadows(RenderInfoClass & rinfo, Bool stencilPass)
+void DoShadows(RenderInfoClass & rinfo, bool stencilPass)
 {
 	//USE_PERF_TIMER(shadowsRender)
 	shadowCameraFrustum=&rinfo.Camera.Get_Frustum();
@@ -122,9 +122,9 @@ W3DShadowManager::~W3DShadowManager( void )
 
 /** Do one-time initilalization of shadow systems that need to be
 active for full duration of game*/
-Bool W3DShadowManager::init( void )
+bool W3DShadowManager::init( void )
 {
-	Bool result=TRUE;
+	bool result=TRUE;
 
 	if	(TheW3DVolumetricShadowManager && TheW3DVolumetricShadowManager->init())
 	{
@@ -151,9 +151,9 @@ void W3DShadowManager::Reset( void )
 		TheW3DProjectedShadowManager->reset();
 }
 
-Bool W3DShadowManager::ReAcquireResources()
+bool W3DShadowManager::ReAcquireResources()
 {
-	Bool result = TRUE;
+	bool result = TRUE;
 
 	if (TheW3DVolumetricShadowManager && !TheW3DVolumetricShadowManager->ReAcquireResources())
 		result = FALSE;

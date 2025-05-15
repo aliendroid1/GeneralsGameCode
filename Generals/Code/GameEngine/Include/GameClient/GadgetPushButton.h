@@ -72,15 +72,15 @@
 // INLINING ///////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
-void GadgetCheckLikeButtonSetVisualCheck( GameWindow *g, Bool checked );
-Bool GadgetCheckLikeButtonIsChecked( GameWindow *g );
-void GadgetButtonEnableCheckLike( GameWindow *g, Bool makeCheckLike, Bool initiallyChecked );
+void GadgetCheckLikeButtonSetVisualCheck( GameWindow *g, bool checked );
+bool GadgetCheckLikeButtonIsChecked( GameWindow *g );
+void GadgetButtonEnableCheckLike( GameWindow *g, bool makeCheckLike, bool initiallyChecked );
 
 void GadgetButtonSetText( GameWindow *g, UnicodeString text );
 void GadgetButtonDrawClock( GameWindow *g, Int percent, Color color ); //Darkens the progress
 void GadgetButtonDrawInverseClock( GameWindow *g, Int percent, Color color ); //Darkens the remaining portion.
 void GadgetButtonDrawOverlayImage( GameWindow *g, const Image *image );
-void GadgetButtonSetBorder( GameWindow *g, Color color, Bool drawBorder = TRUE );
+void GadgetButtonSetBorder( GameWindow *g, Color color, bool drawBorder = TRUE );
 void GadgetButtonSetData(GameWindow *g, void *data);
 void *GadgetButtonGetData(GameWindow *g);
 void GadgetButtonSetAltSound( GameWindow *g, AsciiString altSound );

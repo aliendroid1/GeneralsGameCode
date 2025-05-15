@@ -106,7 +106,7 @@ SaveGameInfo::~SaveGameInfo( void )
 // ------------------------------------------------------------------------------------------------
 /** Is this date newer than the other one passed in? */
 // ------------------------------------------------------------------------------------------------
-Bool SaveDate::isNewerThan( SaveDate *other )
+bool SaveDate::isNewerThan( SaveDate *other )
 {
 
 	// year
@@ -684,10 +684,10 @@ SaveCode GameState::loadGame( AvailableGameInfo gameInfo )
 	// lock creation of new ghost objects
 	TheGhostObjectManager->saveLockGhostObjects( TRUE );
 
-	LatchRestore<Bool> inLoadGame(m_isInLoadGame, TRUE);
+	LatchRestore<bool> inLoadGame(m_isInLoadGame, TRUE);
 
 	// load the save data
-	Bool error = FALSE;
+	bool error = FALSE;
 	try
 	{
 
@@ -781,7 +781,7 @@ AsciiString GameState::getFilePathInSaveDirectory(const AsciiString& leaf) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool GameState::isInSaveDirectory(const AsciiString& path) const
+bool GameState::isInSaveDirectory(const AsciiString& path) const
 {
 	return path.startsWithNoCase(getSaveDirectory());
 }
@@ -936,7 +936,7 @@ AsciiString GameState::portableMapPathToRealMapPath(const AsciiString& in) const
 // ------------------------------------------------------------------------------------------------
 /** Does the save game file exist */
 // ------------------------------------------------------------------------------------------------
-Bool GameState::doesSaveGameExist( AsciiString filename ) 
+bool GameState::doesSaveGameExist( AsciiString filename ) 
 {
 
 	// construct full path to file
@@ -973,7 +973,7 @@ void GameState::getSaveGameInfoFromFile( AsciiString filename, SaveGameInfo *sav
 {
 	AsciiString token;
 	Int blockSize;
-	Bool done = FALSE;
+	bool done = FALSE;
 	SnapshotBlock *blockInfo;
 
 	// sanity
@@ -1207,7 +1207,7 @@ void GameState::populateSaveGameListbox( GameWindow *listbox, SaveLoadLayoutType
 		UnicodeString displayLabel = saveGameInfo->description;
 		if( displayLabel.isEmpty() == TRUE )
 		{
-			Bool exists = FALSE;
+			bool exists = FALSE;
 			
 			displayLabel = TheGameText->fetch( saveGameInfo->mapLabel, &exists );
 			if( exists == FALSE )
@@ -1263,8 +1263,8 @@ void GameState::iterateSaveFiles( IterateSaveFileCallback callback, void *userDa
 	// iterate all items in the directory
 	WIN32_FIND_DATA item;  // search item
 	HANDLE hFile = INVALID_HANDLE_VALUE;  // handle for search resources
-	Bool done = FALSE;
-	Bool first = TRUE;
+	bool done = FALSE;
+	bool first = TRUE;
 	while( done == FALSE )
 	{
 
@@ -1410,7 +1410,7 @@ void GameState::xferSaveData( Xfer *xfer, SnapshotType which )
 		DEBUG_LOG(("GameState::xferSaveData() - not XFER_SAVE\n"));
 		AsciiString token;
 		Int blockSize;
-		Bool done = FALSE;
+		bool done = FALSE;
 		SnapshotBlock *blockInfo;
 
 		// read all data blocks in the file
@@ -1608,7 +1608,7 @@ void GameState::xfer( Xfer *xfer )
 	// user description
 	xfer->xferUnicodeString( &saveGameInfo->description );
 
-	Bool exists = FALSE;
+	bool exists = FALSE;
 	Dict *dict = MapObject::getWorldDict();
 	if( dict )
 		saveGameInfo->mapLabel = dict->getAsciiString( TheKey_mapName, &exists );

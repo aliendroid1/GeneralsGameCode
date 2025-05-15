@@ -156,7 +156,7 @@ void GameMessage::appendRealArgument( Real arg )
 	a->m_type = ARGUMENTDATATYPE_REAL;
 }
 
-void GameMessage::appendBooleanArgument( Bool arg )
+void GameMessage::appendBooleanArgument( bool arg )
 {
 	GameMessageArgument *a = allocArg();
 	a->m_data.boolean = arg;
@@ -737,7 +737,7 @@ void GameMessageList::removeMessage( GameMessage *msg )
 /**
  * Return whether or not a message of the given type is in the message list
  */
-Bool GameMessageList::containsMessageOfType( GameMessage::Type type )
+bool GameMessageList::containsMessageOfType( GameMessage::Type type )
 {
 	GameMessage *msg = getFirstMessage();
 	while (msg) {
@@ -953,7 +953,7 @@ void MessageStream::removeTranslator( TranslatorID id )
 // ------------------------------------------------------------------------------------------------
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 
-Bool isInvalidDebugCommand( GameMessage::Type t )
+bool isInvalidDebugCommand( GameMessage::Type t )
 {
 	// see if this is something that should be prevented in multiplayer games
 	// Don't reject this stuff in skirmish games.

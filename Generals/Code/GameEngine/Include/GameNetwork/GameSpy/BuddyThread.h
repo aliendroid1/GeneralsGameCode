@@ -69,7 +69,7 @@ public:
 			char nick[GP_NICK_LEN];
 			char email[GP_EMAIL_LEN];
 			char password[GP_PASSWORD_LEN];
-			Bool hasFirewall;
+			bool hasFirewall;
 		} login;
 
 		struct
@@ -158,15 +158,15 @@ public:
 	virtual ~GameSpyBuddyMessageQueueInterface() {}
 	virtual void startThread( void ) = 0;
 	virtual void endThread( void ) = 0;
-	virtual Bool isThreadRunning( void ) = 0;
-	virtual Bool isConnected( void ) = 0;
-	virtual Bool isConnecting( void ) = 0;
+	virtual bool isThreadRunning( void ) = 0;
+	virtual bool isConnected( void ) = 0;
+	virtual bool isConnecting( void ) = 0;
 
 	virtual void addRequest( const BuddyRequest& req ) = 0;
-	virtual Bool getRequest( BuddyRequest& req ) = 0;
+	virtual bool getRequest( BuddyRequest& req ) = 0;
 
 	virtual void addResponse( const BuddyResponse& resp ) = 0;
-	virtual Bool getResponse( BuddyResponse& resp ) = 0;
+	virtual bool getResponse( BuddyResponse& resp ) = 0;
 
 	virtual GPProfile getLocalProfileID( void ) = 0;
 

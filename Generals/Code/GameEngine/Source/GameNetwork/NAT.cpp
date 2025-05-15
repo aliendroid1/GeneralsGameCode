@@ -192,8 +192,8 @@ NATStateType NAT::update() {
 		m_NATState = NATSTATE_IDLE;
 	} else if (m_NATState == NATSTATE_WAITFORSTATS) {
 		// check for all stats
-		Bool gotAllStats = TRUE;
-		Bool timedOut = FALSE;
+		bool gotAllStats = TRUE;
+		bool timedOut = FALSE;
 		for (Int i=0; i<MAX_SLOTS; ++i)
 		{
 			const GameSpyGameSlot *slot = TheGameSpyGame->getGameSpySlot(i);
@@ -500,7 +500,7 @@ void NAT::establishConnectionPaths() {
 	
 	m_connectionRound = 0;
 	m_connectionPairIndex = m_numNodes - 2;
-	Bool connectionAssigned[MAX_SLOTS];
+	bool connectionAssigned[MAX_SLOTS];
 
 	for (i = 0; i < MAX_SLOTS; ++i) {
 		m_connectionNodes[i].m_slotIndex = -1;
@@ -915,7 +915,7 @@ void NAT::processManglerResponse(UnsignedShort mangledPort) {
 
 // check to see if we've completed all the rounds
 // this is kind of a cheesy way to check, but it works.
-Bool NAT::allConnectionsDone() {
+bool NAT::allConnectionsDone() {
 	if (m_numNodes == 2) {
 		if (m_connectionRound >= 1) {
 			return TRUE;
@@ -948,8 +948,8 @@ Bool NAT::allConnectionsDone() {
 	return FALSE;
 }
 
-Bool NAT::allConnectionsDoneThisRound() {
-	Bool retval = TRUE;
+bool NAT::allConnectionsDoneThisRound() {
+	bool retval = TRUE;
 	for (Int i = 0; (i < m_numNodes) && (retval == TRUE); ++i) {
 		if ((m_connectionStates[i] != NATCONNECTIONSTATE_DONE) && (m_connectionStates[i] != NATCONNECTIONSTATE_FAILED)) {
 			retval = FALSE;

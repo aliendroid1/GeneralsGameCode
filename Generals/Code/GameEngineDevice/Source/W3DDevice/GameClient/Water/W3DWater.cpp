@@ -192,7 +192,7 @@ void doSkyBoxSet(Bool startDraw)
 #define NOISE_REPEAT_FACTOR ((float)(1.0f/(16.0f)))
 
 					
-static Bool wireframeForDebug = 0;
+static bool wireframeForDebug = 0;
 
 void WaterRenderObjClass::setupJbaWaterShader(void) 
 {
@@ -221,7 +221,7 @@ void WaterRenderObjClass::setupJbaWaterShader(void)
 	DX8Wrapper::Set_DX8_Texture_Stage_State(1,  D3DTSS_TEXCOORDINDEX, 0);
 	DX8Wrapper::Set_DX8_Texture_Stage_State(3,  D3DTSS_TEXCOORDINDEX, 1);
 	
-	Bool doSparkles = true;
+	bool doSparkles = true;
 
 	if (m_riverWaterPixelShader && doSparkles) {
 		DX8Wrapper::_Get_D3D_Device8()->SetTexture(1,m_waterSparklesTexture->Peek_D3D_Texture());	
@@ -615,7 +615,7 @@ HRESULT WaterRenderObjClass::initBumpMap(LPDIRECT3DTEXTURE8 *pTex, TextureClass 
 //-------------------------------------------------------------------------------------------------
 /** Create and fill a D3D vertex buffer with water surface vertices */
 //-------------------------------------------------------------------------------------------------
-HRESULT WaterRenderObjClass::generateVertexBuffer( Int sizeX, Int sizeY, Int vertexSize, Bool doStatic)
+HRESULT WaterRenderObjClass::generateVertexBuffer( Int sizeX, Int sizeY, Int vertexSize, bool doStatic)
 {
 	m_numVertices=sizeX*sizeY;
 	//Assuming dynamic vertex buffer, allocate maximum multiple of required size to allow rendering from
@@ -1681,7 +1681,7 @@ void WaterRenderObjClass::Render(RenderInfoClass & rinfo)
 /** Clips the water plane to the current camera frustum and returns a bounding
 	* box enclosing the clipped plane.  Returns false if water plane is not visible. */
 //-------------------------------------------------------------------------------------------------
-Bool WaterRenderObjClass::getClippedWaterPlane(CameraClass *cam, AABoxClass *box)
+bool WaterRenderObjClass::getClippedWaterPlane(CameraClass *cam, AABoxClass *box)
 {
 	const FrustumClass & frustum = cam->Get_Frustum();
 
@@ -2577,7 +2577,7 @@ void WaterRenderObjClass::setGridResolution(Real gridCellsX, Real gridCellsY, Re
 			m_meshData = NULL;	 // must set to NULL so that we properly re-allocate
 			m_meshDataSize = 0;
 
-			Bool enable = m_doWaterGrid;
+			bool enable = m_doWaterGrid;
 			enableWaterGrid(true);	// allocates buffers.
 			m_doWaterGrid = enable;
 
@@ -2597,7 +2597,7 @@ void WaterRenderObjClass::getGridResolution( Real *gridCellsX, Real *gridCellsY,
 
 }
 
-static Real wobble(Real baseV, Real offset, Bool wobble)
+static Real wobble(Real baseV, Real offset, bool wobble)
 {
 	if (!wobble) return 0;
 	offset = sin(2*PI*baseV - 3*offset);
@@ -2653,7 +2653,7 @@ void WaterRenderObjClass::drawRiverWater(PolygonTrigger *pTrig)
 	rectangleCount--;
 
 	Real bumpFactor = 5;
-	static Bool doWobble = true;
+	static bool doWobble = true;
 
 	if (m_disableRiver) return;
 	m_drawingRiver = true;
@@ -2918,7 +2918,7 @@ void WaterRenderObjClass::setupFlatWaterShader(void)
 	DX8Wrapper::Set_DX8_Texture_Stage_State(0,  D3DTSS_TEXCOORDINDEX, 0);
 	DX8Wrapper::Set_DX8_Texture_Stage_State(1,  D3DTSS_TEXCOORDINDEX, 0);
 	
-	Bool doSparkles = true;
+	bool doSparkles = true;
 
 	if (m_trapezoidWaterPixelShader && doSparkles) {
 		DX8Wrapper::_Get_D3D_Device8()->SetTexture(1,m_waterSparklesTexture->Peek_D3D_Texture());	
@@ -2981,7 +2981,7 @@ void WaterRenderObjClass::drawTrapezoidWater(Vector3 points[4])
 	if (uCount>50) uCount = 50;
 	if (vCount>50) vCount = 50;
 
-	static Bool doWobble = true;
+	static bool doWobble = true;
 
 	Int rectangleCount = uCount*vCount;
 

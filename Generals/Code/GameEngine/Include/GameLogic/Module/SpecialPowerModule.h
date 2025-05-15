@@ -50,10 +50,10 @@ class SpecialPowerModuleInterface
 {
 public:
 
-	virtual Bool isModuleForPower( const SpecialPowerTemplate *specialPowerTemplate ) const = 0;
-	virtual Bool isReady( void ) const = 0;
+	virtual bool isModuleForPower( const SpecialPowerTemplate *specialPowerTemplate ) const = 0;
+	virtual bool isReady( void ) const = 0;
 //  This is the althernate way to one-at-a-time BlackLotus' specials; we'll keep it commented her until Dustin decides, or until 12/10/02
-//	virtual Bool isBusy( void ) const = 0;
+//	virtual bool isBusy( void ) const = 0;
 	virtual Real getPercentReady( void ) const = 0;
 	virtual UnsignedInt getReadyFrame( void ) const = 0;
 	virtual AsciiString getPowerName( void ) const = 0;
@@ -61,7 +61,7 @@ public:
 	virtual ScienceType getRequiredScience( void ) const = 0;
 	virtual void onSpecialPowerCreation( void ) = 0;
 	virtual void setReadyFrame( UnsignedInt frame ) = 0;
-	virtual void pauseCountdown( Bool pause ) = 0;
+	virtual void pauseCountdown( bool pause ) = 0;
 	virtual void doSpecialPower( UnsignedInt commandOptions ) = 0;
 	virtual void doSpecialPowerAtObject( Object *obj, UnsignedInt commandOptions ) = 0;
 	virtual void doSpecialPowerAtLocation( const Coord3D *loc, Real angle, UnsignedInt commandOptions ) = 0;
@@ -83,7 +83,7 @@ public:
 
 	const SpecialPowerTemplate *m_specialPowerTemplate;		///< pointer to the special power template
 	Bool	m_updateModuleStartsAttack;	///< update module determines when the special power actually starts! If true, update module is required.
-	Bool m_startsPaused; ///< Paused on creation, someone else will have to unpause (like upgrade module, or script)
+	bool m_startsPaused; ///< Paused on creation, someone else will have to unpause (like upgrade module, or script)
 	AudioEventRTS					m_initiateSound;
 };
 
@@ -105,10 +105,10 @@ public:
 	// BehaviorModule
 	virtual SpecialPowerModuleInterface* getSpecialPower() { return this; }
 
-	Bool isModuleForPower( const SpecialPowerTemplate *specialPowerTemplate ) const;	///< is this module for the specified special power
-	Bool isReady( void ) const; 						///< is this special power available now
+	bool isModuleForPower( const SpecialPowerTemplate *specialPowerTemplate ) const;	///< is this module for the specified special power
+	bool isReady( void ) const; 						///< is this special power available now
 //  This is the althernate way to one-at-a-time BlackLotus' specials; we'll keep it commented her until Dustin decides, or until 12/10/02
-//	Bool isBusy( void ) const { return FALSE; } 
+//	bool isBusy( void ) const { return FALSE; } 
 
 	Real getPercentReady( void ) const;		///< get the percent ready (1.0 = ready now, 0.5 = half charged up etc.)
 
@@ -126,7 +126,7 @@ public:
 
 	void setReadyFrame( UnsignedInt frame ) { m_availableOnFrame = frame; }
 	UnsignedInt getReadyFrame( void ) { return m_availableOnFrame; }// USED BY PLAYER TO KEEP RECHARGE TIMERS IN SYNC
-	void pauseCountdown( Bool pause );
+	void pauseCountdown( bool pause );
 
 	//
 	// the following methods should be *EXTENDED* for any special power module implementations
@@ -157,7 +157,7 @@ public:
 
 protected:
 
-	Bool initiateIntentToDoSpecialPower( const Object *targetObj, const Coord3D *targetPos, const Waypoint *way, UnsignedInt commandOptions );
+	bool initiateIntentToDoSpecialPower( const Object *targetObj, const Coord3D *targetPos, const Waypoint *way, UnsignedInt commandOptions );
 	void triggerSpecialPower( const Coord3D *location );
 	void createViewObject( const Coord3D *location );
 	void resolveSpecialPower( void );

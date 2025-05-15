@@ -165,7 +165,7 @@ TransitionWindow::~TransitionWindow( void )
 	m_transition = NULL;
 }
 
-Bool TransitionWindow::init( void )
+bool TransitionWindow::init( void )
 {
 	m_winID = TheNameKeyGenerator->nameToKey(m_winName);
 	m_win		= TheWindowManager->winGetWindowFromId(NULL, m_winID);
@@ -192,7 +192,7 @@ void TransitionWindow::update( Int frame )
 		m_transition->update( frame - m_currentFrameDelay);
 }
 
-Bool TransitionWindow::isFinished( void )
+bool TransitionWindow::isFinished( void )
 {
 	if(m_transition)
 		return m_transition->isFinished();
@@ -273,7 +273,7 @@ void TransitionGroup::update( void )
 	}	
 }
 
-Bool TransitionGroup::isFinished( void )
+bool TransitionGroup::isFinished( void )
 {
 	TransitionWindowList::iterator it = m_transitionWindowList.begin();
 	while (it != m_transitionWindowList.end())
@@ -312,7 +312,7 @@ void TransitionGroup::reverse( void )
 //	m_currentFrame ++;
 }
 
-Bool TransitionGroup::isReversed( void )
+bool TransitionGroup::isReversed( void )
 {
 	if(m_directionMultiplier < 0)
 		return TRUE;
@@ -442,7 +442,7 @@ void GameWindowTransitionsHandler::draw( void )
 		m_secondaryDrawGroup->draw();
 }
 
-void GameWindowTransitionsHandler::setGroup(AsciiString groupName, Bool immidiate )
+void GameWindowTransitionsHandler::setGroup(AsciiString groupName, bool immidiate )
 {
 	if(groupName.isEmpty() && immidiate)
 		m_currentGroup = NULL;
@@ -498,7 +498,7 @@ void GameWindowTransitionsHandler::reverse( AsciiString groupName )
 	m_pendingGroup = NULL;
 }
 
-void GameWindowTransitionsHandler::remove( AsciiString groupName,  Bool skipPending )
+void GameWindowTransitionsHandler::remove( AsciiString groupName,  bool skipPending )
 {
 	TransitionGroup *g = findGroup(groupName);
 	if(m_pendingGroup == g)
@@ -534,7 +534,7 @@ TransitionGroup *GameWindowTransitionsHandler::getNewGroup( AsciiString name )
 	return g;
 }
 
-Bool GameWindowTransitionsHandler::isFinished( void )
+bool GameWindowTransitionsHandler::isFinished( void )
 {
 	if(m_currentGroup)
 		return m_currentGroup->isFinished();

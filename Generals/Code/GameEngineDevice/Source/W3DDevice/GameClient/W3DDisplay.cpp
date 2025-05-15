@@ -269,7 +269,7 @@ void W3DDisplay::getDisplayModeDescription(Int modeIndex, Int *xres, Int *yres, 
 	}
 }
 
-void W3DDisplay::setGamma(Real gamma, Real bright, Real contrast, Bool calibrate)
+void W3DDisplay::setGamma(Real gamma, Real bright, Real contrast, bool calibrate)
 {
 	if (m_windowed)
 		return;	//we don't allow gamma to change in window because it would affect desktop.
@@ -281,7 +281,7 @@ void W3DDisplay::setGamma(Real gamma, Real bright, Real contrast, Bool calibrate
 
 /** Set resolution of display */
 //=============================================================================
-Bool W3DDisplay::setDisplayMode( UnsignedInt xres, UnsignedInt yres, UnsignedInt bitdepth, Bool windowed )
+bool W3DDisplay::setDisplayMode( UnsignedInt xres, UnsignedInt yres, UnsignedInt bitdepth, bool windowed )
 {
 	if (WW3D_ERROR_OK == WW3D::Set_Device_Resolution(xres,yres,bitdepth,windowed,true))
 	{
@@ -698,7 +698,7 @@ void W3DDisplay::gatherDebugStats( void )
 		Int polyPerFrame = Debug_Statistics::Get_DX8_Polygons();
 
 		// check for debug D3D
-		Bool debugD3D=false;
+		bool debugD3D=false;
 		RegistryClass registry ("Software\\Microsoft\\Direct3d");
 		if (registry.Is_Valid ()) {
 			if (registry.Get_Int ("LoadDebugRuntime", 0) == 1) {
@@ -1210,7 +1210,7 @@ void W3DDisplay::draw( void )
   	//
 	//PredictiveLODOptimizerClass::Optimize_LODs( 5000 );
 
-	Bool freezeTime = TheTacticalView->isTimeFrozen() && !TheTacticalView->isCameraMovementFinished();
+	bool freezeTime = TheTacticalView->isTimeFrozen() && !TheTacticalView->isCameraMovementFinished();
 	freezeTime = freezeTime || TheScriptEngine->isTimeFrozenDebug() || TheScriptEngine->isTimeFrozenScript();
 	freezeTime = freezeTime || TheGameLogic->isGamePaused();
 
@@ -1324,7 +1324,7 @@ void W3DDisplay::draw( void )
 		// start render block
 		{
 			//USE_PERF_TIMER(BigAssRenderLoop)
-			static Bool couldRender = true;
+			static bool couldRender = true;
 			if ((TheGlobalData->m_breakTheMovie == FALSE) && (TheGlobalData->m_disableRender == false) && WW3D::Begin_Render( true, true, Vector3( 0.0f, 0.0f, 0.0f ), TheWaterTransparency->m_minWaterOpacity ) == WW3D_ERROR_OK)		
 			{
 				
@@ -1499,7 +1499,7 @@ void W3DDisplay::renderLetterBox(UnsignedInt currentTime)
 		}
 }
 
-Bool W3DDisplay::isLetterBoxFading(void)
+bool W3DDisplay::isLetterBoxFading(void)
 {
 	if (m_letterBoxEnabled && m_letterBoxFadeLevel != 1.0f)
 		return TRUE;
@@ -1515,7 +1515,7 @@ Bool W3DDisplay::isLetterBoxFading(void)
 void W3DDisplay::createLightPulse( const Coord3D *pos, const RGBColor *color, 
 																	 Real innerRadius, Real attenuationWidth, 
 																	 UnsignedInt increaseFrameTime, 
-																	 UnsignedInt decayFrameTime//, Bool donut
+																	 UnsignedInt decayFrameTime//, bool donut
 																	 )
 {
 	if (innerRadius+attenuationWidth<2.0*PATHFIND_CELL_SIZE_F + 1.0f) {
@@ -2059,7 +2059,7 @@ void W3DDisplay::drawImage( const Image *image, Int startX, Int startY,
 	m_2DRender->Reset();
 	m_2DRender->Enable_Texturing( TRUE );
 
-	Bool doAlphaReset=FALSE;
+	bool doAlphaReset=FALSE;
 
 	///@todo: Why are we alpha blending all images?  Reduces our fillrate. -MW
 	switch (mode)
@@ -2411,7 +2411,7 @@ void W3DDisplay::takeScreenShot(void)
 
 	static int frame_number = 1;
 
-	Bool done = false;
+	bool done = false;
 	while (!done) {
 #ifdef CAPTURE_TO_TARGA
 		sprintf( leafname, "%s%.3d.tga", "sshot", frame_number++);

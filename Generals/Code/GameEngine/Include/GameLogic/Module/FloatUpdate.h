@@ -48,7 +48,7 @@ public:
 
 	static void buildFieldParse(MultiIniFieldParse& p);
 
-	Bool m_enabled;							///< enabled
+	bool m_enabled;							///< enabled
 
 };
 
@@ -64,14 +64,14 @@ public:
 	FloatUpdate( Thing *thing, const ModuleData* moduleData );
 	// virtual destructor prototype provided by memory pool declaration
 
-	void setEnabled( Bool enabled ) { m_enabled = enabled; }  ///< enable/disable floating
+	void setEnabled( bool enabled ) { m_enabled = enabled; }  ///< enable/disable floating
 
 	virtual UpdateSleepTime update();	///< Deciding whether or not to make new guys
 
 protected:
 
 	
-	Bool m_enabled;			///< enabled
+	bool m_enabled;			///< enabled
 
 };
 

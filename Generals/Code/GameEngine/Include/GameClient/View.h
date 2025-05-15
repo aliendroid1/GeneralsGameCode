@@ -102,15 +102,15 @@ public:
 	virtual void reset( void );
 	virtual UnsignedInt getID( void ) { return m_id; }
 
-	virtual void setZoomLimited( Bool limit ) { m_zoomLimited = limit; }			///< limit the zoom height
-	virtual Bool isZoomLimited( void ) { return m_zoomLimited; }							///< get status of zoom limit
+	virtual void setZoomLimited( bool limit ) { m_zoomLimited = limit; }			///< limit the zoom height
+	virtual bool isZoomLimited( void ) { return m_zoomLimited; }							///< get status of zoom limit
 
 	/// pick drawable given the screen pixel coords.  If force attack, picks bridges as well.
-	virtual Drawable *pickDrawable( const ICoord2D *screen, Bool forceAttack, PickType pickType ) = 0;
+	virtual Drawable *pickDrawable( const ICoord2D *screen, bool forceAttack, PickType pickType ) = 0;
 
 	/// all drawables in the 2D screen region will call the 'callback'
 	virtual Int iterateDrawablesInRegion( IRegion2D *screenRegion,
-																				Bool (*callback)( Drawable *draw, void *userData ),
+																				bool (*callback)( Drawable *draw, void *userData ),
 																				void *userData ) = 0;
 
 	/** project the 4 corners of this view into the world and return each point as a parameter,
@@ -132,9 +132,9 @@ public:
 	virtual void initHeightForMap( void ) {};														///<  Init the camera height for the map at the current position.
 	virtual void scrollBy( Coord2D *delta );														///< Shift the view by the given delta
 
-	virtual void moveCameraTo(const Coord3D *o, Int frames, Int shutter, Bool orient) { lookAt( o ); }
-	virtual void moveCameraAlongWaypointPath(Waypoint *way, Int frames, Int shutter, Bool orient) { }
-	virtual Bool isCameraMovementFinished( void ) { return TRUE; }
+	virtual void moveCameraTo(const Coord3D *o, Int frames, Int shutter, bool orient) { lookAt( o ); }
+	virtual void moveCameraAlongWaypointPath(Waypoint *way, Int frames, Int shutter, bool orient) { }
+	virtual bool isCameraMovementFinished( void ) { return TRUE; }
 	virtual void cameraModFinalZoom(Real finalZoom){};			 ///< Final zoom for current camera movement.
 	virtual void cameraModRollingAverage(Int framesToAverage){}; ///< Number of frames to average movement for current camera movement.
 	virtual void cameraModFinalTimeMultiplier(Int finalMultiplier){}; ///< Final time multiplier for current camera movement.
@@ -147,9 +147,9 @@ public:
 
 	virtual enum FilterModes getViewFilterMode(void) {return (enum FilterModes)0;}			///< Turns on viewport special effect (black & white mode)
 	virtual enum FilterTypes getViewFilterType(void) {return (enum FilterTypes)0;}			///< Turns on viewport special effect (black & white mode)
-	virtual Bool setViewFilterMode(enum FilterModes filterMode) { return FALSE; }			///< Turns on viewport special effect (black & white mode)
+	virtual bool setViewFilterMode(enum FilterModes filterMode) { return FALSE; }			///< Turns on viewport special effect (black & white mode)
 	virtual void setViewFilterPos(const Coord3D *pos) { };			///<  Passes a position to the special effect filter.
-	virtual Bool setViewFilter(	enum FilterTypes filter) { return FALSE;}			///< Turns on viewport special effect (black & white mode)
+	virtual bool setViewFilter(	enum FilterTypes filter) { return FALSE;}			///< Turns on viewport special effect (black & white mode)
 
 	virtual void setFadeParameters(Int fadeFrames, Int direction) { };
 	virtual void set3DWireFrameMode(Bool enable) { };
@@ -158,7 +158,7 @@ public:
  	virtual void rotateCamera(Real rotations, Int frames) {}; ///< Rotate camera about current viewpoint.
 	virtual void rotateCameraTowardObject(ObjectID id, Int milliseconds, Int holdMilliseconds) {};	///< Rotate camera to face an object, and hold on it
 	virtual void rotateCameraTowardPosition(const Coord3D *pLoc, Int milliseconds) {};	///< Rotate camera to face a location.
-	virtual Bool isTimeFrozen(void){ return false;}					///< Freezes time during the next camera movement.
+	virtual bool isTimeFrozen(void){ return false;}					///< Freezes time during the next camera movement.
 	virtual Int	 getTimeMultiplier(void) {return 1;};				///< Get the time multiplier.
 	virtual void setTimeMultiplier(Int multiple) {}; ///< Set the time multiplier.
 	virtual void setDefaultView(Real pitch, Real angle, Real maxHeight) {};
@@ -182,7 +182,7 @@ public:
 	virtual void zoomOut( void );																				///< Zoom out, farther away from the ground, limit to max
 	virtual void setZoomToDefault( void ) { }														///< Set zoom to default value
 	virtual Real getMaxZoom( void ) { return m_maxZoom; }								///< return max zoom value
-	virtual void setOkToAdjustHeight( Bool val ) { m_okToAdjustHeight = val; }	///< Set this to adjust camera height
+	virtual void setOkToAdjustHeight( bool val ) { m_okToAdjustHeight = val; }	///< Set this to adjust camera height
 
 	// for debugging
 	virtual Real getTerrainHeightUnderCamera() { return m_terrainHeightUnderCamera; }
@@ -193,7 +193,7 @@ public:
 	virtual void setFieldOfView( Real angle ) { m_FOV = angle; }				///< Set the horizontal field of view angle
 	virtual Real getFieldOfView( void ) { return m_FOV; }								///< Get the horizontal field of view angle
 
-  Bool worldToScreen( const Coord3D *w, ICoord2D *s ) { return worldToScreenTriReturn( w, s ) == WTS_INSIDE_FRUSTUM; }	///< Transform world coordinate "w" into screen coordinate "s"
+  bool worldToScreen( const Coord3D *w, ICoord2D *s ) { return worldToScreenTriReturn( w, s ) == WTS_INSIDE_FRUSTUM; }	///< Transform world coordinate "w" into screen coordinate "s"
   virtual WorldToScreenReturn worldToScreenTriReturn(const Coord3D *w, ICoord2D *s ) = 0; ///< Like worldToScreen(), but with a more informative return value
 	virtual void screenToWorld( const ICoord2D *s, Coord3D *w ) = 0;										///< Transform screen coordinate "s" into world coordinate "w"
 	virtual void screenToTerrain( const ICoord2D *screen, Coord3D *world ) = 0;  ///< transform screen coord to a point on the 3D terrain
@@ -218,8 +218,8 @@ public:
 	virtual Drawable *getCameraLockDrawable() const { return m_cameraLockDrawable; }
 	virtual void setCameraLockDrawable(Drawable *drawable) { m_cameraLockDrawable = drawable; m_lockDist = 0.0f; }
 
-	virtual void setMouseLock( Bool mouseLocked ) { m_mouseLocked = mouseLocked; }					///< lock/unlock the mouse input to the tactical view
-	virtual Bool isMouseLocked( void ) { return m_mouseLocked; }														///< is the mouse input locked to the tactical view?
+	virtual void setMouseLock( bool mouseLocked ) { m_mouseLocked = mouseLocked; }					///< lock/unlock the mouse input to the tactical view
+	virtual bool isMouseLocked( void ) { return m_mouseLocked; }														///< is the mouse input locked to the tactical view?
 
 	/// Add an impulse force to shake the camera
 	virtual void shake( const Coord3D *epicenter, CameraShakeType shakeType ) { };
@@ -264,7 +264,7 @@ protected:
 	Real m_minHeightAboveGround;
 	Real m_zoom;																								///< Current zoom value
 	Real m_heightAboveGround;																		///< User's desired height above ground
-	Bool m_zoomLimited;																					///< Camera restricted in zoom height
+	bool m_zoomLimited;																					///< Camera restricted in zoom height
 	Real m_defaultAngle;
 	Real m_defaultPitchAngle;
 	Real m_currentHeightAboveGround;														///< Cached value for debugging
@@ -276,10 +276,10 @@ protected:
 	Real m_lockDist;																						///< how far can we be when tethered?
 
 	Real m_FOV;																									///< the current field of view angle
-	Bool m_mouseLocked;																					///< is the mouse input locked to the tactical view?
+	bool m_mouseLocked;																					///< is the mouse input locked to the tactical view?
 
-	Bool m_okToAdjustHeight;																		///< Should we attempt to adjust camera height?
-	Bool m_snapImmediate;																				///< Should we immediately snap to the object we're following?
+	bool m_okToAdjustHeight;																		///< Should we attempt to adjust camera height?
+	bool m_snapImmediate;																				///< Should we immediately snap to the object we're following?
 
 	Coord2D m_guardBandBias; ///< Exttra beefy margins so huge thins can stay "on-screen"
 
@@ -294,7 +294,7 @@ class ViewLocation
 	friend class LookAtTranslator;
 
 	protected:
-		Bool m_valid;																								///< Is this location valid
+		bool m_valid;																								///< Is this location valid
 		Coord3D m_pos;																							///< Position of this view, in world coordinates
 		Real m_angle;																								///< Angle at which view has been rotated about the Z axis
 		Real m_pitch;																								///< Angle at which view has been rotated about the Y axis
@@ -313,7 +313,7 @@ class ViewLocation
 		}
 		
 		const Coord3D& getPosition() const { return m_pos; }
-		Bool isValid() const { return m_valid; }
+		bool isValid() const { return m_valid; }
 		Real getAngle() const { return m_angle; }
 		Real getPitch() const { return m_pitch; }
 		Real getZoom() const { return m_zoom; }

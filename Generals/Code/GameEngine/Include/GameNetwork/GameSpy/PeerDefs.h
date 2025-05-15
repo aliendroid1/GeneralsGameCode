@@ -117,7 +117,7 @@ public:
 	Int m_rankPoints;
 	Int m_side;
 	Int m_preorder;
-	Bool isIgnored( void );
+	bool isIgnored( void );
 };
 struct AsciiComparator
 {
@@ -181,7 +181,7 @@ public:
 	virtual void clearGroupRoomList( void ) = 0;
 	virtual GroupRoomMap* getGroupRoomList( void ) = 0;
 	virtual void addGroupRoom( GameSpyGroupRoom room ) = 0;
-	virtual Bool gotGroupRoomList( void ) = 0;
+	virtual bool gotGroupRoomList( void ) = 0;
 	virtual void joinGroupRoom( Int groupID ) = 0;
 	virtual void leaveGroupRoom( void ) = 0;
 	virtual void joinBestGroupRoom( void ) = 0;
@@ -194,7 +194,7 @@ public:
 	virtual BuddyInfoMap* getBuddyMap( void ) = 0;
 	virtual BuddyInfoMap* getBuddyRequestMap( void ) = 0;
 	virtual BuddyMessageList* getBuddyMessages( void ) = 0;
-	virtual Bool isBuddy( Int id ) = 0;
+	virtual bool isBuddy( Int id ) = 0;
 
 	virtual void setLocalName( AsciiString name ) = 0;
 	virtual AsciiString getLocalName( void ) = 0;
@@ -216,29 +216,29 @@ public:
 	virtual void addStagingRoom( GameSpyStagingRoom room ) = 0;
 	virtual void updateStagingRoom( GameSpyStagingRoom room ) = 0;
 	virtual void removeStagingRoom( GameSpyStagingRoom room ) = 0;
-	virtual Bool hasStagingRoomListChanged( void ) = 0;
+	virtual bool hasStagingRoomListChanged( void ) = 0;
 	virtual void leaveStagingRoom( void ) = 0;
 	virtual void markAsStagingRoomHost( void ) = 0;
 	virtual void markAsStagingRoomJoiner( Int game ) = 0;
 	virtual void sawFullGameList( void ) = 0;
 
-	virtual Bool amIHost( void ) = 0;
+	virtual bool amIHost( void ) = 0;
 	virtual GameSpyStagingRoom* getCurrentStagingRoom( void ) = 0;
 	virtual void setGameOptions( void ) = 0;
 	virtual Int getCurrentStagingRoomID( void ) = 0;
 
-	virtual void setDisallowAsianText( Bool val ) = 0;
-	virtual void setDisallowNonAsianText( Bool val ) = 0;
-	virtual Bool getDisallowAsianText( void ) = 0;
-	virtual Bool getDisallowNonAsianText(void ) = 0;
+	virtual void setDisallowAsianText( bool val ) = 0;
+	virtual void setDisallowNonAsianText( bool val ) = 0;
+	virtual bool getDisallowAsianText( void ) = 0;
+	virtual bool getDisallowNonAsianText(void ) = 0;
 
 	// chat
 	virtual void registerTextWindow( GameWindow *win ) = 0;
 	virtual void unregisterTextWindow( GameWindow *win ) = 0;
 	virtual Int addText( UnicodeString message, Color c, GameWindow *win ) = 0;
-	virtual void addChat( PlayerInfo p, UnicodeString msg, Bool isPublic, Bool isAction, GameWindow *win ) = 0;
-	virtual void addChat( AsciiString nick, Int profileID, UnicodeString msg, Bool isPublic, Bool isAction, GameWindow *win ) = 0;
-	virtual Bool sendChat( UnicodeString message, Bool isAction, GameWindow *playerListbox ) = 0;
+	virtual void addChat( PlayerInfo p, UnicodeString msg, bool isPublic, bool isAction, GameWindow *win ) = 0;
+	virtual void addChat( AsciiString nick, Int profileID, UnicodeString msg, bool isPublic, bool isAction, GameWindow *win ) = 0;
+	virtual bool sendChat( UnicodeString message, bool isAction, GameWindow *playerListbox ) = 0;
 
 	virtual void setMOTD( const AsciiString& motd ) = 0;
 	virtual const AsciiString& getMOTD( void ) = 0;
@@ -254,23 +254,23 @@ public:
 	
 	virtual void addToSavedIgnoreList( Int profileID, AsciiString nick ) = 0;
 	virtual void removeFromSavedIgnoreList( Int profileID ) = 0;
-	virtual Bool isSavedIgnored( Int profileID ) = 0;		
+	virtual bool isSavedIgnored( Int profileID ) = 0;		
 	virtual SavedIgnoreMap returnSavedIgnoreList( void ) = 0;
 	virtual void loadSavedIgnoreList( void ) = 0;
 	
 	virtual IgnoreList returnIgnoreList( void ) = 0;
 	virtual void addToIgnoreList( AsciiString nick ) = 0;
 	virtual void removeFromIgnoreList( AsciiString nick ) = 0;
-	virtual Bool isIgnored( AsciiString nick ) = 0;
+	virtual bool isIgnored( AsciiString nick ) = 0;
 
 	virtual void setLocalIPs(UnsignedInt internalIP, UnsignedInt externalIP) = 0;
 	virtual UnsignedInt getInternalIP(void) = 0;
 	virtual UnsignedInt getExternalIP(void) = 0;
 
-	virtual Bool isDisconnectedAfterGameStart(Int *reason) const = 0;
+	virtual bool isDisconnectedAfterGameStart(Int *reason) const = 0;
 	virtual void markAsDisconnectedAfterGameStart(Int reason) = 0;
 
-	virtual Bool didPlayerPreorder( Int profileID ) const = 0;
+	virtual bool didPlayerPreorder( Int profileID ) const = 0;
 	virtual void markPlayerAsPreorder( Int profileID ) = 0;
 
 	virtual void setMaxMessagesPerUpdate( Int num ) = 0;
@@ -286,7 +286,7 @@ extern GameSpyInfoInterface *TheGameSpyInfo;
 
 void WOLDisplayGameOptions( void );
 void WOLDisplaySlotList( void );
-Bool GetLocalChatConnectionAddress(AsciiString serverName, UnsignedShort serverPort, UnsignedInt& localIP);
+bool GetLocalChatConnectionAddress(AsciiString serverName, UnsignedShort serverPort, UnsignedInt& localIP);
 void SetLobbyAttemptHostJoin(Bool start);
 void SendStatsToOtherPlayers(const GameInfo *game);
 

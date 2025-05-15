@@ -211,7 +211,7 @@ UpdateSleepTime SpawnBehavior::update( void )
 	{
 		m_initialBurstTimesInited = TRUE;
 
-		Bool runtimeProduced = getObject()->getProducerID()!=INVALID_ID; //this was produced by a production module, rather than a script or worldbuilder
+		bool runtimeProduced = getObject()->getProducerID()!=INVALID_ID; //this was produced by a production module, rather than a script or worldbuilder
 		Int now = TheGameLogic->getFrame();
 		Int burstInitCount = m_initialBurstCountdown;
 		for( int listIndex = 0; listIndex < md->m_spawnNumberData; listIndex++ )
@@ -272,7 +272,7 @@ UpdateSleepTime SpawnBehavior::update( void )
 }
 
 // ------------------------------------------------------------------------------------------------
-Bool SpawnBehavior::maySpawnSelfTaskAI( Real maxSelfTaskersRatio )
+bool SpawnBehavior::maySpawnSelfTaskAI( Real maxSelfTaskersRatio )
 {
 	if ( m_spawnCount == 0)
 		return FALSE;
@@ -377,7 +377,7 @@ void SpawnBehavior::orderSlavesToGoIdle( CommandSourceType cmdSource )
 // ------------------------------------------------------------------------------------------------
 CanAttackResult SpawnBehavior::getCanAnySlavesAttackSpecificTarget( AbleToAttackType attackType, const Object *target, CommandSourceType cmdSource )
 {
-	Bool invalidShot = FALSE;
+	bool invalidShot = FALSE;
 	for( objectIDListIterator it = m_spawnIDs.begin(); it != m_spawnIDs.end(); ++it )
 	{
 		Object *obj = TheGameLogic->findObjectByID( *it );
@@ -415,7 +415,7 @@ CanAttackResult SpawnBehavior::getCanAnySlavesAttackSpecificTarget( AbleToAttack
 // ------------------------------------------------------------------------------------------------
 CanAttackResult SpawnBehavior::getCanAnySlavesUseWeaponAgainstTarget( AbleToAttackType attackType, const Object *victim, const Coord3D *pos, CommandSourceType cmdSource )
 {
-	Bool invalidShot = FALSE;
+	bool invalidShot = FALSE;
 	for( objectIDListIterator it = m_spawnIDs.begin(); it != m_spawnIDs.end(); ++it )
 	{
 		Object *obj = TheGameLogic->findObjectByID( *it );
@@ -452,7 +452,7 @@ CanAttackResult SpawnBehavior::getCanAnySlavesUseWeaponAgainstTarget( AbleToAtta
 
 
 // ------------------------------------------------------------------------------------------------
-Bool SpawnBehavior::canAnySlavesAttack()
+bool SpawnBehavior::canAnySlavesAttack()
 {
 	for( objectIDListIterator it = m_spawnIDs.begin(); it != m_spawnIDs.end(); ++it )
 	{
@@ -557,7 +557,7 @@ Object *SpawnBehavior::reclaimOrphanSpawn( void )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool SpawnBehavior::createSpawn()
+bool SpawnBehavior::createSpawn()
 {
 	Object *parent = getObject();
 	const SpawnBehaviorModuleData *md = getSpawnBehaviorModuleData();
@@ -576,7 +576,7 @@ Bool SpawnBehavior::createSpawn()
 	Object *newSpawn = NULL;
 	
 	// try to reclaim orphaned objects if possible
-	Bool reclaimedOrphan = FALSE;
+	bool reclaimedOrphan = FALSE;
 	if( md->m_canReclaimOrphans && md->m_isOneShotData == FALSE )
 	{
 		newSpawn = reclaimOrphanSpawn();
@@ -629,7 +629,7 @@ Bool SpawnBehavior::createSpawn()
 		if ( md->m_exitByBudding )
 		{
 
-			Bool barracksExitSuccess = FALSE;
+			bool barracksExitSuccess = FALSE;
 
 			if ( m_initialBurstCountdown > 0 )
 			{
@@ -779,7 +779,7 @@ void SpawnBehavior::onDamage( DamageInfo *info )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool SpawnBehavior::shouldTryToSpawn()
+bool SpawnBehavior::shouldTryToSpawn()
 {
 	const SpawnBehaviorModuleData *modData = getSpawnBehaviorModuleData();
 
@@ -835,8 +835,8 @@ void SpawnBehavior::computeAggregateStates(void)
 	ExperienceTracker *expTracker = obj->getExperienceTracker();
 	VeterancyLevel vetLevel = expTracker->getVeterancyLevel();
 
-	Bool SomebodyIsSelected = FALSE;
-	Bool SomebodyIsNotSelected = FALSE;
+	bool SomebodyIsSelected = FALSE;
+	bool SomebodyIsNotSelected = FALSE;
 
 	Drawable *spawnDraw = NULL;
 	Object *currentSpawn = NULL;

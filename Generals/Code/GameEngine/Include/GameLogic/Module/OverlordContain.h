@@ -61,9 +61,9 @@ public:
 	// virtual destructor prototype provided by memory pool declaration
 	
 	virtual OpenContain *asOpenContain() { return this; }  ///< treat as open container
-	virtual Bool isGarrisonable() const;	///< can this unit be Garrisoned? (ick)
-	virtual Bool isHealContain() const { return false; } ///< true when container only contains units while healing (not a transport!)
-	virtual Bool isImmuneToClearBuildingAttacks() const { return true; }
+	virtual bool isGarrisonable() const;	///< can this unit be Garrisoned? (ick)
+	virtual bool isHealContain() const { return false; } ///< true when container only contains units while healing (not a transport!)
+	virtual bool isImmuneToClearBuildingAttacks() const { return true; }
 
 	virtual void onDie( const DamageInfo *damageInfo );  ///< the die callback
 	virtual void onDelete( void );	///< Last possible moment cleanup
@@ -73,17 +73,17 @@ public:
 	virtual void onContaining( Object *obj );		///< object now contains 'obj'
 	virtual void onRemoving( Object *obj );			///< object no longer contains 'obj'
 
-	virtual Bool isValidContainerFor(const Object* obj, Bool checkCapacity) const;
+	virtual bool isValidContainerFor(const Object* obj, bool checkCapacity) const;
 	virtual void addToContain( Object *obj );				///< add 'obj' to contain list
 	virtual void addToContainList( Object *obj );		///< The part of AddToContain that inheritors can override (Can't do whole thing because of all the private stuff involved)
-	virtual void removeFromContain( Object *obj, Bool exposeStealthUnits = FALSE );	///< remove 'obj' from contain list
-	virtual void removeAllContained( Bool exposeStealthUnits = FALSE );				///< remove all objects on contain list
-	virtual Bool isEnclosingContainerFor( const Object *obj ) const;	///< Does this type of Contain Visibly enclose its contents?
-	virtual Bool isDisplayedOnControlBar() const ;///< Does this container display its contents on the ControlBar?
-	virtual Bool isKickOutOnCapture();// The bunker may want to, but we certainly don't
+	virtual void removeFromContain( Object *obj, bool exposeStealthUnits = FALSE );	///< remove 'obj' from contain list
+	virtual void removeAllContained( bool exposeStealthUnits = FALSE );				///< remove all objects on contain list
+	virtual bool isEnclosingContainerFor( const Object *obj ) const;	///< Does this type of Contain Visibly enclose its contents?
+	virtual bool isDisplayedOnControlBar() const ;///< Does this container display its contents on the ControlBar?
+	virtual bool isKickOutOnCapture();// The bunker may want to, but we certainly don't
 
 	// contain list access
-	virtual void iterateContained( ContainIterateFunc func, void *userData, Bool reverse );
+	virtual void iterateContained( ContainIterateFunc func, void *userData, bool reverse );
 	virtual UnsignedInt getContainCount() const;
 	virtual Int getContainMax( void ) const;
 	virtual const ContainedItemsList* getContainedItemsList() const;	
@@ -95,7 +95,7 @@ public:
 	///< this gets called from
 	virtual void clientVisibleContainedFlashAsSelected(); 
 
-	virtual Bool getContainerPipsToShow(Int& numTotal, Int& numFull);
+	virtual bool getContainerPipsToShow(Int& numTotal, Int& numFull);
 
 private:
 	/**< An empty overlord is a conatiner, but a full one redirects calls to its passengers.  If this returns NULL, 
@@ -105,7 +105,7 @@ private:
 	void activateRedirectedContain();///< I need to shut this off since I can talk directly to my bunker, but he can never directly see me
 	void deactivateRedirectedContain();
 
-	Bool m_redirectionActivated;
+	bool m_redirectionActivated;
 
 };
 

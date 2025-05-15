@@ -558,7 +558,7 @@ void POWTruckAIUpdate::updateReturnPrisoners( void )
 // ------------------------------------------------------------------------------------------------
 /** Is the object 'target' a valid target for collection */
 // ------------------------------------------------------------------------------------------------
-Bool POWTruckAIUpdate::validateTarget( const Object *target )
+bool POWTruckAIUpdate::validateTarget( const Object *target )
 {
 
 	return TheActionManager->canPickUpPrisoner( getObject(), target, getLastCommandSource() );

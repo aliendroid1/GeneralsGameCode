@@ -290,7 +290,7 @@ void MissileAIUpdate::projectileFireAtObjectOrPosition( const Object *victim, co
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-Bool MissileAIUpdate::projectileHandleCollision( Object *other )
+bool MissileAIUpdate::projectileHandleCollision( Object *other )
 {
 	Object* obj = getObject();
 	const MissileAIUpdateModuleData* d = getMissileAIUpdateModuleData();
@@ -716,7 +716,7 @@ UpdateSleepTime MissileAIUpdate::update()
 
 
 //-------------------------------------------------------------------------------------------------
-Bool MissileAIUpdate::processCollision(PhysicsBehavior *physics, Object *other)
+bool MissileAIUpdate::processCollision(PhysicsBehavior *physics, Object *other)
 /* Returns true if the physics collide should apply the force.  Normally not.  
 Also determines whether objects are blocked, and if so, if they are stuck.  jba.*/
 {

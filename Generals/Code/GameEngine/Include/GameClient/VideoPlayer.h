@@ -125,7 +125,7 @@ class VideoBuffer
 		virtual void		free( void ) = 0;			///< Free the buffer
 		virtual	void*		lock( void ) = 0;			///< Returns memory pointer to start of buffer
 		virtual void		unlock( void ) = 0;		///< Release buffer
-		virtual Bool		valid( void ) = 0;		///< Is the buffer valid to use
+		virtual bool		valid( void ) = 0;		///< Is the buffer valid to use
 
 		UnsignedInt			xPos( void ) { return m_xPos;};///< X pixel offset to draw into
 		UnsignedInt			yPos( void ) { return m_yPos;};///< Y pixel offset to draw into
@@ -165,7 +165,7 @@ class VideoStreamInterface
 		virtual void update( void ) = 0;									///< Update stream
 		virtual void close( void ) = 0;										///< Close and free stream
 																											
-		virtual Bool	isFrameReady( void ) = 0;						///< Is the frame ready to be displayed
+		virtual bool	isFrameReady( void ) = 0;						///< Is the frame ready to be displayed
 		virtual void	frameDecompress( void ) = 0;				///< Render current frame in to buffer
 		virtual void	frameRender( VideoBuffer *buffer ) = 0; ///< Render current frame in to buffer
 		virtual void	frameNext( void ) = 0;							///< Advance to next frame
@@ -201,7 +201,7 @@ class VideoStream : public VideoStreamInterface
 		virtual void update( void );											///< Update stream
 		virtual void close( void );												///< Close and free stream
 																											
-		virtual Bool	isFrameReady( void );								///< Is the frame ready to be displayed
+		virtual bool	isFrameReady( void );								///< Is the frame ready to be displayed
 		virtual void	frameDecompress( void );						///< Render current frame in to buffer
 		virtual void	frameRender( VideoBuffer *buffer ); ///< Render current frame in to buffer
 		virtual void	frameNext( void );									///< Advance to next frame
@@ -253,7 +253,7 @@ class VideoPlayerInterface : public SubsystemInterface
 
 		virtual const FieldParse *getFieldParse( void ) const = 0;		///< Return the field parse info
 
-		virtual void notifyVideoPlayerOfNewProvider( Bool nowHasValid ) = 0;		///< Notify the video player that they can now ask for an audio handle, or they need to give theirs up.
+		virtual void notifyVideoPlayerOfNewProvider( bool nowHasValid ) = 0;		///< Notify the video player that they can now ask for an audio handle, or they need to give theirs up.
 };
 
 
@@ -301,7 +301,7 @@ class VideoPlayer : public VideoPlayerInterface
 		virtual const Video* getVideo( Int index );						///< Retrieve info about a movie based on index
 		virtual const FieldParse *getFieldParse( void ) const { return m_videoFieldParseTable; }		///< Return the field parse info
 
-		virtual void notifyVideoPlayerOfNewProvider( Bool nowHasValid ) { }
+		virtual void notifyVideoPlayerOfNewProvider( bool nowHasValid ) { }
 
 		// Implementation specific
 		void remove( VideoStream *stream );										///< remove stream from active list

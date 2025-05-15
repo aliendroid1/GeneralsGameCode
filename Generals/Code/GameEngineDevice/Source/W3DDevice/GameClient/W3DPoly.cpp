@@ -52,8 +52,8 @@ void ClipPolyClass::Clip(const PlaneClass & plane,ClipPolyClass & dest) const
 	Int i = 0;
 	Int vcount = Verts.Count();
 	Int iprev = vcount - 1;
-	Bool cur_point_in_front;
-	Bool prev_point_in_front;
+	bool cur_point_in_front;
+	bool prev_point_in_front;
 	Real alpha;
 	Vector3 int_point;
 

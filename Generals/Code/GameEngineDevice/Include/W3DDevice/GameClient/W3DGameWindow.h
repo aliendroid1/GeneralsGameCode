@@ -90,8 +90,8 @@ protected:
 	Render2DSentenceClass m_textRenderer;  ///< for drawing text
 	ICoord2D m_textPos;  ///< current text pos set in text renderer
 	Color m_currTextColor;  ///< current color used in text renderer
-	Bool m_needPolyDraw;  ///< TRUE need to redo the text polys
-	Bool m_newTextPos;  ///< TRUE when our window has moved and we need a new text pos
+	bool m_needPolyDraw;  ///< TRUE need to redo the text polys
+	bool m_newTextPos;  ///< TRUE when our window has moved and we need a new text pos
 
 };  // end class W3DGameWindow
 

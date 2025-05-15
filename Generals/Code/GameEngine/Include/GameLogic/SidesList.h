@@ -146,7 +146,7 @@ public:
 	void reset();
 
 	/// Reads sides (including build list info && player dicts.)
-	static Bool ParseSidesDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
+	static bool ParseSidesDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
 	/// Writes sides (including build list info.)
 	static void WriteSidesDataChunk(DataChunkOutput &chunkWriter);
 
@@ -174,10 +174,10 @@ public:
 
 	TeamsInfo *findTeamInfo(AsciiString name, Int* index = NULL);
 	
-	Bool isPlayerDefaultTeam(TeamsInfo *t);
+	bool isPlayerDefaultTeam(TeamsInfo *t);
 
 	void clear();
-	Bool validateSides(void);
+	bool validateSides(void);
 
 	void addPlayerByTemplate(AsciiString playerTemplateName);
 
@@ -202,7 +202,7 @@ protected:
 	TeamsInfoRec	m_teamrec;
 	TeamsInfoRec	m_skirmishTeamrec;
 
-	Bool validateAllyEnemyList(const AsciiString& tname, AsciiString& allies);
+	bool validateAllyEnemyList(const AsciiString& tname, AsciiString& allies);
 };
 
 
@@ -332,12 +332,12 @@ public:
 	const Coord3D *getLocation(void) const {return &m_location;}
 	const Coord2D *getRallyOffset(void) const {return &m_rallyPointOffset;}
 	Real getAngle(void) const {return m_angle;}
-	Bool isInitiallyBuilt(void) {return m_isInitiallyBuilt;}
+	bool isInitiallyBuilt(void) {return m_isInitiallyBuilt;}
 	AsciiString getScript(void) {return m_script;}
 	Int getHealth(void) {return m_health;}
-	Bool getWhiner(void) {return m_whiner;}
-	Bool getUnsellable(void) {return m_unsellable;}
-	Bool getRepairable(void) {return m_repairable;}
+	bool getWhiner(void) {return m_whiner;}
+	bool getUnsellable(void) {return m_unsellable;}
+	bool getRepairable(void) {return m_repairable;}
 
 	void setRenderObj(RenderObjClass *pObj) {m_renderObj = pObj;}
 	RenderObjClass *getRenderObj(void) {return m_renderObj;}
@@ -345,21 +345,21 @@ public:
 	Shadow *getShadowObj(void) {return m_shadowObj;}
 
 	void setSelected(Bool sel) {m_selected = sel;}
-	Bool isSelected(void) {return m_selected;}
+	bool isSelected(void) {return m_selected;}
 
 	// used by the solo AI
 	void setObjectID( ObjectID objID ) { m_objectID = objID; }
 	ObjectID getObjectID( void ) const { return m_objectID; }
 	void setObjectTimestamp( UnsignedInt frame ) { m_objectTimestamp = frame; }
 	UnsignedInt getObjectTimestamp( void ) const { return m_objectTimestamp; }
-	Bool isBuildable( void );															///< returns true if has enough rebuilds left to build again
-	Bool isUnderConstruction(void) {return m_underConstruction;}
+	bool isBuildable( void );															///< returns true if has enough rebuilds left to build again
+	bool isUnderConstruction(void) {return m_underConstruction;}
 	void setUnderConstruction(Bool construction) { m_underConstruction=construction;}
 	void markPriorityBuild(void) {m_priorityBuild = true; }
-	Bool isPriorityBuild(void) {return m_priorityBuild;}
-	Bool isAutomaticBuild(void) {return m_automaticallyBuild;}
+	bool isPriorityBuild(void) {return m_priorityBuild;}
+	bool isAutomaticBuild(void) {return m_automaticallyBuild;}
 
-	Bool isSupplyBuilding(void) {return m_isSupplyBuilding;}
+	bool isSupplyBuilding(void) {return m_isSupplyBuilding;}
 	void setSupplyBuilding(Bool isSupply) {m_isSupplyBuilding = isSupply;}
 	ObjectID getGathererID(Int ndx) {if (ndx>=0 && ndx < MAX_RESOURCE_GATHERERS) return m_resourceGatherers[ndx]; return INVALID_ID;}
 	void setGathererID(Int ndx, ObjectID id)  {if (ndx>=0 && ndx < MAX_RESOURCE_GATHERERS) m_resourceGatherers[ndx] = id;}
@@ -383,7 +383,7 @@ inline void BuildListInfo::incrementNumRebuilds(void)
 		m_numRebuilds++;
 }
 
-inline Bool BuildListInfo::isBuildable( void )
+inline bool BuildListInfo::isBuildable( void )
 {
 	if (getNumRebuilds() > 0 || getNumRebuilds() == BuildListInfo::UNLIMITED_REBUILDS)
 		return true;

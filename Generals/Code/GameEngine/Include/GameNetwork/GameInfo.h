@@ -64,10 +64,10 @@ public:
 
 	void setAccept( void ) { m_isAccepted = true; }		///< Accept the current options
 	void unAccept( void );														///< Unaccept (options changed, etc)
-	Bool isAccepted( void ) const { return m_isAccepted; }	///< Non-human slots are always accepted
+	bool isAccepted( void ) const { return m_isAccepted; }	///< Non-human slots are always accepted
 
-	void setMapAvailability( Bool hasMap );						///< Set whether the slot has the map
-	Bool hasMap( void ) const { return m_hasMap; }		///< Non-human slots always have the map
+	void setMapAvailability( bool hasMap );						///< Set whether the slot has the map
+	bool hasMap( void ) const { return m_hasMap; }		///< Non-human slots always have the map
 
 	void setState( SlotState state,
 		UnicodeString name = UnicodeString::TheEmptyString,
@@ -112,26 +112,26 @@ public:
 	UnicodeString getApparentPlayerTemplateDisplayName( void ) const;
 
 	// Various tests
-	Bool isHuman( void ) const;															///< Is this slot occupied by a human player?
-	Bool isOccupied( void ) const;													///< Is this slot occupied (by a human or an AI)?
-	Bool isAI( void ) const;																///< Is this slot occupied by an AI?
-	Bool isPlayer( AsciiString userName ) const;						///< Does this slot contain the given user?
-	Bool isPlayer( UnicodeString userName ) const;					///< Does this slot contain the given user?
-	Bool isPlayer( UnsignedInt ip ) const;									///< Is this slot at this IP?
-	Bool isOpen( void ) const;
+	bool isHuman( void ) const;															///< Is this slot occupied by a human player?
+	bool isOccupied( void ) const;													///< Is this slot occupied (by a human or an AI)?
+	bool isAI( void ) const;																///< Is this slot occupied by an AI?
+	bool isPlayer( AsciiString userName ) const;						///< Does this slot contain the given user?
+	bool isPlayer( UnicodeString userName ) const;					///< Does this slot contain the given user?
+	bool isPlayer( UnsignedInt ip ) const;									///< Is this slot at this IP?
+	bool isOpen( void ) const;
 
 	void setLastFrameInGame( UnsignedInt frame ) { m_lastFrameInGame = frame; }
 	void markAsDisconnected( void ) { m_disconnected = TRUE; }
 	UnsignedInt lastFrameInGame( void ) const { return m_lastFrameInGame; }
-	Bool disconnected( void ) const { return isHuman() && m_disconnected; }
+	bool disconnected( void ) const { return isHuman() && m_disconnected; }
 
-	void mute( Bool isMuted ) { m_isMuted = isMuted; }
-	Bool isMuted( void ) const { return m_isMuted; }
+	void mute( bool isMuted ) { m_isMuted = isMuted; }
+	bool isMuted( void ) const { return m_isMuted; }
 protected:
 	SlotState m_state;
-	Bool m_isAccepted;
-	Bool m_hasMap;
-	Bool m_isMuted;
+	bool m_isAccepted;
+	bool m_hasMap;
+	bool m_isMuted;
 	Int m_color;																			///< color, or -1 for random
 	Int m_startPos;																		///< start position, or -1 for random
 	Int m_playerTemplate;															///< PlayerTemplate
@@ -144,7 +144,7 @@ protected:
 	UnsignedShort m_port;															///< Only valid for human players in LAN/WOL
 	FirewallHelperClass::FirewallBehaviorType m_NATBehavior;	///< The NAT behavior for this slot's player.
 	UnsignedInt m_lastFrameInGame;	// only valid for human players
-	Bool m_disconnected;						// only valid for human players
+	bool m_disconnected;						// only valid for human players
 };
 
 /**
@@ -172,13 +172,13 @@ public:
 	inline Int getGameID( void ) const;								///< Get the game ID of the current game or the last one if we're not in game
 
 	inline void setInGame( void );										///< set the m_inGame flag
-	inline Bool isInGame( void ) const;											///< Are we (in game or in game setup)?  As opposed to chatting, matching, etc
-	inline Bool isGameInProgress( void ) const;							///< Is the game in progress?
-	inline void setGameInProgress( Bool inProgress ); ///< Set whether the game is in progress or not.
+	inline bool isInGame( void ) const;											///< Are we (in game or in game setup)?  As opposed to chatting, matching, etc
+	inline bool isGameInProgress( void ) const;							///< Is the game in progress?
+	inline void setGameInProgress( bool inProgress ); ///< Set whether the game is in progress or not.
 	void setSlot( Int slotNum, GameSlot slotInfo );		///< Set the slot state (human, open, AI, etc)
 	GameSlot* getSlot( Int slotNum );									///< Get the slot
 	const GameSlot* getConstSlot( Int slotNum ) const;	///< Get the slot
-	virtual Bool amIHost( void ) const;															///< Convenience function - is the local player the game host?
+	virtual bool amIHost( void ) const;															///< Convenience function - is the local player the game host?
 	virtual Int getLocalSlotNum( void ) const;				///< Get the local slot number, or -1 if we're not present
 	Int getSlotNum( AsciiString userName ) const;			///< Get the slot number corresponding to a specific user, or -1 if he's not present
 
@@ -199,8 +199,8 @@ public:
 	void setLocalIP( UnsignedInt ip ) { m_localIP =ip; }	///< Set the local IP
 	UnsignedInt getLocalIP( void ) const { return m_localIP; }	///< Get the local IP
 
-	Bool isColorTaken(Int colorIdx, Int slotToIgnore = -1 ) const;
-	Bool isStartPositionTaken(Int positionIdx, Int slotToIgnore = -1 ) const;
+	bool isColorTaken(Int colorIdx, Int slotToIgnore = -1 ) const;
+	bool isStartPositionTaken(Int positionIdx, Int slotToIgnore = -1 ) const;
 
 	virtual void resetAccepted(void);															///< Reset the accepted flag on all players
 	virtual void resetStartSpots(void);						///< reset the start spots for the new map.
@@ -212,22 +212,22 @@ public:
 	void setCRCInterval( Int val ) { m_crcInterval = (val<100)?val:100; }
 	inline Int getCRCInterval( void ) const { return m_crcInterval; }
 	
-	Bool haveWeSurrendered(void) { return m_surrendered; }
+	bool haveWeSurrendered(void) { return m_surrendered; }
 	void markAsSurrendered(void) { m_surrendered = TRUE; }
 
-	Bool isSkirmish(void); // TRUE if 1 human & 1+ AI are present && !isSandbox()
-	Bool isMultiPlayer(void); // TRUE if 2+ human are present
-	Bool isSandbox(void); // TRUE if everybody is on the same team
+	bool isSkirmish(void); // TRUE if 1 human & 1+ AI are present && !isSandbox()
+	bool isMultiPlayer(void); // TRUE if 2+ human are present
+	bool isSandbox(void); // TRUE if everybody is on the same team
 	
-	Bool isPlayerPreorder(Int index);
+	bool isPlayerPreorder(Int index);
 	void markPlayerAsPreorder(Int index);
 
 protected:
 	Int m_preorderMask;
 	Int m_crcInterval;
-	Bool m_inGame;
-	Bool m_inProgress;
-	Bool m_surrendered;
+	bool m_inGame;
+	bool m_inProgress;
+	bool m_surrendered;
 	Int m_gameID;
 	GameSlot *m_slot[MAX_SLOTS];
 
@@ -253,10 +253,10 @@ Int					GameInfo::getSeed( void ) const									{ return m_seed; }
 Bool				GameInfo::isInGame( void ) const								{ return m_inGame; }
 void				GameInfo::setInGame( void )											{ m_inGame = true; }
 Bool				GameInfo::isGameInProgress( void ) const				{ return m_inProgress; }
-void				GameInfo::setGameInProgress( Bool inProgress )	{ m_inProgress = inProgress; }
+void				GameInfo::setGameInProgress( bool inProgress )	{ m_inProgress = inProgress; }
 
 AsciiString GameInfoToAsciiString( const GameInfo *game );
-Bool ParseAsciiStringToGameInfo( GameInfo *game, AsciiString options );
+bool ParseAsciiStringToGameInfo( GameInfo *game, AsciiString options );
 
 
 /**

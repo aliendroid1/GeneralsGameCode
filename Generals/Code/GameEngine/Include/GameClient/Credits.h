@@ -97,8 +97,8 @@ public:
 	Int m_style;
 	UnicodeString m_text;
 	UnicodeString m_secondText;
-	Bool m_useSecond;
-	Bool m_done;
+	bool m_useSecond;
+	bool m_done;
 
 // drawing variables
 	DisplayString *m_displayString;
@@ -125,7 +125,7 @@ public:
 	static void parseBlank( INI* ini, void *instance, void *store, const void *userData );					///< Parse the image part of the INI file
 	static void parseText( INI* ini, void *instance, void *store, const void *userData );					///< Parse the image part of the INI file
 	
-	Bool isFinished( void ) { return m_isFinished;	}
+	bool isFinished( void ) { return m_isFinished;	}
 	void addBlank( void );
 	void addText( AsciiString text );
 private:
@@ -140,7 +140,7 @@ private:
 
 	Int m_scrollRate; // in pixels
 	Int m_scrollRatePerFrames;
-	Bool m_scrollDown;	// if TRUE text will come from the top to the bottom if False, it will go from the bottom up
+	bool m_scrollDown;	// if TRUE text will come from the top to the bottom if False, it will go from the bottom up
 
 	Color			m_titleColor;
 	Color			m_positionColor;
@@ -148,7 +148,7 @@ private:
 	
 	Int m_currentStyle;
 
-	Bool m_isFinished;
+	bool m_isFinished;
 
 	Int m_framesSinceStarted;
 	Int m_normalFontHeight;

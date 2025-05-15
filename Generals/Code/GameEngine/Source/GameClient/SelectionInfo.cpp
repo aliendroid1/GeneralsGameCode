@@ -86,16 +86,16 @@ PickDrawableStruct::PickDrawableStruct() : drawableListToFill(NULL)
  * Given a list of currently selected things and a list of things that are currently under 
  * the selection (pointer or drag), generate some useful information about each.
  */
-extern Bool contextCommandForNewSelection(const DrawableList *currentlySelectedDrawables, 
+extern bool contextCommandForNewSelection(const DrawableList *currentlySelectedDrawables, 
 																					const DrawableList *newlySelectedDrawables,
 																					SelectionInfo *outSelectionInfo,
-																					Bool selectionIsPoint)
+																					bool selectionIsPoint)
 {
 	if (!(currentlySelectedDrawables && newlySelectedDrawables && outSelectionInfo))
 		return FALSE;
 
-	Bool forceFire = TheInGameUI->isInForceAttackMode();
-	Bool forceMove = TheInGameUI->isInForceMoveToMode();
+	bool forceFire = TheInGameUI->isInForceAttackMode();
+	bool forceMove = TheInGameUI->isInForceMoveToMode();
 
 	if (forceFire || forceMove) {
 		return FALSE;
@@ -246,7 +246,7 @@ extern Bool contextCommandForNewSelection(const DrawableList *currentlySelectedD
 }
 
 //-------------------------------------------------------------------------------------------------
-UnsignedInt getPickTypesForContext( Bool forceAttackMode )
+UnsignedInt getPickTypesForContext( bool forceAttackMode )
 {
 	UnsignedInt types = PICK_TYPE_SELECTABLE;
 
@@ -277,7 +277,7 @@ UnsignedInt getPickTypesForContext( Bool forceAttackMode )
 }  // end getPickTypesForContext
 
 //-------------------------------------------------------------------------------------------------
-UnsignedInt getPickTypesForCurrentSelection( Bool forceAttackMode )
+UnsignedInt getPickTypesForCurrentSelection( bool forceAttackMode )
 {
 	UnsignedInt retVal = 0;
 	if (!TheInGameUI->areSelectedObjectsControllable()) {
@@ -339,7 +339,7 @@ void translatePickTypesToKindof(UnsignedInt pickTypes, KindOfMaskType& outMask)
 //-------------------------------------------------------------------------------------------------
 // Given a drawable, add it to an stl list specified by userData.
 // Useful for iterateDrawablesInRegion.
-Bool addDrawableToList( Drawable *draw, void *userData )
+bool addDrawableToList( Drawable *draw, void *userData )
 {
 	PickDrawableStruct *pds = (PickDrawableStruct *) userData;
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)

@@ -61,7 +61,7 @@ public:
 	DieMuxData();
 	static const FieldParse* getFieldParse();
 
-	Bool isDieApplicable(const Object* obj, const DamageInfo *damageInfo) const;
+	bool isDieApplicable(const Object* obj, const DamageInfo *damageInfo) const;
 };
 
 //-------------------------------------------------------------------------------------------------
@@ -79,7 +79,7 @@ public:
 		p.add(DieMuxData::getFieldParse(), offsetof( DieModuleData, m_dieMuxData ));
 	}
 
-	inline Bool isDieApplicable(const Object* obj, const DamageInfo *damageInfo) const { return m_dieMuxData.isDieApplicable(obj, damageInfo); }
+	inline bool isDieApplicable(const Object* obj, const DamageInfo *damageInfo) const { return m_dieMuxData.isDieApplicable(obj, damageInfo); }
 };
 
 //-------------------------------------------------------------------------------------------------
@@ -103,7 +103,7 @@ public:
 	void onDie( const DamageInfo *damageInfo ) = 0;
 
 protected:
-	Bool isDieApplicable(const DamageInfo *damageInfo) const { return getDieModuleData()->isDieApplicable(getObject(), damageInfo); }
+	bool isDieApplicable(const DamageInfo *damageInfo) const { return getDieModuleData()->isDieApplicable(getObject(), damageInfo); }
 	
 };
 inline DieModule::DieModule( Thing *thing, const ModuleData* moduleData ) : BehaviorModule( thing, moduleData ) { }

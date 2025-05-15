@@ -54,7 +54,7 @@
 
 MutexClass TheGameSpyMutex;
 static UnsignedInt mainThreadID = 0;
-static Bool inThread = false;
+static bool inThread = false;
 #define ISMAINTHREAD	( ThreadClass::_Get_Current_Thread_ID() == mainThreadID )
 GameSpyThreadClass *TheGameSpyThread = NULL;
 
@@ -106,7 +106,7 @@ AsciiString GameSpyThreadClass::getNextShellScreen( void )
 	return m_nextShellScreen;
 }
 
-Bool GameSpyThreadClass::showLocaleSelect( void )
+bool GameSpyThreadClass::showLocaleSelect( void )
 {
 	MutexClass::LockClass m(TheGameSpyMutex, 0);
 	if (m.Failed())
@@ -120,7 +120,7 @@ void GameSpyThreadClass::setNextShellScreen( AsciiString nextShellScreen )
 	m_nextShellScreen = nextShellScreen;
 }
 
-void GameSpyThreadClass::setShowLocaleSelect( Bool val )
+void GameSpyThreadClass::setShowLocaleSelect( bool val )
 {
 	MutexClass::LockClass m(TheGameSpyMutex);
 	m_showLocaleSelect = val;
@@ -139,16 +139,16 @@ public:
 	virtual void reset( void );
 	virtual void update( void );
 
-	virtual Bool isConnected( void );
+	virtual bool isConnected( void );
 	virtual void login(AsciiString loginName, AsciiString password = AsciiString::TheEmptyString, AsciiString email = AsciiString::TheEmptyString);
 	virtual void reconnectProfile( void );
 	virtual void disconnectFromChat( void );
 
-	virtual void UTMRoom( RoomType roomType, const char *key, const char *val, Bool authenticate = FALSE );
-	virtual void UTMPlayer( const char *name, const char *key, const char *val, Bool authenticate = FALSE );
+	virtual void UTMRoom( RoomType roomType, const char *key, const char *val, bool authenticate = FALSE );
+	virtual void UTMPlayer( const char *name, const char *key, const char *val, bool authenticate = FALSE );
 	virtual void startGame( void );
 	virtual void leaveRoom( RoomType roomType );
-	virtual void setReady( Bool ready );
+	virtual void setReady( bool ready );
 	virtual void enumPlayers( RoomType roomType, peerEnumPlayersCallback callback, void *userData );
 	virtual void startListingGames( peerListingGamesCallback callback );
 	virtual void stopListingGames( void );
@@ -174,8 +174,8 @@ private:
 	UnsignedInt m_loginTimeoutPeriod; // in ms
 	UnsignedInt m_loginTimeout;
 
-	Bool m_joiningGroupRoom;
-	Bool m_joiningStagingRoom;
+	bool m_joiningGroupRoom;
+	bool m_joiningStagingRoom;
 
 	GameSpyThreadClass thread;
 };
@@ -324,17 +324,17 @@ void GameSpyChat::update( void )
 	}
 }
 
-Bool GameSpyChat::isConnected( void )
+bool GameSpyChat::isConnected( void )
 {
 	return m_peer && peerIsConnected(m_peer);
 }
 
-void GameSpyChat::UTMRoom( RoomType roomType, const char *key, const char *val, Bool authenticate )
+void GameSpyChat::UTMRoom( RoomType roomType, const char *key, const char *val, bool authenticate )
 {
 	peerUTMRoom( m_peer, roomType, key, val, (authenticate)?PEERTrue:PEERFalse );
 }
 
-void GameSpyChat::UTMPlayer( const char *name, const char *key, const char *val, Bool authenticate )
+void GameSpyChat::UTMPlayer( const char *name, const char *key, const char *val, bool authenticate )
 {
 	peerUTMPlayer( m_peer, name, key, val, (authenticate)?PEERTrue:PEERFalse );
 }
@@ -349,7 +349,7 @@ void GameSpyChat::leaveRoom( RoomType roomType )
 	peerLeaveRoom( m_peer, roomType, NULL );
 }
 
-void GameSpyChat::setReady( Bool ready )
+void GameSpyChat::setReady( bool ready )
 {
 	peerSetReady( m_peer, (ready)?PEERTrue:PEERFalse );
 }
@@ -681,8 +681,8 @@ static void PlayerUTMCallback(PEER peer, const char * nick,
 				options.trim();
 
 
-				Bool change = false;
-				Bool shouldUnaccept = false;
+				bool change = false;
+				bool shouldUnaccept = false;
 				AsciiString key;
 				options.nextToken(&key, "=");
 				Int val = atoi(options.str()+1);
@@ -697,7 +697,7 @@ static void PlayerUTMCallback(PEER peer, const char * nick,
 				{
 					if (val >= -1 && val < TheMultiplayerSettings->getNumColors() && val != slot->getColor())
 					{
-						Bool colorAvailable = TRUE;
+						bool colorAvailable = TRUE;
 						if(val != -1 )
 						{
 							for(Int i=0; i <MAX_SLOTS; i++)
@@ -1255,7 +1255,7 @@ void GameSpyChat::_GPConnectCallback(GPConnection * pconnection, GPConnectRespon
 	peerConnect(m_peer, m_loginName.str(), m_profileID, nickErrorCallback, connectCallback, NULL, PEERFalse);
 }
 
-static Bool inGPReconnect = false;
+static bool inGPReconnect = false;
 void GameSpyChat::_GPReconnectCallback(GPConnection * pconnection, GPConnectResponseArg * arg, void * param)
 {
 	inGPReconnect = false;

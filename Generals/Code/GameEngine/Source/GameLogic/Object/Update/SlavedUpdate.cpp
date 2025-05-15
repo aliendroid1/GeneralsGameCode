@@ -442,7 +442,7 @@ void SlavedUpdate::doRepairLogic()
 
 	//There are two major things... either move closer or repair.
 	Real distSqr = ThePartitionManager->getDistanceSquared( me, master, FROM_BOUNDINGSPHERE_2D );
-	Bool closeEnough = distSqr < 12.0f * 12.0f;
+	bool closeEnough = distSqr < 12.0f * 12.0f;
 
 	//We're going to do different things based on the repair state.
 	if( closeEnough )
@@ -474,7 +474,7 @@ void SlavedUpdate::doRepairLogic()
 	{
 		m_repairing = false;
 
-		Bool closeEnoughForZPrecision = distSqr < sqr(master->getGeometryInfo().getBoundingSphereRadius() * 2);
+		bool closeEnoughForZPrecision = distSqr < sqr(master->getGeometryInfo().getBoundingSphereRadius() * 2);
 
 		//We're too far away to repair, so get closer.
 		Locomotor *locomotor = ai->getCurLocomotor();

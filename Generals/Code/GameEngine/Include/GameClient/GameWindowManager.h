@@ -139,7 +139,7 @@ public:
                         GameWinMsgBoxFunc yesCallback,
                         GameWinMsgBoxFunc noCallback,
                         GameWinMsgBoxFunc okCallback,
-                        GameWinMsgBoxFunc cancelCallback, Bool useLogo );
+                        GameWinMsgBoxFunc cancelCallback, bool useLogo );
 
 
 	//---------------------------------------------------------------------------
@@ -147,56 +147,56 @@ public:
 	virtual GameWindow *gogoGadgetPushButton( GameWindow *parent, UnsignedInt status,
 																						Int x, Int y, Int width, Int height,	
 																						WinInstanceData *instData, 
-																						GameFont *defaultFont, Bool defaultVisual );
+																						GameFont *defaultFont, bool defaultVisual );
 	virtual GameWindow *gogoGadgetCheckbox( GameWindow *parent, UnsignedInt status,
 																					Int x, Int y, Int width, Int height, 
 																					WinInstanceData *instData,
-																					GameFont *defaultFont, Bool defaultVisual );
+																					GameFont *defaultFont, bool defaultVisual );
 	virtual GameWindow *gogoGadgetRadioButton( GameWindow *parent, UnsignedInt status,
 																						 Int x, Int y, Int width, Int height, 
 																						 WinInstanceData *instData, 
 																						 RadioButtonData *rData,
-																						 GameFont *defaultFont, Bool defaultVisual );
+																						 GameFont *defaultFont, bool defaultVisual );
 	virtual GameWindow *gogoGadgetTabControl( GameWindow *parent, UnsignedInt status,
 																						 Int x, Int y, Int width, Int height, 
 																						 WinInstanceData *instData, 
 																						 TabControlData *rData,
-																						 GameFont *defaultFont, Bool defaultVisual );
+																						 GameFont *defaultFont, bool defaultVisual );
 	virtual GameWindow *gogoGadgetListBox( GameWindow *parent, UnsignedInt status,
 																				 Int x, Int y, Int width, Int height,
 																				 WinInstanceData *instData, 
 																				 ListboxData *listboxData,
-																				 GameFont *defaultFont, Bool defaultVisual );
+																				 GameFont *defaultFont, bool defaultVisual );
 	virtual GameWindow *gogoGadgetSlider( GameWindow *parent, UnsignedInt status,
 																				Int x, Int y, Int width, Int height,
 																				WinInstanceData *instData, 
 																				SliderData *sliderData,
-																				GameFont *defaultFont, Bool defaultVisual );
+																				GameFont *defaultFont, bool defaultVisual );
 	virtual GameWindow *gogoGadgetProgressBar( GameWindow *parent, UnsignedInt status,
 																						 Int x, Int y, Int width, Int height, 
 																						 WinInstanceData *instData,
-																						 GameFont *defaultFont, Bool defaultVisual );
+																						 GameFont *defaultFont, bool defaultVisual );
 	virtual GameWindow *gogoGadgetStaticText( GameWindow *parent, UnsignedInt status,
 																						Int x, Int y, Int width, Int height,
 																						WinInstanceData *instData, 
 																						TextData *textData,
-																						GameFont *defaultFont, Bool defaultVisual );
+																						GameFont *defaultFont, bool defaultVisual );
 	virtual GameWindow *gogoGadgetTextEntry( GameWindow *parent, UnsignedInt status,
 																					 Int x, Int y, Int width, Int height,
 																					 WinInstanceData *instData, 
 																					 EntryData *entryData,
-																					 GameFont *defaultFont, Bool defaultVisual );
+																					 GameFont *defaultFont, bool defaultVisual );
 	virtual GameWindow *gogoGadgetComboBox( GameWindow *parent, UnsignedInt status,
 										                              Int x, Int y, Int width, Int height,
 																									WinInstanceData *instData, 
 																									ComboBoxData *comboBoxDataTemplate,
-																								  GameFont *defaultFont, Bool defaultVisual );
+																								  GameFont *defaultFont, bool defaultVisual );
 
 	/** Use this method to assign the default images to gadgets as 
 		* they area created */
 	virtual void assignDefaultGadgetLook( GameWindow *gadget,
 																				GameFont *defaultFont,
-																				Bool assignVisual );
+																				bool assignVisual );
 
 	//---------------------------------------------------------------------------
 	// Creating windows
@@ -223,10 +223,10 @@ public:
 
 	/// hide all windows in a certain range of id's (inclusinve );
 	virtual void hideWindowsInRange( GameWindow *baseWindow, Int first, Int last,
-																	 Bool hideFlag );
+																	 bool hideFlag );
 	/// enable all windows in a range of id's (inclusive)
 	virtual void enableWindowsInRange( GameWindow *baseWindow, Int first, Int last,
-																		 Bool enableFlag );	
+																		 bool enableFlag );	
 
 	/// this gets called from winHide() when a window hides itself
 	virtual void windowHiding( GameWindow *window );
@@ -256,8 +256,8 @@ public:
 	virtual GameWindow *winGetGrabWindow( void );  ///< who is currently 'held' by mouse
 	virtual void winSetLoneWindow( GameWindow *window );  ///< set the open window
 
-	virtual Bool isEnabled( GameWindow *win );  ///< is window or parents enabled
-	virtual Bool isHidden( GameWindow *win );  ///< is parent or parents hidden
+	virtual bool isEnabled( GameWindow *win );  ///< is window or parents enabled
+	virtual bool isHidden( GameWindow *win );  ///< is parent or parents hidden
 	virtual void addWindowToParent( GameWindow *window, GameWindow *parent );
 	virtual void addWindowToParentAtEnd( GameWindow *window, GameWindow *parent );
 
@@ -316,12 +316,12 @@ public:
 	virtual void winGetTextSize( GameFont *font, UnicodeString text, 
 															 Int *width, Int *height, Int maxWidth );
 	virtual UnicodeString winTextLabelToText( AsciiString label );  ///< convert localizable text label to real text
-	virtual GameFont *winFindFont( AsciiString fontName, Int pointSize, Bool bold );  ///< get a font given a name
+	virtual GameFont *winFindFont( AsciiString fontName, Int pointSize, bool bold );  ///< get a font given a name
 
 	/// @todo just for testing, remov this
-	Bool initTestGUI( void );
+	bool initTestGUI( void );
 	
-	virtual GameWindow *getWindowUnderCursor( Int x, Int y, Bool ignoreEnabled = FALSE );	///< find the top window at the given coordinates
+	virtual GameWindow *getWindowUnderCursor( Int x, Int y, bool ignoreEnabled = FALSE );	///< find the top window at the given coordinates
 
 	//---------------------------------------------------------------------------
 	/////////////////////////////////////////////////////////////////////////////

@@ -48,22 +48,22 @@ public:
 	Transport();
 	~Transport();
 
-	Bool init( AsciiString ip, UnsignedShort port );
-	Bool init( UnsignedInt ip, UnsignedShort port );
+	bool init( AsciiString ip, UnsignedShort port );
+	bool init( UnsignedInt ip, UnsignedShort port );
 	void reset( void );
-	Bool update( void );									///< Call this once a GameEngine tick, regardless of whether the frame advances.
+	bool update( void );									///< Call this once a GameEngine tick, regardless of whether the frame advances.
 
-	Bool doRecv( void );		///< call this to service the receive packets
-	Bool doSend( void );		///< call this to service the send queue.
+	bool doRecv( void );		///< call this to service the receive packets
+	bool doSend( void );		///< call this to service the send queue.
 
-	Bool queueSend(UnsignedInt addr, UnsignedShort port, const UnsignedByte *buf, Int len /*,
+	bool queueSend(UnsignedInt addr, UnsignedShort port, const UnsignedByte *buf, Int len /*,
 		NetMessageFlags flags, Int id */);				///< Queue a packet for sending to the specified address and port.  This will be sent on the next update() call.
 
-	inline Bool allowBroadcasts(Bool val) { if (!m_udpsock) return false; return (m_udpsock->AllowBroadcasts(val))?true:false; }
+	inline bool allowBroadcasts(Bool val) { if (!m_udpsock) return false; return (m_udpsock->AllowBroadcasts(val))?true:false; }
 
 	// Latency insertion and packet loss
-	void setLatency( Bool val ) { m_useLatency = val; }
-	void setPacketLoss( Bool val ) { m_usePacketLoss = val; }
+	void setLatency( bool val ) { m_useLatency = val; }
+	void setPacketLoss( bool val ) { m_usePacketLoss = val; }
 
 	// Bandwidth metrics
 	Real getIncomingBytesPerSecond( void );
@@ -82,12 +82,12 @@ public:
 
 	UnsignedShort m_port;
 private:
-	Bool m_winsockInit;
+	bool m_winsockInit;
 	UDP *m_udpsock;
 
 	// Latency insertion and packet loss
-	Bool m_useLatency;
-	Bool m_usePacketLoss;
+	bool m_useLatency;
+	bool m_usePacketLoss;
 
 	// Bandwidth metrics
 	UnsignedInt m_incomingBytes[MAX_TRANSPORT_STATISTICS_SECONDS];
@@ -99,7 +99,7 @@ private:
 	Int m_statisticsSlot;
 	UnsignedInt m_lastSecond;
 
-	Bool isGeneralsPacket( TransportMessage *msg );
+	bool isGeneralsPacket( TransportMessage *msg );
 };
 
 #endif // _TRANSPORT_H_

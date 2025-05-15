@@ -111,9 +111,9 @@ DECLARE_PERF_TIMER(SleepyMaintenance)
 // If defined, the game times various units.
 #ifdef DO_UNIT_TIMINGS
 #pragma MESSAGE("*** WARNING *** DOING DO_UNIT_TIMINGS!!!!")
-Bool g_UT_gotUnit = false;
+bool g_UT_gotUnit = false;
 const ThingTemplate *g_UT_curThing = NULL;
-Bool g_UT_startTiming = false;
+bool g_UT_startTiming = false;
 FILE *g_UT_timingLog=NULL;
 FILE *g_UT_commaLog=NULL;
 // Note - this is only for gathering timing data!  DO NOT DO THIS IN REGULAR CODE!!!  JBA
@@ -253,7 +253,7 @@ GameLogic::GameLogic( void )
 // ------------------------------------------------------------------------------------------------
 /** Utility function to set class variables to default values. */
 // ------------------------------------------------------------------------------------------------
-void GameLogic::setDefaults( Bool saveGame )
+void GameLogic::setDefaults( bool saveGame )
 {
 	m_frame = 0;
 	m_width = DEFAULT_WORLD_WIDTH;
@@ -281,7 +281,7 @@ void GameLogic::setDefaults( Bool saveGame )
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-Bool GameLogic::isInSinglePlayerGame( void )
+bool GameLogic::isInSinglePlayerGame( void )
 {
 	return (m_gameMode == GAME_SINGLE_PLAYER ||
 		(TheRecorder && TheRecorder->getMode() == RECORDERMODETYPE_PLAYBACK && TheRecorder->getGameMode() == GAME_SINGLE_PLAYER));
@@ -579,7 +579,7 @@ static void placeNetworkBuildingsForPlayer(Int slotNum, const GameSlot *pSlot, P
 			options.maxRadius = conYard->getGeometryInfo().getBoundingSphereRadius() * 1.3f;
 			DEBUG_LOG(("Placing starting object %d (%s)\n", i, objName.str()));
 			ThePartitionManager->update();
-			Bool foundPos = ThePartitionManager->findPositionAround(&pos, &options, &objPos);
+			bool foundPos = ThePartitionManager->findPositionAround(&pos, &options, &objPos);
 			if (foundPos)
 			{
 				Object *unit = placeObjectAtPosition(slotNum, objName, objPos, pPlayer, pTemplate);
@@ -597,7 +597,7 @@ static void placeNetworkBuildingsForPlayer(Int slotNum, const GameSlot *pSlot, P
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-LoadScreen *GameLogic::getLoadScreen( Bool saveGame )
+LoadScreen *GameLogic::getLoadScreen( bool saveGame )
 {
 	switch (m_gameMode) 
 	{
@@ -808,8 +808,8 @@ static void populateRandomStartPosition( GameInfo *game )
 	}
 
 	// see if a start spot has been chosen at all yet
-	Bool hasStartSpotBeenPicked = FALSE;
-	Bool taken[MAX_SLOTS];
+	bool hasStartSpotBeenPicked = FALSE;
+	bool taken[MAX_SLOTS];
 	for (i=0; i<MAX_SLOTS; ++i)
 	{
 		taken[i] = (i<numPlayers)?FALSE:TRUE;
@@ -958,7 +958,7 @@ void GameLogic::deleteLoadScreen( void )
 
 }  // end deleteLoadScreen
 
-void GameLogic::setGameLoading( Bool loading )
+void GameLogic::setGameLoading( bool loading )
 {
 	m_loadingScene = loading;
 }
@@ -967,7 +967,7 @@ void GameLogic::setGameLoading( Bool loading )
 /** Entry point for starting a new game, the engine is already in clean state at this
 	* point and ready to load up with all the data */
 // ------------------------------------------------------------------------------------------------
-void GameLogic::startNewGame( Bool saveGame )
+void GameLogic::startNewGame( bool saveGame )
 {
 
 	#ifdef DUMP_PERF_STATS
@@ -1073,7 +1073,7 @@ void GameLogic::startNewGame( Bool saveGame )
 
 	checkForDuplicateColors( game );
 
-	Bool isSkirmishOrSkirmishReplay = FALSE;
+	bool isSkirmishOrSkirmishReplay = FALSE;
 	if (game)
 	{
 		for (Int i=0; i<MAX_SLOTS; ++i)
@@ -1216,7 +1216,7 @@ void GameLogic::startNewGame( Bool saveGame )
 				teamPlayerName.format("player%d", j);
 				// if our team is None, or our team is not equal to their team, 
 				// then their our enemy
-				Bool isEnemy = FALSE;
+				bool isEnemy = FALSE;
 				if(team == -1 || teamSlot->getTeamNumber() != team ) isEnemy = TRUE;
 				DEBUG_LOG(("Player %d is %s\n", j, (isEnemy)?"enemy":"ally"));
 
@@ -1522,7 +1522,7 @@ void GameLogic::startNewGame( Bool saveGame )
 		if( thingTemplate == NULL )
 			continue;	
 
-		Bool isBridgeLikeObject = false;
+		bool isBridgeLikeObject = false;
 
 		if (thingTemplate->isBridge()) 
 			isBridgeLikeObject = true;
@@ -1636,13 +1636,13 @@ void GameLogic::startNewGame( Bool saveGame )
 			if( thingTemplate == NULL )
 				continue;
 
-			Bool isBridgeLikeObject = false;
+			bool isBridgeLikeObject = false;
 			if (thingTemplate->isBridge()) isBridgeLikeObject = true;
 			if (thingTemplate->isKindOf(KINDOF_WALK_ON_TOP_OF_WALL)) isBridgeLikeObject = true;
 			if (isBridgeLikeObject)
 				continue;	// bridges have to be added earlier.
 
-			Bool useTrees = TheGlobalData->m_useTrees;
+			bool useTrees = TheGlobalData->m_useTrees;
 			if (TheRecorder && TheRecorder->isMultiplayer()) {
 				useTrees = TRUE; // Always use trees in multiplayer, cause we want it to sync properly. jba.
 			}
@@ -2008,7 +2008,7 @@ void GameLogic::startNewGame( Bool saveGame )
 			if (player && player->isPlayerActive())
 			{
 				// we need to iterate their objects, and select the first Command Center we find
-				Bool alreadyFound = FALSE;
+				bool alreadyFound = FALSE;
 				player->iterateObjects(findAndSelectCommandCenter, &alreadyFound);
 			}
 		}
@@ -2243,7 +2243,7 @@ void GameLogic::processCommandList( CommandList *list )
 
 	if (m_shouldValidateCRCs && !TheNetwork->sawCRCMismatch())
 	{
-		Bool sawCRCMismatch = FALSE;
+		bool sawCRCMismatch = FALSE;
 		Int numPlayers = 0;
 		DEBUG_ASSERTCRASH(TheNetwork, ("No Network!"));
 		if (TheNetwork)
@@ -2297,7 +2297,7 @@ void GameLogic::processCommandList( CommandList *list )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool GameLogic::isIntroMoviePlaying()
+bool GameLogic::isIntroMoviePlaying()
 {
 	/// @todo remove this hack
 	return m_startNewGame && TheDisplay->isMoviePlaying();
@@ -2305,7 +2305,7 @@ Bool GameLogic::isIntroMoviePlaying()
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-void GameLogic::selectObject(Object *obj, Bool createNewSelection, PlayerMaskType playerMask, Bool affectClient)
+void GameLogic::selectObject(Object *obj, bool createNewSelection, PlayerMaskType playerMask, bool affectClient)
 {
 	if (!obj) {
 		return;
@@ -2347,7 +2347,7 @@ void GameLogic::selectObject(Object *obj, Bool createNewSelection, PlayerMaskTyp
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-void GameLogic::deselectObject(Object *obj, PlayerMaskType playerMask, Bool affectClient)
+void GameLogic::deselectObject(Object *obj, PlayerMaskType playerMask, bool affectClient)
 {
 	if (!obj) {
 		return;
@@ -2364,8 +2364,8 @@ void GameLogic::deselectObject(Object *obj, PlayerMaskType playerMask, Bool affe
 		group = TheAI->createGroup();
 		player->getCurrentSelectionAsAIGroup(group);
 		
-		Bool deleted = FALSE;
-		Bool actuallyRemoved = FALSE;
+		bool deleted = FALSE;
+		bool actuallyRemoved = FALSE;
 		
 		if (group) {
 			deleted = group->remove(obj);
@@ -2462,7 +2462,7 @@ void GameLogic::eraseSleepyUpdate(Int i)
 }
 
 // ------------------------------------------------------------------------------------------------
-inline Bool isLowerPriority(const UpdateModulePtr a, const UpdateModulePtr b)
+inline bool isLowerPriority(const UpdateModulePtr a, const UpdateModulePtr b)
 {
 	// return true iff a is lower pri than b.
 	// remember: lower ordinal value means higher priority.
@@ -2823,7 +2823,7 @@ static void unitTimings(void)
 
 			mode = NO_SPAWN;
 			Object *obj = TheGameLogic->getFirstObject();
-			Bool gotSpawn;
+			bool gotSpawn;
 			while (obj) {
 				if (obj->getTemplate() != g_UT_curThing) {
 					TheGameLogic->destroyObject(obj);
@@ -3055,7 +3055,7 @@ void GameLogic::update( void )
 {
 	USE_PERF_TIMER(GameLogic_update)
 
-	LatchRestore<Bool> inUpdateLatch(m_isInUpdate, TRUE);
+	LatchRestore<bool> inUpdateLatch(m_isInUpdate, TRUE);
 #ifdef DO_UNIT_TIMINGS
 	unitTimings();
 #endif
@@ -3100,7 +3100,7 @@ void GameLogic::update( void )
 		TheScriptEngine->UPDATE();
 	}
 
-	Bool freezeTime = TheTacticalView->isTimeFrozen() && !TheTacticalView->isCameraMovementFinished();
+	bool freezeTime = TheTacticalView->isTimeFrozen() && !TheTacticalView->isCameraMovementFinished();
 	freezeTime = freezeTime || TheScriptEngine->isTimeFrozenDebug() || TheScriptEngine->isTimeFrozenScript();
 	
 	if (freezeTime) 
@@ -3124,14 +3124,14 @@ void GameLogic::update( void )
 
 	// force CRC calculation, so we can keep a cache of the last N CRCs.  We do this right where the recorder
 	// would be getting the CRC anyway, so replays can get the CRCs from the exact instant in time as the original.
-	Bool isMPGameOrReplay = (TheRecorder && TheRecorder->isMultiplayer() && getGameMode() != GAME_SHELL && getGameMode() != GAME_NONE);
-	Bool isSoloGameOrReplay = (TheRecorder && !TheRecorder->isMultiplayer() && getGameMode() != GAME_SHELL && getGameMode() != GAME_NONE);
-	Bool generateForMP = (isMPGameOrReplay && (m_frame % TheGameInfo->getCRCInterval()) == 0);
+	bool isMPGameOrReplay = (TheRecorder && TheRecorder->isMultiplayer() && getGameMode() != GAME_SHELL && getGameMode() != GAME_NONE);
+	bool isSoloGameOrReplay = (TheRecorder && !TheRecorder->isMultiplayer() && getGameMode() != GAME_SHELL && getGameMode() != GAME_NONE);
+	bool generateForMP = (isMPGameOrReplay && (m_frame % TheGameInfo->getCRCInterval()) == 0);
 #ifdef DEBUG_CRC
-	Bool generateForSolo = isSoloGameOrReplay && ((m_frame && (m_frame%100 == 0)) ||
+	bool generateForSolo = isSoloGameOrReplay && ((m_frame && (m_frame%100 == 0)) ||
 		(getFrame() >= TheCRCFirstFrameToLog && getFrame() < TheCRCLastFrameToLog && ((m_frame % REPLAY_CRC_INTERVAL) == 0)));
 #else
-	Bool generateForSolo = isSoloGameOrReplay && ((m_frame % REPLAY_CRC_INTERVAL) == 0);
+	bool generateForSolo = isSoloGameOrReplay && ((m_frame % REPLAY_CRC_INTERVAL) == 0);
 #endif // DEBUG_CRC
 
 	if (generateForSolo || generateForMP)
@@ -3464,7 +3464,7 @@ void GameLogic::destroyObject( Object *obj )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool inCRCGen = FALSE;
+bool inCRCGen = FALSE;
 UnsignedInt GameLogic::getCRC( Int mode, AsciiString deepCRCFileName )
 {
 	if (mode != CRC_RECALC)
@@ -3472,7 +3472,7 @@ UnsignedInt GameLogic::getCRC( Int mode, AsciiString deepCRCFileName )
 
 	setFPMode();
 
-	LatchRestore<Bool> latch(inCRCGen, !isInGameLogicUpdate());
+	LatchRestore<bool> latch(inCRCGen, !isInGameLogicUpdate());
 
 	XferCRC *xferCRC;
 	AsciiString marker;
@@ -3640,14 +3640,14 @@ void GameLogic::sendObjectDestroyed( Object *obj )
 // ------------------------------------------------------------------------------------------------
 /** Return if the game is paused or not */
 // ------------------------------------------------------------------------------------------------
-Bool GameLogic::isGamePaused( void )
+bool GameLogic::isGamePaused( void )
 {
 	return m_gamePaused;
 }
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-void GameLogic::setGamePaused( Bool paused, Bool pauseMusic )
+void GameLogic::setGamePaused( bool paused, bool pauseMusic )
 {
 	// We need to ignore an unpause called when we are unpaused or else:
 	// Mouse is hidden for some reason (script or something)
@@ -3744,7 +3744,7 @@ void GameLogic::processProgressComplete(Int playerId)
 // ------------------------------------------------------------------------------------------------
 /// @TODO: Add check to account for timeouts
 // ------------------------------------------------------------------------------------------------
-Bool GameLogic::isProgressComplete( void )
+bool GameLogic::isProgressComplete( void )
 {
 	//If we're not in a network game, always return true
 	if(!isInMultiplayerGame() || !TheNetwork || m_forceGameStartByTimeOut)
@@ -3848,7 +3848,7 @@ void GameLogic::setBuildableStatusOverride(const ThingTemplate* tt, BuildableSta
 }
 
 // ------------------------------------------------------------------------------------------------
-Bool GameLogic::findBuildableStatusOverride(const ThingTemplate* tt, BuildableStatus& bs) const
+bool GameLogic::findBuildableStatusOverride(const ThingTemplate* tt, BuildableStatus& bs) const
 {
 	if (tt)
 	{
@@ -3872,7 +3872,7 @@ void GameLogic::setControlBarOverride(const AsciiString& commandSetName, Int slo
 }
 
 // ------------------------------------------------------------------------------------------------
-Bool GameLogic::findControlBarOverride(const AsciiString& commandSetName, Int slot, ConstCommandButtonPtr& commandButton) const
+bool GameLogic::findControlBarOverride(const AsciiString& commandSetName, Int slot, ConstCommandButtonPtr& commandButton) const
 {
 	char buf[256];
 	buf[0] = '0' + slot;

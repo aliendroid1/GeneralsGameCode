@@ -191,15 +191,15 @@ public:
 	AIGroup *getGroup(void);
 
 	// physical properties
-	Bool isMobile() const;																	///< returns true if object is currently able to move
-	Bool isAbleToAttack() const;														///< returns true if object currently has some kind of attack capability
+	bool isMobile() const;																	///< returns true if object is currently able to move
+	bool isAbleToAttack() const;														///< returns true if object currently has some kind of attack capability
 
-	void maskObject( Bool mask );				///< mask/unmask object
+	void maskObject( bool mask );				///< mask/unmask object
 
 	// cannot set velocity, since this is calculated from position every frame
-	Bool isDestroyed() const { return m_status.test( OBJECT_STATUS_DESTROYED ); }		///< Returns TRUE if object has been destroyed
-	Bool isAirborneTarget() const { return m_status.test( OBJECT_STATUS_AIRBORNE_TARGET ); }	///< Our locomotor will control marking us as a valid target for anti air weapons or not
-	Bool isUsingAirborneLocomotor( void ) const;										///< returns true if the current locomotor is an airborne one
+	bool isDestroyed() const { return m_status.test( OBJECT_STATUS_DESTROYED ); }		///< Returns TRUE if object has been destroyed
+	bool isAirborneTarget() const { return m_status.test( OBJECT_STATUS_AIRBORNE_TARGET ); }	///< Our locomotor will control marking us as a valid target for anti air weapons or not
+	bool isUsingAirborneLocomotor( void ) const;										///< returns true if the current locomotor is an airborne one
 
 	/// central place for us to put any additional capture logic
 	void onCapture( Player *oldOwner, Player *newOwner );
@@ -210,7 +210,7 @@ public:
 	// health and damage
 	void attemptDamage( DamageInfo *damageInfo );			///< damage object as specified by the info
 	void attemptHealing(Real amount, const Object* source);		///< heal object as specified by the info
-	Bool attemptHealingFromSoleBenefactor ( Real amount, const Object* source, UnsignedInt duration );///< for the non-stacking healers like ambulance and propaganda
+	bool attemptHealingFromSoleBenefactor ( Real amount, const Object* source, UnsignedInt duration );///< for the non-stacking healers like ambulance and propaganda
 	ObjectID getSoleHealingBenefactor( void ) const;
 
 	Real estimateDamage( DamageInfoInput& damageInfo ) const;
@@ -239,19 +239,19 @@ public:
 
 	Color getIndicatorColor() const;
 	Color getNightIndicatorColor() const;
-	Bool hasCustomIndicatorColor() const { return m_indicatorColor != 0; }
+	bool hasCustomIndicatorColor() const { return m_indicatorColor != 0; }
 	void setCustomIndicatorColor(Color c);
 	void removeCustomIndicatorColor();
 
-	Bool isLocallyControlled() const;
-	Bool isNeutralControlled() const;
+	bool isLocallyControlled() const;
+	bool isNeutralControlled() const;
 	
-	Bool getIsUndetectedDefector(void) const { return BitIsSet(m_privateStatus, UNDETECTED_DEFECTOR); }
+	bool getIsUndetectedDefector(void) const { return BitIsSet(m_privateStatus, UNDETECTED_DEFECTOR); }
 	void friend_setUndetectedDefector(Bool status);
 
-	inline Bool isOffMap() const { return BitIsSet(m_privateStatus, OFF_MAP); }
+	inline bool isOffMap() const { return BitIsSet(m_privateStatus, OFF_MAP); }
 
-	inline Bool isCaptured() const { return BitIsSet(m_privateStatus, CAPTURED); }
+	inline bool isCaptured() const { return BitIsSet(m_privateStatus, CAPTURED); }
 	void setCaptured(Bool isCaptured);
 
 	inline const GeometryInfo& getGeometryInfo() const { return m_geometryInfo; }
@@ -266,7 +266,7 @@ public:
 	//This is a good creation inspector. There's been multitudes of issues with conflicts of
 	//Objects getting constructed causing crashes either because the modules aren't created
 	//yet, and there's stuff being done inside of setTeam() that cares.
-	Bool areModulesReady() const { return m_modulesReady; }
+	bool areModulesReady() const { return m_modulesReady; }
 
 	BehaviorModule** getBehaviorModules() const { return m_behaviors; }
 
@@ -290,7 +290,7 @@ public:
 	UpdateModule* findUpdateModule(NameKeyType key) const { return (UpdateModule*)findModule(key); }
 	DamageModule* findDamageModule(NameKeyType key) const { return (DamageModule*)findModule(key); }
 
-	Bool isSalvageCrate() const;
+	bool isSalvageCrate() const;
 
 	//
 	// Find us our production update interface if we have one.  This method exists simply
@@ -313,8 +313,8 @@ public:
 	SpecialPowerUpdateInterface* findSpecialPowerWithOverridableDestination( SpecialPowerType type = SPECIAL_INVALID ) const;
 
 	inline ObjectStatusMaskType getStatusBits() const { return m_status; }
-	inline Bool testStatus( ObjectStatusTypes bit ) const { return m_status.test( bit ); }
-	void setStatus( ObjectStatusMaskType objectStatus, Bool set = true );
+	inline bool testStatus( ObjectStatusTypes bit ) const { return m_status.test( bit ); }
+	void setStatus( ObjectStatusMaskType objectStatus, bool set = true );
 	inline void clearStatus( ObjectStatusMaskType objectStatus ) { setStatus( objectStatus, false ); }
 	void updateUpgradeModules();	///< We need to go through our Upgrade Modules and see which should be activated
 	UpgradeMaskType getObjectCompletedUpgradeMask() const { return m_objectUpgradesCompleted; } ///< Upgrades I complete locally
@@ -328,8 +328,8 @@ public:
 	void forceRefreshSubObjectUpgradeStatus();
 
 	// Useful for status bits that can be set by the scripting system
-	inline Bool testScriptStatusBit(ObjectScriptStatusBit b) const { return BitIsSet(m_scriptStatus, b); }
-	void setScriptStatus( ObjectScriptStatusBit bit, Bool set = true );
+	inline bool testScriptStatusBit(ObjectScriptStatusBit b) const { return BitIsSet(m_scriptStatus, b); }
+	void setScriptStatus( ObjectScriptStatusBit bit, bool set = true );
 	inline void clearScriptStatus( ObjectScriptStatusBit bit ) { setScriptStatus(bit, false); }
 
 	// Selectable is individually controlled on an object by object basis for design now.
@@ -337,9 +337,9 @@ public:
 	// object by object basis.  Finally, it can be temporarily overriden by the OBJECT_STATUS_UNSELECTABLE. 
 	// jba.
 	void setSelectable(Bool selectable);
-	Bool isSelectable() const;
+	bool isSelectable() const;
 	
-	Bool isMassSelectable() const;
+	bool isMassSelectable() const;
 
 	// User specified formation.
 	void setFormationID(enum FormationID id) {m_formationID = id;}
@@ -353,21 +353,21 @@ public:
 //IT WOULD PROBABLY BE WISE TO MOVE ALL THE HARD-CODED DEFAULTS BELOW
 //INTO A new Drawable::getHealthBox..() WHICH USES GEOM0INFO, MODEL DATA, INI DATA, ETC.
 	void getHealthBoxPosition(Coord3D& pos) const;
-	Bool getHealthBoxDimensions(Real &healthBoxHeight, Real &healthBoxWidth) const;
+	bool getHealthBoxDimensions(Real &healthBoxHeight, Real &healthBoxWidth) const;
 
-	inline Bool isEffectivelyDead() const { return (m_privateStatus & EFFECTIVELY_DEAD) != 0; }
+	inline bool isEffectivelyDead() const { return (m_privateStatus & EFFECTIVELY_DEAD) != 0; }
 	void setEffectivelyDead(Bool dead);
 
 	void markSingleUseCommandUsed() { m_singleUseCommandUsed = true; }
-	Bool hasSingleUseCommandBeenUsed() const { return m_singleUseCommandUsed; }
+	bool hasSingleUseCommandBeenUsed() const { return m_singleUseCommandUsed; }
 	
 	/// returns true iff the object can run over the other object. 
-	Bool canCrushOrSquish(Object *otherObj, CrushSquishTestType testType = TEST_CRUSH_OR_SQUISH) const;
+	bool canCrushOrSquish(Object *otherObj, CrushSquishTestType testType = TEST_CRUSH_OR_SQUISH) const;
 	UnsignedByte getCrusherLevel() const;
 	UnsignedByte getCrushableLevel() const;
 
-	Bool hasUpgrade( const UpgradeTemplate *upgradeT ) const ;			///< does this object already have this upgrade
-	Bool affectedByUpgrade( const UpgradeTemplate *upgradeT ) const ; ///< can the object even "have" this upgrade, will it do something?
+	bool hasUpgrade( const UpgradeTemplate *upgradeT ) const ;			///< does this object already have this upgrade
+	bool affectedByUpgrade( const UpgradeTemplate *upgradeT ) const ; ///< can the object even "have" this upgrade, will it do something?
 	void giveUpgrade( const UpgradeTemplate *upgradeT );		///< give upgrade to this object
 	void removeUpgrade( const UpgradeTemplate *upgradeT );	///< remove upgrade from this object
 
@@ -383,7 +383,7 @@ public:
 
 	void prependToList(Object **pListHead);
 	void removeFromList(Object **pListHead);
-	Bool isInList(Object **pListHead) const;
+	bool isInList(Object **pListHead) const;
 
 	// this is intended for use ONLY by GameLogic.
 	void friend_deleteInstance() { deleteInstance(); }
@@ -417,7 +417,7 @@ public:
 	inline Object *getContainedBy() { return m_containedBy; }
 	inline const Object *getContainedBy() const { return m_containedBy; }
 	inline UnsignedInt getContainedByFrame() const { return m_containedByFrame; }
-	inline Bool isContained() const { return m_containedBy != NULL; }
+	inline bool isContained() const { return m_containedBy != NULL; }
 	void onContainedBy( Object *containedBy );
 	void onRemovedFrom( Object *removedFrom );
 	Int getTransportSlotCount() const;
@@ -425,10 +425,10 @@ public:
 
 	// Special Powers -------------------------------------------------------------------------------
 	SpecialPowerModuleInterface *getSpecialPowerModule( const SpecialPowerTemplate *specialPowerTemplate ) const;
-	void doSpecialPower( const SpecialPowerTemplate *specialPowerTemplate, UnsignedInt commandOptions, Bool forced = false );	///< execute power
-	void doSpecialPowerAtObject( const SpecialPowerTemplate *specialPowerTemplate, Object *obj, UnsignedInt commandOptions, Bool forced = false );	///< execute power
-	void doSpecialPowerAtLocation( const SpecialPowerTemplate *specialPowerTemplate, const Coord3D *loc, Real angle, UnsignedInt commandOptions, Bool forced = false );	///< execute power
-	void doSpecialPowerUsingWaypoints( const SpecialPowerTemplate *specialPowerTemplate, const Waypoint *way, UnsignedInt commandOptions, Bool forced = false );	///< execute power
+	void doSpecialPower( const SpecialPowerTemplate *specialPowerTemplate, UnsignedInt commandOptions, bool forced = false );	///< execute power
+	void doSpecialPowerAtObject( const SpecialPowerTemplate *specialPowerTemplate, Object *obj, UnsignedInt commandOptions, bool forced = false );	///< execute power
+	void doSpecialPowerAtLocation( const SpecialPowerTemplate *specialPowerTemplate, const Coord3D *loc, Real angle, UnsignedInt commandOptions, bool forced = false );	///< execute power
+	void doSpecialPowerUsingWaypoints( const SpecialPowerTemplate *specialPowerTemplate, const Waypoint *way, UnsignedInt commandOptions, bool forced = false );	///< execute power
 
 	void doCommandButton( const CommandButton *commandButton, CommandSourceType cmdSource );
 	void doCommandButtonAtObject( const CommandButton *commandButton, Object *obj, CommandSourceType cmdSource );
@@ -441,20 +441,20 @@ public:
 	void setCommandSetStringOverride( AsciiString newCommandSetString ) { m_commandSetStringOverride = newCommandSetString; }
 
  	/// People are faking their commandsets, and, Suprise!, they are authoritative.  Challenge everything.
- 	Bool canProduceUpgrade( const UpgradeTemplate *upgrade );
+ 	bool canProduceUpgrade( const UpgradeTemplate *upgrade );
 
 	// Weapons & Damage -------------------------------------------------------------------------------------------------
 	void reloadAllAmmo(Bool now);
-	Bool isOutOfAmmo() const;
-	Bool hasAnyWeapon() const;
-	Bool hasAnyDamageWeapon() const; //Kris: a should be used for real weapons that directly inflict damage... not deploy, hack, etc.
-	Bool hasWeaponToDealDamageType(DamageType typeToDeal) const;
+	bool isOutOfAmmo() const;
+	bool hasAnyWeapon() const;
+	bool hasAnyDamageWeapon() const; //Kris: a should be used for real weapons that directly inflict damage... not deploy, hack, etc.
+	bool hasWeaponToDealDamageType(DamageType typeToDeal) const;
 	Real getLargestWeaponRange() const;
 
 	Weapon* getWeaponInWeaponSlot(WeaponSlotType wslot) const { return m_weaponSet.getWeaponInWeaponSlot(wslot); }
 
 	// see if this current weapon set's weapons has shared reload times
-	const Bool isReloadTimeShared() const { return m_weaponSet.isSharedReloadTime(); }
+	const bool isReloadTimeShared() const { return m_weaponSet.isSharedReloadTime(); }
 
 	Weapon* getCurrentWeapon(WeaponSlotType* wslot = NULL);
 	const Weapon* getCurrentWeapon(WeaponSlotType* wslot = NULL) const;
@@ -466,7 +466,7 @@ public:
 	UnsignedInt getLastShotFiredFrame() const;					///< Get the frame a shot was last fired on
 	ObjectID getLastVictimID() const;						///< Get the last victim we shot at
 	Weapon* findWaypointFollowingCapableWeapon();
-	Bool getAmmoPipShowingInfo(Int& numTotal, Int& numFull) const;
+	bool getAmmoPipShowingInfo(Int& numTotal, Int& numFull) const;
 
 	/**
 		Determines if the unit has any weapon that could conceivably
@@ -490,7 +490,7 @@ public:
 		If there is no weapon that can damage the target, false is returned (and the current-weapon is unchanged).
 		Note that this DOES take weapon attack range into account.
 	*/
-	Bool chooseBestWeaponForTarget(const Object* target, WeaponChoiceCriteria criteria, CommandSourceType cmdSource);
+	bool chooseBestWeaponForTarget(const Object* target, WeaponChoiceCriteria criteria, CommandSourceType cmdSource);
 
 	// set and/or clear a single modelcondition flag
 	void setModelConditionState( ModelConditionFlagType a );
@@ -511,46 +511,46 @@ public:
 
 	void setWeaponSetFlag(WeaponSetType wst);
 	void clearWeaponSetFlag(WeaponSetType wst);
-	inline Bool testWeaponSetFlag(WeaponSetType wst) const { return m_curWeaponSetFlags.test(wst); }
+	inline bool testWeaponSetFlag(WeaponSetType wst) const { return m_curWeaponSetFlags.test(wst); }
 	inline const WeaponSetFlags& getWeaponSetFlags() const { return m_curWeaponSetFlags; }
-	Bool setWeaponLock( WeaponSlotType weaponSlot, WeaponLockType lockType ){ return m_weaponSet.setWeaponLock( weaponSlot, lockType ); }
+	bool setWeaponLock( WeaponSlotType weaponSlot, WeaponLockType lockType ){ return m_weaponSet.setWeaponLock( weaponSlot, lockType ); }
 	void releaseWeaponLock(WeaponLockType lockType){ m_weaponSet.releaseWeaponLock(lockType); }
-	Bool isCurWeaponLocked() const { return m_weaponSet.isCurWeaponLocked(); }
+	bool isCurWeaponLocked() const { return m_weaponSet.isCurWeaponLocked(); }
 
 	/// return true if the template has the specified special power flag set
 	// @todo: inline
-	Bool hasSpecialPower( SpecialPowerType type ) const;
+	bool hasSpecialPower( SpecialPowerType type ) const;
 
 	void setWeaponBonusCondition(WeaponBonusConditionType wst) { m_weaponBonusCondition |= (1 << wst); }
 	void clearWeaponBonusCondition(WeaponBonusConditionType wst) { m_weaponBonusCondition &= ~(1 << wst); }
   // note, the !=0 at the end is important, to convert this into a boolean type! (srj)
-	Bool testWeaponBonusCondition(WeaponBonusConditionType wst) const { return (m_weaponBonusCondition & (1 << wst)) != 0; }
+	bool testWeaponBonusCondition(WeaponBonusConditionType wst) const { return (m_weaponBonusCondition & (1 << wst)) != 0; }
 	inline WeaponBonusConditionFlags getWeaponBonusCondition() const { return m_weaponBonusCondition; }
 
-	Bool getSingleLogicalBonePosition(const char* boneName, Coord3D* position, Matrix3D* transform) const;
-	Bool getSingleLogicalBonePositionOnTurret(WhichTurretType whichTurret, const char* boneName, Coord3D* position, Matrix3D* transform) const;
-	Int getMultiLogicalBonePosition(const char* boneNamePrefix, Int maxBones, Coord3D* positions, Matrix3D* transforms, Bool convertToWorld = TRUE ) const;
+	bool getSingleLogicalBonePosition(const char* boneName, Coord3D* position, Matrix3D* transform) const;
+	bool getSingleLogicalBonePositionOnTurret(WhichTurretType whichTurret, const char* boneName, Coord3D* position, Matrix3D* transform) const;
+	Int getMultiLogicalBonePosition(const char* boneNamePrefix, Int maxBones, Coord3D* positions, Matrix3D* transforms, bool convertToWorld = TRUE ) const;
 	
 	// Entered & exited.
-	Bool didEnter(const PolygonTrigger *pTrigger) const;
-	Bool didExit(const PolygonTrigger *pTrigger) const;
-	Bool isInside(const PolygonTrigger *pTrigger) const;
+	bool didEnter(const PolygonTrigger *pTrigger) const;
+	bool didExit(const PolygonTrigger *pTrigger) const;
+	bool isInside(const PolygonTrigger *pTrigger) const;
 
 	// exiting of any kind
 	ExitInterface *getObjectExitInterface() const;  ///< get exit interface is present
-	Bool hasExitInterface() const { return getObjectExitInterface() != 0; }
+	bool hasExitInterface() const { return getObjectExitInterface() != 0; }
 
 	ObjectShroudStatus getShroudedStatus(Int playerIndex) const;
 
 	DisabledMaskType getDisabledFlags() const { return m_disabledMask; }
-	Bool isDisabled() const { return m_disabledMask.any(); }
-	Bool clearDisabled( DisabledType type );
+	bool isDisabled() const { return m_disabledMask.any(); }
+	bool clearDisabled( DisabledType type );
 
 	void setDisabled( DisabledType type );
 	void setDisabledUntil( DisabledType type, UnsignedInt frame );
-	Bool isDisabledByType( DisabledType type ) const { return TEST_DISABLEDMASK( m_disabledMask, type ); }
+	bool isDisabledByType( DisabledType type ) const { return TEST_DISABLEDMASK( m_disabledMask, type ); }
 
-	void pauseAllSpecialPowers( const Bool disabling ) const;	
+	void pauseAllSpecialPowers( const bool disabling ) const;	
 	
 	//Checks any timers and clears disabled statii that have expired.
 	void checkDisabledStatus();
@@ -571,15 +571,15 @@ public:
 	virtual void reactToTurretChange( WhichTurretType turret, Real oldRotation, Real oldPitch );
 
 	// Convenience function for checking certain kindof bits
-	Bool isStructure(void) const;
+	bool isStructure(void) const;
 	
 	// Convenience function for checking certain kindof bits
-	Bool isFactionStructure(void) const;
+	bool isFactionStructure(void) const;
 
 	// Convenience function for checking certain kindof bits
-	Bool isNonFactionStructure(void) const;
+	bool isNonFactionStructure(void) const;
 
-	Bool getReceivingDifficultyBonus() const { return m_isReceivingDifficultyBonus; }
+	bool getReceivingDifficultyBonus() const { return m_isReceivingDifficultyBonus; }
 	void setReceivingDifficultyBonus(Bool receive);
 
 	inline UnsignedInt getSafeOcclusionFrame(void) { return m_safeOcclusionFrame; }	//< this is an object specific frame at which it's safe to enable building occlusion.
@@ -589,13 +589,13 @@ public:
 	// This is the function that we now call in becomingTeamMember to adjust our power.
 	// If incoming is true, we're working on the incoming player, if its false, we're on the outgoing
 	// player. These are friend_s for player.
-	void friend_adjustPowerForPlayer( Bool incoming );
+	void friend_adjustPowerForPlayer( bool incoming );
 
-	Bool isHero() const;
+	bool isHero() const;
 
 protected:
 
-	void setOrRestoreTeam( Team* team, Bool restoring );
+	void setOrRestoreTeam( Team* team, bool restoring );
 
 	void onDisabledEdge(Bool becomingDisabled);
 	// All of our cheating for radars and power go here.
@@ -615,7 +615,7 @@ protected:
 	// It will go away someday. Yeah, right. Just like GlobalData.
 	Module* findModule(NameKeyType key) const;
 
-	Bool didEnterOrExit() const;
+	bool didEnterOrExit() const;
 
 	void setID( ObjectID id );
 	virtual Object *asObjectMeth() { return this; }

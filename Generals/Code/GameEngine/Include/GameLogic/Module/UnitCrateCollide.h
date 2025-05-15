@@ -80,7 +80,7 @@ public:
 	// virtual destructor prototype provided by memory pool declaration
 
 	/// This is the game logic execution function that all real CrateCollides will implement
-	virtual Bool executeCrateBehavior( Object *other );
+	virtual bool executeCrateBehavior( Object *other );
 protected:
 
 };

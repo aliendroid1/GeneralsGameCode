@@ -49,7 +49,7 @@ public:
 
 	static void buildFieldParse( MultiIniFieldParse &p );
 
-	Bool m_showPrisoners;								///< Will the contained prisoners be shown in the prison yard
+	bool m_showPrisoners;								///< Will the contained prisoners be shown in the prison yard
 	AsciiString m_prisonYardBonePrefix;	///< Bone prefix that makes up the prison yards
 
 };

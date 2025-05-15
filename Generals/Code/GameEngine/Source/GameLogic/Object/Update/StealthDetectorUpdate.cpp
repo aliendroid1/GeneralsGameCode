@@ -101,7 +101,7 @@ StealthDetectorUpdate::~StealthDetectorUpdate( void )
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-void StealthDetectorUpdate::setSDEnabled( Bool enabled ) 
+void StealthDetectorUpdate::setSDEnabled( bool enabled ) 
 { 
 	m_enabled = enabled; 
 	setWakeFrame(getObject(), m_enabled ? UPDATE_SLEEP_NONE : UPDATE_SLEEP_FOREVER);
@@ -118,14 +118,14 @@ class PartitionFilterStealthedOrStealthGarrisoned : public PartitionFilter
 public:
 	PartitionFilterStealthedOrStealthGarrisoned() { } 
 
-	virtual Bool allow(Object *objOther);
+	virtual bool allow(Object *objOther);
 
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterStealthedOrStealthGarrisoned"; }
 #endif
 };
 
-Bool PartitionFilterStealthedOrStealthGarrisoned::allow( Object *objOther)
+bool PartitionFilterStealthedOrStealthGarrisoned::allow( Object *objOther)
 {
 	if( ! objOther )
 		return FALSE;
@@ -197,7 +197,7 @@ UpdateSleepTime StealthDetectorUpdate::update( void )
 	{
 		visionRange = data->m_detectionRange;
 	}
-	Bool foundSomeone = FALSE;
+	bool foundSomeone = FALSE;
 
 	SimpleObjectIterator *iter = ThePartitionManager->iterateObjectsInRange(
 								self, visionRange, FROM_CENTER_2D, filters); 
@@ -225,7 +225,7 @@ UpdateSleepTime StealthDetectorUpdate::update( void )
 				if( ThePlayerList->getLocalPlayer() == self->getControllingPlayer() &&
 						self->getRelationship( them ) != ALLIES )
 				{
-					Bool doFeedback = TRUE;
+					bool doFeedback = TRUE;
 
 					//
 					// do a radar event, for mines we only make events if there weren't other
@@ -255,7 +255,7 @@ UpdateSleepTime StealthDetectorUpdate::update( void )
 				if( ThePlayerList->getLocalPlayer() == them->getControllingPlayer() &&
 						self->getRelationship( them ) != ALLIES )
 				{
- 					Bool doFeedback = TRUE;
+ 					bool doFeedback = TRUE;
 
 					//
 					// do a radar event, for mines we only make events if there weren't other

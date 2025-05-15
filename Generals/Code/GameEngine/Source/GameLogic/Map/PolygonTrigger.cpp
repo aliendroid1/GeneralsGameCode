@@ -130,14 +130,14 @@ PolygonTrigger *PolygonTrigger::getPolygonTriggerByID(Int triggerID)
 *	Input: DataChunkInput 
 *		
 */
-Bool PolygonTrigger::ParsePolygonTriggersDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
+bool PolygonTrigger::ParsePolygonTriggersDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 	Int count;
 	Int numPoints;
 	Int triggerID;
 	Int maxTriggerId = 0;
-	Bool isWater;
-	Bool isRiver;
+	bool isWater;
+	bool isRiver;
 	Int riverStart;
 	AsciiString triggerName;
 	// Remove any existing polygon triggers, if any.
@@ -429,7 +429,7 @@ Real PolygonTrigger::getRadius(void)	const
 /**
  PolygonTrigger - pointInTrigger.
 */
-Bool PolygonTrigger::pointInTrigger(ICoord3D &point) const
+bool PolygonTrigger::pointInTrigger(ICoord3D &point) const
 {	
 	if (m_boundsNeedsUpdate) {
 		updateBounds();
@@ -439,7 +439,7 @@ Bool PolygonTrigger::pointInTrigger(ICoord3D &point) const
 	if (point.x > m_bounds.hi.x) return false;
 	if (point.y > m_bounds.hi.y) return false;
 
-	Bool inside = false;
+	bool inside = false;
 	Int i;
 	for (i=0; i<m_numPoints; i++) {
 		ICoord3D pt1 = m_points[i];
@@ -478,7 +478,7 @@ const WaterHandle* PolygonTrigger::getWaterHandle(void)	const
 
 }
 
-Bool PolygonTrigger::isValid(void) const
+bool PolygonTrigger::isValid(void) const
 {
 	if (m_numPoints == 0) {
 		return FALSE;

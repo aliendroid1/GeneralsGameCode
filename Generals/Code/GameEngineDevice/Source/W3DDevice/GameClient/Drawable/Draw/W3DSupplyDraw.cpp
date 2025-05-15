@@ -89,7 +89,7 @@ void W3DSupplyDraw::updateDrawModuleSupplyStatus( Int maxSupply, Int currentSupp
 		// Show/hide the bones that are now different, the indices between last and now (low, high].
 		Int lowIndex = min( m_lastNumberShown, bonesToShow );
 		Int highIndex = max( m_lastNumberShown, bonesToShow );
-		Bool hide = bonesToShow < m_lastNumberShown;
+		bool hide = bonesToShow < m_lastNumberShown;
 		Int currentIndex = lowIndex + 1;
 
 		std::vector<ModelConditionInfo::HideShowSubObjInfo> boneVector;

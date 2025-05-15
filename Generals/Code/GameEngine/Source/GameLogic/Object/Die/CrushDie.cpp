@@ -51,8 +51,8 @@ static CrushEnum crushLocationCheck( Object* crusherObject, Object* victimObject
 	if( (crusherObject == NULL)  ||  (victimObject == NULL) )
 		return NO_CRUSH;
 
-	Bool frontCrushed = victimObject->getBodyModule()->getFrontCrushed();
-	Bool backCrushed = victimObject->getBodyModule()->getBackCrushed();
+	bool frontCrushed = victimObject->getBodyModule()->getFrontCrushed();
+	bool backCrushed = victimObject->getBodyModule()->getBackCrushed();
 
 //	const Coord3D *dir = crusherObject->getUnitDirectionVector2D();
 	const Coord3D *otherDir = victimObject->getUnitDirectionVector2D();

@@ -92,8 +92,8 @@ public:
 	W3DBibBuffer(void);
 	~W3DBibBuffer(void);
 	/// Add a bib at location.  Name is the w3d model name.
-	void addBib(Vector3 corners[4], ObjectID id, Bool highlight);
-	void addBibDrawable(Vector3 corners[4], DrawableID id, Bool highlight);
+	void addBib(Vector3 corners[4], ObjectID id, bool highlight);
+	void addBibDrawable(Vector3 corners[4], DrawableID id, bool highlight);
 	/// Add a bib at location.  Name is the w3d model name.
 	void removeBib(ObjectID id);
 	void removeBibDrawable(DrawableID id);

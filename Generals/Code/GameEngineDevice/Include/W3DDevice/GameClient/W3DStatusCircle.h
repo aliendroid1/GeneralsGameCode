@@ -63,10 +63,10 @@ public:
 //	virtual void 					Set_Position(const Vector3 &v);
 //TODO: MW: do these later - only needed for collision detection
 	virtual bool					Cast_Ray(RayCollisionTestClass & raytest);
-//	virtual Bool					Cast_AABox(AABoxCollisionTestClass & boxtest);
-//	virtual Bool					Cast_OBBox(OBBoxCollisionTestClass & boxtest);
-//	virtual Bool					Intersect_AABox(AABoxIntersectionTestClass & boxtest);
-//	virtual Bool					Intersect_OBBox(OBBoxIntersectionTestClass & boxtest);
+//	virtual bool					Cast_AABox(AABoxCollisionTestClass & boxtest);
+//	virtual bool					Cast_OBBox(OBBoxCollisionTestClass & boxtest);
+//	virtual bool					Intersect_AABox(AABoxIntersectionTestClass & boxtest);
+//	virtual bool					Intersect_OBBox(OBBoxIntersectionTestClass & boxtest);
 
 	virtual void					Get_Obj_Space_Bounding_Sphere(SphereClass & sphere) const;
     virtual void					Get_Obj_Space_Bounding_Box(AABoxClass & aabox) const;
@@ -78,7 +78,7 @@ public:
 
 //	unsigned int					Get_Flags(void)  { return Flags; }
 //	void								Set_Flags(unsigned int flags) { Flags = flags; }
-//	void								Set_Flag(unsigned int flag, Bool onoff) { Flags &= (~flag); if (onoff) Flags |= flag; }
+//	void								Set_Flag(unsigned int flag, bool onoff) { Flags &= (~flag); if (onoff) Flags |= flag; }
 
 	int updateBlock(void);
 	Int freeMapResources(void);
@@ -86,7 +86,7 @@ public:
 protected:
 	Int	m_numTriangles;	//dimensions of list 
 	static Int m_diffuse;
-	static Bool			 m_needUpdate;
+	static bool			 m_needUpdate;
 
 	DX8IndexBufferClass			*m_indexBuffer;	//indices defining a triangle strip the covers full terrain
 	ShaderClass m_shaderClass; //shader or rendering state for heightmap

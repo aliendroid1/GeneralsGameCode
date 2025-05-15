@@ -318,7 +318,7 @@ void Eva::setEvaEnabled(Bool enabled)
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool Eva::isTimeForCheck(EvaMessage messageToTest, UnsignedInt currentFrame) const
+bool Eva::isTimeForCheck(EvaMessage messageToTest, UnsignedInt currentFrame) const
 {
 	EvaCheckVec::const_iterator it;
 	for (it = m_checks.begin(); it != m_checks.end(); ++it) {
@@ -331,7 +331,7 @@ Bool Eva::isTimeForCheck(EvaMessage messageToTest, UnsignedInt currentFrame) con
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool Eva::messageShouldPlay(EvaMessage messageToTest, UnsignedInt currentFrame) const
+bool Eva::messageShouldPlay(EvaMessage messageToTest, UnsignedInt currentFrame) const
 {
 	if (m_localPlayer == NULL) {
 		return FALSE;
@@ -342,7 +342,7 @@ Bool Eva::messageShouldPlay(EvaMessage messageToTest, UnsignedInt currentFrame) 
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool Eva::shouldPlayLowPower( Player *localPlayer )
+bool Eva::shouldPlayLowPower( Player *localPlayer )
 {
 
 	// @todo make eva sensitive to whether player can do anything about it...
@@ -360,7 +360,7 @@ Bool Eva::shouldPlayLowPower( Player *localPlayer )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool Eva::shouldPlayGenericHandler( Player * )
+bool Eva::shouldPlayGenericHandler( Player * )
 {
 	if (TheEva->m_shouldPlay[TheEva->m_messageBeingTested]) {
 		TheEva->m_shouldPlay[TheEva->m_messageBeingTested] = FALSE;

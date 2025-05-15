@@ -84,8 +84,8 @@ public:
 
 protected:
 
-	Bool initWaveGuide( void );						///< initialize the waveguide on motion start
-	Bool startMoving( void );							///< start the waveguide moving
+	bool initWaveGuide( void );						///< initialize the waveguide on motion start
+	bool startMoving( void );							///< start the waveguide moving
 
 	void computeWaveShapePoints( void );	///< compute the wave shape points
 
@@ -97,8 +97,8 @@ protected:
 	void doDamage( void );								///< do damage to things that have crossed our path
 
 	UnsignedInt m_activeFrame;						///< frame we became active on
-	Bool m_needDisable;									
-	Bool m_initialized;										///< set to TRUE after we're enabled and in motion
+	bool m_needDisable;									
+	bool m_initialized;										///< set to TRUE after we're enabled and in motion
 
 	enum { MAX_WAVEGUIDE_SHAPE_POINTS = 64 };
 	Coord3D m_shapePoints[ MAX_WAVEGUIDE_SHAPE_POINTS ];						///< array that will be our "shape" of sample points to affect the water

@@ -203,9 +203,9 @@ AsciiString SoundManager::getFilenameForPlayFromAudioEvent( const AudioEventRTS 
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool SoundManager::canPlayNow( AudioEventRTS *event )
+bool SoundManager::canPlayNow( AudioEventRTS *event )
 {
-	Bool retVal = false;
+	bool retVal = false;
 	// 1) Are we muted because we're beyond our maximum distance?
 	// 2) Are we shrouded and this is a shroud sound?
 	// 3) Are we violating our voice count or are we playing above the limit? (If so, stop now)
@@ -318,7 +318,7 @@ Bool SoundManager::canPlayNow( AudioEventRTS *event )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool SoundManager::violatesVoice( AudioEventRTS *event )
+bool SoundManager::violatesVoice( AudioEventRTS *event )
 {
 	if (event->getAudioEventInfo()->m_type & ST_VOICE) {
 		return (event->getObjectID() && TheAudio->isObjectPlayingVoice(event->getObjectID()));
@@ -327,7 +327,7 @@ Bool SoundManager::violatesVoice( AudioEventRTS *event )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool SoundManager::isInterrupting( AudioEventRTS *event )
+bool SoundManager::isInterrupting( AudioEventRTS *event )
 {
 	return event->getAudioEventInfo()->m_control & AC_INTERRUPT;
 }

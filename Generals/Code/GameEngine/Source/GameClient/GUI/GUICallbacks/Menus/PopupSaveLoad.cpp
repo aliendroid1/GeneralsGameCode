@@ -85,14 +85,14 @@ static GameWindow *deleteConfirm = NULL;
 
 static GameWindow *parent = NULL;
 static SaveLoadLayoutType currentLayoutType = SLLT_INVALID;
-static Bool isPopup = FALSE;
+static bool isPopup = FALSE;
 static Int	initialGadgetDelay = 2;
-static Bool justEntered = FALSE;
-static Bool isShuttingDown = false;
+static bool justEntered = FALSE;
+static bool isShuttingDown = false;
 
 // PUBLIC FUNCTIONS ///////////////////////////////////////////////////////////////////////////////
-extern Bool DontShowMainMenu; //KRIS
-extern Bool ReplayWasPressed;
+extern bool DontShowMainMenu; //KRIS
+extern bool ReplayWasPressed;
 // ------------------------------------------------------------------------------------------------
 /** Given the current layout and selection in the game listbox, update the main save/load
 	* menu buttons to be enabled or disabled */
@@ -257,7 +257,7 @@ void SaveLoadMenuFullScreenInit( WindowLayout *layout, void *userData )
 void SaveLoadMenuShutdown( WindowLayout *layout, void *userData )
 {
 	
-	Bool popImmediate = *(Bool *)userData;
+	bool popImmediate = *(Bool *)userData;
 	if( popImmediate )
 	{
 

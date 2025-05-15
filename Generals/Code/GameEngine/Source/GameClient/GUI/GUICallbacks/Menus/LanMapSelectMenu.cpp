@@ -95,7 +95,7 @@ static const char *perPlayerGadgetsToHide[] =
 	NULL // keep this last
 };
 
-static void showLANGameOptionsUnderlyingGUIElements( Bool show )
+static void showLANGameOptionsUnderlyingGUIElements( bool show )
 {
 	ShowUnderlyingGUIElements( show, layoutFilename, parentName, gadgetsToHide, perPlayerGadgetsToHide );
 	GameWindow *win	= TheWindowManager->winGetWindowFromId( NULL, TheNameKeyGenerator->nameToKey("LanGameOptionsMenu.wnd:ButtonBack") );
@@ -130,7 +130,7 @@ void LanMapSelectMenuInit( WindowLayout *layout, void *userData )
 	TheWindowManager->winSetFocus( parent );
 
 	LANPreferences pref;
-	Bool usesSystemMapDir = pref.usesSystemMapDir();
+	bool usesSystemMapDir = pref.usesSystemMapDir();
 
 	const MapMetaData *mmd = TheMapCache->findMap(TheLAN->GetMyGame()->getMap());
 	if (mmd)

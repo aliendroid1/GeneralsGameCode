@@ -61,7 +61,7 @@ enum GSOverlayType : Int
 void GameSpyOpenOverlay( GSOverlayType );
 void GameSpyCloseOverlay( GSOverlayType );
 void GameSpyCloseAllOverlays( void );
-Bool GameSpyIsOverlayOpen( GSOverlayType );
+bool GameSpyIsOverlayOpen( GSOverlayType );
 void GameSpyToggleOverlay( GSOverlayType );
 void GameSpyUpdateOverlays( void );
 void ReOpenPlayerInfo( void );

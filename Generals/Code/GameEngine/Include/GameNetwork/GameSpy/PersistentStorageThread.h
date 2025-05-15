@@ -125,8 +125,8 @@ public:
 	std::string nick;
 	std::string password;
 	std::string email;
-	Bool addDiscon;
-	Bool addDesync;
+	bool addDiscon;
+	bool addDesync;
 	Int lastHouse;
 
 	// for GameRes
@@ -151,7 +151,7 @@ public:
 	PSPlayerStats player;
 
 	// preorder flag
-	Bool preorder;
+	bool preorder;
 };
 
 //-------------------------------------------------------------------------
@@ -163,13 +163,13 @@ public:
 	virtual ~GameSpyPSMessageQueueInterface() {}
 	virtual void startThread( void ) = 0;
 	virtual void endThread( void ) = 0;
-	virtual Bool isThreadRunning( void ) = 0;
+	virtual bool isThreadRunning( void ) = 0;
 
 	virtual void addRequest( const PSRequest& req ) = 0;
-	virtual Bool getRequest( PSRequest& req ) = 0;
+	virtual bool getRequest( PSRequest& req ) = 0;
 
 	virtual void addResponse( const PSResponse& resp ) = 0;
-	virtual Bool getResponse( PSResponse& resp ) = 0;
+	virtual bool getResponse( PSResponse& resp ) = 0;
 
 	// called from the main thread
 	virtual void trackPlayerStats( PSPlayerStats stats ) = 0;

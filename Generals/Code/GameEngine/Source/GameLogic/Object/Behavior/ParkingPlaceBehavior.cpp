@@ -195,7 +195,7 @@ void ParkingPlaceBehavior::purgeDead()
 	}
 
 	{
-		Bool anythingPurged = false;
+		bool anythingPurged = false;
 		for (std::list<HealingInfo>::iterator it = m_healing.begin(); it != m_healing.end(); /*++it*/)
 		{
 			if (it->m_gettingHealedID != INVALID_ID)
@@ -219,7 +219,7 @@ void ParkingPlaceBehavior::purgeDead()
 
 //-------------------------------------------------------------------------------------------------
 // note: called from client, so MUST NOT modify self in any way, or desyncs will occur
-Bool ParkingPlaceBehavior::hasReservedSpace(ObjectID id) const
+bool ParkingPlaceBehavior::hasReservedSpace(ObjectID id) const
 {
 	if (!m_gotInfo)
 		return false;
@@ -269,7 +269,7 @@ ParkingPlaceBehavior::ParkingPlaceInfo* ParkingPlaceBehavior::findEmptyPPI()
 
 //-------------------------------------------------------------------------------------------------
 // note: called from client, so MUST NOT modify self in any way, or desyncs will occur
-Bool ParkingPlaceBehavior::shouldReserveDoorWhenQueued(const ThingTemplate* thing) const
+bool ParkingPlaceBehavior::shouldReserveDoorWhenQueued(const ThingTemplate* thing) const
 {
 	if (thing->isKindOf(KINDOF_PRODUCED_AT_HELIPAD))
 		return false;
@@ -279,7 +279,7 @@ Bool ParkingPlaceBehavior::shouldReserveDoorWhenQueued(const ThingTemplate* thin
 
 //-------------------------------------------------------------------------------------------------
 // note: called from client, so MUST NOT modify self in any way, or desyncs will occur
-Bool ParkingPlaceBehavior::hasAvailableSpaceFor(const ThingTemplate* thing) const
+bool ParkingPlaceBehavior::hasAvailableSpaceFor(const ThingTemplate* thing) const
 {
 	if (!m_gotInfo)	// degenerate case, shouldn't happen, but just in case...
 		return false;
@@ -311,7 +311,7 @@ Bool ParkingPlaceBehavior::hasAvailableSpaceFor(const ThingTemplate* thing) cons
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ParkingPlaceBehavior::reserveSpace(ObjectID id, Real parkingOffset, ParkingPlaceBehaviorInterface::PPInfo* info)
+bool ParkingPlaceBehavior::reserveSpace(ObjectID id, Real parkingOffset, ParkingPlaceBehaviorInterface::PPInfo* info)
 {
 	buildInfo();
 	purgeDead();
@@ -415,7 +415,7 @@ void ParkingPlaceBehavior::transferRunwayReservationToNextInLineForTakeoff(Objec
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ParkingPlaceBehavior::reserveRunway(ObjectID id, Bool forLanding)
+bool ParkingPlaceBehavior::reserveRunway(ObjectID id, bool forLanding)
 {
 	buildInfo();
 	purgeDead();
@@ -504,7 +504,7 @@ void ParkingPlaceBehavior::resetWakeFrame()
 }
 
 //-------------------------------------------------------------------------------------------------
-void ParkingPlaceBehavior::setHealee(Object* healee, Bool add)
+void ParkingPlaceBehavior::setHealee(Object* healee, bool add)
 {
 	if (add)
 	{
@@ -553,7 +553,7 @@ void ParkingPlaceBehavior::defectAllParkedUnits(Team* newTeam, UnsignedInt detec
 			// srj sez: evil. fix better someday. 
 			static NameKeyType jetKey = TheNameKeyGenerator->nameToKey("JetAIUpdate");
 			JetAIUpdate* ju = (JetAIUpdate *)obj->findUpdateModule(jetKey);
-			Bool takeoffOrLanding = ju ? ju->friend_isTakeoffOrLandingInProgress() : false;
+			bool takeoffOrLanding = ju ? ju->friend_isTakeoffOrLandingInProgress() : false;
 
 			if (obj->isAboveTerrain() && !takeoffOrLanding)
 			{
@@ -592,7 +592,7 @@ void ParkingPlaceBehavior::killAllParkedUnits()
 			// srj sez: evil. fix better someday. 
 			static NameKeyType jetKey = TheNameKeyGenerator->nameToKey("JetAIUpdate");
 			JetAIUpdate* ju = (JetAIUpdate *)obj->findUpdateModule(jetKey);
-			Bool takeoffOrLanding = ju ? ju->friend_isTakeoffOrLandingInProgress() : false;
+			bool takeoffOrLanding = ju ? ju->friend_isTakeoffOrLandingInProgress() : false;
 
 			if (obj->isAboveTerrain() && !takeoffOrLanding)
 				continue;
@@ -705,7 +705,7 @@ void ParkingPlaceBehavior::exitObjectViaDoor( Object *newObj, ExitDoorType exitD
 	static NameKeyType jetKey = TheNameKeyGenerator->nameToKey( "JetAIUpdate" );
 	JetAIUpdate* ju = (JetAIUpdate *)newObj->findUpdateModule( jetKey );
 	Real parkingOffset = ju ? ju->friend_getParkingOffset() : 0.0f;
-	Bool producedAtHelipad = newObj->isKindOf(KINDOF_PRODUCED_AT_HELIPAD);
+	bool producedAtHelipad = newObj->isKindOf(KINDOF_PRODUCED_AT_HELIPAD);
 
 	PPInfo ppinfo;
 	DUMPMATRIX3D(getObject()->getTransformMatrix());
@@ -716,7 +716,7 @@ void ParkingPlaceBehavior::exitObjectViaDoor( Object *newObj, ExitDoorType exitD
 		DEBUG_ASSERTCRASH(exitDoor == DOOR_NONE_NEEDED, ("Hmm, unlikely"));
 		Matrix3D mtx;
 #ifdef DEBUG_CRASHING
-		Bool boneOk =
+		bool boneOk =
 #endif
 			getObject()->getSingleLogicalBonePosition("HeliPark01", &ppinfo.hangarInternal, &mtx);
 
@@ -748,7 +748,7 @@ void ParkingPlaceBehavior::exitObjectViaDoor( Object *newObj, ExitDoorType exitD
 	AIUpdateInterface  *ai = newObj->getAIUpdateInterface();
 	if( ai )
 	{
-		Bool movedToRallyPoint = FALSE;
+		bool movedToRallyPoint = FALSE;
 		if( producedAtHelipad )
 		{
 			const Coord3D *rallyPoint = getRallyPoint();
@@ -808,14 +808,14 @@ const Coord3D* ParkingPlaceBehavior::getRallyPoint( void ) const
 //-------------------------------------------------------------------------------------------------
 //We only use this for the helipad -- therefore the exit position is the helipad creation point.
 //-------------------------------------------------------------------------------------------------
-Bool ParkingPlaceBehavior::getExitPosition( Coord3D& exitPosition ) const
+bool ParkingPlaceBehavior::getExitPosition( Coord3D& exitPosition ) const
 {
 	Matrix3D mtx;
 	return getObject()->getSingleLogicalBonePosition("HeliPark01", &exitPosition, &mtx );
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ParkingPlaceBehavior::getNaturalRallyPoint( Coord3D& rallyPoint, Bool offset ) const
+bool ParkingPlaceBehavior::getNaturalRallyPoint( Coord3D& rallyPoint, bool offset ) const
 {
 	Matrix3D mtx;
 	return getObject()->getSingleLogicalBonePosition("HeliPark01", &rallyPoint, &mtx );
@@ -878,7 +878,7 @@ void ParkingPlaceBehavior::xfer( Xfer *xfer )
 	else if( xfer->getXferMode() == XFER_LOAD )
 	{
 		ObjectID objectID;
-		Bool reservedForExit;
+		bool reservedForExit;
 
 		// read all elements
 		std::vector< ParkingPlaceInfo >::iterator it;
@@ -935,7 +935,7 @@ void ParkingPlaceBehavior::xfer( Xfer *xfer )
 
 			ObjectID inUseBy;
 			ObjectID nextInLineForTakeoff;
-			Bool wasInLine;
+			bool wasInLine;
 
 			// read object ID
 			xfer->xferObjectID( &inUseBy );

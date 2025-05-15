@@ -75,7 +75,7 @@ typedef struct {
 	Real	u1, v1;	 // Lower left uv
 	Real	u2, v2;	 // Lower right uv
 	Real	u3, v3;	 // Upper right uv
-	Bool  flip;
+	bool  flip;
 	Bool	mutant;  // Mutant mapping needed to get this to fit.
 	Short tileIndex; // Tile texture.
 } TCliffInfo;
@@ -177,11 +177,11 @@ protected:
 protected:
 	TileData *getSourceTile(UnsignedInt ndx) { if (ndx<NUM_SOURCE_TILES) return(m_sourceTiles[ndx]); return(NULL); };
 	TileData *getEdgeTile(UnsignedInt ndx) { if (ndx<NUM_SOURCE_TILES) return(m_edgeTiles[ndx]); return(NULL); };
-	static Bool readTiles(InputStream *pStrm, TileData **tiles, Int numRows);
+	static bool readTiles(InputStream *pStrm, TileData **tiles, Int numRows);
 	static Int countTiles(InputStream *pStrm);
 	/// UV mapping data for a cell to map into the terrain texture.
-	void getUVForNdx(Int ndx, float *minU, float *minV, float *maxU, float*maxV, Bool fullTile);
-	Bool getUVForTileIndex(Int ndx, Short tileNdx, float U[4], float V[4], Bool fullTile);
+	void getUVForNdx(Int ndx, float *minU, float *minV, float *maxU, float*maxV, bool fullTile);
+	bool getUVForTileIndex(Int ndx, Short tileNdx, float U[4], float V[4], bool fullTile);
 	Int getTextureClassFromNdx(Int tileNdx);
 	void readTexClass(TXTextureClass *texClass, TileData **tileData); 
 	Int updateTileTexturePositions(Int *edgeHeight); ///< Places each tile in the texture.
@@ -189,23 +189,23 @@ protected:
 	void setCellCliffFlagFromHeights(Int xIndex, Int yIndex);
 
 protected:	 // file reader callbacks.
-	static Bool ParseHeightMapDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
-	Bool ParseHeightMapData(DataChunkInput &file, DataChunkInfo *info, void *userData);
-	static Bool ParseSizeOnlyInChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
-	Bool ParseSizeOnly(DataChunkInput &file, DataChunkInfo *info, void *userData);
-	static Bool ParseBlendTileDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
-	Bool ParseBlendTileData(DataChunkInput &file, DataChunkInfo *info, void *userData);
-	static Bool ParseWorldDictDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
-	static Bool ParseObjectsDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
-	static Bool ParseObjectDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
-	Bool ParseObjectData(DataChunkInput &file, DataChunkInfo *info, void *userData, Bool readDict);
-	static Bool ParseLightingDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
+	static bool ParseHeightMapDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
+	bool ParseHeightMapData(DataChunkInput &file, DataChunkInfo *info, void *userData);
+	static bool ParseSizeOnlyInChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
+	bool ParseSizeOnly(DataChunkInput &file, DataChunkInfo *info, void *userData);
+	static bool ParseBlendTileDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
+	bool ParseBlendTileData(DataChunkInput &file, DataChunkInfo *info, void *userData);
+	static bool ParseWorldDictDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
+	static bool ParseObjectsDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
+	static bool ParseObjectDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
+	bool ParseObjectData(DataChunkInput &file, DataChunkInfo *info, void *userData, bool readDict);
+	static bool ParseLightingDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
 
 protected:
 	WorldHeightMap(void);			///< Simple constructor for WorldHeightMapEdit class.
 
 public: // constructors/destructors
-	WorldHeightMap(ChunkInputStream *pFile, Bool bHMapOnly=false);	// read from file.
+	WorldHeightMap(ChunkInputStream *pFile, bool bHMapOnly=false);	// read from file.
 	~WorldHeightMap(void);			// destroy.
 
 public:  // Boundary info
@@ -244,12 +244,12 @@ public:  // height map info.
 
 	void getUVForBlend(Int edgeClass, Region2D *range);
 
-	Bool setDrawOrg(Int xOrg, Int yOrg);
+	bool setDrawOrg(Int xOrg, Int yOrg);
 
 	static void freeListOfMapObjects(void);
 
-	Int getTextureClassNoBlend(Int xIndex, Int yIndex, Bool baseClass=false);
-	Int getTextureClass(Int xIndex, Int yIndex, Bool baseClass=false);
+	Int getTextureClassNoBlend(Int xIndex, Int yIndex, bool baseClass=false);
+	Int getTextureClass(Int xIndex, Int yIndex, bool baseClass=false);
 	TXTextureClass getTextureFromIndex( Int textureIndex );
 
 public:  // tile and texture info.	
@@ -257,15 +257,15 @@ public:  // tile and texture info.
 	TextureClass *getAlphaTerrainTexture(void); //< generates if needed and returns alpha terrain texture
 	TextureClass *getEdgeTerrainTexture(void); //< generates if needed and returns blend edge texture
 	/// UV mapping data for a cell to map into the terrain texture.  Returns true if the textures had to be stretched for cliffs.
-	Bool getUVData(Int xIndex, Int yIndex, float U[4], float V[4], Bool fullTile);
-	Bool getFlipState(Int xIndex, Int yIndex) const;
-	Bool getCliffState(Int xIndex, Int yIndex) const;
-	Bool getExtraAlphaUVData(Int xIndex, Int yIndex, float U[4], float V[4], UnsignedByte alpha[4], Bool *flip, Bool *cliff);
+	bool getUVData(Int xIndex, Int yIndex, float U[4], float V[4], bool fullTile);
+	bool getFlipState(Int xIndex, Int yIndex) const;
+	bool getCliffState(Int xIndex, Int yIndex) const;
+	bool getExtraAlphaUVData(Int xIndex, Int yIndex, float U[4], float V[4], UnsignedByte alpha[4], bool *flip, bool *cliff);
 	/// UV mapping data for a cell to map into the alpha terrain texture.
-	void getAlphaUVData(Int xIndex, Int yIndex, float U[4], float V[4], UnsignedByte alpha[4], Bool *flip, Bool fullTile);
+	void getAlphaUVData(Int xIndex, Int yIndex, float U[4], float V[4], UnsignedByte alpha[4], bool *flip, bool fullTile);
 	void getTerrainColorAt(Real x, Real y, RGBColor *pColor);
 	AsciiString getTerrainNameAt(Real x, Real y);
-	Bool isCliffMappedTexture(Int xIndex, Int yIndex);
+	bool isCliffMappedTexture(Int xIndex, Int yIndex);
 
 public:  // modify height value
 	void setRawHeight(Int xIndex, Int yIndex, UnsignedByte height) { 
@@ -274,7 +274,7 @@ public:  // modify height value
 	};
 
 protected:
-	void setCliffState(Int xIndex, Int yIndex, Bool state);
+	void setCliffState(Int xIndex, Int yIndex, bool state);
 
 };
 

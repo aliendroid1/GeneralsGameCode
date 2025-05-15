@@ -55,7 +55,7 @@ static NameKeyType buttonBack = NAMEKEY_INVALID;
 static NameKeyType buttonOK = NAMEKEY_INVALID;
 static NameKeyType listboxMap = NAMEKEY_INVALID;
 static GameWindow *parent = NULL;
-static Bool raiseMessageBoxes = FALSE;
+static bool raiseMessageBoxes = FALSE;
 static GameWindow *winMapPreview = NULL;
 static NameKeyType winMapPreviewID = NAMEKEY_INVALID;
 
@@ -111,7 +111,7 @@ static const char *perPlayerGadgetsToHide[] =
 };
 void positionStartSpots( AsciiString mapName, GameWindow *buttonMapStartPositions[], GameWindow *mapWindow);
 
-static void showGameSpyGameOptionsUnderlyingGUIElements( Bool show )
+static void showGameSpyGameOptionsUnderlyingGUIElements( bool show )
 {
 	ShowUnderlyingGUIElements( show, layoutFilename, parentName, gadgetsToHide, perPlayerGadgetsToHide );
 	GameWindow *win	= TheWindowManager->winGetWindowFromId( NULL, TheNameKeyGenerator->nameToKey("GameSpyGameOptionsMenu.wnd:ButtonBack") );
@@ -135,7 +135,7 @@ void WOLMapSelectMenuInit( WindowLayout *layout, void *userData )
 	TheWindowManager->winSetFocus( parent );
 
 	CustomMatchPreferences pref;
-	Bool usesSystemMapDir = pref.usesSystemMapDir();
+	bool usesSystemMapDir = pref.usesSystemMapDir();
 	winMapPreviewID = TheNameKeyGenerator->nameToKey( AsciiString("WOLMapSelectMenu.wnd:WinMapPreview") );
 	winMapPreview = TheWindowManager->winGetWindowFromId(parent, winMapPreviewID);
 

@@ -71,8 +71,8 @@ public:
 	void setListName(const AsciiString& listName);
 
 	// Equivalence testing
-	Bool isInSet(const AsciiString& objectType) const;
-	Bool isInSet(const ThingTemplate* objectType) const;
+	bool isInSet(const AsciiString& objectType) const;
+	bool isInSet(const ThingTemplate* objectType) const;
 
 	// Is the set empty?
 	size_t getListSize(void) const { return m_objectTypes.size(); }
@@ -84,7 +84,7 @@ public:
 	Int prepForPlayerCounting( std::vector<const ThingTemplate *>& templates, std::vector<Int>& counts);
 
 	// Can the player build any of the thing templates that we have names for?
-	Bool canBuildAny(Player *player);
+	bool canBuildAny(Player *player);
 };
 EMPTY_DTOR(ObjectTypes)
 

@@ -82,7 +82,7 @@
 }
 
 //-----------------------------------------------------------------------------
-void GeometryInfo::set(GeometryType type, Bool isSmall, Real height, Real majorRadius, Real minorRadius)
+void GeometryInfo::set(GeometryType type, bool isSmall, Real height, Real majorRadius, Real minorRadius)
 {
 	m_type = type;
 	m_isSmall = isSmall;
@@ -160,7 +160,7 @@ static Real calcPointToLineDistSquared(const Coord3D& pt, const Coord3D& lineSta
 }
 
 //=============================================================================
-Bool GeometryInfo::isIntersectedByLineSegment(const Coord3D& loc, const Coord3D& from, const Coord3D& to) const
+bool GeometryInfo::isIntersectedByLineSegment(const Coord3D& loc, const Coord3D& from, const Coord3D& to) const
 {
 	DEBUG_CRASH(("this call does not work properly for nonspheres yet. use with caution."));
 
@@ -354,10 +354,10 @@ void GeometryInfo::clipPointToFootprint(const Coord3D& geomCenter, Coord3D& ptTo
 }
 
 //=============================================================================
-inline Bool isWithin(Real a, Real b, Real c) { return a<=b && b<=c; }
+inline bool isWithin(Real a, Real b, Real c) { return a<=b && b<=c; }
 
 //=============================================================================
-Bool GeometryInfo::isPointInFootprint(const Coord3D& geomCenter, const Coord3D& pt) const
+bool GeometryInfo::isPointInFootprint(const Coord3D& geomCenter, const Coord3D& pt) const
 {
 	switch(m_type)
 	{

@@ -251,7 +251,7 @@ AsciiString SpecialPowerModule::getPowerName( void ) const
 //-------------------------------------------------------------------------------------------------
 /** Is this module designed for the power identier template passed in? */
 //-------------------------------------------------------------------------------------------------
-Bool SpecialPowerModule::isModuleForPower( const SpecialPowerTemplate *specialPowerTemplate ) const
+bool SpecialPowerModule::isModuleForPower( const SpecialPowerTemplate *specialPowerTemplate ) const
 {
 	
 	// get the module data
@@ -268,7 +268,7 @@ Bool SpecialPowerModule::isModuleForPower( const SpecialPowerTemplate *specialPo
 //-------------------------------------------------------------------------------------------------
 /** Is this special power ready to use */
 //-------------------------------------------------------------------------------------------------
-Bool SpecialPowerModule::isReady() const
+bool SpecialPowerModule::isReady() const
 {
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	// this is a cheat ... remove this for release!
@@ -389,9 +389,9 @@ void SpecialPowerModule::startPowerRecharge()
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-Bool SpecialPowerModule::initiateIntentToDoSpecialPower( const Object *targetObj, const Coord3D *targetPos, const Waypoint *way, UnsignedInt commandOptions )
+bool SpecialPowerModule::initiateIntentToDoSpecialPower( const Object *targetObj, const Coord3D *targetPos, const Waypoint *way, UnsignedInt commandOptions )
 {
-	Bool valid = false;
+	bool valid = false;
 	// tell our update modules that we intend to do this special power.
 	for( BehaviorModule** u = getObject()->getBehaviorModules(); *u; ++u )
 	{
@@ -620,7 +620,7 @@ void SpecialPowerModule::doSpecialPowerUsingWaypoints( const Waypoint *way, Unsi
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-void SpecialPowerModule::pauseCountdown( Bool pause )
+void SpecialPowerModule::pauseCountdown( bool pause )
 {
 	if (pause)// If pausing
 	{

@@ -317,7 +317,7 @@ public:
 	}
 protected:
 	/// creating and deleting storage for the polygon neighbors
-	Bool allocateNeighbors( Int numPolys );
+	bool allocateNeighbors( Int numPolys );
 	void deleteNeighbors( void );
 
 	// geometry shadow data access
@@ -391,7 +391,7 @@ int W3DShadowGeometryHeightmapMesh::GetPolygonIndex (long dwPolyId, short *psInd
 #ifdef FLIP_TRIANGLES
 	UnsignedByte alpha[4];
 	float UA[4], VA[4];
-	Bool flipForBlend;
+	bool flipForBlend;
 	map->getAlphaUVData(column+m_patchOriginX, row+m_patchOriginY, UA, VA, alpha, &flipForBlend, false);
 	if (flipForBlend)
 	{
@@ -444,7 +444,7 @@ Vector3 *W3DShadowGeometryHeightmapMesh::GetVertex (int dwVertId, Vector3 *pvVer
 	return pvVertex;
 }
 
-Bool isPatchShadowed(W3DShadowGeometryHeightmapMesh	*hm_mesh)
+bool isPatchShadowed(W3DShadowGeometryHeightmapMesh	*hm_mesh)
 {
 	WorldHeightMap *map=NULL;
 	Short poly[ 3 ];
@@ -989,7 +989,7 @@ void W3DShadowGeometryMesh::buildPolygonNeighbors( void )
 // allocateNeighbors ==========================================================
 // Allocate storage for the polygon neighbors and record its size
 // ============================================================================
-Bool W3DShadowGeometryMesh::allocateNeighbors( Int numPolys )
+bool W3DShadowGeometryMesh::allocateNeighbors( Int numPolys )
 {
 
 	// assure we're not re-allocating without deleting
@@ -1754,7 +1754,7 @@ void W3DVolumetricShadow::updateVolumes(Real zoffset)
 
 	DEBUG_ASSERTCRASH(hlod != NULL,("updateVolumes : hlod is NULL!"));
 
-	Bool parentVis=m_robj->Is_Really_Visible();
+	bool parentVis=m_robj->Is_Really_Visible();
 
 	for( i = 0; i < MAX_SHADOW_LIGHTS; i++ )
 	{
@@ -1837,8 +1837,8 @@ void W3DVolumetricShadow::updateMeshVolume(Int meshIndex, Int lightIndex, const 
 	Vector3 prevObjPosition;
 	//Figuring out if mesh has rotated is cheaper (no normalization) than figuring out if light angle has changed.
 	//So we divide the 2 tests.  Also, our light (sun) almost never moves so no second test needed at all.
-	Bool isMeshRotating = false;	//flag if mesh has rotated since last update. Translation doesn't matter for infinite light source.
-	Bool isLightMoving = false;	//flag if light has moved since last update.
+	bool isMeshRotating = false;	//flag if mesh has rotated since last update. Translation doesn't matter for infinite light source.
+	bool isLightMoving = false;	//flag if light has moved since last update.
 
 	Matrix4x4 objectToWorld(*meshXform);
 	Matrix4x4 *prevXForm=&m_objectXformHistory[ lightIndex ][meshIndex];
@@ -2164,7 +2164,7 @@ void W3DVolumetricShadow::addNeighborlessEdges(Int meshIndex, PolyNeighbor *us )
 	Short vertexIndexList[ 3 ];
 	Int i, j;
 	Short edgeStart, edgeEnd;
-	Bool addEdge;
+	bool addEdge;
 
 	// sanity
 	assert( us );
@@ -2249,7 +2249,7 @@ void W3DVolumetricShadow::buildSilhouette(Int meshIndex, Vector3 *lightPosObject
 	PolyNeighbor *polyNeighbor;  // the poly we're looking at right now
 	Vector3 normal;  // normal of current polygon
 	Vector3 lightVector;  // vector from light to polygon
-	Bool visibleNeighborless;
+	bool visibleNeighborless;
 	Int numPolys;  // number of polys in our geometry
 	W3DShadowGeometryMesh *geomMesh;
 	Int i, j;
@@ -2983,7 +2983,7 @@ void W3DVolumetricShadow::constructVolumeVB( Vector3 *lightPosObject,Real shadow
 // allocateShadowVolume =======================================================
 // Allocate a space for us to construct the shadow volume in
 // ============================================================================
-Bool W3DVolumetricShadow::allocateShadowVolume( Int volumeIndex, Int meshIndex )
+bool W3DVolumetricShadow::allocateShadowVolume( Int volumeIndex, Int meshIndex )
 {
 	Int numVertices, numPolygons;
 	Geometry *shadowVolume;
@@ -3141,7 +3141,7 @@ void W3DVolumetricShadow::resetShadowVolume( Int volumeIndex, Int meshIndex )
 // accomodate that as a series of disjoint edge pairs, otherwise known
 // as numVertices * 2
 // ============================================================================
-Bool W3DVolumetricShadow::allocateSilhouette(Int meshIndex, Int numVertices )
+bool W3DVolumetricShadow::allocateSilhouette(Int meshIndex, Int numVertices )
 {
 	Int numEntries = numVertices * 5;	///@todo: HACK, HACK... Should be 2!
 
@@ -3266,7 +3266,7 @@ void W3DVolumetricShadowManager::renderStencilShadows( void )
 
 }  // end renderStencilShadows
 
-void W3DVolumetricShadowManager::renderShadows( Bool forceStencilFill )
+void W3DVolumetricShadowManager::renderShadows( bool forceStencilFill )
 {
 	W3DVolumetricShadow *shadow;
 	Int numRenderedShadows = 0;
@@ -3604,7 +3604,7 @@ void W3DVolumetricShadowManager::ReleaseResources(void)
 }
 
 /** (Re)allocates all W3D/D3D assets after a reset.. */
-Bool W3DVolumetricShadowManager::ReAcquireResources(void)
+bool W3DVolumetricShadowManager::ReAcquireResources(void)
 {
 	ReleaseResources();
 
@@ -3646,7 +3646,7 @@ Bool W3DVolumetricShadowManager::ReAcquireResources(void)
 // Init =======================================================================
 // User called initialization
 // ============================================================================
-Bool W3DVolumetricShadowManager::init( void )
+bool W3DVolumetricShadowManager::init( void )
 {
 	return TRUE;
 }  // end Init
@@ -3815,7 +3815,7 @@ W3DShadowGeometry * W3DShadowGeometryManager::Get_Geom(const char * name)
 }
 
 /** Add animation to cache */
-Bool W3DShadowGeometryManager::Add_Geom(W3DShadowGeometry *new_geom)
+bool W3DShadowGeometryManager::Add_Geom(W3DShadowGeometry *new_geom)
 {
 	WWASSERT (new_geom != NULL);
 
@@ -3862,7 +3862,7 @@ Bool	W3DShadowGeometryManager::Is_Missing( const char * name )
 /** Create shadow geometry from a reference W3D RenderObject*/
 int W3DShadowGeometryManager::Load_Geom(RenderObjClass *robj, const char *name)
 {
-	Bool res=FALSE;
+	bool res=FALSE;
 
 	W3DShadowGeometry * newgeom = NEW W3DShadowGeometry;
 

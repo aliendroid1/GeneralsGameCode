@@ -240,7 +240,7 @@ void SidesList::clear(void)
 *	Input: DataChunkInput 
 *		
 */
-Bool SidesList::ParseSidesDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
+bool SidesList::ParseSidesDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 	DEBUG_ASSERTCRASH(TheSidesList, ("TheSidesList is null"));
 
@@ -381,7 +381,7 @@ void SidesList::WriteSidesDataChunk(DataChunkOutput &chunkWriter)
 		ScriptList::WriteScriptsDataChunk(chunkWriter, scripts, TheSidesList->getNumSides());
 	chunkWriter.closeDataChunk();
 
-	Bool modified = TheSidesList->validateSides();
+	bool modified = TheSidesList->validateSides();
 	DEBUG_ASSERTLOG(!modified, ("*** had to clean up sideslist on read"));
 	modified = false;	// silence compiler warnings in release build
 	
@@ -428,7 +428,7 @@ static AsciiString static_readPlayerNames[MAX_PLAYER_COUNT];
 *	Input: DataChunkInput 
 *		
 */
-static Bool ParsePlayersDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
+static bool ParsePlayersDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 	Int numNames = file.readInt();
 	Int i;
@@ -446,7 +446,7 @@ static Bool ParsePlayersDataChunk(DataChunkInput &file, DataChunkInfo *info, voi
 *	Input: DataChunkInput 
 *		
 */
-static Bool ParseTeamsDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
+static bool ParseTeamsDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 	SidesList *sides = (SidesList *)userData;
 	while (!file.atEndOfChunk()) {
@@ -493,7 +493,7 @@ void SidesList::prepareForMP_or_Skirmish(void)
 		removeSide(i);
 		i--;
 	}
-	Bool gotScripts = false;
+	bool gotScripts = false;
 	for (i=0; i<m_numSkirmishSides; i++) {
 		if (m_skirmishSides[i].getDict()->getAsciiString(TheKey_playerFaction) == "FactionCivilian") {
 			// Don't consider FactionCivilian.
@@ -552,7 +552,7 @@ void SidesList::prepareForMP_or_Skirmish(void)
 }
 
 
-Bool SidesList::isPlayerDefaultTeam(TeamsInfo *t)
+bool SidesList::isPlayerDefaultTeam(TeamsInfo *t)
 {
 	// if our name is "teamfoo" and there is a player named "foo", we are a player-default team.
 	AsciiString tname = t->getDict()->getAsciiString(TheKey_teamName);
@@ -625,11 +625,11 @@ void SidesList::removeTeam(Int i)
 	m_teamrec.removeTeam(i);
 }
 
-Bool SidesList::validateAllyEnemyList(const AsciiString& tname, AsciiString& allies)
+bool SidesList::validateAllyEnemyList(const AsciiString& tname, AsciiString& allies)
 {
 		// owners/allies/enemies must be players.
 
-	Bool modified = false;
+	bool modified = false;
 
 	AsciiString str, newstr, token;
 	
@@ -663,7 +663,7 @@ void SidesList::addPlayerByTemplate(AsciiString playerTemplateName)
 {
 	AsciiString playerName;
 	UnicodeString playerDisplayName;
-	Bool isHuman = false;
+	bool isHuman = false;
 
 	if (playerTemplateName.isEmpty())
 	{
@@ -712,9 +712,9 @@ void SidesList::addPlayerByTemplate(AsciiString playerTemplateName)
 	addTeam(&d);
 }
 
-Bool SidesList::validateSides()
+bool SidesList::validateSides()
 {
-	Bool modified = false;
+	bool modified = false;
 
 	// ensure we have at least one player, and at least one neutral player.
 	Int i;
@@ -862,7 +862,7 @@ void SidesList::xfer( Xfer *xfer )
 
 	// side data
 	ScriptList *scriptList;
-	Bool scriptListPresent;
+	bool scriptListPresent;
 	for( Int i = 0; i < sideCount; ++i )
 	{
 

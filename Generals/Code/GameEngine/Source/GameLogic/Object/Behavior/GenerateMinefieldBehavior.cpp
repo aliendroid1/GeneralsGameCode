@@ -160,7 +160,7 @@ const Coord3D* GenerateMinefieldBehavior::getMinefieldTarget() const
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-static Bool isAnythingTooClose2D(const std::vector<Object*>& v, const Coord3D& pos, Real minDistSqr)
+static bool isAnythingTooClose2D(const std::vector<Object*>& v, const Coord3D& pos, Real minDistSqr)
 {
 	for (std::vector<Object*>::const_iterator it = v.begin(); it != v.end(); ++it)
 	{
@@ -230,7 +230,7 @@ Object* GenerateMinefieldBehavior::placeMineAt(const Coord3D& pt, const ThingTem
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-void GenerateMinefieldBehavior::placeMinesAlongLine(const Coord3D& posStart, const Coord3D& posEnd, const ThingTemplate* mineTemplate, Bool skipOneAtStart)
+void GenerateMinefieldBehavior::placeMinesAlongLine(const Coord3D& posStart, const Coord3D& posEnd, const ThingTemplate* mineTemplate, bool skipOneAtStart)
 {
 	const Object* obj = getObject();
 	const GenerateMinefieldBehaviorModuleData* d = getGenerateMinefieldBehaviorModuleData();

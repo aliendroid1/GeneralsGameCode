@@ -60,11 +60,11 @@ public:
 	virtual int						Class_ID(void) const;
 	virtual void					Render(RenderInfoClass & rinfo);
 /// @todo: Add methods for collision detection with mirror surface
-//	virtual Bool					Cast_Ray(RayCollisionTestClass & raytest);
-//	virtual Bool					Cast_AABox(AABoxCollisionTestClass & boxtest);
-//	virtual Bool					Cast_OBBox(OBBoxCollisionTestClass & boxtest);
-//	virtual Bool					Intersect_AABox(AABoxIntersectionTestClass & boxtest);
-//	virtual Bool					Intersect_OBBox(OBBoxIntersectionTestClass & boxtest);
+//	virtual bool					Cast_Ray(RayCollisionTestClass & raytest);
+//	virtual bool					Cast_AABox(AABoxCollisionTestClass & boxtest);
+//	virtual bool					Cast_OBBox(OBBoxCollisionTestClass & boxtest);
+//	virtual bool					Intersect_AABox(AABoxIntersectionTestClass & boxtest);
+//	virtual bool					Intersect_OBBox(OBBoxIntersectionTestClass & boxtest);
 
 	virtual void					Get_Obj_Space_Bounding_Sphere(SphereClass & sphere) const;
     virtual void					Get_Obj_Space_Bounding_Box(AABoxClass & aabox) const;

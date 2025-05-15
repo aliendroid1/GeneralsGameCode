@@ -60,7 +60,7 @@ static enum
 	DIR_RIGHT
 };
 
-static Bool scrollDir[4] = { false, false, false, false };
+static bool scrollDir[4] = { false, false, false, false };
 
 Int SCROLL_AMT = 100;
 
@@ -136,7 +136,7 @@ const ICoord2D* LookAtTranslator::getRMBScrollAnchor(void)
 	return NULL;
 }
 
-Bool LookAtTranslator::hasMouseMovedRecently( void )
+bool LookAtTranslator::hasMouseMovedRecently( void )
 {
 	if (m_lastMouseMoveFrame > TheGameLogic->getFrame())
 		m_lastMouseMoveFrame = 0; // reset for new game
@@ -172,7 +172,7 @@ GameMessageDisposition LookAtTranslator::translateGameMessage(const GameMessage 
 			// get key and state from args
 			UnsignedByte key		= msg->getArgument( 0 )->integer;
 			UnsignedByte state	= msg->getArgument( 1 )->integer;
-			Bool isPressed = !(BitIsSet( state, KEY_STATE_UP ));
+			bool isPressed = !(BitIsSet( state, KEY_STATE_UP ));
 			
 			if (TheShell && TheShell->isShellActive())
 				break;
@@ -268,7 +268,7 @@ GameMessageDisposition LookAtTranslator::translateGameMessage(const GameMessage 
 			Int dx = m_currentPos.x-m_originalAnchor.x;
 			if (dx<0) dx = -dx;
 			Int dy = m_currentPos.y-m_originalAnchor.y;
-			Bool didMove = dx>PIXEL_OFFSET || dy>PIXEL_OFFSET;
+			bool didMove = dx>PIXEL_OFFSET || dy>PIXEL_OFFSET;
 			// if middle button is "clicked", reset to "home" orientation
 			if (!didMove && TheGameClient->getFrame() - m_timestamp < CLICK_DURATION)
 			{
@@ -613,7 +613,7 @@ GameMessageDisposition LookAtTranslator::translateGameMessage(const GameMessage 
 			if (first)
 			{
 				Drawable *d = first;
-				Bool done = false;
+				bool done = false;
 
 				while(!done)
 				{
@@ -629,7 +629,7 @@ GameMessageDisposition LookAtTranslator::translateGameMessage(const GameMessage 
 // so this isn't really right, but will suffice for demo purposes.
 					if (d->getObject() && d->getObject()->isAboveTerrain() )
 					{
-						Bool doLock = true;
+						bool doLock = true;
 
 						// but don't lock onto projectiles
 						ProjectileUpdateInterface* pui = NULL;

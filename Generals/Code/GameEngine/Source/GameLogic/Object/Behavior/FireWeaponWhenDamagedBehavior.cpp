@@ -298,7 +298,7 @@ void FireWeaponWhenDamagedBehavior::xfer( Xfer *xfer )
 	// extend upgrade mux
 	UpgradeMux::upgradeMuxXfer( xfer );
 
-	Bool weaponPresent;
+	bool weaponPresent;
 
 	// reaction pristine
 	weaponPresent = m_reactionWeaponPristine ? TRUE : FALSE;

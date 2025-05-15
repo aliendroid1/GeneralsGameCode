@@ -102,7 +102,7 @@ public:
 
 	SlowDeathBehaviorModuleData();
 	static void buildFieldParse(MultiIniFieldParse& p);
-	inline Bool hasNonLodEffects() const
+	inline bool hasNonLodEffects() const
 	{
 		return (m_maskOfLoadedEffects & SlowDeathBehaviorModuleData::HAS_NON_LOD_EFFECTS) != 0;
 	}
@@ -118,7 +118,7 @@ class SlowDeathBehaviorInterface
 public:
 	virtual void beginSlowDeath( const DamageInfo *damageInfo ) = 0;
 	virtual Int getProbabilityModifier( const DamageInfo *damageInfo ) const = 0;
-	virtual Bool isDieApplicable(const DamageInfo *damageInfo) const = 0;
+	virtual bool isDieApplicable(const DamageInfo *damageInfo) const = 0;
 };
 
 //-------------------------------------------------------------------------------------------------
@@ -153,12 +153,12 @@ public:
 	// SlowDeathBehaviorInterface
 	virtual void beginSlowDeath( const DamageInfo *damageInfo );
 	virtual Int getProbabilityModifier( const DamageInfo *damageInfo ) const;
-	virtual Bool isDieApplicable(const DamageInfo *damageInfo) const { return getSlowDeathBehaviorModuleData()->m_dieMuxData.isDieApplicable(getObject(), damageInfo); }
+	virtual bool isDieApplicable(const DamageInfo *damageInfo) const { return getSlowDeathBehaviorModuleData()->m_dieMuxData.isDieApplicable(getObject(), damageInfo); }
 
 protected:
 
 	void doPhaseStuff(SlowDeathPhaseType sdphase);
-	inline Bool isSlowDeathActivated() const { return (m_flags & (1<<SLOW_DEATH_ACTIVATED)) != 0; }
+	inline bool isSlowDeathActivated() const { return (m_flags & (1<<SLOW_DEATH_ACTIVATED)) != 0; }
 	inline UnsignedInt getDestructionFrame() const { return m_destructionFrame; }
 
 private:

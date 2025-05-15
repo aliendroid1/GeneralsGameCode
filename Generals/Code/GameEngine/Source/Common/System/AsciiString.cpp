@@ -121,7 +121,7 @@ void AsciiString::debugIgnoreLeaks()
 }
 
 // -----------------------------------------------------
-void AsciiString::ensureUniqueBufferOfSize(int numCharsNeeded, Bool preserveData, const char* strToCopy, const char* strToCat)
+void AsciiString::ensureUniqueBufferOfSize(int numCharsNeeded, bool preserveData, const char* strToCopy, const char* strToCat)
 {
 	validate();
 
@@ -391,7 +391,7 @@ void AsciiString::format_va(const char* format, va_list args)
 }
 
 // -----------------------------------------------------
-Bool AsciiString::startsWith(const char* p) const
+bool AsciiString::startsWith(const char* p) const
 {
 	if (*p == 0)
 		return true;	// everything starts with the empty string
@@ -405,7 +405,7 @@ Bool AsciiString::startsWith(const char* p) const
 }
 
 // -----------------------------------------------------
-Bool AsciiString::startsWithNoCase(const char* p) const
+bool AsciiString::startsWithNoCase(const char* p) const
 {
 	if (*p == 0)
 		return true;	// everything starts with the empty string
@@ -419,7 +419,7 @@ Bool AsciiString::startsWithNoCase(const char* p) const
 }
 
 // -----------------------------------------------------
-Bool AsciiString::endsWith(const char* p) const
+bool AsciiString::endsWith(const char* p) const
 {
 	if (*p == 0)
 		return true;	// everything ends with the empty string
@@ -433,7 +433,7 @@ Bool AsciiString::endsWith(const char* p) const
 }
 
 // -----------------------------------------------------
-Bool AsciiString::endsWithNoCase(const char* p) const
+bool AsciiString::endsWithNoCase(const char* p) const
 {
 	if (*p == 0)
 		return true;	// everything ends with the empty string
@@ -447,13 +447,13 @@ Bool AsciiString::endsWithNoCase(const char* p) const
 }
 
 //-----------------------------------------------------------------------------
-Bool AsciiString::isNone() const
+bool AsciiString::isNone() const
 {
 	return m_data && stricmp(peek(), "None") == 0;
 }
 
 //-----------------------------------------------------------------------------
-Bool AsciiString::nextToken(AsciiString* tok, const char* seps)
+bool AsciiString::nextToken(AsciiString* tok, const char* seps)
 {
 	if (this->isEmpty() || tok == this)
 		return false;

@@ -108,9 +108,9 @@ enum AIStateType : Int
 
 //-----------------------------------------------------------------------------------------------------------
 // generically state transition conditions
-extern Bool outOfWeaponRangeObject( State *thisState, void* userData );
-extern Bool outOfWeaponRangePosition( State *thisState, void* userData );
-extern Bool wantToSquishTarget( State *thisState, void* userData );
+extern bool outOfWeaponRangeObject( State *thisState, void* userData );
+extern bool outOfWeaponRangePosition( State *thisState, void* userData );
+extern bool wantToSquishTarget( State *thisState, void* userData );
 	
 //-----------------------------------------------------------------------------------------------------------
 /**
@@ -200,7 +200,7 @@ enum StateType : Int
 		FIRE_WEAPON,													///< fire the machine owner's current weapon
 		NUM_ATTACK_STATES
 	};
-	AttackStateMachine( Object *owner, AIAttackState* att, AsciiString name, Bool follow, Bool attackingObject, Bool forceAttacking );
+	AttackStateMachine( Object *owner, AIAttackState* att, AsciiString name, bool follow, bool attackingObject, bool forceAttacking );
 
 protected:
 	// snapshot interface
@@ -216,8 +216,8 @@ class AIIdleState : public State
 private:
 
 	UnsignedShort m_initialSleepOffset;
-	Bool m_shouldLookForTargets;
-	Bool m_inited;
+	bool m_shouldLookForTargets;
+	bool m_inited;
 
 	void doInitIdleState();
 
@@ -227,7 +227,7 @@ public:
 		LOOK_FOR_TARGETS,
 		DO_NOT_LOOK_FOR_TARGETS
 	};
-	virtual Bool isIdle(void) const { return true; }
+	virtual bool isIdle(void) const { return true; }
 	AIIdleState( StateMachine *machine, AIIdleTargetingType shouldLookForTargets);
 	virtual StateReturnType onEnter();
 	virtual StateReturnType update();
@@ -267,12 +267,12 @@ public:
 protected:
 
 	void setAdjustsDestination(Bool b) { m_adjustDestinations = b; }
-	Bool getAdjustsDestination() const;
+	bool getAdjustsDestination() const;
 
 	void setGoalPos(const Coord3D* pos) { m_goalPosition = *pos; }
 	const Coord3D* getGoalPos() const { return &m_goalPosition; }
 
-	virtual Bool computePath();												///< compute the path
+	virtual bool computePath();												///< compute the path
 
 	void forceRepath()
 	{
@@ -317,7 +317,7 @@ class AIRappelState : public State
 protected:
 	Real m_rappelRate;
 	Real m_destZ;
-	Bool m_targetIsBldg;
+	bool m_targetIsBldg;
 protected:
 	// snapshot interface
 	virtual void crc( Xfer *xfer );
@@ -344,7 +344,7 @@ public:
 	virtual StateReturnType onEnter() { return STATE_CONTINUE; }
 	virtual void onExit( StateExitType status ) { }
 	virtual StateReturnType update() { return STATE_CONTINUE; }
-	virtual Bool isBusy(void) const { return true; }
+	virtual bool isBusy(void) const { return true; }
 protected:
 	// snapshot interface STUBBED.
 	virtual void crc( Xfer *xfer ){};
@@ -362,7 +362,7 @@ class AIMoveToState : public AIInternalMoveToState
 {
 	MEMORY_POOL_GLUE_WITH_USERLOOKUP_CREATE(AIMoveToState, "AIMoveToState")		
 protected:
-	Bool m_isMoveTo;
+	bool m_isMoveTo;
 public:
 	AIMoveToState( StateMachine *machine );
 	virtual StateReturnType onEnter();
@@ -384,7 +384,7 @@ public:
 	virtual void onExit( StateExitType status );
 	virtual StateReturnType update();
 protected:
-	virtual Bool computePath();												///< compute the path
+	virtual bool computePath();												///< compute the path
 
 };
 EMPTY_DTOR(AIMoveOutOfTheWayState)
@@ -410,9 +410,9 @@ public:
 	virtual StateReturnType onEnter();
 	virtual StateReturnType update();
 protected:
-	virtual Bool computePath();												///< compute the path
+	virtual bool computePath();												///< compute the path
 	Int m_okToRepathTimes; 
-	Bool m_checkForPath;
+	bool m_checkForPath;
 protected:
 	// snapshot interface
 	virtual void crc( Xfer *xfer );
@@ -434,7 +434,7 @@ public:
 	virtual StateReturnType update();
 	virtual void onExit( StateExitType status );
 protected:
-	virtual Bool computePath();												///< compute the path
+	virtual bool computePath();												///< compute the path
 
 };
 EMPTY_DTOR(AIMoveAwayFromRepulsorsState)
@@ -447,7 +447,7 @@ class AIAttackApproachTargetState : public AIInternalMoveToState
 {
 	MEMORY_POOL_GLUE_WITH_USERLOOKUP_CREATE(AIAttackApproachTargetState, "AIAttackApproachTargetState")		
 public:
-	AIAttackApproachTargetState( StateMachine *machine, Bool follow, Bool attackingObject, Bool forceAttacking ) : 
+	AIAttackApproachTargetState( StateMachine *machine, bool follow, bool attackingObject, bool forceAttacking ) : 
 		AIInternalMoveToState( machine, "AIAttackApproachTargetState" ), 
 		m_follow(follow),
 		m_isAttackingObject(attackingObject),
@@ -461,7 +461,7 @@ public:
 	virtual void onExit( StateExitType status );
 	virtual StateReturnType update();
 protected:
-	virtual Bool computePath();												///< compute the path
+	virtual bool computePath();												///< compute the path
 
 protected:
 	// snapshot interface
@@ -493,7 +493,7 @@ class AIAttackPursueTargetState : public AIInternalMoveToState
 {
 	MEMORY_POOL_GLUE_WITH_USERLOOKUP_CREATE(AIAttackPursueTargetState, "AIAttackPursueTargetState")		
 public:
-	AIAttackPursueTargetState( StateMachine *machine, Bool follow, Bool attackingObject, Bool forceAttacking ) : 
+	AIAttackPursueTargetState( StateMachine *machine, bool follow, bool attackingObject, bool forceAttacking ) : 
 		AIInternalMoveToState( machine, "AIAttackPursueTargetState" ), 
 		m_follow(follow),
 		m_isAttackingObject(attackingObject),
@@ -509,7 +509,7 @@ public:
 	virtual void onExit( StateExitType status );
 	virtual StateReturnType update();
 protected:
-	virtual Bool computePath();												///< compute the path
+	virtual bool computePath();												///< compute the path
 
 protected:
 	// snapshot interface
@@ -551,7 +551,7 @@ public:
 	virtual void onExit( StateExitType status );
 	virtual StateReturnType update();
 protected:
-	virtual Bool computePath();												///< compute the path
+	virtual bool computePath();												///< compute the path
 
 private:
 	Int			m_delayCounter;
@@ -603,12 +603,12 @@ class AIFollowWaypointPathState : public AIInternalMoveToState
 {
 	MEMORY_POOL_GLUE_WITH_USERLOOKUP_CREATE(AIFollowWaypointPathState, "AIFollowWaypointPathState")		
 public:
-	AIFollowWaypointPathState( StateMachine *machine, Bool asGroup ) : m_isFollowWaypointPathState(true), 
+	AIFollowWaypointPathState( StateMachine *machine, bool asGroup ) : m_isFollowWaypointPathState(true), 
 		m_moveAsGroup(asGroup), AIInternalMoveToState( machine, "AIFollowWaypointPathState" ) 
 	{
 		m_angle = 0.0f;
 	}
-	AIFollowWaypointPathState( StateMachine *machine, Bool asGroup, Bool isFollow) : 
+	AIFollowWaypointPathState( StateMachine *machine, bool asGroup, bool isFollow) : 
 		m_isFollowWaypointPathState(isFollow), m_moveAsGroup(asGroup), AIInternalMoveToState( machine, 
 																"AIFollowWaypointPathState" ) 
 	{
@@ -630,18 +630,18 @@ protected:
 	Int  m_framesSleeping;
 	const Waypoint *m_currentWaypoint;
 	const Waypoint *m_priorWaypoint;
-	Bool m_appendGoalPosition;
+	bool m_appendGoalPosition;
 
-	const Bool m_moveAsGroup;
+	const bool m_moveAsGroup;
 	// this is necessary because we derive from FollowWaypointPathState, but we do not want to incur the 
 	// expense of checking RTTI to determine whether we are actually a FollowWaypointPathState or not
-	const Bool m_isFollowWaypointPathState;	// derived classes should set this false.
+	const bool m_isFollowWaypointPathState;	// derived classes should set this false.
 
 protected:
 	void computeGoal(Bool useGroupOffsets);
 	Real calcExtraPathDistance(void);
 	const Waypoint *getNextWaypoint(void);
-	Bool hasNextWaypoint(void);
+	bool hasNextWaypoint(void);
 };
 EMPTY_DTOR(AIFollowWaypointPathState)
 
@@ -653,7 +653,7 @@ class AIFollowWaypointPathExactState : public AIInternalMoveToState
 {
 	MEMORY_POOL_GLUE_WITH_USERLOOKUP_CREATE(AIFollowWaypointPathExactState, "AIFollowWaypointPathExactState")		
 public:
-	AIFollowWaypointPathExactState( StateMachine *machine, Bool asGroup ) : m_moveAsGroup(asGroup), 
+	AIFollowWaypointPathExactState( StateMachine *machine, bool asGroup ) : m_moveAsGroup(asGroup), 
 		m_lastWaypoint(NULL),
 		AIInternalMoveToState( machine, "AIFollowWaypointPathExactState" ) { }
 	virtual StateReturnType onEnter();
@@ -668,7 +668,7 @@ protected:
 
 protected:
 	const Waypoint *m_lastWaypoint;
-	const Bool m_moveAsGroup;
+	const bool m_moveAsGroup;
 };
 EMPTY_DTOR(AIFollowWaypointPathExactState)
 
@@ -680,7 +680,7 @@ class AIAttackFollowWaypointPathState : public AIFollowWaypointPathState
 {
 	MEMORY_POOL_GLUE_WITH_USERLOOKUP_CREATE(AIAttackFollowWaypointPathState, "AIAttackFollowWaypointPathState")		
 public:
-	AIAttackFollowWaypointPathState( StateMachine *machine, Bool asGroup );
+	AIAttackFollowWaypointPathState( StateMachine *machine, bool asGroup );
 	//virtual ~AIAttackFollowWaypointPathState();
 	virtual StateReturnType onEnter();
 	virtual void onExit( StateExitType status );
@@ -825,8 +825,8 @@ protected:
 
 private:
 	Int m_index;																		///< current path index	
-	Bool m_adjustFinal;
-	Bool m_adjustFinalOverride;
+	bool m_adjustFinal;
+	bool m_adjustFinalOverride;
 	Int m_retryCount;
 };
 EMPTY_DTOR(AIFollowPathState)
@@ -879,7 +879,7 @@ protected:
 	virtual void loadPostProcess();
 
 protected:
-	Bool m_appendGoalPosition;
+	bool m_appendGoalPosition;
 };
 EMPTY_DTOR(AIMoveAndDeleteState)
 
@@ -888,7 +888,7 @@ class AIAttackAimAtTargetState : public State
 {
 	MEMORY_POOL_GLUE_WITH_USERLOOKUP_CREATE(AIAttackAimAtTargetState, "AIAttackAimAtTargetState")		
 public:
-	AIAttackAimAtTargetState( StateMachine *machine, Bool attackingObject, Bool forceAttacking ) : 
+	AIAttackAimAtTargetState( StateMachine *machine, bool attackingObject, bool forceAttacking ) : 
 		State( machine, "AIAttackAimAtTargetState" ),
 		m_isAttackingObject(attackingObject),
 		m_canTurnInPlace(false),
@@ -905,10 +905,10 @@ protected:
 	virtual void xfer( Xfer *xfer );
 	virtual void loadPostProcess();
 private:
-	const Bool m_isAttackingObject;
-	Bool m_canTurnInPlace;
-	Bool m_setLocomotor;
-	Bool m_isForceAttacking;
+	const bool m_isAttackingObject;
+	bool m_canTurnInPlace;
+	bool m_setLocomotor;
+	bool m_isForceAttacking;
 };
 EMPTY_DTOR(AIAttackAimAtTargetState)
 
@@ -933,8 +933,8 @@ class NotifyWeaponFiredInterface	// an ABC
 public:
 	virtual void notifyFired() = 0;
 	virtual void notifyNewVictimChosen(Object* victim) = 0;
-	virtual Bool isWeaponSlotOkToFire(WeaponSlotType wslot) const = 0;
-	virtual Bool isAttackingObject() const = 0;
+	virtual bool isWeaponSlotOkToFire(WeaponSlotType wslot) const = 0;
+	virtual bool isAttackingObject() const = 0;
 	virtual const Coord3D* getOriginalVictimPos() const = 0;
 };
 
@@ -965,7 +965,7 @@ EMPTY_DTOR(AIAttackFireWeaponState)
 class AttackExitConditionsInterface
 {
 public:
-	virtual Bool shouldExit(const StateMachine* machine) const = 0;
+	virtual bool shouldExit(const StateMachine* machine) const = 0;
 };
 
 //-----------------------------------------------------------------------------------------------------------
@@ -974,7 +974,7 @@ class AIAttackState : public State, public NotifyWeaponFiredInterface
 	MEMORY_POOL_GLUE_WITH_USERLOOKUP_CREATE(AIAttackState, "AIAttackState")		
 public:
 
-	AIAttackState( StateMachine *machine, Bool follow, Bool attackingObject, Bool forceAttacking, AttackExitConditionsInterface* attackParameters);
+	AIAttackState( StateMachine *machine, bool follow, bool attackingObject, bool forceAttacking, AttackExitConditionsInterface* attackParameters);
 	//~AIAttackState();
 
 	virtual StateReturnType onEnter();
@@ -984,14 +984,14 @@ public:
 	virtual void notifyFired() { /* nothing */ }
 	virtual void notifyNewVictimChosen(Object* victim);
 	virtual const Coord3D* getOriginalVictimPos() const { return &m_originalVictimPos; }
-	virtual Bool isWeaponSlotOkToFire(WeaponSlotType wslot) const { return true; }
-	virtual Bool isAttackingObject() const { return m_isAttackingObject; } 
-	virtual Bool isForceAttacking() const { return m_isForceAttacking; }
+	virtual bool isWeaponSlotOkToFire(WeaponSlotType wslot) const { return true; }
+	virtual bool isAttackingObject() const { return m_isAttackingObject; } 
+	virtual bool isForceAttacking() const { return m_isForceAttacking; }
 #ifdef STATE_MACHINE_DEBUG
 	virtual AsciiString getName() const ;
 #endif
 
-	virtual Bool isAttack() const { return TRUE; }
+	virtual bool isAttack() const { return TRUE; }
 
 protected:
 	// snapshot interface
@@ -1008,9 +1008,9 @@ private:
 	Team*														m_victimTeam;								///< recorded onEnter because if it changes during attack , it may no longer be a valid target.
 	Coord3D													m_originalVictimPos;				///< position of first obj/pos attacked... used for ContinueAttackRange.
 	const Weapon*						m_lockedWeaponOnEnter;
-	const Bool							m_follow;
-	const Bool							m_isAttackingObject;								// if false, attacking position
-	const Bool							m_isForceAttacking;
+	const bool							m_follow;
+	const bool							m_isAttackingObject;								// if false, attacking position
+	const bool							m_isForceAttacking;
 };
 
 //-----------------------------------------------------------------------------------------------------------
@@ -1080,7 +1080,7 @@ protected:
 
 private:
 	StateMachine *m_dockMachine;				///< state sub-machine for docking behavior
-	Bool m_usingPrecisionMovement;			///< keep a record of precision movement so we can restore the right state on exit
+	bool m_usingPrecisionMovement;			///< keep a record of precision movement so we can restore the right state on exit
 };
 //-----------------------------------------------------------------------------------------------------------
 /**
@@ -1250,7 +1250,7 @@ class AIFaceState : public State
 {
 	MEMORY_POOL_GLUE_WITH_USERLOOKUP_CREATE(AIFaceState, "AIFaceState")		
 public:
-	AIFaceState( StateMachine *machine, Bool obj ) : State( machine, "AIFaceState" ), m_canTurnInPlace(false), m_obj(obj) { }
+	AIFaceState( StateMachine *machine, bool obj ) : State( machine, "AIFaceState" ), m_canTurnInPlace(false), m_obj(obj) { }
 	virtual StateReturnType onEnter();
 	virtual void onExit( StateExitType status );
 	virtual StateReturnType update();
@@ -1261,8 +1261,8 @@ protected:
 	virtual void loadPostProcess();
 
 protected:
-	const Bool m_obj;
-	Bool m_canTurnInPlace;
+	const bool m_obj;
+	bool m_canTurnInPlace;
 };
 EMPTY_DTOR(AIFaceState)
 

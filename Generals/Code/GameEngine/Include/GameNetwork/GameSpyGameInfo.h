@@ -65,9 +65,9 @@ class GameSpyGameInfo : public GameInfo
 private:
 	GameSpyGameSlot m_GameSpySlot[MAX_SLOTS];											///< The GameSpy Games Slot List
 	SBServer m_server;
-	Bool m_hasBeenQueried;
+	bool m_hasBeenQueried;
 	Transport *m_transport;
-	Bool m_isQM;
+	bool m_isQM;
 
 public:
 	GameSpyGameInfo();
@@ -93,6 +93,6 @@ void WOLDisplayGameOptions( void );
 void WOLDisplaySlotList( void );
 void GameSpyStartGame( void );
 void GameSpyLaunchGame( void );
-Bool GetLocalChatConnectionAddress(AsciiString serverName, UnsignedShort serverPort, UnsignedInt& localIP);
+bool GetLocalChatConnectionAddress(AsciiString serverName, UnsignedShort serverPort, UnsignedInt& localIP);
 
 #endif // __LANGAMEINFO_H__

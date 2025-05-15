@@ -67,7 +67,7 @@ public:
 	virtual void adjustTransformMtx(Matrix3D& mtx) const;
 
 protected:
-	Bool m_dependencyCleared; // The thing we depend on will clear this, and we will relatch it after we draw.
+	bool m_dependencyCleared; // The thing we depend on will clear this, and we will relatch it after we draw.
 };
 
 #endif // _W3D_DEPENDENCY_MODEL_DRAW_H_

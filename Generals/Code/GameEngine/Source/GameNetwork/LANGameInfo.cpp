@@ -69,17 +69,17 @@ LANPlayer * LANGameSlot::getUser( void )
 }
 
 // Various tests
-Bool LANGameSlot::isUser( LANPlayer *user )
+bool LANGameSlot::isUser( LANPlayer *user )
 {
 	return (user && m_state == SLOT_PLAYER && user->getIP() == getIP());
 }
 
-Bool LANGameSlot::isUser( UnicodeString userName )
+bool LANGameSlot::isUser( UnicodeString userName )
 {
 	return (m_state == SLOT_PLAYER && !userName.compareNoCase(getName()));
 }
 
-Bool LANGameSlot::isLocalPlayer( void ) const
+bool LANGameSlot::isLocalPlayer( void ) const
 {
 	return isHuman() && TheLAN && TheLAN->GetLocalIP() == getIP();
 }
@@ -162,7 +162,7 @@ Int LANGameInfo::getSlotNum( UnicodeString userName )
 	return -1;
 }
 
-Bool LANGameInfo::amIHost( void )
+bool LANGameInfo::amIHost( void )
 {
 	DEBUG_ASSERTCRASH(m_inGame, ("Looking for game slot while not in game"));
 	if (!m_inGame)
@@ -250,13 +250,13 @@ AsciiString GenerateGameOptionsString( void )
 	return GameInfoToAsciiString(TheLAN->GetMyGame());
 }
 
-Bool ParseGameOptionsString(LANGameInfo *game, AsciiString options)
+bool ParseGameOptionsString(LANGameInfo *game, AsciiString options)
 {
 	if (!TheLAN || !game)
 		return false;
 
 	Int oldLocalSlotNum = (game->isInGame()) ? game->getLocalSlotNum() : -1;
-	Bool wasInGame = oldLocalSlotNum >= 0;
+	bool wasInGame = oldLocalSlotNum >= 0;
 //	Int hadMap = wasInGame && game->getSlot(oldLocalSlotNum)->hasMap();
 	AsciiString oldMap = game->getMap();
 	UnsignedInt oldMapCRC, newMapCRC;
@@ -279,7 +279,7 @@ Bool ParseGameOptionsString(LANGameInfo *game, AsciiString options)
 	if (ParseAsciiStringToGameInfo(game, options))
 	{
 		Int newLocalSlotNum = (game->isInGame()) ? game->getLocalSlotNum() : -1;
-		Bool isInGame = newLocalSlotNum >= 0;
+		bool isInGame = newLocalSlotNum >= 0;
 		if (!TheLAN->AmIHost() && isInGame)
 		{
 //			Int hasMap = game->getSlot(newLocalSlotNum)->hasMap();

@@ -223,7 +223,7 @@ void W3DShroud::ReleaseResources(void)
 
 //-----------------------------------------------------------------------------
 ///Restore resources that are lost on D3D device reset.
-Bool W3DShroud::ReAcquireResources(void)
+bool W3DShroud::ReAcquireResources(void)
 {
 		if (!m_dstTextureWidth)
 			return TRUE;	//nothing to reaquire since shroud was never initialized with valid data
@@ -277,7 +277,7 @@ W3DShroudLevel W3DShroud::getShroudLevel(Int x, Int y)
 }
 
 //-----------------------------------------------------------------------------
-void W3DShroud::setShroudLevel(Int x, Int y, W3DShroudLevel level, Bool textureOnly)
+void W3DShroud::setShroudLevel(Int x, Int y, W3DShroudLevel level, bool textureOnly)
 {
 	DEBUG_ASSERTCRASH( m_pSrcTexture != NULL, ("Writing empty shroud.  Usually means that map failed to load."));
 

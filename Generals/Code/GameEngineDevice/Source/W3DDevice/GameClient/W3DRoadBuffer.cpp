@@ -352,7 +352,7 @@ void RoadSegment::updateSegLighting(void)
 /** Loads a tee into the vertex buffer for a road join. */
 //=============================================================================
 void W3DRoadBuffer::loadTee(RoadSegment *pRoad, Vector2 loc1, 
-														Vector2 loc2, Bool is4Way, Real scale)
+														Vector2 loc2, bool is4Way, Real scale)
 {
 	Vector2 roadVector(loc2.X-loc1.X, loc2.Y-loc1.Y);
 	Vector2 roadNormal(-roadVector.Y, roadVector.X);
@@ -460,7 +460,7 @@ void W3DRoadBuffer::loadY(RoadSegment *pRoad, Vector2 loc1,
 /** Loads a h shaped tee into the vertex buffer for a road join. */
 //=============================================================================
 void W3DRoadBuffer::loadH(RoadSegment *pRoad, Vector2 loc1, 
-														Vector2 loc2, Bool flip, Real scale)
+														Vector2 loc2, bool flip, Real scale)
 {
 	
 	Vector2 roadVector(loc2.X-loc1.X, loc2.Y-loc1.Y);
@@ -593,11 +593,11 @@ void W3DRoadBuffer::loadFloat4PtSection(RoadSegment *pRoad, Vector2 loc,
 
 	const int maxRows = 100;
 	typedef struct {
-		Bool collapsed;
-		Bool deleted;
+		bool collapsed;
+		bool deleted;
 		Vector3 vtx[maxRows];
 		Int diffuseRed;
-		Bool lightGradient;
+		bool lightGradient;
 		Int vertexIndex[maxRows];
 		Real uIndex;
 	} TColumn;
@@ -668,7 +668,7 @@ void W3DRoadBuffer::loadFloat4PtSection(RoadSegment *pRoad, Vector2 loc,
 				curColumn = nextColumn;
 			} else {
 				if (prevColumn.collapsed && curColumn.collapsed && nextColumn.collapsed) {
-					Bool okToDelete = false;
+					bool okToDelete = false;
 
 					Real theZ = prevColumn.vtx[0].Z * (curColumn.uIndex-prevColumn.uIndex) + 
 										nextColumn.vtx[0].Z * (nextColumn.uIndex-curColumn.uIndex);
@@ -832,11 +832,11 @@ void W3DRoadBuffer::loadLit4PtSection(RoadSegment *pRoad, UnsignedShort *ib, Ver
 
 	const int maxRows = 100;
 	typedef struct {
-		Bool collapsed;
-		Bool deleted;
+		bool collapsed;
+		bool deleted;
 		Vector3 vtx[maxRows];
 		Int diffuseRed;
-		Bool lightGradient;
+		bool lightGradient;
 		Int vertexIndex[maxRows];
 		Real uIndex;
 	} TColumn;
@@ -907,7 +907,7 @@ void W3DRoadBuffer::loadLit4PtSection(RoadSegment *pRoad, UnsignedShort *ib, Ver
 				curColumn = nextColumn;
 			} else {
 				if (prevColumn.collapsed && curColumn.collapsed && nextColumn.collapsed) {
-					Bool okToDelete = false;
+					bool okToDelete = false;
 
 					Real theZ = prevColumn.vtx[0].Z * (curColumn.uIndex-prevColumn.uIndex) + 
 										nextColumn.vtx[0].Z * (nextColumn.uIndex-curColumn.uIndex);
@@ -1474,7 +1474,7 @@ void W3DRoadBuffer::checkLinkAfter(Int ndx)
 
 }
 
-static Bool warnSegments = true;
+static bool warnSegments = true;
 #define CHECK_SEGMENTS {if (m_numRoads >= m_maxRoadSegments) { if (warnSegments) DEBUG_LOG(("****** Too many road segments.  Need to increase ini values.  See john a.\n")); warnSegments = false; return;}}
 
 //=============================================================================
@@ -1482,7 +1482,7 @@ static Bool warnSegments = true;
 //=============================================================================
 /** Loads the roads from the map objects. */
 //=============================================================================
-void W3DRoadBuffer::addMapObject(RoadSegment *pRoad, Bool updateTheCounts)
+void W3DRoadBuffer::addMapObject(RoadSegment *pRoad, bool updateTheCounts)
 {
 
 	RoadSegment cur = *pRoad;
@@ -1504,10 +1504,10 @@ void W3DRoadBuffer::addMapObject(RoadSegment *pRoad, Bool updateTheCounts)
 
 	CHECK_SEGMENTS;
 	Int i;
-	Bool flip = false;
-	Bool addBefore = false;
-	Bool addAfter = false;
-	Bool bothMatch = false;
+	bool flip = false;
+	bool addBefore = false;
+	bool addAfter = false;
+	bool bothMatch = false;
 	for (i=0; i<m_numRoads; i++) {
 		bothMatch = false;
 		if ( (m_roads[i].m_pt1.loc==loc1 && m_roads[i].m_pt2.loc==loc2) ||
@@ -1594,7 +1594,7 @@ void W3DRoadBuffer::addMapObjects()
 			curRoad.m_scale = DEFAULT_ROAD_SCALE; 
 			curRoad.m_widthInTexture = 1.0f; 
 			curRoad.m_uniqueID = 1;
-			Bool found = false;
+			bool found = false;
 			TerrainRoadType *road = TheTerrainRoads->findRoad( pMapObj->getName() );
 			if( road )
 			{
@@ -1812,9 +1812,9 @@ void W3DRoadBuffer::insertTee(Vector2 loc, Int index1, Real scale)
 	Real dot13 = v1.Dot_Product(v1, v3);
 	Real dot32 = v1.Dot_Product(v3, v2);
 	// The greatest negative dot product is the pair that is heading most opposite each other.
-	Bool do12 = false;
-	Bool do13 = false;
-	Bool do32 = false;
+	bool do12 = false;
+	bool do13 = false;
+	bool do32 = false;
 
 	if (dot12<dot13) {
 		if (dot12<dot32) {
@@ -1854,7 +1854,7 @@ void W3DRoadBuffer::insertTee(Vector2 loc, Int index1, Real scale)
 		// The arm of the tee is slanted, so do a slant tee.
 		Real angle = (PI/2); // 90 degrees.
 		Real xpdct = Vector3::Cross_Product_Z(Vector3(upVector.X,upVector.Y,0), Vector3(decider.X, decider.Y,0));
-		Bool mirror = false;
+		bool mirror = false;
 		if (xpdct<0) {
 			angle = -angle;
 			mirror = true;
@@ -1864,7 +1864,7 @@ void W3DRoadBuffer::insertTee(Vector2 loc, Int index1, Real scale)
 		Vector2 teeVector(upVector);
 		teeVector.Rotate(angle);
 
-		Bool flip;
+		bool flip;
 		if (do12) {
 			flip = xpSign(teeVector, v3) == 1;
 			offsetH(pc1, pc2, pc3, loc, upVector, teeVector, flip, mirror, m_roads[index1].m_widthInTexture);
@@ -1942,7 +1942,7 @@ void W3DRoadBuffer::insertTee(Vector2 loc, Int index1, Real scale)
 //=============================================================================
 /** Inserts a Y intersection if the corner meets "Y" criteria. */
 //=============================================================================
-Bool W3DRoadBuffer::insertY(Vector2 loc, Int index1, Real scale)
+bool W3DRoadBuffer::insertY(Vector2 loc, Int index1, Real scale)
 {
 	// pr1-3 point to the points on the segments that form the tee.
 	// They are the points on the segments that are != loc.
@@ -2003,9 +2003,9 @@ Bool W3DRoadBuffer::insertY(Vector2 loc, Int index1, Real scale)
 	Vector2 v3 = pr3->loc - loc;
 	v3.Normalize();
 
-	Bool do12 = false;
-	Bool do13 = false;
-	Bool do32 = false;
+	bool do12 = false;
+	bool do13 = false;
+	bool do32 = false;
 
 	Real dot12 = v1.Dot_Product(v1, v2);
 	Real dot13 = v1.Dot_Product(v1, v3);
@@ -2200,7 +2200,7 @@ the join points of the 3 way intersection. */
 //=============================================================================
 void W3DRoadBuffer::offsetH(TRoadPt *pc1, TRoadPt *pc2, TRoadPt *pc3, Vector2 loc, 
 														Vector2 upVector, Vector2 teeVector, 
-														Bool flip, Bool mirror, Real widthInTexture) 
+														bool flip, bool mirror, Real widthInTexture) 
 {
 
 	if (flip != mirror) {
@@ -2485,12 +2485,12 @@ void W3DRoadBuffer::insert4Way(Vector2 loc, Int index1, Real scale)
 		curPair = 34; 
 		curDot = dot34;
 	}
-	Bool do12 = (curPair==12);	 // Do segment 1 to 2
-	Bool do13 = (curPair==13);	 // Do segment 1 to 3 etc.
-	Bool do14 = (curPair==14);
-	Bool do23 = (curPair==23);
-	Bool do24 = (curPair==24);
-	Bool do34 = (curPair==34);
+	bool do12 = (curPair==12);	 // Do segment 1 to 2
+	bool do13 = (curPair==13);	 // Do segment 1 to 3 etc.
+	bool do14 = (curPair==14);
+	bool do23 = (curPair==23);
+	bool do24 = (curPair==24);
+	bool do34 = (curPair==34);
 
 	Vector2 alignVector;
 	if (do12) {
@@ -2716,7 +2716,7 @@ void W3DRoadBuffer::insertCrossTypeJoins(void)
 	Int i;
 	for (i=0; i<numRoadSegments; i++) {
 		Vector2 loc1, loc2;
-		Bool isPt1 = false;
+		bool isPt1 = false;
 		if ((m_roads[i].m_pt2.count==0 && m_roads[i].m_pt2.isJoin)) {
 			loc1 = m_roads[i].m_pt2.loc;
 			loc2 = m_roads[i].m_pt1.loc;
@@ -2859,7 +2859,7 @@ void W3DRoadBuffer::insertCurveSegmentAt(Int ndx1, Int ndx2)
 	}
 	Real curSin = Vector3::Dot_Product(line1.Get_Dir(), line2.Get_Dir());
 	Real xpdct = Vector3::Cross_Product_Z(line1.Get_Dir(), line2.Get_Dir());
-	Bool turnRight;
+	bool turnRight;
 	if (xpdct > 0) {
 		pr1 = &m_roads[ndx1].m_pt1.loc;
 		pr2 = &m_roads[ndx1].m_pt2.loc;
@@ -3209,7 +3209,7 @@ void W3DRoadBuffer::updateLighting(void)
 //=============================================================================
 /** Draws the roads.   */
 //=============================================================================
-void W3DRoadBuffer::drawRoads(CameraClass * camera, TextureClass *cloudTexture, TextureClass *noiseTexture, Bool wireframe,
+void W3DRoadBuffer::drawRoads(CameraClass * camera, TextureClass *cloudTexture, TextureClass *noiseTexture, bool wireframe,
 															Int minX, Int maxX, Int minY, Int maxY, RefRenderObjListIterator *pDynamicLightsIterator)
 {
 	m_minX = minX*MAP_XY_FACTOR;

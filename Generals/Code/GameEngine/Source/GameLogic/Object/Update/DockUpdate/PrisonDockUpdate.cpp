@@ -59,7 +59,7 @@ PrisonDockUpdate::~PrisonDockUpdate( void )
 	* Return TRUE to continue the docking process
 	* Return FALSE to complete the dockin process */
 // ------------------------------------------------------------------------------------------------
-Bool PrisonDockUpdate::action( Object *docker, Object *drone )
+bool PrisonDockUpdate::action( Object *docker, Object *drone )
 {
 
 	// sanity

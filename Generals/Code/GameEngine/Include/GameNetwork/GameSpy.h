@@ -58,16 +58,16 @@ public:
 	virtual void reset( void ) = 0;
 	virtual void update( void ) = 0;
 
-	virtual Bool isConnected( void ) = 0;
+	virtual bool isConnected( void ) = 0;
 	virtual void login(AsciiString loginName, AsciiString password = AsciiString::TheEmptyString, AsciiString email = AsciiString::TheEmptyString) = 0;
 	virtual void reconnectProfile( void ) = 0;
 	virtual void disconnectFromChat( void ) = 0;
 
-	virtual void UTMRoom( RoomType roomType, const char *key, const char *val, Bool authenticate = FALSE ) = 0;
-	virtual void UTMPlayer( const char *name, const char *key, const char *val, Bool authenticate = FALSE ) = 0;
+	virtual void UTMRoom( RoomType roomType, const char *key, const char *val, bool authenticate = FALSE ) = 0;
+	virtual void UTMPlayer( const char *name, const char *key, const char *val, bool authenticate = FALSE ) = 0;
 	virtual void startGame( void ) = 0;
 	virtual void leaveRoom( RoomType roomType ) = 0;
-	virtual void setReady( Bool ready ) = 0;
+	virtual void setReady( bool ready ) = 0;
 	virtual void enumPlayers( RoomType roomType, peerEnumPlayersCallback callback, void *userData ) = 0;
 	virtual void startListingGames( peerListingGamesCallback callback ) = 0;
 	virtual void stopListingGames( void ) = 0;
@@ -82,7 +82,7 @@ public:
 	inline AsciiString getPassword( void )			{ return m_password; }
 	inline GroupRoomMap* getGroupRooms( void )	{ return &m_groupRooms; }
 	inline Int getCurrentGroupRoomID( void )		{ return m_currentGroupRoomID; }
-	inline Bool getUsingProfile( void )					{ return m_usingProfiles; }
+	inline bool getUsingProfile( void )					{ return m_usingProfiles; }
 	inline Int getProfileID( void )							{ return m_profileID; }
 
 	inline void setCurrentGroupRoomID( Int ID )	{ m_currentGroupRoomID = ID; }
@@ -95,7 +95,7 @@ protected:
 	AsciiString m_loginName;
 	AsciiString m_password;
 	AsciiString m_email;
-	Bool m_usingProfiles;
+	bool m_usingProfiles;
 	Int m_profileID;
 	PEER m_peer;
 
@@ -110,7 +110,7 @@ extern GameSpyChatInterface *TheGameSpyChat;
 
 void JoinRoomCallback(PEER peer, PEERBool success,
 											PEERJoinResult result, RoomType roomType,
-											void *param);																	///< Called when we (fail to) join a room.  param is address of Bool to store result
+											void *param);																	///< Called when we (fail to) join a room.  param is address of bool to store result
 
 void ListGroupRoomsCallback(PEER peer, PEERBool success,
 														int groupID, GServer server,

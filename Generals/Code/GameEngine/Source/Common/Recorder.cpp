@@ -144,7 +144,7 @@ void RecorderClass::logPlayerDisconnect(UnicodeString player, Int slot)
 	if (!fseek(m_file, disconOffset + slot*sizeof(Bool), SEEK_SET))
 	{
 		// save off discon status
-		Bool b = TRUE;
+		bool b = TRUE;
 		fwrite(&b, sizeof(Bool), 1, m_file);
 	}
 	// move back to end of stream
@@ -189,7 +189,7 @@ void RecorderClass::logCRCMismatch( void )
 	if (!fseek(m_file, desyncOffset, SEEK_SET))
 	{
 		// save off desync status
-		Bool b = TRUE;
+		bool b = TRUE;
 		fwrite(&b, sizeof(Bool), 1, m_file);
 	}
 	// move back to end of stream
@@ -478,7 +478,7 @@ void RecorderClass::stopPlayback() {
  */
 void RecorderClass::updateRecord() 
 {
-	Bool needFlush = FALSE;
+	bool needFlush = FALSE;
 	static Int lastFrame = -1;
 	GameMessage *msg = TheCommandList->getFirstMessage();
 	while (msg != NULL) {
@@ -562,7 +562,7 @@ void RecorderClass::startRecording(GameDifficulty diff, Int originalGameMode, In
 	UnsignedInt frames = 0;
 	fwrite(&frames, sizeof(UnsignedInt), 1, m_file);	// reserve space for duration in frames
 
-	Bool b = FALSE;
+	bool b = FALSE;
 	fwrite(&b, sizeof(Bool), 1, m_file);	// reserve space for flag (true if we desync)
 	fwrite(&b, sizeof(Bool), 1, m_file);	// reserve space for flag (true if we quit early)
 	for (Int i=0; i<MAX_SLOTS; ++i)
@@ -811,7 +811,7 @@ void RecorderClass::writeArgument(GameMessageArgumentDataType type, const GameMe
  * Read in a replay header, for (1) populating a replay listbox or (2) starting playback.  In
  * case (2), set FILE *m_file.
  */
-Bool RecorderClass::readReplayHeader(ReplayHeader& header)
+bool RecorderClass::readReplayHeader(ReplayHeader& header)
 {
 	AsciiString filepath = getReplayDir();
 	filepath.concat(header.filename.str());
@@ -904,13 +904,13 @@ Bool RecorderClass::readReplayHeader(ReplayHeader& header)
 }
 
 #if defined RTS_DEBUG || defined RTS_INTERNAL
-Bool RecorderClass::analyzeReplay( AsciiString filename )
+bool RecorderClass::analyzeReplay( AsciiString filename )
 {
 	m_doingAnalysis = TRUE;
 	return playbackFile(filename);
 }
 
-Bool RecorderClass::isAnalysisInProgress( void )
+bool RecorderClass::isAnalysisInProgress( void )
 {
 	return m_mode == RECORDERMODETYPE_PLAYBACK && m_nextFrame != -1;
 }
@@ -943,7 +943,7 @@ AsciiString RecorderClass::getCurrentReplayFilename( void )
 class CRCInfo
 {
 public:
-	CRCInfo(UnsignedInt localPlayer, Bool isMultiplayer);
+	CRCInfo(UnsignedInt localPlayer, bool isMultiplayer);
 	void addCRC(UnsignedInt val);
 	UnsignedInt readCRC(void);
 
@@ -952,17 +952,17 @@ public:
 	UnsignedInt getLocalPlayer(void) { return m_localPlayer; }
 
 	void setSawCRCMismatch(void) { m_sawCRCMismatch = TRUE; }
-	Bool sawCRCMismatch(void) { return m_sawCRCMismatch; }
+	bool sawCRCMismatch(void) { return m_sawCRCMismatch; }
 
 protected:
 
-	Bool m_sawCRCMismatch;
-	Bool m_skippedOne;
+	bool m_sawCRCMismatch;
+	bool m_skippedOne;
 	std::list<UnsignedInt> m_data;
 	UnsignedInt m_localPlayer;
 };
 
-CRCInfo::CRCInfo(UnsignedInt localPlayer, Bool isMultiplayer)
+CRCInfo::CRCInfo(UnsignedInt localPlayer, bool isMultiplayer)
 {
 	m_localPlayer = localPlayer;
 	m_skippedOne = !isMultiplayer;
@@ -1000,7 +1000,7 @@ UnsignedInt CRCInfo::readCRC(void)
 	return val;
 }
 
-void RecorderClass::handleCRCMessage(UnsignedInt newCRC, Int playerIndex, Bool fromPlayback)
+void RecorderClass::handleCRCMessage(UnsignedInt newCRC, Int playerIndex, bool fromPlayback)
 {
 	if (fromPlayback)
 	{
@@ -1010,7 +1010,7 @@ void RecorderClass::handleCRCMessage(UnsignedInt newCRC, Int playerIndex, Bool f
 	}
 
 	Int localPlayerIndex = m_crcInfo->getLocalPlayer();
-	Bool samePlayer = FALSE;
+	bool samePlayer = FALSE;
 	AsciiString playerName;
 	playerName.format("player%d", localPlayerIndex);
 	const Player *p = ThePlayerList->getNthPlayer(playerIndex);
@@ -1049,23 +1049,23 @@ void RecorderClass::handleCRCMessage(UnsignedInt newCRC, Int playerIndex, Bool f
 /**
  * Return true if this version of the file is the same as our version of the game
  */
-Bool RecorderClass::testVersionPlayback(AsciiString filename)
+bool RecorderClass::testVersionPlayback(AsciiString filename)
 {
 
 	ReplayHeader header;
 	header.forPlayback = TRUE;
 	header.filename = filename;
-	Bool success = readReplayHeader( header );
+	bool success = readReplayHeader( header );
 	if (!success)
 	{
 		return FALSE;
 	}
-	Bool versionStringDiff = header.versionString != TheVersion->getUnicodeVersion();
-	Bool versionTimeStringDiff = header.versionTimeString != TheVersion->getUnicodeBuildTime();
-	Bool versionNumberDiff = header.versionNumber != TheVersion->getVersionNumber();
-	Bool exeCRCDiff = header.exeCRC != TheGlobalData->m_exeCRC;
-	Bool exeDifferent = versionStringDiff || versionTimeStringDiff || versionNumberDiff || exeCRCDiff;
-	Bool iniDifferent = header.iniCRC != TheGlobalData->m_iniCRC;
+	bool versionStringDiff = header.versionString != TheVersion->getUnicodeVersion();
+	bool versionTimeStringDiff = header.versionTimeString != TheVersion->getUnicodeBuildTime();
+	bool versionNumberDiff = header.versionNumber != TheVersion->getVersionNumber();
+	bool exeCRCDiff = header.exeCRC != TheGlobalData->m_exeCRC;
+	bool exeDifferent = versionStringDiff || versionTimeStringDiff || versionNumberDiff || exeCRCDiff;
+	bool iniDifferent = header.iniCRC != TheGlobalData->m_iniCRC;
 
 	if(exeDifferent || iniDifferent)
 	{
@@ -1079,7 +1079,7 @@ Bool RecorderClass::testVersionPlayback(AsciiString filename)
  * Start playback of the file. Return true or false depending on if the file is
  * a valid replay file or not.
  */
-Bool RecorderClass::playbackFile(AsciiString filename) 
+bool RecorderClass::playbackFile(AsciiString filename) 
 {
 	if (!m_doingAnalysis)
 	{
@@ -1094,19 +1094,19 @@ Bool RecorderClass::playbackFile(AsciiString filename)
 	ReplayHeader header;
 	header.forPlayback = TRUE;
 	header.filename = filename;
-	Bool success = readReplayHeader( header );
+	bool success = readReplayHeader( header );
 	if (!success)
 	{
 		return FALSE;
 	}
 #ifdef DEBUG_LOGGING
 
-	Bool versionStringDiff = header.versionString != TheVersion->getUnicodeVersion();
-	Bool versionTimeStringDiff = header.versionTimeString != TheVersion->getUnicodeBuildTime();
-	Bool versionNumberDiff = header.versionNumber != TheVersion->getVersionNumber();
-	Bool exeCRCDiff = header.exeCRC != TheGlobalData->m_exeCRC;
-	Bool exeDifferent = versionStringDiff || versionTimeStringDiff || versionNumberDiff || exeCRCDiff;
-	Bool iniDifferent = header.iniCRC != TheGlobalData->m_iniCRC;
+	bool versionStringDiff = header.versionString != TheVersion->getUnicodeVersion();
+	bool versionTimeStringDiff = header.versionTimeString != TheVersion->getUnicodeBuildTime();
+	bool versionNumberDiff = header.versionNumber != TheVersion->getVersionNumber();
+	bool exeCRCDiff = header.exeCRC != TheGlobalData->m_exeCRC;
+	bool exeDifferent = versionStringDiff || versionTimeStringDiff || versionNumberDiff || exeCRCDiff;
+	bool iniDifferent = header.iniCRC != TheGlobalData->m_iniCRC;
 
 	AsciiString debugString;
 	AsciiString tempStr;
@@ -1153,7 +1153,7 @@ Bool RecorderClass::playbackFile(AsciiString filename)
 	}
 #endif
 
-	Bool isMultiplayer = m_gameInfo.getSlot(header.localPlayerIndex)->getIP() != 0;
+	bool isMultiplayer = m_gameInfo.getSlot(header.localPlayerIndex)->getIP() != 0;
 	m_crcInfo = NEW CRCInfo(header.localPlayerIndex, isMultiplayer);
 	REPLAY_CRC_INTERVAL = m_gameInfo.getCRCInterval();
 	DEBUG_LOG(("Player index is %d, replay CRC interval is %d\n", m_crcInfo->getLocalPlayer(), REPLAY_CRC_INTERVAL));
@@ -1305,7 +1305,7 @@ void RecorderClass::appendNextCommand() {
 
 	// don't debug log this if we're debugging sync errors, as it will cause diff problems between a game and it's replay...
 #ifdef DEBUG_LOGGING
-	Bool logCommand = true;
+	bool logCommand = true;
 #ifdef DEBUG_CRC
 	if (!m_doingAnalysis)
 		logCommand = false;
@@ -1395,7 +1395,7 @@ void RecorderClass::readArgument(GameMessageArgumentDataType type, GameMessage *
 		}
 #endif
 	} else if (type == ARGUMENTDATATYPE_BOOLEAN) {
-		Bool thebool;
+		bool thebool;
 		fread(&thebool, sizeof(thebool), 1, m_file);
 		msg->appendBooleanArgument(thebool);
 #ifdef DEBUG_LOGGING
@@ -1622,7 +1622,7 @@ void RecorderClass::initControls()
 	NameKeyType parentReplayControlID = TheNameKeyGenerator->nameToKey( AsciiString("ReplayControl.wnd:ParentReplayControl") );
 	GameWindow *parentReplayControl = TheWindowManager->winGetWindowFromId( NULL, parentReplayControlID );
 
-	Bool show = (getMode() != RECORDERMODETYPE_PLAYBACK);
+	bool show = (getMode() != RECORDERMODETYPE_PLAYBACK);
 	if (parentReplayControl)
 	{
 		parentReplayControl->winHide(show);	// show the replay control window.
@@ -1630,7 +1630,7 @@ void RecorderClass::initControls()
 }
 
 ///< is this a multiplayer game (record OR playback)?
-Bool RecorderClass::isMultiplayer( void )
+bool RecorderClass::isMultiplayer( void )
 {
 
 	if (m_mode == RECORDERMODETYPE_PLAYBACK)

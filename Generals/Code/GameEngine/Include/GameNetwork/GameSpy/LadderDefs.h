@@ -47,17 +47,17 @@ public:
 	Int playersPerTeam;
 	Int minWins;
 	Int maxWins;
-	Bool randomMaps;
-	Bool randomFactions;
-	Bool validQM;
-	Bool validCustom;
+	bool randomMaps;
+	bool randomFactions;
+	bool validQM;
+	bool validCustom;
 	std::list<AsciiString> validMaps;
 	std::list<AsciiString> validFactions;
 	AsciiString cryptedPassword;
 	AsciiString address;
 	UnsignedShort port;
 	AsciiString homepageURL;
-	Bool submitReplay; // with game results
+	bool submitReplay; // with game results
 	Int index;
 };
 

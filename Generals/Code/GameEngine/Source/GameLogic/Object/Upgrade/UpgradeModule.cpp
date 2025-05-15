@@ -94,7 +94,7 @@ UpgradeMux::UpgradeMux() : m_upgradeExecuted(false)
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool UpgradeMux::isAlreadyUpgraded() const 
+bool UpgradeMux::isAlreadyUpgraded() const 
 { 
 	return m_upgradeExecuted; 
 }
@@ -113,7 +113,7 @@ void UpgradeMux::forceRefreshUpgrade()
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool UpgradeMux::attemptUpgrade( UpgradeMaskType keyMask )
+bool UpgradeMux::attemptUpgrade( UpgradeMaskType keyMask )
 {
 	if (wouldUpgrade(keyMask))
 	{
@@ -126,7 +126,7 @@ Bool UpgradeMux::attemptUpgrade( UpgradeMaskType keyMask )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool UpgradeMux::wouldUpgrade( UpgradeMaskType keyMask ) const
+bool UpgradeMux::wouldUpgrade( UpgradeMaskType keyMask ) const
 {
 	UpgradeMaskType activation, conflicting;
 	getUpgradeActivationMasks(activation, conflicting);
@@ -161,7 +161,7 @@ Bool UpgradeMux::wouldUpgrade( UpgradeMaskType keyMask ) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool UpgradeMux::testUpgradeConditions( UpgradeMaskType keyMask ) const
+bool UpgradeMux::testUpgradeConditions( UpgradeMaskType keyMask ) const
 {
 	UpgradeMaskType activation, conflicting;
 	getUpgradeActivationMasks(activation, conflicting);
@@ -202,7 +202,7 @@ Bool UpgradeMux::testUpgradeConditions( UpgradeMaskType keyMask ) const
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool UpgradeMux::resetUpgrade( UpgradeMaskType keyMask )
+bool UpgradeMux::resetUpgrade( UpgradeMaskType keyMask )
 {
 	UpgradeMaskType activation, conflicting;
 	getUpgradeActivationMasks(activation, conflicting);

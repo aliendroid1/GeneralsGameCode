@@ -78,7 +78,7 @@ public:
 
 	void init( const Object *object, const Object *bomber );
 	void detonate();
-	Bool isTimedBomb() const { return m_dieFrame > 0; }
+	bool isTimedBomb() const { return m_dieFrame > 0; }
 	UnsignedInt getDetonationFrame() const { return m_dieFrame; }
 	Object* getTargetObject() const;
 	void setTargetObject( Object *obj );

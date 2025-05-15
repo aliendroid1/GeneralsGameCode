@@ -173,16 +173,16 @@ public:
 	// virtual destructor prototype provided by memory pool declaration
 
 	// SpecialPowerUpdateInterface
-	virtual Bool initiateIntentToDoSpecialPower(const SpecialPowerTemplate *specialPowerTemplate, const Object *targetObj, const Coord3D *targetPos, const Waypoint *way, UnsignedInt commandOptions );
-	virtual Bool isSpecialAbility() const { return true; }
-	virtual Bool isSpecialPower() const { return false; }
-	virtual Bool isActive() const { return m_active; }
-	virtual Bool doesSpecialPowerHaveOverridableDestinationActive() const { return false; } //Is it active now?
-	virtual Bool doesSpecialPowerHaveOverridableDestination() const { return false; }	//Does it have it, even if it's not active?
+	virtual bool initiateIntentToDoSpecialPower(const SpecialPowerTemplate *specialPowerTemplate, const Object *targetObj, const Coord3D *targetPos, const Waypoint *way, UnsignedInt commandOptions );
+	virtual bool isSpecialAbility() const { return true; }
+	virtual bool isSpecialPower() const { return false; }
+	virtual bool isActive() const { return m_active; }
+	virtual bool doesSpecialPowerHaveOverridableDestinationActive() const { return false; } //Is it active now?
+	virtual bool doesSpecialPowerHaveOverridableDestination() const { return false; }	//Does it have it, even if it's not active?
 	virtual void setSpecialPowerOverridableDestination( const Coord3D *loc ) {}
-	virtual Bool isPowerCurrentlyInUse( const CommandButton *command = NULL ) const;
+	virtual bool isPowerCurrentlyInUse( const CommandButton *command = NULL ) const;
 
-//	virtual Bool isBusy() const { return m_isBusy; }
+//	virtual bool isBusy() const { return m_isBusy; }
 
 	// UpdateModule
 	virtual SpecialPowerUpdateInterface* getSpecialPowerUpdateInterface() { return this; }
@@ -196,7 +196,7 @@ public:
 	SpecialPowerType getSpecialPowerType( void ) const;
 
 protected:
-	void onExit( Bool cleanup );
+	void onExit( bool cleanup );
 
 	const SpecialPowerTemplate* getTemplate() const;
 
@@ -204,15 +204,15 @@ protected:
 
 	//Wrapper function that determines if our object is close enough to the target object or position (auto knowledge)... only if necessary.
 	//Returns true if it's not necessary, in which case, it can skip any approach.
-	Bool isWithinStartAbilityRange() const;
-	Bool isWithinAbilityAbortRange() const; //If not, we abort the ability
+	bool isWithinStartAbilityRange() const;
+	bool isWithinAbilityAbortRange() const; //If not, we abort the ability
 
-	Bool initLaser(Object* specialObject, Object* target);
+	bool initLaser(Object* specialObject, Object* target);
 
 	//Various steps of performing any special ability. Not all special abilities will use all of them.
-	Bool approachTarget();			//Approaches the target before starting the special attack (if appropriate)
+	bool approachTarget();			//Approaches the target before starting the special attack (if appropriate)
 	void startPreparation();		//Begins the preparation of ability -- like firing off a hacker attack, or laser tracer, etc.
-	Bool continuePreparation();	//Updates the preparation of ability -- like recalculating tracer lines.
+	bool continuePreparation();	//Updates the preparation of ability -- like recalculating tracer lines.
 	void triggerAbilityEffect();	//After the preparation time has elapsed, this part actually triggers the desired effect of the special ability.
 	void finishAbility();
 
@@ -221,23 +221,23 @@ protected:
 	Object* createSpecialObject();
 	void killSpecialObjects();
 
-	Bool handlePackingProcessing();
+	bool handlePackingProcessing();
 	void startPacking(Bool success);
 	void startUnpacking();
-	Bool needToPack() const;
-	Bool needToUnpack() const;
+	bool needToPack() const;
+	bool needToUnpack() const;
 
-	Bool isPreparationComplete() const { return !m_prepFrames; }
+	bool isPreparationComplete() const { return !m_prepFrames; }
 	void endPreparation();
-	Bool isPersistentAbility() const { return getSpecialAbilityUpdateModuleData()->m_persistentPrepFrames > 0; }
+	bool isPersistentAbility() const { return getSpecialAbilityUpdateModuleData()->m_persistentPrepFrames > 0; }
 	void resetPreparation() { m_prepFrames = getSpecialAbilityUpdateModuleData()->m_persistentPrepFrames; }
 
-	Bool isFacing();
-	Bool needToFace() const;
+	bool isFacing();
+	bool needToFace() const;
 	void startFacing();
 
-//	void setBusy ( Bool is ) { m_isBusy = is; }
-//	Bool m_isBusy; ///< whether I am between trigger and completion
+//	void setBusy ( bool is ) { m_isBusy = is; }
+//	bool m_isBusy; ///< whether I am between trigger and completion
 
 protected:
 

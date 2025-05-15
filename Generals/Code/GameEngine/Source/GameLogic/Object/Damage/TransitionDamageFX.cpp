@@ -107,7 +107,7 @@ static void parseFXLocInfo( INI *ini, void *instance, FXLocInfo *locInfo )
 
 		}  // end if
 
-		// parse the Bool definition
+		// parse the bool definition
 		ini->parseBool( ini, instance, &locInfo->randomBone, NULL );
 
 	}  // end if

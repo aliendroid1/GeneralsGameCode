@@ -102,20 +102,20 @@ public:
 	// virtual destructor prototype provided by memory pool declaration
 
 	//SpecialPowerUpdateInterface pure virtual implementations
-	virtual Bool initiateIntentToDoSpecialPower(const SpecialPowerTemplate *specialPowerTemplate, const Object *targetObj, const Coord3D *targetPos, const Waypoint *way, UnsignedInt commandOptions );
-	virtual Bool isSpecialAbility() const { return false; }
-	virtual Bool isSpecialPower() const { return true; }
-	virtual Bool isActive() const { return m_doorState != m_timeoutState; }
+	virtual bool initiateIntentToDoSpecialPower(const SpecialPowerTemplate *specialPowerTemplate, const Object *targetObj, const Coord3D *targetPos, const Waypoint *way, UnsignedInt commandOptions );
+	virtual bool isSpecialAbility() const { return false; }
+	virtual bool isSpecialPower() const { return true; }
+	virtual bool isActive() const { return m_doorState != m_timeoutState; }
 	SpecialPowerTemplate* getTemplate() const;
-	virtual Bool doesSpecialPowerHaveOverridableDestinationActive() const { return false; } //Is it active now?
-	virtual Bool doesSpecialPowerHaveOverridableDestination() const { return false; }	//Does it have it, even if it's not active?
+	virtual bool doesSpecialPowerHaveOverridableDestinationActive() const { return false; } //Is it active now?
+	virtual bool doesSpecialPowerHaveOverridableDestination() const { return false; }	//Does it have it, even if it's not active?
 	virtual void setSpecialPowerOverridableDestination( const Coord3D *loc ) {}
 
 	virtual SpecialPowerUpdateInterface* getSpecialPowerUpdateInterface() { return this; }
 	virtual CommandOption getCommandOption() const { return (CommandOption)0; }
 
 	virtual UpdateSleepTime update();	///< Deciding whether or not to make new guys
-	virtual Bool isPowerCurrentlyInUse( const CommandButton *command = NULL ) const;
+	virtual bool isPowerCurrentlyInUse( const CommandButton *command = NULL ) const;
 
 private:
 	enum DoorStateType

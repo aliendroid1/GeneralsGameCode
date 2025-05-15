@@ -129,7 +129,7 @@ public:
 	void setHeight( Real height );									///< Sets the height of the world
 	Real getHeight( void );													///< Returns the height of the world
 
-	Bool isInGameLogicUpdate( void ) const { return m_isInUpdate; }
+	bool isInGameLogicUpdate( void ) const { return m_isInUpdate; }
 	UnsignedInt getFrame( void );										///< Returns the current simulation frame number
 	UnsignedInt getCRC( Int mode = CRC_CACHED, AsciiString deepCRCFileName = AsciiString::TheEmptyString );		///< Returns the CRC
 
@@ -138,10 +138,10 @@ public:
 
 	//-----------------------------------------------------------------------------------------------
 	void setBuildableStatusOverride(const ThingTemplate* tt, BuildableStatus bs);
-	Bool findBuildableStatusOverride(const ThingTemplate* tt, BuildableStatus& bs) const;
+	bool findBuildableStatusOverride(const ThingTemplate* tt, BuildableStatus& bs) const;
 
 	void setControlBarOverride(const AsciiString& commandSetName, Int slot, ConstCommandButtonPtr commandButton);
-	Bool findControlBarOverride(const AsciiString& commandSetName, Int slot, ConstCommandButtonPtr& commandButton) const;
+	bool findControlBarOverride(const AsciiString& commandSetName, Int slot, ConstCommandButtonPtr& commandButton) const;
 
 	//-----------------------------------------------------------------------------------------------
 	/// create an object given the thing template. (Only for use by ThingFactory.)
@@ -152,40 +152,40 @@ public:
 	ObjectID allocateObjectID( void );							///< Returns a new unique object id
 
 	// super hack
-	void startNewGame( Bool saveGame );
+	void startNewGame( bool saveGame );
 	void loadMapINI( AsciiString mapName );
 
 	void updateLoadProgress( Int progress );
 	void deleteLoadScreen( void );
 	
-	void setGameLoading( Bool loading );
+	void setGameLoading( bool loading );
 	void setGameMode( Int mode );
 	Int getGameMode( void );
-	Bool isInGame( void );
-	Bool isInLanGame( void );
-	Bool isInSinglePlayerGame( void );
-	Bool isInSkirmishGame( void );
-	Bool isInReplayGame( void );
-	Bool isInInternetGame( void );
-	Bool isInShellGame( void );
-	Bool isInMultiplayerGame( void );
-	Bool isLoadingGame();
+	bool isInGame( void );
+	bool isInLanGame( void );
+	bool isInSinglePlayerGame( void );
+	bool isInSkirmishGame( void );
+	bool isInReplayGame( void );
+	bool isInInternetGame( void );
+	bool isInShellGame( void );
+	bool isInMultiplayerGame( void );
+	bool isLoadingGame();
 	void enableScoring(Bool score) { m_isScoringEnabled = score; }
-	Bool isScoringEnabled() const { return m_isScoringEnabled; }
+	bool isScoringEnabled() const { return m_isScoringEnabled; }
 
 	void setShowBehindBuildingMarkers(Bool b) { m_showBehindBuildingMarkers = b; }
-	Bool getShowBehindBuildingMarkers() const { return m_showBehindBuildingMarkers; }
+	bool getShowBehindBuildingMarkers() const { return m_showBehindBuildingMarkers; }
 
 	void setDrawIconUI(Bool b) { m_drawIconUI = b; }
-	Bool getDrawIconUI() const { return m_drawIconUI; }
+	bool getDrawIconUI() const { return m_drawIconUI; }
 
 	void setShowDynamicLOD(Bool b) { m_showDynamicLOD = b; }
-	Bool getShowDynamicLOD() const { return m_showDynamicLOD; }
+	bool getShowDynamicLOD() const { return m_showDynamicLOD; }
 
 	void setHulkMaxLifetimeOverride(Int b) { m_scriptHulkMaxLifetimeOverride = b; }
 	Int getHulkMaxLifetimeOverride() const { return m_scriptHulkMaxLifetimeOverride; }
 
-	Bool isIntroMoviePlaying();
+	bool isIntroMoviePlaying();
 
 	void updateObjectsChangedTriggerAreas(void) {m_frameObjectsChangedTriggerAreas = m_frame;}
 	UnsignedInt getFrameObjectsChangedTriggerAreas(void) {return m_frameObjectsChangedTriggerAreas;}
@@ -198,13 +198,13 @@ public:
 
 	void bindObjectAndDrawable(Object* obj, Drawable* draw);
 
-	void setGamePaused( Bool paused, Bool pauseMusic = TRUE );
-	Bool isGamePaused( void );
-	Bool getInputEnabledMemory( void ) { return m_inputEnabledMemory; }
+	void setGamePaused( bool paused, bool pauseMusic = TRUE );
+	bool isGamePaused( void );
+	bool getInputEnabledMemory( void ) { return m_inputEnabledMemory; }
 
 	void processProgress(Int playerId, Int percentage);
 	void processProgressComplete(Int playerId);
-	Bool isProgressComplete( void );
+	bool isProgressComplete( void );
 	void timeOutGameStart( void );
 	void initTimeOutValues( void );
 	UnsignedInt getObjectCount( void );
@@ -229,8 +229,8 @@ public:
 	// NOTE: selectObject and deselectObject should be called *only* by logical things, NEVER by the
 	// client. These will cause the client to select or deselect the object, if affectClient is true.
 	// If createToSelection is TRUE, this object causes a new group to be selected.
-	void selectObject(Object *obj, Bool createNewSelection, PlayerMaskType playerMask, Bool affectClient = FALSE);
-	void deselectObject(Object *obj, PlayerMaskType playerMask, Bool affectClient = FALSE);
+	void selectObject(Object *obj, bool createNewSelection, PlayerMaskType playerMask, bool affectClient = FALSE);
+	void deselectObject(Object *obj, PlayerMaskType playerMask, bool affectClient = FALSE);
 
 	// this should be called only by UpdateModule, thanks.
 	void friend_awakenUpdateModule(Object* obj, UpdateModulePtr update, UnsignedInt whenToWakeUp);
@@ -275,25 +275,25 @@ private:
 	// CRC cache system -----------------------------------------------------------------------------
 	UnsignedInt	m_CRC;																			///< Cache of previous CRC value
 	std::map<Int, UnsignedInt> m_cachedCRCs;								///< CRCs we've seen this frame
-	Bool m_shouldValidateCRCs;															///< Should we validate CRCs this frame?
+	bool m_shouldValidateCRCs;															///< Should we validate CRCs this frame?
 	//-----------------------------------------------------------------------------------------------
 
 	//Added By Sadullah Nader
 	//Used to for load scene
-	Bool m_loadingScene;
+	bool m_loadingScene;
 
-	Bool m_isInUpdate;
+	bool m_isInUpdate;
 
 	Int m_rankPointsToAddAtGameStart;
 
-	Bool m_isScoringEnabled;
-	Bool m_showBehindBuildingMarkers;	//used by designers to override the user setting for cinematics
-	Bool m_drawIconUI;
-	Bool m_showDynamicLOD;	//used by designers to override the user setting for cinematics
+	bool m_isScoringEnabled;
+	bool m_showBehindBuildingMarkers;	//used by designers to override the user setting for cinematics
+	bool m_drawIconUI;
+	bool m_showDynamicLOD;	//used by designers to override the user setting for cinematics
 	Int m_scriptHulkMaxLifetimeOverride;	///< Scripts can change the lifetime of a hulk -- defaults to off (-1) in frames.
 
 	/// @todo remove this hack
-	Bool m_startNewGame;
+	bool m_startNewGame;
 	WindowLayout *m_background;
 
 	Object* m_objList;																			///< All of the objects in the world.
@@ -316,7 +316,7 @@ private:
 
 	ObjectID m_nextObjID;																		///< For allocating object id's
 
-	void setDefaults( Bool saveGame );											///< Set default values of class object
+	void setDefaults( bool saveGame );											///< Set default values of class object
 	void processDestroyList( void );												///< Destroy all pending objects on the destroy list
 
 	void destroyAllObjectsImmediate();											///< destroy, and process destroy list immediately
@@ -328,18 +328,18 @@ private:
 	Int m_gameMode;
 	Int m_rankLevelLimit;
 
-	LoadScreen *getLoadScreen( Bool saveGame );
+	LoadScreen *getLoadScreen( bool saveGame );
 	LoadScreen *m_loadScreen;
-	Bool m_gamePaused;
-	Bool m_inputEnabledMemory;// Latches used to remember what to restore to after we unpause
-	Bool m_mouseVisibleMemory;
+	bool m_gamePaused;
+	bool m_inputEnabledMemory;// Latches used to remember what to restore to after we unpause
+	bool m_mouseVisibleMemory;
 
-	Bool m_progressComplete[MAX_SLOTS];
+	bool m_progressComplete[MAX_SLOTS];
 	enum { PROGRESS_COMPLETE_TIMEOUT = 60000 };							///< Timeout we wait for when we've completed our Load
 	Int m_progressCompleteTimeout[MAX_SLOTS];
 	void testTimeOut( void );
 	void lastHeardFrom( Int playerId );
-	Bool m_forceGameStartByTimeOut;													///< If we timeout someone we're waiting to load, set this flag to start the game
+	bool m_forceGameStartByTimeOut;													///< If we timeout someone we're waiting to load, set this flag to start the game
 
 #ifdef DUMP_PERF_STATS
 	UnsignedInt m_overallFailedPathfinds;
@@ -371,17 +371,17 @@ inline void GameLogic::setHeight( Real height ) { m_height = height; }
 inline Real GameLogic::getHeight( void ) { return m_height; }
 inline UnsignedInt GameLogic::getFrame( void ) { return m_frame; }
 
-inline Bool GameLogic::isInGame( void ) { return !(m_gameMode == GAME_NONE); }
+inline bool GameLogic::isInGame( void ) { return !(m_gameMode == GAME_NONE); }
 inline void GameLogic::setGameMode( Int mode ) { m_gameMode = mode; }
 inline Int  GameLogic::getGameMode( void ) { return m_gameMode; }
-inline Bool GameLogic::isInLanGame( void ) { return (m_gameMode == GAME_LAN); }
-inline Bool GameLogic::isInSkirmishGame( void ) { return (m_gameMode == GAME_SKIRMISH); }
-inline Bool GameLogic::isInMultiplayerGame( void ) { return ((m_gameMode == GAME_LAN) || (m_gameMode == GAME_INTERNET)) ; }
-inline Bool GameLogic::isInReplayGame( void ) { return (m_gameMode == GAME_REPLAY); }
-inline Bool GameLogic::isInInternetGame( void ) { return (m_gameMode == GAME_INTERNET); }
-inline Bool GameLogic::isInShellGame( void ) { return (m_gameMode == GAME_SHELL); }
+inline bool GameLogic::isInLanGame( void ) { return (m_gameMode == GAME_LAN); }
+inline bool GameLogic::isInSkirmishGame( void ) { return (m_gameMode == GAME_SKIRMISH); }
+inline bool GameLogic::isInMultiplayerGame( void ) { return ((m_gameMode == GAME_LAN) || (m_gameMode == GAME_INTERNET)) ; }
+inline bool GameLogic::isInReplayGame( void ) { return (m_gameMode == GAME_REPLAY); }
+inline bool GameLogic::isInInternetGame( void ) { return (m_gameMode == GAME_INTERNET); }
+inline bool GameLogic::isInShellGame( void ) { return (m_gameMode == GAME_SHELL); }
 //Check for loading scene
-inline Bool GameLogic::isLoadingGame(){ return m_loadingScene;}
+inline bool GameLogic::isLoadingGame(){ return m_loadingScene;}
 
 inline Object* GameLogic::findObjectByID( ObjectID id )
 {

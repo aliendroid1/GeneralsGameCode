@@ -80,7 +80,7 @@ protected:
 	mutable IRegion2D	m_bounds;  ///< 2D bounding box for quick checks.	
 	mutable Real			m_radius;
 	Int								m_riverStart;	///< Identifies the start point of the river.
-	mutable Bool			m_boundsNeedsUpdate;
+	mutable bool			m_boundsNeedsUpdate;
 	Bool							m_exportWithScripts;
 	Bool							m_isWaterArea; ///< Used to specify water areas in the map.
 	Bool							m_isRiver;		///< Used to specify that a water area is a river.
@@ -104,7 +104,7 @@ public:
 public:
 	static PolygonTrigger *getFirstPolygonTrigger(void) {return ThePolygonTriggerListPtr;}
 	static PolygonTrigger *getPolygonTriggerByID(Int triggerID);
-	static Bool ParsePolygonTriggersDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
+	static bool ParsePolygonTriggersDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
 	/// Writes Triggers Info
 	static void WritePolygonTriggersDataChunk(DataChunkOutput &chunkWriter);
 	static void deleteTriggers(void);
@@ -129,17 +129,17 @@ public:
 	PolygonTrigger *getNext(void) {return m_nextPolygonTrigger;}
 	const PolygonTrigger *getNext(void) const {return m_nextPolygonTrigger;}
 	AsciiString getTriggerName(void)  const {return m_triggerName;} ///< Gets the trigger name.
-	Bool pointInTrigger(ICoord3D &point) const;
-	Bool doExportWithScripts(void) const {return m_exportWithScripts;} 
+	bool pointInTrigger(ICoord3D &point) const;
+	bool doExportWithScripts(void) const {return m_exportWithScripts;} 
 	void setDoExportWithScripts(Bool val) {m_exportWithScripts = val;} 
-	Bool isWaterArea(void) const {return m_isWaterArea;} 
+	bool isWaterArea(void) const {return m_isWaterArea;} 
 	void setWaterArea(Bool val) {m_isWaterArea = val;} 
-	Bool isRiver(void) const {return m_isRiver;} 
+	bool isRiver(void) const {return m_isRiver;} 
 	void setRiver(Bool val) {m_isRiver = val;} 
 	Int getRiverStart(void) const {return m_riverStart;} 
 	void setRiverStart(Int val) {m_riverStart = val;} 
 	const WaterHandle* getWaterHandle(void) const;
-	Bool isValid(void) const;
+	bool isValid(void) const;
 };
 
 #endif

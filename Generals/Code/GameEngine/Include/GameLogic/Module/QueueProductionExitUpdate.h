@@ -46,7 +46,7 @@ public:
 	Coord3D m_unitCreatePoint;
 	Coord3D m_naturalRallyPoint;
 	UnsignedInt m_exitDelayData;
-	Bool m_allowAirborneCreationData;
+	bool m_allowAirborneCreationData;
 	UnsignedInt m_initialBurst; 
 
 	QueueProductionExitUpdateModuleData()
@@ -89,7 +89,7 @@ public:
 	// virtual destructor prototype provided by memory pool declaration
 
 	// Required funcs to fufill interface requirements
-	virtual Bool isExitBusy() const {return FALSE;}	///< Contain style exiters are getting the ability to space out exits, so ask this before reserveDoor as a kind of no-commitment check.
+	virtual bool isExitBusy() const {return FALSE;}	///< Contain style exiters are getting the ability to space out exits, so ask this before reserveDoor as a kind of no-commitment check.
 	virtual ExitDoorType reserveDoorForExit( const ThingTemplate* objType, Object *specificObject );
 	virtual void exitObjectViaDoor( Object *newObj, ExitDoorType exitDoor );
 	virtual void exitObjectByBudding( Object *newObj, Object *budHost );
@@ -97,8 +97,8 @@ public:
 
 	virtual void setRallyPoint( const Coord3D *pos );			///< define a "rally point" for units to move towards
 	virtual const Coord3D *getRallyPoint( void ) const;			///< define a "rally point" for units to move towards
-	virtual Bool getExitPosition( Coord3D& exitPosition ) const;					///< access to the "Door" position of the production object
-	virtual Bool getNaturalRallyPoint( Coord3D& rallyPoint, Bool offset = TRUE ) const;			///< get the natural "rally point" for units to move towards
+	virtual bool getExitPosition( Coord3D& exitPosition ) const;					///< access to the "Door" position of the production object
+	virtual bool getNaturalRallyPoint( Coord3D& rallyPoint, bool offset = TRUE ) const;			///< get the natural "rally point" for units to move towards
 
 	virtual UpdateSleepTime update();
 
@@ -110,7 +110,7 @@ protected:
 	Real				m_creationClearDistance;		///< I can think of myself as ready when the previous guy is this far away.
 	UnsignedInt m_currentBurstCount;				///< how many times must I still override the delay timer
 
-	Bool isFreeToExit() const; 
+	bool isFreeToExit() const; 
 };
 
 inline void QueueProductionExitUpdate::setRallyPoint( const Coord3D *pos )

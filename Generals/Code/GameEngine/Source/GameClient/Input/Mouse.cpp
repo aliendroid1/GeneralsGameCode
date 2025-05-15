@@ -148,7 +148,7 @@ void Mouse::moveMouse( Int x, Int y, Int relOrAbs )
 //-------------------------------------------------------------------------------------------------
 void Mouse::updateMouseData( )
 {
-	static Bool busy = FALSE;
+	static bool busy = FALSE;
 	Int index = 0;
 	UnsignedByte result;
 
@@ -393,7 +393,7 @@ void Mouse::checkForDrag( void )
 //-------------------------------------------------------------------------------------------------
 /** Check for mouse click, using allowed drag forgiveness */
 //-------------------------------------------------------------------------------------------------
-Bool Mouse::isClick(const ICoord2D *anchor, const ICoord2D *dest, UnsignedInt previousMouseClick, UnsignedInt currentMouseClick)
+bool Mouse::isClick(const ICoord2D *anchor, const ICoord2D *dest, UnsignedInt previousMouseClick, UnsignedInt currentMouseClick)
 {
 	ICoord2D delta;
 	delta.x = anchor->x - dest->x;
@@ -834,7 +834,7 @@ void Mouse::setCursorTooltip( UnicodeString tooltip, Int delay, const RGBColor *
 	m_isTooltipEmpty = tooltip.isEmpty();
   m_tooltipDelay = delay;
 
-	Bool forceRecalc = FALSE;
+	bool forceRecalc = FALSE;
 	if ( !tooltip.isEmpty() && width != m_lastTooltipWidth )
 	{
 		forceRecalc = TRUE;

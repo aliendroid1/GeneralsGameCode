@@ -211,7 +211,7 @@ void W3DDebugIcons::Render(RenderInfoClass & rinfo)
 		return;
 	}
 	//
-	Bool anyVanished = false;
+	bool anyVanished = false;
 	if (m_numDebugIcons==0) return;
 	DX8Wrapper::Apply_Render_State_Changes();
 

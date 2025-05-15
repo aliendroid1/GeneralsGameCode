@@ -510,7 +510,7 @@ Int HeightMapRenderObjClass::updateVB(DX8VertexBufferClass	*pVB, char *data, Int
 				float U[4], V[4];
 				UnsignedByte alpha[4];
 				float UA[4], VA[4];
-				Bool flipForBlend = false;			 // True if the blend needs the triangles flipped.
+				bool flipForBlend = false;			 // True if the blend needs the triangles flipped.
 
 				if (pMap) {
 					pMap->getUVData(getXWithOrigin(i),getYWithOrigin(j),U, V, m_halfResMesh);
@@ -642,15 +642,15 @@ Int HeightMapRenderObjClass::updateVB(DX8VertexBufferClass	*pVB, char *data, Int
 					DEBUG_ASSERTCRASH(PATHFIND_CELL_SIZE_F == MAP_XY_FACTOR, ("Pathfind must be terrain cell size, or this code needs reworking.  John A."));
 					Real borderHiX = (pMap->getXExtent()-2*pMap->getBorderSize())*MAP_XY_FACTOR;
 					Real borderHiY = (pMap->getYExtent()-2*pMap->getBorderSize())*MAP_XY_FACTOR;
-					Bool border = pCurVertices[0].x == -MAP_XY_FACTOR || pCurVertices[0].y == -MAP_XY_FACTOR;
-					Bool cliffMapped = pMap->isCliffMappedTexture(getXWithOrigin(i), getYWithOrigin(j));
+					bool border = pCurVertices[0].x == -MAP_XY_FACTOR || pCurVertices[0].y == -MAP_XY_FACTOR;
+					bool cliffMapped = pMap->isCliffMappedTexture(getXWithOrigin(i), getYWithOrigin(j));
 					if (pCurVertices[0].x == borderHiX) {
 						border = true;
 					}
 					if (pCurVertices[0].y == borderHiY) {
 						border = true;
 					}
-					Bool isCliff = pMap->getCliffState(getXWithOrigin(i)+pMap->getDrawOrgX(), getYWithOrigin(j)+pMap->getDrawOrgY())
+					bool isCliff = pMap->getCliffState(getXWithOrigin(i)+pMap->getDrawOrgX(), getYWithOrigin(j)+pMap->getDrawOrgY())
 												 || showAsVisibleCliff(getXWithOrigin(i) + pMap->getDrawOrgX(), getYWithOrigin(j)+pMap->getDrawOrgY());
 
 					if ( isCliff || border || cliffMapped) {
@@ -659,7 +659,7 @@ Int HeightMapRenderObjClass::updateVB(DX8VertexBufferClass	*pVB, char *data, Int
 							for (cellY=0; cellY<2; cellY++) {
 								Int vertex = cellX+2*cellY;
 								if (border) {
-									Bool doBorder = false;
+									bool doBorder = false;
 									if (pCurVertices[vertex].y >= 0 && pCurVertices[vertex].y <= borderHiY) {
 										if (pCurVertices[vertex].x == 0 || pCurVertices[vertex].x == borderHiX) {
 											doBorder = true;
@@ -732,7 +732,7 @@ Int HeightMapRenderObjClass::updateVBForLight(DX8VertexBufferClass	*pVB, char *d
 				if (j&1) continue;
 			}
 			Int yCoord = getYWithOrigin(j)+m_map->getDrawOrgY()-m_map->getBorderSize();
-			Bool intersect = false;
+			bool intersect = false;
 			for (k=0; k<numLights; k++) {
 				if (pLights[k]->m_minY <= yCoord+1 && 
 					pLights[k]->m_maxY >= yCoord) {
@@ -759,7 +759,7 @@ Int HeightMapRenderObjClass::updateVBForLight(DX8VertexBufferClass	*pVB, char *d
 					if (i&1) continue;
 				}
 				Int xCoord = getXWithOrigin(i)+m_map->getDrawOrgX()-m_map->getBorderSize();
-				Bool intersect = false;
+				bool intersect = false;
 				for (k=0; k<numLights; k++) {
 					if (pLights[k]->m_minX <= xCoord+1 && 
 						pLights[k]->m_maxX >= xCoord &&
@@ -907,7 +907,7 @@ Int HeightMapRenderObjClass::updateVBForLightOptimized(DX8VertexBufferClass	*pVB
 				if (j&1) continue;
 			}
 			Int yCoord = getYWithOrigin(j)+m_map->getDrawOrgY()-m_map->getBorderSize();
-			Bool intersect = false;
+			bool intersect = false;
 			for (k=0; k<numLights; k++) {
 				if (pLights[k]->m_minY <= yCoord+1 && 
 					pLights[k]->m_maxY >= yCoord) {
@@ -934,7 +934,7 @@ Int HeightMapRenderObjClass::updateVBForLightOptimized(DX8VertexBufferClass	*pVB
 					if (i&1) continue;
 				}
 				Int xCoord = getXWithOrigin(i)+m_map->getDrawOrgX()-m_map->getBorderSize();
-				Bool intersect = false;
+				bool intersect = false;
 				for (k=0; k<numLights; k++) {
 					if (pLights[k]->m_minX <= xCoord+1 && 
 						pLights[k]->m_maxX >= xCoord &&
@@ -1123,7 +1123,7 @@ void HeightMapRenderObjClass::doPartialUpdate(const IRegion2D &partialRange, Wor
 			if (j<0 || i<0) continue;
 			Real U[4],V[4];
 			UnsignedByte alpha[4];
-			Bool flipState,cliffState;
+			bool flipState,cliffState;
 			if (htMap->getExtraAlphaUVData(i,j,U,V,alpha,&flipState, &cliffState))
 			{	if (m_numExtraBlendTiles >= m_extraBlendTilePositionsSize)
 				{	//no more room to store extra blend tiles so enlarge the buffer.
@@ -1619,7 +1619,7 @@ opposite corners of the map would check every polygon in the map).
 bool HeightMapRenderObjClass::Cast_Ray(RayCollisionTestClass & raytest)
 {
 	TriClass tri;
-	Bool hit = false;
+	bool hit = false;
 	Int X,Y;
 	Vector3 normal,P0,P1,P2,P3;
 
@@ -1921,7 +1921,7 @@ Real HeightMapRenderObjClass::getHeightMapHeight(Real x, Real y, Coord3D* normal
 }
 
 //=============================================================================
-Bool HeightMapRenderObjClass::isClearLineOfSight(const Coord3D& pos, const Coord3D& posOther) const
+bool HeightMapRenderObjClass::isClearLineOfSight(const Coord3D& pos, const Coord3D& posOther) const
 {
 	if (m_map == NULL)
 		return false;	// doh. should not happen.
@@ -1971,7 +1971,7 @@ Bool HeightMapRenderObjClass::isClearLineOfSight(const Coord3D& pos, const Coord
 
 	Int den, num, numadd, numpixels;
 
-	Bool checkY = true;
+	bool checkY = true;
 	if (delta_x >= delta_y)							// There is at least one x-value for every y-value
 	{
 		xinc1 = 0;												// Don't change the x when numerator >= denominator
@@ -1997,7 +1997,7 @@ Bool HeightMapRenderObjClass::isClearLineOfSight(const Coord3D& pos, const Coord
 	Real dz = posOther.z - z;
 	Real zinc = dz * nsInv;
 
-	Bool result = true;
+	bool result = true;
 	const UnsignedByte* data = m_map->getDataPtr();
 	Int xExtent = m_map->getXExtent();
 	Int yExtent = m_map->getYExtent();
@@ -2165,7 +2165,7 @@ Real HeightMapRenderObjClass::getMaxCellHeight(Real x, Real y) const
 //=============================================================================
 /** Returns true if the cell containing the point is a cliff cell */
 //=============================================================================
-Bool HeightMapRenderObjClass::isCliffCell(Real x, Real y)
+bool HeightMapRenderObjClass::isCliffCell(Real x, Real y)
 {
 
 	if (m_map == NULL)
@@ -2189,7 +2189,7 @@ Bool HeightMapRenderObjClass::isCliffCell(Real x, Real y)
 
 //=============================================================================
 //=============================================================================
-Bool HeightMapRenderObjClass::showAsVisibleCliff(Int xIndex, Int yIndex) const
+bool HeightMapRenderObjClass::showAsVisibleCliff(Int xIndex, Int yIndex) const
 {
 	Int xSize = m_map->getXExtent();
 
@@ -2198,7 +2198,7 @@ Bool HeightMapRenderObjClass::showAsVisibleCliff(Int xIndex, Int yIndex) const
 
 //=============================================================================
 //=============================================================================
-Bool HeightMapRenderObjClass::evaluateAsVisibleCliff(Int xIndex, Int yIndex, Real valuesGreaterThanRad)
+bool HeightMapRenderObjClass::evaluateAsVisibleCliff(Int xIndex, Int yIndex, Real valuesGreaterThanRad)
 {
 	// This one never changes, so don't bother recomputing it.
 	static const Real distance[4] = 
@@ -2227,7 +2227,7 @@ Bool HeightMapRenderObjClass::evaluateAsVisibleCliff(Int xIndex, Int yIndex, Rea
 		INT_TO_REAL(bytes[3]) * MAP_HEIGHT_SCALE,
 	};
 
-	Bool anyImpassable = FALSE;	
+	bool anyImpassable = FALSE;	
 
 	for (Int i = 1; i < 4 && !anyImpassable; ++i) {
 		if (fabs((heights[i] - heights[0]) / distance[i]) > valuesGreaterThanRad) {
@@ -2327,7 +2327,7 @@ void HeightMapRenderObjClass::Get_Obj_Space_Bounding_Box(AABoxClass & box) const
 	a volume enclosing things that can float above terrain.
  */
 //-------------------------------------------------------------------------------------------------
-Bool HeightMapRenderObjClass::getMaximumVisibleBox(const FrustumClass &frustum, AABoxClass *box, Bool ignoreMaxHeight)
+bool HeightMapRenderObjClass::getMaximumVisibleBox(const FrustumClass &frustum, AABoxClass *box, bool ignoreMaxHeight)
 {
 	//create a plane from the lowest point on the terrain
 	PlaneClass	groundPlane(Vector3(0,0,1), m_minHeight);
@@ -2378,7 +2378,7 @@ RenderObjClass *	 HeightMapRenderObjClass::Clone(void) const
 //=============================================================================
 /** Loads the roads from the map objects. */
 //=============================================================================
-void HeightMapRenderObjClass::loadRoadsAndBridges(W3DTerrainLogic *pTerrainLogic, Bool saveGame)
+void HeightMapRenderObjClass::loadRoadsAndBridges(W3DTerrainLogic *pTerrainLogic, bool saveGame)
 {	
 	if (DX8Wrapper::_Get_D3D_Device8() && (DX8Wrapper::_Get_D3D_Device8()->TestCooperativeLevel()) != D3D_OK)
 		return;	//device not ready to render anything
@@ -2633,7 +2633,7 @@ Int HeightMapRenderObjClass::initHeightData(Int x, Int y, WorldHeightMap *pMap, 
 			{
 				Real U[4],V[4];
 				UnsignedByte alpha[4];
-				Bool flipState,cliffState;
+				bool flipState,cliffState;
 				if (pMap->getExtraAlphaUVData(i,j,U,V,alpha,&flipState, &cliffState))
 				{	if (m_numExtraBlendTiles >= m_extraBlendTilePositionsSize)
 					{	//no more room to store extra blend tiles so enlarge the buffer.
@@ -2666,7 +2666,7 @@ Int HeightMapRenderObjClass::initHeightData(Int x, Int y, WorldHeightMap *pMap, 
 	m_curNumScorchVertices=0;
 	m_curNumScorchIndices=0;
 	// If the size changed, we need to allocate.
-	Bool needToAllocate = (x != m_x || y != m_y);
+	bool needToAllocate = (x != m_x || y != m_y);
 	// If the textures aren't allocated (usually because of a hardware reset) need to allocate.
 	if (m_stageOneTexture == NULL) {
 		needToAllocate = true;
@@ -2735,7 +2735,7 @@ Int HeightMapRenderObjClass::initHeightData(Int x, Int y, WorldHeightMap *pMap, 
 #ifdef PRE_TRANSFORM_VERTEX
 		D3DDEVICE_CREATION_PARAMETERS parms;
 		DX8Wrapper::_Get_D3D_Device8()->GetCreationParameters(&parms);
-		Bool softwareVertexProcessing = 0!=(parms.BehaviorFlags&D3DCREATE_SOFTWARE_VERTEXPROCESSING);
+		bool softwareVertexProcessing = 0!=(parms.BehaviorFlags&D3DCREATE_SOFTWARE_VERTEXPROCESSING);
 		if (m_xformedVertexBuffer == NULL && softwareVertexProcessing) {
 			m_xformedVertexBuffer = NEW IDirect3DVertexBuffer8*[m_numVertexBufferTiles];
 		}
@@ -2917,7 +2917,7 @@ void HeightMapRenderObjClass::updateScorches(void)
 				if (m_curNumScorchIndices+6 > MAX_SCORCH_INDEX) return;
 				Int xNdx = i+minX+m_map->getBorderSize();
 				Int yNdx = j+minY+m_map->getBorderSize();
-				Bool flipForBlend = m_map->getFlipState(xNdx, yNdx);
+				bool flipForBlend = m_map->getFlipState(xNdx, yNdx);
 #if 0
 				UnsignedByte alpha[4];
 				float UA[4], VA[4];
@@ -3260,7 +3260,7 @@ void HeightMapRenderObjClass::On_Frame_Update(void)
 			Int yMin, yMax;
 			yMin = originY;
 			yMax = originY+VERTEX_BUFFER_TILE_LENGTH;
-			Bool intersect = false;
+			bool intersect = false;
 			Int yCoordMin = getYWithOrigin(yMin)+m_map->getDrawOrgY()-m_map->getBorderSize();
 			Int yCoordMax = getYWithOrigin(yMax-1)+m_map->getDrawOrgY()+1-m_map->getBorderSize();
 			if (yCoordMax>yCoordMin) {
@@ -3306,7 +3306,7 @@ void HeightMapRenderObjClass::On_Frame_Update(void)
 				xMin = originX;
 				xMax = originX+VERTEX_BUFFER_TILE_LENGTH;
 
-				Bool intersect = false;
+				bool intersect = false;
 				Int xCoordMin = getXWithOrigin(xMin)+m_map->getDrawOrgX()-m_map->getBorderSize();
 				Int xCoordMax = getXWithOrigin(xMax-1)+m_map->getDrawOrgX()+1-m_map->getBorderSize();
 				if (xCoordMax>xCoordMin) {
@@ -3358,7 +3358,7 @@ void HeightMapRenderObjClass::On_Frame_Update(void)
 /** Adds a tree to the tree buffer.*/
 //=============================================================================
 void HeightMapRenderObjClass::addTree(Coord3D location, Real scale, Real angle, 
-																			AsciiString name, Bool visibleInMirror)
+																			AsciiString name, bool visibleInMirror)
 {
 	m_treeBuffer->addTree(location, scale, angle, name, visibleInMirror); 
 };
@@ -3369,7 +3369,7 @@ void HeightMapRenderObjClass::addTree(Coord3D location, Real scale, Real angle,
 /** Adds a terrainBib to the bib buffer.*/
 //=============================================================================
 void HeightMapRenderObjClass::addTerrainBib(Vector3 corners[4], 
-																						ObjectID id, Bool highlight)
+																						ObjectID id, bool highlight)
 {
 	m_bibBuffer->addBib(corners, id, highlight); 
 };
@@ -3380,7 +3380,7 @@ void HeightMapRenderObjClass::addTerrainBib(Vector3 corners[4],
 /** Adds a terrainBib to the bib buffer.*/
 //=============================================================================
 void HeightMapRenderObjClass::addTerrainBibDrawable(Vector3 corners[4], 
-																						DrawableID id, Bool highlight)
+																						DrawableID id, bool highlight)
 {
 	m_bibBuffer->addBibDrawable(corners, id, highlight); 
 };
@@ -3471,7 +3471,7 @@ void HeightMapRenderObjClass::Notify_Added(SceneClass * scene)
 #define WIDE_STEP 32
 
 static Int visMinX, visMinY, visMaxX, visMaxY;
-static Bool check(const FrustumClass & frustum, WorldHeightMap *pMap, Int x, Int y) 
+static bool check(const FrustumClass & frustum, WorldHeightMap *pMap, Int x, Int y) 
 {
 	if (x<0 || y<0) return(false);
 	if (x>= pMap->getXExtent() || y>= pMap->getYExtent()) return(false);
@@ -3499,10 +3499,10 @@ static void calcVis(const FrustumClass & frustum, WorldHeightMap *pMap, Int minX
 	}
 	Int midX = (minX+maxX)/2;
 	Int midY = (minY+maxY)/2;
-	Bool recurse1 = maxX-minX>=limit;
-	Bool recurse2 = recurse1;
-	Bool recurse3 = recurse1;
-	Bool recurse4 = recurse1;	 
+	bool recurse1 = maxX-minX>=limit;
+	bool recurse2 = recurse1;
+	bool recurse3 = recurse1;
+	bool recurse4 = recurse1;	 
 	/* boxes are:
 
 			1     2
@@ -3801,7 +3801,7 @@ void HeightMapRenderObjClass::Render(RenderInfoClass & rinfo)
 	
 	Int i,j,devicePasses;
 	W3DShaderManager::ShaderTypes st;
-	Bool doCloud = TheGlobalData->m_useCloudMap;
+	bool doCloud = TheGlobalData->m_useCloudMap;
 
 	Matrix3D tm(Transform);
 #if 0 // There is some weirdness sometimes with the dx8 static buffers.
@@ -3852,7 +3852,7 @@ void HeightMapRenderObjClass::Render(RenderInfoClass & rinfo)
 
 	DX8Wrapper::Set_Index_Buffer(m_indexBuffer,0);
 
-	Bool doMultiPassWireFrame=FALSE;
+	bool doMultiPassWireFrame=FALSE;
 
 	if (((RTS3DScene *)rinfo.Camera.Get_User_Data())->getCustomPassMode() == SCENE_PASS_ALPHA_MASK ||
 		((SceneClass *)rinfo.Camera.Get_User_Data())->Get_Extra_Pass_Polygon_Mode() == SceneClass::EXTRA_PASS_CLEAR_LINE)
@@ -4331,7 +4331,7 @@ void HeightMapRenderObjClass::renderExtraBlendTiles(void)
 
 			Real U[4],V[4];
 			UnsignedByte alpha[4];
-			Bool flipState,cliffState;
+			bool flipState,cliffState;
 			Int x = m_extraBlendTilePositions[j] & 0xffff;
 			Int y = m_extraBlendTilePositions[j] >> 16;
 
@@ -4440,7 +4440,7 @@ void HeightMapRenderObjClass::renderExtraBlendTiles(void)
 
 			W3DShaderManager::ShaderTypes st = W3DShaderManager::ST_ROAD_BASE;
 
-			Bool doCloud = TheGlobalData->m_useCloudMap;
+			bool doCloud = TheGlobalData->m_useCloudMap;
 			if (TheGlobalData->m_timeOfDay == TIME_OF_DAY_NIGHT) {
 				doCloud = false;
 			}

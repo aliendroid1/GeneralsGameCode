@@ -52,7 +52,7 @@ enum GameSortType : Int
 	GAMESORT_MAX,
 };
 
-Bool HandleSortButton( NameKeyType sortButton );
+bool HandleSortButton( NameKeyType sortButton );
 void PopulateLobbyPlayerListbox(void);
 
 #endif // __LOBBYUTILS_H__

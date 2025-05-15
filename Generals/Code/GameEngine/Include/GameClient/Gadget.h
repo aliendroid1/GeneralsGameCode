@@ -280,10 +280,10 @@ typedef struct _EntryData
 	DisplayString *text;						///< the entry text
 	DisplayString *sText;						///< for displaying 'secret' text
 	DisplayString *constructText;		///< for foriegn text construction
-	Bool secretText;								///< If TRUE text appears as astericks
-	Bool numericalOnly;							///< If TRUE only numbers are allowed as input
-	Bool alphaNumericalOnly;				///< If TRUE only numbers and letters are allowed as input
-	Bool aSCIIOnly;									///< If TRUE ascii allowed as input
+	bool secretText;								///< If TRUE text appears as astericks
+	bool numericalOnly;							///< If TRUE only numbers are allowed as input
+	bool alphaNumericalOnly;				///< If TRUE only numbers and letters are allowed as input
+	bool aSCIIOnly;									///< If TRUE ascii allowed as input
 	Short maxTextLen;								///< Max length of edit text
 
 // Colin: The very notion of entry width makes no sense to me since
@@ -293,9 +293,9 @@ typedef struct _EntryData
 
 	// The following fields are for internal use and
 	// should not be initialized by the user
-	Bool receivedUnichar;	// If TRUE system just processed a UniChar
+	bool receivedUnichar;	// If TRUE system just processed a UniChar
 
-	Bool drawTextFromStart; // if FALSE, make sure end of text is visible
+	bool drawTextFromStart; // if FALSE, make sure end of text is visible
 
 	GameWindow *constructList;	// Listbox for construct list.
 	UnsignedShort charPos;			// Position of current character
@@ -309,7 +309,7 @@ typedef struct _TextData
 {
 
 	DisplayString *text;  ///< the text data
-	Bool centered;
+	bool centered;
 
 } TextData;
 
@@ -386,18 +386,18 @@ typedef struct _ListboxData
 //-----------------------------------------------------------------------------
 typedef struct _ComboBoxData
 {
-	Bool isEditable;							// Determines if the Combo box is a combo box or a dropdown box
+	bool isEditable;							// Determines if the Combo box is a combo box or a dropdown box
 	Int maxDisplay;								// Holds the count for the maximum displayed in the lisbox before the slider appears
 	Int maxChars;									// Holds how many characters can be in the listbox/edit box.
-	Bool asciiOnly;								// Used to notify the Text Entry box if it is suppose to allow only ascii characters
-	Bool lettersAndNumbersOnly;   // Used to notify the Text Entry Box if it is to only allow letters and numbers
+	bool asciiOnly;								// Used to notify the Text Entry box if it is suppose to allow only ascii characters
+	bool lettersAndNumbersOnly;   // Used to notify the Text Entry Box if it is to only allow letters and numbers
 	ListboxData *listboxData;			// Needed for the listbox component of the combo box
 	EntryData		*entryData;				// Needed for the text entry component of the combo box
 	//
 	// The following fields are for internal use and should not be initialized 
 	// by the user
 	//
-	Bool dontHide;								// A flag we'll use that'll determine if we hide the listbox or not when selected
+	bool dontHide;								// A flag we'll use that'll determine if we hide the listbox or not when selected
 	Int entryCount;								// Current number of entries.
 	GameWindow *dropDownButton;   // Child window for drop down button
 	GameWindow *editBox;          // Child window for edit box
@@ -426,7 +426,7 @@ typedef struct _PushButtonData
 	UnsignedByte drawClock;	///< We only want to draw the clock if, well, we want to
 	Int  percentClock;			///< The percentage of the clock we want to draw
 	Color colorClock;				///< The color to display the clock at
-	Bool drawBorder;				///< We only want to draw the border if we want to
+	bool drawBorder;				///< We only want to draw the border if we want to
 	Color colorBorder;			///< The color for the border around the button
 	void *userData;					///< random additional data we can set
 	const Image *overlayImage; ///< An overlay image (like a veterancy symbol)
@@ -463,7 +463,7 @@ typedef struct _TabControlData
 	Int tabCount;
 
 	GameWindow *subPanes[NUM_TAB_PANES];
-	Bool subPaneDisabled[NUM_TAB_PANES];//tabCount will control how many even exist.  Individual ones can be disabled
+	bool subPaneDisabled[NUM_TAB_PANES];//tabCount will control how many even exist.  Individual ones can be disabled
 	Int paneBorder; 
 
 	//Working computations
@@ -525,9 +525,9 @@ extern WindowMsgHandledType GadgetComboBoxSystem( GameWindow *window, UnsignedIn
 																								 WindowMsgData mData1, WindowMsgData mData2 );
 
 
-extern Bool InitializeEntryGadget( void );
+extern bool InitializeEntryGadget( void );
 
-extern Bool ShutdownEntryGadget( void );
+extern bool ShutdownEntryGadget( void );
 
 // Entry Gadget Functions
 extern void InformEntry( WideChar c );

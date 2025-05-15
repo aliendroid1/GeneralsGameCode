@@ -136,8 +136,8 @@ public:
 	static void parseMissionPart( INI* ini, void *instance, void *store, const void *userData );					///< Parse the Mission Part
 	
 	Campaign *newCampaign(AsciiString name);
-	Bool isVictorious( void ) { return m_victorious; }
-	void SetVictorious( Bool victory ) { m_victorious = victory;	}
+	bool isVictorious( void ) { return m_victorious; }
+	void SetVictorious( bool victory ) { m_victorious = victory;	}
 
 	void setRankPoints( Int rankPoints ) { m_currentRankPoints = rankPoints; }
 	Int getRankPoints() const { return m_currentRankPoints; }
@@ -151,7 +151,7 @@ private:
 	CampaignList m_campaignList;											///< Our List of Campaigns
 	Campaign *m_currentCampaign;											///< Our current Campaign
 	Mission *m_currentMission;												///< our Current Mission
-	Bool m_victorious;
+	bool m_victorious;
 	Int m_currentRankPoints;
 	GameDifficulty m_difficulty;
 

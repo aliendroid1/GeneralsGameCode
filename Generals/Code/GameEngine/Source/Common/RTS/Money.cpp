@@ -51,7 +51,7 @@
 #include "Common/Xfer.h"
 
 // ------------------------------------------------------------------------------------------------
-UnsignedInt Money::withdraw(UnsignedInt amountToWithdraw, Bool playSound)
+UnsignedInt Money::withdraw(UnsignedInt amountToWithdraw, bool playSound)
 {
 	if (amountToWithdraw > m_money)
 		amountToWithdraw = m_money;
@@ -73,7 +73,7 @@ UnsignedInt Money::withdraw(UnsignedInt amountToWithdraw, Bool playSound)
 }
 
 // ------------------------------------------------------------------------------------------------
-void Money::deposit(UnsignedInt amountToDeposit, Bool playSound)
+void Money::deposit(UnsignedInt amountToDeposit, bool playSound)
 {
 	if (amountToDeposit == 0)
 		return;

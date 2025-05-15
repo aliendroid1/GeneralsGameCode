@@ -63,8 +63,8 @@ class OverchargeBehaviorInterface
 public:
 
 	virtual void toggle( void ) = 0;
-	virtual void enable( Bool enable ) = 0;
-	virtual Bool isOverchargeActive( void ) = 0;
+	virtual void enable( bool enable ) = 0;
+	virtual bool isOverchargeActive( void ) = 0;
 
 };
 
@@ -103,15 +103,15 @@ public:
 
 	// specific methods
 	virtual void toggle( void );						///< toggle overcharge on/off
-	virtual void enable( Bool enable );			///< turn overcharge on/off
-	virtual Bool isOverchargeActive( void ) { return m_overchargeActive; }
+	virtual void enable( bool enable );			///< turn overcharge on/off
+	virtual bool isOverchargeActive( void ) { return m_overchargeActive; }
 
 	void onDelete( void );																///< we have some work to do when this module goes away
 	void onCapture( Player *oldOwner, Player *newOwner );	///< object containing upgrade has changed teams
 
 protected:
 
-	Bool m_overchargeActive;				///< Overcharge is currently on/off for this object
+	bool m_overchargeActive;				///< Overcharge is currently on/off for this object
 
 };
 

@@ -131,7 +131,7 @@ public:
 	virtual DisabledMaskType getDisabledTypesToProcess() const { return MAKE_DISABLED_MASK( DISABLED_HELD ); }
 
 	// ??? ugh
-	Bool isDisguised() const { return m_disguiseAsTemplate != NULL; }
+	bool isDisguised() const { return m_disguiseAsTemplate != NULL; }
 	Int getDisguisedPlayerIndex() const { return m_disguiseAsPlayerIndex; }
 	const ThingTemplate *getDisguisedTemplate() { return m_disguiseAsTemplate; }
 	void markAsDetected( UnsignedInt numFrames = 0 );
@@ -142,9 +142,9 @@ public:
 protected:
 
 	StealthLookType calcStealthedStatusForPlayer(const Object* obj, const Player* player);
-	Bool canDisguise() const { return getStealthUpdateModuleData()->m_teamDisguised; }
+	bool canDisguise() const { return getStealthUpdateModuleData()->m_teamDisguised; }
 	Real getRevealDistanceFromTarget() const { return getStealthUpdateModuleData()->m_revealDistanceFromTarget; }
-	Bool allowedToStealth() const;
+	bool allowedToStealth() const;
 	void hintDetectableWhileUnstealthed( void ) ;
 
 	void changeVisualDisguise();

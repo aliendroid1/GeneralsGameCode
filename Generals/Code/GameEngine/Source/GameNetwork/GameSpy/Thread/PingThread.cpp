@@ -52,15 +52,15 @@ public:
 	Pinger();
 	virtual void startThreads( void );
 	virtual void endThreads( void );
-	virtual Bool areThreadsRunning( void );
+	virtual bool areThreadsRunning( void );
 
 	virtual void addRequest( const PingRequest& req );
-	virtual Bool getRequest( PingRequest& resp );
+	virtual bool getRequest( PingRequest& resp );
 
 	virtual void addResponse( const PingResponse& resp );
-	virtual Bool getResponse( PingResponse& resp );
+	virtual bool getResponse( PingResponse& resp );
 
-	virtual Bool arePingsInProgress( void );
+	virtual bool arePingsInProgress( void );
 	virtual Int getPing( AsciiString hostname );
 
 	virtual void clearPingMap( void );
@@ -139,7 +139,7 @@ void Pinger::endThreads( void )
 	}
 }
 
-Bool Pinger::areThreadsRunning( void )
+bool Pinger::areThreadsRunning( void )
 {
 	for (Int i=0; i<NumWorkerThreads; ++i)
 	{
@@ -160,7 +160,7 @@ void Pinger::addRequest( const PingRequest& req )
 	m_requests.push(req);
 }
 
-Bool Pinger::getRequest( PingRequest& req )
+bool Pinger::getRequest( PingRequest& req )
 {
 	MutexClass::LockClass m(m_requestMutex, 0);
 	if (m.Failed())
@@ -188,7 +188,7 @@ void Pinger::addResponse( const PingResponse& resp )
 	}
 }
 
-Bool Pinger::getResponse( PingResponse& resp )
+bool Pinger::getResponse( PingResponse& resp )
 {
 	MutexClass::LockClass m(m_responseMutex, 0);
 	if (m.Failed())
@@ -201,7 +201,7 @@ Bool Pinger::getResponse( PingResponse& resp )
 	return true;
 }
 
-Bool Pinger::arePingsInProgress( void )
+bool Pinger::arePingsInProgress( void )
 {
 	return (m_requestCount != m_responseCount);
 }

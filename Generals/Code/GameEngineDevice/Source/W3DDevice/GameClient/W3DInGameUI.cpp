@@ -77,7 +77,7 @@ public:
 	virtual RenderObjClass *	Clone(void) const;
 	virtual int						Class_ID(void) const;
 	virtual void					Render(RenderInfoClass & rinfo);
-	virtual Bool					Cast_Ray(RayCollisionTestClass & raytest);
+	virtual bool					Cast_Ray(RayCollisionTestClass & raytest);
 
 	virtual void					Get_Obj_Space_Bounding_Sphere(SphereClass & sphere) const;
   virtual void					Get_Obj_Space_Bounding_Box(AABoxClass & aabox) const;
@@ -122,7 +122,7 @@ DebugHintObject::DebugHintObject(void) :
 	initData();
 }
 
-Bool DebugHintObject::Cast_Ray(RayCollisionTestClass & raytest)
+bool DebugHintObject::Cast_Ray(RayCollisionTestClass & raytest)
 {
 	return false;	
 }
@@ -430,7 +430,7 @@ void W3DInGameUI::draw( void )
 
 #ifdef DO_UNIT_TIMINGS	 
 #pragma MESSAGE("*** WARNING *** DOING DO_UNIT_TIMINGS!!!!")
-	extern Bool g_UT_startTiming;
+	extern bool g_UT_startTiming;
 	if (!g_UT_startTiming)
 #endif
 
@@ -624,8 +624,8 @@ void W3DInGameUI::drawPlaceAngle( View *view )
 		}
 	}
 
-	Bool anchorInScene = m_buildingPlacementAnchor->Peek_Scene() != NULL;
-	Bool arrowInScene	 = m_buildingPlacementArrow->Peek_Scene() != NULL;
+	bool anchorInScene = m_buildingPlacementAnchor->Peek_Scene() != NULL;
+	bool arrowInScene	 = m_buildingPlacementArrow->Peek_Scene() != NULL;
 
 	// get out of here if this display isn't up anyway
 	if( isPlacementAnchored() == FALSE )
@@ -656,7 +656,7 @@ void W3DInGameUI::drawPlaceAngle( View *view )
 	vector.z = 0.0f;
 	Real length = vector.length();
 
-	Bool showArrow = length >= 5.0f;
+	bool showArrow = length >= 5.0f;
 
 	if( showArrow )
 	{

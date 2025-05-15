@@ -114,7 +114,7 @@ W3DVideoBuffer::W3DVideoBuffer( VideoBuffer::Type format )
 // W3DVideoBuffer::SetBuffer
 //============================================================================
 
-Bool W3DVideoBuffer::allocate( UnsignedInt width, UnsignedInt height )
+bool W3DVideoBuffer::allocate( UnsignedInt width, UnsignedInt height )
 {
 	free();
 

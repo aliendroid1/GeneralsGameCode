@@ -112,7 +112,7 @@ void Win32LocalFileSystem::reset()
 }
 
 //DECLARE_PERF_TIMER(Win32LocalFileSystem_doesFileExist)
-Bool Win32LocalFileSystem::doesFileExist(const Char *filename) const
+bool Win32LocalFileSystem::doesFileExist(const Char *filename) const
 {
 	//USE_PERF_TIMER(Win32LocalFileSystem_doesFileExist)
 	if (_access(filename, 0) == 0) {
@@ -121,7 +121,7 @@ Bool Win32LocalFileSystem::doesFileExist(const Char *filename) const
 	return FALSE;
 }
 
-void Win32LocalFileSystem::getFileListInDirectory(const AsciiString& currentDirectory, const AsciiString& originalDirectory, const AsciiString& searchName, FilenameList & filenameList, Bool searchSubdirectories) const
+void Win32LocalFileSystem::getFileListInDirectory(const AsciiString& currentDirectory, const AsciiString& originalDirectory, const AsciiString& searchName, FilenameList & filenameList, bool searchSubdirectories) const
 {
 	HANDLE fileHandle = NULL;
 	WIN32_FIND_DATA findData;
@@ -133,7 +133,7 @@ void Win32LocalFileSystem::getFileListInDirectory(const AsciiString& currentDire
 	asciisearch.concat(searchName);
 	strcpy(search, asciisearch.str());
 
-	Bool done = FALSE;
+	bool done = FALSE;
 
 	fileHandle = FindFirstFile(search, &findData);
 	done = (fileHandle == INVALID_HANDLE_VALUE);
@@ -185,7 +185,7 @@ void Win32LocalFileSystem::getFileListInDirectory(const AsciiString& currentDire
 
 }
 
-Bool Win32LocalFileSystem::getFileInfo(const AsciiString& filename, FileInfo *fileInfo) const 
+bool Win32LocalFileSystem::getFileInfo(const AsciiString& filename, FileInfo *fileInfo) const 
 {
 	WIN32_FIND_DATA findData;
 	HANDLE findHandle = NULL;
@@ -205,7 +205,7 @@ Bool Win32LocalFileSystem::getFileInfo(const AsciiString& filename, FileInfo *fi
 	return TRUE;
 }
 
-Bool Win32LocalFileSystem::createDirectory(AsciiString directory) 
+bool Win32LocalFileSystem::createDirectory(AsciiString directory) 
 {
 	if ((directory.getLength() > 0) && (directory.getLength() < _MAX_DIR)) {
 		return (CreateDirectory(directory.str(), NULL) != 0);

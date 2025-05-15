@@ -53,12 +53,12 @@ class W3DProjectedShadowManager	: public ProjectedShadowManager
 	public:
 		W3DProjectedShadowManager( void );
 		~W3DProjectedShadowManager( void );
-		Bool init(void);					///<allocate one-time shadow assets for length of entire game.
+		bool init(void);					///<allocate one-time shadow assets for length of entire game.
 		void reset(void);					///<free all existing shadows - ready for next map.
 		void shutdown(void);			///<free all assets prior to shutdown of entire game.
 		Int	 renderShadows(RenderInfoClass & rinfo);	///<iterate over each object and render its shadow onto affected objects.
 		void ReleaseResources(void);	///<release device dependent D3D resources.
-		Bool ReAcquireResources(void);	///<allocate device dependent D3D resources.
+		bool ReAcquireResources(void);	///<allocate device dependent D3D resources.
 		void invalidateCachedLightPositions(void);	///<forces shadows to update regardless of last lightposition
 
 		virtual Shadow	*addDecal(RenderObjClass *robj, Shadow::ShadowTypeInfo *shadowInfo);	///<add a non-shadow decal
@@ -77,7 +77,7 @@ class W3DProjectedShadowManager	: public ProjectedShadowManager
 		W3DProjectedShadow *m_shadowList;
 		W3DProjectedShadow *m_decalList;
 		TextureClass	*m_dynamicRenderTarget;	///<offscreen video memory texture used to render all shadow textures.
-		Bool m_renderTargetHasAlpha;					///<does render target have destination alpha support?
+		bool m_renderTargetHasAlpha;					///<does render target have destination alpha support?
 		CameraClass		*m_shadowCamera;					///<camera used to render all shadow textures - configured by projector
 		LightEnvironmentClass m_shadowLightEnv;
 		SpecialRenderInfoClass *m_shadowContext;

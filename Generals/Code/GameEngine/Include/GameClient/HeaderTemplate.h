@@ -75,7 +75,7 @@ public:
 	AsciiString m_name;
 	AsciiString m_fontName;
 	Int m_point;
-	Bool m_bold;
+	bool m_bold;
 	
 };
 

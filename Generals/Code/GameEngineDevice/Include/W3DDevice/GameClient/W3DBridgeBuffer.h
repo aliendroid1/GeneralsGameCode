@@ -130,14 +130,14 @@ public:
 	AsciiString getTemplateName(void) {return m_templateName;}
 	const Vector3* getStart(void) const {return &m_start;}
 	const Vector3* getEnd(void) const { return &m_end;}
-	Bool load(enum BodyDamageType curDamageState);
+	bool load(enum BodyDamageType curDamageState);
 	enum BodyDamageType getDamageState(void) {return m_curDamageState;};
 	void setDamageState(enum BodyDamageType state) { m_curDamageState = state;};
 	void getIndicesNVertices(UnsignedShort *destination_ib, VertexFormatXYZNDUV1 *destination_vb, Int *curIndexP, Int *curVertexP, RefRenderObjListIterator *pLightsIterator);
-	Bool cullBridge(CameraClass * camera);						 ///< Culls the bridges.  Returns true if visibility changed.
+	bool cullBridge(CameraClass * camera);						 ///< Culls the bridges.  Returns true if visibility changed.
 	void clearBridge(void);		///< Frees all objects associated with a bridge.
-	Bool isVisible(void) {return m_visible;};
-	Bool isEnabled(void) {return m_enabled;};
+	bool isVisible(void) {return m_visible;};
+	bool isEnabled(void) {return m_enabled;};
 	void setEnabled(Bool enable) {m_enabled = enable;};
 	void renderBridge(Bool wireframe);
 	void getBridgeInfo(BridgeInfo *pInfo);
@@ -157,11 +157,11 @@ public:
 	/// Empties the bridge buffer.
 	void clearAllBridges(void);
 	/// Draws the bridges.  Uses camera for culling.
-	void drawBridges(CameraClass * camera, Bool wireframe, TextureClass *cloudTexture);
+	void drawBridges(CameraClass * camera, bool wireframe, TextureClass *cloudTexture);
 	/// Called when the view changes, and sort key needs to be recalculated.
 	/// Normally sortKey gets calculated when a bridge becomes visible.
 	void doFullUpdate(void) {m_updateVis = true;};
-	void loadBridges(W3DTerrainLogic *pTerrainLogic, Bool saveGame); ///< Loads the bridges from the map objects list.
+	void loadBridges(W3DTerrainLogic *pTerrainLogic, bool saveGame); ///< Loads the bridges from the map objects list.
 	void worldBuilderUpdateBridgeTowers( W3DAssetManager *assetManager, SimpleSceneClass *scene );			///< for the editor and showing visual bridge towers
 	void updateCenter(CameraClass *camera, RefRenderObjListIterator *pLightsIterator);
 	enum { MAX_BRIDGE_VERTEX=8000, 

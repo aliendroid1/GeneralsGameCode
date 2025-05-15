@@ -105,7 +105,7 @@ void WeaponTemplateSet::clear()
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool WeaponTemplateSet::hasAnyWeapons() const
+bool WeaponTemplateSet::hasAnyWeapons() const
 {
 	for (int i = 0; i < WEAPONSLOT_COUNT; ++i) 
 	{
@@ -158,7 +158,7 @@ void WeaponTemplateSet::parseWeaponTemplateSet( INI* ini, const ThingTemplate* t
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool WeaponTemplateSet::testWeaponSetFlag( WeaponSetType wst ) const
+bool WeaponTemplateSet::testWeaponSetFlag( WeaponSetType wst ) const
 {
 	return m_types.test( wst );
 }
@@ -253,7 +253,7 @@ void WeaponSet::xfer( Xfer *xfer )
 
 	for (Int i = 0; i < WEAPONSLOT_COUNT; ++i)
 	{
-		Bool hasWeaponInSlot = (m_weapons[i] != NULL);
+		bool hasWeaponInSlot = (m_weapons[i] != NULL);
 		xfer->xferBool(&hasWeaponInSlot);
 		if (hasWeaponInSlot)
 		{
@@ -406,7 +406,7 @@ static Int getVictimAntiMask(const Object* victim)
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool WeaponSet::isAnyWithinTargetPitch(const Object* obj, const Object* victim) const
+bool WeaponSet::isAnyWithinTargetPitch(const Object* obj, const Object* victim) const
 {
 	if (!m_hasPitchLimit)
 		return true;
@@ -436,7 +436,7 @@ CanAttackResult WeaponSet::getAbleToAttackSpecificObject( AbleToAttackType attac
 			victim == source)
 		return ATTACKRESULT_NOT_POSSIBLE;
 
-	Bool sameOwnerForceAttack = ((source->getControllingPlayer() == victim->getControllingPlayer()) && isForcedAttack(attackType));
+	bool sameOwnerForceAttack = ((source->getControllingPlayer() == victim->getControllingPlayer()) && isForcedAttack(attackType));
 
 // ----- examine VICTIM to determine legality of attack
 
@@ -458,7 +458,7 @@ CanAttackResult WeaponSet::getAbleToAttackSpecificObject( AbleToAttackType attac
 	if (victim->testStatus(OBJECT_STATUS_NO_ATTACK_FROM_AI) && commandSource == CMD_FROM_AI)
 		return ATTACKRESULT_NOT_POSSIBLE;
 
-  Bool allowStealthToPreventAttacks = TRUE;
+  bool allowStealthToPreventAttacks = TRUE;
 	if (source->testStatus(OBJECT_STATUS_IGNORING_STEALTH) || sameOwnerForceAttack)
 		allowStealthToPreventAttacks = FALSE;
   if( isForcedAttack( attackType ) && victim->isKindOf( KINDOF_DISGUISER ) )
@@ -618,10 +618,10 @@ CanAttackResult WeaponSet::getAbleToUseWeaponAgainstTarget( AbleToAttackType att
 	// times in odd ways in some cases. hence the getContainedBy() check.
 	//Kris: Dec 28 -- Now we're testing this for ALL objects, but we only abort if the object is immobile. We'll use the
 	//		  information later to determine if the unit must move before firing (cursor reasons).
-	Bool withinAttackRange = FALSE;
+	bool withinAttackRange = FALSE;
 	const Object *containedBy = source->getContainedBy();
-	Bool hasAWeaponInRange = FALSE;
-	Bool hasAWeapon				 = FALSE;
+	bool hasAWeaponInRange = FALSE;
+	bool hasAWeapon				 = FALSE;
 	for (Int slot = 0; slot < WEAPONSLOT_COUNT - 1; ++slot)
 	{
 		Weapon *weaponToTestForRange = m_weapons[ m_curWeapon ];
@@ -631,7 +631,7 @@ CanAttackResult WeaponSet::getAbleToUseWeaponAgainstTarget( AbleToAttackType att
 			if ((m_totalAntiMask & targetAntiMask) == 0)//we don't care to check for this weapon
 				continue;
 
-			Bool handled = FALSE;
+			bool handled = FALSE;
 			ContainModuleInterface *contain = containedBy ? containedBy->getContain() : NULL;
 			if( contain && contain->isGarrisonable() )
 			{
@@ -753,7 +753,7 @@ CanAttackResult WeaponSet::getAbleToUseWeaponAgainstTarget( AbleToAttackType att
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool WeaponSet::chooseBestWeaponForTarget(const Object* obj, const Object* victim, WeaponChoiceCriteria criteria, CommandSourceType cmdSource)
+bool WeaponSet::chooseBestWeaponForTarget(const Object* obj, const Object* victim, WeaponChoiceCriteria criteria, CommandSourceType cmdSource)
 {
 	/*
 		1) The first criteria is weapon fitness.  If the object has two weapons that can fire concurrently, 
@@ -777,8 +777,8 @@ Bool WeaponSet::chooseBestWeaponForTarget(const Object* obj, const Object* victi
 	if( isCurWeaponLocked() )
 		return TRUE; // I have been forced into choosing a specific weapon, so it is right until someone says otherwise
 
-	Bool found = FALSE;				// A Ready weapon has been found
-	Bool foundBackup = FALSE;	// An unready, but valid weapon has been found
+	bool found = FALSE;				// A Ready weapon has been found
+	bool foundBackup = FALSE;	// An unready, but valid weapon has been found
 
 	Real longestRange = 0.0f;
 	Real bestDamage = 0.0f;
@@ -825,7 +825,7 @@ Bool WeaponSet::chooseBestWeaponForTarget(const Object* obj, const Object* victi
 		
 		Real damage = weapon->estimateWeaponDamage(obj, victim);
 		Real attackRange = weapon->getAttackRange(obj);
-		Bool weaponIsReady = (weapon->getStatus() == READY_TO_FIRE);
+		bool weaponIsReady = (weapon->getStatus() == READY_TO_FIRE);
 
 		const AIUpdateInterface* ai = obj->getAI();
 		if (ai && ai->isWeaponSlotOnTurretAndAimingAtTarget((WeaponSlotType)i, victim))
@@ -930,7 +930,7 @@ Bool WeaponSet::chooseBestWeaponForTarget(const Object* obj, const Object* victi
 
 
 //-------------------------------------------------------------------------------------------------
-void WeaponSet::reloadAllAmmo(const Object *obj, Bool now)
+void WeaponSet::reloadAllAmmo(const Object *obj, bool now)
 {
 	for( Int i = 0; i < WEAPONSLOT_COUNT;	i++ )
 	{
@@ -946,7 +946,7 @@ void WeaponSet::reloadAllAmmo(const Object *obj, Bool now)
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool WeaponSet::isOutOfAmmo() const
+bool WeaponSet::isOutOfAmmo() const
 {
 	for( Int i = 0; i < WEAPONSLOT_COUNT;	i++ )
 	{
@@ -991,7 +991,7 @@ Weapon* WeaponSet::findWaypointFollowingCapableWeapon()
 //-------------------------------------------------------------------------------------------------
 // A special type of command demands that you use this (normally unchooseable) weapon
 // until told otherwise.
-Bool WeaponSet::setWeaponLock( WeaponSlotType weaponSlot, WeaponLockType lockType )
+bool WeaponSet::setWeaponLock( WeaponSlotType weaponSlot, WeaponLockType lockType )
 {
 	if (lockType == NOT_LOCKED)
 	{
@@ -1071,7 +1071,7 @@ void WeaponSet::clearLeechRangeModeForAllWeapons()
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool WeaponSet::isSharedReloadTime() const
+bool WeaponSet::isSharedReloadTime() const
 {
 	if (m_curWeaponTemplateSet)
 		return m_curWeaponTemplateSet->isSharedReloadTime();

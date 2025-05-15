@@ -37,9 +37,9 @@
 #include "GameNetwork/GameSpyPersistentStorage.h"
 #include "GameNetwork/GameSpyThread.h"
 
-static Bool isProfileAuthorized = false;
+static bool isProfileAuthorized = false;
 
-static Bool gameSpyInitPersistentStorageConnection( void );
+static bool gameSpyInitPersistentStorageConnection( void );
 static void getPersistentDataCallback(int localid, int profileid, persisttype_t type, int index, int success, char *data, int len, void *instance);
 static void setPersistentDataCallback(int localid, int profileid, persisttype_t type, int index, int success, void *instance);
 
@@ -58,9 +58,9 @@ public:
 	virtual Int getWins( void ) { return m_wins; }
 	virtual Int getLosses( void ) { return m_losses; }
 
-	virtual void setLocale( AsciiString locale, Bool setOnServer );
-	virtual void setWins( Int wins, Bool setOnServer );
-	virtual void setLosses( Int losses, Bool setOnServer );
+	virtual void setLocale( AsciiString locale, bool setOnServer );
+	virtual void setWins( Int wins, bool setOnServer );
+	virtual void setLosses( Int losses, bool setOnServer );
 
 	virtual void readFromServer( void );
 	virtual void threadReadFromServer( void );
@@ -71,13 +71,13 @@ public:
 	void queueDisconnect( void ) { 	MutexClass::LockClass m(TheGameSpyMutex); if (IsStatsConnected()) m_shouldDisconnect = true; else m_shouldDisconnect = false; }
 
 private:
-	void setValue( AsciiString key, AsciiString val, Bool setOnServer );
+	void setValue( AsciiString key, AsciiString val, bool setOnServer );
 
 	AsciiString m_locale;
 	Int m_wins;
 	Int m_losses;
 	Int m_operationCount;
-	Bool m_shouldDisconnect;
+	bool m_shouldDisconnect;
 };
 
 void GameSpyPlayerInfo::update( void )
@@ -119,7 +119,7 @@ void GameSpyPlayerInfo::threadReadFromServer( void )
 	}
 }
 
-void GameSpyPlayerInfo::setLocale( AsciiString locale, Bool setOnServer )
+void GameSpyPlayerInfo::setLocale( AsciiString locale, bool setOnServer )
 {
 	m_locale = locale;
 
@@ -129,7 +129,7 @@ void GameSpyPlayerInfo::setLocale( AsciiString locale, Bool setOnServer )
 	setValue("locale", m_locale, setOnServer);
 }
 
-void GameSpyPlayerInfo::setWins( Int wins, Bool setOnServer )
+void GameSpyPlayerInfo::setWins( Int wins, bool setOnServer )
 {
 	m_wins = wins;
 
@@ -142,7 +142,7 @@ void GameSpyPlayerInfo::setWins( Int wins, Bool setOnServer )
 	setValue("wins", winStr, setOnServer);
 }
 
-void GameSpyPlayerInfo::setLosses( Int losses, Bool setOnServer )
+void GameSpyPlayerInfo::setLosses( Int losses, bool setOnServer )
 {
 	m_losses = losses;
 
@@ -155,7 +155,7 @@ void GameSpyPlayerInfo::setLosses( Int losses, Bool setOnServer )
 	setValue("losses", lossesStr, setOnServer);
 }
 
-void GameSpyPlayerInfo::setValue( AsciiString key, AsciiString val, Bool setOnServer )
+void GameSpyPlayerInfo::setValue( AsciiString key, AsciiString val, bool setOnServer )
 {
 	if (!setOnServer)
 		return;
@@ -316,7 +316,7 @@ static void setPersistentDataCallback(int localid, int profileid, persisttype_t 
 	}
 }
 
-static Bool gameSpyInitPersistentStorageConnection( void )
+static bool gameSpyInitPersistentStorageConnection( void )
 {
 	if (IsStatsConnected())
 		return true;

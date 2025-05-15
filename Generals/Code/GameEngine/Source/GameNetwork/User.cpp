@@ -53,7 +53,7 @@ User & User::operator= (const User *other)
 /**
  * The equality operator.
  */
-Bool User::operator== (const User *other)
+bool User::operator== (const User *other)
 {
 	return (m_name.compare(other->m_name) == 0);
 }
@@ -61,7 +61,7 @@ Bool User::operator== (const User *other)
 /**
  * The inequality operator.
  */
-Bool User::operator!= (const User *other)
+bool User::operator!= (const User *other)
 {
 	return (m_name.compare(other->m_name) != 0);
 }

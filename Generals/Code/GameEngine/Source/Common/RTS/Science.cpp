@@ -248,7 +248,7 @@ Int ScienceStore::getSciencePurchaseCost(ScienceType st) const
 }
 
 //-----------------------------------------------------------------------------
-Bool ScienceStore::isScienceGrantable(ScienceType st) const
+bool ScienceStore::isScienceGrantable(ScienceType st) const
 {
 	const ScienceInfo* si = findScienceInfo(st);
 	if (si)
@@ -262,7 +262,7 @@ Bool ScienceStore::isScienceGrantable(ScienceType st) const
 }
 
 //-----------------------------------------------------------------------------
-Bool ScienceStore::getNameAndDescription(ScienceType st, UnicodeString& name, UnicodeString& description) const
+bool ScienceStore::getNameAndDescription(ScienceType st, UnicodeString& name, UnicodeString& description) const
 {
 	const ScienceInfo* si = findScienceInfo(st);
 	if (si)
@@ -278,7 +278,7 @@ Bool ScienceStore::getNameAndDescription(ScienceType st, UnicodeString& name, Un
 }
 
 //-----------------------------------------------------------------------------
-Bool ScienceStore::playerHasPrereqsForScience(const Player* player, ScienceType st) const
+bool ScienceStore::playerHasPrereqsForScience(const Player* player, ScienceType st) const
 {
 	const ScienceInfo* si = findScienceInfo(st);
 	if (si)
@@ -299,7 +299,7 @@ Bool ScienceStore::playerHasPrereqsForScience(const Player* player, ScienceType 
 }
 
 //-----------------------------------------------------------------------------
-Bool ScienceStore::playerHasRootPrereqsForScience(const Player* player, ScienceType st) const
+bool ScienceStore::playerHasRootPrereqsForScience(const Player* player, ScienceType st) const
 {
 	const ScienceInfo* si = findScienceInfo(st);
 	if (si)
@@ -369,7 +369,7 @@ ScienceType ScienceStore::friend_lookupScience(const char* scienceName) const
 }
 
 //-----------------------------------------------------------------------------
-Bool ScienceStore::isValidScience(ScienceType st) const
+bool ScienceStore::isValidScience(ScienceType st) const
 {
 	const ScienceInfo* si = findScienceInfo(st);
 	return si != NULL;

@@ -149,7 +149,7 @@ const ThingTemplate *ProductionPrerequisite::getExistingBuildFacilityTemplate( c
 }
 
 //-----------------------------------------------------------------------------
-Bool ProductionPrerequisite::isSatisfied(const Player *player) const
+bool ProductionPrerequisite::isSatisfied(const Player *player) const
 {
 	Int i;
 
@@ -194,7 +194,7 @@ Bool ProductionPrerequisite::isSatisfied(const Player *player) const
 	* a new 'block' and is required in ADDDITION to other entries. 
 	* Return FALSE if no space left to add unit */
 //-------------------------------------------------------------------------------------------------
-void ProductionPrerequisite::addUnitPrereq( AsciiString unit, Bool orUnitWithPrevious )
+void ProductionPrerequisite::addUnitPrereq( AsciiString unit, bool orUnitWithPrevious )
 {
 	PrereqUnitRec info;
 	info.name = unit;
@@ -212,7 +212,7 @@ void ProductionPrerequisite::addUnitPrereq( AsciiString unit, Bool orUnitWithPre
 //-------------------------------------------------------------------------------------------------
 void ProductionPrerequisite::addUnitPrereq( const std::vector<AsciiString>& units )
 {
-	Bool orWithPrevious = false;
+	bool orWithPrevious = false;
 	for (int i = 0; i < units.size(); ++i)
 	{
 		addUnitPrereq(units[i], orWithPrevious);
@@ -238,7 +238,7 @@ UnicodeString ProductionPrerequisite::getRequiresList(const Player *player) cons
 	Int cnt = calcNumPrereqUnitsOwned(player, ownCount);
 	Int i;
 
-	Bool orRequirements[MAX_PREREQ];
+	bool orRequirements[MAX_PREREQ];
 	//Added for fix below in getRequiresList
 	//By Sadullah Nader
 	//Initializes the OR_WITH_PREV structures
@@ -261,7 +261,7 @@ UnicodeString ProductionPrerequisite::getRequiresList(const Player *player) cons
 	// check to see if anything is required
 	const ThingTemplate *unit;
 	UnicodeString unitName;
-	Bool firstRequirement = true;
+	bool firstRequirement = true;
 	for (i = 0; i < cnt; i++)
 	{
 		// we have an unfulfilled requirement
@@ -297,7 +297,7 @@ UnicodeString ProductionPrerequisite::getRequiresList(const Player *player) cons
 		}
 	}
 
-	Bool hasSciences = TRUE;
+	bool hasSciences = TRUE;
 	// gotta have all the prereq sciences.
 	for (i = 0; i < m_prereqSciences.size(); i++)
 	{

@@ -68,7 +68,7 @@ const FieldParse* DieMuxData::getFieldParse()
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool DieMuxData::isDieApplicable(const Object* obj, const DamageInfo *damageInfo) const
+bool DieMuxData::isDieApplicable(const Object* obj, const DamageInfo *damageInfo) const
 {
 	// wrong death type? punt
 	if (!getDeathTypeFlag(m_deathTypes, damageInfo->in.m_deathType))

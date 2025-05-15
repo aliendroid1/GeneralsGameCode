@@ -97,14 +97,14 @@ static Real calcSlowDownDist(Real curSpeed, Real desiredSpeed, Real maxBraking)
 }
 
 //-----------------------------------------------------------------------------
-inline Bool isNearlyZero(Real a)
+inline bool isNearlyZero(Real a)
 {
 	const Real TINY_EPSILON = 0.001f;
 	return fabs(a) < TINY_EPSILON;
 }
 
 //-----------------------------------------------------------------------------
-inline Bool isNearly(Real a, Real val)
+inline bool isNearly(Real a, Real val)
 {
 	const Real TINY_EPSILON = 0.001f;
 	return fabs(a - val) < TINY_EPSILON;
@@ -234,7 +234,7 @@ static void calcDirectionToApplyThrust(
 	// add gravity to our vel so that we account for it in our calcs
 	curVel.Z += TheGlobalData->m_gravity;
 
-	Bool foundSolution = false;
+	bool foundSolution = false;
 	Real distToGoalSqr = vecToGoal.Length2();
 	Real distToGoal = sqrt(distToGoalSqr);
 	Real curVelMagSqr = curVel.Length2();
@@ -597,7 +597,7 @@ LocomotorTemplate *LocomotorStore::newOverride( LocomotorTemplate *locoTemplate 
 	if (!TheLocomotorStore)
 		throw INI_INVALID_DATA;
 
-	Bool isOverride = false;
+	bool isOverride = false;
 	// read the Locomotor name
 	const char* token = ini->getNextToken();
 	NameKeyType namekey = NAMEKEY(token);
@@ -884,7 +884,7 @@ void Locomotor::locoUpdate_moveTowardsAngle(Object* obj, Real goalAngle)
 		// pass a huge num for "dist to goal", so that we don't think we're nearing
 		// our destination and thus slow down...
 		const Real onPathDistToGoal = 99999.0f;
-		Bool blocked = false;
+		bool blocked = false;
 		locoUpdate_moveTowardsPosition(obj, desiredPos, onPathDistToGoal, minSpeed, &blocked);
 		
 		// don't need to call handleBehaviorZ() here, since locoUpdate_moveTowardsPosition() will do so
@@ -933,7 +933,7 @@ void Locomotor::setPhysicsOptions(Object* obj)
 
 //-------------------------------------------------------------------------------------------------
 void Locomotor::locoUpdate_moveTowardsPosition(Object* obj, const Coord3D& goalPos, 
-																							 Real onPathDistToGoal, Real desiredSpeed, Bool *blocked)
+																							 Real onPathDistToGoal, Real desiredSpeed, bool *blocked)
 {
 	setFlag(MAINTAIN_POS_IS_VALID, false);
 
@@ -993,7 +993,7 @@ void Locomotor::locoUpdate_moveTowardsPosition(Object* obj, const Coord3D& goalP
 
 	Coord3D nullAccel;							
 	
-	Bool treatAsAirborne = false;
+	bool treatAsAirborne = false;
 	Coord3D pos = *obj->getPosition();
 	Real heightAboveSurface = pos.z - TheTerrainLogic->getLayerHeight(pos.x, pos.y, obj->getLayer());
 
@@ -1044,7 +1044,7 @@ void Locomotor::locoUpdate_moveTowardsPosition(Object* obj, const Coord3D& goalP
 		setFlag(IS_BRAKING, false);
 	}
 
-	Bool wasBraking = obj->getStatusBits().test( OBJECT_STATUS_BRAKING );
+	bool wasBraking = obj->getStatusBits().test( OBJECT_STATUS_BRAKING );
 
 	physics->setTurning(TURN_NONE);
 	if (getAllowMotiveForceWhileAirborne() || !treatAsAirborne)
@@ -1271,7 +1271,7 @@ void Locomotor::moveTowardsPositionWheels(Object* obj, PhysicsBehavior *physics,
 	Real desiredAngle = atan2(goalPos.y - obj->getPosition()->y, goalPos.x - obj->getPosition()->x);
 	Real relAngle = stdAngleDiff(desiredAngle, angle);
 
-	Bool moveBackwards = false;
+	bool moveBackwards = false;
 
 	// Wheeled vehicles can only turn while moving, so make sure the turn speed is reasonable.
 	if (turnSpeed < maxSpeed/4.0f) 
@@ -1281,7 +1281,7 @@ void Locomotor::moveTowardsPositionWheels(Object* obj, PhysicsBehavior *physics,
 
 
 	Real actualSpeed = physics->getForwardSpeed2D();
-	Bool do3pointTurn = false;
+	bool do3pointTurn = false;
 #if 1
 	if (actualSpeed==0.0f) {
 		setFlag(MOVING_BACKWARDS, false);
@@ -1491,7 +1491,7 @@ void Locomotor::moveTowardsPositionWheels(Object* obj, PhysicsBehavior *physics,
 
 }
 //-------------------------------------------------------------------------------------------------
-Bool Locomotor::fixInvalidPosition(Object* obj, PhysicsBehavior *physics)
+bool Locomotor::fixInvalidPosition(Object* obj, PhysicsBehavior *physics)
 {
 	if (obj->isKindOf(KINDOF_DOZER)) {
 		// don't fix him.
@@ -1693,7 +1693,7 @@ void Locomotor::moveTowardsPositionClimb(Object* obj, PhysicsBehavior *physics, 
 	// Locomotion for climbing infantry.
 
 
-	Bool moveBackwards = false;
+	bool moveBackwards = false;
 
 	Real dx, dy, dz;
 
@@ -1948,7 +1948,7 @@ void Locomotor::moveTowardsPositionThrust(Object* obj, PhysicsBehavior *physics,
 	{
 		const Coord3D* veltmp = physics->getVelocity();
 		Vector3 vel(veltmp->x, veltmp->y, veltmp->z);
-		Bool adjust = true;
+		bool adjust = true;
 		if( obj->getStatusBits().test( OBJECT_STATUS_BRAKING ) ) 
 		{
 			// align to target, cause that's where we're going anyway.
@@ -2187,9 +2187,9 @@ PhysicsTurningType Locomotor::rotateObjAroundLocoPivot(Object* obj, const Coord3
 	return true if we can maintain the position without being called every frame (eg, we are
 	resting on the ground), false if not (eg, we are hovering or circling)
 */
-Bool Locomotor::handleBehaviorZ(Object* obj, PhysicsBehavior *physics, const Coord3D& goalPos)
+bool Locomotor::handleBehaviorZ(Object* obj, PhysicsBehavior *physics, const Coord3D& goalPos)
 {
-	Bool requiresConstantCalling = TRUE;
+	bool requiresConstantCalling = TRUE;
 
 	// keep the agent aligned on the terrain
 	switch(m_template->m_behaviorZ)
@@ -2219,7 +2219,7 @@ Bool Locomotor::handleBehaviorZ(Object* obj, PhysicsBehavior *physics, const Coo
 			requiresConstantCalling = TRUE;
 			{
 				Coord3D pos = *obj->getPosition();
-				Bool surfaceRel = (m_template->m_behaviorZ == Z_FIXED_SURFACE_RELATIVE_HEIGHT);
+				bool surfaceRel = (m_template->m_behaviorZ == Z_FIXED_SURFACE_RELATIVE_HEIGHT);
 				Real surfaceHt = surfaceRel ? getSurfaceHtAtPt(pos.x, pos.y) : 0.0f;
 				pos.z = m_preferredHeight + (surfaceRel ? surfaceHt : 0);
 				obj->setPosition(&pos);
@@ -2253,7 +2253,7 @@ Bool Locomotor::handleBehaviorZ(Object* obj, PhysicsBehavior *physics, const Coo
 
 					Real surfaceHt;
 					Coord3D normal;
-					const Bool clip = false;	// return the height, even if off the edge of the bridge proper.
+					const bool clip = false;	// return the height, even if off the edge of the bridge proper.
 					surfaceHt = TheTerrainLogic->getLayerHeight( pos.x, pos.y, layerAtDest, &normal, clip );
 
 					Real preferredHeight = m_preferredHeight + surfaceHt;
@@ -2287,7 +2287,7 @@ Bool Locomotor::handleBehaviorZ(Object* obj, PhysicsBehavior *physics, const Coo
 				{
 					Coord3D pos = *obj->getPosition();
 					
-					Bool surfaceRel = (m_template->m_behaviorZ == Z_SURFACE_RELATIVE_HEIGHT);
+					bool surfaceRel = (m_template->m_behaviorZ == Z_SURFACE_RELATIVE_HEIGHT);
 					Real surfaceHt = surfaceRel ? getSurfaceHtAtPt(pos.x, pos.y) : 0.0f;
 					Real preferredHeight = m_preferredHeight + (surfaceRel ? surfaceHt : 0);
 					if (getFlag(PRECISE_Z_POS))
@@ -2403,7 +2403,7 @@ void Locomotor::moveTowardsPositionOther(Object* obj, PhysicsBehavior *physics, 
 	return true if we can maintain the position without being called every frame (eg, we are
 	resting on the ground), false if not (eg, we are hovering or circling)
 */
-Bool Locomotor::locoUpdate_maintainCurrentPosition(Object* obj)
+bool Locomotor::locoUpdate_maintainCurrentPosition(Object* obj)
 {
 	if (!getFlag(MAINTAIN_POS_IS_VALID))
 	{
@@ -2424,7 +2424,7 @@ Bool Locomotor::locoUpdate_maintainCurrentPosition(Object* obj)
 //	DEBUG_ASSERTLOG(obj->getID() != TheObjectIDToDebug, ("locoUpdate_maintainCurrentPosition %f %f %f, speed %f (%f)\n",m_maintainPos.x,m_maintainPos.y,m_maintainPos.z,physics->getSpeed(),physics->getForwardSpeed2D()));
 #endif
 
-	Bool requiresConstantCalling = TRUE;	// assume the worst.
+	bool requiresConstantCalling = TRUE;	// assume the worst.
 	switch (m_template->m_appearance) 
 	{
 		case LOCO_THRUST:

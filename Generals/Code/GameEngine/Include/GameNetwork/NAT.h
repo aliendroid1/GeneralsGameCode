@@ -84,8 +84,8 @@ protected:
 	void sendMangledSourcePort(); ///< starts the process to get the next mangled source port.
 	void processManglerResponse(UnsignedShort mangledPort);
 
-	Bool allConnectionsDoneThisRound();
-	Bool allConnectionsDone();
+	bool allConnectionsDoneThisRound();
+	bool allConnectionsDone();
 
 	void generatePortNumbers(GameSlot **slotList, Int localSlot); ///< generate all of the slots' port numbers to be used.
 
@@ -121,7 +121,7 @@ protected:
 	Int m_manglerRetries;
 	UnsignedShort m_previousSourcePort;
 
-	Bool m_beenProbed; ///< have I been notified that I've been probed this round?
+	bool m_beenProbed; ///< have I been notified that I've been probed this round?
 	
 	UnsignedInt m_manglerAddress;
 
@@ -132,7 +132,7 @@ protected:
 
 	UnsignedShort m_sourcePorts[MAX_SLOTS]; ///< the source ports that the other players communicate to us on.
 
-	Bool m_myConnections[MAX_SLOTS]; ///< keeps track of all the nodes I've connected to. For keepalive.
+	bool m_myConnections[MAX_SLOTS]; ///< keeps track of all the nodes I've connected to. For keepalive.
 	time_t m_nextKeepaliveTime; ///< the next time we will send out our keepalive packets.
 
 	static Int m_connectionPairs[MAX_SLOTS-1][MAX_SLOTS-1][MAX_SLOTS];

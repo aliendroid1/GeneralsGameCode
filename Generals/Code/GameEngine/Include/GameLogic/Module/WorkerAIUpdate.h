@@ -48,8 +48,8 @@ public:
 	WorkerStateMachine( Object *owner );
 
 // state transition conditions
-	static Bool supplyTruckSubMachineWantsToEnter( State *thisState, void* userData );
-	static Bool supplyTruckSubMachineReadyToLeave( State *thisState, void* userData );
+	static bool supplyTruckSubMachineWantsToEnter( State *thisState, void* userData );
+	static bool supplyTruckSubMachineReadyToLeave( State *thisState, void* userData );
 
 protected:
 	// snapshot interface
@@ -143,17 +143,17 @@ public:
 	virtual Object *construct( const ThingTemplate *what, 
 														 const Coord3D *pos, Real angle, 
 														 Player *owningPlayer,
-														 Bool isRebuild );			///< construct a building
+														 bool isRebuild );			///< construct a building
 
 	// get task information
 	virtual DozerTask getMostRecentCommand( void );				///< return task that was most recently issued
-	virtual Bool isTaskPending( DozerTask task );					///< is there a desire to do the requested task
+	virtual bool isTaskPending( DozerTask task );					///< is there a desire to do the requested task
 	virtual ObjectID getTaskTarget( DozerTask task );			///< get target of task
-	virtual Bool isAnyTaskPending( void );								///< is there any dozer task pending
+	virtual bool isAnyTaskPending( void );								///< is there any dozer task pending
 	virtual DozerTask getCurrentTask( void ) const { return m_currentTask; }	///< return the current task we're doing
 	virtual void setCurrentTask( DozerTask task ) { m_currentTask = task; }		///< set the current task of the dozer
 
-	virtual Bool getIsRebuild( void ) { return m_isRebuild; } ///< get whether or not our task is a rebuild.
+	virtual bool getIsRebuild( void ) { return m_isRebuild; } ///< get whether or not our task is a rebuild.
 
 	// task actions
 	virtual void newTask( DozerTask task, Object* target );	///< set a desire to do the requrested task
@@ -178,23 +178,23 @@ public:
 
 // Supply truck stuff
 	virtual Int getNumberBoxes() const { return m_numberBoxes; }
-	virtual Bool loseOneBox();
-	virtual Bool gainOneBox( Int remainingStock );
+	virtual bool loseOneBox();
+	virtual bool gainOneBox( Int remainingStock );
 
-	virtual Bool isAvailableForSupplying() const;
-	virtual Bool isCurrentlyFerryingSupplies() const;
+	virtual bool isAvailableForSupplying() const;
+	virtual bool isCurrentlyFerryingSupplies() const;
 	virtual Real getWarehouseScanDistance() const; ///< How far can I look for a warehouse?
 
 	virtual void setForceBusyState(Bool v) { m_forcedBusyPending = v; } 
-	virtual Bool isForcedIntoBusyState() const { return m_forcedBusyPending; }
+	virtual bool isForcedIntoBusyState() const { return m_forcedBusyPending; }
 
 	virtual void setForceWantingState(Bool v){ m_forcePending = v; }
-	virtual Bool isForcedIntoWantingState() const { return m_forcePending; }
+	virtual bool isForcedIntoWantingState() const { return m_forcePending; }
 	virtual ObjectID getPreferredDockID() const { return m_preferredDock; }
 	virtual UnsignedInt getActionDelayForDock( Object *dock );
 
 // worker specific
-	Bool isSupplyTruckBrainActiveAndBusy();
+	bool isSupplyTruckBrainActiveAndBusy();
 	void resetSupplyTruckBrain();
 	void resetDozerBrain();
 
@@ -203,7 +203,7 @@ public:
 	virtual UpdateSleepTime update();				///< the update entry point
 
 	// repairing
-	virtual Bool canAcceptNewRepair( Object *obj );
+	virtual bool canAcceptNewRepair( Object *obj );
 	virtual void createBridgeScaffolding( Object *bridgeTower );
 	virtual void removeBridgeScaffolding( Object *bridgeTower );
 
@@ -228,7 +228,7 @@ protected:
 	//
 	struct DozerDockPointInfo
 	{
-		Bool valid;						///< this point has been set and is valid
+		bool valid;						///< this point has been set and is valid
 		Coord3D location;			///< WORLD location
 	} m_dockPoint[ DOZER_NUM_TASKS ][ DOZER_NUM_DOCK_POINTS ];
 
@@ -237,9 +237,9 @@ protected:
 // Supply Truck data
 	Int m_numberBoxes;
 	ObjectID									m_preferredDock;			///< Instead of searching, try this one first
-	Bool m_forcePending; // To prevent a function from doing a setState, forceWanting will latch into here until serviced.
-	Bool m_isRebuild;	// is our current construction task a rebuild?
-	Bool m_forcedBusyPending;	// A supply truck can't tell the difference between Idle since
+	bool m_forcePending; // To prevent a function from doing a setState, forceWanting will latch into here until serviced.
+	bool m_isRebuild;	// is our current construction task a rebuild?
+	bool m_forcedBusyPending;	// A supply truck can't tell the difference between Idle since
 														// I'm between docking states, or a Stop command without help.
 
 

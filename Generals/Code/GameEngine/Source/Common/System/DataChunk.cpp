@@ -50,7 +50,7 @@ CachedFileInputStream::~CachedFileInputStream(void)
 	}
 }
 
-Bool CachedFileInputStream::open(AsciiString path)
+bool CachedFileInputStream::open(AsciiString path)
 {
 	File *file=TheFileSystem->openFile(path.str(), File::READ | File::BINARY);
 	m_size = 0;
@@ -132,7 +132,7 @@ UnsignedInt CachedFileInputStream::tell(void)
 	return m_pos;
 }
 
-Bool CachedFileInputStream::absoluteSeek(UnsignedInt pos)
+bool CachedFileInputStream::absoluteSeek(UnsignedInt pos)
 {
 	if (pos<0) return false;
 	if (pos>m_size) {
@@ -142,7 +142,7 @@ Bool CachedFileInputStream::absoluteSeek(UnsignedInt pos)
 	return true;
 }
 
-Bool CachedFileInputStream::eof(void)
+bool CachedFileInputStream::eof(void)
 {
 	return m_size==m_pos;
 }
@@ -170,7 +170,7 @@ FileInputStream::~FileInputStream(void)
 	}
 }
 
-Bool FileInputStream::open(AsciiString path)
+bool FileInputStream::open(AsciiString path)
 {
 	m_file = TheFileSystem->openFile(path.str(), File::READ | File::BINARY);
 	return m_file==NULL?false:true;
@@ -202,7 +202,7 @@ UnsignedInt FileInputStream::tell(void)
 	return(pos);
 }
 
-Bool FileInputStream::absoluteSeek(UnsignedInt pos)
+bool FileInputStream::absoluteSeek(UnsignedInt pos)
 {
 	if (m_file != NULL) {
 		return (m_file->seek(pos, File::START) != -1);
@@ -210,7 +210,7 @@ Bool FileInputStream::absoluteSeek(UnsignedInt pos)
 	return(false);
 }
 
-Bool FileInputStream::eof(void)
+bool FileInputStream::eof(void)
 {
 	if (m_file != NULL) {
 		return (m_file->size() == m_file->position());
@@ -615,13 +615,13 @@ void DataChunkInput::registerParser( const AsciiString& label, const AsciiString
 // parse the chunk stream using registered parsers
 // it is assumed that the file position is at the start of a data chunk
 // (it can be inside a parent chunk) when parse is called.
-Bool DataChunkInput::parse( void *userData )
+bool DataChunkInput::parse( void *userData )
 {
 	AsciiString label;
 	AsciiString parentLabel;
 	DataChunkVersionType ver;
 	UserParser *parser;
-	Bool scopeOK;
+	bool scopeOK;
 	DataChunkInfo info;
 	
 	// If the header wasn't a chunk table of contents, we can't parse. 
@@ -703,7 +703,7 @@ void DataChunkInput::reset( void )
 }
 
 // Checks if the file has our initial tag word.
-Bool DataChunkInput::isValidFileType(void)
+bool DataChunkInput::isValidFileType(void)
 {
 	return m_contents.isOpenedForRead();
 }
@@ -819,7 +819,7 @@ UnsignedInt DataChunkInput::getChunkDataSizeLeft( void )
 	return m_chunkStack->dataLeft;
 }
 
-Bool DataChunkInput::atEndOfChunk( void )
+bool DataChunkInput::atEndOfChunk( void )
 {
 	if (m_chunkStack)
 	{

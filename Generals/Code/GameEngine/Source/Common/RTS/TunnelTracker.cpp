@@ -63,7 +63,7 @@ TunnelTracker::~TunnelTracker()
 }
 
 // ------------------------------------------------------------------------
-void TunnelTracker::iterateContained( ContainIterateFunc func, void *userData, Bool reverse )
+void TunnelTracker::iterateContained( ContainIterateFunc func, void *userData, bool reverse )
 {
 	if (reverse)
 	{
@@ -152,7 +152,7 @@ Object *TunnelTracker::getCurNemesis(void)
 }
 
 // ------------------------------------------------------------------------
-Bool TunnelTracker::isValidContainerFor(const Object* obj, Bool checkCapacity) const
+bool TunnelTracker::isValidContainerFor(const Object* obj, bool checkCapacity) const
 {
 	//October 11, 2002 -- Kris : Dustin wants ALL units to be able to use tunnels!
 	// srj sez: um, except aircraft. 
@@ -180,7 +180,7 @@ void TunnelTracker::addToContainList( Object *obj )
 }
 
 // ------------------------------------------------------------------------
-void TunnelTracker::removeFromContain( Object *obj, Bool exposeStealthUnits )
+void TunnelTracker::removeFromContain( Object *obj, bool exposeStealthUnits )
 {
 
 	ContainedItemsList::iterator it = std::find(m_containList.begin(), m_containList.end(), obj);
@@ -194,7 +194,7 @@ void TunnelTracker::removeFromContain( Object *obj, Bool exposeStealthUnits )
 }
 
 // ------------------------------------------------------------------------
-Bool TunnelTracker::isInContainer( Object *obj )
+bool TunnelTracker::isInContainer( Object *obj )
 {
 	return (std::find(m_containList.begin(), m_containList.end(), obj) != m_containList.end()) ;
 }

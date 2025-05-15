@@ -108,13 +108,13 @@ UpdateSleepTime CheckpointUpdate::update()
 {
 /// @todo srj use SLEEPY_UPDATE here
 	
-	Bool wasAnAlly  = m_allyNear;
-	Bool wasAnEnemy = m_enemyNear;
+	bool wasAnAlly  = m_allyNear;
+	bool wasAnEnemy = m_enemyNear;
 	
 	checkForAlliesAndEnemies();
 
-	Bool change = ( (wasAnAlly != m_allyNear) || (wasAnEnemy != m_enemyNear) );
-	Bool open = ( ( ! m_enemyNear) && m_allyNear );
+	bool change = ( (wasAnAlly != m_allyNear) || (wasAnEnemy != m_enemyNear) );
+	bool open = ( ( ! m_enemyNear) && m_allyNear );
 	Object *obj = getObject();
 	Drawable *draw = obj->getDrawable();
 

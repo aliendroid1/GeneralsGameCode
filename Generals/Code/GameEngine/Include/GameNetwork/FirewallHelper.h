@@ -177,7 +177,7 @@ class FirewallHelperClass {
 
 		FirewallHelperClass(void);
 		virtual ~FirewallHelperClass(void);
-		Bool detectFirewall(void);
+		bool detectFirewall(void);
 		UnsignedShort getRawFirewallBehavior(void) {return((UnsignedShort)m_behavior);}
 		Short getSourcePortAllocationDelta(void);
 		Int getFirewallHardness(FirewallBehaviorType behavior);
@@ -186,7 +186,7 @@ class FirewallHelperClass {
 		Int getSourcePortPool(void) {return(m_sourcePortPool);};
 		void readFirewallBehavior(void);
 		void reset(void);
-		Bool behaviorDetectionUpdate(void);
+		bool behaviorDetectionUpdate(void);
 		
 		FirewallBehaviorType getFirewallBehavior(void);
 		void writeFirewallBehavior(void);
@@ -194,48 +194,48 @@ class FirewallHelperClass {
 		void flagNeedToRefresh(Bool flag);
 
 		static void getManglerName(Int manglerIndex, Char *nameBuf);
-		Bool sendToManglerFromPort(UnsignedInt address, UnsignedShort port, UnsignedShort packetID, Bool blitzme = FALSE);
+		bool sendToManglerFromPort(UnsignedInt address, UnsignedShort port, UnsignedShort packetID, bool blitzme = FALSE);
 		UnsignedShort getManglerResponse(UnsignedShort packetID, Int time = 0);
-		Bool openSpareSocket(UnsignedShort port);
+		bool openSpareSocket(UnsignedShort port);
 		void closeSpareSocket(UnsignedShort port);
 		void closeAllSpareSockets();
 		UnsignedShort getNextTemporarySourcePort(Int skip);
 
-		Bool detectionBeginUpdate(void);
-		Bool detectionTest1Update(void);
-		Bool detectionTest2Update(void);
-		Bool detectionTest3Update(void);
-		Bool detectionTest3WaitForResponsesUpdate(void);
-		Bool detectionTest4Stage1Update(void);
-		Bool detectionTest4Stage2Update(void);
-		Bool detectionTest5Update(void);
+		bool detectionBeginUpdate(void);
+		bool detectionTest1Update(void);
+		bool detectionTest2Update(void);
+		bool detectionTest3Update(void);
+		bool detectionTest3WaitForResponsesUpdate(void);
+		bool detectionTest4Stage1Update(void);
+		bool detectionTest4Stage2Update(void);
+		bool detectionTest5Update(void);
 
 
 		/*
 		** Behavior query functions.
 		*/
-		inline Bool isNAT(void) {
+		inline bool isNAT(void) {
 			if (m_behavior == FIREWALL_TYPE_UNKNOWN || (m_behavior & FIREWALL_TYPE_SIMPLE) != 0) {
 				return(FALSE);
 			}
 			return(TRUE);
 		};
 
-		inline Bool isNAT(FirewallBehaviorType behavior) {
+		inline bool isNAT(FirewallBehaviorType behavior) {
 			if (behavior == FIREWALL_TYPE_UNKNOWN || (behavior & FIREWALL_TYPE_SIMPLE) != 0) {
 				return(FALSE);
 			}
 			return(TRUE);
 		};
 
-		inline Bool isNetgear(FirewallBehaviorType behavior) {
+		inline bool isNetgear(FirewallBehaviorType behavior) {
 			if ((behavior & FIREWALL_TYPE_NETGEAR_BUG) != 0) {
 				return(TRUE);
 			}
 			return(FALSE);
 		};
 
-		inline Bool isNetgear(void) {
+		inline bool isNetgear(void) {
 			if ((m_behavior & FIREWALL_TYPE_NETGEAR_BUG) != 0) {
 				return(TRUE);
 			}
@@ -246,9 +246,9 @@ class FirewallHelperClass {
 
 	private:
 
-		Int getNATPortAllocationScheme(Int numPorts, UnsignedShort *originalPorts, UnsignedShort *mangledPorts, Bool &relativeDelta, Bool &looksGood);
+		Int getNATPortAllocationScheme(Int numPorts, UnsignedShort *originalPorts, UnsignedShort *mangledPorts, bool &relativeDelta, bool &looksGood);
 		void detectFirewallBehavior(/*Bool &canRecord*/);
-		Bool getReferencePort(void);
+		bool getReferencePort(void);
 
 		SpareSocketStruct * findSpareSocketByPort(UnsignedShort port);
 		ManglerMessage * findEmptyMessage();

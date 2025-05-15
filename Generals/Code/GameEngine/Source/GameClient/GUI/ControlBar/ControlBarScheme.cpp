@@ -1086,7 +1086,7 @@ void ControlBarSchemeManager::drawBackground( ICoord2D offset )
 }
 
 //-----------------------------------------------------------------------------
-void ControlBarSchemeManager::setControlBarSchemeByPlayerTemplate( const PlayerTemplate *pt, Bool useSmall)
+void ControlBarSchemeManager::setControlBarSchemeByPlayerTemplate( const PlayerTemplate *pt, bool useSmall)
 {
 	if(!pt)
 		return;

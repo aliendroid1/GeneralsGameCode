@@ -75,14 +75,14 @@
 #endif
 
 #ifdef ALLOW_NON_PROFILED_LOGIN
-Bool GameSpyUseProfiles = false;
+bool GameSpyUseProfiles = false;
 #endif // ALLOW_NON_PROFILED_LOGIN
 
-static Bool webBrowserActive = FALSE;
-static Bool useWebBrowserForTOS = FALSE;
+static bool webBrowserActive = FALSE;
+static bool useWebBrowserForTOS = FALSE;
 
-static Bool isShuttingDown = false;
-static Bool buttonPushed = false;
+static bool isShuttingDown = false;
+static bool buttonPushed = false;
 static const char *nextScreen = NULL;
 
 static const UnsignedInt loginTimeoutInMS = 10000;
@@ -94,8 +94,8 @@ public:
 	GameSpyLoginPreferences() { m_emailPasswordMap.clear(); m_emailNickMap.clear(); }
 	virtual ~GameSpyLoginPreferences() { m_emailPasswordMap.clear(); m_emailNickMap.clear(); }
 
-	virtual Bool load(AsciiString fname);
-	virtual Bool write(void);
+	virtual bool load(AsciiString fname);
+	virtual bool write(void);
 
 	AsciiString getPasswordForEmail( AsciiString email );
 	AsciiString getDateForEmail( AsciiString email, AsciiString &month, AsciiString &date, AsciiString &year  );
@@ -134,7 +134,7 @@ static AsciiString obfuscate( AsciiString in )
 	return out;
 }
 
-Bool GameSpyLoginPreferences::load( AsciiString fname )
+bool GameSpyLoginPreferences::load( AsciiString fname )
 {
 	if (!UserPreferences::load(fname))
 		return false;
@@ -180,7 +180,7 @@ Bool GameSpyLoginPreferences::load( AsciiString fname )
 	return true;
 }
 
-Bool GameSpyLoginPreferences::write( void )
+bool GameSpyLoginPreferences::write( void )
 {
 	if (m_filename.isEmpty())
 		return false;
@@ -389,7 +389,7 @@ static GameWindow *textEntryMonth =				NULL;
 static GameWindow *textEntryDay =				NULL;
 static GameWindow *textEntryYear =				NULL;
 
-void EnableLoginControls( Bool state )
+void EnableLoginControls( bool state )
 {
 	if (buttonLogin)
 		buttonLogin->winEnable(state);
@@ -594,7 +594,7 @@ void WOLLoginMenuInit( WindowLayout *layout, void *userData )
 		// look for cached nicks to add
 		AsciiString lastName;
 		AsciiString lastEmail;
-		Bool markCheckBox = FALSE;
+		bool markCheckBox = FALSE;
 		UserPreferences::const_iterator it = loginPref->find("lastName");
 		if (it != loginPref->end())
 		{
@@ -713,7 +713,7 @@ void WOLLoginMenuInit( WindowLayout *layout, void *userData )
 //-------------------------------------------------------------------------------------------------
 /** WOL Login Menu shutdown method */
 //-------------------------------------------------------------------------------------------------
-static Bool loggedInOK = false;
+static bool loggedInOK = false;
 void WOLLoginMenuShutdown( WindowLayout *layout, void *userData )
 {
 	isShuttingDown = true;
@@ -729,7 +729,7 @@ void WOLLoginMenuShutdown( WindowLayout *layout, void *userData )
 	}
 
 	// if we are shutting down for an immediate pop, skip the animations
-	Bool popImmediate = *(Bool *)userData;
+	bool popImmediate = *(Bool *)userData;
 	if( popImmediate )
 	{
 
@@ -932,7 +932,7 @@ WindowMsgHandledType WOLLoginMenuInput( GameWindow *window, UnsignedInt msg,
 	return MSG_IGNORED;
 }// WOLLoginMenuInput
 
-static Bool isNickOkay(UnicodeString nick)
+static bool isNickOkay(UnicodeString nick)
 {
 	static const WideChar * legalIRCChars = L"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789[]`_^{|}-";
 
@@ -950,7 +950,7 @@ static Bool isNickOkay(UnicodeString nick)
 	return TRUE;
 }
 
-static Bool isAgeOkay(AsciiString &month, AsciiString &day, AsciiString year)
+static bool isAgeOkay(AsciiString &month, AsciiString &day, AsciiString year)
 {
 	if(month.isEmpty() || day.isEmpty() || year.isEmpty() || year.getLength() != 4)
 		return FALSE;

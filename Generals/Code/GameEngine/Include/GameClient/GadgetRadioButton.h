@@ -81,7 +81,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 extern void GadgetRadioSetText( GameWindow *g, UnicodeString text );
-extern void GadgetRadioSetSelection( GameWindow *g, Bool sendMsg );
+extern void GadgetRadioSetSelection( GameWindow *g, bool sendMsg );
 extern void GadgetRadioSetGroup( GameWindow *g, Int group, Int screen );
 
 inline void GadgetRadioSetEnabledImage( GameWindow *g, const Image *image )						{ g->winSetEnabledImage( 0, image ); }

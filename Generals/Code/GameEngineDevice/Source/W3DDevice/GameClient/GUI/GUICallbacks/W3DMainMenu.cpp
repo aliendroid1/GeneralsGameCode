@@ -91,7 +91,7 @@ static void advancePosition(GameWindow *window, const Image *image, UnsignedInt 
 	if(!image)
 		return;
 
-	static Bool goingForward = TRUE;
+	static bool goingForward = TRUE;
 	
 	ICoord2D pos, size;
 	if(!window)

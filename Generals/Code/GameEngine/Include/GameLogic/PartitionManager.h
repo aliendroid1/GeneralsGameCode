@@ -250,7 +250,7 @@ public:
 
 	SightingInfo();
 	void reset();
-	Bool isInvalid() const;
+	bool isInvalid() const;
 
 	Coord3D					m_where;
 	Real						m_howFar;
@@ -404,7 +404,7 @@ private:
 		Given a shape's geometry and size parameters, calculate the maximum number of COIs
 		that the object could possibly occupy.
 	*/
-	Int calcMaxCoiForShape(GeometryType geom, Real majorRadius, Real minorRadius, Bool isSmall);
+	Int calcMaxCoiForShape(GeometryType geom, Real majorRadius, Real minorRadius, bool isSmall);
 
 	/**
 		Given an object's geometry and size parameters, calculate the maximum number of COIs
@@ -485,7 +485,7 @@ private:
 		loc will be filled in to the collision location, and normal will be
 		filled in to the normal to the surface of 'this' at the collide location.
 	*/
-	Bool collidesWith(const PartitionData *that, CollideLocAndNormal *cinfo) const;
+	bool collidesWith(const PartitionData *that, CollideLocAndNormal *cinfo) const;
 
 public:
 
@@ -506,8 +506,8 @@ public:
 	// if needToUpdateCells is false, we'll just do the collision testing.
 	void makeDirty(Bool needToUpdateCells);
 
-	Bool isInNeedOfUpdatingCells() const { return m_dirtyStatus == NEED_CELL_UPDATE_AND_COLLISION_CHECK; }
-	Bool isInNeedOfCollisionCheck() const { return m_dirtyStatus != NOT_DIRTY; }
+	bool isInNeedOfUpdatingCells() const { return m_dirtyStatus == NEED_CELL_UPDATE_AND_COLLISION_CHECK; }
+	bool isInNeedOfCollisionCheck() const { return m_dirtyStatus != NOT_DIRTY; }
 
 	void invalidateShroudedStatusForPlayer(Int playerIndex);
 	void invalidateShroudedStatusForAllPlayers();
@@ -546,16 +546,16 @@ public:
 	void friend_removeAllTouchedCells() { removeAllTouchedCells(); }	///< this is only for use by PartitionManager
 	void friend_updateCellsTouched()	{ updateCellsTouched(); } ///< this is only for use by PartitionManager
 	Int friend_getCoiInUseCount() { return m_coiInUseCount; } ///< this is only for use by PartitionManager
-	Bool friend_collidesWith(const PartitionData *that, CollideLocAndNormal *cinfo) const { return collidesWith(that, cinfo); }	///< this is only for use by PartitionContactList
+	bool friend_collidesWith(const PartitionData *that, CollideLocAndNormal *cinfo) const { return collidesWith(that, cinfo); }	///< this is only for use by PartitionContactList
 
 	// these are only for use by getClosestObjects.
 	// (note, if we ever use other bits in this, smarten this up...)
 	Int friend_getDoneFlag() { return m_doneFlag; }
 	void friend_setDoneFlag(Int i) { m_doneFlag = i; }
 
-	inline Bool isInListDirtyModules(PartitionData* const* pListHead) const
+	inline bool isInListDirtyModules(PartitionData* const* pListHead) const
 	{
-		Bool result = (*pListHead == this || m_prevDirty || m_nextDirty);
+		bool result = (*pListHead == this || m_prevDirty || m_nextDirty);
 		DEBUG_ASSERTCRASH(result == (m_dirtyStatus != NOT_DIRTY), ("dirty flag mismatch"));
 		return result;
 	}
@@ -594,7 +594,7 @@ public:
 class PartitionFilter
 {
 public:
-	virtual Bool allow(Object *objOther) = 0;
+	virtual bool allow(Object *objOther) = 0;
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() = 0;
 #endif
@@ -608,7 +608,7 @@ class PartitionFilterIsFlying : public PartitionFilter
 {
 public:
 	PartitionFilterIsFlying() { }
-	virtual Bool allow(Object *objOther);
+	virtual bool allow(Object *objOther);
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterIsFlying"; }
 #endif
@@ -621,10 +621,10 @@ private:
 	Coord3D m_position;
 	GeometryInfo m_geom;
 	Real m_angle;
-  Bool m_desiredCollisionResult;  // collision must match this for allow to return true
+  bool m_desiredCollisionResult;  // collision must match this for allow to return true
 public:
-	PartitionFilterWouldCollide(const Coord3D& pos, const GeometryInfo& geom, Real angle, Bool desired);
-	virtual Bool allow(Object *objOther);
+	PartitionFilterWouldCollide(const Coord3D& pos, const GeometryInfo& geom, Real angle, bool desired);
+	virtual bool allow(Object *objOther);
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterWouldCollide"; }
 #endif
@@ -640,7 +640,7 @@ private:
 	const Player *m_player;
 public:
 	PartitionFilterSamePlayer(const Player *player) : m_player(player) { }
-	virtual Bool allow(Object *objOther);
+	virtual bool allow(Object *objOther);
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterSamePlayer"; }
 #endif
@@ -666,7 +666,7 @@ public:
 		ALLOW_NEUTRAL					= (1<<NEUTRAL)		///< allow objects that m_obj considers neutral
 	};
 	PartitionFilterRelationship(const Object *obj, Int flags) : m_obj(obj), m_flags(flags) { }
-	virtual Bool allow(Object *objOther);
+	virtual bool allow(Object *objOther);
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterRelationship"; }
 #endif
@@ -683,7 +683,7 @@ private:
 	const Team *m_team;
 public:
 	PartitionFilterAcceptOnTeam(const Team *team);
-	virtual Bool allow(Object *objOther);
+	virtual bool allow(Object *objOther);
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterAcceptOnTeam"; }
 #endif
@@ -700,7 +700,7 @@ private:
 	const Squad *m_squad;
 public:
 	PartitionFilterAcceptOnSquad(const Squad *squad);
-	virtual Bool allow(Object *objOther);
+	virtual bool allow(Object *objOther);
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterAcceptOnSquad"; }
 #endif
@@ -723,7 +723,7 @@ private:
 	const Object *m_obj;
 public:
 	PartitionFilterLineOfSight(const Object *obj);
-	virtual Bool allow(Object *objOther);
+	virtual bool allow(Object *objOther);
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterLineOfSight"; }
 #endif
@@ -741,7 +741,7 @@ private:
 	AbleToAttackType m_attackType;
 public:
 	PartitionFilterPossibleToAttack(AbleToAttackType t, const Object *obj, CommandSourceType commandSource);
-	virtual Bool allow(Object *objOther);
+	virtual bool allow(Object *objOther);
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterPossibleToAttack"; }
 #endif
@@ -757,7 +757,7 @@ private:
 	ObjectID m_lastAttackedBy;
 public:
 	PartitionFilterLastAttackedBy(Object *obj);
-	virtual Bool allow(Object *other);
+	virtual bool allow(Object *other);
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterLastAttackedBy"; }
 #endif
@@ -773,7 +773,7 @@ private:
 	ObjectStatusMaskType m_mustBeSet, m_mustBeClear;
 public:
 	PartitionFilterAcceptByObjectStatus(ObjectStatusMaskType mustBeSet, ObjectStatusMaskType mustBeClear) : m_mustBeSet(mustBeSet), m_mustBeClear(mustBeClear) { }
-	virtual Bool allow(Object *objOther);
+	virtual bool allow(Object *objOther);
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterAcceptByObjectStatus"; }
 #endif
@@ -793,7 +793,7 @@ public:
 		: m_mustBeSet(mustBeSet), m_mustBeClear(mustBeClear) 
 	{ 
 	}
-	virtual Bool allow(Object *objOther);
+	virtual bool allow(Object *objOther);
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterRejectByObjectStatus"; }
 #endif
@@ -807,10 +807,10 @@ class PartitionFilterStealthedAndUndetected : public PartitionFilter
 {
 private:
 	const Object *m_obj;
-	Bool m_allow;
+	bool m_allow;
 public:
-	PartitionFilterStealthedAndUndetected( const Object *obj, Bool allow ) { m_obj = obj; m_allow = allow; } 
-	virtual Bool allow(Object *objOther);
+	PartitionFilterStealthedAndUndetected( const Object *obj, bool allow ) { m_obj = obj; m_allow = allow; } 
+	virtual bool allow(Object *objOther);
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterStealthedAndUndetected"; }
 #endif
@@ -826,7 +826,7 @@ private:
 	KindOfMaskType m_mustBeSet, m_mustBeClear;
 public:
 	PartitionFilterAcceptByKindOf(const KindOfMaskType& mustBeSet, const KindOfMaskType& mustBeClear) : m_mustBeSet(mustBeSet), m_mustBeClear(mustBeClear) { }
-	virtual Bool allow(Object *objOther);
+	virtual bool allow(Object *objOther);
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterAcceptByKindOf"; }
 #endif
@@ -846,7 +846,7 @@ public:
 		: m_mustBeSet(mustBeSet), m_mustBeClear(mustBeClear) 
 	{ 
 	}
-	virtual Bool allow(Object *objOther);
+	virtual bool allow(Object *objOther);
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterRejectByKindOf"; }
 #endif
@@ -863,7 +863,7 @@ private:
 	Object *m_obj;
 public:
 	PartitionFilterRejectBehind( Object *obj );
-	virtual Bool allow( Object *other );
+	virtual bool allow( Object *other );
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterRejectBehind"; }
 #endif
@@ -878,7 +878,7 @@ class PartitionFilterAlive : public PartitionFilter
 public:
 	PartitionFilterAlive(void) { }
 protected:
-	virtual Bool allow(Object *objOther);
+	virtual bool allow(Object *objOther);
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterAlive"; }
 #endif
@@ -896,7 +896,7 @@ private:
 public:
 	PartitionFilterSameMapStatus(const Object *obj) : m_obj(obj) { }
 protected:
-	virtual Bool allow(Object *objOther);
+	virtual bool allow(Object *objOther);
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterSameMapStatus"; }
 #endif
@@ -911,7 +911,7 @@ class PartitionFilterOnMap : public PartitionFilter
 public:
 	PartitionFilterOnMap() { }
 protected:
-	virtual Bool allow(Object *objOther);
+	virtual bool allow(Object *objOther);
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterOnMap"; }
 #endif
@@ -927,11 +927,11 @@ class PartitionFilterRejectBuildings : public PartitionFilter
 {
 private:
 	const Object *m_self;
-	Bool m_acquireEnemies;
+	bool m_acquireEnemies;
 public:
 	PartitionFilterRejectBuildings(const Object *o);
 protected:
-	virtual Bool allow( Object *other );
+	virtual bool allow( Object *other );
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterRejectBuildings"; }
 #endif
@@ -945,13 +945,13 @@ protected:
 class PartitionFilterInsignificantBuildings : public PartitionFilter
 {
 private:
-	Bool m_allowNonBuildings;
-	Bool m_allowInsignificant;
+	bool m_allowNonBuildings;
+	bool m_allowInsignificant;
 public:
-	PartitionFilterInsignificantBuildings(Bool allowNonBuildings, Bool allowInsignificant) : 
+	PartitionFilterInsignificantBuildings(Bool allowNonBuildings, bool allowInsignificant) : 
 			m_allowNonBuildings(allowNonBuildings), m_allowInsignificant(allowInsignificant) {}
 protected:
-	virtual Bool allow( Object *other );
+	virtual bool allow( Object *other );
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterInsignificantBuildings"; }
 #endif
@@ -969,7 +969,7 @@ public:
 	PartitionFilterFreeOfFog(Int toWhom) : 
 			m_comparisonIndex(toWhom){}
 protected:
-	virtual Bool allow( Object *other );
+	virtual bool allow( Object *other );
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterFreeOfFog"; }
 #endif
@@ -986,7 +986,7 @@ private:
 public:
 	PartitionFilterRepulsor(const Object *o) : m_self(o) { }
 protected:
-	virtual Bool allow( Object *other );
+	virtual bool allow( Object *other );
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterRepulsor"; }
 #endif
@@ -1007,7 +1007,7 @@ private:
 public:
 	PartitionFilterIrregularArea(Coord3D* area, Int numPointsInArea) : m_area(area), m_numPointsInArea(numPointsInArea) {}
 protected:
-	virtual Bool allow( Object *other );
+	virtual bool allow( Object *other );
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterIrregularArea"; }
 #endif
@@ -1027,7 +1027,7 @@ private:
 public:
 	PartitionFilterPolygonTrigger(const PolygonTrigger *trigger) : m_trigger(trigger) {}
 protected:
-	virtual Bool allow( Object *other );
+	virtual bool allow( Object *other );
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterPolygonTrigger"; }
 #endif
@@ -1042,12 +1042,12 @@ class PartitionFilterPlayer : public PartitionFilter
 {
 private:
 	const Player *m_player;
-	Bool  m_match;
+	bool  m_match;
 
 public:
-	PartitionFilterPlayer(const Player *player, Bool match) : m_player(player), m_match(match) {}
+	PartitionFilterPlayer(const Player *player, bool match) : m_player(player), m_match(match) {}
 protected:
-	virtual Bool allow( Object *other );
+	virtual bool allow( Object *other );
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterPlayer"; }
 #endif
@@ -1062,17 +1062,17 @@ class PartitionFilterPlayerAffiliation : public PartitionFilter
 {
 private:
 	const Player *m_player;
-	Bool  m_match;
+	bool  m_match;
 	UnsignedInt m_affiliation;
 
 public:
 	// whichAffiliation should use AllowPlayerRelationship flags specified in PlayerList.h
-	PartitionFilterPlayerAffiliation(const Player *player, UnsignedInt whichAffiliation, Bool match)
+	PartitionFilterPlayerAffiliation(const Player *player, UnsignedInt whichAffiliation, bool match)
 		: m_player(player), m_affiliation(whichAffiliation), m_match(match) 
 	{
 	}
 protected:
-	virtual Bool allow( Object *other );
+	virtual bool allow( Object *other );
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterPlayerAffiliation"; }
 #endif
@@ -1087,12 +1087,12 @@ class PartitionFilterThing : public PartitionFilter
 {
 private:
 	const ThingTemplate *m_tThing;
-	Bool  m_match;
+	bool  m_match;
 
 public:
-	PartitionFilterThing(const ThingTemplate *thing, Bool match) : m_tThing(thing), m_match(match) {}
+	PartitionFilterThing(const ThingTemplate *thing, bool match) : m_tThing(thing), m_match(match) {}
 protected:
-	virtual Bool allow( Object *other );
+	virtual bool allow( Object *other );
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterThing"; }
 #endif
@@ -1106,10 +1106,10 @@ class PartitionFilterGarrisonable : public PartitionFilter
 {
 private:
 	Player *m_player;
-	Bool  m_match;
+	bool  m_match;
 
 public:
-	PartitionFilterGarrisonable( Bool match ) : m_match(match) 
+	PartitionFilterGarrisonable( bool match ) : m_match(match) 
 	{
 		//Added By Sadullah Nader
 		//Initializations 
@@ -1117,7 +1117,7 @@ public:
 		//
 	}
 protected:
-	virtual Bool allow( Object *other );
+	virtual bool allow( Object *other );
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterGarrisonable"; }
 #endif
@@ -1131,16 +1131,16 @@ class PartitionFilterGarrisonableByPlayer : public PartitionFilter
 {
 private:
 	Player *m_player;
-	Bool  m_match;
+	bool  m_match;
 	CommandSourceType m_commandSource;
 
 public:
-	PartitionFilterGarrisonableByPlayer( Player *player, Bool match, CommandSourceType commandSource ):
+	PartitionFilterGarrisonableByPlayer( Player *player, bool match, CommandSourceType commandSource ):
 			m_player(player), m_match(match), m_commandSource(commandSource) 
 	{
 	}
 protected:
-	virtual Bool allow( Object *other );
+	virtual bool allow( Object *other );
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterGarrisonableByPlayer"; }
 #endif
@@ -1153,12 +1153,12 @@ protected:
 class PartitionFilterUnmannedObject : public PartitionFilter
 {
 private:
-	Bool  m_match;
+	bool  m_match;
 
 public:
-	PartitionFilterUnmannedObject( Bool match ) : m_match(match) {}
+	PartitionFilterUnmannedObject( bool match ) : m_match(match) {}
 protected:
-	virtual Bool allow( Object *other );
+	virtual bool allow( Object *other );
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterUnmannedObject"; }
 #endif
@@ -1173,14 +1173,14 @@ class PartitionFilterValidCommandButtonTarget : public PartitionFilter
 private:
 	Object *m_source;
 	const CommandButton *m_commandButton;
-	Bool m_match;
+	bool m_match;
 	CommandSourceType m_commandSource;
 
 public:
-	PartitionFilterValidCommandButtonTarget( Object *source, const CommandButton *commandButton, Bool match, CommandSourceType commandSource) : 
+	PartitionFilterValidCommandButtonTarget( Object *source, const CommandButton *commandButton, bool match, CommandSourceType commandSource) : 
 		m_source(source), m_commandButton(commandButton), m_match(match), m_commandSource(commandSource) {}
 protected:
-	virtual Bool allow( Object *other );
+	virtual bool allow( Object *other );
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterValidCommandButtonTarget"; }
 #endif
@@ -1241,7 +1241,7 @@ protected:
 	void shutdown( void );
 
 	/// used to validate the positions for findPositionAround family of methods
-	Bool tryPosition( const Coord3D *center, Real dist, Real angle,
+	bool tryPosition( const Coord3D *center, Real dist, Real angle,
 										const FindPositionOptions *options, Coord3D *result );
 
 	typedef Int (*CellAlongLineProc)(PartitionCell* cell, void* userData);
@@ -1289,7 +1289,7 @@ public:
 	void xfer( Xfer *xfer );
 	void loadPostProcess( void );
 
-	inline Bool getUpdatedSinceLastReset( void ) const { return m_updatedSinceLastReset; }
+	inline bool getUpdatedSinceLastReset( void ) const { return m_updatedSinceLastReset; }
 
 	void registerObject( Object *object );				///< add thing to system
 	void unRegisterObject( Object *object );			///< remove thing from system
@@ -1366,7 +1366,7 @@ public:
 	// note that the 2d positions aren't guaranteed to be the actual spot within the cell where the terrain
 	// is lowest or highest.... just the center of the relevant cell. this function is used for rough-n-quick
 	// estimates only.
-	Bool estimateTerrainExtremesAlongLine(const Coord3D& startWorld, const Coord3D& endWorld, Real* minZ, Real* maxZ, Coord2D* minZPos, Coord2D* maxZPos);
+	bool estimateTerrainExtremesAlongLine(const Coord3D& startWorld, const Coord3D& endWorld, Real* minZ, Real* maxZ, Coord2D* minZPos, Coord2D* maxZPos);
 #endif
 
 #ifdef DUMP_PERF_STATS
@@ -1399,13 +1399,13 @@ public:
 		const Coord3D* pos, 
 		const GeometryInfo& geom,
 		Real angle,
-		Bool use2D = false
+		bool use2D = false
 	);
 	
-	Bool isColliding( const Object *a, const Object *b ) const;
+	bool isColliding( const Object *a, const Object *b ) const;
 
 	/// Checks a geometry against an arbitrary geometry. 
-	Bool geomCollidesWithGeom( const Coord3D* pos1, 
+	bool geomCollidesWithGeom( const Coord3D* pos1, 
 							const GeometryInfo& geom1,
 							Real angle1, 
 							const Coord3D* pos2, 
@@ -1414,7 +1414,7 @@ public:
   ) const;
 
 	/// finding legal positions in the world
-	Bool findPositionAround( const Coord3D *center,
+	bool findPositionAround( const Coord3D *center,
 													 const FindPositionOptions *options, 
 													 Coord3D *result );
 
@@ -1429,9 +1429,9 @@ public:
 		this only takes terrain into account; it does not consider objects, units, 
 		trees, buildings, etc. 
 	*/
-	Bool isClearLineOfSightTerrain(const Object* obj, const Coord3D& objPos, const Object* other, const Coord3D& otherPos);
+	bool isClearLineOfSightTerrain(const Object* obj, const Coord3D& objPos, const Object* other, const Coord3D& otherPos);
 
-	inline Bool isInListDirtyModules(PartitionData* o) const
+	inline bool isInListDirtyModules(PartitionData* o) const
 	{
 		return o->isInListDirtyModules(&m_dirtyModules);
 	}
@@ -1488,12 +1488,12 @@ public:
 
 	void getMostValuableLocation( Int playerIndex, UnsignedInt whichPlayerTypes, ValueOrThreat valType, Coord3D *outLocation );
 	void getNearestGroupWithValue( Int playerIndex, UnsignedInt whichPlayerTypes, ValueOrThreat valType, const Coord3D *sourceLocation,
-																 Int valueRequired, Bool greaterThan, Coord3D *outLocation );
+																 Int valueRequired, bool greaterThan, Coord3D *outLocation );
 
 	// If saveToFog is true, then we are writing STORE_FOG. 
 	// If saveToFog is false, then we are writing STORE_PERMENANT_REVEAL
-	void storeFoggedCells(ShroudStatusStoreRestore &outPartitionStore, Bool storeToFog) const;
-	void restoreFoggedCells(const ShroudStatusStoreRestore &inPartitionStore, Bool restoreToFog);
+	void storeFoggedCells(ShroudStatusStoreRestore &outPartitionStore, bool storeToFog) const;
+	void restoreFoggedCells(const ShroudStatusStoreRestore &inPartitionStore, bool restoreToFog);
 };  // end class PartitionManager
 
 // -----------------------------------------------------------------------------

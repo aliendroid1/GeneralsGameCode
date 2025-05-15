@@ -156,7 +156,7 @@ void Thing::setPositionZ( Real z )
 	else
 	{
 		Matrix3D mtx;
-		const Bool stickToGround = true;	// yes, set the "z" pos		
+		const bool stickToGround = true;	// yes, set the "z" pos		
 		Coord3D pos = m_cachedPos;
 		pos.z = z;
 		TheTerrainLogic->alignOnTerrain(getOrientation(), pos, stickToGround, mtx );
@@ -187,7 +187,7 @@ void Thing::setPosition( const Coord3D *pos )
 	else
 	{
 		Matrix3D mtx;
-		const Bool stickToGround = true;	// yes, set the "z" pos				
+		const bool stickToGround = true;	// yes, set the "z" pos				
 		TheTerrainLogic->alignOnTerrain(getOrientation(), *pos, stickToGround, mtx );
 		setTransformMatrix(&mtx);
 	}
@@ -214,7 +214,7 @@ void Thing::setOrientation( Real angle )
 	if( m_template->isKindOf( KINDOF_STICK_TO_TERRAIN_SLOPE) )
 	{
 		Matrix3D mtx;
-		const Bool stickToGround = true;	// yes, set the "z" pos				
+		const bool stickToGround = true;	// yes, set the "z" pos				
 		TheTerrainLogic->alignOnTerrain(angle, pos, stickToGround, m_transform );
 	}
 	else
@@ -266,19 +266,19 @@ void Thing::setTransformMatrix( const Matrix3D *mx )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool Thing::isKindOf(KindOfType t) const 
+bool Thing::isKindOf(KindOfType t) const 
 { 
 	return getTemplate()->isKindOf(t); 
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool Thing::isKindOfMulti(const KindOfMaskType& mustBeSet, const KindOfMaskType& mustBeClear) const 
+bool Thing::isKindOfMulti(const KindOfMaskType& mustBeSet, const KindOfMaskType& mustBeClear) const 
 { 
 	return getTemplate()->isKindOfMulti(mustBeSet, mustBeClear); 
 }
 
 // ------------------------------------------------------------------------------------------------
-Bool Thing::isAnyKindOf( const KindOfMaskType& anyKindOf ) const
+bool Thing::isAnyKindOf( const KindOfMaskType& anyKindOf ) const
 {
 	return getTemplate()->isAnyKindOf( anyKindOf );
 }
@@ -329,7 +329,7 @@ Real Thing::getHeightAboveTerrainOrWater() const
 /** If we treat this as airborne, then they slide down slopes.  This checks whether
 they are high enough that we should let them act like they're flying. jba. */
 //=============================================================================
-Bool Thing::isSignificantlyAboveTerrain() const 
+bool Thing::isSignificantlyAboveTerrain() const 
 {
 	// If it's high enough that it will take more than 3 frames to return to the ground,
 	// then it's significantly airborne.  jba

@@ -85,8 +85,8 @@ public:
 	virtual ObjectID getTowerID( BridgeTowerType towerType ) = 0;
 	virtual void createScaffolding( void ) = 0;
 	virtual void removeScaffolding( void ) = 0;
-	virtual Bool isScaffoldInMotion( void ) = 0;
-	virtual Bool isScaffoldPresent( void ) = 0;
+	virtual bool isScaffoldInMotion( void ) = 0;
+	virtual bool isScaffoldPresent( void ) = 0;
 
 };
 
@@ -157,8 +157,8 @@ public:
 	virtual ObjectID getTowerID( BridgeTowerType towerType );						///< retrive one of our towers
 	virtual void createScaffolding( void );		///< create scaffolding around bridge
 	virtual void removeScaffolding( void );		///< remove scaffolding around bridge
-	virtual Bool isScaffoldInMotion( void );	///< is scaffold in motion
-	virtual Bool isScaffoldPresent( void ) { return m_scaffoldPresent; }
+	virtual bool isScaffoldInMotion( void );	///< is scaffold in motion
+	virtual bool isScaffoldPresent( void ) { return m_scaffoldPresent; }
 
 protected:
 
@@ -189,9 +189,9 @@ protected:
 	const FXList *m_repairToFX[ BODYDAMAGETYPE_COUNT ][ MAX_BRIDGE_BODY_FX ];
 	AudioEventRTS m_repairToSound[ BODYDAMAGETYPE_COUNT ];
 
-	Bool m_fxResolved;		///< TRUE until we've loaded our fx pointers and sounds
+	bool m_fxResolved;		///< TRUE until we've loaded our fx pointers and sounds
 
-	Bool m_scaffoldPresent;									///< TRUE when we have repair scaffolding visible
+	bool m_scaffoldPresent;									///< TRUE when we have repair scaffolding visible
 	ObjectIDList m_scaffoldObjectIDList;		///< list of scaffold object IDs
 
 	UnsignedInt m_deathFrame;								///< frame we died on

@@ -84,7 +84,7 @@ private:
 
 	ObjectID m_targetID;
 	Coord3D	 m_ejectPos;
-	Bool     m_update;
+	bool     m_update;
 	Bool		 m_isInVehicle;
 	Bool		 m_wasTargetAirborne;
 

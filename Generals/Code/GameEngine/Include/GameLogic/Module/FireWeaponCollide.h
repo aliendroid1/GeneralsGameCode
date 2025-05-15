@@ -46,7 +46,7 @@ public:
 	const WeaponTemplate* m_collideWeaponTemplate;
 	ObjectStatusMaskType m_requiredStatus;
 	ObjectStatusMaskType m_forbiddenStatus;
-	Bool m_fireOnce;
+	bool m_fireOnce;
 
 	FireWeaponCollideModuleData()
 	{
@@ -73,11 +73,11 @@ protected:
 
 	virtual void onCollide( Object *other, const Coord3D *loc, const Coord3D *normal );
 
-	virtual Bool shouldFireWeapon();
+	virtual bool shouldFireWeapon();
 
 private:
 	Weapon* m_collideWeapon;
-	Bool m_everFired;
+	bool m_everFired;
 
 };
 

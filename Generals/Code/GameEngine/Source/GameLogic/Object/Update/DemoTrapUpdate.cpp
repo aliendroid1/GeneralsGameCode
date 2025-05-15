@@ -187,7 +187,7 @@ UpdateSleepTime DemoTrapUpdate::update()
 	ObjectIterator *iter = ThePartitionManager->iterateObjectsInRange( me->getPosition(), data->m_triggerDetonationRange, FROM_CENTER_2D );
 	MemoryPoolObjectHolder hold(iter);
 
-	Bool shallDetonate = false;
+	bool shallDetonate = false;
 
 	//Now iterate through each object in range and check to see if it should detonate us!
 	for( Object *other = iter->first(); other; other = iter->next() )

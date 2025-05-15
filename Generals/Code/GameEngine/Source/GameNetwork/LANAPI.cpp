@@ -313,8 +313,8 @@ void LANAPI::checkMOTD( void )
 #endif
 }
 
-extern Bool LANbuttonPushed;
-extern Bool LANSocketErrorDetected;
+extern bool LANbuttonPushed;
+extern bool LANSocketErrorDetected;
 void LANAPI::update( void )
 {
 	if(LANbuttonPushed)
@@ -466,8 +466,8 @@ void LANAPI::update( void )
 		}
 	}
 
-	Bool playerListChanged = false;
-	Bool gameListChanged = false;
+	bool playerListChanged = false;
+	bool gameListChanged = false;
 
 	// Weed out people we haven't heard from in a while
 	LANPlayer *player = m_lobbyPlayers;
@@ -761,7 +761,7 @@ void LANAPI::RequestHasMap( void )
 		UnicodeString text;
 		UnicodeString mapDisplayName;
 		const MapMetaData *mapData = TheMapCache->findMap( m_currentGame->getMap() );
-		Bool willTransfer = TRUE;
+		bool willTransfer = TRUE;
 		if (mapData)
 		{
 			mapDisplayName.format(L"%ls", mapData->m_displayName.str());
@@ -835,7 +835,7 @@ void LANAPI::RequestGameStartTimer( Int seconds )
 	OnGameStartTimer(seconds);
 }
 
-void LANAPI::RequestGameOptions( AsciiString gameOptions, Bool isPublic, UnsignedInt ip /* = 0 */ )
+void LANAPI::RequestGameOptions( AsciiString gameOptions, bool isPublic, UnsignedInt ip /* = 0 */ )
 {
 	DEBUG_ASSERTCRASH(gameOptions.getLength() < m_lanMaxOptionsLength, ("Game options string is too long!"));
 
@@ -866,7 +866,7 @@ void LANAPI::RequestGameOptions( AsciiString gameOptions, Bool isPublic, Unsigne
 	//DEBUG_ASSERTCRASH(player != MAX_SLOTS, ("Requested game options, but we're not in slot list!");
 }
 
-void LANAPI::RequestGameCreate( UnicodeString gameName, Bool isDirectConnect )
+void LANAPI::RequestGameCreate( UnicodeString gameName, bool isDirectConnect )
 {
 	// No games of the same name should exist...  Ignore that for now.
 	/// @todo: make sure LAN games with identical names don't crash things like in RA2.
@@ -1088,7 +1088,7 @@ void LANAPI::fillInLANMessage( LANMessage *msg )
 	msg->hostName[g_lanHostNameLength] = 0;
 }
 
-void LANAPI::RequestLobbyLeave( Bool forced )
+void LANAPI::RequestLobbyLeave( bool forced )
 {
 	LANMessage msg;
 	msg.LANMessageType = LANMessage::MSG_REQUEST_LOBBY_LEAVE;
@@ -1257,9 +1257,9 @@ void LANAPI::addPlayer( LANPlayer *player )
 	}
 }
 
-Bool LANAPI::SetLocalIP( UnsignedInt localIP )
+bool LANAPI::SetLocalIP( UnsignedInt localIP )
 {
-	Bool retval = TRUE;
+	bool retval = TRUE;
 	m_localIP = localIP;
 
 	m_transport->reset();
@@ -1275,7 +1275,7 @@ void LANAPI::SetLocalIP( AsciiString localIP )
 	SetLocalIP(resolvedIP);
 }
 
-Bool LANAPI::AmIHost( void )
+bool LANAPI::AmIHost( void )
 {
 	return m_currentGame && m_currentGame->getIP(0) == m_localIP;
 }

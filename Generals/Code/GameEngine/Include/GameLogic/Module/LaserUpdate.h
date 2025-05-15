@@ -48,7 +48,7 @@ class LaserUpdateModuleData : public ClientUpdateModuleData
 public:
 	AsciiString m_particleSystemName;  ///< Used for the muzzle flare while laser active.
 	AsciiString m_parentFireBoneName;  ///< Used to fire laser at specified parent bone position.
-	Bool m_parentFireBoneOnTurret;			///< And used to specifiy where to look for the bone.
+	bool m_parentFireBoneOnTurret;			///< And used to specifiy where to look for the bone.
 
 	AsciiString m_targetParticleSystemName;  ///< Used for the target effect while laser active.
 
@@ -83,8 +83,8 @@ public:
 
 	Real getCurrentLaserRadius() const;
 
-	void setDirty( Bool dirty ) { m_dirty = dirty; }
-	Bool isDirty() { return m_dirty; }
+	void setDirty( bool dirty ) { m_dirty = dirty; }
+	bool isDirty() { return m_dirty; }
 
 	Real getWidthScale() const { return m_currentWidthScalar; }
 
@@ -95,11 +95,11 @@ protected:
 	//If the master dies, so will this laser (although if it has a fade delay, it'll just skip to the fade)
 	Coord3D m_startPos;
 	Coord3D m_endPos;
-	Bool m_dirty;
+	bool m_dirty;
 	ParticleSystemID m_particleSystemID;
 	ParticleSystemID m_targetParticleSystemID;
-	Bool m_widening;
-	Bool m_decaying;
+	bool m_widening;
+	bool m_decaying;
 	UnsignedInt m_widenStartFrame;
 	UnsignedInt m_widenFinishFrame;
 	Real m_currentWidthScalar;

@@ -480,7 +480,7 @@ WindowMsgHandledType GadgetPushButtonSystem( GameWindow *window, UnsignedInt msg
 /** Set the visual status of a button to make it looked checked/unchecked ... DO NOT send
 	* any actual button selected messages, this is ONLY VISUAL */
 // ------------------------------------------------------------------------------------------------
-void GadgetCheckLikeButtonSetVisualCheck( GameWindow *g, Bool checked )
+void GadgetCheckLikeButtonSetVisualCheck( GameWindow *g, bool checked )
 {
 
 	// sanity
@@ -516,7 +516,7 @@ void GadgetCheckLikeButtonSetVisualCheck( GameWindow *g, Bool checked )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool GadgetCheckLikeButtonIsChecked( GameWindow *g )
+bool GadgetCheckLikeButtonIsChecked( GameWindow *g )
 {
 
 	// sanity
@@ -535,7 +535,7 @@ Bool GadgetCheckLikeButtonIsChecked( GameWindow *g )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-void GadgetButtonEnableCheckLike( GameWindow *g, Bool makeCheckLike, Bool initiallyChecked )
+void GadgetButtonEnableCheckLike( GameWindow *g, bool makeCheckLike, bool initiallyChecked )
 {
 
 	// sanity
@@ -591,7 +591,7 @@ PushButtonData * getNewPushButtonData( void )
 // GadgetButtonSetBorder ======================================================
 /** Set to draw the special borders in the game */
 //=============================================================================
-void GadgetButtonSetBorder( GameWindow *g, Color color, Bool drawBorder = TRUE )
+void GadgetButtonSetBorder( GameWindow *g, Color color, bool drawBorder = TRUE )
 {
 	if( g == NULL )
 		return;

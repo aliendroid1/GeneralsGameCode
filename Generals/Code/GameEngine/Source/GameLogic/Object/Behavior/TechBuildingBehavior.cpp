@@ -89,7 +89,7 @@ UpdateSleepTime TechBuildingBehavior::update( void )
 {
 	Object *us = getObject();
 	const TechBuildingBehaviorModuleData* d = getTechBuildingBehaviorModuleData();
-	Bool captured = false;
+	bool captured = false;
 	
 	// update our model condition for the captured status
 	Player *player = us->getControllingPlayer();

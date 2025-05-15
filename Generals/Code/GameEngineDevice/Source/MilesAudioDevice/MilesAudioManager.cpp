@@ -652,7 +652,7 @@ void MilesAudioManager::resumeAudio( AudioAffect which )
 }
 
 //-------------------------------------------------------------------------------------------------
-void MilesAudioManager::pauseAmbient( Bool shouldPause )
+void MilesAudioManager::pauseAmbient( bool shouldPause )
 {
 
 }
@@ -696,7 +696,7 @@ void MilesAudioManager::playAudioEvent( AudioEventRTS *event )
 			}
 			curVolume *= event->getVolume();
 
-			Bool foundSoundToReplace = false;
+			bool foundSoundToReplace = false;
 			if (handleToKill) {
 				for (it = m_playingStreams.begin(); it != m_playingStreams.end(); ++it) {
 					playing = (*it);
@@ -751,7 +751,7 @@ void MilesAudioManager::playAudioEvent( AudioEventRTS *event )
 			#ifdef INTENSIVE_AUDIO_DEBUG
 				DEBUG_LOG((" Positional"));
 			#endif
-				Bool foundSoundToReplace = false;
+				bool foundSoundToReplace = false;
 				if (handleToKill) 
 				{
 					for (it = m_playing3DSounds.begin(); it != m_playing3DSounds.end(); ++it) {
@@ -822,7 +822,7 @@ void MilesAudioManager::playAudioEvent( AudioEventRTS *event )
 			{
 				// UI sounds are always 2-D. All other sounds should be Positional
 				// Unit acknowledgement, etc, falls into the UI category of sound.
-				Bool foundSoundToReplace = false;
+				bool foundSoundToReplace = false;
 				if (handleToKill) {
 					for (it = m_playingSounds.begin(); it != m_playingSounds.end(); ++it) {
 						playing = (*it);
@@ -1376,7 +1376,7 @@ void MilesAudioManager::prevMusicTrack( void )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool MilesAudioManager::isMusicPlaying( void ) const
+bool MilesAudioManager::isMusicPlaying( void ) const
 {
 	std::list<PlayingAudio *>::const_iterator it;
 	PlayingAudio *playing;
@@ -1391,7 +1391,7 @@ Bool MilesAudioManager::isMusicPlaying( void ) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool MilesAudioManager::hasMusicTrackCompleted( const AsciiString& trackName, Int numberOfTimes ) const
+bool MilesAudioManager::hasMusicTrackCompleted( const AsciiString& trackName, Int numberOfTimes ) const
 {
 	std::list<PlayingAudio *>::const_iterator it;
 	PlayingAudio *playing;
@@ -1488,7 +1488,7 @@ void MilesAudioManager::closeDevice( void )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool MilesAudioManager::isCurrentlyPlaying( AudioHandle handle )
+bool MilesAudioManager::isCurrentlyPlaying( AudioHandle handle )
 {
 	std::list<PlayingAudio *>::iterator it;
 	PlayingAudio *playing;
@@ -1678,7 +1678,7 @@ void MilesAudioManager::selectProvider( UnsignedInt providerNdx )
 
 	LPDIRECTSOUND lpDirectSoundInfo;
 	AIL_get_DirectSound_info( NULL, (void**)&lpDirectSoundInfo, NULL );
-	Bool useDolby = FALSE;
+	bool useDolby = FALSE;
 	if( lpDirectSoundInfo )
 	{
 		DWORD speakerConfig;
@@ -1717,7 +1717,7 @@ void MilesAudioManager::selectProvider( UnsignedInt providerNdx )
 		}
 	}
 
-	Bool success = FALSE;
+	bool success = FALSE;
 	if( useDolby )
 	{
 		providerNdx = getProviderIndex( "Dolby Surround" );
@@ -1823,7 +1823,7 @@ UnsignedInt MilesAudioManager::getNumStreams( void ) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool MilesAudioManager::doesViolateLimit( AudioEventRTS *event ) const
+bool MilesAudioManager::doesViolateLimit( AudioEventRTS *event ) const
 {
 	Int limit = event->getAudioEventInfo()->m_limit;
 	if (limit == 0) {
@@ -1907,7 +1907,7 @@ Bool MilesAudioManager::doesViolateLimit( AudioEventRTS *event ) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool MilesAudioManager::isPlayingAlready( AudioEventRTS *event ) const
+bool MilesAudioManager::isPlayingAlready( AudioEventRTS *event ) const
 {
 	std::list<PlayingAudio *>::const_iterator it;
 	if (!event->isPositionalAudio()) {
@@ -1930,7 +1930,7 @@ Bool MilesAudioManager::isPlayingAlready( AudioEventRTS *event ) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool MilesAudioManager::isObjectPlayingVoice( UnsignedInt objID ) const
+bool MilesAudioManager::isObjectPlayingVoice( UnsignedInt objID ) const
 {
 	if (objID == 0) {
 		return false;
@@ -2014,7 +2014,7 @@ AudioEventRTS* MilesAudioManager::findLowestPrioritySound( AudioEventRTS *event 
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool MilesAudioManager::isPlayingLowerPriority( AudioEventRTS *event ) const
+bool MilesAudioManager::isPlayingLowerPriority( AudioEventRTS *event ) const
 {
 	//We don't actually want to do anything to this CONST function. Remember, we're
 	//just checking to see if there is a lower priority sound.
@@ -2048,7 +2048,7 @@ Bool MilesAudioManager::isPlayingLowerPriority( AudioEventRTS *event ) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool MilesAudioManager::killLowestPrioritySoundImmediately( AudioEventRTS *event )
+bool MilesAudioManager::killLowestPrioritySoundImmediately( AudioEventRTS *event )
 {
 	//Actually, we want to kill the LOWEST PRIORITY SOUND, not the first "lower" priority
 	//sound we find, because it could easily be 
@@ -2330,7 +2330,7 @@ void MilesAudioManager::processPlayingList( void )
 				{
 					Real volForConsideration = getEffectiveVolume(playing->m_audioEventRTS);
 					volForConsideration /= (m_sound3DVolume > 0.0f ? m_soundVolume : 1.0f);
-					Bool playAnyways = BitIsSet( playing->m_audioEventRTS->getAudioEventInfo()->m_type, ST_GLOBAL) || playing->m_audioEventRTS->getAudioEventInfo()->m_priority == AP_CRITICAL;
+					bool playAnyways = BitIsSet( playing->m_audioEventRTS->getAudioEventInfo()->m_type, ST_GLOBAL) || playing->m_audioEventRTS->getAudioEventInfo()->m_priority == AP_CRITICAL;
 					if( volForConsideration < m_audioSettings->m_minVolume && !playAnyways ) 
 					{
 						// don't want to get an additional callback for this sample
@@ -2402,7 +2402,7 @@ void MilesAudioManager::processPlayingList( void )
 //so we filter them out as, *NOT SENSITIVE*... we do want to update 3DSoundVolume during music, 
 //which is almost all of the time.
 
-Bool MilesAudioManager::has3DSensitiveStreamsPlaying( void ) const
+bool MilesAudioManager::has3DSensitiveStreamsPlaying( void ) const
 {
   if ( m_playingStreams.empty() )
     return FALSE;
@@ -2498,7 +2498,7 @@ void MilesAudioManager::processStoppedList( void )
 
 
 //-------------------------------------------------------------------------------------------------
-Bool MilesAudioManager::shouldProcessRequestThisFrame( AudioRequest *req ) const
+bool MilesAudioManager::shouldProcessRequestThisFrame( AudioRequest *req ) const
 {
 	if (!req->m_usePendingEvent) {
 		return true;
@@ -2523,7 +2523,7 @@ void MilesAudioManager::adjustRequest( AudioRequest *req )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool MilesAudioManager::checkForSample( AudioRequest *req )
+bool MilesAudioManager::checkForSample( AudioRequest *req )
 {
 	if (!req->m_usePendingEvent) {
 		return true;
@@ -2547,7 +2547,7 @@ Bool MilesAudioManager::checkForSample( AudioRequest *req )
 void MilesAudioManager::setHardwareAccelerated(Bool accel)
 {
 	// Extends
-	Bool retEarly = (accel == m_hardwareAccel);
+	bool retEarly = (accel == m_hardwareAccel);
 	AudioManager::setHardwareAccelerated(accel);
 
 	if (retEarly) {
@@ -2574,7 +2574,7 @@ void MilesAudioManager::setHardwareAccelerated(Bool accel)
 void MilesAudioManager::setSpeakerSurround(Bool surround)
 {
 	// Extends
-	Bool retEarly = (surround == m_surroundSpeakers);
+	bool retEarly = (surround == m_surroundSpeakers);
 	AudioManager::setSpeakerSurround(surround);
 
 	if (retEarly) {
@@ -2671,7 +2671,7 @@ const Coord3D *MilesAudioManager::getCurrentPositionFromEvent( AudioEventRTS *ev
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool MilesAudioManager::isOnScreen( const Coord3D *pos ) const
+bool MilesAudioManager::isOnScreen( const Coord3D *pos ) const
 {
 	static ICoord2D dummy;
 	// WorldToScreen will return True if the point is onscreen and false if it is offscreen.
@@ -2740,7 +2740,7 @@ Real MilesAudioManager::getEffectiveVolume(AudioEventRTS *event) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool MilesAudioManager::startNextLoop( PlayingAudio *looping )
+bool MilesAudioManager::startNextLoop( PlayingAudio *looping )
 {
 	closeFile(looping->m_file);
 	looping->m_file = NULL;
@@ -2898,7 +2898,7 @@ void MilesAudioManager::initDelayFilter( void )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool MilesAudioManager::isValidProvider( void )
+bool MilesAudioManager::isValidProvider( void )
 {
 	return (m_selectedProvider < m_providerCount);
 }
@@ -3263,7 +3263,7 @@ void AudioFileCache::releaseOpenAudioFile( OpenAudioFile *fileToRelease )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool AudioFileCache::freeEnoughSpaceForSample(const OpenAudioFile& sampleThatNeedsSpace)
+bool AudioFileCache::freeEnoughSpaceForSample(const OpenAudioFile& sampleThatNeedsSpace)
 {
 	
 	Int spaceRequired = m_currentlyUsedSize - m_maxSize;

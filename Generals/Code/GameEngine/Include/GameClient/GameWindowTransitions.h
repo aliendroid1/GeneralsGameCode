@@ -125,14 +125,14 @@ public:
 	
 	virtual void skip( void ) = 0;
 	
-	Bool isFinished( void ) { return m_isFinished;	}
+	bool isFinished( void ) { return m_isFinished;	}
 	Int getFrameLength( void ){ return m_frameLength;	}
 protected:
 	
 	Int m_frameLength;	// how many frames does this thing take.
-	Bool m_isFinished;  // when we finish we set this
-	Bool m_isForward;
-	Bool m_isReversed;  // when we reverse we set this
+	bool m_isFinished;  // when we finish we set this
+	bool m_isForward;
+	bool m_isReversed;  // when we reverse we set this
 	GameWindow *m_win;
 };
 
@@ -603,9 +603,9 @@ public:
 	TransitionWindow( void );
 	~TransitionWindow( void );
 
-	Bool init( void );
+	bool init( void );
 	void update( Int frame );
-	Bool isFinished( void );
+	bool isFinished( void );
 	void reverse( Int totalFrames );
 	Int  getTotalFrames( void );
 	void skip( void );
@@ -632,7 +632,7 @@ public:
 
 	void init( void );
 	void update( void );
-	Bool isFinished( void );
+	bool isFinished( void );
 	void reverse( void );
 	void draw( void );
 	
@@ -640,9 +640,9 @@ public:
 	AsciiString getName( void ) { return m_name; }
 	void setName( AsciiString name){ m_name = name;	}
 	void addWindow( TransitionWindow *transWin );
-	Bool isReversed( void );
-	Bool isFireOnce( void ) { return m_fireOnce; }
-	Bool m_fireOnce;
+	bool isReversed( void );
+	bool isFireOnce( void ) { return m_fireOnce; }
+	bool m_fireOnce;
 private:
 	typedef std::list<TransitionWindow *> TransitionWindowList;
 	TransitionWindowList m_transitionWindowList;
@@ -663,14 +663,14 @@ public:
 	void reset( void );
 	void update( void );
 	void draw( void );
-	Bool isFinished( void );
+	bool isFinished( void );
 	const FieldParse *getFieldParse() const { return m_gameWindowTransitionsFieldParseTable; }								///< returns the parsing fields
 	static const FieldParse m_gameWindowTransitionsFieldParseTable[];																				///< the parse table
 	static void parseWindow( INI* ini, void *instance, void *store, const void *userData );
 
-	void setGroup(AsciiString groupName, Bool immidiate = FALSE);		// THis will be the next group to fire off.
+	void setGroup(AsciiString groupName, bool immidiate = FALSE);		// THis will be the next group to fire off.
 	void reverse( AsciiString groupName );// reverse the animations for the current group.
-	void remove( AsciiString groupName, Bool skipPending = FALSE );// remove the animation from the current or pending groups.
+	void remove( AsciiString groupName, bool skipPending = FALSE );// remove the animation from the current or pending groups.
 	TransitionGroup *getNewGroup( AsciiString name );
 private:
 	TransitionGroup *findGroup( AsciiString groupName );

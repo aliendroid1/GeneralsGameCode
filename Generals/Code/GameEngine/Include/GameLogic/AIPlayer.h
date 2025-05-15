@@ -55,7 +55,7 @@ public:
 
 	WorkOrder():m_thing(NULL), m_factoryID(INVALID_ID), m_isResourceGatherer(false), m_numCompleted(0), m_numRequired(1), m_next(NULL) {};
 
-	Bool isWaitingToBuild( void );		///< return true if nothing is yet building this unit
+	bool isWaitingToBuild( void );		///< return true if nothing is yet building this unit
 	void validateFactory( Player *thisPlayer );			///< verify factoryID still refers to an active object
 
 public:
@@ -77,7 +77,7 @@ protected:
 
 };
 
-inline Bool WorkOrder::isWaitingToBuild( void )
+inline bool WorkOrder::isWaitingToBuild( void )
 {
 	if (m_factoryID!=INVALID_ID)
 		return false;
@@ -124,24 +124,24 @@ public:
 	{
 	}
 
-	Bool isAllBuilt( void );				///< Returns true if the team is finished building.
-	Bool isBuildTimeExpired( void );///< Returns true if the team has run out of build time.
-	Bool isMinimumBuilt( void );		///< Returns true if the team has started building at least the minimum number of units.
-	Bool includesADozer( void );		///< Returns true if the team includes a dozer unit.
-	Bool areBuildsComplete( void );	///< Returns true if all units in factories have finished building.
+	bool isAllBuilt( void );				///< Returns true if the team is finished building.
+	bool isBuildTimeExpired( void );///< Returns true if the team has run out of build time.
+	bool isMinimumBuilt( void );		///< Returns true if the team has started building at least the minimum number of units.
+	bool includesADozer( void );		///< Returns true if the team includes a dozer unit.
+	bool areBuildsComplete( void );	///< Returns true if all units in factories have finished building.
 	void disband( void );						///< Disbands the team (moves units into the default team).
 	void stopQueueing(void) {m_stopQueueing=true;} ///< Stops building new units, just finishes current.
 
 public:
 
 	WorkOrder *m_workOrders;				///< list of work orders
-	Bool m_priorityBuild;						///< True if the team is specifically requested.
+	bool m_priorityBuild;						///< True if the team is specifically requested.
 	Team *m_team;										///< the team that units built by the m_workOrders go into
 	TeamInQueue *m_nextTeamInQueue; ///< next
 	Int	m_frameStarted;							///< Frame we started building.
-	Bool m_sentToStartLocation;			///< Has it been sent to it's start location?
-	Bool m_stopQueueing;						///< True if we are to quit queueing units (usually because we ran out of build time.)
-	Bool m_reinforcement;						///< True if it is a unit to reinforce an existing team.
+	bool m_sentToStartLocation;			///< Has it been sent to it's start location?
+	bool m_stopQueueing;						///< True if we are to quit queueing units (usually because we ran out of build time.)
+	bool m_reinforcement;						///< True if it is a unit to reinforce an existing team.
 	ObjectID m_reinforcementID;			///< True if it is a unit to reinforce an existing team.
 
 };
@@ -173,26 +173,26 @@ public: // AIPlayer interface, may be overridden by AISkirmishPlayer.  jba.
 	/// Invoked when a structure I am building comes into existence
 	virtual void onStructureProduced( Object *factory, Object *structure );
 
-	virtual void buildSpecificAITeam(TeamPrototype *teamProto, Bool priorityBuild); ///< Builds this team immediately.
+	virtual void buildSpecificAITeam(TeamPrototype *teamProto, bool priorityBuild); ///< Builds this team immediately.
 
 	virtual void buildAIBaseDefense(Bool flank); ///< Builds base defense on front or flank of base.
 
-	virtual void buildAIBaseDefenseStructure(const AsciiString &thingName, Bool flank); ///< Builds base defense on front or flank of base.
+	virtual void buildAIBaseDefenseStructure(const AsciiString &thingName, bool flank); ///< Builds base defense on front or flank of base.
 
 	virtual void buildSpecificAIBuilding(const AsciiString &thingName); ///< Builds this building as soon as possible.
 
 
 	virtual void recruitSpecificAITeam(TeamPrototype *teamProto, Real recruitRadius); ///< Builds this team immediately.
 
-	virtual Bool isSkirmishAI(void) {return false;}
+	virtual bool isSkirmishAI(void) {return false;}
 	virtual Player *getAiEnemy(void) {return NULL;}	///< Solo AI attacks based on scripting.  Only skirmish auto-acquires an enemy at this point.  jba.
-	virtual Bool checkBridges(Object *unit, Waypoint *way) {return false;}
+	virtual bool checkBridges(Object *unit, Waypoint *way) {return false;}
 	virtual void repairStructure(ObjectID structure);
 
 	virtual void selectSkillset(Int skillset);
 
 public:
-	Bool getBaseCenter(Coord3D *pos) const {*pos = m_baseCenter; return m_baseCenterSet;}
+	bool getBaseCenter(Coord3D *pos) const {*pos = m_baseCenter; return m_baseCenterSet;}
 	/// Difficulty level for this player.
 	GameDifficulty getAIDifficulty(void) const;
 	void setAIDifficulty(GameDifficulty difficulty) {m_difficulty = difficulty;}
@@ -201,11 +201,11 @@ public:
 	/// A team is about to be destroyed.
 	void aiPreTeamDestroy( const Team *team );
 	/// Is the nearest supply source safe?
- 	Bool isSupplySourceSafe( Int minSupplies );
+ 	bool isSupplySourceSafe( Int minSupplies );
 	/// Is a supply source attacked?
-	Bool isSupplySourceAttacked( void );
+	bool isSupplySourceAttacked( void );
 
-	Bool isLocationSafe( const Coord3D *pos, const ThingTemplate *tthing);
+	bool isLocationSafe( const Coord3D *pos, const ThingTemplate *tthing);
 
 	/// Have the team guard a supply center.
 	void guardSupplyCenter( Team *team, Int minSupplies );
@@ -226,10 +226,10 @@ protected:
 	virtual void doUpgradesAndSkills(void);
 	virtual Object *findDozer(const Coord3D *pos);
 	virtual void queueDozer(void);
-	virtual Bool selectTeamToBuild( void );			///< determine the next team to build
-	virtual Bool selectTeamToReinforce( Int minPriority );			///< determine the next team to reinforce
-	virtual Bool startTraining( WorkOrder *order, Bool busyOK, AsciiString teamName);	///< find a production building that can handle the order, and start building
-	virtual Bool isAGoodIdeaToBuildTeam( TeamPrototype *proto );		///< return true if team should be built
+	virtual bool selectTeamToBuild( void );			///< determine the next team to build
+	virtual bool selectTeamToReinforce( Int minPriority );			///< determine the next team to reinforce
+	virtual bool startTraining( WorkOrder *order, bool busyOK, AsciiString teamName);	///< find a production building that can handle the order, and start building
+	virtual bool isAGoodIdeaToBuildTeam( TeamPrototype *proto );		///< return true if team should be built
 	virtual void processBaseBuilding( void );		///< do base-building behaviors
 	virtual void processTeamBuilding( void );		///< do team-building behaviors
  	static Int getPlayerSuperweaponValue(Coord3D *center, Int playerNdx, Real radius);
@@ -241,17 +241,17 @@ protected:
 	MAKE_DLINK_HEAD(TeamInQueue, TeamReadyQueue);		///< List of teams built, waiting to reach rally point.
 
 protected:
-	Bool isPossibleToBuildTeam( TeamPrototype *proto, Bool requireIdleFactory, Bool &needMoney );		///< return true if team can be considered for building
+	bool isPossibleToBuildTeam( TeamPrototype *proto, bool requireIdleFactory, bool &needMoney );		///< return true if team can be considered for building
 	Object *buildStructureNow(const ThingTemplate *bldgPlan, BuildListInfo *info );		///< Build a base buiding.
 	Object *buildStructureWithDozer(const ThingTemplate *bldgPlan, BuildListInfo *info );		///< Build a base buiding.
 	void clearTeamsInQueue( void );			///< Delete all teams in the build queue.
 	void computeCenterAndRadiusOfBase(Coord3D *center, Real *radius);
-	Object *findFactory(const ThingTemplate *thing, Bool busyOK); ///< Find a factory to build a unit.  If force is true, may return a busy factory.
+	Object *findFactory(const ThingTemplate *thing, bool busyOK); ///< Find a factory to build a unit.  If force is true, may return a busy factory.
 	void queueUnits( void );						///< Check the team build list, & queue up units at any idle factories.
 	void checkForSupplyCenter( BuildListInfo *info, Object *bldg);
  	void queueSupplyTruck(void);
 	void updateBridgeRepair(void);
-	Bool dozerInQueue(void);
+	bool dozerInQueue(void);
 	Object *findSupplyCenter(Int minSupplies);
 	static void getPlayerStructureBounds(Region2D *bounds, Int playerNdx);
 

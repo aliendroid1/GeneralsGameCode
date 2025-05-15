@@ -99,13 +99,13 @@ public:
 	// virtual destructor prototype provided by memory pool declaration
 
  	virtual void aiDoCommand(const AICommandParms* parms);
-	virtual Bool isIdle() const;
+	virtual bool isIdle() const;
 	virtual UpdateSleepTime update();
 
 	UnsignedInt getUnpackTime()					const { return getDeployStyleAIUpdateModuleData()->m_unpackTime; }
 	UnsignedInt getPackTime()						const { return getDeployStyleAIUpdateModuleData()->m_packTime; }
-	Bool doTurretsFunctionOnlyWhenDeployed() const { return getDeployStyleAIUpdateModuleData()->m_turretsFunctionOnlyWhenDeployed; }
-	Bool doTurretsHaveToCenterBeforePacking() const { return getDeployStyleAIUpdateModuleData()->m_turretsMustCenterBeforePacking; }
+	bool doTurretsFunctionOnlyWhenDeployed() const { return getDeployStyleAIUpdateModuleData()->m_turretsFunctionOnlyWhenDeployed; }
+	bool doTurretsHaveToCenterBeforePacking() const { return getDeployStyleAIUpdateModuleData()->m_turretsMustCenterBeforePacking; }
 	void setMyState( DeployStateTypes StateID );
 	void reset();
 

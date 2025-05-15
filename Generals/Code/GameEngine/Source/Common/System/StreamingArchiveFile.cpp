@@ -138,7 +138,7 @@ StreamingArchiveFile::~StreamingArchiveFile()
 //=================================================================
 
 //DECLARE_PERF_TIMER(StreamingArchiveFile)
-Bool StreamingArchiveFile::open( const Char *filename, Int access )
+bool StreamingArchiveFile::open( const Char *filename, Int access )
 {
 	//USE_PERF_TIMER(StreamingArchiveFile)
 	File *file = TheFileSystem->openFile( filename, access );
@@ -155,7 +155,7 @@ Bool StreamingArchiveFile::open( const Char *filename, Int access )
 // StreamingArchiveFile::open
 //============================================================================
 
-Bool StreamingArchiveFile::open( File *file )
+bool StreamingArchiveFile::open( File *file )
 {
 	return TRUE;
 }
@@ -163,7 +163,7 @@ Bool StreamingArchiveFile::open( File *file )
 //============================================================================
 // StreamingArchiveFile::openFromArchive
 //============================================================================
-Bool StreamingArchiveFile::openFromArchive(File *archiveFile, const AsciiString& filename, Int offset, Int size) 
+bool StreamingArchiveFile::openFromArchive(File *archiveFile, const AsciiString& filename, Int offset, Int size) 
 {
 	//USE_PERF_TIMER(StreamingArchiveFile)
 	if (archiveFile == NULL) {

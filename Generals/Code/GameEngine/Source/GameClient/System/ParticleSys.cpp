@@ -400,7 +400,7 @@ void Particle::applyForce( const Coord3D *force )
 // ------------------------------------------------------------------------------------------------
 /** Update the behavior of an individual particle */
 // ------------------------------------------------------------------------------------------------
-Bool Particle::update( void )
+bool Particle::update( void )
 {
 	// integrate acceleration into velocity
 	m_vel.x += m_accel.x;
@@ -649,7 +649,7 @@ ParticlePriorityType Particle::getPriority( void )
 // ------------------------------------------------------------------------------------------------
 /** Return true if this particle is invisible */
 // ------------------------------------------------------------------------------------------------
-Bool Particle::isInvisible( void )
+bool Particle::isInvisible( void )
 {
 	// Drawables are never invisible (yet)
 	/// @todo Allow Drawables to fade via alpha (MSB)
@@ -1132,7 +1132,7 @@ void ParticleSystemInfo::loadPostProcess( void )
 // ------------------------------------------------------------------------------------------------
 ParticleSystem::ParticleSystem( const ParticleSystemTemplate *sysTemplate, 
 																ParticleSystemID id, 
-																Bool createSlaves )
+																bool createSlaves )
 {
 	m_systemParticlesHead = m_systemParticlesTail = NULL;
 
@@ -1778,7 +1778,7 @@ const Coord3D *ParticleSystem::computeParticlePosition( void )
 // ------------------------------------------------------------------------------------------------
 Particle *ParticleSystem::createParticle( const ParticleInfo *info, 
 																					ParticlePriorityType priority,
-																					Bool forceCreate )
+																					bool forceCreate )
 {
 
 	//
@@ -1957,7 +1957,7 @@ const ParticleInfo *ParticleSystem::generateParticleInfo( Int particleNum, Int p
 // ------------------------------------------------------------------------------------------------
 /** Update this particle system, potentially generating new particles */
 // ------------------------------------------------------------------------------------------------
-Bool ParticleSystem::update( Int localPlayerIndex  )
+bool ParticleSystem::update( Int localPlayerIndex  )
 {
 	if (TheGlobalData->m_useFX == FALSE)
 		return false;
@@ -1981,9 +1981,9 @@ Bool ParticleSystem::update( Int localPlayerIndex  )
 	// if this system is attached to a Drawable/Object, update the current transform
 	// matrix so generated particles' are relative to the parent Drawable's
 	// position and orientation
-	Bool transformSet = false;
+	bool transformSet = false;
 	const Matrix3D *parentXfrm = NULL;
-	Bool isShrouded = false;
+	bool isShrouded = false;
 
 	if (m_attachedToDrawableID)
 	{
@@ -2389,7 +2389,7 @@ void ParticleSystem::removeParticle( Particle *particleToRemove )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-ParticleInfo ParticleSystem::mergeRelatedParticleSystems( ParticleSystem *masterParticleSystem, ParticleSystem *slaveParticleSystem, Bool slaveNeedsFullPromotion)
+ParticleInfo ParticleSystem::mergeRelatedParticleSystems( ParticleSystem *masterParticleSystem, ParticleSystem *slaveParticleSystem, bool slaveNeedsFullPromotion)
 {
 	if (!masterParticleSystem || !slaveParticleSystem) {
 		DEBUG_CRASH(("masterParticleSystem or slaveParticleSystem was NULL. Should not happen. JKMCD"));
@@ -2905,7 +2905,7 @@ ParticleSystemTemplate::~ParticleSystemTemplate()
  * tells *this* slave system whether or not it should create any slaves itself
  * automatically during its own constructor */
 // ------------------------------------------------------------------------------------------------
-ParticleSystem *ParticleSystemTemplate::createSlaveSystem( Bool createSlaves ) const
+ParticleSystem *ParticleSystemTemplate::createSlaveSystem( bool createSlaves ) const
 {
 	if (m_slaveTemplate == NULL && m_slaveSystemName.isEmpty() == false)
 		m_slaveTemplate = TheParticleSystemManager->findTemplate( m_slaveSystemName );
@@ -3066,7 +3066,7 @@ void ParticleSystemManager::setOnScreenParticleCount(int count)
 // ------------------------------------------------------------------------------------------------
 /** Given a file containing particle system properties, create a new instance of it */
 // ------------------------------------------------------------------------------------------------
-ParticleSystem *ParticleSystemManager::createParticleSystem( const ParticleSystemTemplate *sysTemplate, Bool createSlaves )
+ParticleSystem *ParticleSystemManager::createParticleSystem( const ParticleSystemTemplate *sysTemplate, bool createSlaves )
 {
 	// sanity
 	if (sysTemplate == NULL)
@@ -3083,7 +3083,7 @@ ParticleSystem *ParticleSystemManager::createParticleSystem( const ParticleSyste
 ParticleSystemID ParticleSystemManager::createAttachedParticleSystemID( 
 																			const ParticleSystemTemplate *sysTemplate,
 																			Object* attachTo,
-																			Bool createSlaves )
+																			bool createSlaves )
 {
 	ParticleSystem* pSystem = TheParticleSystemManager->createParticleSystem(sysTemplate, createSlaves);
 	if (pSystem && attachTo)

@@ -157,7 +157,7 @@ void DeliverPayloadAIUpdate::killDeliveryDecal()
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool DeliverPayloadAIUpdate::isAllowedToRespondToAiCommands(const AICommandParms* parms) const
+bool DeliverPayloadAIUpdate::isAllowedToRespondToAiCommands(const AICommandParms* parms) const
 {
 	if (!m_acceptingCommands)
 	{
@@ -368,7 +368,7 @@ Real DeliverPayloadAIUpdate::calcMinTurnRadius(Real* timeToTravelThatDist) const
 
 
 //-------------------------------------------------------------------------------------------------
-Bool DeliverPayloadAIUpdate::isCloseEnoughToTarget() 
+bool DeliverPayloadAIUpdate::isCloseEnoughToTarget() 
 {
 	// In addition to testing distance, it is also sensitive to being in/outward bound
 ////The new getPreOpenDistance() allows the deliver state to fire early, but only if inbound, 
@@ -376,7 +376,7 @@ Bool DeliverPayloadAIUpdate::isCloseEnoughToTarget()
 
 	Real allowedDistanceSqr = sqr( getAllowedDistanceToTarget() );
 	Real currentDistanceSqr = ThePartitionManager->getDistanceSquared( getObject(), getTargetPos(), FROM_CENTER_2D );
-	Bool inBound = m_previousDistanceSqr > currentDistanceSqr;
+	bool inBound = m_previousDistanceSqr > currentDistanceSqr;
 	m_previousDistanceSqr = currentDistanceSqr;// for the next test
 
 	if ( inBound )
@@ -393,7 +393,7 @@ Bool DeliverPayloadAIUpdate::isCloseEnoughToTarget()
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool DeliverPayloadAIUpdate::isOffMap() const
+bool DeliverPayloadAIUpdate::isOffMap() const
 {
 	Region3D mapRegion;
 	TheTerrainLogic->getExtentIncludingBorder( &mapRegion );
@@ -469,7 +469,7 @@ void DeliverPayloadAIUpdate::xfer( Xfer *xfer )
 	xfer->xferReal(&data.m_deliveryDecalRadius);
 	 *((DeliverPayloadData*)&m_data) = data;
 
-	Bool hasStateMachine = m_deliverPayloadStateMachine!=NULL;
+	bool hasStateMachine = m_deliverPayloadStateMachine!=NULL;
 	xfer->xferBool(&hasStateMachine);
 	if (hasStateMachine && m_deliverPayloadStateMachine==NULL) 
 	{
@@ -561,7 +561,7 @@ void DeliverPayloadStateMachine::loadPostProcess( void )
 }  // end loadPostProcess
 
 //-------------------------------------------------------------------------------------------------
-/*static*/ Bool DeliverPayloadStateMachine::isOffMap( State *thisState, void* userData )
+/*static*/ bool DeliverPayloadStateMachine::isOffMap( State *thisState, void* userData )
 {
 	Object *owner = thisState->getMachineOwner();
 	DeliverPayloadAIUpdate *ai = (DeliverPayloadAIUpdate*)owner->getAIUpdateInterface();
@@ -770,7 +770,7 @@ StateReturnType DeliveringState::update() // Kick a dude out every so often
 	{
 		Int attemptDrops = ai->getData()->m_visibleItemsDroppedPerInterval;
 		Drawable *draw = owner->getDrawable();
-		Bool updateSubObjects = false;
+		bool updateSubObjects = false;
 		while( attemptDrops && ai->getVisibleItemsDelivered() < ai->getData()->m_visibleNumBones )
 		{
 			//Drop an item!
@@ -830,7 +830,7 @@ StateReturnType DeliveringState::update() // Kick a dude out every so often
 						}
 
 						//Are we firing a missile?
-						Bool projectileFired = false;
+						bool projectileFired = false;
 						for( BehaviorModule** u = payload->getBehaviorModules(); *u; ++u )
 						{
 							ProjectileUpdateInterface* pui = (*u)->getProjectileUpdateInterface();

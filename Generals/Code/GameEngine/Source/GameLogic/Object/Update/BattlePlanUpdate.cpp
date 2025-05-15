@@ -264,7 +264,7 @@ void BattlePlanUpdate::onObjectCreated()
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool BattlePlanUpdate::initiateIntentToDoSpecialPower(const SpecialPowerTemplate *specialPowerTemplate, const Object *targetObj, const Coord3D *targetPos, const Waypoint *way, UnsignedInt commandOptions )
+bool BattlePlanUpdate::initiateIntentToDoSpecialPower(const SpecialPowerTemplate *specialPowerTemplate, const Object *targetObj, const Coord3D *targetPos, const Waypoint *way, UnsignedInt commandOptions )
 {
 	if( m_specialPowerModule->getSpecialPowerTemplate() != specialPowerTemplate )
 	{
@@ -294,7 +294,7 @@ Bool BattlePlanUpdate::initiateIntentToDoSpecialPower(const SpecialPowerTemplate
 	return TRUE;
 }
 
-Bool BattlePlanUpdate::isPowerCurrentlyInUse( const CommandButton *command ) const
+bool BattlePlanUpdate::isPowerCurrentlyInUse( const CommandButton *command ) const
 {
 	//@todo -- perhaps we may need this one day...
 	return false;
@@ -672,7 +672,7 @@ void BattlePlanUpdate::setStatus( TransitionStatus newStatus )
 }
 
 //------------------------------------------------------------------------------------------------
-void BattlePlanUpdate::enableTurret( Bool enable )
+void BattlePlanUpdate::enableTurret( bool enable )
 {
 	AIUpdateInterface *ai = getObject()->getAI();
 	if( ai )
@@ -700,7 +700,7 @@ void BattlePlanUpdate::recenterTurret()
 }
 
 //------------------------------------------------------------------------------------------------
-Bool BattlePlanUpdate::isTurretInNaturalPosition()
+bool BattlePlanUpdate::isTurretInNaturalPosition()
 {
 	AIUpdateInterface *ai = getObject()->getAI();
 	if( ai )

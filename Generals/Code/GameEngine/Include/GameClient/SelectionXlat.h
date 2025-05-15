@@ -41,25 +41,25 @@ typedef SelectCountMap::iterator SelectCountMapIt;
 class SelectionTranslator : public GameMessageTranslator
 {
 	// this is an evil friend wrapper due to the current limitations of Drawable iterators.
-	friend Bool selectFriendsWrapper( Drawable *draw, void *userData );
-	friend Bool killThemKillThemAllWrapper( Drawable *draw, void *userData );
+	friend bool selectFriendsWrapper( Drawable *draw, void *userData );
+	friend bool killThemKillThemAllWrapper( Drawable *draw, void *userData );
 private:
 
-	Bool m_leftMouseButtonIsDown;
-	Bool m_dragSelecting;
+	bool m_leftMouseButtonIsDown;
+	bool m_dragSelecting;
 	UnsignedInt m_lastGroupSelTime;
 	Int m_lastGroupSelGroup;
 	ICoord2D m_selectFeedbackAnchor;		// Note: Used for drawing feedback only.
 	ICoord2D m_deselectFeedbackAnchor;	// Note: Used for drawing feedback only.
-	Bool m_displayedMaxWarning;	// did we already display a warning about selecting too many units?
+	bool m_displayedMaxWarning;	// did we already display a warning about selecting too many units?
 	UnsignedInt m_lastClick;    ///< timer used for checking double click for type selection
 
 	SelectCountMap m_selectCountMap;
 
 	Coord3D m_deselectDownCameraPosition;
 
-	Bool selectFriends( Drawable *draw, GameMessage *createTeamMsg, Bool dragSelecting );
-	Bool killThemKillThemAll( Drawable *draw, GameMessage *killThemAllMsg );
+	bool selectFriends( Drawable *draw, GameMessage *createTeamMsg, bool dragSelecting );
+	bool killThemKillThemAll( Drawable *draw, GameMessage *killThemAllMsg );
 
 public:
 	SelectionTranslator();
@@ -73,7 +73,7 @@ public:
 	void setLeftMouseButton(Bool state);
 };	
 
-Bool CanSelectDrawable( const Drawable *draw, Bool dragSelecting );
+bool CanSelectDrawable( const Drawable *draw, bool dragSelecting );
 extern SelectionTranslator *TheSelectionTranslator;
 
 #endif

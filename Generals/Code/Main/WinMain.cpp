@@ -75,7 +75,7 @@
 // GLOBALS ////////////////////////////////////////////////////////////////////
 HINSTANCE ApplicationHInstance = NULL;  ///< our application instance
 HWND ApplicationHWnd = NULL;  ///< our application window handle
-Bool ApplicationIsWindowed = false;
+bool ApplicationIsWindowed = false;
 Win32Mouse *TheWin32Mouse= NULL;  ///< for the WndProc() only
 DWORD TheMessageTime = 0;	///< For getting the time that a message was posted from Windows.
 
@@ -88,9 +88,9 @@ const char *gAppPrefix = ""; /// So WB can have a different debug log file name.
 
 
 
-static Bool gInitializing = false;
-static Bool gDoPaint = true;
-static Bool isWinMainActive = false; 
+static bool gInitializing = false;
+static bool gDoPaint = true;
+static bool isWinMainActive = false; 
 
 static HBITMAP gLoadScreenBitmap = NULL;
 
@@ -306,7 +306,7 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
 // initializeAppWindows =======================================================
 /** Register windows class and create application windows. */
 //=============================================================================
-static Bool initializeAppWindows( HINSTANCE hInstance, Int nCmdShow, Bool runWindowed )
+static bool initializeAppWindows( HINSTANCE hInstance, Int nCmdShow, bool runWindowed )
 {
 	DWORD windowStyle;
 	Int startWidth = DEFAULT_XRESOLUTION,

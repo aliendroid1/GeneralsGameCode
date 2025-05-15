@@ -109,7 +109,7 @@ typedef struct tConnInfoStruct {
  * HISTORY:                                                                                    *
  *   10/27/00 3:24PM ST : Created                                                              *
  *=============================================================================================*/
-Bool GetLocalChatConnectionAddress(AsciiString serverName, UnsignedShort serverPort, UnsignedInt& localIP)
+bool GetLocalChatConnectionAddress(AsciiString serverName, UnsignedShort serverPort, UnsignedInt& localIP)
 {
 	//return false;
 	/*
@@ -153,7 +153,7 @@ Bool GetLocalChatConnectionAddress(AsciiString serverName, UnsignedShort serverP
 	AsnInteger error_index;
 	int conn_entry_type_index;
 	int conn_entry_type;
-	Bool found;
+	bool found;
 
 	/*
 	** Statics.
@@ -491,7 +491,7 @@ void GameSpyStagingRoom::setPingString( AsciiString pingStr )
 	m_pingInt = TheGameSpyInfo->getPingValue(pingStr);
 }
 
-Bool GameSpyStagingRoom::amIHost( void ) const
+bool GameSpyStagingRoom::amIHost( void ) const
 {
 	DEBUG_ASSERTCRASH(m_inGame, ("Looking for game slot while not in game"));
 	if (!m_inGame)
@@ -667,7 +667,7 @@ AsciiString GameSpyStagingRoom::generateGameSpyGameResultsPacket( void )
 			GameSpyGameSlot *slot = &(m_GameSpySlot[i]);
 			AsciiString playerName = (slot->isHuman())?slot->getLoginName():"AIPlayer";
 			Int gsPlayerID = slot->getProfileID();
-			Bool disconnected = slot->disconnected();
+			bool disconnected = slot->disconnected();
 
 			AsciiString result = "loss", side = "USA";
 			if (disconnected)
@@ -699,7 +699,7 @@ AsciiString GameSpyStagingRoom::generateLadderGameResultsPacket( void )
 	Int i;
 	Int endFrame = TheVictoryConditions->getEndFrame();
 	Int localSlotNum = getLocalSlotNum();
-	Bool sawGameEnd = (endFrame > 0);
+	bool sawGameEnd = (endFrame > 0);
 	Int winningTeam = -1;
 	Int numPlayers = 0;
 	Int numTeamsAtGameEnd = 0;
@@ -761,7 +761,7 @@ AsciiString GameSpyStagingRoom::generateLadderGameResultsPacket( void )
 			Int buildingsBuilt = keeper->getTotalBuildingsBuilt();
 			Int earnings = keeper->getTotalMoneyEarned();
 			Int techCaptured = keeper->getTotalTechBuildingsCaptured();
-			Bool disconnected = slot->disconnected();
+			bool disconnected = slot->disconnected();
 
 			AsciiString playerStr;
 			playerStr.format(",player%d=%s,playerID%d=%d,locale%d=%d",
@@ -832,7 +832,7 @@ void GameSpyStagingRoom::launchGame( void )
 		TheGameLogic->clearGameData();
 	}
 
-	Bool filesOk = DoAnyMapTransfers(this);
+	bool filesOk = DoAnyMapTransfers(this);
 
 	// see if we really have the map.  if not, back out.
 	TheMapCache->updateCache();

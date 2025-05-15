@@ -147,7 +147,7 @@ public:
 
 	Real m_windRandomness;											///< multiplier for wind randomness per particle
 
-	Bool m_particleUpTowardsEmitter;						///< if this is true, then the 0.0 Z rotation should actually
+	bool m_particleUpTowardsEmitter;						///< if this is true, then the 0.0 Z rotation should actually
 																							///< correspond to the direction of the emitter.
 
 protected:
@@ -174,7 +174,7 @@ public:
 
 	Particle( ParticleSystem *system, const ParticleInfo *data );
 
-	Bool update( void );												///< update this particle's behavior - return false if dead
+	bool update( void );												///< update this particle's behavior - return false if dead
 	void doWindMotion( void );									///< do wind motion (if present) from particle system
 
 	void applyForce( const Coord3D *force );		///< add the given acceleration
@@ -187,8 +187,8 @@ public:
 	inline const RGBColor *getColor( void ) { return &m_color; }
 	inline void setColor( RGBColor *color ) { m_color = *color; }
 
-	Bool isInvisible( void );										///< return true if this particle is invisible
-	inline Bool isCulled (void) {return m_isCulled;}				///< return true if the particle falls off the edge of the screen
+	bool isInvisible( void );										///< return true if this particle is invisible
+	inline bool isCulled (void) {return m_isCulled;}				///< return true if the particle falls off the edge of the screen
 	inline void setIsCulled (Bool enable) { m_isCulled = enable;}		///< set particle to not visible because it's outside view frustum
 
 	void controlParticleSystem( ParticleSystem *sys ) { m_systemUnderControl = sys; }
@@ -306,7 +306,7 @@ public:
 	virtual void xfer( Xfer *xfer );
 	virtual void loadPostProcess( void );
 
-	Bool m_isOneShot;														///< if true, destroy system after one burst has occurred
+	bool m_isOneShot;														///< if true, destroy system after one burst has occurred
 
 	enum ParticleShaderType
 	{
@@ -458,10 +458,10 @@ public:
 	}
 	m_emissionVolume;														///< the dimensions of the emission volume
 
-	Bool m_isEmissionVolumeHollow;							///< if true, only create particles at boundary of volume
-	Bool m_isGroundAligned;											///< if true, align with the ground. if false, then do the normal billboarding. 
-	Bool m_isEmitAboveGroundOnly;								///< if true, only emit particles when the system is above ground.
-	Bool m_isParticleUpTowardsEmitter;					///< if true, align the up direction to be towards the emitter.
+	bool m_isEmissionVolumeHollow;							///< if true, only create particles at boundary of volume
+	bool m_isGroundAligned;											///< if true, align with the ground. if false, then do the normal billboarding. 
+	bool m_isEmitAboveGroundOnly;								///< if true, only emit particles when the system is above ground.
+	bool m_isParticleUpTowardsEmitter;					///< if true, align the up direction to be towards the emitter.
 
 	enum WindMotion
 	{
@@ -499,7 +499,7 @@ public:
 	AsciiString getName( void ) const { return m_name; }
 
 	// This function was made const because of update modules' module data being all const.
-	ParticleSystem *createSlaveSystem( Bool createSlaves = TRUE ) const ;					///< if returns non-NULL, it is a slave system for use
+	ParticleSystem *createSlaveSystem( bool createSlaves = TRUE ) const ;					///< if returns non-NULL, it is a slave system for use
 
 	const FieldParse *getFieldParse( void ) const { return m_fieldParseTable; }	///< Parsing from INI access
 	static void parseRGBColorKeyframe( INI* ini, void *instance, void *store, const void* /*userData*/ );
@@ -544,7 +544,7 @@ public:
 
 	ParticleSystem( const ParticleSystemTemplate *sysTemplate, 
 									ParticleSystemID id,
-									Bool createSlaves );			///< create a particle system from a template and assign it this ID
+									bool createSlaves );			///< create a particle system from a template and assign it this ID
 
 	inline ParticleSystemID getSystemID( void ) const { return m_systemID; }	///< get unique system ID
 
@@ -560,7 +560,7 @@ public:
 	void attachToDrawable( const Drawable *draw );							///< attach this particle system to a Drawable
 	void attachToObject( const Object *obj );									///< attach this particle system to an Object
 
-	virtual Bool update( Int localPlayerIndex );								///< update this particle system, return false if dead
+	virtual bool update( Int localPlayerIndex );								///< update this particle system, return false if dead
 	void updateWindMotion( void );							///< update wind motion
 
 	void setControlParticle( Particle *p );			///< set control particle
@@ -587,11 +587,11 @@ public:
 	void setInitialDelay( UnsignedInt delay ) { m_delayLeft = delay; }
 
 	AsciiString getParticleTypeName( void ) { return m_particleTypeName; }	///< return the name of the particles
-	Bool isUsingDrawables( void ) { return (m_particleType == DRAWABLE) ? true : false; }
-	Bool isUsingStreak( void ) { return (m_particleType == STREAK) ? true : false; }
+	bool isUsingDrawables( void ) { return (m_particleType == DRAWABLE) ? true : false; }
+	bool isUsingStreak( void ) { return (m_particleType == STREAK) ? true : false; }
 	UnsignedInt getVolumeParticleDepth( void ) { return ( m_particleType == VOLUME_PARTICLE ) ? OPTIMUM_VOLUME_PARTICLE_DEPTH : 0; }
 
-	Bool shouldBillboard( void ) { return !m_isGroundAligned; }
+	bool shouldBillboard( void ) { return !m_isGroundAligned; }
 
 	ParticleShaderType getShaderType( void ) { return m_shaderType; }
 
@@ -603,20 +603,20 @@ public:
 	
 	void setSystemLifetime( UnsignedInt frames ) { m_systemLifetimeLeft = frames; }; ///< not the particle life, the system!... Lorenzen
 	void setLifetimeRange( Real min, Real max );
-	Bool isSystemForever() const {return m_isForever;}
+	bool isSystemForever() const {return m_isForever;}
 
 	UnsignedInt getStartFrame( void ) { return m_startTimestamp; }	///< return frame when this system was created
-	Bool isDestroyed( void ) const { return m_isDestroyed; }
+	bool isDestroyed( void ) const { return m_isDestroyed; }
 
-	void setSaveable( Bool b );
-	Bool isSaveable( void ) const { return m_isSaveable; }
+	void setSaveable( bool b );
+	bool isSaveable( void ) const { return m_isSaveable; }
 
 	/// called when the particle this system is controlled by dies
 	void detachControlParticle( Particle *p ) { m_controlParticle = NULL; }
 
 	/// called to merge two systems info. If slaveNeedsFullPromotion is true, then the slave needs to be aware of how many particles
 	/// to generate as well.
-	static ParticleInfo mergeRelatedParticleSystems( ParticleSystem *masterParticleSystem, ParticleSystem *slaveParticleSystem, Bool slaveNeedsFullPromotion);
+	static ParticleInfo mergeRelatedParticleSystems( ParticleSystem *masterParticleSystem, ParticleSystem *slaveParticleSystem, bool slaveNeedsFullPromotion);
 
 	/// @todo Const this (MSB)
 	const ParticleSystemTemplate *getTemplate( void ) { return m_template; }	///< get the template used to create this system
@@ -651,7 +651,7 @@ protected:
 
 	virtual Particle *createParticle( const ParticleInfo *data,
 																		ParticlePriorityType priority,
-																		Bool forceCreate = FALSE );	///< factory method for particles
+																		bool forceCreate = FALSE );	///< factory method for particles
 
 
 	const ParticleInfo *generateParticleInfo( Int particleNum, Int particleCount );	///< generate a new, random set of ParticleInfo
@@ -743,7 +743,7 @@ public:
 
 	/// given a template, instantiate a particle system
 	ParticleSystem *createParticleSystem( const ParticleSystemTemplate *sysTemplate,
-																				Bool createSlaves = TRUE );	
+																				bool createSlaves = TRUE );	
 
 	/** given a template, instantiate a particle system. 
 		if attachTo is not null, attach the particle system to the given object.
@@ -751,7 +751,7 @@ public:
 	*/
 	ParticleSystemID createAttachedParticleSystemID( const ParticleSystemTemplate *sysTemplate,
 																				Object* attachTo,
-																				Bool createSlaves = TRUE );	
+																				bool createSlaves = TRUE );	
 
 	/// find a particle system given a unique system identifier
 	ParticleSystem *findParticleSystem( ParticleSystemID id );

@@ -56,7 +56,7 @@ public:
 	virtual void freeSnapShot(int playerIndex)=0;
 	inline PartitionData *friend_getPartitionData(void) const {return m_partitionData;}
 	inline GeometryType getGeometryType(void) const {return m_parentGeometryType;}
-	inline Bool getGeometrySmall(void) const {return m_parentGeometryIsSmall;}
+	inline bool getGeometrySmall(void) const {return m_parentGeometryIsSmall;}
 	inline Real getGeometryMajorRadius(void) const {return m_parentGeometryMajorRadius;}
 	inline Real getGeometryMinorRadius(void) const {return m_parentGeometryminorRadius;}
 	inline Real getParentAngle(void) const {return m_parentAngle;}
@@ -70,7 +70,7 @@ protected:
 
 	Object *m_parentObject;		///< object which we are ghosting
 	GeometryType m_parentGeometryType;
-	Bool m_parentGeometryIsSmall;
+	bool m_parentGeometryIsSmall;
 	Real m_parentGeometryMajorRadius;
 	Real m_parentGeometryminorRadius;
 	Real m_parentAngle;
@@ -98,8 +98,8 @@ protected:
 	virtual void xfer( Xfer *xfer );
 	virtual void loadPostProcess( void );
 	Int m_localPlayer;
-	Bool m_lockGhostObjects;
-	Bool m_saveLockGhostObjects;	///< used to lock the ghost object system during a save/load
+	bool m_lockGhostObjects;
+	bool m_saveLockGhostObjects;	///< used to lock the ghost object system during a save/load
 };
 
 // the singleton

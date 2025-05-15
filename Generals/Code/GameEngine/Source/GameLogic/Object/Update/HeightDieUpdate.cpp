@@ -141,7 +141,7 @@ UpdateSleepTime HeightDieUpdate::update( void )
 	// get our current position
 	const Coord3D *pos = getObject()->getPosition();
 
-	Bool directionOK = TRUE;
+	bool directionOK = TRUE;
 	if( m_hasDied == FALSE )
 	{
 

@@ -220,7 +220,7 @@ public:
 	void setPhysicsOptions(Object* obj);
 
 	void locoUpdate_moveTowardsPosition(Object* obj, const Coord3D& goalPos, 
-		Real onPathDistToGoal, Real desiredSpeed, Bool *blocked);
+		Real onPathDistToGoal, Real desiredSpeed, bool *blocked);
 	void locoUpdate_moveTowardsAngle(Object* obj, Real angle);
 	/**
 		Kill any current (2D) velocity (but stay at current position, or as close as possible)
@@ -228,7 +228,7 @@ public:
 		return true if we can maintain the position without being called every frame (eg, we are
 		resting on the ground), false if not (eg, we are hovering or circling)
 	*/
-	Bool locoUpdate_maintainCurrentPosition(Object* obj); 
+	bool locoUpdate_maintainCurrentPosition(Object* obj); 
 
 	Real getMaxSpeedForCondition(BodyDamageType condition) const;  ///< get max speed given condition
 	Real getMaxTurnRate(BodyDamageType condition) const;  ///< get max turning rate given condition
@@ -263,16 +263,16 @@ public:
 	inline Real getLateralAccelCoef() const { return m_template->m_lateralAccelCoef;}			///< How much we roll in response to acceleration.
 	inline Real getUniformAxialDamping() const { return m_template->m_uniformAxialDamping;}			///< How much we roll in response to acceleration.
 	inline Real getTurnPivotOffset() const { return m_template->m_turnPivotOffset;}
-	inline Bool getApply2DFrictionWhenAirborne() const { return m_template->m_apply2DFrictionWhenAirborne; }
-	inline Bool getIsDownhillOnly() const { return m_template->m_downhillOnly; }
-	inline Bool getAllowMotiveForceWhileAirborne() const { return m_template->m_allowMotiveForceWhileAirborne; }
+	inline bool getApply2DFrictionWhenAirborne() const { return m_template->m_apply2DFrictionWhenAirborne; }
+	inline bool getIsDownhillOnly() const { return m_template->m_downhillOnly; }
+	inline bool getAllowMotiveForceWhileAirborne() const { return m_template->m_allowMotiveForceWhileAirborne; }
 	inline Int getAirborneTargetingHeight() const { return m_template->m_airborneTargetingHeight; }
-	inline Bool getLocomotorWorksWhenDead() const { return m_template->m_locomotorWorksWhenDead; }
-	inline Bool getStickToGround() const { return m_template->m_stickToGround; }
+	inline bool getLocomotorWorksWhenDead() const { return m_template->m_locomotorWorksWhenDead; }
+	inline bool getStickToGround() const { return m_template->m_stickToGround; }
 	inline Real getCloseEnoughDist() const { return m_closeEnoughDist; }
-	inline Bool isCloseEnoughDist3D() const { return getFlag(IS_CLOSE_ENOUGH_DIST_3D); }
-	inline Bool hasSuspension() const {return m_template->m_hasSuspension;}
-	inline Bool canMoveBackwards() const {return m_template->m_canMoveBackward;}
+	inline bool isCloseEnoughDist3D() const { return getFlag(IS_CLOSE_ENOUGH_DIST_3D); }
+	inline bool hasSuspension() const {return m_template->m_hasSuspension;}
+	inline bool canMoveBackwards() const {return m_template->m_canMoveBackward;}
 	inline Real getMaxWheelExtension() const {return m_template->m_maximumWheelExtension;}
 	inline Real getMaxWheelCompression() const {return m_template->m_maximumWheelCompression;}
 	inline Real getWheelTurnAngle() const {return m_template->m_wheelTurnAngle;}
@@ -294,7 +294,7 @@ public:
 	inline void setMaxTurnRate(Real turn) { m_maxTurnRate = turn; }
 	inline void setAllowInvalidPosition(Bool allow) { setFlag(ALLOW_INVALID_POSITION, allow); }
 	inline void setCloseEnoughDist( Real dist ) { m_closeEnoughDist = dist; }
-	inline void setCloseEnoughDist3D( Bool setting ) { setFlag(IS_CLOSE_ENOUGH_DIST_3D, setting); }
+	inline void setCloseEnoughDist3D( bool setting ) { setFlag(IS_CLOSE_ENOUGH_DIST_3D, setting); }
 
 	inline void setPreferredHeight( Real height ) { m_preferredHeight = height; }
 
@@ -337,9 +337,9 @@ public:
 
 	*/
 	inline void setUltraAccurate(Bool u) { setFlag(ULTRA_ACCURATE, u); }
-	inline Bool isUltraAccurate() const { return getFlag(ULTRA_ACCURATE); }
+	inline bool isUltraAccurate() const { return getFlag(ULTRA_ACCURATE); }
 
-	inline Bool isMovingBackwards(void) const {return getFlag(MOVING_BACKWARDS);}
+	inline bool isMovingBackwards(void) const {return getFlag(MOVING_BACKWARDS);}
 
 	void startMove(void); ///< Indicates that a move is starting, primarily to reset the donut timer. jba.
 
@@ -368,13 +368,13 @@ protected:
 		return true if we can maintain the position without being called every frame (eg, we are
 		resting on the ground), false if not (eg, we are hovering or circling)
 	*/
-	Bool handleBehaviorZ(Object* obj, PhysicsBehavior *physics, const Coord3D& goalPos);
+	bool handleBehaviorZ(Object* obj, PhysicsBehavior *physics, const Coord3D& goalPos);
 	PhysicsTurningType rotateObjAroundLocoPivot(Object* obj, const Coord3D& goalPos, Real maxTurnRate, Real *relAngle = NULL);
 
 	Real getSurfaceHtAtPt(Real x, Real y);
 	Real calcLiftToUseAtPt(Object* obj, PhysicsBehavior *physics, Real curZ, Real surfaceAtPt, Real preferredHeight);
 
-	Bool fixInvalidPosition(Object* obj, PhysicsBehavior *physics);
+	bool fixInvalidPosition(Object* obj, PhysicsBehavior *physics);
 
 protected:
 	// snapshot methods
@@ -414,8 +414,8 @@ private:
 		OFFSET_INCREASING
 	};
 
-	inline Bool getFlag(LocoFlag f) const { return (m_flags & (1 << f)) != 0; }
-	inline void setFlag(LocoFlag f, Bool b) { if (b) m_flags |= (1<<f); else m_flags &= ~(1<<f); }
+	inline bool getFlag(LocoFlag f) const { return (m_flags & (1 << f)) != 0; }
+	inline void setFlag(LocoFlag f, bool b) { if (b) m_flags |= (1<<f); else m_flags &= ~(1<<f); }
 
 	LocomotorTemplateOverride m_template;		///< the kind of Locomotor this is
 	Coord3D			m_maintainPos;

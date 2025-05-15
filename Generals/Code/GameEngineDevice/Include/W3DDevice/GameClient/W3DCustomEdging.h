@@ -81,7 +81,7 @@ public:
 
 	W3DCustomEdging(void);
 	~W3DCustomEdging(void);
-	void addEdging(Coord3D location, Real scale, Real angle, AsciiString name, Bool visibleInMirror);
+	void addEdging(Coord3D location, Real scale, Real angle, AsciiString name, bool visibleInMirror);
 	/// Empties the tree buffer.
 	void clearAllEdging(void);
 	/// Draws the trees.  Uses camera for culling.

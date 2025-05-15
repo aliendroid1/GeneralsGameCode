@@ -45,7 +45,7 @@ void WriteStackLine(void*address, void (*callback)(const char*));
 //	Mis-named globals :-)
 //*****************************************************************************
 static CONTEXT gsContext;
-static Bool gsInit=FALSE;
+static bool gsInit=FALSE;
 
 BOOL (__stdcall *gsSymGetLineFromAddr)(
 		IN  HANDLE                  hProcess,
@@ -372,7 +372,7 @@ stack_frame.AddrFrame.Offset = myebp;
         stack_frame.AddrFrame.Offset = gsContext.Ebp;
 */
 
-		Bool stillgoing = TRUE;
+		bool stillgoing = TRUE;
 //	unsigned int cd = count;
 
 		// Skip some?

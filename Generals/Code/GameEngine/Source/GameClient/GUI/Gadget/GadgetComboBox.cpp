@@ -622,7 +622,7 @@ WindowMsgHandledType GadgetComboBoxSystem( GameWindow *window, UnsignedInt msg,
 																					mData1, 
 																					window->winGetWindowId() );
 
-			Bool wantsFocus = FALSE;
+			bool wantsFocus = FALSE;
 			GameWindow *editBox = GadgetComboBoxGetEditBox(window);
 			// we need to tell the text entry box to take the focus.
 			TheWindowManager->winSendSystemMsg( editBox, GWM_INPUT_FOCUS, mData1, (WindowMsgData)&wantsFocus );
@@ -807,7 +807,7 @@ void GadgetComboBoxSetColors( GameWindow *comboBox,
 // GadgetComboBoxSetIsEditable ================================================
 /** Sets up the Text Entry gadget as editable or not */
 //=============================================================================
-void GadgetComboBoxSetIsEditable(GameWindow *comboBox, Bool isEditable  )
+void GadgetComboBoxSetIsEditable(GameWindow *comboBox, bool isEditable  )
 {
 	ComboBoxData *comboData = (ComboBoxData *)comboBox->winGetUserData();	
 	GameWindow *editBox = GadgetComboBoxGetEditBox(comboBox);
@@ -837,7 +837,7 @@ void GadgetComboBoxSetIsEditable(GameWindow *comboBox, Bool isEditable  )
 // GadgetComboBoxSetIsAsciiOnly ==================================================
 /** Get the text the Combo Box */
 //=============================================================================
-void GadgetComboBoxSetLettersAndNumbersOnly(GameWindow *comboBox, Bool isLettersAndNumbersOnly)
+void GadgetComboBoxSetLettersAndNumbersOnly(GameWindow *comboBox, bool isLettersAndNumbersOnly)
 {	
 	//sanity
 	if(comboBox == NULL)
@@ -853,7 +853,7 @@ void GadgetComboBoxSetLettersAndNumbersOnly(GameWindow *comboBox, Bool isLetters
 // GadgetComboBoxSetAsciiOnly ==================================================
 /** Get the text the Combo Box */
 //=============================================================================
-void GadgetComboBoxSetAsciiOnly(GameWindow *comboBox, Bool isAsciiOnly  )
+void GadgetComboBoxSetAsciiOnly(GameWindow *comboBox, bool isAsciiOnly  )
 {
 	//sanity
 	if(comboBox == NULL)
@@ -1063,7 +1063,7 @@ void GadgetComboBoxGetSelectedPos( GameWindow *comboBox, Int *selectedIndex )
 		is set to true, the listbox won't be forced to hide when the Selected call is
 		passed back */
 //=============================================================================
-void GadgetComboBoxSetSelectedPos( GameWindow *comboBox, Int selectedIndex, Bool dontHide )
+void GadgetComboBoxSetSelectedPos( GameWindow *comboBox, Int selectedIndex, bool dontHide )
 {
 	// sanity
 	if( comboBox == NULL )

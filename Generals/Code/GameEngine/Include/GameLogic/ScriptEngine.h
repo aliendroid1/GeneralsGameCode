@@ -86,12 +86,12 @@ struct TCounter
 {
 	Int value;
 	AsciiString name;
-	Bool isCountdownTimer;
+	bool isCountdownTimer;
 };
 
 struct TFlag
 {
-	Bool value;
+	bool value;
 	AsciiString name;
 };
 
@@ -171,7 +171,7 @@ public:
 	Int m_currentInstruction;								// Which action within m_scriptToExecuteSequentially am I currently executing?
 	Int m_timesToLoop;											// 0 = do once,  >0, loop till 0, <0, loop infinitely
 	Int m_framesToWait;											// 0 = transition to next instruction, >0 = countdown to 0, <0 = advance on idle only
-	Bool m_dontAdvanceInstruction;					// Must be set every frame by the instruction requesting the wait.
+	bool m_dontAdvanceInstruction;					// Must be set every frame by the instruction requesting the wait.
 																					// so this parm tells us how many we've been idle so far.
 	SequentialScript *m_nextScriptInSequence;
 
@@ -196,7 +196,7 @@ public:
 
 	ObjectID m_objectID;
 	AsciiString m_sequentialScriptCompleted;
-	Bool m_isExecutingSequentially;
+	bool m_isExecutingSequentially;
 
 protected:
 
@@ -244,7 +244,7 @@ public:
 	virtual const ActionTemplate *getActionTemplate( Int ndx); ///< Get the template for a script action.
 	virtual const ConditionTemplate *getConditionTemplate( Int ndx); ///< Get the template for a script Condition.
 	virtual void startEndGameTimer(void); ///< Starts the end game timer after a mission is won or lost.
-	Bool isGameEnding( void ) { return m_endGameTimer >= 0;	}
+	bool isGameEnding( void ) { return m_endGameTimer >= 0;	}
 	virtual void startQuickEndGameTimer(void); ///< Starts the quick end game timer after a campaign is won or lost.
 	virtual void startCloseWindowTimer(void); ///< Starts the timer to close windows after a mission is won or lost.
 	virtual void runScript(const AsciiString& scriptName, Team *pThisTeam=NULL); ///<  Runs a script.
@@ -255,18 +255,18 @@ public:
 	virtual Player *getPlayerFromAsciiString(const AsciiString& skirmishPlayerString);
 
 	void setObjectsShouldReceiveDifficultyBonus(Bool receive) { m_objectsShouldReceiveDifficultyBonus = receive; }
-	Bool getObjectsShouldReceiveDifficultyBonus() const { return m_objectsShouldReceiveDifficultyBonus; }
+	bool getObjectsShouldReceiveDifficultyBonus() const { return m_objectsShouldReceiveDifficultyBonus; }
 
 	void setChooseVictimAlwaysUsesNormal(Bool receive) { m_ChooseVictimAlwaysUsesNormal = receive; }
-	Bool getChooseVictimAlwaysUsesNormal() const { return m_ChooseVictimAlwaysUsesNormal; }
+	bool getChooseVictimAlwaysUsesNormal() const { return m_ChooseVictimAlwaysUsesNormal; }
 
-	Bool hasShownMPLocalDefeatWindow(void);
+	bool hasShownMPLocalDefeatWindow(void);
 	void markMPLocalDefeatWindowShown(void);
 
 	// NOTE NOTE NOTE: do not store of the return value of this call (getObjectTypeList) beyond the life of the 
 	// function it will be used in, as it can be deleted from under you if maintenance is performed on the object.
 	virtual ObjectTypes *getObjectTypes(const AsciiString& objectTypeList);
-	virtual void doObjectTypeListMaintenance(const AsciiString& objectTypeList, const AsciiString& objectType, Bool addObject);
+	virtual void doObjectTypeListMaintenance(const AsciiString& objectTypeList, const AsciiString& objectType, bool addObject);
 
 	/// Return the trigger area with the given name
 	virtual PolygonTrigger *getQualifiedTriggerAreaByName( AsciiString name );
@@ -274,11 +274,11 @@ public:
 	// For other systems to evaluate Conditions, execute Actions, etc.
 
 	///< if pThisTeam is specified, then scripts in here can use <This Team> to mean the team this script is attached to.
-	virtual Bool evaluateConditions( Script *pScript, Team *pThisTeam = NULL, Player *pPlayer=NULL );	
+	virtual bool evaluateConditions( Script *pScript, Team *pThisTeam = NULL, Player *pPlayer=NULL );	
 	virtual void friend_executeAction( ScriptAction *pActionHead, Team *pThisTeam = NULL);	///< Use this at yer peril.
 
 	virtual Object *getUnitNamed(const AsciiString& unitName); ///< Gets the named unit. May be null.
-	virtual Bool didUnitExist(const AsciiString& unitName);
+	virtual bool didUnitExist(const AsciiString& unitName);
 	virtual void addObjectToCache( Object* pNewObject );
 	virtual void removeObjectFromCache( Object* pDeadObject );
 	virtual void transferObjectName( const AsciiString& unitName, Object *pNewObject );
@@ -292,14 +292,14 @@ public:
 	
 	virtual void signalUIInteract(const AsciiString& hookName);	///< Notify that a UI button was pressed and some flag should go true, for one frame only.
 
-	virtual Bool isVideoComplete( const AsciiString& completedVideo, Bool removeFromList );	///< Determine whether a video has completed
-	virtual Bool isSpeechComplete( const AsciiString& completedSpeech, Bool removeFromList );	///< Determine whether a speech has completed
-	virtual Bool isAudioComplete( const AsciiString& completedAudio, Bool removeFromList );	///< Determine whether a sound has completed
-	virtual Bool isSpecialPowerTriggered( Int playerIndex, const AsciiString& completedPower, Bool removeFromList, ObjectID sourceObj );
-	virtual Bool isSpecialPowerMidway		( Int playerIndex, const AsciiString& completedPower, Bool removeFromList, ObjectID sourceObj );
-	virtual Bool isSpecialPowerComplete	( Int playerIndex, const AsciiString& completedPower, Bool removeFromList, ObjectID sourceObj );
-	virtual Bool isUpgradeComplete			( Int playerIndex, const AsciiString& upgrade,				 Bool removeFromList, ObjectID sourceObj );
-	virtual Bool isScienceAcquired			( Int playerIndex, ScienceType science, Bool removeFromList );
+	virtual bool isVideoComplete( const AsciiString& completedVideo, bool removeFromList );	///< Determine whether a video has completed
+	virtual bool isSpeechComplete( const AsciiString& completedSpeech, bool removeFromList );	///< Determine whether a speech has completed
+	virtual bool isAudioComplete( const AsciiString& completedAudio, bool removeFromList );	///< Determine whether a sound has completed
+	virtual bool isSpecialPowerTriggered( Int playerIndex, const AsciiString& completedPower, bool removeFromList, ObjectID sourceObj );
+	virtual bool isSpecialPowerMidway		( Int playerIndex, const AsciiString& completedPower, bool removeFromList, ObjectID sourceObj );
+	virtual bool isSpecialPowerComplete	( Int playerIndex, const AsciiString& completedPower, bool removeFromList, ObjectID sourceObj );
+	virtual bool isUpgradeComplete			( Int playerIndex, const AsciiString& upgrade,				 bool removeFromList, ObjectID sourceObj );
+	virtual bool isScienceAcquired			( Int playerIndex, ScienceType science, bool removeFromList );
 
 	void setToppleDirection( const AsciiString& objectName, const Coord3D *direction );
 	virtual void adjustToppleDirection( Object *object, Coord2D *direction);
@@ -308,16 +308,16 @@ public:
 		
 	const BreezeInfo& getBreezeInfo() const {return m_breezeInfo;}
 	
-	Bool isTimeFrozenScript( void );		///< Ask whether a script has frozen time or not
+	bool isTimeFrozenScript( void );		///< Ask whether a script has frozen time or not
 	void doFreezeTime( void );
 	void doUnfreezeTime( void );
 
 	/// The following functions are used to update and query the debug window
-	Bool isTimeFrozenDebug( void );		///< Ask whether the debug window has requested a pause.
-	Bool isTimeFast( void );		///< Ask whether the debug window has requested a fast forward.
+	bool isTimeFrozenDebug( void );		///< Ask whether the debug window has requested a pause.
+	bool isTimeFast( void );		///< Ask whether the debug window has requested a fast forward.
 	void forceUnfreezeTime( void );	///< Force that time becomes unfrozen temporarily.
-	void AppendDebugMessage(const AsciiString& strToAdd, Bool forcePause);
-	void AdjustDebugVariableData(const AsciiString& variableName, Int value, Bool forcePause);
+	void AppendDebugMessage(const AsciiString& strToAdd, bool forcePause);
+	void AdjustDebugVariableData(const AsciiString& variableName, Int value, bool forcePause);
 
 	void clearTeamFlags(void); ///< Hack for dustin.
 	void clearFlag(const AsciiString &name); ///< Hack for dustin.
@@ -350,7 +350,7 @@ public:
 
 	///Begin VTUNE
 	void setEnableVTune(Bool value);
-	Bool getEnableVTune() const;
+	bool getEnableVTune() const;
 	///End VTUNE
 //#if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	void debugVictory( void );
@@ -376,16 +376,16 @@ protected:
 	void setFlag( ScriptAction *pAction );
 	void pauseTimer( ScriptAction *pAction );
 	void restartTimer( ScriptAction *pAction );
-	void setTimer( ScriptAction *pAction, Bool milisecondTimer, Bool random);
-	void adjustTimer( ScriptAction *pAction, Bool milisecondTimer, Bool add);
+	void setTimer( ScriptAction *pAction, bool milisecondTimer, bool random);
+	void adjustTimer( ScriptAction *pAction, bool milisecondTimer, bool add);
 	void enableScript( ScriptAction *pAction );
 	void disableScript( ScriptAction *pAction );
 	void callSubroutine( ScriptAction *pAction );
 	void checkConditionsForTeamNames(Script *pScript);
-	Bool evaluateCounter( Condition *pCondition );
-	Bool evaluateFlag( Condition *pCondition );
-	Bool evaluateTimer( Condition *pCondition );
-	Bool evaluateCondition( Condition *pCondition );
+	bool evaluateCounter( Condition *pCondition );
+	bool evaluateFlag( Condition *pCondition );
+	bool evaluateTimer( Condition *pCondition );
+	bool evaluateCondition( Condition *pCondition );
 	void executeActions( ScriptAction *pActionHead );
 
 	void setPriorityThing( ScriptAction *pAction );
@@ -398,7 +398,7 @@ protected:
 	void particleEditorUpdate( void );
 	void updateFades( void );
 
-	AttackPriorityInfo *findAttackInfo(const AsciiString& name, Bool addIfNotFound);
+	AttackPriorityInfo *findAttackInfo(const AsciiString& name, bool addIfNotFound);
 
 protected:
 	/// Stuff to execute scripts sequentially
@@ -408,10 +408,10 @@ protected:
 	VecSequentialScriptPtr m_sequentialScripts;
 	
 	void evaluateAndProgressAllSequentialScripts( void );
-	VecSequentialScriptPtrIt cleanupSequentialScript(VecSequentialScriptPtrIt it, Bool cleanDanglers);
+	VecSequentialScriptPtrIt cleanupSequentialScript(VecSequentialScriptPtrIt it, bool cleanDanglers);
 
-	Bool hasUnitCompletedSequentialScript( Object *object, const AsciiString& sequentialScriptName );
-	Bool hasTeamCompletedSequentialScript( Team *team, const AsciiString& sequentialScriptName );
+	bool hasUnitCompletedSequentialScript( Object *object, const AsciiString& sequentialScriptName );
+	bool hasTeamCompletedSequentialScript( Team *team, const AsciiString& sequentialScriptName );
 	
 
 

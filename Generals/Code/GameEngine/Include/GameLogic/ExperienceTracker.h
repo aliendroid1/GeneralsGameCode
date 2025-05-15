@@ -48,14 +48,14 @@ public:
 	VeterancyLevel getVeterancyLevel() const { return m_currentLevel; }			///< What level am I?
 	Int getExperienceValue( const Object* killer ) const;										///< How much do give for being killed
 	Int getCurrentExperience( void ) const { return m_currentExperience; };	///< How much experience do I have at the moment?
-	Bool isTrainable() const;																						///< Can I gain experience?
-	Bool isAcceptingExperiencePoints() const;														///< Either I am trainable, or I have a Sink set up
+	bool isTrainable() const;																						///< Can I gain experience?
+	bool isAcceptingExperiencePoints() const;														///< Either I am trainable, or I have a Sink set up
 
 	void setVeterancyLevel( VeterancyLevel newLevel );						///< Set Level to this
 	void setMinVeterancyLevel( VeterancyLevel newLevel );					///< Set Level to AT LEAST this... if we are already >= this level, do nothing.
-	void addExperiencePoints( Int experienceGain, Bool canScaleForBonus = TRUE );	///< Gain this many exp.
-	Bool gainExpForLevel(Int levelsToGain, Bool canScaleForBonus = TRUE );			  ///< Gain enough exp to gain a level. return false if can't gain a level.
-	Bool canGainExpForLevel(Int levelsToGain) const;															///< return same value as gainExpForLevel, but don't change anything
+	void addExperiencePoints( Int experienceGain, bool canScaleForBonus = TRUE );	///< Gain this many exp.
+	bool gainExpForLevel(Int levelsToGain, bool canScaleForBonus = TRUE );			  ///< Gain enough exp to gain a level. return false if can't gain a level.
+	bool canGainExpForLevel(Int levelsToGain) const;															///< return same value as gainExpForLevel, but don't change anything
 	void setExperienceAndLevel(Int experienceIn);
 	void setExperienceSink( ObjectID sink );											///< My experience actually goes to this person (loose couple)
 

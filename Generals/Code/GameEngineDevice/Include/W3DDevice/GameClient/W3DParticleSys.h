@@ -61,7 +61,7 @@ private:
 	ShareBufferClass<Vector4> *m_RGBABuffer;		///< array of particle color and alpha
 	ShareBufferClass<float> *m_sizeBuffer;			///< array of particle sizes
 	ShareBufferClass<uint8> *m_angleBuffer;			///< array of particle orientations
-	Bool m_readyToRender;											///< if true, it is OK to render
+	bool m_readyToRender;											///< if true, it is OK to render
 };
 
 #endif  // end __W3DParticleSys_H_

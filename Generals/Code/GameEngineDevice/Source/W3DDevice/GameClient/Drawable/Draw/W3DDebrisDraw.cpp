@@ -180,7 +180,7 @@ void W3DDebrisDraw::setAnimNames(AsciiString initial, AsciiString flying, AsciiS
 }
 
 //-------------------------------------------------------------------------------------------------
-static Bool isAnimationComplete(RenderObjClass* r)
+static bool isAnimationComplete(RenderObjClass* r)
 {
 	if (r->Class_ID() == RenderObjClass::CLASSID_HLOD)
 	{
@@ -192,7 +192,7 @@ static Bool isAnimationComplete(RenderObjClass* r)
 }
 
 //-------------------------------------------------------------------------------------------------
-static Bool isNearlyZero(const Coord3D* vel)
+static bool isNearlyZero(const Coord3D* vel)
 {
 	const Real TINY = 0.01f;
 	return fabs(vel->x) < TINY && fabs(vel->y) < TINY && fabs(vel->z) < TINY;

@@ -139,7 +139,7 @@ RadarObject::~RadarObject( void )
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-Bool RadarObject::isTemporarilyHidden() const
+bool RadarObject::isTemporarilyHidden() const
 {
 	Drawable* draw = m_object->getDrawable();
 	if (draw->getStealthLook() == STEALTHLOOK_INVISIBLE || draw->isDrawableEffectivelyHidden())
@@ -419,7 +419,7 @@ void Radar::addObject( Object *obj )
 
 	// set color for this object on the radar
 	const Player *player = obj->getControllingPlayer();
-	Bool useIndicatorColor = true;
+	bool useIndicatorColor = true;
 
 	if( obj->isKindOf( KINDOF_DISGUISER ) )
 	{
@@ -549,7 +549,7 @@ void Radar::addObject( Object *obj )
 //-------------------------------------------------------------------------------------------------
 /** Try to delete an object from a specific list */
 //-------------------------------------------------------------------------------------------------
-Bool Radar::deleteFromList( Object *obj, RadarObject **list )
+bool Radar::deleteFromList( Object *obj, RadarObject **list )
 {
 	RadarObject *radarObject, *prevObject = NULL;
 					
@@ -618,7 +618,7 @@ void Radar::removeObject( Object *obj )
 	* Return TRUE if the radar points translates to a valid world position
 	* Return FALSE if the radar point is not a valid world position */
 //-------------------------------------------------------------------------------------------------		
-Bool Radar::radarToWorld( const ICoord2D *radar, Coord3D *world )
+bool Radar::radarToWorld( const ICoord2D *radar, Coord3D *world )
 {
 	Int x, y;
 
@@ -656,7 +656,7 @@ Bool Radar::radarToWorld( const ICoord2D *radar, Coord3D *world )
 	* Return TRUE if the world point successfully translates to a radar point
 	* Return FALSE if world point is a bogus off the map position */
 //-------------------------------------------------------------------------------------------------
-Bool Radar::worldToRadar( const Coord3D *world, ICoord2D *radar )
+bool Radar::worldToRadar( const Coord3D *world, ICoord2D *radar )
 {
 
 	// sanity
@@ -697,7 +697,7 @@ Bool Radar::worldToRadar( const Coord3D *world, ICoord2D *radar )
 	* on the screen.  This is needed because some maps are "long" or "tall" and need a translation
 	* to any radar image that has been scaled to preserve the map aspect ratio */
 // ------------------------------------------------------------------------------------------------
-Bool Radar::localPixelToRadar( const ICoord2D *pixel, ICoord2D *radar )
+bool Radar::localPixelToRadar( const ICoord2D *pixel, ICoord2D *radar )
 {
 
 	// sanity
@@ -767,7 +767,7 @@ Bool Radar::localPixelToRadar( const ICoord2D *pixel, ICoord2D *radar )
 /** Translate a screen mouse position to world coords if the screen position is within
 	* the radar window and that spot in the radar corresponds to a point in the world */
 // ------------------------------------------------------------------------------------------------
-Bool Radar::screenPixelToWorld( const ICoord2D *pixel, Coord3D *world )
+bool Radar::screenPixelToWorld( const ICoord2D *pixel, Coord3D *world )
 {
 
 	// sanity
@@ -1130,7 +1130,7 @@ void Radar::internalCreateEvent( const Coord3D *world, RadarEventType type, Real
 	* Returns TRUE if event was found
 	* Returns FALSE if there is no "last event" */
 //-------------------------------------------------------------------------------------------------
-Bool Radar::getLastEventLoc( Coord3D *eventPos )
+bool Radar::getLastEventLoc( Coord3D *eventPos )
 {
 
 	// if we have an index for the last event, one was present
@@ -1161,7 +1161,7 @@ void Radar::tryUnderAttackEvent( const Object *obj )
 		return;
 
 	// try to create the event
-	Bool eventCreated = tryEvent( RADAR_EVENT_UNDER_ATTACK, obj->getPosition() );
+	bool eventCreated = tryEvent( RADAR_EVENT_UNDER_ATTACK, obj->getPosition() );
 
 	// if event created, do some more feedback
 	if( eventCreated )
@@ -1268,7 +1268,7 @@ void Radar::tryInfiltrationEvent( const Object *obj )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool Radar::tryEvent( RadarEventType event, const Coord3D *pos )
+bool Radar::tryEvent( RadarEventType event, const Coord3D *pos )
 {
 
 	// sanity
@@ -1528,7 +1528,7 @@ void Radar::loadPostProcess( void )
 // ------------------------------------------------------------------------------------------------
 /** Is the priority type passed in a "visible" one that can show up on the radar */
 // ------------------------------------------------------------------------------------------------
-Bool Radar::isPriorityVisible( RadarPriorityType priority ) const 
+bool Radar::isPriorityVisible( RadarPriorityType priority ) const 
 {
 
 	switch( priority )

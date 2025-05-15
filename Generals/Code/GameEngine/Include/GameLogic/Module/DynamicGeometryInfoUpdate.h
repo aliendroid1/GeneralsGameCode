@@ -53,7 +53,7 @@ public:
 
 	UnsignedInt m_transitionTime;
 
-	Bool m_reverseAtTransitionTime;		///< reverse directions once transition time is reached
+	bool m_reverseAtTransitionTime;		///< reverse directions once transition time is reached
 
 	// I will go from initial to final in transitionTime frames, smoothly.
 	// I won't change type until that is actually needed as a task.
@@ -86,13 +86,13 @@ protected:
 	UnsignedInt m_startingDelayCountdown;
 	UnsignedInt m_timeActive;
 
-	Bool m_started;
-	Bool m_finished;
+	bool m_started;
+	bool m_finished;
 
-	Bool m_reverseAtTransitionTime;						///< do a reverse at transition time
+	bool m_reverseAtTransitionTime;						///< do a reverse at transition time
 	enum DynamicGeometryDirection { FORWARD = 1, BACKWARD = -1 };
 	DynamicGeometryDirection m_direction;			///< direction we're growing/shrinking
-	Bool m_switchedDirections;								///< TRUE once we've switched directions
+	bool m_switchedDirections;								///< TRUE once we've switched directions
 
 	Real m_initialHeight;
 	Real m_initialMajorRadius;

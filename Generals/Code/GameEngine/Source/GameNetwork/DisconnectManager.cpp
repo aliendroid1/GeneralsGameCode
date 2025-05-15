@@ -433,7 +433,7 @@ void DisconnectManager::nextFrame(UnsignedInt frame, ConnectionManager *conMgr) 
 	resetPlayerTimeouts(conMgr);
 }
 
-void DisconnectManager::allCommandsReady(UnsignedInt frame, ConnectionManager *conMgr, Bool waitForPacketRouter) {
+void DisconnectManager::allCommandsReady(UnsignedInt frame, ConnectionManager *conMgr, bool waitForPacketRouter) {
 		if (m_disconnectState != DISCONNECTSTATETYPE_SCREENOFF) {
 			DEBUG_LOG(("DisconnectManager::allCommandsReady - setting screen state to off.\n"));
 
@@ -451,7 +451,7 @@ void DisconnectManager::allCommandsReady(UnsignedInt frame, ConnectionManager *c
 		}
 }
 
-Bool DisconnectManager::allowedToContinue() {
+bool DisconnectManager::allowedToContinue() {
 	if (m_disconnectState != DISCONNECTSTATETYPE_SCREENOFF) {
 		return FALSE;
 	}
@@ -643,8 +643,8 @@ void DisconnectManager::recalculatePacketRouterIndex(ConnectionManager *conMgr) 
 	DEBUG_ASSERTCRASH((m_currentPacketRouterIndex < MAX_SLOTS), ("Invalid packet router index"));
 }
 
-Bool DisconnectManager::allOnSameFrame(ConnectionManager *conMgr) {
-	Bool retval = TRUE;
+bool DisconnectManager::allOnSameFrame(ConnectionManager *conMgr) {
+	bool retval = TRUE;
 	for (Int i = 0; (i < MAX_SLOTS) && (retval == TRUE); ++i) {
 		Int transSlot = translatedSlotPosition(i, conMgr->getLocalPlayerID());
 		if (transSlot == -1) {
@@ -665,7 +665,7 @@ Bool DisconnectManager::allOnSameFrame(ConnectionManager *conMgr) {
 	return retval;
 }
 
-Bool DisconnectManager::isLocalPlayerNextPacketRouter(ConnectionManager *conMgr) {
+bool DisconnectManager::isLocalPlayerNextPacketRouter(ConnectionManager *conMgr) {
 	UnsignedInt localSlot = conMgr->getLocalPlayerID();
 	UnsignedInt packetRouterSlot = conMgr->getPacketRouterSlot();
 	Int transSlot = translatedSlotPosition(packetRouterSlot, localSlot);
@@ -689,7 +689,7 @@ Bool DisconnectManager::isLocalPlayerNextPacketRouter(ConnectionManager *conMgr)
 	return FALSE;
 }
 
-Bool DisconnectManager::hasPlayerTimedOut(Int slot) {
+bool DisconnectManager::hasPlayerTimedOut(Int slot) {
 	if (slot == -1) {
 		return FALSE;
 	}
@@ -725,7 +725,7 @@ void DisconnectManager::sendPlayerDestruct(Int slot, ConnectionManager *conMgr) 
 
 // the 'slot' variable is supposed to be a translated slot position. (translated slot meaning
 // that it is the player's position in the disconnect menu)
-Bool DisconnectManager::isPlayerVotedOut(Int slot, ConnectionManager *conMgr) {
+bool DisconnectManager::isPlayerVotedOut(Int slot, ConnectionManager *conMgr) {
 	if (slot == -1) {
 		// we can't vote out ourselves.
 		return FALSE;
@@ -748,7 +748,7 @@ UnsignedInt DisconnectManager::getMaxDisconnectFrame() {
 	return retval;
 }
 
-Bool DisconnectManager::isPlayerInGame(Int slot, ConnectionManager *conMgr) {
+bool DisconnectManager::isPlayerInGame(Int slot, ConnectionManager *conMgr) {
 	Int transSlot = untranslatedSlotPosition(slot, conMgr->getLocalPlayerID());
 	DEBUG_ASSERTCRASH((transSlot >= 0) && (transSlot < MAX_SLOTS), ("invalid slot number"));
 	if (((transSlot < 0) || (transSlot >= MAX_SLOTS)) || conMgr->isPlayerConnected(transSlot) == FALSE) {

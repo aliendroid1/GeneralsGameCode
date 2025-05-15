@@ -50,10 +50,10 @@ public:
 	};
 
 
-	Bool m_doIHealObjects;
+	bool m_doIHealObjects;
 	Real m_framesForFullHeal;
-	Bool m_mobileGarrison;
-	Bool m_immuneToClearBuildingAttacks;
+	bool m_mobileGarrison;
+	bool m_immuneToClearBuildingAttacks;
 	InitialRoster		m_initialRoster;
 
 	GarrisonContainModuleData( void );
@@ -105,13 +105,13 @@ public:
 
 	virtual UpdateSleepTime update( void );						///< called once per frame
 
-	virtual Bool isValidContainerFor( const Object* obj, Bool checkCapacity) const; // Garrison has an extra check forbidding any containment if ReallyDamaged
-	virtual Bool isGarrisonable() const { return true; }	///< can this unit be Garrisoned? (ick)
-	virtual Bool isImmuneToClearBuildingAttacks() const { return getGarrisonContainModuleData()->m_immuneToClearBuildingAttacks; }
-	virtual Bool isHealContain() const { return false; } ///< true when container only contains units while healing (not a transport!)
-	virtual Bool isPassengerAllowedToFire( void ) const;	///< Hey, can I shoot out of this container?
+	virtual bool isValidContainerFor( const Object* obj, bool checkCapacity) const; // Garrison has an extra check forbidding any containment if ReallyDamaged
+	virtual bool isGarrisonable() const { return true; }	///< can this unit be Garrisoned? (ick)
+	virtual bool isImmuneToClearBuildingAttacks() const { return getGarrisonContainModuleData()->m_immuneToClearBuildingAttacks; }
+	virtual bool isHealContain() const { return false; } ///< true when container only contains units while healing (not a transport!)
+	virtual bool isPassengerAllowedToFire( void ) const;	///< Hey, can I shoot out of this container?
 
-	virtual void removeAllContained( Bool exposeStealthUnits );	///< remove all contents of this open container
+	virtual void removeAllContained( bool exposeStealthUnits );	///< remove all contents of this open container
 
 	virtual void exitObjectViaDoor( Object *exitObj, ExitDoorType exitDoor );	///< exit one of our content items from us
 	virtual void exitObjectByBudding( Object *newObj, Object *budHost ) { return; };
@@ -130,7 +130,7 @@ public:
 	*/
 	virtual const Player* getApparentControllingPlayer( const Player* observingPlayer ) const;
 	virtual void recalcApparentControllingPlayer( void );
-	virtual Bool isDisplayedOnControlBar() const {return TRUE;}///< Does this container display its contents on the ControlBar?
+	virtual bool isDisplayedOnControlBar() const {return TRUE;}///< Does this container display its contents on the ControlBar?
 
 protected:
 
@@ -139,9 +139,9 @@ protected:
 
 	void validateRallyPoint( void );							///< validate (if necessary) and pick (if possible) an exit rally point
 
-	virtual Bool calcBestGarrisonPosition( Coord3D *sourcePos, const Coord3D *targetPos );
-	virtual Bool attemptBestFirePointPosition( Object *source, Weapon *weapon, Object *victim );
-	virtual Bool attemptBestFirePointPosition( Object *source, Weapon *weapon, const Coord3D *targetPos );
+	virtual bool calcBestGarrisonPosition( Coord3D *sourcePos, const Coord3D *targetPos );
+	virtual bool attemptBestFirePointPosition( Object *source, Weapon *weapon, Object *victim );
+	virtual bool attemptBestFirePointPosition( Object *source, Weapon *weapon, const Coord3D *targetPos );
 		
 	void updateEffects( void );										///< do any effects needed per frame
 	void loadGarrisonPoints( void );							///< load garrison point position data and save for later

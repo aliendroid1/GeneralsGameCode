@@ -51,7 +51,7 @@ public:
 	Real m_finalVision;										///< Then change to this
 	UnsignedInt m_changeInterval;			///< And update my Object every this long
 	UnsignedInt m_growInterval;				///< Update evey this long while growing
-	Bool m_doSpySatFX;										///< Do I do the pseudo-wireframe decal and blip effects?
+	bool m_doSpySatFX;										///< Do I do the pseudo-wireframe decal and blip effects?
 	RadiusDecalTemplate m_gridDecalTemplate;///< For the pseudo-wireframe decal effect
 
 
@@ -99,8 +99,8 @@ protected:
 
 	DSCRU_STATE m_state;
 
-//	Bool m_shrinkFinished;								///< Nothing left to do
-//	Bool m_shrinkStarted;									///< Working it
+//	bool m_shrinkFinished;								///< Nothing left to do
+//	bool m_shrinkStarted;									///< Working it
 
 
 //	UnsignedInt m_shrinkStartCountdown;		///< When I start to shrink
@@ -121,7 +121,7 @@ protected:
 
 
 
-	Bool m_decalsCreated;											///< Have I created the fx decals yet?
+	bool m_decalsCreated;											///< Have I created the fx decals yet?
 	Real m_visionChangePerInterval;						///< How much I change each time.
 	Real m_nativeClearingRange;										///< What is my objects native vision range?
 	Real m_currentClearingRange;							///<ToKeepTrackOfWhere We are at

@@ -309,7 +309,7 @@ void W3DTankDraw::doDrawModule(const Matrix3D* transformMtx)
 {
 	const Real DEBRIS_THRESHOLD = 0.00001f;
 
- 	Bool frozen = TheTacticalView->isTimeFrozen() && !TheTacticalView->isCameraMovementFinished();
+ 	bool frozen = TheTacticalView->isTimeFrozen() && !TheTacticalView->isCameraMovementFinished();
  	frozen = frozen || TheScriptEngine->isTimeFrozenDebug() || TheScriptEngine->isTimeFrozenScript();
 	if (frozen)
 		return;

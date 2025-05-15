@@ -37,7 +37,7 @@ void StopAsyncDNSCheck( void );
 void StartPatchCheck( void );
 void CancelPatchCheckCallback( void );
 void StartDownloadingPatches( void );
-void HandleCanceledDownload( Bool resetDropDown = TRUE );
+void HandleCanceledDownload( bool resetDropDown = TRUE );
 
 enum OverallStatsPeriod : Int
 {

@@ -52,11 +52,11 @@ struct SelectionInfo
 	Int newCountGarrisonableBuildings;
 	Int newCountCrates;
 
-	Bool selectEnemies;
-	Bool selectCivilians;
-	Bool selectMine;
-	Bool selectMineBuildings;
-	Bool selectFriends;
+	bool selectEnemies;
+	bool selectCivilians;
+	bool selectMine;
+	bool selectMineBuildings;
+	bool selectFriends;
 
 
 	SelectionInfo(); 
@@ -67,7 +67,7 @@ struct PickDrawableStruct
 {
 	// List to fill with Drawables. This should be provided by the caller.
 	DrawableList *drawableListToFill;
-	Bool forceAttackMode;
+	bool forceAttackMode;
 	
 	// Note, this is OR'd with the things we are attempting to select.
 	KindOfMaskType kindofsToMatch;
@@ -76,10 +76,10 @@ struct PickDrawableStruct
 };
 
 //-------------------------------------------------------------------------------------------------
-extern Bool contextCommandForNewSelection(const DrawableList *currentlySelectedDrawables, 
+extern bool contextCommandForNewSelection(const DrawableList *currentlySelectedDrawables, 
 																					const DrawableList *newlySelectedDrawables,
 																					SelectionInfo *outSelectionInfo,
-																					Bool selectionIsPoint);
+																					bool selectionIsPoint);
 
 
 //-------------------------------------------------------------------------------------------------
@@ -99,7 +99,7 @@ extern void translatePickTypesToKindof(UnsignedInt pickTypes, KindOfMaskType& ou
 // Given a drawable, add it to an stl list. Useful for iterateDrawablesInRegion.
 // userData should be a pointer to a PickDrawableStruct, which is defined in 
 // above.
-extern Bool addDrawableToList( Drawable *draw, void *userData );
+extern bool addDrawableToList( Drawable *draw, void *userData );
 
 
 #endif /* __SELECTIONINFO_H__ */

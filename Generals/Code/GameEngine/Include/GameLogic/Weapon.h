@@ -339,7 +339,7 @@ public:
 
 	void friend_setNextTemplate(WeaponTemplate *nextTemplate) { m_nextTemplate = nextTemplate; }
 	WeaponTemplate *friend_clearNextTemplate( void ) {	WeaponTemplate *ret = m_nextTemplate; m_nextTemplate = NULL; return ret; }
-	Bool isOverride( void ) { return m_nextTemplate != NULL; }
+	bool isOverride( void ) { return m_nextTemplate != NULL; }
 
 	/// field table for loading the values from an INI
 	inline const FieldParse *getFieldParse() const { return TheWeaponTemplateFieldParseTable; }
@@ -360,8 +360,8 @@ public:
 		const Object *victimObj, 
 		const Coord3D* victimPos, 
 		const WeaponBonus& bonus,
-		Bool isProjectileDetonation,
-		Bool ignoreRanges,
+		bool isProjectileDetonation,
+		bool ignoreRanges,
 		Weapon *firingWeapon,
 		ObjectID* projectileID
 	) const;
@@ -389,7 +389,7 @@ public:
 	Real getSecondaryDamage(const WeaponBonus& bonus) const;
 	Real getSecondaryDamageRadius(const WeaponBonus& bonus) const;
 	Int getPreAttackDelay(const WeaponBonus& bonus) const;
-	Bool isContactWeapon() const;
+	bool isContactWeapon() const;
 
 	inline Real getRequestAssistRange() const {return m_requestAssistRange;}
 	inline AsciiString getName() const { return m_name; }
@@ -398,7 +398,7 @@ public:
 	inline NameKeyType getNameKey() const { return m_nameKey; }
 	inline Real getWeaponSpeed() const { return m_weaponSpeed; }
 	inline Real getMinWeaponSpeed() const { return m_minWeaponSpeed; }
-	inline Bool isScaleWeaponSpeed() const { return m_isScaleWeaponSpeed; }
+	inline bool isScaleWeaponSpeed() const { return m_isScaleWeaponSpeed; }
 	inline Real getWeaponRecoilAmount() const { return m_weaponRecoil; }
 	inline Real getMinTargetPitch() const { return m_minTargetPitch; }
 	inline Real getMaxTargetPitch() const { return m_maxTargetPitch; }
@@ -410,12 +410,12 @@ public:
 	inline Real getScatterRadius() const { return m_scatterRadius; }
 	inline Real getScatterTargetScalar() const { return m_scatterTargetScalar; }
 	inline const ThingTemplate* getProjectileTemplate() const { return m_projectileTmpl; }
-	inline Bool getDamageDealtAtSelfPosition() const { return m_damageDealtAtSelfPosition; }
+	inline bool getDamageDealtAtSelfPosition() const { return m_damageDealtAtSelfPosition; }
 	inline Int getAffectsMask() const { return m_affectsMask; }
 	inline Int getProjectileCollideMask() const { return m_collideMask; }
 	inline WeaponReloadType getReloadType() const { return m_reloadType; }
 	inline WeaponPrefireType getPrefireType() const { return m_prefireType; }
-	inline Bool getAutoReloadsClip() const { return m_reloadType == AUTO_RELOAD; }
+	inline bool getAutoReloadsClip() const { return m_reloadType == AUTO_RELOAD; }
 	inline Int getClipSize() const { return m_clipSize; }
 	inline Int getContinuousFireOneShotsNeeded() const { return m_continuousFireOneShotsNeeded; }
 	inline Int getContinuousFireTwoShotsNeeded() const { return m_continuousFireTwoShotsNeeded; }
@@ -435,12 +435,12 @@ public:
 	inline const WeaponBonusSet* getExtraBonus() const { return m_extraBonus; }
 	inline Int getShotsPerBarrel() const { return m_shotsPerBarrel; }
 	inline Int getAntiMask() const { return m_antiMask; }
-	inline Bool isLeechRangeWeapon() const { return m_leechRangeWeapon; }
-	inline Bool isCapableOfFollowingWaypoint() const { return m_capableOfFollowingWaypoint; }
-	inline Bool isShowsAmmoPips() const { return m_isShowsAmmoPips; }
-	inline Bool isPlayFXWhenStealthed() const { return m_playFXWhenStealthed; }
+	inline bool isLeechRangeWeapon() const { return m_leechRangeWeapon; }
+	inline bool isCapableOfFollowingWaypoint() const { return m_capableOfFollowingWaypoint; }
+	inline bool isShowsAmmoPips() const { return m_isShowsAmmoPips; }
+	inline bool isPlayFXWhenStealthed() const { return m_playFXWhenStealthed; }
 
-	Bool shouldProjectileCollideWith(
+	bool shouldProjectileCollideWith(
 		const Object* projectileLauncher, 
 		const Object* projectile, 
 		const Object* thingWeCollidedWith,
@@ -452,7 +452,7 @@ public:
 protected:
 
 	// actually deal out the damage.
-	void dealDamageInternal(ObjectID sourceID, ObjectID victimID, const Coord3D *pos, const WeaponBonus& bonus, Bool isProjectileDetonation) const;
+	void dealDamageInternal(ObjectID sourceID, ObjectID victimID, const Coord3D *pos, const WeaponBonus& bonus, bool isProjectileDetonation) const;
 	void trimOldHistoricDamage() const;
 
 private:
@@ -485,7 +485,7 @@ private:
 	DeathType m_deathType;									///< death type enum
 	Real m_weaponSpeed;											///< speed of damage travel, in dist/frame
 	Real m_minWeaponSpeed;									///< speed of damage travel, in dist/frame
-	Bool m_isScaleWeaponSpeed;							///< Scale from min to normal based on range (for lobbers)
+	bool m_isScaleWeaponSpeed;							///< Scale from min to normal based on range (for lobbers)
 	Real m_weaponRecoil;										///< amt of recoil caused to firer, in rads
 	Real m_minTargetPitch;									///< min pitch from source->victim allowable in order to target
 	Real m_maxTargetPitch;									///< max pitch from source->victim allowable in order to target
@@ -513,18 +513,18 @@ private:
 	Int m_antiMask;													///< what we can target
 	Int m_affectsMask;											///< what we can affect
 	Int m_collideMask;											///< what we can collide with (projectiles only)
-	Bool m_damageDealtAtSelfPosition;				///< if T, weapon damage is done at source's position, not victim's pos. (useful for suicide weapons.)
+	bool m_damageDealtAtSelfPosition;				///< if T, weapon damage is done at source's position, not victim's pos. (useful for suicide weapons.)
 	WeaponReloadType m_reloadType;					///< does the weapon auto-reload a clip when empty?
 	WeaponPrefireType m_prefireType;				///< The way this weapon handles its prefire delay
 	UnsignedInt m_historicBonusTime;				///< if 'count' instances of this weapon do damage within 'time' and 'radius' from each other, fire the historic bonus weapon
 	Real m_historicBonusRadius;							///< see above
 	Int m_historicBonusCount;								///< see above
 	const WeaponTemplate* m_historicBonusWeapon;	///< see above
-	Bool m_leechRangeWeapon;								///< once the weapon has fired once at the proper range, the weapon gains unlimited range for the remainder of the attack cycle
-	Bool m_capableOfFollowingWaypoint;			///< determines if the weapon is capable of following a waypoint path.
-	Bool m_isShowsAmmoPips;									///< shows ammo pips
-	Bool m_allowAttackGarrisonedBldgs;			///< allow attacks on garrisoned bldgs, even if estimated damage would be zero
-	Bool m_playFXWhenStealthed;					///< Ignores rule about not playing FX when stealthed
+	bool m_leechRangeWeapon;								///< once the weapon has fired once at the proper range, the weapon gains unlimited range for the remainder of the attack cycle
+	bool m_capableOfFollowingWaypoint;			///< determines if the weapon is capable of following a waypoint path.
+	bool m_isShowsAmmoPips;									///< shows ammo pips
+	bool m_allowAttackGarrisonedBldgs;			///< allow attacks on garrisoned bldgs, even if estimated damage would be zero
+	bool m_playFXWhenStealthed;					///< Ignores rule about not playing FX when stealthed
 	Int m_preAttackDelay;										///< doesn't attack until preAttack delay is finish (triggering detonation, aiming a snipe shot, etc.)
 	Real m_continueAttackRange;							///< if nonzero: when you destroy something, look for a similar obj controlled by same player to attack (used mainly for mine-clearing)
 	Real m_infantryInaccuracyDist;					///< When this weapon is used against infantry, it can randomly miss by as much as this distance.
@@ -559,10 +559,10 @@ public:
 //~Weapon();
 
 	// return true if we auto-reloaded our clip after firing.
-	Bool fireWeapon(const Object *source, Object *target, ObjectID* projectileID = NULL);
+	bool fireWeapon(const Object *source, Object *target, ObjectID* projectileID = NULL);
 
 	// return true if we auto-reloaded our clip after firing.
-	Bool fireWeapon(const Object *source, const Coord3D* pos, ObjectID* projectileID = NULL);
+	bool fireWeapon(const Object *source, const Coord3D* pos, ObjectID* projectileID = NULL);
 
 	void fireProjectileDetonationWeapon(const Object *source, Object *target, WeaponBonusConditionFlags extraBonusFlags);
 
@@ -592,19 +592,19 @@ public:
 
 	/** return true if the target is within attack range, false otherwise.
 	*/
-	Bool isWithinAttackRange(const Object *source, const Object *target) const;
-	Bool isWithinAttackRange(const Object *source, const Coord3D* pos) const;
+	bool isWithinAttackRange(const Object *source, const Object *target) const;
+	bool isWithinAttackRange(const Object *source, const Coord3D* pos) const;
 
-	Bool isTooClose(const Object *source, const Object *target) const;
-	Bool isTooClose(const Object *source, const Coord3D *pos) const;
+	bool isTooClose(const Object *source, const Object *target) const;
+	bool isTooClose(const Object *source, const Coord3D *pos) const;
 
-	Bool isGoalPosWithinAttackRange(const Object *source, const Coord3D* goalPos, const Object *target, const Coord3D* targetPos) const;
+	bool isGoalPosWithinAttackRange(const Object *source, const Coord3D* goalPos, const Object *target, const Coord3D* targetPos) const;
 
 	//Used only by garrison contains that move objects around before doing the range check.
 	//If target object is specified, we'll use his position, but if it's NULL we will use the
 	//target position passed in.
 	//NOTE: This is not a user friendly function -- use with caution if at all! -- Kris
-	Bool isSourceObjectWithGoalPositionWithinAttackRange(const Object *source, const Coord3D *goalPos, const Object *target, const Coord3D *targetPos) const;
+	bool isSourceObjectWithGoalPositionWithinAttackRange(const Object *source, const Coord3D *goalPos, const Object *target, const Coord3D *targetPos) const;
 
 	/**
 		Compute a target position from which 'source' can target 'target'. Note that this doesn't
@@ -612,7 +612,7 @@ public:
 		target position is plausibly within attack range. returns TRUE if the source's current pos
 		is already close enough (in which case that current pos is stuffed into the return arg).
 	*/
-	Bool computeApproachTarget(const Object *source, const Object *target, const Coord3D *pos, Real angleOffset, Coord3D& approachTargetPos) const;
+	bool computeApproachTarget(const Object *source, const Object *target, const Coord3D *pos, Real angleOffset, Coord3D& approachTargetPos) const;
 
 	/**
 		note that "load" makes the ammo instantly available, while "reload" keeps the weapon in the RELOADING
@@ -644,7 +644,7 @@ public:
 
 	void newProjectileFired( const Object *sourceObj, const Object *projectile );///<I just made this projectile and may need to keep track of it 
 	
-	Bool isLaser() const { return m_template->getLaserName().isNotEmpty(); }
+	bool isLaser() const { return m_template->getLaserName().isNotEmpty(); }
 	void createLaser( const Object *sourceObj, const Object *victimObj, const Coord3D *victimPos );
 
 	inline const WeaponTemplate* getTemplate() const { return m_template; }
@@ -654,12 +654,12 @@ public:
 	// If we are "reloading", then m_ammoInClip is a lie.  It will say full.
 	inline UnsignedInt getRemainingAmmo() const { return (getStatus() == RELOADING_CLIP) ? 0 : m_ammoInClip; }
 	inline WeaponReloadType getReloadType() const { return m_template->getReloadType(); }
-	inline Bool getAutoReloadsClip() const { return m_template->getAutoReloadsClip(); }
+	inline bool getAutoReloadsClip() const { return m_template->getAutoReloadsClip(); }
 	inline Real getAimDelta() const { return m_template->getAimDelta(); }
 	inline Real getScatterRadius() const { return m_template->getScatterRadius(); }
 	inline Real getScatterTargetScalar() const { return m_template->getScatterTargetScalar(); }
 	inline Int getAntiMask() const { return m_template->getAntiMask(); }
-	inline Bool isCapableOfFollowingWaypoint() const { return m_template->isCapableOfFollowingWaypoint(); }
+	inline bool isCapableOfFollowingWaypoint() const { return m_template->isCapableOfFollowingWaypoint(); }
 	inline Int getContinuousFireOneShotsNeeded() const { return m_template->getContinuousFireOneShotsNeeded(); }
 	inline Int getContinuousFireTwoShotsNeeded() const { return m_template->getContinuousFireTwoShotsNeeded(); }
 	inline UnsignedInt getContinuousFireCoastFrames() const { return m_template->getContinuousFireCoastFrames(); }
@@ -669,10 +669,10 @@ public:
 	inline DamageType getDamageType() const { return m_template->getDamageType(); }
 	inline DeathType getDeathType() const { return m_template->getDeathType(); }
 	inline Real getContinueAttackRange() const { return m_template->getContinueAttackRange(); }
-	inline Bool isShowsAmmoPips() const { return m_template->isShowsAmmoPips(); }
+	inline bool isShowsAmmoPips() const { return m_template->isShowsAmmoPips(); }
 	inline Int getClipSize() const { return m_template->getClipSize(); }
 	// Contact weapons (like car bombs) need to basically collide with their target.
-	inline Bool isContactWeapon() const { return m_template->isContactWeapon(); }
+	inline bool isContactWeapon() const { return m_template->isContactWeapon(); }
 
 	UnsignedInt getClipReloadTime(const Object *source) const;
 
@@ -680,26 +680,26 @@ public:
 
 	Int getPreAttackDelay( const Object *source, const Object *victim ) const;
 
-	Bool isDamageWeapon() const;
+	bool isDamageWeapon() const;
 
-	Bool isPitchLimited() const { return m_pitchLimited; }
-	Bool isWithinTargetPitch(const Object *source, const Object *victim) const;
+	bool isPitchLimited() const { return m_pitchLimited; }
+	bool isWithinTargetPitch(const Object *source, const Object *victim) const;
 
 	//Leech range functionality simply means this weapon has unlimited range temporarily. How it works is if the 
 	//weapon template has the LeechRangeWeapon set, it means that once the unit has closed to standard weapon range
 	//it fires the weapon, and will be able to hit the target even if it moves out of range! The unit will simply
 	//stand there. This functionality is used by hack attacks.
-	void setLeechRangeActive( Bool active ) { m_leechWeaponRangeActive = active; }
-	Bool hasLeechRange() const { return m_leechWeaponRangeActive; }
+	void setLeechRangeActive( bool active ) { m_leechWeaponRangeActive = active; }
+	bool hasLeechRange() const { return m_leechWeaponRangeActive; }
 
 	void setMaxShotCount(Int maxShots) { m_maxShotCount = maxShots; }
 	Int getMaxShotCount() const { return m_maxShotCount; }
 
-	Bool isClearFiringLineOfSightTerrain(const Object* source, const Object* victim) const;
-	Bool isClearFiringLineOfSightTerrain(const Object* source, const Coord3D& victimPos) const;
+	bool isClearFiringLineOfSightTerrain(const Object* source, const Object* victim) const;
+	bool isClearFiringLineOfSightTerrain(const Object* source, const Coord3D& victimPos) const;
 
-	Bool isClearGoalFiringLineOfSightTerrain(const Object* source, const Coord3D& goalPos, const Object* victim) const;
-	Bool isClearGoalFiringLineOfSightTerrain(const Object* source, const Coord3D& goalPos, const Coord3D& victimPos) const;
+	bool isClearGoalFiringLineOfSightTerrain(const Object* source, const Coord3D& goalPos, const Object* victim) const;
+	bool isClearGoalFiringLineOfSightTerrain(const Object* source, const Coord3D& goalPos, const Coord3D& victimPos) const;
 
 	static void calcProjectileLaunchPosition(
 		const Object* launcher, 
@@ -721,7 +721,7 @@ public:
 		percentage full (note that percent=1.0 is full, NOT percent=100.0!). this will end up
 		with status as READY_TO_FIRE or OUT_OF_AMMO, but never RELOADING_CLIP!
 	*/
-	void setClipPercentFull(Real percent, Bool allowReduction);
+	void setClipPercentFull(Real percent, bool allowReduction);
 	UnsignedInt getSuspendFXFrame( void ) const { return m_suspendFXFrame; }
 
 protected:
@@ -729,17 +729,17 @@ protected:
 	Weapon(const WeaponTemplate* tmpl, WeaponSlotType wslot);
 
 	// return true if we auto-reloaded our clip after firing.
-	Bool privateFireWeapon(
+	bool privateFireWeapon(
 		const Object *sourceObj, 
 		Object *victimObj, 
 		const Coord3D* victimPos, 
-		Bool isProjectileDetonation, 
-		Bool ignoreRanges, 
+		bool isProjectileDetonation, 
+		bool ignoreRanges, 
 		WeaponBonusConditionFlags extraBonusFlags,
 		ObjectID* projectileID
 	);
 	Real estimateWeaponDamage(const Object *sourceObj, const Object *victimObj, const Coord3D* victimPos);
-	void reloadWithBonus(const Object *source, const WeaponBonus& bonus, Bool loadInstantly);
+	void reloadWithBonus(const Object *source, const WeaponBonus& bonus, bool loadInstantly);
 
 	void processRequestAssistance( const Object *requestingObject, Object *victimObject ); ///< Weapons can call for extra attacks from nearby objects
 

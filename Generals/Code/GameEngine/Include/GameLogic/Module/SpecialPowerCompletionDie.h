@@ -85,7 +85,7 @@ public:
 protected:
 
 	ObjectID m_creatorID;
-	Bool m_creatorSet;
+	bool m_creatorSet;
 
 };
 

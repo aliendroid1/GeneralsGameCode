@@ -124,8 +124,8 @@
 // PUBLIC FUNCTIONS ///////////////////////////////////////////////////////////
 //-----------------------------------------------------------------------------
 void positionStartSpots( GameInfo *myGame, GameWindow *buttonMapStartPositions[], GameWindow *mapWindow);
-void updateMapStartSpots( GameInfo *myGame, GameWindow *buttonMapStartPositions[], Bool onLoadScreen = FALSE );
-void positionAdditionalImages( MapMetaData *mmd, GameWindow *mapWindow, Bool force);
+void updateMapStartSpots( GameInfo *myGame, GameWindow *buttonMapStartPositions[], bool onLoadScreen = FALSE );
+void positionAdditionalImages( MapMetaData *mmd, GameWindow *mapWindow, bool force);
 
 enum{
 FRAME_FUDGE_ADD = 30,
@@ -282,7 +282,7 @@ void SinglePlayerLoadScreen::moveWindows( Int frame )
 
 }
 /*
-	static Bool on = FALSE;
+	static bool on = FALSE;
 	static ICoord2D startPos, endPos;
 	enum{
 		STATE_BEGIN = 275,
@@ -1103,7 +1103,7 @@ GameSlot *lSlot = game->getSlot(game->getLocalSlotNum());
 		DEBUG_LOG(("LoadScreen - populating info for %ls(%d) - stats returned id %d\n",
 			slot->getName().str(), slot->getProfileID(), stats.id));
 
-		Bool isPreorder = TheGameSpyInfo->didPlayerPreorder(stats.id);
+		bool isPreorder = TheGameSpyInfo->didPlayerPreorder(stats.id);
 		Int rankPoints = CalculateRank(stats);
 		Int favSide = GetFavoriteSide(stats);
 		const Image *preorderImg = TheMappedImageCollection->findImageByName("OfficersClubsmall");

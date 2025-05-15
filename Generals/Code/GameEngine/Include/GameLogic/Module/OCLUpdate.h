@@ -44,7 +44,7 @@ public:
 	const ObjectCreationList *m_ocl;
 	UnsignedInt m_minDelay;
 	UnsignedInt m_maxDelay;
-	Bool m_isCreateAtEdge; ///< Otherwise, it is created on top of myself
+	bool m_isCreateAtEdge; ///< Otherwise, it is created on top of myself
 
 	OCLUpdateModuleData();
 
@@ -77,7 +77,7 @@ protected:
 	UnsignedInt m_nextCreationFrame;
 	UnsignedInt m_timerStartedFrame;
 
-	Bool shouldCreate();
+	bool shouldCreate();
 	void setNextCreationFrame();
 
 };

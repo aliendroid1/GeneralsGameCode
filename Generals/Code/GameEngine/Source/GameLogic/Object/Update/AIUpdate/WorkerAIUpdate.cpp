@@ -143,7 +143,7 @@ WorkerAIUpdate::~WorkerAIUpdate( void )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool WorkerAIUpdate::isCurrentlyFerryingSupplies() const
+bool WorkerAIUpdate::isCurrentlyFerryingSupplies() const
 {
 	if (m_supplyTruckStateMachine)
 	{
@@ -162,7 +162,7 @@ Bool WorkerAIUpdate::isCurrentlyFerryingSupplies() const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool WorkerAIUpdate::isAvailableForSupplying() const 
+bool WorkerAIUpdate::isAvailableForSupplying() const 
 { 
 	return true;
 }
@@ -287,7 +287,7 @@ UpdateSleepTime WorkerAIUpdate::update( void )
 		{
 			ObjectID taskTarget = getTaskTarget( currentTask );
 			Object *targetObject = TheGameLogic->findObjectByID( taskTarget );
-			Bool invalidTask = FALSE;
+			bool invalidTask = FALSE;
 
 			// validate the task and the target
 			if( currentTask == DOZER_TASK_REPAIR &&
@@ -328,7 +328,7 @@ Object *WorkerAIUpdate::construct( const ThingTemplate *what,
 																	 const Coord3D *pos, 
 																	 Real angle, 
 																	 Player *owningPlayer,
-																	 Bool isRebuild )
+																	 bool isRebuild )
 {
 
 	// !!! NOTE: If you modify this you must modify the dozer too !!!
@@ -359,7 +359,7 @@ Object *WorkerAIUpdate::construct( const ThingTemplate *what,
 	{
 
 		// AI has weaker restriction on building
-		Bool dozerIsAI = owningPlayer->getPlayerType() == PLAYER_COMPUTER;
+		bool dozerIsAI = owningPlayer->getPlayerType() == PLAYER_COMPUTER;
 		if( dozerIsAI )
 		{
 
@@ -483,7 +483,7 @@ void WorkerAIUpdate::exitingSupplyTruckState()
 // ------------------------------------------------------------------------------------------------
 /** Given our current task and repair target, can we accept this as a new repair target */
 // ------------------------------------------------------------------------------------------------
-Bool WorkerAIUpdate::canAcceptNewRepair( Object *obj )
+bool WorkerAIUpdate::canAcceptNewRepair( Object *obj )
 {
 
 	// sanity
@@ -708,7 +708,7 @@ void WorkerAIUpdate::cancelTask( DozerTask task )
 //-------------------------------------------------------------------------------------------------
 /** Is there a given task waiting to be done */
 //-------------------------------------------------------------------------------------------------
-Bool WorkerAIUpdate::isTaskPending( DozerTask task )
+bool WorkerAIUpdate::isTaskPending( DozerTask task )
 {
 
 	// sanity
@@ -721,7 +721,7 @@ Bool WorkerAIUpdate::isTaskPending( DozerTask task )
 //-------------------------------------------------------------------------------------------------
 /** Is there any task pending */
 //-------------------------------------------------------------------------------------------------
-Bool WorkerAIUpdate::isAnyTaskPending( void )
+bool WorkerAIUpdate::isAnyTaskPending( void )
 {
 	
 	for( Int i = 0; i < DOZER_NUM_TASKS; i++ )
@@ -1050,7 +1050,7 @@ void WorkerAIUpdate::aiDoCommand(const AICommandParms* parms)
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool WorkerAIUpdate::loseOneBox()
+bool WorkerAIUpdate::loseOneBox()
 {
 	if( m_numberBoxes == 0 )
 		return FALSE;
@@ -1068,7 +1068,7 @@ Bool WorkerAIUpdate::loseOneBox()
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool WorkerAIUpdate::gainOneBox( Int remainingStock )
+bool WorkerAIUpdate::gainOneBox( Int remainingStock )
 {
 	if( getWorkerAIUpdateModuleData() && m_numberBoxes >= getWorkerAIUpdateModuleData()->m_maxBoxesData )
 		return FALSE;
@@ -1081,7 +1081,7 @@ Bool WorkerAIUpdate::gainOneBox( Int remainingStock )
 	{
 		Object* bestWarehouse = getObject()->getControllingPlayer()->getResourceGatheringManager()->findBestSupplyWarehouse( getObject() );
 		
-		Bool playDepleted = FALSE;
+		bool playDepleted = FALSE;
 		if ( bestWarehouse )
 		{
 			//figure out whether the best one is considerably far from the previous one (current position)
@@ -1112,7 +1112,7 @@ Bool WorkerAIUpdate::gainOneBox( Int remainingStock )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool WorkerAIUpdate::isSupplyTruckBrainActiveAndBusy()
+bool WorkerAIUpdate::isSupplyTruckBrainActiveAndBusy()
 {
 	return (m_workerMachine->getCurrentStateID() == AS_SUPPLY_TRUCK)
 				&& (m_supplyTruckStateMachine->getCurrentStateID() == ST_BUSY);
@@ -1232,7 +1232,7 @@ void WorkerStateMachine::loadPostProcess( void )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool WorkerStateMachine::supplyTruckSubMachineWantsToEnter( State *thisState, void* userData )
+bool WorkerStateMachine::supplyTruckSubMachineWantsToEnter( State *thisState, void* userData )
 {
 	Object *owner = thisState->getMachineOwner();
 	WorkerAIUpdate *update = (WorkerAIUpdate*)owner->getAIUpdateInterface();
@@ -1250,7 +1250,7 @@ Bool WorkerStateMachine::supplyTruckSubMachineWantsToEnter( State *thisState, vo
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool WorkerStateMachine::supplyTruckSubMachineReadyToLeave( State *thisState, void* userData )
+bool WorkerStateMachine::supplyTruckSubMachineReadyToLeave( State *thisState, void* userData )
 {
 	Object *owner = thisState->getMachineOwner();
 	WorkerAIUpdate *update = (WorkerAIUpdate*)owner->getAIUpdateInterface();

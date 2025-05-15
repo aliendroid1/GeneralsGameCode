@@ -75,8 +75,8 @@
 //#pragma optimize("", off)
 //#pragma MESSAGE("************************************** WARNING, optimization disabled for debugging purposes")
 #endif
-void refreshGameList( Bool forceRefresh = FALSE );
-void refreshPlayerList( Bool forceRefresh = FALSE );
+void refreshGameList( bool forceRefresh = FALSE );
+void refreshPlayerList( bool forceRefresh = FALSE );
 
 #ifdef DEBUG_LOGGING
 #define PERF_TEST
@@ -87,10 +87,10 @@ static LogClass s_perfLog("Perf.txt");
 #endif // DEBUG_LOGGING
 
 // PRIVATE DATA ///////////////////////////////////////////////////////////////////////////////////
-static Bool isShuttingDown = false;
-static Bool buttonPushed = false;
+static bool isShuttingDown = false;
+static bool buttonPushed = false;
 static const char *nextScreen = NULL;
-static Bool raiseMessageBoxes = false;
+static bool raiseMessageBoxes = false;
 static time_t gameListRefreshTime = 0;
 static const time_t gameListRefreshInterval = 10000;
 static time_t playerListRefreshTime = 0;
@@ -98,7 +98,7 @@ static const time_t playerListRefreshInterval = 5000;
 
 void setUnignoreText( WindowLayout *layout, AsciiString nick, GPProfile id);
 static void doSliderTrack(GameWindow *control, Int val);
-Bool DontShowMainMenu = FALSE;
+bool DontShowMainMenu = FALSE;
 enum { COLUMN_PLAYERNAME = 2 };
 
 // window ids ------------------------------------------------------------------------------
@@ -131,11 +131,11 @@ static GameWindow *parent = NULL;
 
 static Int groupRoomToJoin = 0;
 static Int	initialGadgetDelay = 2;
-static Bool justEntered = FALSE;
+static bool justEntered = FALSE;
 
 #if defined(RTS_INTERNAL) || defined(RTS_DEBUG)
-Bool g_fakeCRC = FALSE;
-Bool g_debugSlots = FALSE;
+bool g_fakeCRC = FALSE;
+bool g_debugSlots = FALSE;
 #endif
 
 std::list<PeerResponse> TheLobbyQueuedUTMs;
@@ -146,7 +146,7 @@ int getQR2HostingStatus(void);
 }
 extern int isThreadHosting;
 
-Bool handleLobbySlashCommands(UnicodeString uText)
+bool handleLobbySlashCommands(UnicodeString uText)
 {
 	AsciiString message;
 	message.translate(uText);
@@ -220,7 +220,7 @@ Bool handleLobbySlashCommands(UnicodeString uText)
 	return FALSE; // not a slash command
 }
 
-static Bool s_tryingToHostOrJoin = FALSE;
+static bool s_tryingToHostOrJoin = FALSE;
 void SetLobbyAttemptHostJoin(Bool start)
 {
 	s_tryingToHostOrJoin = start;
@@ -250,7 +250,7 @@ static void playerTooltip(GameWindow *window,
 
 	PlayerInfoMap::iterator it = TheGameSpyInfo->getPlayerInfoMap()->find(aName);
 	PlayerInfo *info = &(it->second);
-	Bool isLocalPlayer = (TheGameSpyInfo->getLocalName().compareNoCase(info->m_name) == 0);
+	bool isLocalPlayer = (TheGameSpyInfo->getLocalName().compareNoCase(info->m_name) == 0);
 
 	if (col == 0)
 	{
@@ -452,7 +452,7 @@ static Int insertPlayerInListbox(const PlayerInfo& info, Color color)
 	}
 	*/
 
-	Bool isPreorder = TheGameSpyInfo->didPlayerPreorder(info.m_profileID);
+	bool isPreorder = TheGameSpyInfo->didPlayerPreorder(info.m_profileID);
 
 	const Image *preorderImg = TheMappedImageCollection->findImageByName("OfficersClubsmall");
 	Int w = (preorderImg)?preorderImg->getImageWidth():10;
@@ -765,7 +765,7 @@ void WOLLobbyMenuShutdown( WindowLayout *layout, void *userData )
 	isShuttingDown = true;
 
 	// if we are shutting down for an immediate pop, skip the animations
-	Bool popImmediate = *(Bool *)userData;
+	bool popImmediate = *(Bool *)userData;
 	if( popImmediate )
 	{
 
@@ -845,9 +845,9 @@ static const char* getMessageString(Int t)
 
 //-------------------------------------------------------------------------------------------------
 /** refreshGameList 
-		The Bool is used to force refresh if the refresh button was hit.*/
+		The bool is used to force refresh if the refresh button was hit.*/
 //-------------------------------------------------------------------------------------------------
-static void refreshGameList( Bool forceRefresh )
+static void refreshGameList( bool forceRefresh )
 {
 	Int refreshInterval = gameListRefreshInterval;
 
@@ -868,9 +868,9 @@ static void refreshGameList( Bool forceRefresh )
 }
 //-------------------------------------------------------------------------------------------------
 /** refreshPlayerList 
-		The Bool is used to force refresh if the refresh button was hit.*/
+		The bool is used to force refresh if the refresh button was hit.*/
 //-------------------------------------------------------------------------------------------------
-static void refreshPlayerList( Bool forceRefresh )
+static void refreshPlayerList( bool forceRefresh )
 {
 		Int refreshInterval = playerListRefreshInterval;
 
@@ -926,8 +926,8 @@ void WOLLobbyMenuUpdate( WindowLayout * layout, void *userData)
 #endif // PERF_TEST
 
 		Int allowedMessages = TheGameSpyInfo->getMaxMessagesPerUpdate();
-		Bool sawImportantMessage = FALSE;
-		Bool shouldRepopulatePlayers = FALSE;
+		bool sawImportantMessage = FALSE;
+		bool shouldRepopulatePlayers = FALSE;
 		PeerResponse resp;
 		while (allowedMessages-- && !sawImportantMessage && TheGameSpyPeerMessageQueue->getResponse( resp ))
 		{
@@ -1049,7 +1049,7 @@ void WOLLobbyMenuUpdate( WindowLayout * layout, void *userData)
 				{
 					sawImportantMessage = TRUE;
 					SetLobbyAttemptHostJoin(FALSE);
-					Bool isHostPresent = TRUE;
+					bool isHostPresent = TRUE;
 					if (resp.joinStagingRoom.ok == PEERTrue)
 					{
 						GameSpyStagingRoom *room = TheGameSpyInfo->getCurrentStagingRoom();
@@ -1145,13 +1145,13 @@ void WOLLobbyMenuUpdate( WindowLayout * layout, void *userData)
 
 						//if (ParseAsciiStringToGameInfo(&room, resp.stagingRoomMapName.c_str()))
 						//if (ParseAsciiStringToGameInfo(&room, resp.stagingServerGameOptions.c_str()))
-						Bool serverOk = TRUE;
+						bool serverOk = TRUE;
 						if (!resp.stagingRoomMapName.length())
 						{
 							serverOk = FALSE;
 						}
 						// fix for ghost game problem - need to iterate over all resp.stagingRoomPlayerNames[i]
-						Bool sawSelf = FALSE;
+						bool sawSelf = FALSE;
 						//for (Int i=0; i<MAX_SLOTS; ++i)
 						//{
 							if (TheGameSpyInfo->getLocalName() == resp.stagingRoomPlayerNames[0].c_str())
@@ -1568,7 +1568,7 @@ WindowMsgHandledType WOLLobbyMenuSystem( GameWindow *window, UnsignedInt msg,
 									break;
 #endif
 								}
-								Bool unknownLadder = (roomToJoin->getLadderPort() && TheLadderList->findLadder(roomToJoin->getLadderIP(), roomToJoin->getLadderPort()) == NULL);
+								bool unknownLadder = (roomToJoin->getLadderPort() && TheLadderList->findLadder(roomToJoin->getLadderIP(), roomToJoin->getLadderPort()) == NULL);
 								if (unknownLadder)
 								{
 									GSMessageBoxOk(TheGameText->fetch("GUI:JoinFailedDefault"), TheGameText->fetch("GUI:JoinFailedUnknownLadder"));
@@ -1721,7 +1721,7 @@ WindowMsgHandledType WOLLobbyMenuSystem( GameWindow *window, UnsignedInt msg,
 					if (it != TheGameSpyInfo->getPlayerInfoMap()->end())
 						profileID = it->second.m_profileID;
 
-					Bool isBuddy = FALSE;
+					bool isBuddy = FALSE;
 					if (profileID <= 0)
 						rcLayout = TheWindowManager->winCreateLayout(AsciiString("Menus/RCNoProfileMenu.wnd"));	
 					else

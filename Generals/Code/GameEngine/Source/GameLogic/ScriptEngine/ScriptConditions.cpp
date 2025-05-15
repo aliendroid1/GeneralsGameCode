@@ -225,7 +225,7 @@ void ScriptConditions::objectTypesFromParam(Parameter *pTypeParm, ObjectTypes *o
 //-------------------------------------------------------------------------------------------------
 /** evaluateAllDestroyed */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateAllDestroyed(Parameter *pSideParm )
+bool ScriptConditions::evaluateAllDestroyed(Parameter *pSideParm )
 {
 	Player *pPlayer = playerFromParam(pSideParm);
 	if (pPlayer) {
@@ -237,7 +237,7 @@ Bool ScriptConditions::evaluateAllDestroyed(Parameter *pSideParm )
 //-------------------------------------------------------------------------------------------------
 /** evaluateAllBuildFacilitiesDestroyed */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateAllBuildFacilitiesDestroyed(Parameter *pSideParm )
+bool ScriptConditions::evaluateAllBuildFacilitiesDestroyed(Parameter *pSideParm )
 {
 	Player *pPlayer = playerFromParam(pSideParm);
 	if (pPlayer) {
@@ -249,7 +249,7 @@ Bool ScriptConditions::evaluateAllBuildFacilitiesDestroyed(Parameter *pSideParm 
 //-------------------------------------------------------------------------------------------------
 /** evaluateIsDestroyed */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateIsDestroyed(Parameter *pTeamParm)
+bool ScriptConditions::evaluateIsDestroyed(Parameter *pTeamParm)
 {
 	Team *theTeam = TheScriptEngine->getTeamNamed( pTeamParm->getString() );
 	// The team is the team based on the name, and the calling team (if any) and the team that
@@ -263,7 +263,7 @@ Bool ScriptConditions::evaluateIsDestroyed(Parameter *pTeamParm)
 //-------------------------------------------------------------------------------------------------
 /** evaluateBridgeBroken */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateBridgeBroken(Parameter *pBridgeParm)
+bool ScriptConditions::evaluateBridgeBroken(Parameter *pBridgeParm)
 {
 	if (!TheTerrainLogic->anyBridgesDamageStatesChanged()) {
 		// Don't bother checking if no bridges changed damage states.
@@ -279,7 +279,7 @@ Bool ScriptConditions::evaluateBridgeBroken(Parameter *pBridgeParm)
 //-------------------------------------------------------------------------------------------------
 /** evaluateBridgeRepaired */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateBridgeRepaired(Parameter *pBridgeParm)
+bool ScriptConditions::evaluateBridgeRepaired(Parameter *pBridgeParm)
 {
 	if (!TheTerrainLogic->anyBridgesDamageStatesChanged()) {
 		// Don't bother checking if no bridges changed damage states.
@@ -295,7 +295,7 @@ Bool ScriptConditions::evaluateBridgeRepaired(Parameter *pBridgeParm)
 //-------------------------------------------------------------------------------------------------
 /** evaluateNamedUnitDestroyed */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateNamedUnitDestroyed(Parameter *pUnitParm)
+bool ScriptConditions::evaluateNamedUnitDestroyed(Parameter *pUnitParm)
 {
 	Object *theUnit = TheScriptEngine->getUnitNamed( pUnitParm->getString() );
 	if (theUnit) 
@@ -312,7 +312,7 @@ Bool ScriptConditions::evaluateNamedUnitDestroyed(Parameter *pUnitParm)
 //-------------------------------------------------------------------------------------------------
 /** evaluateNamedUnitExists */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateNamedUnitExists(Parameter *pUnitParm)
+bool ScriptConditions::evaluateNamedUnitExists(Parameter *pUnitParm)
 {
 	Object *theUnit = TheScriptEngine->getUnitNamed( pUnitParm->getString() );
 	if (theUnit) 
@@ -326,7 +326,7 @@ Bool ScriptConditions::evaluateNamedUnitExists(Parameter *pUnitParm)
 //-------------------------------------------------------------------------------------------------
 /** evaluateNamedUnitDying */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateNamedUnitDying(Parameter *pUnitParm)
+bool ScriptConditions::evaluateNamedUnitDying(Parameter *pUnitParm)
 {
 	Object *theUnit = TheScriptEngine->getUnitNamed( pUnitParm->getString() );
 	if (theUnit) 
@@ -344,7 +344,7 @@ Bool ScriptConditions::evaluateNamedUnitDying(Parameter *pUnitParm)
 //-------------------------------------------------------------------------------------------------
 /** evaluateNamedUnitTotallyDead */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateNamedUnitTotallyDead(Parameter *pUnitParm)
+bool ScriptConditions::evaluateNamedUnitTotallyDead(Parameter *pUnitParm)
 {
 	Object *theUnit = TheScriptEngine->getUnitNamed( pUnitParm->getString() );
 	if (theUnit) {
@@ -361,7 +361,7 @@ Bool ScriptConditions::evaluateNamedUnitTotallyDead(Parameter *pUnitParm)
 //-------------------------------------------------------------------------------------------------
 /** evaluateHasUnits */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateHasUnits(Parameter *pTeamParm)
+bool ScriptConditions::evaluateHasUnits(Parameter *pTeamParm)
 {
 	AsciiString desiredTeamName = pTeamParm->getString();
 	// If they are calling a <this team> condition, do it.
@@ -399,7 +399,7 @@ Bool ScriptConditions::evaluateHasUnits(Parameter *pTeamParm)
 //-------------------------------------------------------------------------------------------------
 /** evaluateUnitsEntered */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateTeamInsideAreaPartially(Parameter *pTeamParm, Parameter *pTriggerAreaParm, Parameter *pTypeParm)
+bool ScriptConditions::evaluateTeamInsideAreaPartially(Parameter *pTeamParm, Parameter *pTriggerAreaParm, Parameter *pTypeParm)
 {
 	Team *theTeam = TheScriptEngine->getTeamNamed( pTeamParm->getString() );
 	// The team is the team based on the name, and the calling team (if any) and the team that
@@ -418,7 +418,7 @@ Bool ScriptConditions::evaluateTeamInsideAreaPartially(Parameter *pTeamParm, Par
 //-------------------------------------------------------------------------------------------------
 /** evaluateNamedInsideArea */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateNamedInsideArea(Parameter *pUnitParm, Parameter *pTriggerAreaParm )
+bool ScriptConditions::evaluateNamedInsideArea(Parameter *pUnitParm, Parameter *pTriggerAreaParm )
 {
 	Object *theObj = TheScriptEngine->getUnitNamed( pUnitParm->getString() );
 
@@ -441,7 +441,7 @@ Bool ScriptConditions::evaluateNamedInsideArea(Parameter *pUnitParm, Parameter *
 //-------------------------------------------------------------------------------------------------
 /** evaluatePlayerHasUnitTypeInArea */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluatePlayerHasUnitTypeInArea(Condition *pCondition, Parameter *pPlayerParm, Parameter *pComparisonParm, Parameter *pCountParm, Parameter *pTypeParm, Parameter *pTriggerParm )
+bool ScriptConditions::evaluatePlayerHasUnitTypeInArea(Condition *pCondition, Parameter *pPlayerParm, Parameter *pComparisonParm, Parameter *pCountParm, Parameter *pTypeParm, Parameter *pTriggerParm )
 {
 	AsciiString triggerName = pTriggerParm->getString();
 	PolygonTrigger *pTrig = TheScriptEngine->getQualifiedTriggerAreaByName(pTriggerParm->getString());
@@ -452,7 +452,7 @@ Bool ScriptConditions::evaluatePlayerHasUnitTypeInArea(Condition *pCondition, Pa
 		return false;
 	}
 	Player::PlayerTeamList::const_iterator it;
-	Bool anyChanges = false;
+	bool anyChanges = false;
 
 
 	if (pCondition->getCustomData() == 0) anyChanges = true;
@@ -513,7 +513,7 @@ Bool ScriptConditions::evaluatePlayerHasUnitTypeInArea(Condition *pCondition, Pa
 		}
 	}
 	
-	Bool comparison = false;
+	bool comparison = false;
 	switch (pComparisonParm->getInt())
 	{
 		case Parameter::LESS_THAN :			comparison = (count < pCountParm->getInt()); break;
@@ -533,7 +533,7 @@ Bool ScriptConditions::evaluatePlayerHasUnitTypeInArea(Condition *pCondition, Pa
 //-------------------------------------------------------------------------------------------------
 /** evaluatePlayerHasUnitKindInArea */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluatePlayerHasUnitKindInArea(Condition *pCondition, Parameter *pPlayerParm, Parameter *pComparisonParm, Parameter *pCountParm, Parameter *pKindParm, Parameter *pTriggerParm )
+bool ScriptConditions::evaluatePlayerHasUnitKindInArea(Condition *pCondition, Parameter *pPlayerParm, Parameter *pComparisonParm, Parameter *pCountParm, Parameter *pKindParm, Parameter *pTriggerParm )
 {
 	AsciiString triggerName = pTriggerParm->getString();
 	PolygonTrigger *pTrig = TheScriptEngine->getQualifiedTriggerAreaByName(pTriggerParm->getString());
@@ -547,7 +547,7 @@ Bool ScriptConditions::evaluatePlayerHasUnitKindInArea(Condition *pCondition, Pa
 	}
 
 	Player::PlayerTeamList::const_iterator it;
-	Bool anyChanges = false;
+	bool anyChanges = false;
 	if (pCondition->getCustomData() == 0) anyChanges = true;
 
 
@@ -597,7 +597,7 @@ Bool ScriptConditions::evaluatePlayerHasUnitKindInArea(Condition *pCondition, Pa
 		}
 	}
 	
-	Bool comparison = false;
+	bool comparison = false;
 	switch (pComparisonParm->getInt())
 	{
 		case Parameter::LESS_THAN :			comparison = (count < pCountParm->getInt()); break;
@@ -614,7 +614,7 @@ Bool ScriptConditions::evaluatePlayerHasUnitKindInArea(Condition *pCondition, Pa
 //-------------------------------------------------------------------------------------------------
 /** evaluateTeamStateIs */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateTeamStateIs(Parameter *pTeamParm, Parameter *pStateParm )
+bool ScriptConditions::evaluateTeamStateIs(Parameter *pTeamParm, Parameter *pStateParm )
 {
 	Team *theTeam = TheScriptEngine->getTeamNamed( pTeamParm->getString() );
 	// The team is the team based on the name, and the calling team (if any) and the team that
@@ -630,7 +630,7 @@ Bool ScriptConditions::evaluateTeamStateIs(Parameter *pTeamParm, Parameter *pSta
 //-------------------------------------------------------------------------------------------------
 /** evaluateTeamStateIsNot */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateTeamStateIsNot(Parameter *pTeamParm, Parameter *pStateParm )
+bool ScriptConditions::evaluateTeamStateIsNot(Parameter *pTeamParm, Parameter *pStateParm )
 {
 	Team *theTeam = TheScriptEngine->getTeamNamed( pTeamParm->getString() );
 	// The team is the team based on the name, and the calling team (if any) and the team that
@@ -645,7 +645,7 @@ Bool ScriptConditions::evaluateTeamStateIsNot(Parameter *pTeamParm, Parameter *p
 //-------------------------------------------------------------------------------------------------
 /** evaluateNamedOutsideArea */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateNamedOutsideArea(Parameter *pUnitParm, Parameter *pTriggerParm)
+bool ScriptConditions::evaluateNamedOutsideArea(Parameter *pUnitParm, Parameter *pTriggerParm)
 {// This is actually NamedUnitInside(...)
 
 	return !evaluateNamedInsideArea(pUnitParm, pTriggerParm);
@@ -654,7 +654,7 @@ Bool ScriptConditions::evaluateNamedOutsideArea(Parameter *pUnitParm, Parameter 
 //-------------------------------------------------------------------------------------------------
 /** evaluateTeamInsideAreaEntirely */ 
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateTeamInsideAreaEntirely(Parameter *pTeamParm, Parameter *pTriggerParm, Parameter *pTypeParm)
+bool ScriptConditions::evaluateTeamInsideAreaEntirely(Parameter *pTeamParm, Parameter *pTriggerParm, Parameter *pTypeParm)
 {// This is actually TeamInside(...)
 	Team *theTeam = TheScriptEngine->getTeamNamed( pTeamParm->getString() );
 	// The team is the team based on the name, and the calling team (if any) and the team that
@@ -674,7 +674,7 @@ Bool ScriptConditions::evaluateTeamInsideAreaEntirely(Parameter *pTeamParm, Para
 //-------------------------------------------------------------------------------------------------
 /** evaluateTeamOutsideAreaEntirely */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateTeamOutsideAreaEntirely(Parameter *pTeamParm, Parameter *pTriggerParm, Parameter *pTypeParm)
+bool ScriptConditions::evaluateTeamOutsideAreaEntirely(Parameter *pTeamParm, Parameter *pTriggerParm, Parameter *pTypeParm)
 {
 	return !(evaluateTeamInsideAreaEntirely(pTeamParm, pTriggerParm, pTypeParm) ||
 					 evaluateTeamInsideAreaPartially(pTeamParm, pTriggerParm, pTypeParm));
@@ -683,7 +683,7 @@ Bool ScriptConditions::evaluateTeamOutsideAreaEntirely(Parameter *pTeamParm, Par
 //-------------------------------------------------------------------------------------------------
 /** evaluateNamedAttackedByType */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateNamedAttackedByType(Parameter *pUnitParm, Parameter *pTypeParm)
+bool ScriptConditions::evaluateNamedAttackedByType(Parameter *pUnitParm, Parameter *pTypeParm)
 {
 	Object *theObj = TheScriptEngine->getUnitNamed( pUnitParm->getString() );
 	if (!theObj) {
@@ -716,7 +716,7 @@ Bool ScriptConditions::evaluateNamedAttackedByType(Parameter *pUnitParm, Paramet
 //-------------------------------------------------------------------------------------------------
 /** evaluateTeamAttackedByType */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateTeamAttackedByType(Parameter *pTeamParm, Parameter *pTypeParm)
+bool ScriptConditions::evaluateTeamAttackedByType(Parameter *pTeamParm, Parameter *pTypeParm)
 {
 	Team *theTeam = TheScriptEngine->getTeamNamed(pTeamParm->getString());
 	if (!theTeam) {
@@ -760,7 +760,7 @@ Bool ScriptConditions::evaluateTeamAttackedByType(Parameter *pTeamParm, Paramete
 //-------------------------------------------------------------------------------------------------
 /** evaluateNamedAttackedByPlayer */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateNamedAttackedByPlayer(Parameter *pUnitParm, Parameter *pPlayerParm)
+bool ScriptConditions::evaluateNamedAttackedByPlayer(Parameter *pUnitParm, Parameter *pPlayerParm)
 {
 	Object *theObj = TheScriptEngine->getUnitNamed( pUnitParm->getString() );
 	if (!theObj) {
@@ -798,7 +798,7 @@ Bool ScriptConditions::evaluateNamedAttackedByPlayer(Parameter *pUnitParm, Param
 //-------------------------------------------------------------------------------------------------
 /** evaluateTeamAttackedByPlayer */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateTeamAttackedByPlayer(Parameter *pTeamParm, Parameter *pPlayerParm)
+bool ScriptConditions::evaluateTeamAttackedByPlayer(Parameter *pTeamParm, Parameter *pPlayerParm)
 {
 	Team *theTeam = TheScriptEngine->getTeamNamed(pTeamParm->getString());
 	if (!theTeam) {
@@ -838,7 +838,7 @@ Bool ScriptConditions::evaluateTeamAttackedByPlayer(Parameter *pTeamParm, Parame
 //-------------------------------------------------------------------------------------------------
 /** evaluateBuiltByPlayer */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateBuiltByPlayer(Condition *pCondition, Parameter* pTypeParm, Parameter* pPlayerParm)
+bool ScriptConditions::evaluateBuiltByPlayer(Condition *pCondition, Parameter* pTypeParm, Parameter* pPlayerParm)
 {
 	if (pCondition->getCustomData()!=0) {
 		// We have a cached value.
@@ -882,7 +882,7 @@ Bool ScriptConditions::evaluateBuiltByPlayer(Condition *pCondition, Parameter* p
 //-------------------------------------------------------------------------------------------------
 /** evaluateNamedCreated */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateNamedCreated(Parameter* pUnitParm)
+bool ScriptConditions::evaluateNamedCreated(Parameter* pUnitParm)
 {
 	// This is actually evaluateNamedExists(...)
 	///@todo - evaluate created, not exists...
@@ -892,7 +892,7 @@ Bool ScriptConditions::evaluateNamedCreated(Parameter* pUnitParm)
 //-------------------------------------------------------------------------------------------------
 /** evaluateTeamCreated */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateTeamCreated(Parameter* pTeamParm)
+bool ScriptConditions::evaluateTeamCreated(Parameter* pTeamParm)
 {
 	Team *pTeam = TheScriptEngine->getTeamNamed(pTeamParm->getString());
 	if (pTeam) {
@@ -904,7 +904,7 @@ Bool ScriptConditions::evaluateTeamCreated(Parameter* pTeamParm)
 //-------------------------------------------------------------------------------------------------
 /** evaluateUnitHealth */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateUnitHealth(Parameter *pUnitParm, Parameter* pComparisonParm, Parameter *pHealthPercent)
+bool ScriptConditions::evaluateUnitHealth(Parameter *pUnitParm, Parameter* pComparisonParm, Parameter *pHealthPercent)
 {
 	Object *theObj = TheScriptEngine->getUnitNamed( pUnitParm->getString() );
 	if (!theObj) {
@@ -932,7 +932,7 @@ Bool ScriptConditions::evaluateUnitHealth(Parameter *pUnitParm, Parameter* pComp
 //-------------------------------------------------------------------------------------------------
 /** evaluatePlayerHasCredits */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluatePlayerHasCredits(Parameter *pCreditsParm, Parameter* pComparisonParm, Parameter *pPlayerParm)
+bool ScriptConditions::evaluatePlayerHasCredits(Parameter *pCreditsParm, Parameter* pComparisonParm, Parameter *pPlayerParm)
 {
 	Player* pPlayer = playerFromParam(pPlayerParm);
 	if (!pPlayer) {
@@ -957,7 +957,7 @@ Bool ScriptConditions::evaluatePlayerHasCredits(Parameter *pCreditsParm, Paramet
 //-------------------------------------------------------------------------------------------------
 /** evaluateBuildingEntered */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateBuildingEntered( Parameter *pPlayerParm, Parameter *pItemParm )
+bool ScriptConditions::evaluateBuildingEntered( Parameter *pPlayerParm, Parameter *pItemParm )
 {
 	Object *theObj = TheScriptEngine->getUnitNamed( pItemParm->getString() );
 	if (!theObj) {
@@ -988,7 +988,7 @@ Bool ScriptConditions::evaluateBuildingEntered( Parameter *pPlayerParm, Paramete
 //-------------------------------------------------------------------------------------------------
 /** evaluateIsBuildingEmpty */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateIsBuildingEmpty( Parameter *pItemParm )
+bool ScriptConditions::evaluateIsBuildingEmpty( Parameter *pItemParm )
 {
 
 	Object *theBuilding = TheScriptEngine->getUnitNamed(pItemParm->getString());
@@ -1009,7 +1009,7 @@ Bool ScriptConditions::evaluateIsBuildingEmpty( Parameter *pItemParm )
 //-------------------------------------------------------------------------------------------------
 /** evaluateEnemySighted */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateEnemySighted(Parameter *pItemParm, Parameter *pAllianceParm, Parameter* pPlayerParm)
+bool ScriptConditions::evaluateEnemySighted(Parameter *pItemParm, Parameter *pAllianceParm, Parameter* pPlayerParm)
 {
 
 	Object *theObj = TheScriptEngine->getUnitNamed( pItemParm->getString() );
@@ -1066,7 +1066,7 @@ Bool ScriptConditions::evaluateEnemySighted(Parameter *pItemParm, Parameter *pAl
 //-------------------------------------------------------------------------------------------------
 /** evaluateTypeSighted */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateTypeSighted(Parameter *pItemParm, Parameter *pTypeParm, Parameter* pPlayerParm)
+bool ScriptConditions::evaluateTypeSighted(Parameter *pItemParm, Parameter *pTypeParm, Parameter* pPlayerParm)
 {
 
 	Object *theObj = TheScriptEngine->getUnitNamed( pItemParm->getString() );
@@ -1112,7 +1112,7 @@ Bool ScriptConditions::evaluateTypeSighted(Parameter *pItemParm, Parameter *pTyp
 //-------------------------------------------------------------------------------------------------
 /** evaluateNamedDiscovered */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateNamedDiscovered(Parameter *pItemParm, Parameter* pPlayerParm)
+bool ScriptConditions::evaluateNamedDiscovered(Parameter *pItemParm, Parameter* pPlayerParm)
 {
 	Object *theObj = TheScriptEngine->getUnitNamed( pItemParm->getString() );
 	if (!theObj) {
@@ -1143,7 +1143,7 @@ Bool ScriptConditions::evaluateNamedDiscovered(Parameter *pItemParm, Parameter* 
 //-------------------------------------------------------------------------------------------------
 /** evaluateTeamDiscovered */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateTeamDiscovered(Parameter *pTeamParm, Parameter *pPlayerParm)
+bool ScriptConditions::evaluateTeamDiscovered(Parameter *pTeamParm, Parameter *pPlayerParm)
 {	
 	Team *theTeam = TheScriptEngine->getTeamNamed( pTeamParm->getString() );
 	if (!theTeam) {
@@ -1186,7 +1186,7 @@ Bool ScriptConditions::evaluateTeamDiscovered(Parameter *pTeamParm, Parameter *p
 //-------------------------------------------------------------------------------------------------
 /** evaluateMissionAttempts */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateMissionAttempts(Parameter *pPlayerParm, Parameter *pComparisonParm, Parameter *pAttemptsParm)
+bool ScriptConditions::evaluateMissionAttempts(Parameter *pPlayerParm, Parameter *pComparisonParm, Parameter *pAttemptsParm)
 {	
 //Player* pPlayer = playerFromParam(pPlayerParm);
 	return false;
@@ -1195,7 +1195,7 @@ Bool ScriptConditions::evaluateMissionAttempts(Parameter *pPlayerParm, Parameter
 //-------------------------------------------------------------------------------------------------
 /** evaluateNamedOwnedByPlayer */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateNamedOwnedByPlayer(Parameter *pUnitParm, Parameter *pPlayerParm)
+bool ScriptConditions::evaluateNamedOwnedByPlayer(Parameter *pUnitParm, Parameter *pPlayerParm)
 {
 
 	Player* pPlayer = playerFromParam(pPlayerParm);
@@ -1214,7 +1214,7 @@ Bool ScriptConditions::evaluateNamedOwnedByPlayer(Parameter *pUnitParm, Paramete
 //-------------------------------------------------------------------------------------------------
 /** evaluateTeamOwnedByPlayer */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateTeamOwnedByPlayer(Parameter *pTeamParm, Parameter *pPlayerParm)
+bool ScriptConditions::evaluateTeamOwnedByPlayer(Parameter *pTeamParm, Parameter *pPlayerParm)
 {
 	Player* pPlayer = playerFromParam(pPlayerParm);
 	if (!pPlayer) {
@@ -1233,7 +1233,7 @@ Bool ScriptConditions::evaluateTeamOwnedByPlayer(Parameter *pTeamParm, Parameter
 //-------------------------------------------------------------------------------------------------
 /** evaluatePlayerHasNOrFewerBuildings */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluatePlayerHasNOrFewerBuildings(Parameter *pBuildingCountParm, Parameter *pPlayerParm)
+bool ScriptConditions::evaluatePlayerHasNOrFewerBuildings(Parameter *pBuildingCountParm, Parameter *pPlayerParm)
 {
 	Player* pPlayer = playerFromParam(pPlayerParm);
 	if (!pPlayer) {
@@ -1246,7 +1246,7 @@ Bool ScriptConditions::evaluatePlayerHasNOrFewerBuildings(Parameter *pBuildingCo
 //-------------------------------------------------------------------------------------------------
 /** evaluatePlayerHasNOrFewerFactionBuildings */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluatePlayerHasNOrFewerFactionBuildings(Parameter *pBuildingCountParm, Parameter *pPlayerParm)
+bool ScriptConditions::evaluatePlayerHasNOrFewerFactionBuildings(Parameter *pBuildingCountParm, Parameter *pPlayerParm)
 {
 	Player* pPlayer = playerFromParam(pPlayerParm);
 	if (!pPlayer) {
@@ -1262,7 +1262,7 @@ Bool ScriptConditions::evaluatePlayerHasNOrFewerFactionBuildings(Parameter *pBui
 //-------------------------------------------------------------------------------------------------
 /** evaluatePlayerHasPower */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluatePlayerHasPower(Parameter *pPlayerParm)
+bool ScriptConditions::evaluatePlayerHasPower(Parameter *pPlayerParm)
 {
 	Player* pPlayer = playerFromParam(pPlayerParm);
 	if (!pPlayer) {
@@ -1279,7 +1279,7 @@ Bool ScriptConditions::evaluatePlayerHasPower(Parameter *pPlayerParm)
 //-------------------------------------------------------------------------------------------------
 /** evaluateNamedReachedWaypointsEnd */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateNamedReachedWaypointsEnd(Parameter *pUnitParm, Parameter* pWaypointPathParm)
+bool ScriptConditions::evaluateNamedReachedWaypointsEnd(Parameter *pUnitParm, Parameter* pWaypointPathParm)
 {
 	Object *theObj = TheScriptEngine->getUnitNamed( pUnitParm->getString() );
 	if (!theObj) {
@@ -1306,7 +1306,7 @@ Bool ScriptConditions::evaluateNamedReachedWaypointsEnd(Parameter *pUnitParm, Pa
 //-------------------------------------------------------------------------------------------------
 /** evaluateTeamReachedWaypointsEnd */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateTeamReachedWaypointsEnd(Parameter *pTeamParm, Parameter* pWaypointPathParm)
+bool ScriptConditions::evaluateTeamReachedWaypointsEnd(Parameter *pTeamParm, Parameter* pWaypointPathParm)
 {
 	Team *theTeam = TheScriptEngine->getTeamNamed( pTeamParm->getString() );
 	if (!theTeam) {
@@ -1314,8 +1314,8 @@ Bool ScriptConditions::evaluateTeamReachedWaypointsEnd(Parameter *pTeamParm, Par
 	}
 
 	AsciiString	pathName = pWaypointPathParm->getString();
-	Bool anyAtEnd = false;
-	Bool anyNotAtEnd = false;
+	bool anyAtEnd = false;
+	bool anyNotAtEnd = false;
 	// Note - This returns true if any of the team completed the path.  This is as the current
 	// implementation tends to do group pathfinding by default, so we trigger when the leader actually thinks
 	// that he has reached the end of the waypoint path.
@@ -1334,7 +1334,7 @@ Bool ScriptConditions::evaluateTeamReachedWaypointsEnd(Parameter *pTeamParm, Par
 			anyNotAtEnd = true;
 			continue;
 		}
-		Bool found = false;
+		bool found = false;
 		if (targetWay->getPathLabel1() == pathName) found = true;
 		if (targetWay->getPathLabel2() == pathName) found = true;
 		if (targetWay->getPathLabel3() == pathName) found = true;
@@ -1350,7 +1350,7 @@ Bool ScriptConditions::evaluateTeamReachedWaypointsEnd(Parameter *pTeamParm, Par
 //-------------------------------------------------------------------------------------------------
 /** evaluateNamedSelected */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateNamedSelected(Condition *pCondition, Parameter *pUnitParm)
+bool ScriptConditions::evaluateNamedSelected(Condition *pCondition, Parameter *pUnitParm)
 {
 	if (TheGameEngine->isMultiplayerSession()) 
 	{
@@ -1358,7 +1358,7 @@ Bool ScriptConditions::evaluateNamedSelected(Condition *pCondition, Parameter *p
 	}
 
 
-	Bool anyChanges = false;
+	bool anyChanges = false;
 	if (pCondition->getCustomData() == 0) anyChanges = true;
 
 
@@ -1370,7 +1370,7 @@ Bool ScriptConditions::evaluateNamedSelected(Condition *pCondition, Parameter *p
 		if (pCondition->getCustomData()==1) return true;
 	}
 
-	Bool isSelected = false;
+	bool isSelected = false;
 	const DrawableList *selected = TheInGameUI->getAllSelectedDrawables();
 
 	// loop through all the selected drawables
@@ -1396,7 +1396,7 @@ Bool ScriptConditions::evaluateNamedSelected(Condition *pCondition, Parameter *p
 //-------------------------------------------------------------------------------------------------
 /** evaluateVideoHasCompleted */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateVideoHasCompleted(Parameter *pVideoParm)
+bool ScriptConditions::evaluateVideoHasCompleted(Parameter *pVideoParm)
 {
 	return TheScriptEngine->isVideoComplete(pVideoParm->getString(), true);
 }
@@ -1404,7 +1404,7 @@ Bool ScriptConditions::evaluateVideoHasCompleted(Parameter *pVideoParm)
 //-------------------------------------------------------------------------------------------------
 /** evaluateSpeechHasCompleted */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateSpeechHasCompleted(Parameter *pSpeechParm)
+bool ScriptConditions::evaluateSpeechHasCompleted(Parameter *pSpeechParm)
 {
 	return TheScriptEngine->isSpeechComplete(pSpeechParm->getString(), true);
 }
@@ -1412,7 +1412,7 @@ Bool ScriptConditions::evaluateSpeechHasCompleted(Parameter *pSpeechParm)
 //-------------------------------------------------------------------------------------------------
 /** evaluateAudioHasCompleted */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateAudioHasCompleted(Parameter *pAudioParm)
+bool ScriptConditions::evaluateAudioHasCompleted(Parameter *pAudioParm)
 {
 	return TheScriptEngine->isAudioComplete(pAudioParm->getString(), true);
 }
@@ -1420,7 +1420,7 @@ Bool ScriptConditions::evaluateAudioHasCompleted(Parameter *pAudioParm)
 //-------------------------------------------------------------------------------------------------
 /** evaluatePlayerSpecialPowerFromUnitTriggered */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluatePlayerSpecialPowerFromUnitTriggered(Parameter *pPlayerParm, Parameter *pSpecialPowerParm, Parameter* pUnitParm)
+bool ScriptConditions::evaluatePlayerSpecialPowerFromUnitTriggered(Parameter *pPlayerParm, Parameter *pSpecialPowerParm, Parameter* pUnitParm)
 {
 	Player *pPlayer = playerFromParam(pPlayerParm);
 	ObjectID sourceID = INVALID_ID;
@@ -1445,7 +1445,7 @@ Bool ScriptConditions::evaluatePlayerSpecialPowerFromUnitTriggered(Parameter *pP
 //-------------------------------------------------------------------------------------------------
 /** evaluatePlayerSpecialPowerFromUnitMidway */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluatePlayerSpecialPowerFromUnitMidway(Parameter *pPlayerParm, Parameter *pSpecialPowerParm, Parameter* pUnitParm)
+bool ScriptConditions::evaluatePlayerSpecialPowerFromUnitMidway(Parameter *pPlayerParm, Parameter *pSpecialPowerParm, Parameter* pUnitParm)
 {
 	Player *pPlayer = playerFromParam(pPlayerParm);
 	ObjectID sourceID = INVALID_ID;
@@ -1470,7 +1470,7 @@ Bool ScriptConditions::evaluatePlayerSpecialPowerFromUnitMidway(Parameter *pPlay
 //-------------------------------------------------------------------------------------------------
 /** evaluatePlayerSpecialPowerFromUnitComplete */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluatePlayerSpecialPowerFromUnitComplete(Parameter *pPlayerParm, Parameter *pSpecialPowerParm, Parameter* pUnitParm)
+bool ScriptConditions::evaluatePlayerSpecialPowerFromUnitComplete(Parameter *pPlayerParm, Parameter *pSpecialPowerParm, Parameter* pUnitParm)
 {
 	Player *pPlayer = playerFromParam(pPlayerParm);
 	ObjectID sourceID = INVALID_ID;
@@ -1495,7 +1495,7 @@ Bool ScriptConditions::evaluatePlayerSpecialPowerFromUnitComplete(Parameter *pPl
 //-------------------------------------------------------------------------------------------------
 /** evaluateUpgradeFromUnitComplete */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateUpgradeFromUnitComplete(Parameter *pPlayerParm, Parameter *pUpgradeParm, Parameter* pUnitParm)
+bool ScriptConditions::evaluateUpgradeFromUnitComplete(Parameter *pPlayerParm, Parameter *pUpgradeParm, Parameter* pUnitParm)
 {
 	Player *pPlayer = playerFromParam(pPlayerParm);
 	ObjectID sourceID = INVALID_ID;
@@ -1520,7 +1520,7 @@ Bool ScriptConditions::evaluateUpgradeFromUnitComplete(Parameter *pPlayerParm, P
 //-------------------------------------------------------------------------------------------------
 /** evaluateScienceAcquired */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateScienceAcquired(Parameter *pPlayerParm, Parameter *pScienceParm)
+bool ScriptConditions::evaluateScienceAcquired(Parameter *pPlayerParm, Parameter *pScienceParm)
 {
 	Player *pPlayer = playerFromParam(pPlayerParm);
 	if (pPlayer)
@@ -1536,7 +1536,7 @@ Bool ScriptConditions::evaluateScienceAcquired(Parameter *pPlayerParm, Parameter
 //-------------------------------------------------------------------------------------------------
 /** evaluateCanPurchaseScience */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateCanPurchaseScience(Parameter *pPlayerParm, Parameter *pScienceParm)
+bool ScriptConditions::evaluateCanPurchaseScience(Parameter *pPlayerParm, Parameter *pScienceParm)
 {
 	Player *pPlayer = playerFromParam(pPlayerParm);
 	if (pPlayer)
@@ -1552,7 +1552,7 @@ Bool ScriptConditions::evaluateCanPurchaseScience(Parameter *pPlayerParm, Parame
 //-------------------------------------------------------------------------------------------------
 /** evaluateSciencePurchasePoints */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateSciencePurchasePoints(Parameter *pPlayerParm, Parameter *pSciencePointParm)
+bool ScriptConditions::evaluateSciencePurchasePoints(Parameter *pPlayerParm, Parameter *pSciencePointParm)
 {
 	Player *pPlayer = playerFromParam(pPlayerParm);
 	if (pPlayer)
@@ -1566,7 +1566,7 @@ Bool ScriptConditions::evaluateSciencePurchasePoints(Parameter *pPlayerParm, Par
 //-------------------------------------------------------------------------------------------------
 /** evaluateNamedEnteredArea */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateNamedEnteredArea(Parameter *pUnitParm, Parameter *pTriggerParm)
+bool ScriptConditions::evaluateNamedEnteredArea(Parameter *pUnitParm, Parameter *pTriggerParm)
 {
 	Object* pUnit = TheScriptEngine->getUnitNamed(pUnitParm->getString());
 	if (!pUnit) {
@@ -1589,7 +1589,7 @@ Bool ScriptConditions::evaluateNamedEnteredArea(Parameter *pUnitParm, Parameter 
 //-------------------------------------------------------------------------------------------------
 /** evaluateNamedExitedArea */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateNamedExitedArea(Parameter *pUnitParm, Parameter *pTriggerParm)
+bool ScriptConditions::evaluateNamedExitedArea(Parameter *pUnitParm, Parameter *pTriggerParm)
 {
 	Object* pUnit = TheScriptEngine->getUnitNamed(pUnitParm->getString());
 	if (!pUnit) {
@@ -1608,7 +1608,7 @@ Bool ScriptConditions::evaluateNamedExitedArea(Parameter *pUnitParm, Parameter *
 //-------------------------------------------------------------------------------------------------
 /** evaluateTeamEnteredAreaEntirely */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateTeamEnteredAreaEntirely(Parameter *pTeamParm, Parameter *pTriggerParm, Parameter *pTypeParm)
+bool ScriptConditions::evaluateTeamEnteredAreaEntirely(Parameter *pTeamParm, Parameter *pTriggerParm, Parameter *pTypeParm)
 {
 	Team* pTeam = TheScriptEngine->getTeamNamed(pTeamParm->getString());
 	if (!pTeam) {
@@ -1627,7 +1627,7 @@ Bool ScriptConditions::evaluateTeamEnteredAreaEntirely(Parameter *pTeamParm, Par
 //-------------------------------------------------------------------------------------------------
 /** evaluateTeamEnteredAreaPartially */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateTeamEnteredAreaPartially(Parameter *pTeamParm, Parameter *pTriggerParm, Parameter *pTypeParm)
+bool ScriptConditions::evaluateTeamEnteredAreaPartially(Parameter *pTeamParm, Parameter *pTriggerParm, Parameter *pTypeParm)
 {
 	Team* pTeam = TheScriptEngine->getTeamNamed(pTeamParm->getString());
 	if (!pTeam) {
@@ -1646,7 +1646,7 @@ Bool ScriptConditions::evaluateTeamEnteredAreaPartially(Parameter *pTeamParm, Pa
 //-------------------------------------------------------------------------------------------------
 /** evaluateTeamExitedAreaEntirely */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateTeamExitedAreaEntirely(Parameter *pTeamParm, Parameter *pTriggerParm, Parameter *pTypeParm)
+bool ScriptConditions::evaluateTeamExitedAreaEntirely(Parameter *pTeamParm, Parameter *pTriggerParm, Parameter *pTypeParm)
 {
 	Team* pTeam = TheScriptEngine->getTeamNamed(pTeamParm->getString());
 	if (!pTeam) {
@@ -1665,7 +1665,7 @@ Bool ScriptConditions::evaluateTeamExitedAreaEntirely(Parameter *pTeamParm, Para
 //-------------------------------------------------------------------------------------------------
 /** evaluateTeamExitedAreaPartially */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateTeamExitedAreaPartially(Parameter *pTeamParm, Parameter *pTriggerParm, Parameter *pTypeParm)
+bool ScriptConditions::evaluateTeamExitedAreaPartially(Parameter *pTeamParm, Parameter *pTriggerParm, Parameter *pTypeParm)
 {
 	Team* pTeam = TheScriptEngine->getTeamNamed(pTeamParm->getString());
 	if (!pTeam) {
@@ -1684,7 +1684,7 @@ Bool ScriptConditions::evaluateTeamExitedAreaPartially(Parameter *pTeamParm, Par
 //-------------------------------------------------------------------------------------------------
 /** evaluateMultiplayerAlliedVictory */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateMultiplayerAlliedVictory(void)
+bool ScriptConditions::evaluateMultiplayerAlliedVictory(void)
 {
 	return TheVictoryConditions->isLocalAlliedVictory();
 }
@@ -1692,7 +1692,7 @@ Bool ScriptConditions::evaluateMultiplayerAlliedVictory(void)
 //-------------------------------------------------------------------------------------------------
 /** evaluateMultiplayerAlliedDefeat */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateMultiplayerAlliedDefeat(void)
+bool ScriptConditions::evaluateMultiplayerAlliedDefeat(void)
 {
 	return TheVictoryConditions->isLocalAlliedDefeat();
 }
@@ -1700,7 +1700,7 @@ Bool ScriptConditions::evaluateMultiplayerAlliedDefeat(void)
 //-------------------------------------------------------------------------------------------------
 /** evaluateMultiplayerPlayerDefeat */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateMultiplayerPlayerDefeat(void)
+bool ScriptConditions::evaluateMultiplayerPlayerDefeat(void)
 {
 	return TheVictoryConditions->isLocalDefeat() && !TheVictoryConditions->isLocalAlliedDefeat();
 }
@@ -1708,7 +1708,7 @@ Bool ScriptConditions::evaluateMultiplayerPlayerDefeat(void)
 //-------------------------------------------------------------------------------------------------
 /** evaluatePlayerUnitCondition */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluatePlayerUnitCondition(Condition *pCondition, Parameter *pPlayerParm, Parameter *pComparisonParm, Parameter *pCountParm, Parameter *pUnitTypeParm)
+bool ScriptConditions::evaluatePlayerUnitCondition(Condition *pCondition, Parameter *pPlayerParm, Parameter *pComparisonParm, Parameter *pCountParm, Parameter *pUnitTypeParm)
 {					
 	if (pCondition->getCustomData()!=0) {
 		// We have a cached value.
@@ -1738,7 +1738,7 @@ Bool ScriptConditions::evaluatePlayerUnitCondition(Condition *pCondition, Parame
 		count = rts::sum(counts);
 	}
 	
-	Bool comparison = false;
+	bool comparison = false;
 	switch (pComparisonParm->getInt())
 	{
 		case Parameter::LESS_THAN :			comparison = (count < pCountParm->getInt()); break;
@@ -1761,7 +1761,7 @@ Bool ScriptConditions::evaluatePlayerUnitCondition(Condition *pCondition, Parame
 //-------------------------------------------------------------------------------------------------
 /** evaluatePlayerHasComparisonPercentPower */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluatePlayerHasComparisonPercentPower(Parameter *pPlayerParm, Parameter *pComparisonParm, Parameter *pPercentParm)
+bool ScriptConditions::evaluatePlayerHasComparisonPercentPower(Parameter *pPlayerParm, Parameter *pComparisonParm, Parameter *pPercentParm)
 {
 	Player* pPlayer = playerFromParam(pPlayerParm);
 	if (!pPlayer) {
@@ -1783,7 +1783,7 @@ Bool ScriptConditions::evaluatePlayerHasComparisonPercentPower(Parameter *pPlaye
 //-------------------------------------------------------------------------------------------------
 /** evaluatePlayerHasComparisonValueExcessPower */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluatePlayerHasComparisonValueExcessPower(Parameter *pPlayerParm, Parameter *pComparisonParm, Parameter *pKWHParm)
+bool ScriptConditions::evaluatePlayerHasComparisonValueExcessPower(Parameter *pPlayerParm, Parameter *pComparisonParm, Parameter *pKWHParm)
 {
 	Player* pPlayer = playerFromParam(pPlayerParm);
 	if (!pPlayer) {
@@ -1806,7 +1806,7 @@ Bool ScriptConditions::evaluatePlayerHasComparisonValueExcessPower(Parameter *pP
 //-------------------------------------------------------------------------------------------------
 /** evaluateSkirmishSpecialPowerIsReady - does any unit have this special power ready to use? */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateSkirmishSpecialPowerIsReady(Parameter *pSkirmishPlayerParm, Parameter *pPower)
+bool ScriptConditions::evaluateSkirmishSpecialPowerIsReady(Parameter *pSkirmishPlayerParm, Parameter *pPower)
 {
 	if (pPower->getInt() == -1) return false;
 	if (pPower->getInt()>0 && pPower->getInt()>TheGameLogic->getFrame()) {
@@ -1818,7 +1818,7 @@ Bool ScriptConditions::evaluateSkirmishSpecialPowerIsReady(Parameter *pSkirmishP
 		pPower->friend_setInt(-1); // flag as never true.
 		return false;
 	}
-	Bool found = false;
+	bool found = false;
 	Player::PlayerTeamList::const_iterator it;
 	Player *pPlayer = playerFromParam(pSkirmishPlayerParm);
 	if (pPlayer==NULL) 
@@ -1857,7 +1857,7 @@ Bool ScriptConditions::evaluateSkirmishSpecialPowerIsReady(Parameter *pSkirmishP
 //-------------------------------------------------------------------------------------------------
 /** evaluatePlayerDestroyedNOrMoreBuildings */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluatePlayerDestroyedNOrMoreBuildings(Parameter *pPlayerParm, Parameter *pNumParm, Parameter *pOpponentParm)
+bool ScriptConditions::evaluatePlayerDestroyedNOrMoreBuildings(Parameter *pPlayerParm, Parameter *pNumParm, Parameter *pOpponentParm)
 {
 	Player* pPlayer = playerFromParam(pPlayerParm);
 	Player* pOpponent = playerFromParam(pOpponentParm);
@@ -1873,7 +1873,7 @@ Bool ScriptConditions::evaluatePlayerDestroyedNOrMoreBuildings(Parameter *pPlaye
 //-------------------------------------------------------------------------------------------------
 /** evaluateUnitHasEmptied */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateUnitHasEmptied(Parameter *pUnitParm)
+bool ScriptConditions::evaluateUnitHasEmptied(Parameter *pUnitParm)
 {
 	Object *object = TheScriptEngine->getUnitNamed(pUnitParm->getString());
 	if (!object) {
@@ -1922,21 +1922,21 @@ Bool ScriptConditions::evaluateUnitHasEmptied(Parameter *pUnitParm)
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateTeamIsContained(Parameter *pTeamParm, Bool allContained)
+bool ScriptConditions::evaluateTeamIsContained(Parameter *pTeamParm, bool allContained)
 {
 	Team* pTeam = TheScriptEngine->getTeamNamed(pTeamParm->getString());
 	if (!pTeam) {
 		return false;
 	}
 
-	Bool anyConsidered = FALSE;
+	bool anyConsidered = FALSE;
 	for (DLINK_ITERATOR<Object> iter = pTeam->iterate_TeamMemberList(); !iter.done(); iter.advance()) {
 		Object *obj = iter.cur();
 		if (!obj) {
 			continue;
 		}
 		
-		Bool isContained = (obj->getContainedBy() != NULL);
+		bool isContained = (obj->getContainedBy() != NULL);
 		if (!isContained) {
 			// we could still be exiting, in which case we should pretend like we are contained.
 
@@ -1967,7 +1967,7 @@ Bool ScriptConditions::evaluateTeamIsContained(Parameter *pTeamParm, Bool allCon
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateUnitHasObjectStatus(Parameter *pUnitParm, Parameter *pObjectStatus)
+bool ScriptConditions::evaluateUnitHasObjectStatus(Parameter *pUnitParm, Parameter *pObjectStatus)
 {
 	Object *object = TheScriptEngine->getUnitNamed(pUnitParm->getString());
 	if (!object) {
@@ -1978,7 +1978,7 @@ Bool ScriptConditions::evaluateUnitHasObjectStatus(Parameter *pUnitParm, Paramet
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateTeamHasObjectStatus(Parameter *pTeamParm, Parameter *pObjectStatus, Bool entireTeam)
+bool ScriptConditions::evaluateTeamHasObjectStatus(Parameter *pTeamParm, Parameter *pObjectStatus, bool entireTeam)
 {
 	Team *theTeam = TheScriptEngine->getTeamNamed( pTeamParm->getString() );
 	if (!theTeam) {
@@ -1992,7 +1992,7 @@ Bool ScriptConditions::evaluateTeamHasObjectStatus(Parameter *pTeamParm, Paramet
 		}
 
 		ObjectStatusMaskType objStatus = pObjectStatus->getStatus();
-		Bool currObjHasStatus = pObj->getStatusBits().testForAny( objStatus );
+		bool currObjHasStatus = pObj->getStatusBits().testForAny( objStatus );
 
 		if( entireTeam && !currObjHasStatus ) 
 		{
@@ -2016,7 +2016,7 @@ Bool ScriptConditions::evaluateTeamHasObjectStatus(Parameter *pTeamParm, Paramet
 // @todo: PERF_EVALUATE Get a perf timer on this. Should we adjust this function so that it runs like 
 // evaluatePlayerHasUnitKindInArea
 // ?
-Bool ScriptConditions::evaluateSkirmishValueInArea(Condition *pCondition, Parameter *pSkirmishPlayerParm, Parameter *pComparisonParm, Parameter *pMoneyParm, Parameter *pTriggerParm)
+bool ScriptConditions::evaluateSkirmishValueInArea(Condition *pCondition, Parameter *pSkirmishPlayerParm, Parameter *pComparisonParm, Parameter *pMoneyParm, Parameter *pTriggerParm)
 {
 	Player *player = playerFromParam(pSkirmishPlayerParm);
 	if (!player) {
@@ -2031,7 +2031,7 @@ Bool ScriptConditions::evaluateSkirmishValueInArea(Condition *pCondition, Parame
 	}
 
 	Player::PlayerTeamList::const_iterator it;
-	Bool anyChanges = false;
+	bool anyChanges = false;
 	if (pCondition->getCustomData() == 0) anyChanges = true;
 
 
@@ -2080,7 +2080,7 @@ Bool ScriptConditions::evaluateSkirmishValueInArea(Condition *pCondition, Parame
 		}
 	}
 
-	Bool comparison = false;
+	bool comparison = false;
 	switch (pComparisonParm->getInt())
 	{
 		case Parameter::LESS_THAN :			comparison = (totalCost < pMoneyParm->getInt()); break;
@@ -2101,7 +2101,7 @@ Bool ScriptConditions::evaluateSkirmishValueInArea(Condition *pCondition, Parame
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateSkirmishPlayerIsFaction(Parameter *pSkirmishPlayerParm, Parameter *pFactionParm)
+bool ScriptConditions::evaluateSkirmishPlayerIsFaction(Parameter *pSkirmishPlayerParm, Parameter *pFactionParm)
 {
 	Player *player = playerFromParam(pSkirmishPlayerParm);
 	if (!player) {
@@ -2112,7 +2112,7 @@ Bool ScriptConditions::evaluateSkirmishPlayerIsFaction(Parameter *pSkirmishPlaye
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateSkirmishSuppliesWithinDistancePerimeter(Parameter *pSkirmishPlayerParm, Parameter *pDistanceParm, Parameter *pLocationParm, Parameter *pValueParm)
+bool ScriptConditions::evaluateSkirmishSuppliesWithinDistancePerimeter(Parameter *pSkirmishPlayerParm, Parameter *pDistanceParm, Parameter *pLocationParm, Parameter *pValueParm)
 {
 	Player *player = playerFromParam(pSkirmishPlayerParm);
 	if (!player) {
@@ -2160,7 +2160,7 @@ Bool ScriptConditions::evaluateSkirmishSuppliesWithinDistancePerimeter(Parameter
 // @todo: PERF_EVALUATE PERF_WARNING
 // If this is called multiple times per frame, the cost could add up. This will infrequently (read:
 // never) change, so it shouldn't be called very often. jkmcd
-Bool ScriptConditions::evaluateSkirmishPlayerTechBuildingWithinDistancePerimeter(Condition *pCondition, Parameter *pSkirmishPlayerParm, Parameter *pDistanceParm, Parameter *pLocationParm)
+bool ScriptConditions::evaluateSkirmishPlayerTechBuildingWithinDistancePerimeter(Condition *pCondition, Parameter *pSkirmishPlayerParm, Parameter *pDistanceParm, Parameter *pLocationParm)
 {
 	Player *player = playerFromParam(pSkirmishPlayerParm);
 	if (!player) {
@@ -2187,7 +2187,7 @@ Bool ScriptConditions::evaluateSkirmishPlayerTechBuildingWithinDistancePerimeter
 
 	PartitionFilter *filters[] = { &f1, &f2, &f3, &filterMapStatus, 0 };
 
-	Bool comparison = ThePartitionManager->getClosestObject(&center, radius, FROM_CENTER_2D, filters) != NULL;
+	bool comparison = ThePartitionManager->getClosestObject(&center, radius, FROM_CENTER_2D, filters) != NULL;
 	pCondition->setCustomData(-1); // false.
 	if (comparison) {
 		pCondition->setCustomData(1); // true.
@@ -2196,7 +2196,7 @@ Bool ScriptConditions::evaluateSkirmishPlayerTechBuildingWithinDistancePerimeter
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateSkirmishCommandButtonIsReady( Parameter * /* pSkirmishPlayerParm */, Parameter *pTeamParm, Parameter *pCommandButtonParm, Bool allReady )
+bool ScriptConditions::evaluateSkirmishCommandButtonIsReady( Parameter * /* pSkirmishPlayerParm */, Parameter *pTeamParm, Parameter *pCommandButtonParm, bool allReady )
 {
 	// In this one case, the pSkirmishPlayerParm isn't used.
 	Team *theTeam = TheScriptEngine->getTeamNamed( pTeamParm->getString() );
@@ -2234,7 +2234,7 @@ Bool ScriptConditions::evaluateSkirmishCommandButtonIsReady( Parameter * /* pSki
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateSkirmishUnownedFactionUnitComparison( Parameter * /*pSkirmishPlayerParm*/, Parameter *pComparisonParm, Parameter *pCountParm )
+bool ScriptConditions::evaluateSkirmishUnownedFactionUnitComparison( Parameter * /*pSkirmishPlayerParm*/, Parameter *pComparisonParm, Parameter *pCountParm )
 {
 	Player *player = ThePlayerList->getNeutralPlayer();
 	if (!player) {
@@ -2281,7 +2281,7 @@ Bool ScriptConditions::evaluateSkirmishUnownedFactionUnitComparison( Parameter *
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateSkirmishPlayerHasPrereqsToBuild( Parameter *pSkirmishPlayerParm, Parameter *pObjectTypeParm )
+bool ScriptConditions::evaluateSkirmishPlayerHasPrereqsToBuild( Parameter *pSkirmishPlayerParm, Parameter *pObjectTypeParm )
 {
 	Player *player = playerFromParam(pSkirmishPlayerParm);
 	if (!player) {
@@ -2295,7 +2295,7 @@ Bool ScriptConditions::evaluateSkirmishPlayerHasPrereqsToBuild( Parameter *pSkir
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateSkirmishPlayerHasComparisonGarrisoned(Parameter *pSkirmishPlayerParm, Parameter *pComparisonParm, Parameter *pCountParm )
+bool ScriptConditions::evaluateSkirmishPlayerHasComparisonGarrisoned(Parameter *pSkirmishPlayerParm, Parameter *pComparisonParm, Parameter *pCountParm )
 {
 	Player *player = playerFromParam(pSkirmishPlayerParm);
 	if (!player) {
@@ -2346,7 +2346,7 @@ Bool ScriptConditions::evaluateSkirmishPlayerHasComparisonGarrisoned(Parameter *
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateSkirmishPlayerHasComparisonCapturedUnits(Parameter *pSkirmishPlayerParm, Parameter *pComparisonParm, Parameter *pCountParm )
+bool ScriptConditions::evaluateSkirmishPlayerHasComparisonCapturedUnits(Parameter *pSkirmishPlayerParm, Parameter *pComparisonParm, Parameter *pCountParm )
 {
 	Player *player = playerFromParam(pSkirmishPlayerParm);
 	if (!player) {
@@ -2392,14 +2392,14 @@ Bool ScriptConditions::evaluateSkirmishPlayerHasComparisonCapturedUnits(Paramete
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateSkirmishNamedAreaExists(Parameter *, Parameter *pTriggerParm)
+bool ScriptConditions::evaluateSkirmishNamedAreaExists(Parameter *, Parameter *pTriggerParm)
 {
 	PolygonTrigger *pTrig = TheScriptEngine->getQualifiedTriggerAreaByName(pTriggerParm->getString());
 	return (pTrig != NULL);
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateSkirmishPlayerHasUnitsInArea(Condition *pCondition, Parameter *pSkirmishPlayerParm, Parameter *pTriggerParm )
+bool ScriptConditions::evaluateSkirmishPlayerHasUnitsInArea(Condition *pCondition, Parameter *pSkirmishPlayerParm, Parameter *pTriggerParm )
 {
 	Player *player = playerFromParam(pSkirmishPlayerParm);
 	if (!player) {
@@ -2412,7 +2412,7 @@ Bool ScriptConditions::evaluateSkirmishPlayerHasUnitsInArea(Condition *pConditio
 	}
 
 	Player::PlayerTeamList::const_iterator it;
-	Bool anyChanges = false;
+	bool anyChanges = false;
 
 
 	if (pCondition->getCustomData() == 0) anyChanges = true;
@@ -2451,7 +2451,7 @@ Bool ScriptConditions::evaluateSkirmishPlayerHasUnitsInArea(Condition *pConditio
 	PartitionFilter *filters[] = { &f1, &f2, &filterMapStatus, 0 };
 
 	Object *obj = ThePartitionManager->getClosestObject(&center, radius, FROM_CENTER_2D, filters);
-	Bool condition = (obj!=NULL);
+	bool condition = (obj!=NULL);
 	pCondition->setCustomData(-1); // false.
 	if (condition) {
 		pCondition->setCustomData(1); // true.
@@ -2460,10 +2460,10 @@ Bool ScriptConditions::evaluateSkirmishPlayerHasUnitsInArea(Condition *pConditio
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateSkirmishSupplySourceSafe(Condition *pCondition, Parameter *pSkirmishPlayerParm, Parameter *pMinSupplyAmount )
+bool ScriptConditions::evaluateSkirmishSupplySourceSafe(Condition *pCondition, Parameter *pSkirmishPlayerParm, Parameter *pMinSupplyAmount )
 {
 	// Trigger every 32 frames on the 31st frame. jba.
-	Bool anyChanges = (TheGameLogic->getFrame() & 0x1F) == 0x1F;
+	bool anyChanges = (TheGameLogic->getFrame() & 0x1F) == 0x1F;
 	if (!anyChanges) {
 		if (pCondition->getCustomData()==-1) return false;
 		if (pCondition->getCustomData()==1) return true;
@@ -2472,7 +2472,7 @@ Bool ScriptConditions::evaluateSkirmishSupplySourceSafe(Condition *pCondition, P
 	if (!player) {
 		return FALSE;
 	}
-	Bool isSafe = player->isSupplySourceSafe(pMinSupplyAmount->getInt());
+	bool isSafe = player->isSupplySourceSafe(pMinSupplyAmount->getInt());
 	pCondition->setCustomData(-1); // false.
 	if (isSafe) {
 		pCondition->setCustomData(1); // true.
@@ -2481,7 +2481,7 @@ Bool ScriptConditions::evaluateSkirmishSupplySourceSafe(Condition *pCondition, P
 }	
 
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateSkirmishSupplySourceAttacked(Parameter *pSkirmishPlayerParm)
+bool ScriptConditions::evaluateSkirmishSupplySourceAttacked(Parameter *pSkirmishPlayerParm)
 {
 	Player *player = playerFromParam(pSkirmishPlayerParm);
 	if (!player) {
@@ -2491,7 +2491,7 @@ Bool ScriptConditions::evaluateSkirmishSupplySourceAttacked(Parameter *pSkirmish
 }	
 
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateSkirmishStartPosition(Parameter *pSkirmishPlayerParm, Parameter *pStartNdx)
+bool ScriptConditions::evaluateSkirmishStartPosition(Parameter *pSkirmishPlayerParm, Parameter *pStartNdx)
 {
 	Player *player = playerFromParam(pSkirmishPlayerParm);
 	if (!player) {
@@ -2503,7 +2503,7 @@ Bool ScriptConditions::evaluateSkirmishStartPosition(Parameter *pSkirmishPlayerP
 }	
 
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateSkirmishPlayerHasBeenAttackedByPlayer(Parameter *pSkirmishPlayerParm, Parameter *pAttackedByParm )
+bool ScriptConditions::evaluateSkirmishPlayerHasBeenAttackedByPlayer(Parameter *pSkirmishPlayerParm, Parameter *pAttackedByParm )
 {
 	Player *player = playerFromParam(pSkirmishPlayerParm);
 	if (!player) {
@@ -2519,7 +2519,7 @@ Bool ScriptConditions::evaluateSkirmishPlayerHasBeenAttackedByPlayer(Parameter *
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateSkirmishPlayerIsOutsideArea(Condition *pCondition, Parameter *pSkirmishPlayerParm, Parameter *pTriggerParm )
+bool ScriptConditions::evaluateSkirmishPlayerIsOutsideArea(Condition *pCondition, Parameter *pSkirmishPlayerParm, Parameter *pTriggerParm )
 {
 	// Even though these will be prechecked in the other function, we want to preflight here as well.
 	Player *player = playerFromParam(pSkirmishPlayerParm);
@@ -2536,7 +2536,7 @@ Bool ScriptConditions::evaluateSkirmishPlayerIsOutsideArea(Condition *pCondition
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateSkirmishPlayerHasDiscoveredPlayer(Parameter *pSkirmishPlayerParm, Parameter *pDiscoveredByParm )
+bool ScriptConditions::evaluateSkirmishPlayerHasDiscoveredPlayer(Parameter *pSkirmishPlayerParm, Parameter *pDiscoveredByParm )
 {
 	Player *player = playerFromParam(pSkirmishPlayerParm);
 	if (!player) {
@@ -2576,14 +2576,14 @@ Bool ScriptConditions::evaluateSkirmishPlayerHasDiscoveredPlayer(Parameter *pSki
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateMusicHasCompleted(Parameter *pMusicParm, Parameter *pIntParm)
+bool ScriptConditions::evaluateMusicHasCompleted(Parameter *pMusicParm, Parameter *pIntParm)
 {
 	AsciiString str = pMusicParm->getString();
 	return TheAudio->hasMusicTrackCompleted(str, pIntParm->getInt());
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluatePlayerLostObjectType(Parameter *pPlayerParm, Parameter *pTypeParm)
+bool ScriptConditions::evaluatePlayerLostObjectType(Parameter *pPlayerParm, Parameter *pTypeParm)
 {
 	Player *player = playerFromParam(pPlayerParm);
 	if (!player) {
@@ -2616,7 +2616,7 @@ Bool ScriptConditions::evaluatePlayerLostObjectType(Parameter *pPlayerParm, Para
 //-------------------------------------------------------------------------------------------------
 /** Evaluate a condition */
 //-------------------------------------------------------------------------------------------------
-Bool ScriptConditions::evaluateCondition( Condition *pCondition )
+bool ScriptConditions::evaluateCondition( Condition *pCondition )
 {
 	switch (pCondition->getConditionType()) {
 		default: 

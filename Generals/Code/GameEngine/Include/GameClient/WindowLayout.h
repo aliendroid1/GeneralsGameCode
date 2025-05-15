@@ -63,9 +63,9 @@ public:
 
 	// manipulating screen properties ---------------------------------------------------------------
 	AsciiString getFilename( void );											///< return source window filename
-	Bool load( AsciiString filename );										///< create windows and load from .wnd file
-	void hide( Bool hide );													///< hide/unhide all windows on this screen
-	Bool isHidden( void );													///< return visible state of screen
+	bool load( AsciiString filename );										///< create windows and load from .wnd file
+	void hide( bool hide );													///< hide/unhide all windows on this screen
+	bool isHidden( void );													///< return visible state of screen
 	void bringForward( void );											///< bring all windows in this screen forward
 
 	// manipulating window lists --------------------------------------------------------------------
@@ -95,7 +95,7 @@ protected:
 	GameWindow *m_windowList;												///< list of windows in this layout
 	GameWindow *m_windowTail;												///< end of m_windowList
 	Int m_windowCount;															///< how man windows are in the list
-	Bool m_hidden;																	///< visible state of this screen
+	bool m_hidden;																	///< visible state of this screen
 
 	//
 	// These are callbacks you can attach to a "layout file" ... they are not 
@@ -112,7 +112,7 @@ protected:
 // INLINING ///////////////////////////////////////////////////////////////////////////////////////
 inline AsciiString WindowLayout::getFilename( void ) { return m_filenameString; }
 inline GameWindow *WindowLayout::getFirstWindow( void ) { return m_windowList; }
-inline Bool WindowLayout::isHidden( void ) { return m_hidden; }
+inline bool WindowLayout::isHidden( void ) { return m_hidden; }
 
 inline void WindowLayout::runInit( void *userData ) { if( m_init ) m_init( this, userData ); }
 inline void WindowLayout::runUpdate( void *userData ) { if( m_update ) m_update( this, userData ); }

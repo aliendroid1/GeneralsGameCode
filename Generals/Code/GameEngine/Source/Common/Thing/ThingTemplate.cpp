@@ -292,7 +292,7 @@ void ModuleInfo::addModuleInfo(ThingTemplate *thingTemplate,
 															 const AsciiString& moduleTag, 
 															 const ModuleData* data, 
 															 Int interfaceMask, 
-															 Bool inheritable)
+															 bool inheritable)
 {
 
 	//
@@ -363,9 +363,9 @@ void ModuleInfo::addModuleInfo(ThingTemplate *thingTemplate,
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ModuleInfo::clearModuleDataWithTag(const AsciiString& tagToClear, AsciiString& clearedModuleNameOut) 
+bool ModuleInfo::clearModuleDataWithTag(const AsciiString& tagToClear, AsciiString& clearedModuleNameOut) 
 { 
-	Bool cleared = false;
+	bool cleared = false;
 
 	// do NOT clear... we only want to modify this if we return true.
 	// if we return false, we should leave this unmodified.
@@ -389,9 +389,9 @@ Bool ModuleInfo::clearModuleDataWithTag(const AsciiString& tagToClear, AsciiStri
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ModuleInfo::clearCopiedFromDefaultEntries(Int interfaceMask) 
+bool ModuleInfo::clearCopiedFromDefaultEntries(Int interfaceMask) 
 { 
-	Bool ret = false;
+	bool ret = false;
 
 	std::vector<Nugget>::iterator it = m_info.begin();
 	while( it != m_info.end() )
@@ -410,9 +410,9 @@ Bool ModuleInfo::clearCopiedFromDefaultEntries(Int interfaceMask)
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ModuleInfo::clearAiModuleInfo() 
+bool ModuleInfo::clearAiModuleInfo() 
 { 
-	Bool ret = false;
+	bool ret = false;
 
 	std::vector<Nugget>::iterator it = m_info.begin();
 	while( it != m_info.end() )
@@ -522,14 +522,14 @@ void ThingTemplate::parseModuleName(INI* ini, void *instance, void* store, const
 
 	if (data->isAiModuleData())
 	{
-		Bool replaced = mi->clearAiModuleInfo();
+		bool replaced = mi->clearAiModuleInfo();
 		if (replaced)
 		{
 			DEBUG_LOG(("replaced an AI for %s!\n",self->getName().str()));
 		}
 	}
 
-	Bool inheritable = (self->m_moduleParsingMode == MODULEPARSE_INHERITABLE);
+	bool inheritable = (self->m_moduleParsingMode == MODULEPARSE_INHERITABLE);
 	mi->addModuleInfo(self, tokenStr, moduleTagStr, data, interfaceMask, inheritable);
 }
 
@@ -552,7 +552,7 @@ static void parsePrerequisiteUnit( INI* ini, void *instance, void * /*store*/, c
 	std::vector<ProductionPrerequisite>* v = (std::vector<ProductionPrerequisite>*)instance;
 
 	ProductionPrerequisite prereq;
-	Bool orUnitWithPrevious = FALSE;
+	bool orUnitWithPrevious = FALSE;
 	for (const char *token = ini->getNextToken(); token != NULL; token = ini->getNextTokenOrNull())
 	{
 		prereq.addUnitPrereq( AsciiString( token ), orUnitWithPrevious );
@@ -685,7 +685,7 @@ void ThingTemplate::parseRemoveModule(INI *ini, void *instance, void *store, con
 
 	const char *modToRemove = ini->getNextToken();
 	AsciiString removedModuleName;
-	Bool removed = self->removeModuleInfo(modToRemove, removedModuleName);
+	bool removed = self->removeModuleInfo(modToRemove, removedModuleName);
 	if (!removed)
 	{
 		DEBUG_ASSERTCRASH(removed, ("RemoveModule %s was not found for %s.\n",modToRemove, self->getName().str()));
@@ -710,7 +710,7 @@ void ThingTemplate::parseReplaceModule(INI *ini, void *instance, void *store, co
 
 	const char *modToRemove = ini->getNextToken();
 	AsciiString removedModuleName;
-	Bool removed = self->removeModuleInfo(modToRemove, removedModuleName);
+	bool removed = self->removeModuleInfo(modToRemove, removedModuleName);
 	if (!removed)
 	{
 		DEBUG_CRASH(("[LINE: %d - FILE: '%s'] ReplaceModule %s was not found for %s; cannot continue.\n",
@@ -748,9 +748,9 @@ void ThingTemplate::parseInheritableModule(INI *ini, void *instance, void *store
 //-------------------------------------------------------------------------------------------------
 /** Remove the module whose tag matches moduleToRemove. */
 //-------------------------------------------------------------------------------------------------
-Bool ThingTemplate::removeModuleInfo(const AsciiString& moduleToRemove, AsciiString& clearedModuleNameOut)
+bool ThingTemplate::removeModuleInfo(const AsciiString& moduleToRemove, AsciiString& clearedModuleNameOut)
 {
-	Bool removed = false;
+	bool removed = false;
 
 	// do NOT clear... we only want to modify this if we return true.
 	// if we return false, we should leave this unmodified.
@@ -1040,7 +1040,7 @@ void ThingTemplate::validate()
 	if (!m_buildVariations.empty())
 		return;
 
-	Bool isImmobile = isKindOf(KINDOF_IMMOBILE);
+	bool isImmobile = isKindOf(KINDOF_IMMOBILE);
 	
 	if (isKindOf(KINDOF_SHRUBBERY) && !isImmobile)
 	{
@@ -1224,7 +1224,7 @@ const WeaponTemplateSet* ThingTemplate::findWeaponTemplateSet(const WeaponSetFla
 //-----------------------------------------------------------------------------
 // returns true iff we have at least one weaponset that contains a weapon.
 // returns false if we have no weaponsets, or they are all empty.
-Bool ThingTemplate::canPossiblyHaveAnyWeapon() const
+bool ThingTemplate::canPossiblyHaveAnyWeapon() const
 {
 	for (WeaponTemplateSetVector::const_iterator it = m_weaponTemplateSets.begin(); 
 					it != m_weaponTemplateSets.end();
@@ -1307,7 +1307,7 @@ const AudioEventRTS *ThingTemplate::getPerUnitSound(const AsciiString& soundName
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ThingTemplate::isEquivalentTo(const ThingTemplate* tt) const
+bool ThingTemplate::isEquivalentTo(const ThingTemplate* tt) const
 {
 	// sanity
 	if (!(this && tt)) 
@@ -1351,7 +1351,7 @@ Bool ThingTemplate::isEquivalentTo(const ThingTemplate* tt) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ThingTemplate::isBuildableItem(void) const
+bool ThingTemplate::isBuildableItem(void) const
 {
 	return (getBuildCost() != 0);
 }

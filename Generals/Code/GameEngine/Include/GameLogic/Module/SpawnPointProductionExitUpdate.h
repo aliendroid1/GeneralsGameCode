@@ -77,7 +77,7 @@ public:
 	// virtual destructor prototype provided by memory pool declaration
 
 	// Required funcs to fufill interface requirements
-	virtual Bool isExitBusy() const {return FALSE;}	///< Contain style exiters are getting the ability to space out exits, so ask this before reserveDoor as a kind of no-commitment check.
+	virtual bool isExitBusy() const {return FALSE;}	///< Contain style exiters are getting the ability to space out exits, so ask this before reserveDoor as a kind of no-commitment check.
 	virtual ExitDoorType reserveDoorForExit( const ThingTemplate* objType, Object *specificObject );
 	virtual void exitObjectViaDoor( Object *newObj, ExitDoorType exitDoor );
 	virtual void unreserveDoorForExit( ExitDoorType exitDoor );
@@ -88,7 +88,7 @@ public:
 	virtual UpdateSleepTime update()										{ return UPDATE_SLEEP_FOREVER; }
 
 protected:
-	Bool m_bonesInitialized;													///< To prevent creation bugs, only init the World coords when first asked for one
+	bool m_bonesInitialized;													///< To prevent creation bugs, only init the World coords when first asked for one
 	Int m_spawnPointCount;														///< How many in the array are actually live and valid
 	Coord3D m_worldCoordSpawnPoints[MAX_SPAWN_POINTS];///< Where my little friends will be created
 	Real m_worldAngleSpawnPoints[MAX_SPAWN_POINTS];		///< And what direction they should face

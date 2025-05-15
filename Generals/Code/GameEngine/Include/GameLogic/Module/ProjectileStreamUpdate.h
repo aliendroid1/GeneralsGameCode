@@ -67,7 +67,7 @@ protected:
 
 
 	void cullFrontOfList();
-	Bool considerDying();
+	bool considerDying();
 
 	ObjectID m_projectileIDs[MAX_PROJECTILE_STREAM];
 	Int m_nextFreeIndex;

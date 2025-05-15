@@ -256,9 +256,9 @@ LadderList::LadderList()
 
 	AsciiString rawMotd = TheGameSpyConfig->getLeftoverConfig();
 	AsciiString line;
-	Bool inLadders = FALSE;
-	Bool inSpecialLadders = FALSE;
-	Bool inLadder = FALSE;
+	bool inLadders = FALSE;
+	bool inSpecialLadders = FALSE;
+	bool inLadder = FALSE;
 	LadderInfo *lad = NULL;
 	Int index = 1;
 	AsciiString rawLadder;

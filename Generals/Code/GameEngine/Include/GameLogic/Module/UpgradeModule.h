@@ -53,13 +53,13 @@ class UpgradeModuleInterface
 {
 public:
 
- 	virtual Bool isAlreadyUpgraded() const = 0;
-	virtual Bool attemptUpgrade( UpgradeMaskType keyMask ) = 0;
-	virtual Bool wouldUpgrade( UpgradeMaskType keyMask ) const = 0;
-	virtual Bool resetUpgrade( UpgradeMaskType keyMask ) = 0;
-	virtual Bool isSubObjectsUpgrade() = 0;
+ 	virtual bool isAlreadyUpgraded() const = 0;
+	virtual bool attemptUpgrade( UpgradeMaskType keyMask ) = 0;
+	virtual bool wouldUpgrade( UpgradeMaskType keyMask ) const = 0;
+	virtual bool resetUpgrade( UpgradeMaskType keyMask ) = 0;
+	virtual bool isSubObjectsUpgrade() = 0;
 	virtual void forceRefreshUpgrade() = 0;
-	virtual Bool testUpgradeConditions( UpgradeMaskType keyMask ) const = 0;
+	virtual bool testUpgradeConditions( UpgradeMaskType keyMask ) const = 0;
 
 };
 
@@ -72,7 +72,7 @@ public:
 	mutable const FXList*							m_fxListUpgrade;
 	mutable UpgradeMaskType						m_activationMask;				///< Activation only supports a single name currently
 	mutable UpgradeMaskType						m_conflictingMask;			///< Conflicts support multiple listings, and they are an OR
-	mutable Bool											m_requiresAllTriggers;
+	mutable bool											m_requiresAllTriggers;
 
 	UpgradeMuxData()
 	{
@@ -94,7 +94,7 @@ public:
 		};
 		return dataFieldParse;
 	}
-	Bool requiresAllActivationUpgrades() const;
+	bool requiresAllActivationUpgrades() const;
 	void getUpgradeActivationMasks(UpgradeMaskType& activation, UpgradeMaskType& conflicting) const;	///< The first time someone looks at my mask, I'll figure it out.
 	void performUpgradeFX(Object* obj) const;
 };
@@ -108,13 +108,13 @@ public:
 
 	UpgradeMux();
 
-	virtual Bool isAlreadyUpgraded() const ;
+	virtual bool isAlreadyUpgraded() const ;
 	// ***DANGER! DANGER! Don't use this, unless you are forcing an already made upgrade to refresh!!
 	virtual void forceRefreshUpgrade();
-	virtual Bool attemptUpgrade( UpgradeMaskType keyMask );
-	virtual Bool wouldUpgrade( UpgradeMaskType keyMask ) const;
-	virtual Bool resetUpgrade( UpgradeMaskType keyMask );
-	virtual Bool testUpgradeConditions( UpgradeMaskType keyMask ) const;
+	virtual bool attemptUpgrade( UpgradeMaskType keyMask );
+	virtual bool wouldUpgrade( UpgradeMaskType keyMask ) const;
+	virtual bool resetUpgrade( UpgradeMaskType keyMask );
+	virtual bool testUpgradeConditions( UpgradeMaskType keyMask ) const;
 
 protected:
 
@@ -122,8 +122,8 @@ protected:
 	virtual void upgradeImplementation( ) = 0; ///< Here's the actual work of Upgrading
 	virtual void getUpgradeActivationMasks(UpgradeMaskType& activation, UpgradeMaskType& conflicting) const = 0; ///< Here's the actual work of Upgrading
 	virtual void performUpgradeFX() = 0;	///< perform the associated fx list
-	virtual Bool requiresAllActivationUpgrades() const = 0;
-	virtual Bool isSubObjectsUpgrade() = 0;
+	virtual bool requiresAllActivationUpgrades() const = 0;
+	virtual bool isSubObjectsUpgrade() = 0;
 	
 	void giveSelfUpgrade()
 	{
@@ -143,7 +143,7 @@ protected:
 	virtual void upgradeMuxLoadPostProcess( void );
 
 private:
-	Bool m_upgradeExecuted;				///< Upgrade only executes once
+	bool m_upgradeExecuted;				///< Upgrade only executes once
 
 };
 
@@ -181,7 +181,7 @@ public:
 
 protected:
 
-	virtual Bool requiresAllActivationUpgrades() const
+	virtual bool requiresAllActivationUpgrades() const
 	{
 		return getUpgradeModuleData()->m_upgradeMuxData.m_requiresAllTriggers;
 	}

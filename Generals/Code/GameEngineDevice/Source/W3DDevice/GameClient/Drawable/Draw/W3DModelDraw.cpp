@@ -75,7 +75,7 @@
 #endif
 
 //-------------------------------------------------------------------------------------------------
-static inline Bool isValidTimeToCalcLogicStuff()
+static inline bool isValidTimeToCalcLogicStuff()
 {
 	return (TheGameLogic && TheGameLogic->isInGameLogicUpdate()) ||
 		(TheGameState && TheGameState->isInLoadGame());
@@ -257,12 +257,12 @@ static const Int ALL_MAINTAIN_FRAME_FLAGS =
 	(1<<MAINTAIN_FRAME_ACROSS_STATES3) |
 	(1<<MAINTAIN_FRAME_ACROSS_STATES4);
 
-inline Bool isAnyMaintainFrameFlagSet(Int flags)
+inline bool isAnyMaintainFrameFlagSet(Int flags)
 {
 	return (flags & ALL_MAINTAIN_FRAME_FLAGS) != 0;
 }
 
-inline Bool isCommonMaintainFrameFlagSet(Int a, Int b)
+inline bool isCommonMaintainFrameFlagSet(Int a, Int b)
 {
 	a &= ALL_MAINTAIN_FRAME_FLAGS;
 	b &= ALL_MAINTAIN_FRAME_FLAGS;
@@ -292,7 +292,7 @@ static const char *TerrainDecalTextureName[TERRAIN_DECAL_MAX-1]=
 const UnsignedInt NO_NEXT_DURATION = 0xffffffff;
 
 //-------------------------------------------------------------------------------------------------
-W3DAnimationInfo::W3DAnimationInfo(const AsciiString& name, Bool isIdle, Real distanceCovered) : 
+W3DAnimationInfo::W3DAnimationInfo(const AsciiString& name, bool isIdle, Real distanceCovered) : 
 #ifdef RETAIN_ANIM_HANDLES
 	m_handle(NULL), 
 	m_naturalDurationInMsec(0),
@@ -413,7 +413,7 @@ void ModelConditionInfo::addPublicBone(const AsciiString& boneName) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ModelConditionInfo::matchesMode(Bool night, Bool snowy) const
+bool ModelConditionInfo::matchesMode(Bool night, bool snowy) const
 {
 	for (std::vector<ModelConditionFlags>::const_iterator it = m_conditionsYesVec.begin(); 
 				it != m_conditionsYesVec.end(); 
@@ -429,13 +429,13 @@ Bool ModelConditionInfo::matchesMode(Bool night, Bool snowy) const
 }
 
 //-------------------------------------------------------------------------------------------------
-inline Bool testFlagBit(Int flags, Int bit)
+inline bool testFlagBit(Int flags, Int bit)
 {
 	return (flags & (1<<bit)) != 0;
 }
 
 //-------------------------------------------------------------------------------------------------
-static Bool findSingleBone(RenderObjClass* robj, const AsciiString& boneName, Matrix3D& mtx, Int& boneIndex)
+static bool findSingleBone(RenderObjClass* robj, const AsciiString& boneName, Matrix3D& mtx, Int& boneIndex)
 {
 	if (boneName.isNone() || boneName.isEmpty())
 		return false;
@@ -453,7 +453,7 @@ static Bool findSingleBone(RenderObjClass* robj, const AsciiString& boneName, Ma
 }
 
 //-------------------------------------------------------------------------------------------------
-static Bool findSingleSubObj(RenderObjClass* robj, const AsciiString& boneName, Matrix3D& mtx, Int& boneIndex)
+static bool findSingleSubObj(RenderObjClass* robj, const AsciiString& boneName, Matrix3D& mtx, Int& boneIndex)
 {
 	if (boneName.isNone() || boneName.isEmpty())
 		return false;
@@ -492,10 +492,10 @@ static Bool findSingleSubObj(RenderObjClass* robj, const AsciiString& boneName, 
 }
 
 //-------------------------------------------------------------------------------------------------
-static Bool doSingleBoneName(RenderObjClass* robj, const AsciiString& boneName, PristineBoneInfoMap& map)
+static bool doSingleBoneName(RenderObjClass* robj, const AsciiString& boneName, PristineBoneInfoMap& map)
 {
-	Bool foundAsBone = false;
-	Bool foundAsSubObj = false;
+	bool foundAsBone = false;
+	bool foundAsSubObj = false;
 
 	PristineBoneInfo info;
 	AsciiString tmp;
@@ -610,7 +610,7 @@ void ModelConditionInfo::validateCachedBones(RenderObjClass* robj, Real scale) c
 	// go ahead and set this here, in case we return early.
 	m_validStuff |= PRISTINE_BONES_VALID;
 
-	Bool tossRobj = false;
+	bool tossRobj = false;
 	if (robj == NULL)
 	{
 		if (m_modelName.isEmpty())
@@ -926,7 +926,7 @@ const Matrix3D* ModelConditionInfo::findPristineBone(NameKeyType boneName, Int* 
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ModelConditionInfo::findPristineBonePos(NameKeyType boneName, Coord3D& pos) const
+bool ModelConditionInfo::findPristineBonePos(NameKeyType boneName, Coord3D& pos) const
 {
 	const Matrix3D* mtx = findPristineBone(boneName, NULL);
 	if (mtx)
@@ -1023,7 +1023,7 @@ W3DModelDrawModuleData::W3DModelDrawModuleData() :
 }
 
 //-------------------------------------------------------------------------------------------------
-void W3DModelDrawModuleData::validateStuffForTimeAndWeather(const Drawable* draw, Bool night, Bool snowy) const
+void W3DModelDrawModuleData::validateStuffForTimeAndWeather(const Drawable* draw, bool night, bool snowy) const
 {
 	if (!isValidTimeToCalcLogicStuff())
 		return;
@@ -1067,8 +1067,8 @@ void W3DModelDrawModuleData::validateStuffForTimeAndWeather(const Drawable* draw
 		NameKeyType src = recoverSrcState(t_it->first);
 		NameKeyType dst = recoverDstState(t_it->first);
 
-		Bool a = false;
-		Bool b = false;
+		bool a = false;
+		bool b = false;
 		for (c_it = m_conditionStates.begin(); c_it != m_conditionStates.end(); ++c_it)
 		{
 
@@ -1258,7 +1258,7 @@ static void parseShowHideSubObject(INI* ini, void *instance, void *store, const 
 
 	while (subObjName.isNotEmpty())
 	{
-		Bool found = false;
+		bool found = false;
 		for (std::vector<ModelConditionInfo::HideShowSubObjInfo>::iterator it = vec->begin(); it != vec->end(); ++it)
 		{
 			if (stricmp(it->subObjName.str(), subObjName.str()) == 0)
@@ -1281,11 +1281,11 @@ static void parseShowHideSubObject(INI* ini, void *instance, void *store, const 
 }	
 
 //-------------------------------------------------------------------------------------------------
-void W3DModelDraw::showSubObject( const AsciiString& name, Bool show )
+void W3DModelDraw::showSubObject( const AsciiString& name, bool show )
 {
 	if( name.isNotEmpty() )
 	{
-		Bool found = false;
+		bool found = false;
 		for( std::vector<ModelConditionInfo::HideShowSubObjInfo>::iterator it = m_subObjectVec.begin(); it != m_subObjectVec.end(); ++it )
 		{
 			if( stricmp( it->subObjName.str(), name.str() ) == 0 )
@@ -1375,7 +1375,7 @@ static void parseBoneNameKey(INI* ini, void *instance, void * store, const void 
 }
 
 //-------------------------------------------------------------------------------------------------
-static Bool doesStateExist(const ModelConditionVector& v, const ModelConditionFlags& f)
+static bool doesStateExist(const ModelConditionVector& v, const ModelConditionFlags& f)
 {
 	for (ModelConditionVector::const_iterator it = v.begin(); it != v.end(); ++it)
 	{
@@ -1767,7 +1767,7 @@ W3DModelDraw::~W3DModelDraw(void)
 //-------------------------------------------------------------------------------------------------
 void W3DModelDraw::doStartOrStopParticleSys()
 {
-	Bool hidden = getDrawable()->isDrawableEffectivelyHidden() || m_fullyObscuredByShroud;
+	bool hidden = getDrawable()->isDrawableEffectivelyHidden() || m_fullyObscuredByShroud;
 
 	for (std::vector<ParticleSysTrackerType>::const_iterator it = m_particleSystemIDs.begin(); it != m_particleSystemIDs.end(); ++it)
 	//for (std::vector<ParticleSystemID>::const_iterator it = m_particleSystemIDs.begin(); it != m_particleSystemIDs.end(); ++it)
@@ -1917,7 +1917,7 @@ void W3DModelDraw::setFullyObscuredByShroud(Bool fullyObscured)
 }
 
 //-------------------------------------------------------------------------------------------------
-static Bool isAnimationComplete(RenderObjClass* r)
+static bool isAnimationComplete(RenderObjClass* r)
 {
 	if (r && r->Class_ID() == RenderObjClass::CLASSID_HLOD)
 	{
@@ -2190,7 +2190,7 @@ void W3DModelDraw::adjustAnimation(const ModelConditionInfo* prevState, Real pre
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool W3DModelDraw::setCurAnimDurationInMsec(Real desiredDurationInMsec)
+bool W3DModelDraw::setCurAnimDurationInMsec(Real desiredDurationInMsec)
 {
 	if (m_renderObject && m_renderObject->Class_ID() == RenderObjClass::CLASSID_HLOD)
 	{
@@ -2280,7 +2280,7 @@ static void doHideShowBoneSubObjs(Bool state, Int numSubObjects, Int boneIdx, Re
 }
 
 //-------------------------------------------------------------------------------------------------
-void ModelConditionInfo::WeaponBarrelInfo::setMuzzleFlashHidden(RenderObjClass *fullObject, Bool hide) const
+void ModelConditionInfo::WeaponBarrelInfo::setMuzzleFlashHidden(RenderObjClass *fullObject, bool hide) const
 {
 	if (fullObject)
 	{
@@ -2471,7 +2471,7 @@ void W3DModelDraw::handleClientRecoil()
 		{
 			if (barrels[i].m_muzzleFlashBone != 0)
 			{
-				Bool hidden = recoils[i].m_state != WeaponRecoilInfo::RECOIL_START;
+				bool hidden = recoils[i].m_state != WeaponRecoilInfo::RECOIL_START;
 				//DEBUG_LOG(("adjust muzzleflash %08lx for Draw %08lx state %s to %d at frame %d\n",subObjToHide,this,m_curState->m_description.str(),hidden?1:0,TheGameLogic->getFrame()));
 				barrels[i].setMuzzleFlashHidden(m_renderObject, hidden);
 			}
@@ -2633,7 +2633,7 @@ void W3DModelDraw::recalcBonesForClientParticleSystems()
 	DANGER WARNING READ ME
 	DANGER WARNING READ ME
 */
-Bool W3DModelDraw::updateBonesForClientParticleSystems()
+bool W3DModelDraw::updateBonesForClientParticleSystems()
 {
 	const Drawable* drawable = getDrawable();
 	if (drawable != NULL && m_curState != NULL && m_renderObject != NULL ) 
@@ -2835,7 +2835,7 @@ void W3DModelDraw::hideAllMuzzleFlashes(const ModelConditionInfo* state, RenderO
 }
 
 //-------------------------------------------------------------------------------------------------
-static Bool turretNamesDiffer(const ModelConditionInfo* a, const ModelConditionInfo* b)
+static bool turretNamesDiffer(const ModelConditionInfo* a, const ModelConditionInfo* b)
 {
 	if (!(a->m_validStuff & ModelConditionInfo::TURRETS_VALID) || !(b->m_validStuff & ModelConditionInfo::TURRETS_VALID))
 	{
@@ -3178,7 +3178,7 @@ void W3DModelDraw::replaceIndicatorColor(Color color)
 
 //-------------------------------------------------------------------------------------------------
 // this method must ONLY be called from the client, NEVER From the logic, not even indirectly.
-Bool W3DModelDraw::clientOnly_getRenderObjInfo(Coord3D* pos, Real* boundingSphereRadius, Matrix3D* transform) const
+bool W3DModelDraw::clientOnly_getRenderObjInfo(Coord3D* pos, Real* boundingSphereRadius, Matrix3D* transform) const
 {
 	if (!m_renderObject)
 		return false;
@@ -3195,7 +3195,7 @@ Bool W3DModelDraw::clientOnly_getRenderObjInfo(Coord3D* pos, Real* boundingSpher
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool W3DModelDraw::getProjectileLaunchOffset(
+bool W3DModelDraw::getProjectileLaunchOffset(
 	const ModelConditionFlags& condition, 
 	WeaponSlotType wslot, 
 	Int specificBarrelToUse, 
@@ -3456,7 +3456,7 @@ Int W3DModelDraw::getPristineBonePositionsForConditionState(
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool W3DModelDraw::getCurrentWorldspaceClientBonePositions(const char* boneName, Matrix3D& transform) const
+bool W3DModelDraw::getCurrentWorldspaceClientBonePositions(const char* boneName, Matrix3D& transform) const
 {
 	if (!m_renderObject)
 		return false;
@@ -3598,7 +3598,7 @@ Int W3DModelDraw::getBarrelCount(WeaponSlotType wslot) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool W3DModelDraw::handleWeaponFireFX(WeaponSlotType wslot, Int specificBarrelToUse, const FXList* fxl, Real weaponSpeed, const Coord3D* victimPos, Real damageRadius)
+bool W3DModelDraw::handleWeaponFireFX(WeaponSlotType wslot, Int specificBarrelToUse, const FXList* fxl, Real weaponSpeed, const Coord3D* victimPos, Real damageRadius)
 {
 	DEBUG_ASSERTCRASH(specificBarrelToUse >= 0, ("specificBarrelToUse should now always be explicit"));
 
@@ -3614,7 +3614,7 @@ Bool W3DModelDraw::handleWeaponFireFX(WeaponSlotType wslot, Int specificBarrelTo
 		return false;
 	}
 	
-	Bool handled = false;
+	bool handled = false;
 
 	if (specificBarrelToUse < 0 || specificBarrelToUse > wbvec.size())
 		specificBarrelToUse = 0;
@@ -3806,7 +3806,7 @@ void W3DModelDraw::preloadAssets( TimeOfDay timeOfDay )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool W3DModelDraw::isVisible() const
+bool W3DModelDraw::isVisible() const
 {
 	return (m_renderObject && m_renderObject->Is_Really_Visible());
 }
@@ -4058,7 +4058,7 @@ void W3DModelDraw::xfer( Xfer *xfer )
 				HAnimClass *anim = hlod->Peek_Animation_And_Info( frame, numFrames, mode, dummy );
 
 				// animation data is present
-				Bool present = anim ? TRUE : FALSE;
+				bool present = anim ? TRUE : FALSE;
 				xfer->xferBool( &present );
 
 				// if animation data is present
@@ -4082,7 +4082,7 @@ void W3DModelDraw::xfer( Xfer *xfer )
 			{
 
 				// animation data is *NOT* present
-				Bool present = FALSE;
+				bool present = FALSE;
 				xfer->xferBool( &present );
 
 			}  // end else
@@ -4092,7 +4092,7 @@ void W3DModelDraw::xfer( Xfer *xfer )
 		{
 
 			// read animation present flag
-			Bool present;
+			bool present;
 			xfer->xferBool( &present );
 
 			if( present )

@@ -70,7 +70,7 @@ public:
 
 	virtual UpdateSleepTime update( void );
 
-	Bool isFreeToAssist() const;
+	bool isFreeToAssist() const;
 	void assistAttack( const Object *requestingObject, Object *victimObject );
 
 private:

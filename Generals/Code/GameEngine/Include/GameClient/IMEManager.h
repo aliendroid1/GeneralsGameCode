@@ -82,10 +82,10 @@ class IMEManagerInterface : public SubsystemInterface
 		virtual void					detatch( void ) = 0;								///< detatch IME from current window
 		virtual void					enable( void ) = 0;									///< Enable IME
 		virtual void					disable( void ) = 0;								///< Disable IME
-		virtual Bool					isEnabled( void ) = 0;							///< Is IME enabled
-		virtual Bool					isAttachedTo( GameWindow *window ) = 0;	///< Is the manager currently attached to the window
+		virtual bool					isEnabled( void ) = 0;							///< Is IME enabled
+		virtual bool					isAttachedTo( GameWindow *window ) = 0;	///< Is the manager currently attached to the window
 		virtual GameWindow*		getWindow( void ) = 0;							///< Returns the window we are currently attached to
-		virtual Bool					isComposing( void ) = 0;						///< Manager is currently composing new input string
+		virtual bool					isComposing( void ) = 0;						///< Manager is currently composing new input string
 		virtual void					getCompositionString( UnicodeString &string ) = 0; ///< Return the current composition string
 		virtual Int						getCompositionCursorPosition( void ) =0;			///< Returns the composition cursor position 
 		virtual Int						getIndexBase( void ) = 0;						///< Get index base for candidate list
@@ -100,7 +100,7 @@ class IMEManagerInterface : public SubsystemInterface
 
 
 		/// Checks for and service IME messages. Returns TRUE if message serviced
-		virtual Bool serviceIMEMessage(	void *windowsHandle, 
+		virtual bool serviceIMEMessage(	void *windowsHandle, 
 												UnsignedInt message,
 												Int wParam,
 												Int lParam ) = 0;

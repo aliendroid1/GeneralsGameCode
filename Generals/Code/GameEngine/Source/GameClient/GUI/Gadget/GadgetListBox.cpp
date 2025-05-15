@@ -81,7 +81,7 @@ typedef struct _AddMessageStruct
 	Int column;		// The column to add the data to
 	const void *data;		// void pointer, can be either an DisplayString or an Image
 	Int type;			// Can either be set to LISTBOX_TEXT or LISTBOX_IMAGE
-	Bool overwrite;	// Do we overwrite existing data?
+	bool overwrite;	// Do we overwrite existing data?
 	Int width;			// set to -1 if we want the defaults
 	Int height;			// set to -1 if we want the defaults
 } AddMessageStruct;
@@ -235,7 +235,7 @@ static void removeSelection( ListboxData *list, Int i )
 /** Update Display List information inlcuding scrollbar */
 //=============================================================================
 static void adjustDisplay( GameWindow *window, Int adjustment, 
-													 Bool updateSlider )
+													 bool updateSlider )
 {
 	Int entry;
 	SliderData *sData;
@@ -342,7 +342,7 @@ static void computeTotalHeight( GameWindow *window )
 /** Add Images to position and column. Row and Column are both based from starting
 		Position 0 */
 //=============================================================================
-static Int addImageEntry( const Image *image, Color color, Int row, Int column, GameWindow *window, Bool overwrite, Int width, Int height )
+static Int addImageEntry( const Image *image, Color color, Int row, Int column, GameWindow *window, bool overwrite, Int width, Int height )
 {
 //	WinInstanceData *instData = window->winGetInstanceData();
 	ListboxData *list = (ListboxData *)window->winGetUserData();
@@ -442,7 +442,7 @@ static Int moveRowsDown(ListboxData *list, Int startingRow)
 // addEntry ===================================================================
 /** Add and process one string at insertPos */
 //=============================================================================
-static Int addEntry( UnicodeString *string, Int color, Int row, Int column, GameWindow *window, Bool overwrite )
+static Int addEntry( UnicodeString *string, Int color, Int row, Int column, GameWindow *window, bool overwrite )
 {
 //	WinInstanceData *instData = window->winGetInstanceData();
 	ListboxData *list = (ListboxData *)window->winGetUserData();
@@ -700,7 +700,7 @@ WindowMsgHandledType GadgetListBoxInput( GameWindow *window, UnsignedInt msg,
 				// --------------------------------------------------------------------
 				default:
 					{
-						Bool foundIt = false;
+						bool foundIt = false;
 						if( BitIsSet( mData2, KEY_STATE_DOWN ) )
 						{
 							// set the position to start looking for the line of text with this character
@@ -1026,7 +1026,7 @@ WindowMsgHandledType GadgetListBoxMultiInput( GameWindow *window, UnsignedInt ms
 //			Int mousex = mData1 & 0xFFFF;
 			Int mousey = mData1 >> 16;
 			Int x, y, i;
-			Bool removed = FALSE;
+			bool removed = FALSE;
 
 			window->winGetScreenPosition( &x, &y );
 
@@ -1455,7 +1455,7 @@ WindowMsgHandledType GadgetListBoxSystem( GameWindow *window, UnsignedInt msg,
 		// ------------------------------------------------------------------------
 		case GLM_ADD_ENTRY:
 		{
-			Bool success = TRUE;
+			bool success = TRUE;
 			Int addedIndex = -1;			
 			AddMessageStruct *addInfo = (AddMessageStruct*)mData1;
 			if (addInfo->row >= list->insertPos)
@@ -1579,7 +1579,7 @@ WindowMsgHandledType GadgetListBoxSystem( GameWindow *window, UnsignedInt msg,
 			if( list->multiSelect )
 			{
 				Int i = 0;
-				Bool removed = FALSE;
+				bool removed = FALSE;
 
 				while( list->selections[i] >= 0 )
 				{
@@ -2204,7 +2204,7 @@ UnicodeString GadgetListBoxGetTextAndColor( GameWindow *listbox, Color *color, I
 //=============================================================================
 Int GadgetListBoxAddEntryText( GameWindow *listbox,
 														UnicodeString text,
-														Color color, Int row, Int column, Bool overwrite )
+														Color color, Int row, Int column, bool overwrite )
 {
 	if (!listbox)
 		return -1;
@@ -2221,7 +2221,7 @@ Int GadgetListBoxAddEntryText( GameWindow *listbox,
 	addInfo.width = -1;
 
 	ListboxData *listData = (ListboxData *)listbox->winGetUserData();
-	Bool wasFull = (listData->listLength <= listData->endPos);
+	bool wasFull = (listData->listLength <= listData->endPos);
 	Int newEntryOffset = (wasFull)?0:1;
 	Int oldBottomIndex = GadgetListBoxGetBottomVisibleEntry(listbox);
 
@@ -2244,7 +2244,7 @@ Int GadgetListBoxAddEntryText( GameWindow *listbox,
 Int GadgetListBoxAddEntryImage( GameWindow *listbox, const Image *image,
 															 Int row, Int column,
 															 Int hight, Int width,
-															 Bool overwrite, Color color )
+															 bool overwrite, Color color )
 {
 	Int index;
 	AddMessageStruct addInfo;
@@ -2262,7 +2262,7 @@ Int GadgetListBoxAddEntryImage( GameWindow *listbox, const Image *image,
 
 Int GadgetListBoxAddEntryImage( GameWindow *listbox, const Image *image,
 															 Int row, Int column,
-															 Bool overwrite, Color color )
+															 bool overwrite, Color color )
 {
 	return GadgetListBoxAddEntryImage(listbox, image, row, column,  -1, -1, overwrite, color);
 }
@@ -2316,7 +2316,7 @@ void GadgetListboxCreateScrollbar( GameWindow *listbox )
 	Int top;
 	Int bottom;
 	UnsignedInt status = listbox->winGetStatus();
-	Bool title = FALSE;
+	bool title = FALSE;
 	Int width, height;
 
 	// get width and height of listbox
@@ -2790,7 +2790,7 @@ void GadgetListBoxSetTopVisibleEntry( GameWindow *window, Int newPos )
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-void GadgetListBoxSetAudioFeedback( GameWindow *listbox, Bool enable )
+void GadgetListBoxSetAudioFeedback( GameWindow *listbox, bool enable )
 {
 	if (!listbox)
 		return;

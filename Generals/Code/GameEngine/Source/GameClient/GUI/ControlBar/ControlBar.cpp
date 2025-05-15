@@ -552,7 +552,7 @@ CommandButton::~CommandButton( void )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool CommandButton::isValidRelationshipTarget(Relationship r) const
+bool CommandButton::isValidRelationshipTarget(Relationship r) const
 {
 	UnsignedInt mask = 0;
 	if (r == ENEMIES) mask |= NEED_TARGET_ENEMY_OBJECT;
@@ -563,7 +563,7 @@ Bool CommandButton::isValidRelationshipTarget(Relationship r) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool CommandButton::isValidObjectTarget(const Player* sourcePlayer, const Object* targetObj) const
+bool CommandButton::isValidObjectTarget(const Player* sourcePlayer, const Object* targetObj) const
 {
 	if (!sourcePlayer || !targetObj)
 		return false;
@@ -574,7 +574,7 @@ Bool CommandButton::isValidObjectTarget(const Player* sourcePlayer, const Object
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool CommandButton::isValidObjectTarget(const Object* sourceObj, const Object* targetObj) const
+bool CommandButton::isValidObjectTarget(const Object* sourceObj, const Object* targetObj) const
 {
 	if (!sourceObj || !targetObj)
 		return false;
@@ -585,7 +585,7 @@ Bool CommandButton::isValidObjectTarget(const Object* sourceObj, const Object* t
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool CommandButton::isValidToUseOn(const Object *sourceObj, const Object *targetObj, const Coord3D *targetLocation, CommandSourceType commandSource) const
+bool CommandButton::isValidToUseOn(const Object *sourceObj, const Object *targetObj, const Coord3D *targetLocation, CommandSourceType commandSource) const
 {
 	if (m_upgradeTemplate) {
 		// @todo: Make a const version of pui. We're not altering the production queue, so this const-cast
@@ -628,7 +628,7 @@ Bool CommandButton::isValidToUseOn(const Object *sourceObj, const Object *target
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool CommandButton::isReady(const Object *sourceObj) const
+bool CommandButton::isReady(const Object *sourceObj) const
 {
 	SpecialPowerModuleInterface *mod = sourceObj->getSpecialPowerModule( m_specialPower );
 	if( mod && mod->getPercentReady() == 1.0f ) 
@@ -641,7 +641,7 @@ Bool CommandButton::isReady(const Object *sourceObj) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool CommandButton::isValidObjectTarget(const Drawable* source, const Drawable* target) const
+bool CommandButton::isValidObjectTarget(const Drawable* source, const Drawable* target) const
 {
 	return isValidObjectTarget(source ? source->getObject() : NULL, target ? target->getObject() : NULL);
 }
@@ -674,14 +674,14 @@ const FieldParse CommandSet::m_commandSetFieldParseTable[] =
 };
 
 //-------------------------------------------------------------------------------------------------
-Bool CommandButton::isContextCommand() const
+bool CommandButton::isContextCommand() const
 {
 	return BitIsSet( m_options, CONTEXTMODE_COMMAND );
 }
 
 //-------------------------------------------------------------------------------------------------
 // bleah. shouldn't be const, but is. sue me. (srj)
-void CommandButton::copyImagesFrom( const CommandButton *button, Bool markUIDirtyIfChanged ) const
+void CommandButton::copyImagesFrom( const CommandButton *button, bool markUIDirtyIfChanged ) const
 {
 	if( m_buttonImage != button->getButtonImage() )
 	{
@@ -1244,7 +1244,7 @@ void ControlBar::reset( void )
 	CommandSet *set, *nextSet;
 	set = m_commandSets;
 	while (set) {
-		Bool possibleAdjustment = FALSE;
+		bool possibleAdjustment = FALSE;
 		nextSet = set->friend_getNext();
 		if (set == m_commandSets) {
 			possibleAdjustment = TRUE;
@@ -1262,7 +1262,7 @@ void ControlBar::reset( void )
 	CommandButton *button, *nextButton;
 	button = m_commandButtons;
 	while (button) {
-		Bool possibleAdjustment = FALSE;
+		bool possibleAdjustment = FALSE;
 		nextButton = button->friend_getNext();
 		if (button == m_commandButtons) {
 			possibleAdjustment = TRUE;
@@ -1344,7 +1344,7 @@ void ControlBar::update( void )
 			populateObserverInfoWindow();
 
 		Drawable *drawToEvaluateFor = NULL;
-		Bool multiSelect = FALSE;
+		bool multiSelect = FALSE;
 		if( TheInGameUI->getSelectCount() > 1 )
 		{
 			// Attempt to isolate a Drawable here to evaluate
@@ -1719,7 +1719,7 @@ void ControlBar::evaluateContextUI( void )
 
 
 	Drawable *drawToEvaluateFor = NULL;
-	Bool multiSelect = FALSE;
+	bool multiSelect = FALSE;
 
 
 	if( TheInGameUI->getSelectCount() > 1 )
@@ -1769,7 +1769,7 @@ void ControlBar::evaluateContextUI( void )
 		// the side select interface for command centers only, but note how under construction is
 		// more important than anything
 		//
-		Bool contextSelected = FALSE;
+		bool contextSelected = FALSE;
 		if( obj->getStatusBits().test( OBJECT_STATUS_UNDER_CONSTRUCTION ) )
 		{
 
@@ -2769,7 +2769,7 @@ void ControlBar::updateBuildQueueDisabledImages( const Image *image )
 		return;
 	// We have to do this because the build queue data might have been reset
 	static NameKeyType buildQueueIDs[ MAX_BUILD_QUEUE_BUTTONS ];
-	static Bool idsInitialized = FALSE;
+	static bool idsInitialized = FALSE;
 	Int i;
 
 	// get name key ids for the build queue buttons
@@ -2828,7 +2828,7 @@ void ControlBar::updateCommanBarBorderColors(Color build, Color action, Color up
 
 // ---------------------------------------------------------------------------------------
 // hides the communicator button
-void ControlBar::hideCommunicator( Bool b )
+void ControlBar::hideCommunicator( bool b )
 {
 	//sanity
 	if( m_communicatorButton != NULL )
@@ -2842,7 +2842,7 @@ void ControlBar::updatePurchaseScience( void )
 {
 //	if(m_generalsScreenAnimate && TheGlobalData->m_animateWindows)
 //	{
-//		Bool wasFinished = m_generalsScreenAnimate->isFinished();
+//		bool wasFinished = m_generalsScreenAnimate->isFinished();
 //		m_generalsScreenAnimate->update();
 //		if (m_generalsScreenAnimate->isFinished() && !wasFinished && m_generalsScreenAnimate->isReversed())
 //			m_contextParent[ CP_PURCHASE_SCIENCE ]->winHide(TRUE);
@@ -3382,11 +3382,11 @@ void ControlBar::updateSpecialPowerShortcut( void )
 	}
 
 }
-void ControlBar::animateSpecialPowerShortcut( Bool isOn )
+void ControlBar::animateSpecialPowerShortcut( bool isOn )
 {
 	if(!m_specialPowerShortcutParent || !m_animateWindowManagerForGenShortcuts || !m_currentlyUsedSpecialPowersButtons)
 		return;
-	Bool dontAnimate = TRUE;
+	bool dontAnimate = TRUE;
 	for( Int i = 0; i < m_currentlyUsedSpecialPowersButtons; ++i )
 	{
 		if (m_specialPowerShortcutButtons[i]->winGetUserData())
@@ -3414,7 +3414,7 @@ void ControlBar::showSpecialPowerShortcut( void )
 	if(TheScriptEngine->isGameEnding() || !m_specialPowerShortcutParent 
 		||!m_specialPowerShortcutButtons || !ThePlayerList || !ThePlayerList->getLocalPlayer())
 		return;
-	Bool dontAnimate = TRUE;
+	bool dontAnimate = TRUE;
 	for( Int i = 0; i < m_currentlyUsedSpecialPowersButtons; ++i )
 	{
 		if (m_specialPowerShortcutButtons[i]->winGetUserData())

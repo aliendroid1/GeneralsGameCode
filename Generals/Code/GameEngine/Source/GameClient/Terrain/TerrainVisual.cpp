@@ -81,7 +81,7 @@ void TerrainVisual::update( void )
 //-------------------------------------------------------------------------------------------------
 /** device independent implementation for common terrain visual systems */
 //-------------------------------------------------------------------------------------------------
-Bool TerrainVisual::load( AsciiString filename )
+bool TerrainVisual::load( AsciiString filename )
 {
 
 	// save the filename

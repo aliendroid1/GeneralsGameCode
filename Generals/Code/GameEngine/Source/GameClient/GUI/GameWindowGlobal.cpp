@@ -225,7 +225,7 @@ Int GameWindowManager::winIsAlNum( Int c )
 //=============================================================================
 GameFont *GameWindowManager::winFindFont( AsciiString fontName, 
 																					Int pointSize, 
-																					Bool bold )
+																					bool bold )
 {
 
 	assert( TheFontLibrary );

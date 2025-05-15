@@ -148,7 +148,7 @@ static const BlockParse theTypeTable[] =
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // PRIVATE FUNCTIONS //////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-Bool INI::isValidINIFilename( const char *filename )
+bool INI::isValidINIFilename( const char *filename )
 {
 	if( filename == NULL )
 		return FALSE;
@@ -208,7 +208,7 @@ INI::~INI( void )
 	* If we are to load subdirectories, we will load them *after* we load all the
 	* files in the current directory */
 //-------------------------------------------------------------------------------------------------
-void INI::loadDirectory( AsciiString dirName, Bool subdirs, INILoadType loadType, Xfer *pXfer )
+void INI::loadDirectory( AsciiString dirName, bool subdirs, INILoadType loadType, Xfer *pXfer )
 {
 	// sanity
 	if( dirName.isEmpty() )
@@ -414,7 +414,7 @@ void INI::load( AsciiString filename, INILoadType loadType, Xfer *pXfer )
 //-------------------------------------------------------------------------------------------------
 void INI::readLine( void )
 {
-	Bool isComment = FALSE;
+	bool isComment = FALSE;
 
 	// sanity
 	DEBUG_ASSERTCRASH( m_file, ("readLine(), file pointer is NULL\n") );
@@ -428,7 +428,7 @@ void INI::readLine( void )
 	{
 		// read up till the newline character or until out of space
 		Int i = 0;
-		Bool done = FALSE;
+		bool done = FALSE;
 		while( !done )
 		{
 
@@ -615,7 +615,7 @@ void INI::parseAngularVelocityReal( INI *ini, void * /*instance*/,
 }
 
 //-------------------------------------------------------------------------------------------------
-/** Parse Bool from buffer and assign at location 'store'.  The buffer token must
+/** Parse bool from buffer and assign at location 'store'.  The buffer token must
 	* be in the form of a string "Yes" or "No" (case is ignored) */
 //-------------------------------------------------------------------------------------------------
 void INI::parseBool( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
@@ -624,7 +624,7 @@ void INI::parseBool( INI* ini, void * /*instance*/, void *store, const void* /*u
 }
 
 //-------------------------------------------------------------------------------------------------
-/** Parse Bool from buffer; if true, or in MASK, otherwise and out MASK. The buffer token must
+/** Parse bool from buffer; if true, or in MASK, otherwise and out MASK. The buffer token must
 	* be in the form of a string "Yes" or "No" (case is ignored) */
 //-------------------------------------------------------------------------------------------------
 void INI::parseBitInInt32( INI *ini, void *instance, void *store, const void* userData )
@@ -640,7 +640,7 @@ void INI::parseBitInInt32( INI *ini, void *instance, void *store, const void* us
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-/*static*/ Bool INI::scanBool(const char* token)
+/*static*/ bool INI::scanBool(const char* token)
 {
 	// translate string yes/no into TRUE/FALSE
 	if( stricmp( token, "yes" ) == 0 )
@@ -736,7 +736,7 @@ AsciiString INI::getNextQuotedAsciiString()
 		}
 		else
 		{	int strLen=0;
-			Bool done=FALSE;
+			bool done=FALSE;
 			if ((strLen=strlen(token)) > 1)
 			{
 				strcpy(buff, &token[1]);	//skip the starting quote
@@ -913,8 +913,8 @@ void INI::parseBitString32( INI* ini, void * /*instance*/, void *store, const vo
 		throw INI_INVALID_NAME_LIST;
 	}
 
-	Bool foundNormal = false;
-	Bool foundAddOrSub = false;
+	bool foundNormal = false;
+	bool foundAddOrSub = false;
 
 	// loop through all tokens
 	for (const char *token = ini->getNextTokenOrNull(); token != NULL; token = ini->getNextTokenOrNull())
@@ -1473,7 +1473,7 @@ void INI::initFromINIMultiProc( void *what, BuildMultiIniFieldProc proc )
 //-------------------------------------------------------------------------------------------------
 void INI::initFromINIMulti( void *what, const MultiIniFieldParse& parseTableList )
 {
-	Bool done = FALSE;
+	bool done = FALSE;
 
 	if( what == NULL )
 	{
@@ -1499,7 +1499,7 @@ void INI::initFromINIMulti( void *what, const MultiIniFieldParse& parseTableList
 			}
 			else
 			{
-				Bool found = false;
+				bool found = false;
 				for (int ptIdx = 0; ptIdx < parseTableList.getCount(); ++ptIdx)
 				{
 					int offset = 0;
@@ -1650,7 +1650,7 @@ void INI::initFromINIMulti( void *what, const MultiIniFieldParse& parseTableList
 	}
 
 	// search for matching name
-	Bool found = false;
+	bool found = false;
 	for( const LookupListRec* lookup = &lookupList[0]; lookup->name; lookup++ )
 	{
 		if( stricmp( lookup->name, token ) == 0 )
@@ -1870,9 +1870,9 @@ void INI::parseDeathTypeFlags(INI* ini, void* /*instance*/, void* store, const v
 // parse the line and return whether the given line is a Block declaration of the form
 // [whitespace] blockType [whitespace] blockName [EOL]
 // both blockType and blockName are case insensitive
-Bool INI::isDeclarationOfType( AsciiString blockType, AsciiString blockName, char *bufferToCheck )
+bool INI::isDeclarationOfType( AsciiString blockType, AsciiString blockName, char *bufferToCheck )
 {
-	Bool retVal = true;
+	bool retVal = true;
 	if (!bufferToCheck || blockType.isEmpty() || blockName.isEmpty()) {
 		return false;
 	}
@@ -1932,9 +1932,9 @@ Bool INI::isDeclarationOfType( AsciiString blockType, AsciiString blockName, cha
 //-------------------------------------------------------------------------------------------------
 // parse the line and return whether the given line is a Block declaration of the form
 // [whitespace] end [EOL]
-Bool INI::isEndOfBlock( char *bufferToCheck )
+bool INI::isEndOfBlock( char *bufferToCheck )
 {
-	Bool retVal = true;
+	bool retVal = true;
 	if (!bufferToCheck) {
 		return false;
 	}

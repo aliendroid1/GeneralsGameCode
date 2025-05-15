@@ -77,7 +77,7 @@ UnicodeString::UnicodeString(const UnicodeString& stringSrc) : m_data(stringSrc.
 }
 
 // -----------------------------------------------------
-void UnicodeString::ensureUniqueBufferOfSize(int numCharsNeeded, Bool preserveData, const WideChar* strToCopy, const WideChar* strToCat)
+void UnicodeString::ensureUniqueBufferOfSize(int numCharsNeeded, bool preserveData, const WideChar* strToCopy, const WideChar* strToCat)
 {
 	validate();
 
@@ -328,7 +328,7 @@ void UnicodeString::format_va(const WideChar* format, va_list args)
 }
 
 //-----------------------------------------------------------------------------
-Bool UnicodeString::nextToken(UnicodeString* tok, UnicodeString delimiters)
+bool UnicodeString::nextToken(UnicodeString* tok, UnicodeString delimiters)
 {
 	if (this->isEmpty() || tok == this)
 		return false;

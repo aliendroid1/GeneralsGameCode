@@ -312,9 +312,9 @@ extern WindowMsgHandledType ControlBarSystem( GameWindow *window, UnsignedInt ms
 extern WindowMsgHandledType ControlBarObserverSystem( GameWindow *window, UnsignedInt msg, WindowMsgData mData1, WindowMsgData mData2 );
 extern WindowMsgHandledType ControlBarInput( GameWindow *window, UnsignedInt msg, WindowMsgData mData1, WindowMsgData mData2 );
 extern WindowMsgHandledType LeftHUDInput( GameWindow *window, UnsignedInt msg, WindowMsgData mData1, WindowMsgData mData2 );
-extern void ToggleControlBar( Bool immediate = TRUE );
-extern void HideControlBar( Bool immediate = TRUE );
-extern void ShowControlBar( Bool immediate = TRUE );
+extern void ToggleControlBar( bool immediate = TRUE );
+extern void HideControlBar( bool immediate = TRUE );
+extern void ShowControlBar( bool immediate = TRUE );
 
 
 // Replay Controls --------------------------------------------------------------------------------
@@ -331,19 +331,19 @@ enum InGameChatType : Int
 	INGAME_CHAT_EVERYONE,
 	INGAME_CHAT_PLAYERS
 };
-extern void ToggleInGameChat( Bool immediate = TRUE );
-extern void HideInGameChat( Bool immediate = TRUE );
-extern void ShowInGameChat( Bool immediate = TRUE );
+extern void ToggleInGameChat( bool immediate = TRUE );
+extern void HideInGameChat( bool immediate = TRUE );
+extern void ShowInGameChat( bool immediate = TRUE );
 void ResetInGameChat( void );
 void SetInGameChatType( InGameChatType chatType );
-Bool IsInGameChatActive();
+bool IsInGameChatActive();
 
 
 // Diplomacy Controls --------------------------------------------------------------------------------
 WindowMsgHandledType DiplomacySystem( GameWindow *window, UnsignedInt msg, WindowMsgData mData1, WindowMsgData mData2 );
 WindowMsgHandledType DiplomacyInput( GameWindow *window, UnsignedInt msg, WindowMsgData mData1, WindowMsgData mData2 );
-void ToggleDiplomacy( Bool immediate = TRUE );
-void HideDiplomacy( Bool immediate = TRUE );
+void ToggleDiplomacy( bool immediate = TRUE );
+void HideDiplomacy( bool immediate = TRUE );
 void ResetDiplomacy( void );
 
 // Generals Exp Points  --------------------------------------------------------------------------------

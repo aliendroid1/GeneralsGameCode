@@ -592,7 +592,7 @@ void drawDebugCircle( const Coord3D & center, Real radius, Real width, Color col
   Real angle = 0.0f;
   Coord3D pnt, lastPnt;
   ICoord2D start, end;
-  Bool endValid, startValid;
+  bool endValid, startValid;
 
   lastPnt.x = center.x + radius * (Real)cos(angle);
   lastPnt.y = center.y + radius * (Real)sin(angle);
@@ -892,9 +892,9 @@ static void renderAIDebug( void )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool W3DView::updateCameraMovements()
+bool W3DView::updateCameraMovements()
 {
-	Bool didUpdate = false;
+	bool didUpdate = false;
 
 	if (m_doingZoomCamera)
 	{
@@ -940,8 +940,8 @@ void W3DView::updateView(void)
 void W3DView::update(void)
 {
 	//USE_PERF_TIMER(W3DView_updateView)
-	Bool recalcCamera = false;
-	Bool didScriptedMovement = false;
+	bool recalcCamera = false;
+	bool didScriptedMovement = false;
 #ifdef LOG_FRAME_TIMES
 	__int64 curTime64,freq64;
 	static __int64 prevTime64=0;
@@ -976,7 +976,7 @@ void W3DView::update(void)
 	{
 		m_doingMoveCameraOnWaypointPath = false;
 		Object* cameraLockObj = TheGameLogic->findObjectByID(cameraLock);
-		Bool loseLock = false;
+		bool loseLock = false;
 
 		// check if object has been destroyed or is dead -> lose lock
 		if (cameraLockObj == NULL)
@@ -1301,7 +1301,7 @@ void W3DView::setViewFilterPos(const Coord3D *pos)
 //-------------------------------------------------------------------------------------------------
 /** Sets the view filter mode. */
 //-------------------------------------------------------------------------------------------------
-Bool W3DView::setViewFilterMode(enum FilterModes filterMode)
+bool W3DView::setViewFilterMode(enum FilterModes filterMode)
 {
 	FilterModes oldMode = m_viewFilterMode;	//save previous mode in case setup fails.
 
@@ -1319,7 +1319,7 @@ Bool W3DView::setViewFilterMode(enum FilterModes filterMode)
 //-------------------------------------------------------------------------------------------------
 /** Sets the view filter. */
 //-------------------------------------------------------------------------------------------------
-Bool W3DView::setViewFilter(enum FilterTypes filter)
+bool W3DView::setViewFilter(enum FilterTypes filter)
 {
 	FilterTypes oldFilter = m_viewFilter;	//save previous filter in case setup fails.
 
@@ -1372,8 +1372,8 @@ void W3DView::drawView( void )
 void W3DView::draw( void )
 {
 	//USE_PERF_TIMER(W3DView_drawView)
-	Bool skipRender = false;
-	Bool doExtraRender = false;
+	bool skipRender = false;
+	bool doExtraRender = false;
 	CustomScenePassModes customScenePassMode  = SCENE_PASS_DEFAULT;
 
 	if (m_viewFilterMode && 
@@ -1410,7 +1410,7 @@ void W3DView::draw( void )
 	{	
 		Coord2D deltaScroll;
 		calcDeltaScroll(deltaScroll);
-		Bool continueTheEffect;
+		bool continueTheEffect;
 		continueTheEffect = W3DShaderManager::filterPostRender(m_viewFilter, m_viewFilterMode, deltaScroll,doExtraRender);
 		if (!skipRender && getCameraLock()) 
 		{
@@ -1493,8 +1493,8 @@ void W3DView::draw( void )
 					e.x += delta.x*factor2;
 					e.y += delta.y*factor2;
 					e.z += delta.z*factor2;
-					Bool onScreen1 = worldToScreen( &e, &end );
-					Bool onScreen2 = worldToScreen( &s, &start );
+					bool onScreen1 = worldToScreen( &e, &end );
+					bool onScreen2 = worldToScreen( &s, &start );
 					if (!onScreen1 && !onScreen2) {
 						continue; // neither point visible.
 					}
@@ -1922,10 +1922,10 @@ void W3DView::screenToWorld( const ICoord2D *s, Coord3D *w )
 	Screen coordinates assumed in absolute values relative to full display resolution. */
 //-------------------------------------------------------------------------------------------------
 Int W3DView::iterateDrawablesInRegion( IRegion2D *screenRegion,
-																			 Bool (*callback)( Drawable *draw, void *userData ),
+																			 bool (*callback)( Drawable *draw, void *userData ),
 																			 void *userData )
 {
-	Bool inside = FALSE;
+	bool inside = FALSE;
 	Int count = 0;
 	Drawable *draw;
 	Vector3 screen, world;
@@ -1943,7 +1943,7 @@ Int W3DView::iterateDrawablesInRegion( IRegion2D *screenRegion,
 	//
 	/// @todo use fast int->real type casts here later
 
-	Bool regionIsPoint = FALSE;
+	bool regionIsPoint = FALSE;
 
 	if( screenRegion )
 	{
@@ -2037,7 +2037,7 @@ Int W3DView::iterateDrawablesInRegion( IRegion2D *screenRegion,
   * there if present. Screen coordinates assumed in absolute values relative
   * to full display resolution. */
 //-------------------------------------------------------------------------------------------------
-Drawable *W3DView::pickDrawable( const ICoord2D *screen, Bool forceAttack, PickType pickType )
+Drawable *W3DView::pickDrawable( const ICoord2D *screen, bool forceAttack, PickType pickType )
 {
 	RenderObjClass *renderObj = NULL;
 	Drawable *draw = NULL;
@@ -2227,7 +2227,7 @@ void W3DView::initHeightForMap( void )
 /** Move camera to in an interesting fashion.  Sets up parameters that get
  * evaluated in draw(). */
 //-------------------------------------------------------------------------------------------------
-void W3DView::moveCameraTo(const Coord3D *o, Int milliseconds, Int shutter, Bool orient)
+void W3DView::moveCameraTo(const Coord3D *o, Int milliseconds, Int shutter, bool orient)
 {
 	m_mcwpInfo.waypoints[0] = *getPosition();	
 	m_mcwpInfo.cameraAngle[0] = getAngle();	
@@ -2622,7 +2622,7 @@ void W3DView::resetCamera(const Coord3D *location, Int milliseconds)
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool W3DView::isCameraMovementFinished(void)
+bool W3DView::isCameraMovementFinished(void)
 {
 	if (m_viewFilter == FT_VIEW_MOTION_BLUR_FILTER) {
 		// Several of the motion blur effects are similar to camera movements.
@@ -2642,7 +2642,7 @@ Bool W3DView::isCameraMovementFinished(void)
 /** Move camera along a waypoint path in an interesting fashion.  Sets up parameters that get
  * evaluated in draw(). */
  // ------------------------------------------------------------------------------------------------
-void W3DView::moveCameraAlongWaypointPath(Waypoint *pWay, Int milliseconds, Int shutter, Bool orient)
+void W3DView::moveCameraAlongWaypointPath(Waypoint *pWay, Int milliseconds, Int shutter, bool orient)
 {
 	const Real MIN_DELTA = MAP_XY_FACTOR;
 

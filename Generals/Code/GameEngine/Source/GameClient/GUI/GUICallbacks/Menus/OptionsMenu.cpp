@@ -202,12 +202,12 @@ static GameWindow *   radioLow   = NULL;
 
 //Added By Saad for the resolution confirmation dialog box
 DisplaySettings oldDispSettings, newDispSettings;
-Bool dispChanged = FALSE;
+bool dispChanged = FALSE;
 extern Int timer;
 extern void DoResolutionDialog();
 //
 
-static Bool ignoreSelected = FALSE;
+static bool ignoreSelected = FALSE;
 WindowLayout *OptionsLayout = NULL;
 
 enum Detail : Int
@@ -310,7 +310,7 @@ void OptionPreferences::setOnlineIPAddress( UnsignedInt IP )
 	(*this)["GameSpyIPAddress"] = tmp;
 }
 
-Bool OptionPreferences::getAlternateMouseModeEnabled(void)
+bool OptionPreferences::getAlternateMouseModeEnabled(void)
 {
 	OptionPreferences::const_iterator it = find("UseAlternateMouse");
 	if (it == end())
@@ -338,7 +338,7 @@ Real OptionPreferences::getScrollFactor(void)
 	return factor/100.0f;
 }
 
-Bool OptionPreferences::usesSystemMapDir(void)
+bool OptionPreferences::usesSystemMapDir(void)
 {
 	OptionPreferences::const_iterator it = find("UseSystemMapDir");
 	if (it == end())
@@ -350,7 +350,7 @@ Bool OptionPreferences::usesSystemMapDir(void)
 	return FALSE;
 }
 
-Bool OptionPreferences::saveCameraInReplays(void)
+bool OptionPreferences::saveCameraInReplays(void)
 {
 	OptionPreferences::const_iterator it = find("SaveCameraInReplays");
 	if (it == end())
@@ -362,7 +362,7 @@ Bool OptionPreferences::saveCameraInReplays(void)
 	return FALSE;
 }
 
-Bool OptionPreferences::useCameraInReplays(void)
+bool OptionPreferences::useCameraInReplays(void)
 {
 	OptionPreferences::const_iterator it = find("UseCameraInReplays");
 	if (it == end())
@@ -392,7 +392,7 @@ Int OptionPreferences::getStaticGameDetail(void)
 	return TheGameLODManager->getStaticGameLODIndex(it->second);
 }
 
-Bool OptionPreferences::getSendDelay(void)
+bool OptionPreferences::getSendDelay(void)
 {
 	OptionPreferences::const_iterator it = find("SendDelay");
 	if (it == end())
@@ -442,14 +442,14 @@ UnsignedShort OptionPreferences::getFirewallPortOverride()
 	return override;
 }
 
-Bool OptionPreferences::getFirewallNeedToRefresh()
+bool OptionPreferences::getFirewallNeedToRefresh()
 {
 	OptionPreferences::const_iterator it = find("FirewallNeedToRefresh");
 	if (it == end()) {
 		return FALSE;
 	}
 
-	Bool retval = FALSE;
+	bool retval = FALSE;
 	AsciiString str = it->second;
 	if (str.compareNoCase("TRUE") == 0) {
 		retval = TRUE;
@@ -531,7 +531,7 @@ Real OptionPreferences::getSpeechVolume(void)
 	return volume;
 }
 
-Bool OptionPreferences::getCloudShadowsEnabled(void)
+bool OptionPreferences::getCloudShadowsEnabled(void)
 {
 	OptionPreferences::const_iterator it = find("UseCloudMap");
 	if (it == end())
@@ -543,7 +543,7 @@ Bool OptionPreferences::getCloudShadowsEnabled(void)
 	return FALSE;
 }
 
-Bool OptionPreferences::getLightmapEnabled(void)
+bool OptionPreferences::getLightmapEnabled(void)
 {
 	OptionPreferences::const_iterator it = find("UseLightMap");
 	if (it == end())
@@ -555,7 +555,7 @@ Bool OptionPreferences::getLightmapEnabled(void)
 	return FALSE;
 }
 
-Bool OptionPreferences::getSmoothWaterEnabled(void)
+bool OptionPreferences::getSmoothWaterEnabled(void)
 {
 	OptionPreferences::const_iterator it = find("ShowSoftWaterEdge");
 	if (it == end())
@@ -567,7 +567,7 @@ Bool OptionPreferences::getSmoothWaterEnabled(void)
 	return FALSE;
 }
 
-Bool OptionPreferences::getTreesEnabled(void)
+bool OptionPreferences::getTreesEnabled(void)
 {
 	OptionPreferences::const_iterator it = find("ShowTrees");
 	if (it == end())
@@ -579,7 +579,7 @@ Bool OptionPreferences::getTreesEnabled(void)
 	return FALSE;
 }
 
-Bool OptionPreferences::getExtraAnimationsDisabled(void)
+bool OptionPreferences::getExtraAnimationsDisabled(void)
 {
 	OptionPreferences::const_iterator it = find("ExtraAnimations");
 	if (it == end())
@@ -591,7 +591,7 @@ Bool OptionPreferences::getExtraAnimationsDisabled(void)
 	return TRUE;
 }
 
-Bool OptionPreferences::getDynamicLODEnabled(void)
+bool OptionPreferences::getDynamicLODEnabled(void)
 {
 	OptionPreferences::const_iterator it = find("DynamicLOD");
 	if (it == end())
@@ -603,7 +603,7 @@ Bool OptionPreferences::getDynamicLODEnabled(void)
 	return FALSE;
 }
 
-Bool OptionPreferences::getFPSLimitEnabled(void)
+bool OptionPreferences::getFPSLimitEnabled(void)
 {
 	OptionPreferences::const_iterator it = find("FPSLimit");
 	if (it == end())
@@ -615,7 +615,7 @@ Bool OptionPreferences::getFPSLimitEnabled(void)
 	return FALSE;
 }
 
-Bool OptionPreferences::get3DShadowsEnabled(void)
+bool OptionPreferences::get3DShadowsEnabled(void)
 {
 	OptionPreferences::const_iterator it = find("UseShadowVolumes");
 	if (it == end())
@@ -627,7 +627,7 @@ Bool OptionPreferences::get3DShadowsEnabled(void)
 	return FALSE;
 }
 
-Bool OptionPreferences::get2DShadowsEnabled(void)
+bool OptionPreferences::get2DShadowsEnabled(void)
 {
 	OptionPreferences::const_iterator it = find("UseShadowDecals");
 	if (it == end())
@@ -639,7 +639,7 @@ Bool OptionPreferences::get2DShadowsEnabled(void)
 	return FALSE;
 }
 
-Bool OptionPreferences::getBuildingOcclusionEnabled(void)
+bool OptionPreferences::getBuildingOcclusionEnabled(void)
 {
 	OptionPreferences::const_iterator it = find("BuildingOcclusion");
 	if (it == end())
@@ -885,7 +885,7 @@ static void saveOptions( void )
 	Int val;
 	//-------------------------------------------------------------------------------------------------
 //	// provider type
-//	Bool isChecked = GadgetCheckBoxIsChecked(checkAudioHardware);
+//	bool isChecked = GadgetCheckBoxIsChecked(checkAudioHardware);
 //	TheAudio->setHardwareAccelerated(isChecked);
 //	(*pref)["3DAudioProvider"] = TheAudio->getProviderName(TheAudio->getSelectedProvider());
 //
@@ -989,7 +989,7 @@ static void saveOptions( void )
 
 	//-------------------------------------------------------------------------------------------------
 	// LOD
-	Bool levelChanged=FALSE;
+	bool levelChanged=FALSE;
 	GadgetComboBoxGetSelectedPos( comboBoxDetail, &index );
 	//The levels stored by the LOD Manager are inverted compared to GUI so find correct one:
 	switch (index) {

@@ -47,16 +47,16 @@ class CrateCollideModuleData : public CollideModuleData
 public:
 	KindOfMaskType	m_kindof;				///< the kind(s) of units that can be collided with
 	KindOfMaskType	m_kindofnot;		///< the kind(s) of units that CANNOT be collided with
-	Bool m_isForbidOwnerPlayer;			///< This crate cannot be picked up by the player of the dead thing that made it.
-	Bool m_isBuildingPickup;			///< This crate can be picked up by a Building (bypassing AI requirement)
-	Bool m_isHumanOnlyPickup;				///< Can this crate only be picked up by a human player?  (Mission thing)
+	bool m_isForbidOwnerPlayer;			///< This crate cannot be picked up by the player of the dead thing that made it.
+	bool m_isBuildingPickup;			///< This crate can be picked up by a Building (bypassing AI requirement)
+	bool m_isHumanOnlyPickup;				///< Can this crate only be picked up by a human player?  (Mission thing)
 	ScienceType m_pickupScience;		///< Can only be picked up by a unit whose player has this science
 	FXList *m_executeFX;						///< FXList to play when activated
 	
 	AsciiString m_executionAnimationTemplate;				///< Anim2D to play at crate location
 	Real m_executeAnimationDisplayTimeInSeconds;		///< time to play animation for
 	Real m_executeAnimationZRisePerSecond;					///< rise animation up while playing
-	Bool m_executeAnimationFades;										///< animation fades out
+	bool m_executeAnimationFades;										///< animation fades out
 
 	CrateCollideModuleData();
 	static void buildFieldParse(MultiIniFieldParse& p);
@@ -78,19 +78,19 @@ public:
 	/// This collide method gets called when collision occur
 	virtual void onCollide( Object *other, const Coord3D *loc, const Coord3D *normal );
 
-	virtual Bool wouldLikeToCollideWith(const Object* other) const { return isValidToExecute(other); }
+	virtual bool wouldLikeToCollideWith(const Object* other) const { return isValidToExecute(other); }
 
-	virtual Bool isRailroad() const { return FALSE;};
- 	virtual Bool isCarBombCrateCollide() const { return FALSE; }
-	virtual Bool isHijackedVehicleCrateCollide() const { return FALSE; }
+	virtual bool isRailroad() const { return FALSE;};
+ 	virtual bool isCarBombCrateCollide() const { return FALSE; }
+	virtual bool isHijackedVehicleCrateCollide() const { return FALSE; }
 
 protected:
 
 	/// This is the game logic execution function that all real CrateCollides will implement
-	virtual Bool executeCrateBehavior( Object *other ) = 0;
+	virtual bool executeCrateBehavior( Object *other ) = 0;
 
 	/// This allows specific vetoes to certain types of crates and their data
-	virtual Bool isValidToExecute( const Object *other ) const;
+	virtual bool isValidToExecute( const Object *other ) const;
 
 };
 

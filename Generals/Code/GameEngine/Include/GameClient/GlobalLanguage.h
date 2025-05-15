@@ -79,7 +79,7 @@ public:
 
 	AsciiString m_unicodeFontName;
 	AsciiString m_unicodeFontFileName;
-	Bool m_useHardWrap;
+	bool m_useHardWrap;
 	Int m_militaryCaptionSpeed;
 	FontDesc	m_copyrightFont;
 	FontDesc	m_messageFont;

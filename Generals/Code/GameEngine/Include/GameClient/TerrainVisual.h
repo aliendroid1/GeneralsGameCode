@@ -97,7 +97,7 @@ public:
 	virtual void reset( void );
 	virtual void update( void );
 
-	virtual Bool load( AsciiString filename );
+	virtual bool load( AsciiString filename );
 
 	/// get color of texture on the terrain at location specified
 	virtual void getTerrainColorAt( Real x, Real y, RGBColor *pColor ) = 0;
@@ -107,14 +107,14 @@ public:
 
 	/** intersect the ray with the terrain, if a hit occurs TRUE is returned
 	and the result point on the terrain is returned in "result" */
-	virtual Bool intersectTerrain( Coord3D *rayStart, 
+	virtual bool intersectTerrain( Coord3D *rayStart, 
 																 Coord3D *rayEnd, 
 																 Coord3D *result ) { return FALSE; }
 
 	//
 	// water methods
 	//
-	virtual void enableWaterGrid( Bool enable ) = 0;
+	virtual void enableWaterGrid( bool enable ) = 0;
 	/// set min/max height values allowed in water grid pointed to by waterTable
 	virtual void setWaterGridHeightClamps( const WaterHandle *waterTable, Real minZ, Real maxZ ) = 0;
 	/// adjust fallof parameters for grid change method
@@ -132,19 +132,19 @@ public:
 	/// adjust the velocity at a water grid point corresponding to the world x,y
 	virtual void addWaterVelocity( Real worldX, Real worldY, Real velocity, Real preferredHeight ) = 0;
 	/// get height of water grid at specified position
-	virtual Bool getWaterGridHeight( Real worldX, Real worldY, Real *height) = 0;
+	virtual bool getWaterGridHeight( Real worldX, Real worldY, Real *height) = 0;
 
 	/// set detail of terrain tracks.
 	virtual void setTerrainTracksDetail(void)=0;
 	virtual void setShoreLineDetail(void)=0;
 		
 	/// Add a bib for an object at location.  
-	virtual void addFactionBib(Object *factionBuilding, Bool highlight, Real extra = 0)=0;
+	virtual void addFactionBib(Object *factionBuilding, bool highlight, Real extra = 0)=0;
 	/// Remove a bib.  
 	virtual void removeFactionBib(Object *factionBuilding)=0;
 
 	/// Add a bib for a drawable at location.  
-	virtual void addFactionBibDrawable(Drawable *factionBuilding, Bool highlight, Real extra = 0)=0;
+	virtual void addFactionBibDrawable(Drawable *factionBuilding, bool highlight, Real extra = 0)=0;
 	/// Remove a bib.  
 	virtual void removeFactionBibDrawable(Drawable *factionBuilding)=0;
 

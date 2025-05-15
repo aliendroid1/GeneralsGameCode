@@ -84,13 +84,13 @@ public:
 	virtual UnsignedInt getHeight( void ) { return m_height; }		///< Returns the height of the display
 	virtual void setBitDepth( UnsignedInt bitDepth ) { m_bitDepth = bitDepth; }
 	virtual UnsignedInt getBitDepth( void ) { return m_bitDepth; }
-	virtual void setWindowed( Bool windowed ) { m_windowed = windowed; }  ///< set windowd/fullscreen flag
-	virtual Bool getWindowed( void ) { return m_windowed; }				///< return widowed/fullscreen flag
-	virtual Bool setDisplayMode( UnsignedInt xres, UnsignedInt yres, UnsignedInt bitdepth, Bool windowed );	///<sets screen resolution/mode
+	virtual void setWindowed( bool windowed ) { m_windowed = windowed; }  ///< set windowd/fullscreen flag
+	virtual bool getWindowed( void ) { return m_windowed; }				///< return widowed/fullscreen flag
+	virtual bool setDisplayMode( UnsignedInt xres, UnsignedInt yres, UnsignedInt bitdepth, bool windowed );	///<sets screen resolution/mode
 	virtual Int getDisplayModeCount(void) {return 0;}	///<return number of display modes/resolutions supported by video card.
 	virtual void getDisplayModeDescription(Int modeIndex, Int *xres, Int *yres, Int *bitDepth) {}	///<return description of mode
- 	virtual void setGamma(Real gamma, Real bright, Real contrast, Bool calibrate) {};
-	virtual Bool testMinSpecRequirements(Bool *videoPassed, Bool *cpuPassed, Bool *memPassed,StaticGameLODLevel *idealVideoLevel=NULL, Real *cpuTime=NULL) {*videoPassed=*cpuPassed=*memPassed=true; return true;}
+ 	virtual void setGamma(Real gamma, Real bright, Real contrast, bool calibrate) {};
+	virtual bool testMinSpecRequirements(Bool *videoPassed, bool *cpuPassed, bool *memPassed,StaticGameLODLevel *idealVideoLevel=NULL, Real *cpuTime=NULL) {*videoPassed=*cpuPassed=*memPassed=true; return true;}
 	virtual void doSmartAssetPurgeAndPreload(const char* usageFileName) = 0;
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual void dumpAssetUsage(const char* mapname) = 0;
@@ -115,13 +115,13 @@ public:
 	//---------------------------------------------------------------------------------------
 	// Drawing management
 	virtual void setClipRegion( IRegion2D *region ) = 0;	///< Set clip rectangle for 2D draw operations.
-	virtual	Bool isClippingEnabled( void ) = 0;
-	virtual	void enableClipping( Bool onoff ) = 0;
+	virtual	bool isClippingEnabled( void ) = 0;
+	virtual	void enableClipping( bool onoff ) = 0;
 
 	virtual void draw( void );																		///< Redraw the entire display
 	virtual void setTimeOfDay( TimeOfDay tod ) = 0;								///< Set the time of day for this display
 	virtual void createLightPulse( const Coord3D *pos, const RGBColor *color, Real innerRadius,Real attenuationWidth, 
-																 UnsignedInt increaseFrameTime, UnsignedInt decayFrameTime//, Bool donut = FALSE
+																 UnsignedInt increaseFrameTime, UnsignedInt decayFrameTime//, bool donut = FALSE
 																 ) = 0;
 
 	/// draw a line on the display in pixel coordinates with the specified color
@@ -153,7 +153,7 @@ public:
 	virtual void playLogoMovie( AsciiString movieName, Int minMovieLength, Int minCopyrightLength );
 	virtual void playMovie( AsciiString movieName );
 	virtual void stopMovie( void );
-	virtual Bool isMoviePlaying(void);
+	virtual bool isMoviePlaying(void);
 
 	/// Register debug display callback
 	virtual void setDebugDisplayCallback( DebugDisplayCallback *callback, void *userData = NULL  );
@@ -173,7 +173,7 @@ public:
 	virtual void toggleMovieCapture(void) = 0;							///< starts saving frames to an avi or frame sequence
 	virtual void toggleLetterBox(void) = 0;										///< enabled letter-boxed display
 	virtual void enableLetterBox(Bool enable) = 0;						///< forces letter-boxed display on/off
-	virtual Bool isLetterBoxFading( void ) { return FALSE; }	///< returns true while letterbox fades in/out
+	virtual bool isLetterBoxFading( void ) { return FALSE; }	///< returns true while letterbox fades in/out
 
 	virtual void setCinematicText( AsciiString string ) { m_cinematicText = string; }
 	virtual void setCinematicFont( GameFont *font ) { m_cinematicFont = font; }
@@ -187,7 +187,7 @@ protected:
 	virtual void deleteViews( void );   ///< delete all views
 	UnsignedInt m_width, m_height;			///< Dimensions of the display
 	UnsignedInt m_bitDepth;							///< bit depth of the display
-	Bool m_windowed;										///< TRUE when windowed, FALSE when fullscreen
+	bool m_windowed;										///< TRUE when windowed, FALSE when fullscreen
 	View *m_viewList;										///< All of the views into the world
 
 	// Cinematic text data
@@ -228,7 +228,7 @@ typedef struct _DisplaySettings
 	Int xRes;  //Resolution width
 	Int yRes;  //Resolution height
 	Int bitDepth; //Color Depth
-	Bool windowed; //Window mode TRUE: we're windowed, FALSE: we're not windowed
+	bool windowed; //Window mode TRUE: we're windowed, FALSE: we're not windowed
 } DisplaySettings;
 
 

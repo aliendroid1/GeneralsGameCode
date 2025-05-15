@@ -140,7 +140,7 @@ struct CollideInfo
 struct CellValueProcParms
 {
 	Int valueRequired;
-	Bool greaterThan;
+	bool greaterThan;
 	ValueOrThreat valueType;
 	PlayerMaskType allPlayersMask[MAX_PLAYER_COUNT];
 	PlayerMaskType allowedPlayersMasks;
@@ -161,10 +161,10 @@ static int cellValueProc(PartitionCell* cell, void* userData);
 			(thus the normal for b is exactly opposite in direction)
 	-- collideNormal is guaranteed to be a unit vector
 */
-typedef Bool (*CollideTestProc)(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo);
+typedef bool (*CollideTestProc)(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo);
 
 // if the dist is greater than maxDist, return false, and the output stuff is undefined.
-typedef Bool (*DistCalcProc)
+typedef bool (*DistCalcProc)
 (
 	const Coord3D *posA, 
 	const Object *objA, 
@@ -183,11 +183,11 @@ typedef Bool (*DistCalcProc)
 #define NO_FILTER_PROFILING
 
 #ifdef FILTER_PROFILING
-Bool DoFilterProfiling = false;
+bool DoFilterProfiling = false;
 #endif
 
 //DECLARE_PERF_TIMER(filtersAllow)
-inline Bool filtersAllow(PartitionFilter **filters, Object *objOther)
+inline bool filtersAllow(PartitionFilter **filters, Object *objOther)
 {
 	//USE_PERF_TIMER(filtersAllow)
 #ifdef FILTER_PROFILING
@@ -199,7 +199,7 @@ inline Bool filtersAllow(PartitionFilter **filters, Object *objOther)
 	static Int maxEver = 0;
 
 	Int idx;
-	Bool allow = true;
+	bool allow = true;
 
 	if (DoFilterProfiling)
 	{
@@ -356,25 +356,25 @@ static void testRotatedPointsAgainstRect(
 	Int *avgTot
 );
 
-static Bool xy_collideTest_Rect_Rect(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo);
-static Bool xy_collideTest_Rect_Circle(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo);
-static Bool xy_collideTest_Circle_Rect(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo);
-static Bool xy_collideTest_Circle_Circle(const Coord3D *a_pos, const Coord3D *b_pos, const Real a_radius, const Real b_radius, CollideLocAndNormal *cinfo);
+static bool xy_collideTest_Rect_Rect(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo);
+static bool xy_collideTest_Rect_Circle(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo);
+static bool xy_collideTest_Circle_Rect(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo);
+static bool xy_collideTest_Circle_Circle(const Coord3D *a_pos, const Coord3D *b_pos, const Real a_radius, const Real b_radius, CollideLocAndNormal *cinfo);
 
-static Bool collideTest_Sphere_Sphere(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo);
-static Bool collideTest_Sphere_Cylinder(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo);
-static Bool collideTest_Sphere_Box(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo);
-static Bool collideTest_Cylinder_Sphere(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo);
-static Bool collideTest_Cylinder_Cylinder(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo);
-static Bool collideTest_Cylinder_Box(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo);
-static Bool collideTest_Box_Sphere(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo);
-static Bool collideTest_Box_Cylinder(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo);
-static Bool collideTest_Box_Box(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo);
+static bool collideTest_Sphere_Sphere(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo);
+static bool collideTest_Sphere_Cylinder(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo);
+static bool collideTest_Sphere_Box(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo);
+static bool collideTest_Cylinder_Sphere(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo);
+static bool collideTest_Cylinder_Cylinder(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo);
+static bool collideTest_Cylinder_Box(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo);
+static bool collideTest_Box_Sphere(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo);
+static bool collideTest_Box_Cylinder(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo);
+static bool collideTest_Box_Box(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo);
 
-static Bool distCalcProc_CenterAndCenter_2D(const Coord3D *posA, const Object *objA, const Coord3D *posB, const Object *objB, Real& abDistSqr, Coord3D& abVec, Real maxDistSqr); 
-static Bool distCalcProc_BoundaryAndBoundary_2D(const Coord3D *posA, const Object *objA, const Coord3D *posB, const Object *objB, Real& abDistSqr, Coord3D& abVec, Real maxDistSqr); 
-static Bool distCalcProc_CenterAndCenter_3D(const Coord3D *posA, const Object *objA, const Coord3D *posB, const Object *objB, Real& abDistSqr, Coord3D& abVec, Real maxDistSqr); 
-static Bool distCalcProc_BoundaryAndBoundary_3D(const Coord3D *posA, const Object *objA, const Coord3D *posB, const Object *objB, Real& abDistSqr, Coord3D& abVec, Real maxDistSqr); 
+static bool distCalcProc_CenterAndCenter_2D(const Coord3D *posA, const Object *objA, const Coord3D *posB, const Object *objB, Real& abDistSqr, Coord3D& abVec, Real maxDistSqr); 
+static bool distCalcProc_BoundaryAndBoundary_2D(const Coord3D *posA, const Object *objA, const Coord3D *posB, const Object *objB, Real& abDistSqr, Coord3D& abVec, Real maxDistSqr); 
+static bool distCalcProc_CenterAndCenter_3D(const Coord3D *posA, const Object *objA, const Coord3D *posB, const Object *objB, Real& abDistSqr, Coord3D& abVec, Real maxDistSqr); 
+static bool distCalcProc_BoundaryAndBoundary_3D(const Coord3D *posA, const Object *objA, const Coord3D *posB, const Object *objB, Real& abDistSqr, Coord3D& abVec, Real maxDistSqr); 
 
 //-----------------------------------------------------------------------------
 inline void projectCoord3D(Coord3D *coord, const Coord3D *unitDir, Real dist)
@@ -467,9 +467,9 @@ static void rectToFourPoints(
 /**
 	2d utility routine for rect/cyl & rect/sphere collisions testing.
 */
-static Bool xy_collideTest_Circle_Rect(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo)
+static bool xy_collideTest_Circle_Rect(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo)
 {
-	Bool result = xy_collideTest_Rect_Circle(b, a, cinfo);
+	bool result = xy_collideTest_Rect_Circle(b, a, cinfo);
 	if (cinfo)
 		flipCoord3D(&cinfo->normal);
 	return result;
@@ -479,7 +479,7 @@ static Bool xy_collideTest_Circle_Rect(const CollideInfo *a, const CollideInfo *
 /**
 	2d utility routine for rect/cyl & rect/sphere collisions testing.
 */
-static Bool xy_collideTest_Rect_Circle(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo)
+static bool xy_collideTest_Rect_Circle(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo)
 {
 #if 1
 	/// @todo srj -- this is better than the other one, since it actually handles rotated rects,
@@ -524,7 +524,7 @@ static Bool xy_collideTest_Rect_Circle(const CollideInfo *a, const CollideInfo *
 /**
 	2d utility routine for cyl & sphere collisions testing.
 */
-static Bool xy_collideTest_Circle_Circle(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo)
+static bool xy_collideTest_Circle_Circle(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo)
 {
 	Coord3D diff;
 	vecDiff_2D(&b->position, &a->position, &diff);
@@ -550,7 +550,7 @@ static Bool xy_collideTest_Circle_Circle(const CollideInfo *a, const CollideInfo
 /**
 	2d utility routine for rect collisions testing.
 */
-static Bool xy_collideTest_Rect_Rect(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo)
+static bool xy_collideTest_Rect_Rect(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo)
 {
 	Coord2D pts[4];
 	Coord2D avg; avg.x = avg.y = 0.0f;
@@ -593,7 +593,7 @@ static Bool xy_collideTest_Rect_Rect(const CollideInfo *a, const CollideInfo *b,
 }
 
 //-----------------------------------------------------------------------------
-inline Bool z_collideTest_Sphere_Nonsphere(CollideTestProc xyproc, const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo)
+inline bool z_collideTest_Sphere_Nonsphere(CollideTestProc xyproc, const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo)
 {
 	// case 1: center of sphere is within the nonsphere z-space.
 	if (a->position.z >= b->position.z && a->position.z <= b->position.z + b->geom.getMaxHeightAbovePosition())
@@ -654,7 +654,7 @@ inline Bool z_collideTest_Sphere_Nonsphere(CollideTestProc xyproc, const Collide
 }
 
 //-----------------------------------------------------------------------------
-inline Bool z_collideTest_Nonsphere_Nonsphere(CollideTestProc xyproc, const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo)
+inline bool z_collideTest_Nonsphere_Nonsphere(CollideTestProc xyproc, const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo)
 {
 	// note: we already know that there is a z-intersection (our caller filters that out)
 	// so we need not recheck that here.
@@ -669,7 +669,7 @@ inline Bool z_collideTest_Nonsphere_Nonsphere(CollideTestProc xyproc, const Coll
 	r = b->geom.getMinorRadius();
 	if (minRadius>r) minRadius = r;
 	
-	Bool closeEnough = sqr(minRadius) > dSqr;
+	bool closeEnough = sqr(minRadius) > dSqr;
 
 	if (closeEnough || xyproc(a, b, cinfo))
 	{
@@ -695,7 +695,7 @@ inline Bool z_collideTest_Nonsphere_Nonsphere(CollideTestProc xyproc, const Coll
 }
 
 //-----------------------------------------------------------------------------
-static Bool collideTest_Sphere_Sphere(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo)
+static bool collideTest_Sphere_Sphere(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo)
 {
 	Coord3D diff;
 	vecDiff_3D(&b->position, &a->position, &diff);
@@ -717,61 +717,61 @@ static Bool collideTest_Sphere_Sphere(const CollideInfo *a, const CollideInfo *b
 }
 
 //-----------------------------------------------------------------------------
-static Bool collideTest_Sphere_Cylinder(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo)
+static bool collideTest_Sphere_Cylinder(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo)
 {
 	return z_collideTest_Sphere_Nonsphere(xy_collideTest_Circle_Circle, a, b, cinfo);
 }
 
 //-----------------------------------------------------------------------------
-static Bool collideTest_Sphere_Box(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo)
+static bool collideTest_Sphere_Box(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo)
 {
 	return z_collideTest_Sphere_Nonsphere(xy_collideTest_Circle_Rect, a, b, cinfo);
 }
 
 //-----------------------------------------------------------------------------
-static Bool collideTest_Cylinder_Sphere(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo)
+static bool collideTest_Cylinder_Sphere(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo)
 {
-	Bool result = z_collideTest_Sphere_Nonsphere(xy_collideTest_Circle_Circle, b, a, cinfo);
+	bool result = z_collideTest_Sphere_Nonsphere(xy_collideTest_Circle_Circle, b, a, cinfo);
 	if (cinfo)
 		flipCoord3D(&cinfo->normal);
 	return result;
 }
 
 //-----------------------------------------------------------------------------
-static Bool collideTest_Cylinder_Cylinder(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo)
+static bool collideTest_Cylinder_Cylinder(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo)
 {
 	return z_collideTest_Nonsphere_Nonsphere(xy_collideTest_Circle_Circle, a, b, cinfo);
 }
 
 //-----------------------------------------------------------------------------
-static Bool collideTest_Cylinder_Box(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo)
+static bool collideTest_Cylinder_Box(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo)
 {
 	return z_collideTest_Nonsphere_Nonsphere(xy_collideTest_Circle_Rect, a, b, cinfo);
 }
 
 //-----------------------------------------------------------------------------
-static Bool collideTest_Box_Sphere(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo)
+static bool collideTest_Box_Sphere(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo)
 {
-	Bool result = z_collideTest_Sphere_Nonsphere(xy_collideTest_Circle_Rect, b, a, cinfo);
+	bool result = z_collideTest_Sphere_Nonsphere(xy_collideTest_Circle_Rect, b, a, cinfo);
 	if (cinfo)
 		flipCoord3D(&cinfo->normal);
 	return result;
 }
 
 //-----------------------------------------------------------------------------
-static Bool collideTest_Box_Cylinder(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo)
+static bool collideTest_Box_Cylinder(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo)
 {
 	return z_collideTest_Nonsphere_Nonsphere(xy_collideTest_Rect_Circle, a, b, cinfo);
 }
 
 //-----------------------------------------------------------------------------
-static Bool collideTest_Box_Box(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo)
+static bool collideTest_Box_Box(const CollideInfo *a, const CollideInfo *b, CollideLocAndNormal *cinfo)
 {
 	return z_collideTest_Nonsphere_Nonsphere(xy_collideTest_Rect_Rect, a, b, cinfo);
 }
 
 //-----------------------------------------------------------------------------
-static Bool distCalcProc_CenterAndCenter_2D(
+static bool distCalcProc_CenterAndCenter_2D(
 	const Coord3D *posA, 
 	const Object *objA, 
 	const Coord3D *posB, 
@@ -802,7 +802,7 @@ static Bool distCalcProc_CenterAndCenter_2D(
 }
 
 //-----------------------------------------------------------------------------
-static Bool distCalcProc_BoundaryAndBoundary_2D(
+static bool distCalcProc_BoundaryAndBoundary_2D(
 	const Coord3D *posA, 
 	const Object *objA, 
 	const Coord3D *posB, 
@@ -856,7 +856,7 @@ static Bool distCalcProc_BoundaryAndBoundary_2D(
 }
 
 //-----------------------------------------------------------------------------
-static Bool distCalcProc_CenterAndCenter_3D(
+static bool distCalcProc_CenterAndCenter_3D(
 	const Coord3D *posA, 
 	const Object *objA, 
 	const Coord3D *posB, 
@@ -886,7 +886,7 @@ static Bool distCalcProc_CenterAndCenter_3D(
 }
 
 //-----------------------------------------------------------------------------
-static Bool distCalcProc_BoundaryAndBoundary_3D(
+static bool distCalcProc_BoundaryAndBoundary_3D(
 	const Coord3D *posA, 
 	const Object *objA, 
 	const Coord3D *posB, 
@@ -1632,7 +1632,7 @@ ObjectShroudStatus PartitionData::getShroudedStatus(Int playerIndex)
 #ifndef DISABLE_INVALID_PREVENTION
 	if (m_shroudedness[playerIndex] == OBJECTSHROUD_INVALID || m_shroudedness[playerIndex] == OBJECTSHROUD_INVALID_BUT_PREVIOUS_VALID)
 	{
-		Bool updateShroudednessPrevious = (m_shroudedness[playerIndex] != OBJECTSHROUD_INVALID_BUT_PREVIOUS_VALID);
+		bool updateShroudednessPrevious = (m_shroudedness[playerIndex] != OBJECTSHROUD_INVALID_BUT_PREVIOUS_VALID);
 #else
 	if (m_shroudedness[playerIndex] == OBJECTSHROUD_INVALID)
 	{
@@ -1960,7 +1960,7 @@ void PartitionData::addPossibleCollisions(PartitionContactList *ctList)
 }
 
 //-----------------------------------------------------------------------------
-Bool PartitionData::collidesWith(const PartitionData *that, CollideLocAndNormal *cinfo) const
+bool PartitionData::collidesWith(const PartitionData *that, CollideLocAndNormal *cinfo) const
 {
 	const Object *thisObj = this->getObject();
 	const Object *thatObj = that->getObject();
@@ -1997,7 +1997,7 @@ Bool PartitionData::collidesWith(const PartitionData *that, CollideLocAndNormal 
 
 //-----------------------------------------------------------------------------
 /* See if thisObj collides with geom at pos & angle. */
-Bool PartitionManager::geomCollidesWithGeom(const Coord3D* pos1, 
+bool PartitionManager::geomCollidesWithGeom(const Coord3D* pos1, 
 		const GeometryInfo& geom1,
 		Real angle1,
 		const Coord3D* pos2, 
@@ -2033,7 +2033,7 @@ Bool PartitionManager::geomCollidesWithGeom(const Coord3D* pos1,
 void PartitionData::updateCellsTouched()
 {
 	GeometryType geom;
-	Bool isSmall;
+	bool isSmall;
 	Coord3D pos;
 	Real angle,majorRadius,minorRadius;
 
@@ -2139,7 +2139,7 @@ static AsciiString theObjName;
 #endif
 
 //-----------------------------------------------------------------------------
-Int PartitionData::calcMaxCoiForShape(GeometryType geom, Real majorRadius, Real minorRadius, Bool isSmall)
+Int PartitionData::calcMaxCoiForShape(GeometryType geom, Real majorRadius, Real minorRadius, bool isSmall)
 {
 	Int result;
 	if (isSmall)
@@ -2185,7 +2185,7 @@ Int PartitionData::calcMaxCoiForObject()
 	GeometryType geom = obj->getGeometryInfo().getGeomType();
 	Real majorRadius = obj->getGeometryInfo().getMajorRadius();
 	Real minorRadius = obj->getGeometryInfo().getMinorRadius();
-	Bool isSmall = obj->getGeometryInfo().getIsSmall();
+	bool isSmall = obj->getGeometryInfo().getIsSmall();
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 theObjName = obj->getTemplate()->getName();
 #endif
@@ -2245,7 +2245,7 @@ void PartitionData::attachToObject(Object* object)
 	{	const ThingTemplate *tmplate=object->getTemplate();
 		const ModuleInfo &drawMod=tmplate->getDrawModuleInfo();
 		//Objects with default draw modules usually don't need ghostobjects so skip them to save memory.
-		Bool makeGhostObject=TRUE;
+		bool makeGhostObject=TRUE;
 		for (Int i=0; i<drawMod.getCount(); i++)
 		{
 			if (strcmp(drawMod.getNthName(i).str(),"W3DDefaultDraw") == 0)
@@ -2746,8 +2746,8 @@ void PartitionManager::update()
 
 			// get this BEFORE removing from dirty list, since that clears the
 			// flag in question.
-			Bool updateEm = dirty->isInNeedOfUpdatingCells();
-			Bool collideEm = dirty->isInNeedOfCollisionCheck() && dirty->getObject();	//only update collisions if we have object
+			bool updateEm = dirty->isInNeedOfUpdatingCells();
+			bool collideEm = dirty->isInNeedOfCollisionCheck() && dirty->getObject();	//only update collisions if we have object
 			
 			// detach it from the dirty list.
 			removeFromDirtyModules(dirty);
@@ -3251,7 +3251,7 @@ Object *PartitionManager::getClosestObjects(
 	Int maxRadiusLimit = maxRadius;
 #endif
 
-	Bool foundAny = false;
+	bool foundAny = false;
 
 	static Int theIterFlag = 1;	// nonzero, thanks
 	++theIterFlag;
@@ -3334,7 +3334,7 @@ Object *PartitionManager::getClosestObjects(
 			iter.setMaxRadius(max);
 	}
 
-	Bool foundAny = false;
+	bool foundAny = false;
 
 	static Int theIterFlag = 1;	// nonzero, thanks
 	++theIterFlag;
@@ -3613,7 +3613,7 @@ SimpleObjectIterator* PartitionManager::iteratePotentialCollisions(
 	const Coord3D* pos, 
 	const GeometryInfo& geom,
 	Real angle,
-	Bool use2D
+	bool use2D
 )
 {	
 	Real maxDist = geom.getBoundingSphereRadius();
@@ -3633,7 +3633,7 @@ SimpleObjectIterator* PartitionManager::iteratePotentialCollisions(
 }
 
 //-----------------------------------------------------------------------------
-Bool PartitionManager::isColliding( const Object *a, const Object *b ) const
+bool PartitionManager::isColliding( const Object *a, const Object *b ) const
 {
 	//Make sure we have objects
   if( !a || !b )
@@ -3681,7 +3681,7 @@ SimpleObjectIterator *PartitionManager::iterateAllObjects(PartitionFilter **filt
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool PartitionManager::tryPosition( const Coord3D *center,
+bool PartitionManager::tryPosition( const Coord3D *center,
 																		Real dist,
 																		Real angle,
 																		const FindPositionOptions *options,
@@ -3739,7 +3739,7 @@ Bool PartitionManager::tryPosition( const Coord3D *center,
 	//
 	if( BitIsSet( options->flags, FPF_IGNORE_WATER ) == FALSE )
 	{
-		Bool isUnderwater = TheTerrainLogic->isUnderwater( pos.x, pos.y );
+		bool isUnderwater = TheTerrainLogic->isUnderwater( pos.x, pos.y );
 
 		//
 		// if we want water spots only and this is underwater it's no good, otherwise we want
@@ -3763,7 +3763,7 @@ Bool PartitionManager::tryPosition( const Coord3D *center,
 		GeometryInfo geometry( GEOMETRY_SPHERE, TRUE, 5.0f, 5.0f, 5.0f );
 		ObjectIterator *iter = ThePartitionManager->iteratePotentialCollisions( &pos, geometry, angle, true );
 		MemoryPoolObjectHolder hold( iter );
-//	Bool overlap = FALSE;
+//	bool overlap = FALSE;
 
 		for( Object *them = iter->first(); them; them = iter->next() )
 		{
@@ -3856,7 +3856,7 @@ static Real ringSpacing = 5.0f;
 	* return FALSE no legal position exists or invalid params 
 	*/
 //-------------------------------------------------------------------------------------------------
-Bool PartitionManager::findPositionAround( const Coord3D *center, 
+bool PartitionManager::findPositionAround( const Coord3D *center, 
 																					 const FindPositionOptions *options, 
 																					 Coord3D *result )
 {
@@ -3962,7 +3962,7 @@ void PartitionManager::doShroudReveal(Real centerX, Real centerY, Real radius, P
 }
 	
 //-----------------------------------------------------------------------------
-void PartitionManager::processPendingUndoShroudRevealQueue( Bool considerTimestamp )
+void PartitionManager::processPendingUndoShroudRevealQueue( bool considerTimestamp )
 {
 	//Keep going until the front one is in the future.  UndoShroudReveal on each one you process.
 	//Again, you know these are in order, because we control the adding of the Constant in-the-queue time.
@@ -4237,7 +4237,7 @@ void PartitionManager::getCellCenterPos(Int x, Int y, Real& xx, Real& yy)
 		Real* maxZ;
 		Coord2D* minZPos;
 		Coord2D* maxZPos;
-		Bool isValid;
+		bool isValid;
 	};
 
 static Int checkTerrainExtreme(PartitionCell* cell, void* userData)
@@ -4280,7 +4280,7 @@ static Int checkTerrainExtreme(PartitionCell* cell, void* userData)
 
 //-----------------------------------------------------------------------------
 #ifdef PM_CACHE_TERRAIN_HEIGHT
-Bool PartitionManager::estimateTerrainExtremesAlongLine(const Coord3D& pos, const Coord3D& posOther, Real* minZ, Real* maxZ, Coord2D* minZPos, Coord2D* maxZPos)
+bool PartitionManager::estimateTerrainExtremesAlongLine(const Coord3D& pos, const Coord3D& posOther, Real* minZ, Real* maxZ, Coord2D* minZPos, Coord2D* maxZPos)
 {
 	TerrainExtremeData data;
 	data.minZ = minZ;
@@ -4335,7 +4335,7 @@ Int PartitionManager::iterateCellsAlongLine(const Coord3D& pos, const Coord3D& p
 		yinc1 = -1;
 		yinc2 = -1;
 	}
-	Bool checkY = true;
+	bool checkY = true;
 	if (delta.x >= delta.y)							// There is at least one x-value for every y-value
 	{
 		xinc1 = 0;												// Don't change the x when numerator >= denominator
@@ -4465,7 +4465,7 @@ static Real calcDist2D(Real x1, Real y1, Real x2, Real y2)
 }
 
 //-----------------------------------------------------------------------------
-Bool PartitionManager::isClearLineOfSightTerrain(const Object* obj, const Coord3D& objPos, const Object* other, const Coord3D& otherPos)
+bool PartitionManager::isClearLineOfSightTerrain(const Object* obj, const Coord3D& objPos, const Object* other, const Coord3D& otherPos)
 {
 	Coord3D pos, posOther;
 	
@@ -4506,7 +4506,7 @@ Bool PartitionManager::isClearLineOfSightTerrain(const Object* obj, const Coord3
 */
 	Real maxZ;
 	Coord2D maxZPos;
-	Bool valid = estimateTerrainExtremesAlongLine(pos, posOther, NULL, &maxZ, NULL, &maxZPos);
+	bool valid = estimateTerrainExtremesAlongLine(pos, posOther, NULL, &maxZ, NULL, &maxZPos);
 	DEBUG_ASSERTCRASH(valid, ("this should never happen unless both positions are off-map"));
 	if (!valid)
 		return true;
@@ -4764,7 +4764,7 @@ void PartitionManager::getMostValuableLocation( Int playerIndex, UnsignedInt whi
 
 //-------------------------------------------------------------------------------------------------
 void PartitionManager::getNearestGroupWithValue( Int playerIndex, UnsignedInt whichPlayerTypes, ValueOrThreat valType,
-															 const Coord3D *sourceLocation, Int valueRequired, Bool greaterThan, Coord3D *outLocation )
+															 const Coord3D *sourceLocation, Int valueRequired, bool greaterThan, Coord3D *outLocation )
 {
 	if (!(sourceLocation && outLocation))
 		return;
@@ -4805,7 +4805,7 @@ void PartitionManager::getNearestGroupWithValue( Int playerIndex, UnsignedInt wh
 }
 
 //-------------------------------------------------------------------------------------------------
-void PartitionManager::storeFoggedCells(ShroudStatusStoreRestore &outPartitionStore, Bool storeToFog) const
+void PartitionManager::storeFoggedCells(ShroudStatusStoreRestore &outPartitionStore, bool storeToFog) const
 {
 	Int i, j, p;
 
@@ -4845,7 +4845,7 @@ void PartitionManager::storeFoggedCells(ShroudStatusStoreRestore &outPartitionSt
 }
 
 //-------------------------------------------------------------------------------------------------
-void PartitionManager::restoreFoggedCells(const ShroudStatusStoreRestore &inPartitionStore, Bool restoreToFog)
+void PartitionManager::restoreFoggedCells(const ShroudStatusStoreRestore &inPartitionStore, bool restoreToFog)
 {
 	Int i, j, p;
 
@@ -4903,7 +4903,7 @@ PartitionFilterRejectBuildings::PartitionFilterRejectBuildings(const Object *o) 
 }
 
 //-----------------------------------------------------------------------------
-Bool PartitionFilterRejectBuildings::allow( Object *other )
+bool PartitionFilterRejectBuildings::allow( Object *other )
 {
 	// this filter allows all non-buildings
 	// um, no, it clearly doesn't any more.
@@ -4950,14 +4950,14 @@ Bool PartitionFilterRejectBuildings::allow( Object *other )
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
-Bool PartitionFilterFreeOfFog::allow( Object *other )
+bool PartitionFilterFreeOfFog::allow( Object *other )
 {
 	return other->getShroudedStatus(m_comparisonIndex) == OBJECTSHROUD_CLEAR;
 }
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
-Bool PartitionFilterInsignificantBuildings::allow( Object *other )
+bool PartitionFilterInsignificantBuildings::allow( Object *other )
 {
 	if (other->isStructure()) {
 		if (other->isNonFactionStructure() && !m_allowInsignificant) {
@@ -4986,7 +4986,7 @@ Bool PartitionFilterInsignificantBuildings::allow( Object *other )
 
 //-----------------------------------------------------------------------------
 
-Bool PartitionFilterRepulsor::allow( Object *other )
+bool PartitionFilterRepulsor::allow( Object *other )
 {
 	if (other == m_self) 
 	{
@@ -5035,14 +5035,14 @@ Bool PartitionFilterRepulsor::allow( Object *other )
 
 //-----------------------------------------------------------------------------
 
-Bool PartitionFilterIrregularArea::allow( Object *other )
+bool PartitionFilterIrregularArea::allow( Object *other )
 {
 
 	return PointInsideArea2D(other->getPosition(), m_area, m_numPointsInArea);
 }
 
 //-----------------------------------------------------------------------------
-Bool PartitionFilterPolygonTrigger::allow( Object *other )
+bool PartitionFilterPolygonTrigger::allow( Object *other )
 {
 	ICoord3D iPos;
 	iPos.x = other->getPosition()->x;
@@ -5053,13 +5053,13 @@ Bool PartitionFilterPolygonTrigger::allow( Object *other )
 
 //-----------------------------------------------------------------------------
 
-Bool PartitionFilterPlayer::allow( Object *other )
+bool PartitionFilterPlayer::allow( Object *other )
 {
 	return ((m_player == other->getControllingPlayer()) == m_match);
 }
 
 //-----------------------------------------------------------------------------
-Bool PartitionFilterPlayerAffiliation::allow( Object *other )
+bool PartitionFilterPlayerAffiliation::allow( Object *other )
 {
 	Relationship rel = m_player->getRelationship(other->getTeam());
 	switch (rel)
@@ -5091,13 +5091,13 @@ Bool PartitionFilterPlayerAffiliation::allow( Object *other )
 }
 
 //-----------------------------------------------------------------------------
-Bool PartitionFilterThing::allow( Object *other )
+bool PartitionFilterThing::allow( Object *other )
 {
 	return (m_tThing->isEquivalentTo(other->getTemplate()) == m_match);
 }
 
 //-----------------------------------------------------------------------------
-Bool PartitionFilterGarrisonable::allow( Object *other )
+bool PartitionFilterGarrisonable::allow( Object *other )
 {
 	ContainModuleInterface *cmi = other->getContain();
 	if (!cmi) {
@@ -5108,19 +5108,19 @@ Bool PartitionFilterGarrisonable::allow( Object *other )
 }
 
 //-----------------------------------------------------------------------------
-Bool PartitionFilterGarrisonableByPlayer::allow( Object *other )
+bool PartitionFilterGarrisonableByPlayer::allow( Object *other )
 {
 	return TheActionManager->canPlayerGarrison(m_player, other, m_commandSource) == m_match;
 }
 
 //-----------------------------------------------------------------------------
-Bool PartitionFilterUnmannedObject::allow( Object *other )
+bool PartitionFilterUnmannedObject::allow( Object *other )
 {
 	return (other->isDisabledByType( DISABLED_UNMANNED ) == m_match);
 }
 
 //-----------------------------------------------------------------------------
-Bool PartitionFilterValidCommandButtonTarget::allow( Object *other )
+bool PartitionFilterValidCommandButtonTarget::allow( Object *other )
 {
 	return (m_commandButton->isValidToUseOn(m_source, other, NULL, m_commandSource) == m_match);
 }
@@ -5130,7 +5130,7 @@ Bool PartitionFilterValidCommandButtonTarget::allow( Object *other )
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
-Bool PartitionFilterIsFlying::allow(Object *objOther)
+bool PartitionFilterIsFlying::allow(Object *objOther)
 {
 	return objOther->isUsingAirborneLocomotor();
 }
@@ -5140,7 +5140,7 @@ Bool PartitionFilterIsFlying::allow(Object *objOther)
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
-PartitionFilterWouldCollide::PartitionFilterWouldCollide(const Coord3D& pos, const GeometryInfo& geom, Real angle, Bool desired) :
+PartitionFilterWouldCollide::PartitionFilterWouldCollide(const Coord3D& pos, const GeometryInfo& geom, Real angle, bool desired) :
   m_position(pos),
 	m_geom(geom),
   m_angle(angle),
@@ -5150,12 +5150,12 @@ PartitionFilterWouldCollide::PartitionFilterWouldCollide(const Coord3D& pos, con
 
 //-----------------------------------------------------------------------------
 
-Bool PartitionFilterWouldCollide::allow(Object *objOther)
+bool PartitionFilterWouldCollide::allow(Object *objOther)
 {
 	CollideInfo thisInfo(&m_position, m_geom, m_angle);
 	CollideInfo thatInfo(objOther->getPosition(), objOther->getGeometryInfo(), objOther->getOrientation());
 
-  Bool doesCollide;
+  bool doesCollide;
 
 	// invariant for all geometries: first do z collision check.
 	if (thisInfo.position.z + thisInfo.geom.getMaxHeightAbovePosition() >= thatInfo.position.z && 
@@ -5186,7 +5186,7 @@ Bool PartitionFilterWouldCollide::allow(Object *objOther)
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
-Bool PartitionFilterSamePlayer::allow(Object *objOther)
+bool PartitionFilterSamePlayer::allow(Object *objOther)
 {
 	if (m_player == objOther->getControllingPlayer())
 		return true;
@@ -5199,7 +5199,7 @@ Bool PartitionFilterSamePlayer::allow(Object *objOther)
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
-Bool PartitionFilterRelationship::allow(Object *objOther)
+bool PartitionFilterRelationship::allow(Object *objOther)
 {
 	Relationship r = m_obj->getRelationship(objOther);
 
@@ -5218,7 +5218,7 @@ PartitionFilterAcceptOnTeam::PartitionFilterAcceptOnTeam(const Team *team) : m_t
 }
 
 //-----------------------------------------------------------------------------
-Bool PartitionFilterAcceptOnTeam::allow(Object *objOther) 
+bool PartitionFilterAcceptOnTeam::allow(Object *objOther) 
 {
 	// objOther is guaranteed to be non-null, so we don't need to check (srj)
 	return (objOther->getTeam() == m_team);
@@ -5234,7 +5234,7 @@ PartitionFilterAcceptOnSquad::PartitionFilterAcceptOnSquad(const Squad *squad) :
 
 //-----------------------------------------------------------------------------
 
-Bool PartitionFilterAcceptOnSquad::allow(Object *objOther)
+bool PartitionFilterAcceptOnSquad::allow(Object *objOther)
 {
 	return (m_squad && m_squad->isOnSquad(objOther) && !objOther->isEffectivelyDead());
 }
@@ -5243,7 +5243,7 @@ Bool PartitionFilterAcceptOnSquad::allow(Object *objOther)
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
-Bool PartitionFilterSameMapStatus::allow(Object* objOther)
+bool PartitionFilterSameMapStatus::allow(Object* objOther)
 {
 	// objOther is guaranteed to be non-null, so we don't need to check (srj)
 	return objOther->isOffMap() == m_obj->isOffMap();
@@ -5253,7 +5253,7 @@ Bool PartitionFilterSameMapStatus::allow(Object* objOther)
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
-Bool PartitionFilterOnMap::allow(Object* objOther)
+bool PartitionFilterOnMap::allow(Object* objOther)
 {
 	// objOther is guaranteed to be non-null, so we don't need to check (srj)
 	return !objOther->isOffMap();
@@ -5263,7 +5263,7 @@ Bool PartitionFilterOnMap::allow(Object* objOther)
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
-Bool PartitionFilterAlive::allow( Object *objOther )
+bool PartitionFilterAlive::allow( Object *objOther )
 {
 	return !objOther->isEffectivelyDead();
 }
@@ -5279,7 +5279,7 @@ PartitionFilterRejectBehind::PartitionFilterRejectBehind( Object *obj )
 
 //-----------------------------------------------------------------------------
 
-Bool PartitionFilterRejectBehind::allow( Object *other )
+bool PartitionFilterRejectBehind::allow( Object *other )
 {
 	// objOther is guaranteed to be non-null, so we don't need to check (srj)
 
@@ -5309,7 +5309,7 @@ PartitionFilterLineOfSight::PartitionFilterLineOfSight(const Object *obj)
 }
 
 //-----------------------------------------------------------------------------
-Bool PartitionFilterLineOfSight::allow(Object *objOther)
+bool PartitionFilterLineOfSight::allow(Object *objOther)
 {
 	// objOther is guaranteed to be non-null, so we don't need to check (srj)
 
@@ -5335,7 +5335,7 @@ PartitionFilterPossibleToAttack::PartitionFilterPossibleToAttack(AbleToAttackTyp
 }
 
 //-----------------------------------------------------------------------------
-Bool PartitionFilterPossibleToAttack::allow(Object *objOther)
+bool PartitionFilterPossibleToAttack::allow(Object *objOther)
 {
 	// objOther is guaranteed to be non-null, so we don't need to check (srj)
 	
@@ -5380,7 +5380,7 @@ PartitionFilterLastAttackedBy::PartitionFilterLastAttackedBy(Object *obj)
 
 //-----------------------------------------------------------------------------
 
-Bool PartitionFilterLastAttackedBy::allow(Object *other)
+bool PartitionFilterLastAttackedBy::allow(Object *other)
 {
 	// objOther is guaranteed to be non-null, so we don't need to check (srj)
 	if (other->getID() == m_lastAttackedBy)
@@ -5394,7 +5394,7 @@ Bool PartitionFilterLastAttackedBy::allow(Object *other)
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
-Bool PartitionFilterAcceptByObjectStatus::allow(Object *objOther)
+bool PartitionFilterAcceptByObjectStatus::allow(Object *objOther)
 { 
 	ObjectStatusMaskType status = objOther->getStatusBits();
 	return status.testForAll( m_mustBeSet ) && status.testForNone( m_mustBeClear );
@@ -5406,7 +5406,7 @@ Bool PartitionFilterAcceptByObjectStatus::allow(Object *objOther)
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
-Bool PartitionFilterRejectByObjectStatus::allow(Object *objOther)
+bool PartitionFilterRejectByObjectStatus::allow(Object *objOther)
 { 
 	ObjectStatusMaskType status = objOther->getStatusBits();
 
@@ -5419,7 +5419,7 @@ Bool PartitionFilterRejectByObjectStatus::allow(Object *objOther)
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
-Bool PartitionFilterAcceptByKindOf::allow(Object *objOther)
+bool PartitionFilterAcceptByKindOf::allow(Object *objOther)
 {
 	return objOther->isKindOfMulti(m_mustBeSet, m_mustBeClear);
 }
@@ -5430,7 +5430,7 @@ Bool PartitionFilterAcceptByKindOf::allow(Object *objOther)
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
-Bool PartitionFilterRejectByKindOf::allow(Object *objOther)
+bool PartitionFilterRejectByKindOf::allow(Object *objOther)
 {
 	return !objOther->isKindOfMulti(m_mustBeSet, m_mustBeClear); 
 }
@@ -5441,12 +5441,12 @@ Bool PartitionFilterRejectByKindOf::allow(Object *objOther)
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
-Bool PartitionFilterStealthedAndUndetected::allow( Object *objOther )
+bool PartitionFilterStealthedAndUndetected::allow( Object *objOther )
 {
 	// objOther is guaranteed to be non-null, so we don't need to check (srj)
 
-	Bool stealthed = objOther->testStatus( OBJECT_STATUS_STEALTHED );
-	Bool detected = objOther->testStatus( OBJECT_STATUS_DETECTED );
+	bool stealthed = objOther->testStatus( OBJECT_STATUS_STEALTHED );
+	bool detected = objOther->testStatus( OBJECT_STATUS_DETECTED );
 
 	if( stealthed && !detected )
 	{
@@ -5737,7 +5737,7 @@ void SightingInfo::reset()
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool SightingInfo::isInvalid() const
+bool SightingInfo::isInvalid() const
 {
 	return m_howFar == 0.0f;
 }

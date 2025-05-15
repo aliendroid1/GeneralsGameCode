@@ -83,7 +83,7 @@ public:
 	AsciiString m_pathPrefixName;		///< prefix to use for waypont start and end points we'll look for
 	AsciiString m_CrashFXTemplateName;
 
-	Bool m_isLocomotive;
+	bool m_isLocomotive;
 	Real m_runningGarrisonSpeedMax;
 	Real m_killSpeedMin;
 	Real m_speedMax;
@@ -138,12 +138,12 @@ struct TrackPoint
 	Real m_distanceFromPrev;
 	Real m_distanceFromFirst;
 	Int  m_handle;
-	Bool m_isFirstPoint;
-	Bool m_isLastPoint;
-	Bool m_isTunnelOrBridge;
-	Bool m_isStation;
-	Bool m_isDisembark;
-	Bool m_isPingPong;
+	bool m_isFirstPoint;
+	bool m_isLastPoint;
+	bool m_isTunnelOrBridge;
+	bool m_isStation;
+	bool m_isDisembark;
+	bool m_isPingPong;
 
 };
 typedef std::list<TrackPoint> TrackPointList;
@@ -167,12 +167,12 @@ struct TrainTrack
 		m_length = 0.0f;
 	};
 
-	Bool m_isLooping;
-	Bool m_isValid;
+	bool m_isLooping;
+	bool m_isValid;
 	Real m_length;
 
 	void incReference(); 
-	Bool releaseReference(); 
+	bool releaseReference(); 
 
 	// To protect the track form ever going out of sync between cars on the same train... 
 	// I restrict write access to the first referencer, before a second one is added (the locomotive)
@@ -223,10 +223,10 @@ public:
 
 	// PhysicsBehavior methods
 	virtual void onCollide( Object *other, const Coord3D *loc, const Coord3D *normal );
-	virtual Bool wouldLikeToCollideWith(const Object* other) const {return FALSE;}; // will need to add this!
-	virtual Bool isHijackedVehicleCrateCollide() const {return FALSE;};
-	virtual Bool isCarBombCrateCollide() const {return FALSE;};
-	virtual Bool isRailroad() const ;
+	virtual bool wouldLikeToCollideWith(const Object* other) const {return FALSE;}; // will need to add this!
+	virtual bool isHijackedVehicleCrateCollide() const {return FALSE;};
+	virtual bool isCarBombCrateCollide() const {return FALSE;};
+	virtual bool isRailroad() const ;
 	virtual UpdateSleepTime update( void );
 
 	// TRAINY METHODS
@@ -235,7 +235,7 @@ public:
 	void hitchNewCarriagebyTemplate( ObjectID parentID, const TemplateNameVector& list, TemplateNameIterator& iter, TrainTrack *trackPointList );
 	void hitchNewCarriagebyProximity( ObjectID parentID, TrainTrack *trackPointList );
 	void disembark( void );
-	Bool hasEverBeenHitched( void ) { return m_hasEverBeenHitched; };
+	bool hasEverBeenHitched( void ) { return m_hasEverBeenHitched; };
 
 protected:
 
@@ -259,7 +259,7 @@ protected:
 	void updatePositionTrackDistance( PullInfo *pullerInfo, PullInfo *myInfo );
 	void loadTrackData( void );
 	void createCarriages( void );
-	void FindPosByPathDistance( Coord3D *pos, const Real dist, const Real length, Bool setState = FALSE );
+	void FindPosByPathDistance( Coord3D *pos, const Real dist, const Real length, bool setState = FALSE );
 	void playImpactSound(Object *victim, const Coord3D *impactPosition);
 
 	StationTask m_nextStationTask;
@@ -278,16 +278,16 @@ protected:
 	Int m_waitAtStationTimer;
 
 	//Flags
-	Bool m_carriagesCreated; ///< TRUE once we have made all the cars in the train
-	Bool m_hasEverBeenHitched; /// has somebody ever hitched me? Remains true, even after puller dies.
-	Bool m_trackDataLoaded; ///< have I TRIED to load track data, yet? I only try once!
-	Bool m_waitingInWings; /// I have not entered the real track yet, so leave me alone
-	Bool m_endOfLine;				/// I have reached the end of a non looping track
-	Bool m_isLocomotive; ///< Am I a locomotive, 
-	Bool m_isLeadCarraige; ///< Am the carraige in front,  
+	bool m_carriagesCreated; ///< TRUE once we have made all the cars in the train
+	bool m_hasEverBeenHitched; /// has somebody ever hitched me? Remains true, even after puller dies.
+	bool m_trackDataLoaded; ///< have I TRIED to load track data, yet? I only try once!
+	bool m_waitingInWings; /// I have not entered the real track yet, so leave me alone
+	bool m_endOfLine;				/// I have reached the end of a non looping track
+	bool m_isLocomotive; ///< Am I a locomotive, 
+	bool m_isLeadCarraige; ///< Am the carraige in front,  
 	Int m_wantsToBeLeadCarraige; ///< Am the carraige in front,  
-	Bool m_disembark; ///< If I wait at a station, I should also evacuate everybody when I get theres
-	Bool m_inTunnel; ///< Am I in a tunnel, so I wil not snap to ground height, until the next waypoint, 
+	bool m_disembark; ///< If I wait at a station, I should also evacuate everybody when I get theres
+	bool m_inTunnel; ///< Am I in a tunnel, so I wil not snap to ground height, until the next waypoint, 
 												//  i.e. do I provide the movement and scheduling AI for m_trailerID 
 												//  And therefore for his and his and his..........
 

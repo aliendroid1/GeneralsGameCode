@@ -114,8 +114,8 @@ void printObjects(Object *obj, void *userData)
 	if (!obj)
 		return;
 
-	Bool isDead = obj->isEffectivelyDead() || obj->isDestroyed();
-	Bool isInert = obj->isKindOf(KINDOF_INERT);
+	bool isDead = obj->isEffectivelyDead() || obj->isDestroyed();
+	bool isInert = obj->isKindOf(KINDOF_INERT);
 	AsciiString statusStr = (isDead)?"Dead":(isInert)?"Inert":"Living";
 
 	AsciiString line;
@@ -129,11 +129,11 @@ void printObjects(Object *obj, void *userData)
 }
 
 #endif
-static Bool isSystemMessage( const GameMessage *msg );
+static bool isSystemMessage( const GameMessage *msg );
 
 enum{ DROPPED_MAX_PARTICLE_COUNT = 1000};
 
-static Bool canSelectionSalvage( const Object *targetObj)
+static bool canSelectionSalvage( const Object *targetObj)
 {
 	if (!targetObj) {
 		return FALSE;
@@ -263,7 +263,7 @@ void pickAndPlayUnitVoiceResponse( const DrawableList *list, GameMessage::Type m
 	const AudioEventRTS* soundToPlayPtr = NULL;
 
 	Object *objectWithSound = NULL;
-	Bool skip = false;
+	bool skip = false;
 
 	Object *target = NULL;
 	if( info && info->m_drawTarget )
@@ -369,7 +369,7 @@ void pickAndPlayUnitVoiceResponse( const DrawableList *list, GameMessage::Type m
 				{
 					//This flag determines if the object has started moving yet... if not
 					//it's a good initial check.
-					Bool isEffectivelyMoving = ai->isMoving() || ai->isWaitingForPath();
+					bool isEffectivelyMoving = ai->isMoving() || ai->isWaitingForPath();
 
 					if( TheInGameUI->isInWaypointMode() )
 					{
@@ -474,7 +474,7 @@ void pickAndPlayUnitVoiceResponse( const DrawableList *list, GameMessage::Type m
 				}
 
 				//Look for a specialty weapon fired via command button!
-				Bool specialtyWeapon = FALSE;
+				bool specialtyWeapon = FALSE;
 				if( msgType == GameMessage::MSG_DO_WEAPON_AT_OBJECT )
 				{
 					specialtyWeapon = TRUE;
@@ -703,8 +703,8 @@ void pickAndPlayUnitVoiceResponse( const DrawableList *list, GameMessage::Type m
 
 struct CommandCenterLocator
 {
-	Bool atLeastOne;
-	Bool isCommandCenter;
+	bool atLeastOne;
+	bool isCommandCenter;
 	Int val;
 	Coord3D loc;
 
@@ -809,7 +809,7 @@ GameMessage::Type CommandTranslator::issueMoveToLocationCommand( const Coord3D *
 	GameMessage::Type msgType = GameMessage::MSG_INVALID;
 	Object *obj = drawableInWay ? drawableInWay->getObject() : NULL;
 
-	Bool isForceAttackable = FALSE;
+	bool isForceAttackable = FALSE;
 	if (obj) {
 		isForceAttackable = obj->isKindOf(KINDOF_FORCEATTACKABLE);
 	}
@@ -1473,7 +1473,7 @@ GameMessage::Type CommandTranslator::evaluateContextCommand( Drawable *draw,
 				}
 			}
 
-			Bool currentlyValid = FALSE;
+			bool currentlyValid = FALSE;
 			ObjectID objectID = obj ? obj->getID() : INVALID_ID;
 			switch( command->getCommandType() )
 			{
@@ -2114,7 +2114,7 @@ GameMessage::Type CommandTranslator::evaluateContextCommand( Drawable *draw,
 			//
 
 			//Before we issue a move order or hint, check to see if we can even move there!
-			Bool validQuickPath = FALSE;
+			bool validQuickPath = FALSE;
 			// Make sure to only to the check if the shroud is CLEARED.  If it is fogged or shrouded, SKIP THE CHECK.  jba [3/11/2003]
 			if( ThePartitionManager->getShroudStatusForPlayer( ThePlayerList->getLocalPlayer()->getPlayerIndex(), pos ) != CELLSHROUD_CLEAR )
 			{
@@ -2267,7 +2267,7 @@ GameMessageDisposition CommandTranslator::translateGameMessage(const GameMessage
 			else
 			{
 				Drawable *newDrawable = NULL;
-				Bool hack = FALSE;
+				bool hack = FALSE;
 				Drawable *selectedDrawable = TheInGameUI->getFirstSelectedDrawable();
 				Object *selectedObject = selectedDrawable->getObject();
 				if( selectedObject->isLocallyControlled() )
@@ -2374,7 +2374,7 @@ GameMessageDisposition CommandTranslator::translateGameMessage(const GameMessage
 			{
 				Drawable *newDrawable = NULL;
 				TheGameClient->getDrawableList();
-				Bool hack = FALSE; // takes care of when for loop skips firstdrawable
+				bool hack = FALSE; // takes care of when for loop skips firstdrawable
 				Drawable *selectedDrawable = TheInGameUI->getFirstSelectedDrawable();
 				Object *selectedObject = selectedDrawable->getObject();
 				if( selectedObject->isLocallyControlled() )
@@ -2496,7 +2496,7 @@ GameMessageDisposition CommandTranslator::translateGameMessage(const GameMessage
 			else
 			{
 				Drawable *newDrawable = NULL;
-				Bool hack = FALSE;
+				bool hack = FALSE;
 				Drawable *selectedDrawable = TheInGameUI->getFirstSelectedDrawable();
 				Object *selectedObject = selectedDrawable->getObject();
 				if( selectedObject->isLocallyControlled() )
@@ -2601,7 +2601,7 @@ GameMessageDisposition CommandTranslator::translateGameMessage(const GameMessage
 			{
 				Drawable *newDrawable = NULL;
 				TheGameClient->getDrawableList();
-				Bool hack = FALSE; // takes care of when for loop skips firstdrawable
+				bool hack = FALSE; // takes care of when for loop skips firstdrawable
 				Drawable *selectedDrawable = TheInGameUI->getFirstSelectedDrawable();
 				Object *selectedObject = selectedDrawable->getObject();
 				if( selectedObject->isLocallyControlled() )
@@ -2936,11 +2936,11 @@ GameMessageDisposition CommandTranslator::translateGameMessage(const GameMessage
 		{
 			if (TheGlobalData)
 			{
-				static Bool isLowDetails = FALSE;
-				static Bool oldShadowVolumsValue = TRUE;
-				static Bool oldLightMapValue = TRUE;
-				static Bool oldCloudMap = TRUE;
-				static Bool oldBehindBuildingMarkers = TRUE;
+				static bool isLowDetails = FALSE;
+				static bool oldShadowVolumsValue = TRUE;
+				static bool oldLightMapValue = TRUE;
+				static bool oldCloudMap = TRUE;
+				static bool oldBehindBuildingMarkers = TRUE;
 				static Int oldMaxParticleCount = 0;
 				if(isLowDetails)
 				{
@@ -2993,7 +2993,7 @@ GameMessageDisposition CommandTranslator::translateGameMessage(const GameMessage
 			{
 				if (!(TheRecorder && TheRecorder->getMode() == RECORDERMODETYPE_PLAYBACK))
 				{
-					Bool hide = false;
+					bool hide = false;
 					if (TheWindowManager)
 					{
 						Int id = (Int)TheNameKeyGenerator->nameToKey(AsciiString("ControlBar.wnd:ControlBarParent"));
@@ -3261,7 +3261,7 @@ GameMessageDisposition CommandTranslator::translateGameMessage(const GameMessage
  			if (TheGlobalData->m_useAlternateMouse 
  				&& TheMouse->isClick(&m_mouseRightDragAnchor, &m_mouseRightDragLift, m_mouseRightDown, m_mouseRightUp))
  			{
- 				Bool isPoint = (msg->getArgument(0)->pixelRegion.height() == 0 && msg->getArgument(0)->pixelRegion.width() == 0);
+ 				bool isPoint = (msg->getArgument(0)->pixelRegion.height() == 0 && msg->getArgument(0)->pixelRegion.width() == 0);
  
  				// NOTE: RIGHT_CLICK is not transmitted if AREA_SELECTION or DRAWABLE_PICKED occurs.
  				// If we see this msg, no object was clicked on, therefore clicked on ground.
@@ -3276,7 +3276,7 @@ GameMessageDisposition CommandTranslator::translateGameMessage(const GameMessage
 				TheTacticalView->screenToTerrain( &msg->getArgument( 0 )->pixel, &pos );
 
 				const CommandButton *command = TheInGameUI->getGUICommand();
-				Bool controllable = TheInGameUI->areSelectedObjectsControllable()
+				bool controllable = TheInGameUI->areSelectedObjectsControllable()
 														|| (command && command->getCommandType() == GUI_COMMAND_SPECIAL_POWER_FROM_COMMAND_CENTER);
 				if (isPoint && controllable)
 				{
@@ -3302,7 +3302,7 @@ GameMessageDisposition CommandTranslator::translateGameMessage(const GameMessage
 		case GameMessage::MSG_MOUSE_LEFT_DOUBLE_CLICK:
 		case GameMessage::MSG_MOUSE_LEFT_CLICK:
 		{
-			Bool isPoint = (msg->getArgument(0)->pixelRegion.height() == 0 && msg->getArgument(0)->pixelRegion.width() == 0);
+			bool isPoint = (msg->getArgument(0)->pixelRegion.height() == 0 && msg->getArgument(0)->pixelRegion.width() == 0);
 
 			// NOTE: LEFT_CLICK is not transmitted if AREA_SELECTION or DRAWABLE_PICKED occurs.
 			// If we see this msg, no object was clicked on, therefore clicked on ground.
@@ -3318,7 +3318,7 @@ GameMessageDisposition CommandTranslator::translateGameMessage(const GameMessage
 
 			const CommandButton *command = TheInGameUI->getGUICommand();
 			// maintain this as the set of GUI button initiated commands that require a left click action in alt mouse mode
- 			Bool isFiringGUICommand = (command	&& (command->getCommandType() == GUI_COMMAND_SPECIAL_POWER
+ 			bool isFiringGUICommand = (command	&& (command->getCommandType() == GUI_COMMAND_SPECIAL_POWER
  												|| command->getCommandType() == GUI_COMMAND_SPECIAL_POWER_FROM_COMMAND_CENTER
 												|| command->getCommandType() == GUI_COMMAND_FIRE_WEAPON
 												|| command->getCommandType() == GUI_COMMAND_COMBATDROP
@@ -3329,7 +3329,7 @@ GameMessageDisposition CommandTranslator::translateGameMessage(const GameMessage
  			if ((TheGlobalData->m_useAlternateMouse) && (! isFiringGUICommand))
  				break;
 
-			Bool controllable = TheInGameUI->areSelectedObjectsControllable()
+			bool controllable = TheInGameUI->areSelectedObjectsControllable()
 													|| (command && command->getCommandType() == GUI_COMMAND_SPECIAL_POWER_FROM_COMMAND_CENTER);
 			if (isPoint && controllable)
 			{
@@ -3534,7 +3534,7 @@ GameMessageDisposition CommandTranslator::translateGameMessage(const GameMessage
 			}
 			else
 			{
-				Bool hide = false;
+				bool hide = false;
 				if (TheWindowManager)
 				{
 					Int id = (Int)TheNameKeyGenerator->nameToKey(AsciiString("ControlBar.wnd:ControlBarParent"));
@@ -3582,7 +3582,7 @@ GameMessageDisposition CommandTranslator::translateGameMessage(const GameMessage
 			}
 			else 
 			{
-				static Bool saturate = false;
+				static bool saturate = false;
 				FilterModes mode = FM_VIEW_MB_IN_AND_OUT_ALPHA;
 				if (saturate) {
 					mode = FM_VIEW_MB_IN_AND_OUT_SATURATE;
@@ -4580,7 +4580,7 @@ GameMessageDisposition CommandTranslator::translateGameMessage(const GameMessage
 
 }  // end CommandTranslator
 
-static Bool isSystemMessage( const GameMessage *msg )
+static bool isSystemMessage( const GameMessage *msg )
 {
 	if (!msg) {
 		return false;

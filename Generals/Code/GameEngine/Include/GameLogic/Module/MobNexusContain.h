@@ -80,7 +80,7 @@ public:
 																																								// lorenzen add a MobMemberInterface
 																																								// lorenzen add a MobMemberInterface
 																																								// lorenzen add a MobMemberInterface
-	virtual Bool isValidContainerFor( const Object* obj, Bool checkCapacity) const;
+	virtual bool isValidContainerFor( const Object* obj, bool checkCapacity) const;
 
 	virtual void onContaining( Object *obj );		///< object now contains 'obj'
 	virtual void onRemoving( Object *obj );			///< object no longer contains 'obj'
@@ -94,7 +94,7 @@ public:
 	virtual ExitDoorType reserveDoorForExit( const ThingTemplate* objType, Object *specificObject );					///< All types can answer if they are free to exit or not, and you can ask about a specific guy or just exit anything in general
 	virtual void unreserveDoorForExit( ExitDoorType exitDoor );
 
-	virtual Bool tryToEvacuate( Bool exposeStealthedUnits ); ///< Will try to kick everybody out with game checks, and will return whether anyone made it
+	virtual bool tryToEvacuate( bool exposeStealthedUnits ); ///< Will try to kick everybody out with game checks, and will return whether anyone made it
 
 protected:
 

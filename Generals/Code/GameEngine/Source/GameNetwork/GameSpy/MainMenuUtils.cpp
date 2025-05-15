@@ -62,20 +62,20 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-static Bool checkingForPatchBeforeGameSpy = FALSE;
+static bool checkingForPatchBeforeGameSpy = FALSE;
 static Int checksLeftBeforeOnline = 0;
 static Int timeThroughOnline = 0; // used to avoid having old callbacks cause problems
-static Bool mustDownloadPatch = FALSE;
-static Bool cantConnectBeforeOnline = FALSE;
+static bool mustDownloadPatch = FALSE;
+static bool cantConnectBeforeOnline = FALSE;
 static std::list<QueuedDownload> queuedDownloads;
 
 static char *MOTDBuffer = NULL;
 static char *configBuffer = NULL;
 GameWindow *onlineCancelWindow = NULL;
 
-static Bool s_asyncDNSThreadDone = TRUE;
-static Bool s_asyncDNSThreadSucceeded = FALSE;
-static Bool s_asyncDNSLookupInProgress = FALSE;
+static bool s_asyncDNSThreadDone = TRUE;
+static bool s_asyncDNSThreadSucceeded = FALSE;
+static bool s_asyncDNSLookupInProgress = FALSE;
 static HANDLE s_asyncDNSThreadHandle = NULL;
 enum {
 	LOOKUP_INPROGRESS,
@@ -147,7 +147,7 @@ static void noPatchBeforeOnlineCallback( void )
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-static Bool hasWriteAccess()
+static bool hasWriteAccess()
 {
 	const char* filename = "PatchAccessTest.txt";	
 
@@ -254,7 +254,7 @@ static void startOnline( void )
 static void queuePatch(Bool mandatory, AsciiString downloadURL)
 {
 	QueuedDownload q;
-	Bool success = TRUE;
+	bool success = TRUE;
 
 	AsciiString connectionType;
 	success &= downloadURL.nextToken(&connectionType, ":");
@@ -538,7 +538,7 @@ static GHTTPBool gamePatchCheckCallback( GHTTPRequest request, GHTTPResult resul
 	while (message.nextToken(&line, "\r\n"))
 	{
 		AsciiString type, req, url;
-		Bool ok = TRUE;
+		bool ok = TRUE;
 		ok &= line.nextToken(&type, " ");
 		ok &= line.nextToken(&req, " ");
 		ok &= line.nextToken(&url, " ");
@@ -779,7 +779,7 @@ int asyncGethostbyname(char * szName)
 // GameSpy's HTTP SDK has had at least 1 crash bug, so we're going to just bail and
 // never try again if they crash us.  We won't be able to get back online again (we'll
 // time out) but at least we'll live.
-static Bool isHttpOk = TRUE;
+static bool isHttpOk = TRUE;
 
 void HTTPThinkWrapper( void )
 {

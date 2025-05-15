@@ -173,7 +173,7 @@ void ScriptActions::update( void )
 //-------------------------------------------------------------------------------------------------
 /** closeWindows */
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::closeWindows( Bool suppressNewWindows )
+void ScriptActions::closeWindows( bool suppressNewWindows )
 {
 	m_suppressNewWindows = suppressNewWindows;
 
@@ -216,7 +216,7 @@ void ScriptActions::doVictory( void )
 	if (!m_suppressNewWindows)
 	{
 		const Player *localPlayer = ThePlayerList->getLocalPlayer();
-		Bool showObserverWindow = localPlayer->isPlayerObserver() || TheScriptEngine->hasShownMPLocalDefeatWindow();
+		bool showObserverWindow = localPlayer->isPlayerObserver() || TheScriptEngine->hasShownMPLocalDefeatWindow();
 		if(showObserverWindow)
 			m_messageWindow = TheWindowManager->winCreateFromScript("Menus/ObserverQuit.wnd");
 		else
@@ -240,7 +240,7 @@ void ScriptActions::doDefeat( void )
 	if (!m_suppressNewWindows)
 	{
 		const Player *localPlayer = ThePlayerList->getLocalPlayer();
-		Bool showObserverWindow = localPlayer->isPlayerObserver() || TheScriptEngine->hasShownMPLocalDefeatWindow();
+		bool showObserverWindow = localPlayer->isPlayerObserver() || TheScriptEngine->hasShownMPLocalDefeatWindow();
 		if(showObserverWindow)
 			m_messageWindow = TheWindowManager->winCreateFromScript("Menus/ObserverQuit.wnd");
 		else
@@ -274,7 +274,7 @@ void ScriptActions::doLocalDefeat( void )
 //-------------------------------------------------------------------------------------------------
 /** changeObjectPanelFlagForSingleObject */
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::changeObjectPanelFlagForSingleObject(Object *obj, const AsciiString& flagToChange, Bool newVal )
+void ScriptActions::changeObjectPanelFlagForSingleObject(Object *obj, const AsciiString& flagToChange, bool newVal )
 {
 	// Enabled flag
 	if (flagToChange == TheObjectFlagsNames[0])
@@ -338,7 +338,7 @@ void ScriptActions::changeObjectPanelFlagForSingleObject(Object *obj, const Asci
 //-------------------------------------------------------------------------------------------------
 /** doDebugMessage */
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doDebugMessage(const AsciiString& msg, Bool pause )
+void ScriptActions::doDebugMessage(const AsciiString& msg, bool pause )
 {
 	TheScriptEngine->AppendDebugMessage(msg, pause);
 }  
@@ -440,7 +440,7 @@ void ScriptActions::doNamedMoveToWaypoint(const AsciiString& unit, const AsciiSt
 //-------------------------------------------------------------------------------------------------
 /** doCameraFollowNamed */
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doCameraFollowNamed(const AsciiString& unit, Bool snapToUnit)
+void ScriptActions::doCameraFollowNamed(const AsciiString& unit, bool snapToUnit)
 {
 	Object *theObj = TheScriptEngine->getUnitNamed( unit );
 	if (theObj) 
@@ -482,7 +482,7 @@ void ScriptActions::doCreateReinforcements(const AsciiString& team, const AsciiS
 	Coord3D destination;
 
 
-	Bool needToMoveToDestination = false;
+	bool needToMoveToDestination = false;
 	//Validate the waypoint
 	Waypoint *way = TheTerrainLogic->getWaypointByName(waypoint); 
 	if (way==NULL) 
@@ -1103,7 +1103,7 @@ void ScriptActions::doBuildBaseDefense(Bool flank)
 //-------------------------------------------------------------------------------------------------
 /** doBuildBuilding */
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doBuildBaseStructure(const AsciiString& buildingType, Bool flank)
+void ScriptActions::doBuildBaseStructure(const AsciiString& buildingType, bool flank)
 {
 	// This action ALWAYS occur on the current player.
 	Player *thePlayer = TheScriptEngine->getCurrentPlayer();
@@ -1272,7 +1272,7 @@ void ScriptActions::updateTeamSetAttitude(const AsciiString& teamName, Int attit
 //-------------------------------------------------------------------------------------------------
 /** doNamedSetRepulsor */
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doNamedSetRepulsor(const AsciiString& unitName, Bool repulsor)
+void ScriptActions::doNamedSetRepulsor(const AsciiString& unitName, bool repulsor)
 {
 	Object *theSrcUnit = TheScriptEngine->getUnitNamed(unitName);
 	if (!theSrcUnit) {
@@ -1284,7 +1284,7 @@ void ScriptActions::doNamedSetRepulsor(const AsciiString& unitName, Bool repulso
 //-------------------------------------------------------------------------------------------------
 /** doTeamSetRepulsor */
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doTeamSetRepulsor(const AsciiString& teamName, Bool repulsor)
+void ScriptActions::doTeamSetRepulsor(const AsciiString& teamName, bool repulsor)
 {
 	Team *theSrcTeam = TheScriptEngine->getTeamNamed(teamName);
 	if (!theSrcTeam) {
@@ -1607,7 +1607,7 @@ void ScriptActions::doNamedFollowWaypointsExact(const AsciiString& unitName, con
 //-------------------------------------------------------------------------------------------------
 /** doTeamFollowSkirmishApproachPath */
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doTeamFollowSkirmishApproachPath(const AsciiString& teamName, const AsciiString& waypointPathLabel, Bool asTeam)
+void ScriptActions::doTeamFollowSkirmishApproachPath(const AsciiString& teamName, const AsciiString& waypointPathLabel, bool asTeam)
 {
 	Team *theTeam = TheScriptEngine->getTeamNamed( teamName );
 	if (!theTeam) {
@@ -1718,7 +1718,7 @@ void ScriptActions::doTeamMoveToSkirmishApproachPath(const AsciiString& teamName
 //-------------------------------------------------------------------------------------------------
 /** doTeamFollowWaypoints */
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doTeamFollowWaypoints(const AsciiString& teamName, const AsciiString& waypointPathLabel, Bool asTeam)
+void ScriptActions::doTeamFollowWaypoints(const AsciiString& teamName, const AsciiString& waypointPathLabel, bool asTeam)
 {
 	Team *theTeam = TheScriptEngine->getTeamNamed( teamName );
 	if (!theTeam) {
@@ -1765,7 +1765,7 @@ void ScriptActions::doTeamFollowWaypoints(const AsciiString& teamName, const Asc
 //-------------------------------------------------------------------------------------------------
 /** doTeamFollowWaypointsExact */
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doTeamFollowWaypointsExact(const AsciiString& teamName, const AsciiString& waypointPathLabel, Bool asTeam)
+void ScriptActions::doTeamFollowWaypointsExact(const AsciiString& teamName, const AsciiString& waypointPathLabel, bool asTeam)
 {
 	Team *theTeam = TheScriptEngine->getTeamNamed( teamName );
 	if (!theTeam) {
@@ -2039,7 +2039,7 @@ void ScriptActions::doTeamHuntWithCommandButton(const AsciiString& teamName, con
 		if (!ai) {
 			continue;
 		}
-		Bool foundCommand = false;
+		bool foundCommand = false;
 		const CommandSet *commandSet = TheControlBar->findCommandSet( obj->getCommandSetString( ) );
 		if( commandSet )
 		{
@@ -2287,7 +2287,7 @@ void ScriptActions::doNamedDelete(const AsciiString& unitName)
 //-------------------------------------------------------------------------------------------------
 /** doTeamDelete */
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doTeamDelete(const AsciiString& teamName, Bool ignoreDead)
+void ScriptActions::doTeamDelete(const AsciiString& teamName, bool ignoreDead)
 {
 	Team *team = TheScriptEngine->getTeamNamed(teamName);
 
@@ -2475,7 +2475,7 @@ void ScriptActions::doDisplayText(const AsciiString& displayText)
 //-------------------------------------------------------------------------------------------------
 /** doInGamePopupMessage */
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doInGamePopupMessage( const AsciiString& message, Int x, Int y, Int width, Bool pause )
+void ScriptActions::doInGamePopupMessage( const AsciiString& message, Int x, Int y, Int width, bool pause )
 {
 	TheInGameUI->popupMessage(message, x,y,width, pause, FALSE);
 }
@@ -2526,7 +2526,7 @@ void ScriptActions::doDisplayCinematicText(const AsciiString& displayText, const
 	Int size = atoi( fontSize.str() );
 
 	// get font fold
-	Bool bold = FALSE;
+	bool bold = FALSE;
 	if( fontType.endsWith( "[Bold]" ) )
 		bold = TRUE;
 
@@ -2684,7 +2684,7 @@ void ScriptActions::doSoundPlayFromNamed(const AsciiString& soundName, const Asc
 //-------------------------------------------------------------------------------------------------
 /** doSpeechPlay */
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doSpeechPlay(const AsciiString& speechName, Bool allowOverlap)
+void ScriptActions::doSpeechPlay(const AsciiString& speechName, bool allowOverlap)
 {	
 	AudioEventRTS speech(speechName);
 	speech.setIsLogicalAudio(true);
@@ -2832,14 +2832,14 @@ void ScriptActions::doRadarEnable(void)
 //-------------------------------------------------------------------------------------------------
 /** doCameraMotionBlurJump - zoom in at the current location, jump to waypoint, and zoom out.*/
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doCameraMotionBlurJump(const AsciiString& waypointName, Bool saturate)
+void ScriptActions::doCameraMotionBlurJump(const AsciiString& waypointName, bool saturate)
 {
 	Waypoint *way = TheTerrainLogic->getWaypointByName(waypointName);
 	if (!way) {
 		return;
 	}
 
-	Bool passed = FALSE;	//assume all filters were applied correctly.
+	bool passed = FALSE;	//assume all filters were applied correctly.
 	Coord3D pos = *way->getLocation();
 	if (TheTacticalView->setViewFilter(FT_VIEW_MOTION_BLUR_FILTER))
 	{
@@ -2870,7 +2870,7 @@ void ScriptActions::doCameraMotionBlurJump(const AsciiString& waypointName, Bool
 //-------------------------------------------------------------------------------------------------
 /** doCameraMotionBlurJump - zoom in at the current location, jump to waypoint, and zoom out.*/
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doCameraMotionBlur(Bool zoomIn, Bool saturate)
+void ScriptActions::doCameraMotionBlur(Bool zoomIn, bool saturate)
 {
 	if (TheTacticalView->setViewFilter(FT_VIEW_MOTION_BLUR_FILTER))
 	{
@@ -2986,7 +2986,7 @@ void ScriptActions::doRevealMapEntire(const AsciiString& playerName)
 	}
 }
 
-void ScriptActions::doRevealMapEntirePermanently( Bool reveal, const AsciiString& playerName )
+void ScriptActions::doRevealMapEntirePermanently( bool reveal, const AsciiString& playerName )
 {
 	Player* player = TheScriptEngine->getPlayerFromAsciiString(playerName);
 	if (player && playerName.isNotEmpty())
@@ -3040,7 +3040,7 @@ void ScriptActions::doShroudMapEntire(const AsciiString& playerName)
 //-------------------------------------------------------------------------------------------------
 /** doTeamAvailableForRecruitment */
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doTeamAvailableForRecruitment(const AsciiString& teamName, Bool availability)
+void ScriptActions::doTeamAvailableForRecruitment(const AsciiString& teamName, bool availability)
 {
 	Team *theTeam = TheScriptEngine->getTeamNamed(teamName);
 	if (!theTeam) {
@@ -3072,7 +3072,7 @@ void ScriptActions::doMergeTeamIntoTeam(const AsciiString& teamSrcName, const As
 		return;
 	}
 
-//	Bool done = FALSE;
+//	bool done = FALSE;
 	
 	DLINK_ITERATOR<Object> iter = teamSrc->iterate_TeamMemberList();
 	Object *nextObj = iter.cur();
@@ -3130,7 +3130,7 @@ void ScriptActions::doEnableInput()
 //-------------------------------------------------------------------------------------------------
 /** doSetBorderShroud */
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doSetBorderShroud( Bool setting )
+void ScriptActions::doSetBorderShroud( bool setting )
 {
 	if( setting )
 		TheDisplay->setBorderShroudLevel(TheGlobalData->m_shroudAlpha);
@@ -3197,7 +3197,7 @@ void ScriptActions::doAmbientSoundsPause(Bool pausing)	// if true, then pause, i
 //-------------------------------------------------------------------------------------------------
 /** doMusicTrackChange */
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doMusicTrackChange(const AsciiString& newTrackName, Bool fadeout, Bool fadein)
+void ScriptActions::doMusicTrackChange(const AsciiString& newTrackName, bool fadeout, bool fadein)
 {
 	// Stop playing the music
 	if (fadeout) {
@@ -3437,7 +3437,7 @@ void ScriptActions::doUnitGarrisonNearestBuilding(const AsciiString& unitName)
 //-------------------------------------------------------------------------------------------------
 /** doNamedEnableStealth */
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doNamedEnableStealth( const AsciiString& unitName, Bool enabled )
+void ScriptActions::doNamedEnableStealth( const AsciiString& unitName, bool enabled )
 {
 	Object *self = TheScriptEngine->getUnitNamed( unitName );
 	if( self )
@@ -3449,7 +3449,7 @@ void ScriptActions::doNamedEnableStealth( const AsciiString& unitName, Bool enab
 //-------------------------------------------------------------------------------------------------
 /** doTeamEnableStealth */
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doTeamEnableStealth( const AsciiString& teamName, Bool enabled )
+void ScriptActions::doTeamEnableStealth( const AsciiString& teamName, bool enabled )
 {
 	Team *team = TheScriptEngine->getTeamNamed( teamName );
 	if( !team ) 
@@ -3634,7 +3634,7 @@ void ScriptActions::doSetStoppingDistance(const AsciiString& team, Real stopping
 //-------------------------------------------------------------------------------------------------
 /** doNamedSetHeld */
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doNamedSetHeld(const AsciiString& unit, Bool held)
+void ScriptActions::doNamedSetHeld(const AsciiString& unit, bool held)
 {
 	Object *theObj = TheScriptEngine->getUnitNamed( unit );
 	if (theObj) 
@@ -3827,7 +3827,7 @@ void ScriptActions::doEnableCountdownTimerDisplay(void)
 //-------------------------------------------------------------------------------------------------
 /** doNamedStopSpecialPowerCountdown */
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doNamedStopSpecialPowerCountdown(const AsciiString& unit, const AsciiString& specialPower, Bool stop)
+void ScriptActions::doNamedStopSpecialPowerCountdown(const AsciiString& unit, const AsciiString& specialPower, bool stop)
 {
 	Object *theObj = TheScriptEngine->getUnitNamed( unit );
 	const SpecialPowerTemplate *power = TheSpecialPowerStore->findSpecialPowerTemplate(specialPower);
@@ -4178,7 +4178,7 @@ void ScriptActions::doRadarRefresh( void )
 //-------------------------------------------------------------------------------------------------
 /** doCameraTetherNamed */
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doCameraTetherNamed(const AsciiString& unit, Bool snapToUnit, Real play)
+void ScriptActions::doCameraTetherNamed(const AsciiString& unit, bool snapToUnit, Real play)
 {
 	Object *theObj = TheScriptEngine->getUnitNamed( unit );
 	if (theObj) 
@@ -4228,7 +4228,7 @@ void ScriptActions::doNamedStop(const AsciiString& unitName)
 //-------------------------------------------------------------------------------------------------
 /** doTeamStop */
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doTeamStop(const AsciiString& teamName, Bool shouldDisband)
+void ScriptActions::doTeamStop(const AsciiString& teamName, bool shouldDisband)
 {
 	Team *theTeam = TheScriptEngine->getTeamNamed(teamName);
 	if (!theTeam) {
@@ -4632,7 +4632,7 @@ void ScriptActions::doBorderSwitch(Int borderToUse)
 //-------------------------------------------------------------------------------------------------
 /** doForceObjectSelection */
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doForceObjectSelection(const AsciiString& teamName, const AsciiString& objectType, Bool centerInView, const AsciiString& audioToPlay)
+void ScriptActions::doForceObjectSelection(const AsciiString& teamName, const AsciiString& objectType, bool centerInView, const AsciiString& audioToPlay)
 {
 	Team *team = TheScriptEngine->getTeamNamed(teamName);
 	
@@ -4791,7 +4791,7 @@ void ScriptActions::doSetWarehouseValue( const AsciiString& warehouseName, Int c
 //-------------------------------------------------------------------------------------------------
 /** doSoundEnableType */
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doSoundEnableType( const AsciiString& soundEventName, Bool enable )
+void ScriptActions::doSoundEnableType( const AsciiString& soundEventName, bool enable )
 {
 	TheAudio->setAudioEventEnabled(soundEventName, enable);
 }
@@ -4963,7 +4963,7 @@ void ScriptActions::doSkirmishAttackNearestGroupWithValue( const AsciiString& te
 //-------------------------------------------------------------------------------------------------
 /** doSkirmishCommandButtonOnMostValuable */
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doSkirmishCommandButtonOnMostValuable( const AsciiString& teamName, const AsciiString& ability, Real range, Bool allTeamMembers)
+void ScriptActions::doSkirmishCommandButtonOnMostValuable( const AsciiString& teamName, const AsciiString& ability, Real range, bool allTeamMembers)
 {
 	Team *team = TheScriptEngine->getTeamNamed(teamName);
 	if (!team) {
@@ -5545,7 +5545,7 @@ void ScriptActions::doNamedEmoticon(const AsciiString& unitName, const AsciiStri
 // if addObject, we're adding an object to a list. If not addObject, we're removing the associated 
 // object.
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doObjectTypeListMaintenance(const AsciiString& objectList, const AsciiString& objectType, Bool addObject)
+void ScriptActions::doObjectTypeListMaintenance(const AsciiString& objectList, const AsciiString& objectType, bool addObject)
 {
 	TheScriptEngine->doObjectTypeListMaintenance( objectList, objectType, addObject );
 }
@@ -5705,7 +5705,7 @@ void ScriptActions::doTeamFaceWaypoint( const AsciiString &teamName, const Ascii
 }
 
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doAffectObjectPanelFlagsUnit(const AsciiString& unitName, const AsciiString& flagName, Bool enable)
+void ScriptActions::doAffectObjectPanelFlagsUnit(const AsciiString& unitName, const AsciiString& flagName, bool enable)
 {
 	Object *obj = TheScriptEngine->getUnitNamed( unitName );
 	if (!obj) {
@@ -5716,7 +5716,7 @@ void ScriptActions::doAffectObjectPanelFlagsUnit(const AsciiString& unitName, co
 }
 
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doAffectObjectPanelFlagsTeam(const AsciiString& teamName, const AsciiString& flagName, Bool enable)
+void ScriptActions::doAffectObjectPanelFlagsTeam(const AsciiString& teamName, const AsciiString& flagName, bool enable)
 {
 	Team *team = TheScriptEngine->getTeamNamed(teamName);
 	if (!team) {

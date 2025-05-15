@@ -145,7 +145,7 @@ RAMFile::~RAMFile()
 //=================================================================
 
 //DECLARE_PERF_TIMER(RAMFile)
-Bool RAMFile::open( const Char *filename, Int access )
+bool RAMFile::open( const Char *filename, Int access )
 {
 	//USE_PERF_TIMER(RAMFile)
 	File *file = TheFileSystem->openFile( filename, access );
@@ -155,7 +155,7 @@ Bool RAMFile::open( const Char *filename, Int access )
 		return FALSE;
 	}	
 
-	Bool result = open( file );
+	bool result = open( file );
 
 	file->close();
 
@@ -166,7 +166,7 @@ Bool RAMFile::open( const Char *filename, Int access )
 // RAMFile::open
 //============================================================================
 
-Bool RAMFile::open( File *file )
+bool RAMFile::open( File *file )
 {
 	//USE_PERF_TIMER(RAMFile)
 	if ( file == NULL )
@@ -207,7 +207,7 @@ Bool RAMFile::open( File *file )
 //============================================================================
 // RAMFile::openFromArchive
 //============================================================================
-Bool RAMFile::openFromArchive(File *archiveFile, const AsciiString& filename, Int offset, Int size) 
+bool RAMFile::openFromArchive(File *archiveFile, const AsciiString& filename, Int offset, Int size) 
 {
 	//USE_PERF_TIMER(RAMFile)
 	if (archiveFile == NULL) {
@@ -336,7 +336,7 @@ Int RAMFile::seek( Int pos, seekMode mode)
 //=================================================================
 // RAMFile::scanInt
 //=================================================================
-Bool RAMFile::scanInt(Int &newInt) 
+bool RAMFile::scanInt(Int &newInt) 
 {
 	newInt = 0;
 	AsciiString tempstr;
@@ -366,11 +366,11 @@ Bool RAMFile::scanInt(Int &newInt)
 //=================================================================
 // RAMFile::scanInt
 //=================================================================
-Bool RAMFile::scanReal(Real &newReal) 
+bool RAMFile::scanReal(Real &newReal) 
 {
 	newReal = 0.0;
 	AsciiString tempstr;
-	Bool sawDec = FALSE;
+	bool sawDec = FALSE;
 
 	while ((m_pos < m_size) && ((m_data[m_pos] < '0') || (m_data[m_pos] > '9')) && (m_data[m_pos] != '-') && (m_data[m_pos] != '.')) {
 		++m_pos;
@@ -400,7 +400,7 @@ Bool RAMFile::scanReal(Real &newReal)
 //=================================================================
 // RAMFile::scanString
 //=================================================================
-Bool RAMFile::scanString(AsciiString &newString) 
+bool RAMFile::scanString(AsciiString &newString) 
 {
 	newString.clear();
 
@@ -459,7 +459,7 @@ void RAMFile::nextLine(Char *buf, Int bufSize)
 //=================================================================
 // RAMFile::nextLine
 //=================================================================
-Bool RAMFile::copyDataToFile(File *localFile) 
+bool RAMFile::copyDataToFile(File *localFile) 
 {
 	if (localFile == NULL) {
 		return FALSE;

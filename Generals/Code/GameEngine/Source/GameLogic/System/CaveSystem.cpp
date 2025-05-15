@@ -65,7 +65,7 @@ void CaveSystem::update()
 {
 }
 
-Bool CaveSystem::canSwitchIndexToIndex( Int oldIndex, Int newIndex )
+bool CaveSystem::canSwitchIndexToIndex( Int oldIndex, Int newIndex )
 {
 	// When I grant permission, you need to do it.  ie call Unregister and then re-register with the new number
 	TunnelTracker *oldTracker = NULL;
@@ -91,7 +91,7 @@ Bool CaveSystem::canSwitchIndexToIndex( Int oldIndex, Int newIndex )
 
 void CaveSystem::registerNewCave( Int theIndex )
 {
-	Bool needToCreate = FALSE;
+	bool needToCreate = FALSE;
 	if( theIndex >= m_tunnelTrackerVector.size() )
 	{
 		// You are new and off the edge, so I will fill NULLs up to you and then make a newTracker at that spot

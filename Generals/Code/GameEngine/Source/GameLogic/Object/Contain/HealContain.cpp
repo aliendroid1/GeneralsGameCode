@@ -102,7 +102,7 @@ UpdateSleepTime HealContain::update( void )
 	// for each of our objects, we give them a little health each frame so that when the
 	// the TimeTillHealed is up, the object will exit and be fully healed
 	//
-	Bool doneHealing;
+	bool doneHealing;
 	Object *obj;
 	ContainedItemsList::const_iterator it = getContainList().begin();
 	while( it != getContainList().end() )
@@ -134,9 +134,9 @@ UpdateSleepTime HealContain::update( void )
 // ------------------------------------------------------------------------------------------------
 /** Do the healing for a single object for a single frame. */
 // ------------------------------------------------------------------------------------------------
-Bool HealContain::doHeal( Object *obj, UnsignedInt framesForFullHeal )
+bool HealContain::doHeal( Object *obj, UnsignedInt framesForFullHeal )
 {
-	Bool doneHealing = FALSE;
+	bool doneHealing = FALSE;
 
 	// setup the healing damageInfo structure with all but the amount
 	DamageInfo healInfo;

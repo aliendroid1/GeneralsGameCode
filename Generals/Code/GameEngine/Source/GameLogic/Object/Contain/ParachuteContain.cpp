@@ -242,7 +242,7 @@ void ParachuteContain::updateOffsetsFromBones()
 	can this container contain this kind of object? 
 	and, if checkCapacity is TRUE, does this container have enough space left to hold the given unit?
 */
-Bool ParachuteContain::isValidContainerFor(const Object* rider, Bool checkCapacity) const
+bool ParachuteContain::isValidContainerFor(const Object* rider, bool checkCapacity) const
 {
 	if (!rider)
 		return false;

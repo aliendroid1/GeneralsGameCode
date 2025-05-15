@@ -276,7 +276,7 @@ Int GarrisonContain::findConditionIndex( void )
 //The weapon system would like to perform a range check assuming the object is placed in the
 //best possible available garrison position. If found, we change sourcePos to that position.
 //-------------------------------------------------------------------------------------------------
-Bool GarrisonContain::calcBestGarrisonPosition( Coord3D *sourcePos, const Coord3D *targetPos )
+bool GarrisonContain::calcBestGarrisonPosition( Coord3D *sourcePos, const Coord3D *targetPos )
 {
 	// sanity
 	if( !sourcePos || !targetPos )
@@ -301,7 +301,7 @@ Bool GarrisonContain::calcBestGarrisonPosition( Coord3D *sourcePos, const Coord3
 //The AI is entering the aim state and would like to move the unit to the best position, perform
 //a range check, and if it succeeds, leave him there -- otherwise, remove him immediately.
 //-------------------------------------------------------------------------------------------------
-Bool GarrisonContain::attemptBestFirePointPosition( Object *source, Weapon *weapon, Object *victim )
+bool GarrisonContain::attemptBestFirePointPosition( Object *source, Weapon *weapon, Object *victim )
 {
 	//Sanity
 	if( !source || !victim || !weapon )
@@ -338,7 +338,7 @@ Bool GarrisonContain::attemptBestFirePointPosition( Object *source, Weapon *weap
 //The AI is entering the aim state and would like to move the unit to the best position, perform
 //a range check, and if it succeeds, leave him there -- otherwise, remove him immediately.
 //-------------------------------------------------------------------------------------------------
-Bool GarrisonContain::attemptBestFirePointPosition( Object *source, Weapon *weapon, const Coord3D *targetPos )
+bool GarrisonContain::attemptBestFirePointPosition( Object *source, Weapon *weapon, const Coord3D *targetPos )
 {
 	//Sanity
 	if( !source || !targetPos || !weapon )
@@ -515,7 +515,7 @@ GarrisonContain::~GarrisonContain( void )
 	and, if checkCapacity is TRUE, does this container have enough space 
 	left to hold the given unit? */
 // ------------------------------------------------------------------------------------------------
-Bool GarrisonContain::isValidContainerFor(const Object* obj, Bool checkCapacity) const
+bool GarrisonContain::isValidContainerFor(const Object* obj, bool checkCapacity) const
 {
 
 	// extend functionality // this just tests kindof masks
@@ -565,7 +565,7 @@ void GarrisonContain::removeInvalidObjectsFromGarrisonPoints( void )
 		{
 			AIUpdateInterface *ai = obj->getAIUpdateInterface();
 
-			Bool targetIsValid = true;	// assume true for now...
+			bool targetIsValid = true;	// assume true for now...
 			Object *goalObject = ai->getGoalObject();
 			if( goalObject )
 			{
@@ -1002,7 +1002,7 @@ void GarrisonContain::recalcApparentControllingPlayer( void )
 
 		// Check to see if all the contained units are stealthy.  Need to set this flag before the capture,
 		// since the Radar refresh in setTeam will want to use it to decide our color.
-		Bool detected = rider->getStatusBits().test( OBJECT_STATUS_DETECTED );
+		bool detected = rider->getStatusBits().test( OBJECT_STATUS_DETECTED );
 		m_hideGarrisonedStateFromNonallies = ( !detected && ( getStealthUnitsContained() == getContainCount() ) );
 		
 		Player* controller = rider->getControllingPlayer();
@@ -1023,14 +1023,14 @@ void GarrisonContain::recalcApparentControllingPlayer( void )
 	Drawable *draw = getObject()->getDrawable();
 	if( draw )
 	{
-		Bool setModelGarrisoned = FALSE;
+		bool setModelGarrisoned = FALSE;
 
 
 		if ( getContainCount() > 0 )
 		{
 			ContainedItemsList::const_iterator it = getContainList().begin();
 			Object *occupant = *it;
-			Bool detected = occupant->getStatusBits().test( OBJECT_STATUS_DETECTED );
+			bool detected = occupant->getStatusBits().test( OBJECT_STATUS_DETECTED );
 
 			if( detected || (getApparentControllingPlayer(ThePlayerList->getLocalPlayer()) == getObject()->getControllingPlayer()) )
 			{
@@ -1074,7 +1074,7 @@ void GarrisonContain::loadGarrisonPoints( void )
 
 	Object *structure = getObject();
 	Int i, j;
-	Bool gBonesFound = FALSE;
+	bool gBonesFound = FALSE;
 
 	//
 	// initialize all the garrison points to the center of the object, this assumes that we
@@ -1212,7 +1212,7 @@ void GarrisonContain::validateRallyPoint( void )
 	* logic, but if all else fails no matter, we need to get all things out after this
 	* call is complete */
 // ------------------------------------------------------------------------------------------------
-void GarrisonContain::removeAllContained( Bool exposeStealthUnits )
+void GarrisonContain::removeAllContained( bool exposeStealthUnits )
 {
 
 	//
@@ -1384,7 +1384,7 @@ void GarrisonContain::onRemoving( Object *obj )
 // ------------------------------------------------------------------------------------------------
 /** A GarrisonContain always lets people shoot out */
 // ------------------------------------------------------------------------------------------------
-Bool GarrisonContain::isPassengerAllowedToFire() const
+bool GarrisonContain::isPassengerAllowedToFire() const
 {
 
 	return TRUE;

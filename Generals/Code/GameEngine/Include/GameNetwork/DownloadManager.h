@@ -44,7 +44,7 @@ public:
 	AsciiString file;
 	AsciiString localFile;
 	AsciiString regKey;
-	Bool tryResume;
+	bool tryResume;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -67,25 +67,25 @@ public:
 	virtual HRESULT OnProgressUpdate( Int bytesread, Int totalsize, Int timetaken, Int timeleft );
 	virtual HRESULT OnStatusUpdate( Int status );
 
-	virtual HRESULT downloadFile( AsciiString server, AsciiString username, AsciiString password, AsciiString file, AsciiString localfile, AsciiString regkey, Bool tryResume );
+	virtual HRESULT downloadFile( AsciiString server, AsciiString username, AsciiString password, AsciiString file, AsciiString localfile, AsciiString regkey, bool tryResume );
 	AsciiString getLastLocalFile( void );
 
-	Bool isDone( void ) { return m_sawEnd || m_wasError; }
-	Bool isOk( void ) { return m_sawEnd; }
-	Bool wasError( void ) { return m_wasError; }
+	bool isDone( void ) { return m_sawEnd || m_wasError; }
+	bool isOk( void ) { return m_sawEnd; }
+	bool wasError( void ) { return m_wasError; }
 
 	UnicodeString getStatusString( void ) { return m_statusString; }
 	UnicodeString getErrorString( void ) { return m_errorString; }
 
-	void queueFileForDownload( AsciiString server, AsciiString username, AsciiString password, AsciiString file, AsciiString localfile, AsciiString regkey, Bool tryResume );
-	Bool isFileQueuedForDownload( void ) { return !m_queuedDownloads.empty(); }
+	void queueFileForDownload( AsciiString server, AsciiString username, AsciiString password, AsciiString file, AsciiString localfile, AsciiString regkey, bool tryResume );
+	bool isFileQueuedForDownload( void ) { return !m_queuedDownloads.empty(); }
 	HRESULT downloadNextQueuedFile( void );
 
 private:
-	Bool m_winsockInit;
+	bool m_winsockInit;
 	CDownload *m_download;
-	Bool m_wasError;
-	Bool m_sawEnd;
+	bool m_wasError;
+	bool m_sawEnd;
 	UnicodeString m_errorString;
 	UnicodeString m_statusString;
 

@@ -361,7 +361,7 @@ void TurretAI::xfer( Xfer *xfer )
 
 	xfer->xferUser(&m_target, sizeof(m_target));
 	xfer->xferUnsignedInt(&m_continuousFireExpirationFrame);
-	Bool tmpBool;
+	bool tmpBool;
 #define UNPACK_AND_XFER(val) {tmpBool = val; xfer->xferBool(&tmpBool); val = tmpBool;}
 	UNPACK_AND_XFER(m_playRotSound);
 	UNPACK_AND_XFER(m_playPitchSound);
@@ -389,7 +389,7 @@ void TurretAI::loadPostProcess( void )
 }  // end loadPostProcess
 
 //----------------------------------------------------------------------------------------------------------
-Bool TurretAI::friend_turnTowardsAngle(Real desiredAngle, Real rateModifier, Real relThresh)
+bool TurretAI::friend_turnTowardsAngle(Real desiredAngle, Real rateModifier, Real relThresh)
 {
 	desiredAngle = normalizeAngle(desiredAngle);
 
@@ -423,13 +423,13 @@ Bool TurretAI::friend_turnTowardsAngle(Real desiredAngle, Real rateModifier, Rea
 	if( m_angle != origAngle )
 		getOwner()->reactToTurretChange( m_whichTurret, origAngle, m_pitch );
 
-	Bool aligned = fabs(m_angle - desiredAngle) <= relThresh;
+	bool aligned = fabs(m_angle - desiredAngle) <= relThresh;
 
 	return aligned;
 }
 
 //----------------------------------------------------------------------------------------------------------
-Bool TurretAI::friend_turnTowardsPitch(Real desiredPitch, Real rateModifier)
+bool TurretAI::friend_turnTowardsPitch(Real desiredPitch, Real rateModifier)
 {
 	if (!isAllowsPitch())
 		return true;
@@ -461,7 +461,7 @@ Bool TurretAI::friend_turnTowardsPitch(Real desiredPitch, Real rateModifier)
 }
 
 //----------------------------------------------------------------------------------------------------------
-Bool TurretAI::isWeaponSlotOkToFire(WeaponSlotType wslot) const
+bool TurretAI::isWeaponSlotOkToFire(WeaponSlotType wslot) const
 {
 	return isWeaponSlotOnTurret(wslot);
 }
@@ -491,7 +491,7 @@ void TurretAI::notifyNewVictimChosen(Object* victim)
 }
 
 //----------------------------------------------------------------------------------------------------------
-Bool TurretAI::isTryingToAimAtTarget(const Object* victim) const
+bool TurretAI::isTryingToAimAtTarget(const Object* victim) const
 {
 	StateID sid = m_turretStateMachine->getCurrentStateID();
 
@@ -501,7 +501,7 @@ Bool TurretAI::isTryingToAimAtTarget(const Object* victim) const
 }
 
 //----------------------------------------------------------------------------------------------------------
-Bool TurretAI::isOwnersCurWeaponOnTurret() const
+bool TurretAI::isOwnersCurWeaponOnTurret() const
 {
 	WeaponSlotType wslot;
 	Weapon* w = m_owner->getCurrentWeapon(&wslot);
@@ -509,7 +509,7 @@ Bool TurretAI::isOwnersCurWeaponOnTurret() const
 }
 
 //----------------------------------------------------------------------------------------------------------
-Bool TurretAI::isWeaponSlotOnTurret(WeaponSlotType wslot) const
+bool TurretAI::isWeaponSlotOnTurret(WeaponSlotType wslot) const
 {
 	return (m_data->m_turretWeaponSlots & (1 << wslot)) != 0;
 }
@@ -561,7 +561,7 @@ void TurretAI::removeSelfAsTargeter()
 }
 
 //----------------------------------------------------------------------------------------------------------
-void TurretAI::setTurretTargetObject( Object *victim, Bool forceAttacking )
+void TurretAI::setTurretTargetObject( Object *victim, bool forceAttacking )
 {
 	if (!victim || 
 				victim->isEffectivelyDead() ||
@@ -645,7 +645,7 @@ void TurretAI::recenterTurret()
 }
 
 //----------------------------------------------------------------------------------------------------------
-Bool TurretAI::isTurretInNaturalPosition() const
+bool TurretAI::isTurretInNaturalPosition() const
 {
 	if( getNaturalTurretAngle() == getTurretAngle() && 
 			getNaturalTurretPitch() == getTurretPitch() )
@@ -741,7 +741,7 @@ UpdateSleepTime TurretAI::updateTurretAI()
 }
 
 //-------------------------------------------------------------------------------------------------
-void TurretAI::setTurretEnabled( Bool enabled )
+void TurretAI::setTurretEnabled( bool enabled )
 {
 	if (enabled && !m_enabled)
 	{
@@ -816,7 +816,7 @@ void TurretAI::getOtherTurretWeaponInfo(Int& numSelf, Int& numSelfReloading, Int
 #endif
 
 //----------------------------------------------------------------------------------------------------------
-Bool TurretAI::friend_isAnyWeaponInRangeOf(const Object* o) const
+bool TurretAI::friend_isAnyWeaponInRangeOf(const Object* o) const
 {
 	// see if we've moved out of range, and if so, nuke the target.
 	for (Int i = 0; i < WEAPONSLOT_COUNT;	i++ )
@@ -841,7 +841,7 @@ Bool TurretAI::friend_isAnyWeaponInRangeOf(const Object* o) const
 }
 
 //----------------------------------------------------------------------------------------------------------
-Bool TurretAI::friend_isSweepEnabled() const 
+bool TurretAI::friend_isSweepEnabled() const 
 { 
 	if (m_enableSweepUntil != 0 && m_enableSweepUntil > TheGameLogic->getFrame())
 		return true;
@@ -963,11 +963,11 @@ StateReturnType TurretAIAimTurretState::update()
 	Object* enemy;
 	AIUpdateInterface* enemyAI=NULL;
 	Coord3D enemyPosition;
-	Bool preventing = false;
+	bool preventing = false;
 	TurretTargetType targetType =  turret->friend_getTurretTarget(enemy, enemyPosition);
 	Object *enemyForDistanceCheckOnly = enemy;	// Note: Do not use this anywhere except for the range check.
 
-	Bool nothingInRange = false;
+	bool nothingInRange = false;
 	switch (targetType)
 	{
 		case TARGET_NONE:
@@ -977,9 +977,9 @@ StateReturnType TurretAIAimTurretState::update()
 
 		case TARGET_OBJECT:
 		{
-			Bool isPrimaryEnemy = (enemy && enemy == ai->getGoalObject());
+			bool isPrimaryEnemy = (enemy && enemy == ai->getGoalObject());
 			// if the enemy is gone, or we're out of range, or it changed teams, the attack is over
-			Bool ableToAttackTarget = obj->isAbleToAttack();
+			bool ableToAttackTarget = obj->isAbleToAttack();
 			if (ableToAttackTarget) 
 			{
 				// srj sez: since we have already acquired this target, we should use
@@ -1074,7 +1074,7 @@ StateReturnType TurretAIAimTurretState::update()
 	}
 
 	const Real REL_THRESH = 0.035f;	// about 2 degrees. (getRelativeAngle2D is current only accurate to about 1.25 degrees)
-	Bool turnAlignedToNemesis = turret->friend_turnTowardsAngle(aimAngle, turnSpeedModifier, REL_THRESH);
+	bool turnAlignedToNemesis = turret->friend_turnTowardsAngle(aimAngle, turnSpeedModifier, REL_THRESH);
 
 	// this section we do even if sweep is "disabled", so that we can start firing
 	// once we get into sweep "range"
@@ -1087,7 +1087,7 @@ StateReturnType TurretAIAimTurretState::update()
 		turnAlignedToNemesis = (fabs(angleDiff) < sweep);
 	}
 
-	Bool pitchAlignedToNemesis = true;
+	bool pitchAlignedToNemesis = true;
 
 	// Now do pitch
 	if( turret->isAllowsPitch() )
@@ -1122,7 +1122,7 @@ StateReturnType TurretAIAimTurretState::update()
 				desiredPitch = turret->getMinPitch();
 			}
 			if (turret->getGroundUnitPitch() > 0) {
-				Bool adjust = false;
+				bool adjust = false;
 				if (!enemy) {
 					adjust = true; // adjust for ground targets.
 				}
@@ -1211,8 +1211,8 @@ StateReturnType TurretAIRecenterTurretState::update()
 	//DEBUG_LOG(("TurretAIRecenterTurretState frame %d: %08lx\n",TheGameLogic->getFrame(),getTurretAI()->getOwner()));
 
 	TurretAI* turret = getTurretAI();
-	Bool angleAligned = turret->friend_turnTowardsAngle(turret->getNaturalTurretAngle(), 0.5f, 0.0f);
-	Bool pitchAligned = turret->friend_turnTowardsPitch(turret->getNaturalTurretPitch(), 0.5f);
+	bool angleAligned = turret->friend_turnTowardsAngle(turret->getNaturalTurretAngle(), 0.5f, 0.0f);
+	bool pitchAligned = turret->friend_turnTowardsPitch(turret->getNaturalTurretPitch(), 0.5f);
 
 	if( angleAligned && pitchAligned )
 		return STATE_SUCCESS;
@@ -1360,8 +1360,8 @@ StateReturnType TurretAIIdleScanState::update()
 {
 	//DEBUG_LOG(("TurretAIIdleScanState frame %d: %08lx\n",TheGameLogic->getFrame(),getTurretAI()->getOwner()));
 
-	Bool angleAligned = getTurretAI()->friend_turnTowardsAngle(getTurretAI()->getNaturalTurretAngle() + m_desiredAngle, 0.5f, 0.0f);
-	Bool pitchAligned = getTurretAI()->friend_turnTowardsPitch(getTurretAI()->getNaturalTurretPitch(), 0.5f);
+	bool angleAligned = getTurretAI()->friend_turnTowardsAngle(getTurretAI()->getNaturalTurretAngle() + m_desiredAngle, 0.5f, 0.0f);
+	bool pitchAligned = getTurretAI()->friend_turnTowardsPitch(getTurretAI()->getNaturalTurretPitch(), 0.5f);
 
 	if( angleAligned && pitchAligned )
 		return STATE_SUCCESS;

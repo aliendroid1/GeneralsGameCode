@@ -215,7 +215,7 @@ void W3DTerrainVisual::update( void )
 //-------------------------------------------------------------------------------------------------
 /** load method for W3D visual terrain */
 //-------------------------------------------------------------------------------------------------
-Bool W3DTerrainVisual::load( AsciiString filename )
+bool W3DTerrainVisual::load( AsciiString filename )
 {
 	
 #if 0	
@@ -349,7 +349,7 @@ Bool W3DTerrainVisual::load( AsciiString filename )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-void W3DTerrainVisual::enableWaterGrid( Bool enable )
+void W3DTerrainVisual::enableWaterGrid( bool enable )
 {
 
 	//Get default water type
@@ -365,11 +365,11 @@ void W3DTerrainVisual::enableWaterGrid( Bool enable )
 /** intersect the ray with the terrain, if a hit occurs TRUE is returned
 	* and the result point on the terrain is returned in "result" */
 //-------------------------------------------------------------------------------------------------
-Bool W3DTerrainVisual::intersectTerrain( Coord3D *rayStart, 
+bool W3DTerrainVisual::intersectTerrain( Coord3D *rayStart, 
 																				 Coord3D *rayEnd, 
 																				 Coord3D *result )
 {
-	Bool hit = FALSE;
+	bool hit = FALSE;
 
 	// sanity
 	if( rayStart == NULL || rayEnd == NULL )
@@ -534,7 +534,7 @@ void W3DTerrainVisual::addWaterVelocity( Real worldX, Real worldY,
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool W3DTerrainVisual::getWaterGridHeight( Real worldX, Real worldY, Real *height)
+bool W3DTerrainVisual::getWaterGridHeight( Real worldX, Real worldY, Real *height)
 {
 	Real gridX, gridY;
 
@@ -565,7 +565,7 @@ void W3DTerrainVisual::setRawMapHeight(const ICoord2D *gridPos, Int height)
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-void W3DTerrainVisual::addFactionBibDrawable(Drawable *factionBuilding, Bool highlight, Real extra)
+void W3DTerrainVisual::addFactionBibDrawable(Drawable *factionBuilding, bool highlight, Real extra)
 {
 	if (m_terrainHeightMap) {
 		const Matrix3D * mtx = factionBuilding->getTransformMatrix();
@@ -602,7 +602,7 @@ void W3DTerrainVisual::addFactionBibDrawable(Drawable *factionBuilding, Bool hig
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-void W3DTerrainVisual::addFactionBib(Object *factionBuilding, Bool highlight, Real extra)
+void W3DTerrainVisual::addFactionBib(Object *factionBuilding, bool highlight, Real extra)
 {
 	if (m_terrainHeightMap) {
 		const Matrix3D * mtx = factionBuilding->getTransformMatrix();
@@ -740,7 +740,7 @@ void W3DTerrainVisual::xfer( Xfer *xfer )
 	TerrainVisual::xfer( xfer );
 
 	// flag for whether or not the water grid is enabled
-	Bool gridEnabled = m_isWaterGridRenderingEnabled;
+	bool gridEnabled = m_isWaterGridRenderingEnabled;
 	xfer->xferBool( &gridEnabled );
 	if( gridEnabled != m_isWaterGridRenderingEnabled )
 	{

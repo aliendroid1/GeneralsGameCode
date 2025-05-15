@@ -281,7 +281,7 @@ void W3DProjectedShadowManager::reset( void )
 
 }  // end Reset
 
-Bool W3DProjectedShadowManager::init( void )
+bool W3DProjectedShadowManager::init( void )
 {
 	m_W3DShadowTextureManager = NEW W3DShadowTextureManager;
 	m_shadowCamera = NEW_REF( CameraClass, () );
@@ -292,7 +292,7 @@ Bool W3DProjectedShadowManager::init( void )
 }
 
 
-Bool W3DProjectedShadowManager::ReAcquireResources(void)
+bool W3DProjectedShadowManager::ReAcquireResources(void)
 {
 	//grab assets which don't survive a device reset and need
 	//to be present for duration of game.
@@ -392,7 +392,7 @@ Int W3DProjectedShadowManager::renderProjectedTerrainShadow(W3DProjectedShadow *
 	Int i,j,k;
 	UnsignedByte alpha[4];
 	float UA[4], VA[4];
-	Bool flipForBlend;
+	bool flipForBlend;
 
 
 	#define SHADOW_VOLUME_FVF	D3DFVF_XYZ
@@ -2313,7 +2313,7 @@ W3DShadowTexture * W3DShadowTextureManager::getTexture(const char * name)
 }
 
 /** Add texture to cache */
-Bool W3DShadowTextureManager::addTexture(W3DShadowTexture *newTexture)
+bool W3DShadowTextureManager::addTexture(W3DShadowTexture *newTexture)
 {
 	WWASSERT (newTexture != NULL);
 
@@ -2372,7 +2372,7 @@ Bool	W3DShadowTextureManager::isMissing( const char * name )
 /** Create shadow geometry from a reference W3D RenderObject*/
 int W3DShadowTextureManager::createTexture(RenderObjClass *robj, const char *name)
 {
-	Bool res=FALSE;
+	bool res=FALSE;
 
 	W3DShadowTexture * newTexture = NEW W3DShadowTexture;
 

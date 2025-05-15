@@ -90,7 +90,7 @@ void QueueProductionExitUpdate::exitObjectViaDoor( Object *newObj, ExitDoorType 
 		loc.Set( md->m_unitCreatePoint.x, md->m_unitCreatePoint.y, md->m_unitCreatePoint.z );
 		transform->Transform_Vector( *transform, loc, &loc );
 
-		Bool creationInAir = FALSE;
+		bool creationInAir = FALSE;
 		if( TheTerrainLogic )
 		{
 			if( loc.Z != TheTerrainLogic->getGroundHeight( loc.X, loc.Y ) )
@@ -167,7 +167,7 @@ void QueueProductionExitUpdate::exitObjectViaDoor( Object *newObj, ExitDoorType 
 }
 
 
-Bool QueueProductionExitUpdate::getExitPosition( Coord3D& exitPosition ) const
+bool QueueProductionExitUpdate::getExitPosition( Coord3D& exitPosition ) const
 {
 	const Object *obj = getObject();
 	if (!obj)
@@ -203,10 +203,10 @@ void QueueProductionExitUpdate::unreserveDoorForExit( ExitDoorType exitDoor )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool QueueProductionExitUpdate::isFreeToExit() const
+bool QueueProductionExitUpdate::isFreeToExit() const
 {
-	Bool stillBursting = (m_currentBurstCount > 0);
-	Bool stillDelaying = (m_currentDelay != 0);
+	bool stillBursting = (m_currentBurstCount > 0);
+	bool stillDelaying = (m_currentDelay != 0);
 
 	if ( stillBursting )
 	{
@@ -269,7 +269,7 @@ void QueueProductionExitUpdate::exitObjectByBudding( Object *newObj, Object *bud
 
 
 
-Bool QueueProductionExitUpdate::getNaturalRallyPoint( Coord3D& rallyPoint, Bool offset )  const
+bool QueueProductionExitUpdate::getNaturalRallyPoint( Coord3D& rallyPoint, bool offset )  const
 {
 	const QueueProductionExitUpdateModuleData *data = getQueueProductionExitUpdateModuleData();
 	Vector3 p;

@@ -268,7 +268,7 @@ void ParticleUplinkCannonUpdate::onObjectCreated()
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ParticleUplinkCannonUpdate::initiateIntentToDoSpecialPower(const SpecialPowerTemplate *specialPowerTemplate, const Object *targetObj, const Coord3D *targetPos, const Waypoint *way, UnsignedInt commandOptions )
+bool ParticleUplinkCannonUpdate::initiateIntentToDoSpecialPower(const SpecialPowerTemplate *specialPowerTemplate, const Object *targetObj, const Coord3D *targetPos, const Waypoint *way, UnsignedInt commandOptions )
 {
 	const ParticleUplinkCannonUpdateModuleData *data = getParticleUplinkCannonUpdateModuleData();
 
@@ -310,7 +310,7 @@ Bool ParticleUplinkCannonUpdate::initiateIntentToDoSpecialPower(const SpecialPow
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ParticleUplinkCannonUpdate::isPowerCurrentlyInUse( const CommandButton *command ) const
+bool ParticleUplinkCannonUpdate::isPowerCurrentlyInUse( const CommandButton *command ) const
 {
 	if( m_startAttackFrame != 0 && m_startAttackFrame <= TheGameLogic->getFrame() )
 	{
@@ -678,7 +678,7 @@ UpdateSleepTime ParticleUplinkCannonUpdate::update()
 	Player *localPlayer = ThePlayerList->getLocalPlayer();
 	if( localPlayer )
 	{
-		Bool shrouded = me->getShroudedStatus( localPlayer->getPlayerIndex() ) != OBJECTSHROUD_CLEAR;
+		bool shrouded = me->getShroudedStatus( localPlayer->getPlayerIndex() ) != OBJECTSHROUD_CLEAR;
 		if( shrouded )
 		{
 			//We can't see it so any client effects that have been added logically needs to be removed!
@@ -688,7 +688,7 @@ UpdateSleepTime ParticleUplinkCannonUpdate::update()
 		{
 			//We can see it -- we only want to do anything if we just started seeing it, which means
 			//we want to add client effects again.
-			Bool revealThisFrame = m_clientShroudedLastFrame != shrouded;
+			bool revealThisFrame = m_clientShroudedLastFrame != shrouded;
 			if( revealThisFrame )
 			{
 				//Only if we reveal this frame, will we add client effects. The logic can take it from
@@ -986,7 +986,7 @@ void ParticleUplinkCannonUpdate::removeAllEffects()
 
 
 //-------------------------------------------------------------------------------------------------
-Bool ParticleUplinkCannonUpdate::calculateDefaultInformation()
+bool ParticleUplinkCannonUpdate::calculateDefaultInformation()
 {
 	const ParticleUplinkCannonUpdateModuleData *data = getParticleUplinkCannonUpdateModuleData();
 	Object *obj = getObject();
@@ -1018,7 +1018,7 @@ Bool ParticleUplinkCannonUpdate::calculateDefaultInformation()
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ParticleUplinkCannonUpdate::calculateUpBonePositions()
+bool ParticleUplinkCannonUpdate::calculateUpBonePositions()
 {
 	const ParticleUplinkCannonUpdateModuleData *data = getParticleUplinkCannonUpdateModuleData();
 	Object *obj = getObject();
@@ -1147,7 +1147,7 @@ void ParticleUplinkCannonUpdate::setLogicalStatus( PUCStatus newStatus )
 }
 
 //-------------------------------------------------------------------------------------------------
-void ParticleUplinkCannonUpdate::setClientStatus( PUCStatus newStatus, Bool revealThisFrame )
+void ParticleUplinkCannonUpdate::setClientStatus( PUCStatus newStatus, bool revealThisFrame )
 {
 	const ParticleUplinkCannonUpdateModuleData *data = getParticleUplinkCannonUpdateModuleData();
 
@@ -1255,7 +1255,7 @@ void ParticleUplinkCannonUpdate::setClientStatus( PUCStatus newStatus, Bool reve
 
 
 //-------------------------------------------------------------------------------------------------
-Bool ParticleUplinkCannonUpdate::doesSpecialPowerHaveOverridableDestinationActive() const
+bool ParticleUplinkCannonUpdate::doesSpecialPowerHaveOverridableDestinationActive() const
 {
 	return m_status == STATUS_PREFIRE || m_status == STATUS_FIRING || m_status == STATUS_POSTFIRE;
 }

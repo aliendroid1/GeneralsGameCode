@@ -51,7 +51,7 @@ typedef set<AsciiString>::const_iterator AsciiSetIter;
 	*   /oper:											become an IRC op (only in debug & internal)
 	*   /quit:											send the IRC quit command to exit WOL
 	*/
-static Bool handleSlashCommands( UnicodeString message, Bool isAction, GameWindow *playerListbox )
+static bool handleSlashCommands( UnicodeString message, bool isAction, GameWindow *playerListbox )
 {
 	/*
 	if (message.getCharAt(0) == L'/')
@@ -269,9 +269,9 @@ static Bool handleSlashCommands( UnicodeString message, Bool isAction, GameWindo
 	return false;
 }
 
-static handleUnicodeMessage( const char *nick, UnicodeString msg, Bool isPublic, Bool isAction );
+static handleUnicodeMessage( const char *nick, UnicodeString msg, bool isPublic, bool isAction );
 
-Bool GameSpySendChat( UnicodeString message, Bool isAction, GameWindow *playerListbox )
+bool GameSpySendChat( UnicodeString message, bool isAction, GameWindow *playerListbox )
 {
 	RoomType roomType = StagingRoom;
 	if (TheGameSpyChat->getCurrentGroupRoomID())
@@ -387,11 +387,11 @@ void PlayerMessageCallback(PEER peer,
 	handleUnicodeMessage(nick, QuotedPrintableToUnicodeString(message), false, (messageType == ActionMessage));
 }
 
-static handleUnicodeMessage( const char *nick, UnicodeString msg, Bool isPublic, Bool isAction )
+static handleUnicodeMessage( const char *nick, UnicodeString msg, bool isPublic, bool isAction )
 {
 	GameSpyColors style;
 
-	Bool isOwner = false;
+	bool isOwner = false;
 	Int flags = 0;
 	if (TheGameSpyChat->getCurrentGroupRoomID())
 		peerGetPlayerFlags(TheGameSpyChat->getPeer(), nick, GroupRoom, &flags);

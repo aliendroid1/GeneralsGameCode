@@ -123,13 +123,13 @@ public:
 	virtual HRESULT OnEnd();
 	virtual HRESULT OnProgressUpdate( Int bytesread, Int totalsize, Int timetaken, Int timeleft );
 	virtual HRESULT OnStatusUpdate( Int status );
-	virtual HRESULT downloadFile( AsciiString server, AsciiString username, AsciiString password, AsciiString file, AsciiString localfile, AsciiString regkey, Bool tryResume );
+	virtual HRESULT downloadFile( AsciiString server, AsciiString username, AsciiString password, AsciiString file, AsciiString localfile, AsciiString regkey, bool tryResume );
 
 private:
-	Bool m_shouldQuitOnSuccess;
+	bool m_shouldQuitOnSuccess;
 };
 
-HRESULT DownloadManagerMunkee::downloadFile( AsciiString server, AsciiString username, AsciiString password, AsciiString file, AsciiString localfile, AsciiString regkey, Bool tryResume )
+HRESULT DownloadManagerMunkee::downloadFile( AsciiString server, AsciiString username, AsciiString password, AsciiString file, AsciiString localfile, AsciiString regkey, bool tryResume )
 {
 	// see if we'll need to restart
 	if (strstr(localfile.str(), "patches\\") != NULL)

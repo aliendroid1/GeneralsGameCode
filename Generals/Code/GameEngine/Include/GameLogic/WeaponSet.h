@@ -127,11 +127,11 @@ public:
 
 	void clear();
 	void parseWeaponTemplateSet( INI* ini, const ThingTemplate* tt );
-	Bool testWeaponSetFlag( WeaponSetType wst ) const;
-	Bool isSharedReloadTime( void ) const { return m_isReloadTimeShared; }
-	Bool isWeaponLockSharedAcrossSets() const {return m_isWeaponLockSharedAcrossSets; }
+	bool testWeaponSetFlag( WeaponSetType wst ) const;
+	bool isSharedReloadTime( void ) const { return m_isReloadTimeShared; }
+	bool isWeaponLockSharedAcrossSets() const {return m_isWeaponLockSharedAcrossSets; }
 
-	Bool hasAnyWeapons() const;
+	bool hasAnyWeapons() const;
 	inline const WeaponTemplate* getNth(WeaponSlotType n) const { return m_template[n]; } 
 	inline UnsignedInt getNthCommandSourceMask(WeaponSlotType n) const { return m_autoChooseMask[n]; } 
 	inline const KindOfMaskType& getNthPreferredAgainstMask(WeaponSlotType n) const { return m_preferredAgainst[n]; } 
@@ -188,7 +188,7 @@ private:
 	Bool											m_hasPitchLimit;
 	Bool											m_hasDamageWeapon;
 
-	Bool isAnyWithinTargetPitch(const Object* obj, const Object* victim) const;
+	bool isAnyWithinTargetPitch(const Object* obj, const Object* victim) const;
 
 protected:
 	// snapshot methods
@@ -202,22 +202,22 @@ public:
 	~WeaponSet();
 
 	void updateWeaponSet(const Object* obj);
-	void reloadAllAmmo(const Object *obj, Bool now);
-	Bool isOutOfAmmo() const;
-	Bool hasAnyWeapon() const { return m_filledWeaponSlotMask != 0; }
-	Bool hasAnyDamageWeapon() const { return m_hasDamageWeapon; }
-	Bool hasWeaponToDealDamageType(DamageType typeToDeal) const { return (m_totalDamageTypeMask & (1 << typeToDeal)) != 0; }
-	Bool hasSingleDamageType(DamageType typeToDeal) const { return m_totalDamageTypeMask == (1 << typeToDeal); }
-	Bool isCurWeaponLocked() const { return m_curWeaponLockedStatus != NOT_LOCKED; }
+	void reloadAllAmmo(const Object *obj, bool now);
+	bool isOutOfAmmo() const;
+	bool hasAnyWeapon() const { return m_filledWeaponSlotMask != 0; }
+	bool hasAnyDamageWeapon() const { return m_hasDamageWeapon; }
+	bool hasWeaponToDealDamageType(DamageType typeToDeal) const { return (m_totalDamageTypeMask & (1 << typeToDeal)) != 0; }
+	bool hasSingleDamageType(DamageType typeToDeal) const { return m_totalDamageTypeMask == (1 << typeToDeal); }
+	bool isCurWeaponLocked() const { return m_curWeaponLockedStatus != NOT_LOCKED; }
 	Weapon* getCurWeapon() { return m_weapons[m_curWeapon]; }
 	const Weapon* getCurWeapon() const { return m_weapons[m_curWeapon]; }
 	WeaponSlotType getCurWeaponSlot() const { return m_curWeapon; }
 	Weapon* findWaypointFollowingCapableWeapon();
 	const Weapon* findAmmoPipShowingWeapon() const;
 
-	Bool setWeaponLock( WeaponSlotType weaponSlot, WeaponLockType lockType );
+	bool setWeaponLock( WeaponSlotType weaponSlot, WeaponLockType lockType );
 	void releaseWeaponLock(WeaponLockType lockType);
-	Bool isSharedReloadTime() const;
+	bool isSharedReloadTime() const;
 
 	//When an AIAttackState is over, it needs to clean up any weapons that might be in leech range mode
 	//or else those weapons will have unlimited range!
@@ -240,7 +240,7 @@ public:
 		If there is no weapon that can damage the target, false is returned (and the current-weapon is unchanged).
 		Note that this DOES take weapon attack range into account.
 	*/
-	Bool chooseBestWeaponForTarget(const Object* obj, const Object* victim, WeaponChoiceCriteria criteria, CommandSourceType cmdSource);
+	bool chooseBestWeaponForTarget(const Object* obj, const Object* victim, WeaponChoiceCriteria criteria, CommandSourceType cmdSource);
 
 	Weapon* getWeaponInWeaponSlot(WeaponSlotType wslot) const;
 

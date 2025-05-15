@@ -73,8 +73,8 @@
 //#pragma MESSAGE("************************************** WARNING, optimization disabled for debugging purposes")
 #endif
 // PRIVATE DATA ///////////////////////////////////////////////////////////////////////////////////
-static Bool isShuttingDown = FALSE;
-static Bool buttonPushed = FALSE;
+static bool isShuttingDown = FALSE;
+static bool buttonPushed = FALSE;
 static const char *nextScreen = NULL;
 
 // window ids ------------------------------------------------------------------------------
@@ -177,7 +177,7 @@ void updateLocalPlayerScores(AsciiString name, const WOL::Ladder *ladder, const 
 */
 
 
-static void enableControls( Bool state )
+static void enableControls( bool state )
 {
 	if (buttonQuickMatch)
 		buttonQuickMatch->winEnable(state);
@@ -400,7 +400,7 @@ void UpdateLocalPlayerStats(void)
 	return;
 }
 
-static Bool raiseMessageBoxes = FALSE;
+static bool raiseMessageBoxes = FALSE;
 //-------------------------------------------------------------------------------------------------
 /** Initialize the WOL Welcome Menu */
 //-------------------------------------------------------------------------------------------------
@@ -566,7 +566,7 @@ void WOLWelcomeMenuShutdown( WindowLayout *layout, void *userData )
 	isShuttingDown = TRUE;
 
 	// if we are shutting down for an immediate pop, skip the animations
-	Bool popImmediate = *(Bool *)userData;
+	bool popImmediate = *(Bool *)userData;
 	if( popImmediate )
 	{
 
@@ -620,7 +620,7 @@ void WOLWelcomeMenuUpdate( WindowLayout * layout, void *userData)
 		HandlePersistentStorageResponses();
 
 		Int allowedMessages = TheGameSpyInfo->getMaxMessagesPerUpdate();
-		Bool sawImportantMessage = FALSE;
+		bool sawImportantMessage = FALSE;
 		PeerResponse resp;
 		while (allowedMessages-- && !sawImportantMessage && TheGameSpyPeerMessageQueue->getResponse( resp ))
 		{
@@ -852,7 +852,7 @@ WindowMsgHandledType WOLWelcomeMenuSystem( GameWindow *window, UnsignedInt msg,
 				{
 					GameSpyToggleOverlay( GSOVERLAY_BUDDY );
 					/*
-					Bool joinedRoom = FALSE;
+					bool joinedRoom = FALSE;
 					ClearGroupRoomList();
 					peerJoinTitleRoom(TheGameSpyChat->getPeer(), JoinRoomCallback, &joinedRoom, PEERTrue);
 					if (joinedRoom)

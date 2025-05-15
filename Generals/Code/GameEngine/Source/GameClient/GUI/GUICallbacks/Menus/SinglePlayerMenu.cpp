@@ -38,8 +38,8 @@
 #include "GameClient/KeyDefs.h"
 #include "GameClient/GameWindowManager.h"
 
-static Bool isShuttingDown = false;
-static Bool buttonPushed = false;
+static bool isShuttingDown = false;
+static bool buttonPushed = false;
 //-------------------------------------------------------------------------------------------------
 /** This is called when a shutdown is complete for this menu */
 //-------------------------------------------------------------------------------------------------
@@ -99,7 +99,7 @@ void SinglePlayerMenuShutdown( WindowLayout *layout, void *userData )
 	isShuttingDown = true;
 
 	// if we are shutting down for an immediate pop, skip the animations
-	Bool popImmediate = *(Bool *)userData;
+	bool popImmediate = *(Bool *)userData;
 	if( popImmediate )
 	{
 

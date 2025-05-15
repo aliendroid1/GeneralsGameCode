@@ -77,7 +77,7 @@ PowerPlantUpdate::~PowerPlantUpdate( void )
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-void PowerPlantUpdate::extendRods( Bool extend )
+void PowerPlantUpdate::extendRods( bool extend )
 {
 	if (extend)
 	{

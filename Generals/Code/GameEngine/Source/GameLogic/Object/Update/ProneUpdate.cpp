@@ -92,7 +92,7 @@ UpdateSleepTime ProneUpdate::update( void )
 void ProneUpdate::goProne( const DamageInfo *damageInfo )
 {
 	//add to the prone time
-	Bool wasProne = (m_proneFrames > 0);
+	bool wasProne = (m_proneFrames > 0);
 	Int damageTaken = damageInfo->out.m_actualDamageDealt;
 	m_proneFrames += damageTaken * getProneUpdateModuleData()->m_damageToFramesRatio;
 

@@ -269,7 +269,7 @@ UpdateSleepTime JetSlowDeathBehavior::update( void )
 
 		
 
-		Bool hitATree = FALSE;
+		bool hitATree = FALSE;
 		// Here we want to make sure we crash if we collide with a tree on the way down
 		PhysicsBehavior *phys = us->getPhysics();
 		if ( m_timerOnGroundFrame == 0 && phys )

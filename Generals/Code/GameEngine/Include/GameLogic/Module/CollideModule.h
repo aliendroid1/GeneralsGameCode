@@ -48,11 +48,11 @@ class CollideModuleInterface
 {
 public:
 	virtual void onCollide( Object *other, const Coord3D *loc, const Coord3D *normal ) = 0;
-	virtual Bool wouldLikeToCollideWith(const Object* other) const = 0;
-	virtual Bool isHijackedVehicleCrateCollide() const = 0;
-	virtual Bool isCarBombCrateCollide() const = 0;
-	virtual Bool isRailroad() const = 0;
-	virtual Bool isSalvageCrateCollide() const = 0;
+	virtual bool wouldLikeToCollideWith(const Object* other) const = 0;
+	virtual bool isHijackedVehicleCrateCollide() const = 0;
+	virtual bool isCarBombCrateCollide() const = 0;
+	virtual bool isRailroad() const = 0;
+	virtual bool isSalvageCrateCollide() const = 0;
 
 };
 
@@ -90,11 +90,11 @@ public:
 	virtual void onCollide( Object *other, const Coord3D *loc, const Coord3D *normal ) = 0;
 
 	/// this is used for things like pilots, to determine if they can "enter" something
-	virtual Bool wouldLikeToCollideWith(const Object* other) const { return false; }
-	virtual Bool isHijackedVehicleCrateCollide() const { return false; }
-	virtual Bool isCarBombCrateCollide() const { return false; }
-	virtual Bool isRailroad() const { return false;}
-	virtual Bool isSalvageCrateCollide() const { return false; }
+	virtual bool wouldLikeToCollideWith(const Object* other) const { return false; }
+	virtual bool isHijackedVehicleCrateCollide() const { return false; }
+	virtual bool isCarBombCrateCollide() const { return false; }
+	virtual bool isRailroad() const { return false;}
+	virtual bool isSalvageCrateCollide() const { return false; }
 
 };
 inline CollideModule::CollideModule( Thing *thing, const ModuleData* moduleData ) : BehaviorModule( thing, moduleData ) { }

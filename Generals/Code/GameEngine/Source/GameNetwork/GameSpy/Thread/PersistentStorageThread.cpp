@@ -377,13 +377,13 @@ public:
 	GameSpyPSMessageQueue();
 	virtual void startThread( void );
 	virtual void endThread( void );
-	virtual Bool isThreadRunning( void );
+	virtual bool isThreadRunning( void );
 
 	virtual void addRequest( const PSRequest& req );
-	virtual Bool getRequest( PSRequest& req );
+	virtual bool getRequest( PSRequest& req );
 
 	virtual void addResponse( const PSResponse& resp );
-	virtual Bool getResponse( PSResponse& resp );
+	virtual bool getResponse( PSResponse& resp );
 
 	virtual void trackPlayerStats( PSPlayerStats stats );
 	virtual PSPlayerStats findPlayerStatsByID( Int id );
@@ -438,20 +438,20 @@ public:
 
 	void Thread_Function();
 
-	void persAuthCallback( Bool val ) { m_loginOK = val; m_doneTryingToLogin = true; }
+	void persAuthCallback( bool val ) { m_loginOK = val; m_doneTryingToLogin = true; }
 	void decrOpCount( void ) { --m_opCount; }
 	void incrOpCount( void ) { ++m_opCount; }
 	Int getOpCount( void ) { return m_opCount; }
-	Bool sawLocalPlayerData( void ) { return m_sawLocalData; }
+	bool sawLocalPlayerData( void ) { return m_sawLocalData; }
 	void gotLocalPlayerData( void ) { m_sawLocalData = TRUE; }
 
 private:
-	Bool tryConnect( void );
-	Bool tryLogin( Int id, std::string nick, std::string password, std::string email );
-	Bool m_loginOK;
-	Bool m_doneTryingToLogin;
+	bool tryConnect( void );
+	bool tryLogin( Int id, std::string nick, std::string password, std::string email );
+	bool m_loginOK;
+	bool m_doneTryingToLogin;
 	Int m_opCount;
-	Bool m_sawLocalData;
+	bool m_sawLocalData;
 };
 
 
@@ -491,7 +491,7 @@ void GameSpyPSMessageQueue::endThread( void )
 	m_thread = NULL;
 }
 
-Bool GameSpyPSMessageQueue::isThreadRunning( void )
+bool GameSpyPSMessageQueue::isThreadRunning( void )
 {
 	return (m_thread) ? m_thread->Is_Running() : false;
 }
@@ -505,7 +505,7 @@ void GameSpyPSMessageQueue::addRequest( const PSRequest& req )
 	m_requests.push(req);
 }
 
-Bool GameSpyPSMessageQueue::getRequest( PSRequest& req )
+bool GameSpyPSMessageQueue::getRequest( PSRequest& req )
 {
 	MutexClass::LockClass m(m_requestMutex, 0);
 	if (m.Failed())
@@ -527,7 +527,7 @@ void GameSpyPSMessageQueue::addResponse( const PSResponse& resp )
 	m_responses.push(resp);
 }
 
-Bool GameSpyPSMessageQueue::getResponse( PSResponse& resp )
+bool GameSpyPSMessageQueue::getResponse( PSResponse& resp )
 {
 	MutexClass::LockClass m(m_responseMutex, 0);
 	if (m.Failed())
@@ -580,7 +580,7 @@ PSPlayerStats GameSpyPSMessageQueue::findPlayerStatsByID( Int id )
 
 //-------------------------------------------------------------------------
 
-Bool PSThreadClass::tryConnect( void )
+bool PSThreadClass::tryConnect( void )
 {
 	Int result;
 
@@ -627,7 +627,7 @@ static void persAuthCallback(int localid, int profileid, int authenticated, char
 		t->persAuthCallback(authenticated != 0);
 }
 
-Bool PSThreadClass::tryLogin( Int id, std::string nick, std::string password, std::string email )
+bool PSThreadClass::tryLogin( Int id, std::string nick, std::string password, std::string email )
 {
 	char validate[33];
 	DEBUG_LOG(("PSThreadClass::tryLogin id = %d, nick = %s, password = %s, email = %s\n", id, nick.c_str(), password.c_str(), email.c_str()));
@@ -787,8 +787,8 @@ static void setPersistentDataCallback(int localid, int profileid, persisttype_t 
 
 struct CDAuthInfo
 {
-	Bool success;
-	Bool done;
+	bool success;
+	bool done;
 	Int id;
 };
 
@@ -879,7 +879,7 @@ void PSThreadClass::Thread_Function()
 				break;
 			case PSRequest::PSREQUEST_READPLAYERSTATS:
 				{
-					Bool initialConnection = FALSE;
+					bool initialConnection = FALSE;
 					if (!MESSAGE_QUEUE->getLocalPlayerID())
 					{
 						MESSAGE_QUEUE->setLocalPlayerID(req.player.id); // first request is for ourselves

@@ -297,16 +297,16 @@ public:
 	static const FieldParse s_commandButtonFieldParseTable[];		///< the parse table
 	static void parseCommand( INI* ini, void *instance, void *store, const void *userData );
 
-	Bool isContextCommand() const;									///< determines if this is a context sensitive command.
-	Bool isValidRelationshipTarget(Relationship r) const;
-	Bool isValidObjectTarget(const Player* sourcePlayer, const Object* targetObj) const;
-	Bool isValidObjectTarget(const Object* sourceObj, const Object* targetObj) const;
-	Bool isValidObjectTarget(const Drawable* source, const Drawable* target) const;
+	bool isContextCommand() const;									///< determines if this is a context sensitive command.
+	bool isValidRelationshipTarget(Relationship r) const;
+	bool isValidObjectTarget(const Player* sourcePlayer, const Object* targetObj) const;
+	bool isValidObjectTarget(const Object* sourceObj, const Object* targetObj) const;
+	bool isValidObjectTarget(const Drawable* source, const Drawable* target) const;
 	
 	// Note: It is perfectly valid for either (or both!) of targetObj and targetLocation to be NULL.
 	// This is a convenience function to make several calls to other functions.
-	Bool isValidToUseOn(const Object *sourceObj, const Object *targetObj, const Coord3D *targetLocation, CommandSourceType commandSource) const;
-	Bool isReady(const Object *sourceObj) const;
+	bool isValidToUseOn(const Object *sourceObj, const Object *targetObj, const Coord3D *targetLocation, CommandSourceType commandSource) const;
+	bool isReady(const Object *sourceObj) const;
 
 	const AsciiString& getName() const { return m_name; }
 	const AsciiString& getCursorName() const { return m_cursorName; }
@@ -340,7 +340,7 @@ public:
 	void setButtonImage( const Image *image ) { m_buttonImage = image; }
 
 	// bleah. shouldn't be const, but is. sue me. (srj)
-	void copyImagesFrom( const CommandButton *button, Bool markUIDirtyIfChanged ) const;
+	void copyImagesFrom( const CommandButton *button, bool markUIDirtyIfChanged ) const;
 	// bleah. shouldn't be const, but is. sue me. (srj)
 	void setFlashCount(Int c) const { m_flashCount = c; }
 	
@@ -663,7 +663,7 @@ public:
 	
 
 	/// is the drawable the currently selected drawable for the context sensitive UI?
-	Bool isDrivingContextUI( Drawable *draw ) const { return draw == m_currentSelectedDrawable; }
+	bool isDrivingContextUI( Drawable *draw ) const { return draw == m_currentSelectedDrawable; }
 
 	//-----------------------------------------------------------------------------------------------
 	// the remaining methods are used to construct the command buttons and command sets for
@@ -682,7 +682,7 @@ public:
 
 	void showSpecialPowerShortcut( void );
 	void hideSpecialPowerShortcut( void );
-	void animateSpecialPowerShortcut( Bool isOn );
+	void animateSpecialPowerShortcut( bool isOn );
 	
 
 	/// set the control bar to the proper scheme based off a player template that's passed in
@@ -720,7 +720,7 @@ public:
 	Player *getObserverLookAtPlayer (void ) { return m_observerLookAtPlayer;}
 	void populateObserverInfoWindow ( void );
 	void populateObserverList( void );
-	Bool isObserverControlBarOn( void ) { return m_isObserverCommandBar;}
+	bool isObserverControlBarOn( void ) { return m_isObserverCommandBar;}
 	
 //	ControlBarResizer *getControlBarResizer( void ) {return m_controlBarResizer;}
 
@@ -774,7 +774,7 @@ protected:
 	void evaluateContextUI( void );
 
 	/// add the common commands of this drawable to the common command set
-	void addCommonCommands( Drawable *draw, Bool firstDrawable );
+	void addCommonCommands( Drawable *draw, bool firstDrawable );
 
 	/// switch the interface context to the new mode and populate as needed
 	void switchToContext( ControlBarContext context, Drawable *draw );
@@ -814,7 +814,7 @@ protected:
 	static void populateInvDataCallback( Object *obj, void *userData );
 
 	// the following methods are for updating the currently showing context
-	CommandAvailability getCommandAvailability( const CommandButton *command, Object *obj, GameWindow *win, Bool forceDisabledEvaluation = FALSE ) const;
+	CommandAvailability getCommandAvailability( const CommandButton *command, Object *obj, GameWindow *win, bool forceDisabledEvaluation = FALSE ) const;
 	void updateContextMultiSelect( void );
 	void updateContextPurchaseScience( void );
 	void updateContextCommand( void );
@@ -842,7 +842,7 @@ protected:
 	void setUpDownImages( void );
 		// methods for flashing cameos
 public:
-	void setFlash( Bool b ) { m_flash = b; }
+	void setFlash( bool b ) { m_flash = b; }
 
 	// get method for list of commandbuttons
 	const CommandButton *getCommandButtons( void ) { return m_commandButtons; }
@@ -852,7 +852,7 @@ protected:
 	ICoord2D m_defaultControlBarPosition;				///< Stored the original position of the control bar on the screen
 	ControlBarStages m_currentControlBarStage;
 
-	Bool m_UIDirty;																///< the context UI must be re-evaluated
+	bool m_UIDirty;																///< the context UI must be re-evaluated
 
 	CommandButton *m_commandButtons;							///< list of possible commands to have
 	CommandSet *m_commandSets;										///< list of all command sets defined
@@ -900,7 +900,7 @@ protected:
 
 public:
 	// method for hiding communicator window CCB
-	void hideCommunicator( Bool b );
+	void hideCommunicator( bool b );
 
 protected:
 
@@ -925,9 +925,9 @@ protected:
 	QueueEntry m_queueData[ MAX_BUILD_QUEUE_BUTTONS ];	///< what the build queue represents
 
 	//cameo flash
-	Bool m_flash;                                       ///< tells update whether or not to check for flash
+	bool m_flash;                                       ///< tells update whether or not to check for flash
 
-	Bool m_sideSelectAnimateDown;
+	bool m_sideSelectAnimateDown;
 	ICoord2D m_animateDownWin1Size;
 	ICoord2D m_animateDownWin2Size;
 	ICoord2D m_animateDownWin1Pos;
@@ -937,16 +937,16 @@ protected:
 
 	Color m_buildUpClockColor;
 
-	Bool m_isObserverCommandBar;												///< If this is true, the command bar behaves greatly differnt
+	bool m_isObserverCommandBar;												///< If this is true, the command bar behaves greatly differnt
 	Player *m_observerLookAtPlayer;											///< The current player we're looking at, Null if we're not looking at anyone.
 
 	WindowLayout *m_buildToolTipLayout;										///< The window that will slide on/display tooltips
-	Bool m_showBuildToolTipLayout;											///< every frame we test to see if we aregoing to continue showing this or not.
+	bool m_showBuildToolTipLayout;											///< every frame we test to see if we aregoing to continue showing this or not.
 public:
 	void showBuildTooltipLayout( GameWindow *cmdButton );
 	void hideBuildTooltipLayout( void );
 	void deleteBuildTooltipLayout( void );
-	Bool getShowBuildTooltipLayout( void ){return m_showBuildToolTipLayout;	}
+	bool getShowBuildTooltipLayout( void ){return m_showBuildToolTipLayout;	}
 	void populateBuildTooltipLayout( const CommandButton *commandButton, GameWindow *tooltipWin = NULL );
 	void repopulateBuildTooltipLayout( void );
 private:
@@ -990,13 +990,13 @@ private:
 	const Image *m_generalButtonHighlight;
 
 
-	Bool m_genStarFlash;
+	bool m_genStarFlash;
 	Int m_lastFlashedAtPointValue;
 	
 	ICoord2D m_controlBarForegroundMarkerPos;
 	ICoord2D m_controlBarBackgroundMarkerPos;
 	
-	Bool m_radarAttackGlowOn;
+	bool m_radarAttackGlowOn;
 	Int m_remainingRadarAttackGlowFrames;
 	GameWindow *m_radarAttackGlowWindow;
 //	ControlBarResizer *m_controlBarResizer;

@@ -417,7 +417,7 @@ void DirectInputKeyboard::update( void )
 //-------------------------------------------------------------------------------------------------
 /** Return TRUE if the caps lock key is down/hilighted */
 //-------------------------------------------------------------------------------------------------
-Bool DirectInputKeyboard::getCapsState( void )
+bool DirectInputKeyboard::getCapsState( void )
 {
 
 	return BitIsSet( GetKeyState( VK_CAPITAL ), 0X01);

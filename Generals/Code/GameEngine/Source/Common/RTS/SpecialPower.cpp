@@ -291,7 +291,7 @@ Int SpecialPowerStore::getNumSpecialPowers( void )
 //-------------------------------------------------------------------------------------------------
 /** does the object (and therefore the player) meet all the requirements to use this power */
 //-------------------------------------------------------------------------------------------------
-Bool SpecialPowerStore::canUseSpecialPower( Object *obj, const SpecialPowerTemplate *specialPowerTemplate )
+bool SpecialPowerStore::canUseSpecialPower( Object *obj, const SpecialPowerTemplate *specialPowerTemplate )
 {
 
 	// sanity

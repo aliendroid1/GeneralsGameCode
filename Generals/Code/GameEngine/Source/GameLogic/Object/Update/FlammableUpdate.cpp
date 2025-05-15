@@ -259,7 +259,7 @@ void FlammableUpdate::stopBurningSound()
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-Bool FlammableUpdate::wouldIgnite()
+bool FlammableUpdate::wouldIgnite()
 {
 	if( m_status == FS_NORMAL )
 		return TRUE;

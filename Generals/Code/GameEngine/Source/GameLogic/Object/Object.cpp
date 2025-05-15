@@ -604,7 +604,7 @@ Object::~Object()
 //-------------------------------------------------------------------------------------------------
 void localIsHero( Object *obj, void* userData )
 {
-	Bool *hero = (Bool*)userData;
+	bool *hero = (Bool*)userData;
 	
 	if( obj && obj->isKindOf( KINDOF_HERO ) )
 	{
@@ -613,12 +613,12 @@ void localIsHero( Object *obj, void* userData )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool Object::isHero() const
+bool Object::isHero() const
 {
 	ContainModuleInterface *contain = getContain();
 	if( contain )
 	{
-		Bool heroInside = FALSE;
+		bool heroInside = FALSE;
 		contain->iterateContained( localIsHero, (void*)(&heroInside), FALSE );
 		if( heroInside )
 		{
@@ -729,7 +729,7 @@ void Object::setGeometryInfoZ( Real newZ )
 }
 
 //=============================================================================
-void Object::friend_setUndetectedDefector( Bool status )
+void Object::friend_setUndetectedDefector( bool status )
 {
 	if (status)
 		m_privateStatus |= UNDETECTED_DEFECTOR;
@@ -776,13 +776,13 @@ void Object::setTeam( Team *team )
 //=============================================================================
 void Object::setTemporaryTeam( Team *team )
 {
-	const Bool restoring = false;
+	const bool restoring = false;
 	setOrRestoreTeam(team, restoring);
 }
 
 //=============================================================================
 //=============================================================================
-void Object::setOrRestoreTeam( Team* team, Bool restoring )
+void Object::setOrRestoreTeam( Team* team, bool restoring )
 {
 	// don't do anything if the team hasn't changed
 	if( m_team == team )
@@ -861,7 +861,7 @@ void Object::setOrRestoreTeam( Team* team, Bool restoring )
 }
 
 //=============================================================================
-void Object::setStatus( ObjectStatusMaskType objectStatus, Bool set )
+void Object::setStatus( ObjectStatusMaskType objectStatus, bool set )
 {
 	ObjectStatusMaskType oldStatus = m_status;
 
@@ -915,7 +915,7 @@ void Object::setStatus( ObjectStatusMaskType objectStatus, Bool set )
 }
 
 //=============================================================================
-void Object::setScriptStatus( ObjectScriptStatusBit bit, Bool set )
+void Object::setScriptStatus( ObjectScriptStatusBit bit, bool set )
 {
 	UnsignedInt oldScriptStatus = m_scriptStatus;
 
@@ -972,7 +972,7 @@ void Object::setScriptStatus( ObjectScriptStatusBit bit, Bool set )
 }
 
 //=============================================================================
-Bool Object::canCrushOrSquish(Object *otherObj, CrushSquishTestType testType ) const
+bool Object::canCrushOrSquish(Object *otherObj, CrushSquishTestType testType ) const
 {
 	DEBUG_ASSERTCRASH(this, ("null this in canCrushOrSquish"));
 
@@ -1089,19 +1089,19 @@ void Object::reloadAllAmmo(Bool now)
 }
 
 //=============================================================================
-Bool Object::isOutOfAmmo() const
+bool Object::isOutOfAmmo() const
 {
 	return m_weaponSet.isOutOfAmmo();
 }
 
 //=============================================================================
-Bool Object::hasAnyWeapon() const
+bool Object::hasAnyWeapon() const
 {
 	return m_weaponSet.hasAnyWeapon();
 }
 
 //=============================================================================
-Bool Object::hasAnyDamageWeapon() const
+bool Object::hasAnyDamageWeapon() const
 {
 	//First check to see if we have any weapons -- if not return false.
 	if( !m_weaponSet.hasAnyDamageWeapon() )
@@ -1112,7 +1112,7 @@ Bool Object::hasAnyDamageWeapon() const
 }
 
 //=============================================================================
-Bool Object::hasWeaponToDealDamageType(DamageType typeToDeal) const
+bool Object::hasWeaponToDealDamageType(DamageType typeToDeal) const
 {
 	return m_weaponSet.hasWeaponToDealDamageType(typeToDeal);
 }
@@ -1273,7 +1273,7 @@ Weapon* Object::findWaypointFollowingCapableWeapon()
 }
 
 //=============================================================================
-Bool Object::getAmmoPipShowingInfo(Int& numTotal, Int& numFull) const
+bool Object::getAmmoPipShowingInfo(Int& numTotal, Int& numFull) const
 {
 /// @todo srj -- may need to cache this inside weaponset.
 	const Weapon* w = m_weaponSet.findAmmoPipShowingWeapon();
@@ -1316,7 +1316,7 @@ CanAttackResult Object::getAbleToUseWeaponAgainstTarget( AbleToAttackType attack
 
 
 //=============================================================================
-Bool Object::chooseBestWeaponForTarget(const Object* target, WeaponChoiceCriteria criteria, CommandSourceType cmdSource )
+bool Object::chooseBestWeaponForTarget(const Object* target, WeaponChoiceCriteria criteria, CommandSourceType cmdSource )
 {
 	return m_weaponSet.chooseBestWeaponForTarget(this, target, criteria, cmdSource );
 }
@@ -1334,7 +1334,7 @@ void Object::fireCurrentWeapon(Object *target)
 	Weapon* weapon = m_weaponSet.getCurWeapon();
 	if (weapon && (weapon->getStatus() == READY_TO_FIRE))
 	{
-		Bool reloaded = weapon->fireWeapon(this, target);
+		bool reloaded = weapon->fireWeapon(this, target);
 		DEBUG_ASSERTCRASH(m_firingTracker, ("hey, we are firing but have no firing tracker. this is wrong."));
 		if (m_firingTracker)
 			m_firingTracker->shotFired(weapon, target->getID());
@@ -1356,7 +1356,7 @@ void Object::fireCurrentWeapon(const Coord3D* pos)
 	Weapon* weapon = m_weaponSet.getCurWeapon();
 	if (weapon && (weapon->getStatus() == READY_TO_FIRE))
 	{
-		Bool reloaded = weapon->fireWeapon(this, pos);
+		bool reloaded = weapon->fireWeapon(this, pos);
 		DEBUG_ASSERTCRASH(m_firingTracker, ("hey, we are firing but have no firing tracker. this is wrong."));
 		if (m_firingTracker)
 			m_firingTracker->shotFired(weapon, INVALID_ID);
@@ -1533,7 +1533,7 @@ Color Object::getNightIndicatorColor() const
 //=============================================================================
 // Object::isLocallyControlled
 //=============================================================================
-Bool Object::isLocallyControlled() const
+bool Object::isLocallyControlled() const
 {
 	return getControllingPlayer() == ThePlayerList->getLocalPlayer();
 }
@@ -1541,13 +1541,13 @@ Bool Object::isLocallyControlled() const
 //=============================================================================
 // Object::isLocallyControlled
 //=============================================================================
-Bool Object::isNeutralControlled() const
+bool Object::isNeutralControlled() const
 {
 	return getControllingPlayer() == ThePlayerList->getNeutralPlayer();
 }
 
 //-------------------------------------------------------------------------------------------------
-inline Bool isPosDifferent(const Coord3D* a, const Coord3D* b)
+inline bool isPosDifferent(const Coord3D* a, const Coord3D* b)
 {
 	// this is necessary because PhysicsBehavior may generate tiny changes even when 
 	// "standing still", due to roundoff errors. It's important that we only invalidate
@@ -1568,7 +1568,7 @@ inline Bool isPosDifferent(const Coord3D* a, const Coord3D* b)
 }
 
 //-------------------------------------------------------------------------------------------------
-inline Bool isAngleDifferent(Real a, Real b)
+inline bool isAngleDifferent(Real a, Real b)
 {
 	// this is necessary because PhysicsBehavior may generate tiny changes even when 
 	// "standing still", due to roundoff errors. It's important that we only invalidate
@@ -1592,8 +1592,8 @@ void Object::reactToTurretChange( WhichTurretType turret, Real oldRotation, Real
 	{
 		getAI()->getTurretRotAndPitch( turret, &currentRotation, &currentPitch );
 	}
-	Bool rotationChange = (currentRotation != oldRotation);
-//	Bool pitchChange = (currentPitch != oldPitch);
+	bool rotationChange = (currentRotation != oldRotation);
+//	bool pitchChange = (currentPitch != oldPitch);
 
 	if( rotationChange )
 	{
@@ -1616,8 +1616,8 @@ void Object::reactToTransformChange(const Matrix3D* oldMtx, const Coord3D* oldPo
   	m_drawable->setTransformMatrix( this->getTransformMatrix() );
 	}
 
-	Bool posDiff = isPosDifferent(oldPos, getPosition());
-	Bool angDiff = isAngleDifferent(oldAngle, getOrientation());
+	bool posDiff = isPosDifferent(oldPos, getPosition());
+	bool angDiff = isAngleDifferent(oldAngle, getOrientation());
 
 	if (posDiff || angDiff)
 	{
@@ -1707,7 +1707,7 @@ ObjectID Object::getSoleHealingBenefactor( void ) const
 
 }
 
-Bool Object::attemptHealingFromSoleBenefactor ( Real amount, const Object* source, UnsignedInt duration )
+bool Object::attemptHealingFromSoleBenefactor ( Real amount, const Object* source, UnsignedInt duration )
 {///< for the non-stacking healers like ambulance and propaganda
 
 	if( ! source ) // sanity
@@ -1810,13 +1810,13 @@ void Object::setCaptured(Bool isCaptured)
 
 
 //-------------------------------------------------------------------------------------------------
-Bool Object::isStructure(void) const
+bool Object::isStructure(void) const
 {
 	return isKindOf(KINDOF_STRUCTURE);
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool Object::isFactionStructure(void) const
+bool Object::isFactionStructure(void) const
 {
 	KindOfMaskType bits;
 	bits.set(KINDOF_FS_POWER);
@@ -1828,7 +1828,7 @@ Bool Object::isFactionStructure(void) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool Object::isNonFactionStructure(void) const
+bool Object::isNonFactionStructure(void) const
 {
 	return isStructure() && !isFactionStructure();
 }
@@ -1855,7 +1855,7 @@ void Object::setDisabled( DisabledType type )
 //-------------------------------------------------------------------------------------------------
 void Object::setDisabledUntil( DisabledType type, UnsignedInt frame )
 {
-	Bool edgeCase = !isDisabled();
+	bool edgeCase = !isDisabled();
 
 	if( type < 0 || type >= DISABLED_COUNT )
 	{
@@ -1978,7 +1978,7 @@ void Object::setDisabledUntil( DisabledType type, UnsignedInt frame )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool Object::clearDisabled( DisabledType type )
+bool Object::clearDisabled( DisabledType type )
 {
 	if( type < 0 || type >= DISABLED_COUNT )
 	{
@@ -2076,7 +2076,7 @@ void Object::checkDisabledStatus()
 }
 
 //-------------------------------------------------------------------------------------------------
-void Object::pauseAllSpecialPowers( const Bool disabling ) const
+void Object::pauseAllSpecialPowers( const bool disabling ) const
 { 
 	for (BehaviorModule** m = m_behaviors; *m; ++m)
 	{
@@ -2134,7 +2134,7 @@ void Object::onCollide( Object *other, const Coord3D *loc, const Coord3D *normal
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool Object::isSalvageCrate() const
+bool Object::isSalvageCrate() const
 {
 	for( BehaviorModule** m = m_behaviors; *m; ++m )
 	{
@@ -2199,7 +2199,7 @@ void Object::forceRefreshSubObjectUpgradeStatus()
 //-------------------------------------------------------------------------------------------------
 /** Returns whether an object entered or exited an area. */
 //-------------------------------------------------------------------------------------------------
-Bool Object::didEnterOrExit() const
+bool Object::didEnterOrExit() const
 {
 	if (isKindOf(KINDOF_INERT)) {
 		return FALSE;
@@ -2217,7 +2217,7 @@ Bool Object::didEnterOrExit() const
 //-------------------------------------------------------------------------------------------------
 /** Returns whether an object entered an area. */
 //-------------------------------------------------------------------------------------------------
-Bool Object::didEnter(const PolygonTrigger *pTrigger) const
+bool Object::didEnter(const PolygonTrigger *pTrigger) const
 {
 	if (!didEnterOrExit()) 
 		return false;
@@ -2235,7 +2235,7 @@ Bool Object::didEnter(const PolygonTrigger *pTrigger) const
 //-------------------------------------------------------------------------------------------------
 /** Returns whether an object entered an area. */
 //-------------------------------------------------------------------------------------------------
-Bool Object::didExit(const PolygonTrigger *pTrigger) const
+bool Object::didExit(const PolygonTrigger *pTrigger) const
 {
 	if (!didEnterOrExit()) 
 		return false;
@@ -2252,7 +2252,7 @@ Bool Object::didExit(const PolygonTrigger *pTrigger) const
 //-------------------------------------------------------------------------------------------------
 /** Returns whether an object is inside an area. */
 //-------------------------------------------------------------------------------------------------
-Bool Object::isInside(const PolygonTrigger *pTrigger) const
+bool Object::isInside(const PolygonTrigger *pTrigger) const
 {
 	DEBUG_ASSERTCRASH(!isKindOf(KINDOF_INERT), ("Asking whether an inert is inside a trigger area. This is invalid.\n"));
 
@@ -2343,7 +2343,7 @@ void Object::setTriggerAreaFlagsForChangeInPosition()
 
 	for (const PolygonTrigger *pTrig = PolygonTrigger::getFirstPolygonTrigger(); pTrig; pTrig = pTrig->getNext()) 
 	{
-		Bool skip = false;
+		bool skip = false;
 		for (i = 0; i < m_numTriggerAreasActive; i++) 
 		{
 			if (m_triggerInfo[i].pTrigger == pTrig) 
@@ -2375,7 +2375,7 @@ void Object::setTriggerAreaFlagsForChangeInPosition()
 			else 
 			{
 				// Shouldn't happen.
-				static Bool didWarn = false;
+				static bool didWarn = false;
 				if (!didWarn) 
 				{
 					didWarn = true;
@@ -2392,11 +2392,11 @@ void Object::setTriggerAreaFlagsForChangeInPosition()
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-Bool Object::isInList(Object **pListHead) const
+bool Object::isInList(Object **pListHead) const
 {
-	Bool result = m_prev || m_next || *pListHead == this;
+	bool result = m_prev || m_next || *pListHead == this;
 #ifdef INTENSE_DEBUG
-	Bool found = false;
+	bool found = false;
 	for (Object* o = *pListHead; o; o = o->m_next)
 	{
 		if (o == this)
@@ -2603,7 +2603,7 @@ Module* Object::findModule(NameKeyType key) const
 /**
  * Returns true if object is currently able to move.
  */
-Bool Object::isMobile() const
+bool Object::isMobile() const
 {
 	if (isKindOf(KINDOF_IMMOBILE))
 		return false;
@@ -2723,7 +2723,7 @@ void Object::setSelectable(Bool selectable)
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool Object::isSelectable() const
+bool Object::isSelectable() const
 {
 	return getTemplate()->isKindOf(KINDOF_ALWAYS_SELECTABLE) 
 				|| (m_isSelectable 
@@ -2734,7 +2734,7 @@ Bool Object::isSelectable() const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool Object::isMassSelectable() const
+bool Object::isMassSelectable() const
 {
 	return isSelectable() && !isKindOf(KINDOF_STRUCTURE);
 }
@@ -2762,7 +2762,7 @@ void Object::clearWeaponSetFlag(WeaponSetType wst)
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool Object::hasSpecialPower( SpecialPowerType type ) const
+bool Object::hasSpecialPower( SpecialPowerType type ) const
 {
 	return TEST_SPECIALPOWERMASK( m_specialPowerBits, type );
 }
@@ -2781,9 +2781,9 @@ void Object::onVeterancyLevelChanged( VeterancyLevel oldLevel, VeterancyLevel ne
 		body->onVeterancyLevelChanged(oldLevel, newLevel);
 	
 	
-	Bool hideAnimationForStealth = ( ! isLocallyControlled() && testStatus(OBJECT_STATUS_STEALTHED));
+	bool hideAnimationForStealth = ( ! isLocallyControlled() && testStatus(OBJECT_STATUS_STEALTHED));
 
-	Bool doAnimation = ( ! hideAnimationForStealth 
+	bool doAnimation = ( ! hideAnimationForStealth 
 											&& (newLevel > oldLevel) 
 											&& ( ! isKindOf(KINDOF_IGNORED_IN_GUI))); //First, we plan to do the animation if the level went up
 
@@ -2851,7 +2851,7 @@ void Object::onVeterancyLevelChanged( VeterancyLevel oldLevel, VeterancyLevel ne
 /**
  * Returns true if object currently has some kind of attack capability
  */
-Bool Object::isAbleToAttack() const
+bool Object::isAbleToAttack() const
 {
 
 	//******************************************************
@@ -2890,8 +2890,8 @@ Bool Object::isAbleToAttack() const
 	//KINDOF_CAN_ATTACK flag... nuke cannons have disabled
 	//turrets when not deployed, and need to be able to attack to deploy!
 	//Strategy centers can't attack when bombardment isn't active!
-	Bool anyEnabled = FALSE;
-	Bool anyWeapon = FALSE;
+	bool anyEnabled = FALSE;
+	bool anyWeapon = FALSE;
 	const AIUpdateInterface *ai = getAI();
 	if( ai && !isKindOf( KINDOF_CAN_ATTACK ) )
 	{
@@ -2983,7 +2983,7 @@ Bool Object::isAbleToAttack() const
 /**
 	* Mask/Un-Mask an object
 	*/
-void Object::maskObject( Bool mask )
+void Object::maskObject( bool mask )
 {
 
 	// set or clear the mask bit
@@ -3005,7 +3005,7 @@ void Object::maskObject( Bool mask )
 /*
  * returns true if the current locomotor is an airborne one
  */
-Bool Object::isUsingAirborneLocomotor( void ) const
+bool Object::isUsingAirborneLocomotor( void ) const
 {
 	return ( m_ai && m_ai->getCurLocomotor() && ((m_ai->getCurLocomotor()->getLegalSurfaces() & LOCOMOTORSURFACE_AIR) != 0) );
 }
@@ -3033,7 +3033,7 @@ void Object::getHealthBoxPosition(Coord3D& pos) const
 //(ANGRY MOB) WHICH NEEDS LOGIC-SIDE POSITION CALC'S...
 //IT WOULD PROBABLY BE WISE TO MOVE ALL THE HARD-CODED DEFAULTS BELOW
 //INTO A NEW Drawable::getHealthBox..() WHICH USES GEOM0INFO, MODEL DATA, INI DATA, ETC.
-Bool Object::getHealthBoxDimensions(Real &healthBoxHeight, Real &healthBoxWidth) const
+bool Object::getHealthBoxDimensions(Real &healthBoxHeight, Real &healthBoxWidth) const
 { 
 
 #ifdef CALC_HEALTHBAR_FROM_HITPOINTS
@@ -3096,10 +3096,10 @@ Bool Object::getHealthBoxDimensions(Real &healthBoxHeight, Real &healthBoxWidth)
  */
 void Object::updateObjValuesFromMapProperties(Dict* properties)
 {
-	Bool exists;
+	bool exists;
 
 	AsciiString valStr;
-	Bool valBool = false;
+	bool valBool = false;
 	Int valInt = 0;
 	Real valReal = 0.0f;
 
@@ -3281,7 +3281,7 @@ void Object::updateObjValuesFromMapProperties(Dict* properties)
 }
 
 //-------------------------------------------------------------------------------------------------
-void Object::friend_adjustPowerForPlayer( Bool incoming )
+void Object::friend_adjustPowerForPlayer( bool incoming )
 {
 	if (isDisabled() && getTemplate()->getEnergyProduction() > 0) 
 	{
@@ -3364,10 +3364,10 @@ void Object::crc( Xfer *xfer )
 {
 #ifdef DEBUG_CRC
 //	g_logObjectCRCs = TRUE;
-//	Bool g_logAllObjects = TRUE;
+//	bool g_logAllObjects = TRUE;
 	AsciiString logString;
 	AsciiString tmp;
-	Bool doLogging = g_logObjectCRCs /* && getControllingPlayer()->getPlayerType() == PLAYER_HUMAN */;
+	bool doLogging = g_logObjectCRCs /* && getControllingPlayer()->getPlayerType() == PLAYER_HUMAN */;
 	if (doLogging)
 	{
 		tmp.format("CRC of Object %d (%s), owned by player %d, team: %d, ", m_id, getTemplate()->getName().str(), getControllingPlayer()->getPlayerIndex(), this->getTeam() ? this->getTeam()->getID() : TEAM_ID_INVALID);
@@ -3588,7 +3588,7 @@ void Object::xfer( Xfer *xfer )
 			DEBUG_CRASH(( "Object::xfer - Unable to load team\n" ));
 			throw SC_INVALID_DATA;
 		}
-		const Bool restoring = true;
+		const bool restoring = true;
 		setOrRestoreTeam( team, restoring );
 	}
 
@@ -3901,7 +3901,7 @@ void Object::loadPostProcess()
 //-------------------------------------------------------------------------------------------------
 /** Does this object have this upgrade */
 //-------------------------------------------------------------------------------------------------
-Bool Object::hasUpgrade( const UpgradeTemplate *upgradeT ) const 
+bool Object::hasUpgrade( const UpgradeTemplate *upgradeT ) const 
 {
 	if( m_objectUpgradesCompleted.testForAll( upgradeT->getUpgradeMask() ) )
 	{
@@ -3913,7 +3913,7 @@ Bool Object::hasUpgrade( const UpgradeTemplate *upgradeT ) const
 //-------------------------------------------------------------------------------------------------
 /** Is this object capable of having this upgrade */
 //-------------------------------------------------------------------------------------------------
-Bool Object::affectedByUpgrade( const UpgradeTemplate *upgradeT ) const 
+bool Object::affectedByUpgrade( const UpgradeTemplate *upgradeT ) const 
 {
 	UpgradeMaskType objectMask = getObjectCompletedUpgradeMask();
 	UpgradeMaskType playerMask = getControllingPlayer()->getCompletedUpgradeMask();
@@ -4025,7 +4025,7 @@ void Object::onDie( DamageInfo *damageInfo )
 	m_hasDiedAlready = true;
 #endif
 	
-	Bool selfInflicted = (damageInfo->in.m_sourceID == getID());
+	bool selfInflicted = (damageInfo->in.m_sourceID == getID());
 
 	// FIRST, call our die modules.
 	for (BehaviorModule** d = m_behaviors; *d; ++d)
@@ -4629,7 +4629,7 @@ SpecialPowerModuleInterface *Object::getSpecialPowerModule( const SpecialPowerTe
 //-------------------------------------------------------------------------------------------------
 /** Execute special power */
 //-------------------------------------------------------------------------------------------------
-void Object::doSpecialPower( const SpecialPowerTemplate *specialPowerTemplate, UnsignedInt commandOptions, Bool forced )
+void Object::doSpecialPower( const SpecialPowerTemplate *specialPowerTemplate, UnsignedInt commandOptions, bool forced )
 {
 
 	if (isDisabled())
@@ -4649,7 +4649,7 @@ void Object::doSpecialPower( const SpecialPowerTemplate *specialPowerTemplate, U
 //-------------------------------------------------------------------------------------------------
 /** Execute special power */
 //-------------------------------------------------------------------------------------------------
-void Object::doSpecialPowerAtObject( const SpecialPowerTemplate *specialPowerTemplate, Object *obj, UnsignedInt commandOptions, Bool forced )
+void Object::doSpecialPowerAtObject( const SpecialPowerTemplate *specialPowerTemplate, Object *obj, UnsignedInt commandOptions, bool forced )
 {
 
 	if (isDisabled())
@@ -4669,7 +4669,7 @@ void Object::doSpecialPowerAtObject( const SpecialPowerTemplate *specialPowerTem
 /** Execute special power */
 //-------------------------------------------------------------------------------------------------
 void Object::doSpecialPowerAtLocation( const SpecialPowerTemplate *specialPowerTemplate, 
-																			 const Coord3D *loc, Real angle, UnsignedInt commandOptions, Bool forced )
+																			 const Coord3D *loc, Real angle, UnsignedInt commandOptions, bool forced )
 {
 
 	if (isDisabled())
@@ -4689,7 +4689,7 @@ void Object::doSpecialPowerAtLocation( const SpecialPowerTemplate *specialPowerT
 //-------------------------------------------------------------------------------------------------
 /** Execute special power */
 //-------------------------------------------------------------------------------------------------
-void Object::doSpecialPowerUsingWaypoints( const SpecialPowerTemplate *specialPowerTemplate, const Waypoint *way, UnsignedInt commandOptions, Bool forced )
+void Object::doSpecialPowerUsingWaypoints( const SpecialPowerTemplate *specialPowerTemplate, const Waypoint *way, UnsignedInt commandOptions, bool forced )
 {
 
 	if (isDisabled())
@@ -5147,7 +5147,7 @@ Int Object::getNumConsecutiveShotsFiredAtTarget( const Object *victim ) const
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool Object::getSingleLogicalBonePosition(const char* boneName, Coord3D* position, Matrix3D* transform) const
+bool Object::getSingleLogicalBonePosition(const char* boneName, Coord3D* position, Matrix3D* transform) const
 {
 	if (m_drawable && m_drawable->getPristineBonePositions( boneName, 0, position, transform, 1 ) == 1 )
 	{
@@ -5166,7 +5166,7 @@ Bool Object::getSingleLogicalBonePosition(const char* boneName, Coord3D* positio
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool Object::getSingleLogicalBonePositionOnTurret( WhichTurretType whichTurret, const char* boneName, Coord3D* position, Matrix3D* transform ) const
+bool Object::getSingleLogicalBonePositionOnTurret( WhichTurretType whichTurret, const char* boneName, Coord3D* position, Matrix3D* transform ) const
 {
 	Coord3D turretPosition;
 	Coord3D bonePosition;
@@ -5222,7 +5222,7 @@ Bool Object::getSingleLogicalBonePositionOnTurret( WhichTurretType whichTurret, 
 // ------------------------------------------------------------------------------------------------
 Int Object::getMultiLogicalBonePosition(const char* boneNamePrefix, Int maxBones, 
 																				Coord3D* positions, Matrix3D* transforms, 
-																				Bool convertToWorld ) const
+																				bool convertToWorld ) const
 {
 	Int count;
 	if (m_drawable && (count = m_drawable->getPristineBonePositions( boneNamePrefix, 1, positions, transforms, maxBones )) > 0 )
@@ -5241,7 +5241,7 @@ Int Object::getMultiLogicalBonePosition(const char* boneNamePrefix, Int maxBones
 }
 
 //=============================================================================
-Bool Object::canProduceUpgrade( const UpgradeTemplate *upgrade )
+bool Object::canProduceUpgrade( const UpgradeTemplate *upgrade )
 {
 	// We need to have the button to make the upgrade.  CommandSets are a weird Logic/Client hybrid.
  	const CommandSet *set = TheControlBar->findCommandSet(getCommandSetString());
@@ -5388,7 +5388,7 @@ void Object::defect( Team* newTeam, UnsignedInt detectionTime )
 //=============================================================================
 void Object::goInvulnerable( UnsignedInt time )
 {
-	const Bool WITHOUT_DEFECTOR_FX = FALSE;
+	const bool WITHOUT_DEFECTOR_FX = FALSE;
 
 
 	friend_setUndetectedDefector( time > 0 );

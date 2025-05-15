@@ -42,24 +42,24 @@
 
 
 
-Bool TheDebugIgnoreSyncErrors = FALSE;
+bool TheDebugIgnoreSyncErrors = FALSE;
 extern Int DX8Wrapper_PreserveFPU;
 
 #ifdef DEBUG_CRC
 Int TheCRCFirstFrameToLog = -1;
 UnsignedInt TheCRCLastFrameToLog = 0xffffffff;
-Bool g_keepCRCSaves = FALSE;
-Bool g_saveDebugCRCPerFrame = FALSE;
+bool g_keepCRCSaves = FALSE;
+bool g_saveDebugCRCPerFrame = FALSE;
 AsciiString g_saveDebugCRCPerFrameDir;
-Bool g_crcModuleDataFromLogic = FALSE;
-Bool g_crcModuleDataFromClient = FALSE;
-Bool g_verifyClientCRC = FALSE; // verify that GameLogic CRC doesn't change from client
-Bool g_clientDeepCRC = FALSE;
-Bool g_logObjectCRCs = FALSE;
+bool g_crcModuleDataFromLogic = FALSE;
+bool g_crcModuleDataFromClient = FALSE;
+bool g_verifyClientCRC = FALSE; // verify that GameLogic CRC doesn't change from client
+bool g_clientDeepCRC = FALSE;
+bool g_logObjectCRCs = FALSE;
 #endif
 
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
-extern Bool g_useStringFile;
+extern bool g_useStringFile;
 #endif
 
 // Retval is number of cmd-line args eaten
@@ -1365,7 +1365,7 @@ void parseCommandLine(int argc, char *argv[])
 	// just the start (for a key=val argument).  The handling function can also
 	// look at the next argument(s), to accomodate multi-arg parameters, e.g. "-p 1234".
 	int arg=1, param;
-	Bool found;
+	bool found;
 
 #ifdef DEBUG_LOGGING
 	DEBUG_LOG(("Command-line args:"));

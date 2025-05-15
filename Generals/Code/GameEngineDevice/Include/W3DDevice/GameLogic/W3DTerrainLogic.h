@@ -53,14 +53,14 @@ public:
 	virtual void update( void );	///< Update
 
 	/// @todo The loading of the raw height data should be device independent
-	virtual Bool loadMap( AsciiString filename , Bool query );
-	virtual void newMap( Bool saveGame );	///< Initialize the logic for new map.
+	virtual bool loadMap( AsciiString filename , bool query );
+	virtual void newMap( bool saveGame );	///< Initialize the logic for new map.
 
 	virtual Real getGroundHeight( Real x, Real y, Coord3D* normal = NULL ) const;
 
-	virtual Bool isCliffCell( Real x, Real y) const;			///< is point cliff cell.
+	virtual bool isCliffCell( Real x, Real y) const;			///< is point cliff cell.
 
-	virtual Real getLayerHeight(Real x, Real y, PathfindLayerEnum layer, Coord3D* normal = NULL, Bool clip = true) const;
+	virtual Real getLayerHeight(Real x, Real y, PathfindLayerEnum layer, Coord3D* normal = NULL, bool clip = true) const;
 
 	virtual void getExtent( Region3D *extent ) const ;					///< Get the 3D extent of the terrain in world coordinates
 
@@ -68,7 +68,7 @@ public:
 
 	virtual void getExtentIncludingBorder( Region3D *extent ) const;
 
-	virtual Bool isClearLineOfSight(const Coord3D& pos, const Coord3D& posOther) const;
+	virtual bool isClearLineOfSight(const Coord3D& pos, const Coord3D& posOther) const;
 
 protected:
 

@@ -88,7 +88,7 @@ public:
 	virtual DamageModuleInterface* getDamage() { return this; }
 
 	void tryToIgnite(); ///< FlammabeDamage uses this.  It is up to me to decide if I am burnable
-	Bool wouldIgnite(); ///< Since we need to cheat sometimes and light something directly, ask if this would light
+	bool wouldIgnite(); ///< Since we need to cheat sometimes and light something directly, ask if this would light
 
 	//UpdateModuleInterface
 	virtual UpdateSleepTime update();

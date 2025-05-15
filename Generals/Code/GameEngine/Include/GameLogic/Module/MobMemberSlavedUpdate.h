@@ -107,7 +107,7 @@ public:
 	virtual void onSlaverDie( const DamageInfo *info );
 	virtual void onSlaverDamage( const DamageInfo *info );
 	virtual void onObjectCreated();
-	virtual Bool isSelfTasking() const { return m_isSelfTasking; };
+	virtual bool isSelfTasking() const { return m_isSelfTasking; };
 
 	void doCatchUpLogic( Coord3D *pinnedPosition );
 
@@ -127,7 +127,7 @@ private:
 	RGBColor m_personalColor;
 	ObjectID m_primaryVictimID;
 	Real m_squirrellinessRatio;
-	Bool m_isSelfTasking;
+	bool m_isSelfTasking;
 	UnsignedInt m_catchUpCrisisTimer;// how many consecutive frames have I remained outside the catchup radius
 	//This is a failsafe to make sure that an individual mobmember does not get isolated from his buddies
 	// thus causing the mob to become invincible, since they will continue to bud around the nexus

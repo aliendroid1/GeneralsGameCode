@@ -193,7 +193,7 @@ File*		FileSystem::openFile( const Char *filename, Int access )
 // FileSystem::doesFileExist
 //============================================================================
 
-Bool FileSystem::doesFileExist(const Char *filename) const
+bool FileSystem::doesFileExist(const Char *filename) const
 {
 	USE_PERF_TIMER(FileSystem)
 	if (TheLocalFileSystem->doesFileExist(filename)) {
@@ -208,7 +208,7 @@ Bool FileSystem::doesFileExist(const Char *filename) const
 //============================================================================
 // FileSystem::getFileListInDirectory
 //============================================================================
-void FileSystem::getFileListInDirectory(const AsciiString& directory, const AsciiString& searchName, FilenameList &filenameList, Bool searchSubdirectories) const
+void FileSystem::getFileListInDirectory(const AsciiString& directory, const AsciiString& searchName, FilenameList &filenameList, bool searchSubdirectories) const
 {
 	USE_PERF_TIMER(FileSystem)
 	TheLocalFileSystem->getFileListInDirectory(AsciiString(""), directory, searchName, filenameList, searchSubdirectories);
@@ -218,7 +218,7 @@ void FileSystem::getFileListInDirectory(const AsciiString& directory, const Asci
 //============================================================================
 // FileSystem::getFileInfo
 //============================================================================
-Bool FileSystem::getFileInfo(const AsciiString& filename, FileInfo *fileInfo) const
+bool FileSystem::getFileInfo(const AsciiString& filename, FileInfo *fileInfo) const
 {
 	USE_PERF_TIMER(FileSystem)
 	if (fileInfo == NULL) {
@@ -240,7 +240,7 @@ Bool FileSystem::getFileInfo(const AsciiString& filename, FileInfo *fileInfo) co
 //============================================================================
 // FileSystem::createDirectory
 //============================================================================
-Bool FileSystem::createDirectory(AsciiString directory) 
+bool FileSystem::createDirectory(AsciiString directory) 
 {
 	USE_PERF_TIMER(FileSystem)
 	if (TheLocalFileSystem != NULL) {
@@ -261,7 +261,7 @@ Bool FileSystem::createDirectory(AsciiString directory)
 //============================================================================
 // FileSystem::areMusicFilesOnCD
 //============================================================================
-Bool FileSystem::areMusicFilesOnCD()
+bool FileSystem::areMusicFilesOnCD()
 {
 	return FALSE;
 }

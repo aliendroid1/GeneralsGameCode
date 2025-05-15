@@ -137,3 +137,4 @@ typedef int64_t						Int64;						// 8 bytes
 typedef uint64_t					UnsignedInt64;	  	        // 8 bytes
 
 #endif // _BASE_TYPE_CORE_H_
+

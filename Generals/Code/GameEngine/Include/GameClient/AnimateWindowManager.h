@@ -135,9 +135,9 @@ public:
 	void	setEndTime( UnsignedInt t);							///< Set the end time of the time-based anim
 
 	void setFinished(Bool finished);							///< Set if the animation has finished
-	Bool isFinished( void );											///< Return if the animation has finished or not.
-	void setNeedsToFinish( Bool needsToFinish);		///< set if we need this animation to finish for the manager to return true
-	Bool needsToFinish( void );										///< set if the animation has finished
+	bool isFinished( void );											///< Return if the animation has finished or not.
+	void setNeedsToFinish( bool needsToFinish);		///< set if we need this animation to finish for the manager to return true
+	bool needsToFinish( void );										///< set if the animation has finished
 
 private:
 	UnsignedInt m_delay;													///< Holds the delay time in which the animation will start (in milliseconds)
@@ -151,8 +151,8 @@ private:
 	UnsignedInt m_startTime;											///< time we started the time-based anim
 	UnsignedInt m_endTime;												///< time we should end the time-based anim
 	AnimTypes m_animType;													///< The type of animation that will happen
-	Bool m_needsToFinish;													///< Flag to tell the manager if we need to finish before it's done with it's animation
-	Bool m_isFinished;														///< We're finished
+	bool m_needsToFinish;													///< Flag to tell the manager if we need to finish before it's done with it's animation
+	bool m_isFinished;														///< We're finished
 };
 } // namespace wnd
 
@@ -174,17 +174,17 @@ public:
 	virtual void update( void );		
 	//===============================================================================================
 
-	void registerGameWindow(GameWindow *win, AnimTypes animType, Bool needsToFinish, UnsignedInt ms = 0, UnsignedInt delayMs = 0);			// Registers a new window to animate.
-	Bool isFinished( void );										///< Are all the animations that need to be finished, finished?
+	void registerGameWindow(GameWindow *win, AnimTypes animType, bool needsToFinish, UnsignedInt ms = 0, UnsignedInt delayMs = 0);			// Registers a new window to animate.
+	bool isFinished( void );										///< Are all the animations that need to be finished, finished?
 	void reverseAnimateWindow( void );					///< tell each animation type to setup the windows to run in reverse
 	void resetToRestPosition( void );						///< Reset all windows to their rest position
-	Bool isReversed( void );										///< Returns whether or not we're in our reversed state.
-	Bool isEmpty( void );
+	bool isReversed( void );										///< Returns whether or not we're in our reversed state.
+	bool isEmpty( void );
 private:
 	AnimateWindowList	m_winList;								///< A list of AnimationWindows that we don't care if their finished animating
 	AnimateWindowList m_winMustFinishList;			///< A list of AnimationWindows that we do care about
-	Bool m_needsUpdate;													///< If we're done animating all our monitored windows, then this will be false
-	Bool m_reverse;															///< Are we in a reverse state?
+	bool m_needsUpdate;													///< If we're done animating all our monitored windows, then this will be false
+	bool m_reverse;															///< Are we in a reverse state?
 	ProcessAnimateWindowSlideFromRight *m_slideFromRight;			///< Holds the process in which the windows slide from the right
 	ProcessAnimateWindowSlideFromRightFast *m_slideFromRightFast;
 	ProcessAnimateWindowSlideFromTop *m_slideFromTop;					///< Holds the process in which the windows slide from the Top
@@ -224,15 +224,15 @@ namespace wnd
 	inline void	AnimateWindow::setStartTime( UnsignedInt t )			{ m_startTime = t; }
 	inline void	AnimateWindow::setEndTime( UnsignedInt t )				{ m_endTime = t; }
 
-	inline void	AnimateWindow::setFinished( Bool finished)				{ m_isFinished = finished; };
-	inline Bool	AnimateWindow::isFinished( void )									{ return m_isFinished; };
-	inline void	AnimateWindow::setNeedsToFinish( Bool needsToFinish)		{ m_needsToFinish = needsToFinish; };
-	inline Bool	AnimateWindow::needsToFinish( void )							{ return m_needsToFinish; };
+	inline void	AnimateWindow::setFinished( bool finished)				{ m_isFinished = finished; };
+	inline bool	AnimateWindow::isFinished( void )									{ return m_isFinished; };
+	inline void	AnimateWindow::setNeedsToFinish( bool needsToFinish)		{ m_needsToFinish = needsToFinish; };
+	inline bool	AnimateWindow::needsToFinish( void )							{ return m_needsToFinish; };
 } // namespace wnd
 	
-	inline Bool AnimateWindowManager::isFinished( void )					{ return !m_needsUpdate;	};
-	inline Bool AnimateWindowManager::isReversed( void )						{ return m_reverse;	};
-	inline Bool AnimateWindowManager::isEmpty( void ){return (m_winList.size() == 0 && m_winMustFinishList.size() == 0);	}
+	inline bool AnimateWindowManager::isFinished( void )					{ return !m_needsUpdate;	};
+	inline bool AnimateWindowManager::isReversed( void )						{ return m_reverse;	};
+	inline bool AnimateWindowManager::isEmpty( void ){return (m_winList.size() == 0 && m_winMustFinishList.size() == 0);	}
 //-----------------------------------------------------------------------------
 // EXTERNALS //////////////////////////////////////////////////////////////////
 //-----------------------------------------------------------------------------

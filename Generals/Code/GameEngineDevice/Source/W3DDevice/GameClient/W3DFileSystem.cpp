@@ -114,7 +114,7 @@ char const * GameFileClass::File_Name( void ) const
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-inline static Bool isImageFileType( GameFileType fileType )
+inline static bool isImageFileType( GameFileType fileType )
 {
 	return (fileType == FILE_TYPE_TGA || fileType == FILE_TYPE_DDS);
 }

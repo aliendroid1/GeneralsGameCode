@@ -273,7 +273,7 @@ UpdateSleepTime StructureCollapseUpdate::update( void )
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-inline Bool inList(Int value, Int count, const Int idxList[])
+inline bool inList(Int value, Int count, const Int idxList[])
 {
 	for (Int j = 0; j < count; ++j)
 	{

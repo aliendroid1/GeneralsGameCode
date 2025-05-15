@@ -155,12 +155,12 @@ public:
 
 	virtual ProductionID requestUniqueUnitID( void ) = 0;
 
-	virtual Bool queueUpgrade( const UpgradeTemplate *upgrade ) = 0;
+	virtual bool queueUpgrade( const UpgradeTemplate *upgrade ) = 0;
 	virtual void cancelUpgrade( const UpgradeTemplate *upgrade ) = 0;
-	virtual Bool isUpgradeInQueue( const UpgradeTemplate *upgrade ) const = 0;
+	virtual bool isUpgradeInQueue( const UpgradeTemplate *upgrade ) const = 0;
 	virtual UnsignedInt countUnitTypeInQueue( const ThingTemplate *unitType ) const = 0;
 
-	virtual Bool queueCreateUnit( const ThingTemplate *unitType, ProductionID productionID ) = 0;
+	virtual bool queueCreateUnit( const ThingTemplate *unitType, ProductionID productionID ) = 0;
 	virtual void cancelUnitCreate( ProductionID productionID ) = 0;
 	virtual void cancelAllUnitsOfType( const ThingTemplate *unitType) = 0;
 
@@ -171,7 +171,7 @@ public:
 	virtual const ProductionEntry *firstProduction( void ) const = 0;
 	virtual const ProductionEntry *nextProduction( const ProductionEntry *p ) const = 0;
 
-	virtual void setHoldDoorOpen(ExitDoorType exitDoor, Bool holdIt) = 0;
+	virtual void setHoldDoorOpen(ExitDoorType exitDoor, bool holdIt) = 0;
 
 };
 
@@ -206,12 +206,12 @@ public:
 	not unique amoung multiple source objects */
 	virtual ProductionID requestUniqueUnitID( void ) { ProductionID tmp = m_uniqueID; m_uniqueID = (ProductionID)(m_uniqueID+1); return tmp; }
 
-	virtual Bool queueUpgrade( const UpgradeTemplate *upgrade );				///< queue upgrade "research"
+	virtual bool queueUpgrade( const UpgradeTemplate *upgrade );				///< queue upgrade "research"
 	virtual void cancelUpgrade( const UpgradeTemplate *upgrade );				///< cancel upgrade "research"
-	virtual Bool isUpgradeInQueue( const UpgradeTemplate *upgrade ) const;		///< is the upgrade in our production queue already
+	virtual bool isUpgradeInQueue( const UpgradeTemplate *upgrade ) const;		///< is the upgrade in our production queue already
 	virtual UnsignedInt countUnitTypeInQueue( const ThingTemplate *unitType ) const;  ///< count number of units with matching unit type in the production queue
 
-	virtual Bool queueCreateUnit( const ThingTemplate *unitType, ProductionID productionID );					///< queue unit to be produced
+	virtual bool queueCreateUnit( const ThingTemplate *unitType, ProductionID productionID );					///< queue unit to be produced
 	virtual void cancelUnitCreate( ProductionID productionID );		      ///< cancel construction of unit with matching production ID
 	virtual void cancelAllUnitsOfType( const ThingTemplate *unitType);	///< cancel all production of type unitType 
 
@@ -223,7 +223,7 @@ public:
 	virtual const ProductionEntry *firstProduction( void ) const { return m_productionQueue; }
 	virtual const ProductionEntry *nextProduction( const ProductionEntry *p ) const { return p ? p->m_next : NULL; }
 
-	virtual void setHoldDoorOpen(ExitDoorType exitDoor, Bool holdIt);
+	virtual void setHoldDoorOpen(ExitDoorType exitDoor, bool holdIt);
 
 	virtual UpdateSleepTime update( void );					///< the update
 

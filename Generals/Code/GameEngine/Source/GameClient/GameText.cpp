@@ -70,7 +70,7 @@
 //----------------------------------------------------------------------------
 
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
-Bool g_useStringFile = TRUE;
+bool g_useStringFile = TRUE;
 #endif
 
 
@@ -150,8 +150,8 @@ class GameTextManager : public GameTextInterface
 		virtual void					update( void ) {};			///< update text manager
 		virtual void					reset( void );					///< Resets the text system
 
-		virtual UnicodeString fetch( const Char *label, Bool *exists = NULL );		///< Returns the associated labeled unicode text
-		virtual UnicodeString fetch( AsciiString label, Bool *exists = NULL );		///< Returns the associated labeled unicode text
+		virtual UnicodeString fetch( const Char *label, bool *exists = NULL );		///< Returns the associated labeled unicode text
+		virtual UnicodeString fetch( AsciiString label, bool *exists = NULL );		///< Returns the associated labeled unicode text
 		virtual AsciiStringVec& getStringsWithLabelPrefix(AsciiString label);
 
 		virtual void					initMapStringFile( const AsciiString& filename );
@@ -822,7 +822,7 @@ void GameTextManager::translateCopy( WideChar *outbuf, Char *inbuf )
 // GameTextManager::getStringCount
 //============================================================================
 
-Bool GameTextManager::getStringCount( const char *filename, Int& textCount )
+bool GameTextManager::getStringCount( const char *filename, Int& textCount )
 {
 	Int ok = TRUE;
 
@@ -866,7 +866,7 @@ Bool GameTextManager::getStringCount( const char *filename, Int& textCount )
 // GameTextManager::getCSFInfo 
 //============================================================================
 
-Bool GameTextManager::getCSFInfo ( const Char *filename )
+bool GameTextManager::getCSFInfo ( const Char *filename )
 {
 	CSFHeader header;
 	Int ok = FALSE;
@@ -905,13 +905,13 @@ Bool GameTextManager::getCSFInfo ( const Char *filename )
 // GameTextManager::parseCSF
 //============================================================================
 
-Bool GameTextManager::parseCSF( const Char *filename )
+bool GameTextManager::parseCSF( const Char *filename )
 {
 	File *file;
 	Int id;
 	Int len;
 	Int listCount = 0;
-	Bool ok = FALSE;
+	bool ok = FALSE;
 	CSFHeader header;
 
 	file = TheFileSystem->openFile(filename, File::READ | File::BINARY);
@@ -1032,7 +1032,7 @@ quit:
 // GameTextManager::parseStringFile
 //============================================================================
 
-Bool GameTextManager::parseStringFile( const char *filename )
+bool GameTextManager::parseStringFile( const char *filename )
 {
 	Int listCount = 0;
 	Int ok = TRUE;
@@ -1076,7 +1076,7 @@ Bool GameTextManager::parseStringFile( const char *filename )
 			m_maxLabelLen = len;
 		}
 
-		Bool readString = FALSE;
+		bool readString = FALSE;
 		while( ok )
 		{
 			if (!readLine ( m_buffer, sizeof(m_buffer)-1, file ))
@@ -1162,7 +1162,7 @@ void GameTextManager::initMapStringFile( const AsciiString& filename )
 // GameTextManager::parseMapStringFile
 //============================================================================
 
-Bool GameTextManager::parseMapStringFile( const char *filename )
+bool GameTextManager::parseMapStringFile( const char *filename )
 {
 	Int listCount = 0;
 	Int ok = TRUE;
@@ -1207,7 +1207,7 @@ Bool GameTextManager::parseMapStringFile( const char *filename )
 			m_maxLabelLen = len;
 		}
 
-		Bool readString = FALSE;
+		bool readString = FALSE;
 		while( ok )
 		{
 			if (!readLine ( m_buffer, sizeof(m_buffer)-1, file ))
@@ -1268,7 +1268,7 @@ quit:
 // *GameTextManager::fetch
 //============================================================================
 
-UnicodeString GameTextManager::fetch( const Char *label, Bool *exists )
+UnicodeString GameTextManager::fetch( const Char *label, bool *exists )
 {
 	DEBUG_ASSERTCRASH ( m_initialized, ("String Manager has not been m_initialized") );
 
@@ -1331,7 +1331,7 @@ UnicodeString GameTextManager::fetch( const Char *label, Bool *exists )
 // *GameTextManager::fetch
 //============================================================================
 
-UnicodeString GameTextManager::fetch( AsciiString label, Bool *exists )
+UnicodeString GameTextManager::fetch( AsciiString label, bool *exists )
 {
 	return fetch(label.str(), exists);
 }

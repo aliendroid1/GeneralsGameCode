@@ -61,7 +61,7 @@ const Real CLOSE_ENOUGH = (25.0f);
 //#pragma MESSAGE("************************************** WARNING, optimization disabled for debugging purposes")
 #endif
 
-static Bool hasAttackedMeAndICanReturnFire( State *thisState, void* /*userData*/ )
+static bool hasAttackedMeAndICanReturnFire( State *thisState, void* /*userData*/ )
 {
 	Object *obj = thisState->getMachineOwner();
 	BodyModuleInterface *bmi = obj ? obj->getBodyModule() : NULL;
@@ -133,7 +133,7 @@ static Object *findBestTunnel(Player *ownerPlayer, const Coord3D *pos)
 /**
  * This returns true if the conditions specified have been met, false otherwise.
  */
-Bool TunnelNetworkExitConditions::shouldExit(const StateMachine* machine) const
+bool TunnelNetworkExitConditions::shouldExit(const StateMachine* machine) const
 {
 
 		if (TheGameLogic->getFrame() >= m_attackGiveUpFrame)
@@ -189,7 +189,7 @@ AITNGuardMachine::~AITNGuardMachine()
 }
 
 //--------------------------------------------------------------------------------------
-Bool AITNGuardMachine::lookForInnerTarget(void)
+bool AITNGuardMachine::lookForInnerTarget(void)
 {
 	Object* owner = getOwner();
 

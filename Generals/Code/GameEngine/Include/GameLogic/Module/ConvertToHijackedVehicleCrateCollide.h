@@ -76,12 +76,12 @@ public:
 protected:
 
 	/// This allows specific vetoes to certain types of crates and their data
-	virtual Bool isValidToExecute( const Object *other ) const;
+	virtual bool isValidToExecute( const Object *other ) const;
 
 	/// This is the game logic execution function that all real CrateCollides will implement
-	virtual Bool executeCrateBehavior( Object *other );
+	virtual bool executeCrateBehavior( Object *other );
 
-	virtual Bool isHijackedVehicleCrateCollide() const { return TRUE; }
+	virtual bool isHijackedVehicleCrateCollide() const { return TRUE; }
 };
 
 #endif

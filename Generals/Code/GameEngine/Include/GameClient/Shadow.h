@@ -91,8 +91,8 @@ public:
 		///<if this is set, then no render will occur, even if enableShadowRender() is enabled. Used by Shroud.
 		void enableShadowInvisible(Bool isEnabled);	
 		void enableShadowRender(Bool isEnabled);
-		Bool isRenderEnabled(void) {return m_isEnabled;}
-		Bool isInvisibleEnabled(void) {return m_isInvisibleEnabled;}
+		bool isRenderEnabled(void) {return m_isEnabled;}
+		bool isInvisibleEnabled(void) {return m_isInvisibleEnabled;}
 		virtual void release(void)=0;	///<release this shadow from suitable manager.
 		void setOpacity(Int value); ///<adjust opacity of decal/shadow
 		void setColor(Color value);///<adjust ARGB color of decal/shadow
@@ -122,8 +122,8 @@ public:
 
 protected:
 
-		Bool m_isEnabled;	/// toggle to turn rendering of this shadow on/off.
-		Bool m_isInvisibleEnabled;	/// if set, overrides and causes no rendering.
+		bool m_isEnabled;	/// toggle to turn rendering of this shadow on/off.
+		bool m_isInvisibleEnabled;	/// if set, overrides and causes no rendering.
 		UnsignedInt m_opacity;		///< value between 0 (transparent) and 255 (opaque)
 		UnsignedInt m_color;		///< color in ARGB format. (Alpha is ignored).
 		ShadowType m_type;		/// type of projection

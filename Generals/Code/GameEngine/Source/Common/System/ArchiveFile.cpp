@@ -37,7 +37,7 @@
 // checks to see if str matches searchString.  Search string is done in the
 // using * and ? as wildcards. * is used to denote any number of characters,
 // and ? is used to denote a single wildcard character.
-static Bool SearchStringMatches(AsciiString str, AsciiString searchString) 
+static bool SearchStringMatches(AsciiString str, AsciiString searchString) 
 {
 	if (str.getLength() == 0) {
 		if (searchString.getLength() == 0) {
@@ -123,7 +123,7 @@ void ArchiveFile::addFile(const AsciiString& path, const ArchivedFileInfo *fileI
 	//path.concat(fileInfo->m_filename);
 }
 
-void ArchiveFile::getFileListInDirectory(const AsciiString& currentDirectory, const AsciiString& originalDirectory, const AsciiString& searchName, FilenameList &filenameList, Bool searchSubdirectories) const
+void ArchiveFile::getFileListInDirectory(const AsciiString& currentDirectory, const AsciiString& originalDirectory, const AsciiString& searchName, FilenameList &filenameList, bool searchSubdirectories) const
 {
 
 	AsciiString searchDir;
@@ -154,7 +154,7 @@ void ArchiveFile::getFileListInDirectory(const AsciiString& currentDirectory, co
 	getFileListInDirectory(dirInfo, originalDirectory, searchName, filenameList, searchSubdirectories);
 }
 
-void ArchiveFile::getFileListInDirectory(const DetailedArchivedDirectoryInfo *dirInfo, const AsciiString& currentDirectory, const AsciiString& searchName, FilenameList &filenameList, Bool searchSubdirectories) const
+void ArchiveFile::getFileListInDirectory(const DetailedArchivedDirectoryInfo *dirInfo, const AsciiString& currentDirectory, const AsciiString& searchName, FilenameList &filenameList, bool searchSubdirectories) const
 {
 	DetailedArchivedDirectoryInfoMap::const_iterator diriter = dirInfo->m_directories.begin();
 	while (diriter != dirInfo->m_directories.end()) {

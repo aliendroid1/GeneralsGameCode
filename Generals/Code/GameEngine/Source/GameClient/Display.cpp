@@ -143,7 +143,7 @@ void Display::draw( void )
 }
 
 /** Sets screen resolution/mode*/
-Bool Display::setDisplayMode( UnsignedInt xres, UnsignedInt yres, UnsignedInt bitdepth, Bool windowed )
+bool Display::setDisplayMode( UnsignedInt xres, UnsignedInt yres, UnsignedInt bitdepth, bool windowed )
 {
 	//Get old values
 	UnsignedInt oldDisplayHeight=getHeight();
@@ -360,7 +360,7 @@ void Display::reset()
 // Display::isMoviePlaying
 //============================================================================
 
-Bool Display::isMoviePlaying(void)
+bool Display::isMoviePlaying(void)
 {
 	return m_videoStream != NULL && m_videoBuffer != NULL;
 }

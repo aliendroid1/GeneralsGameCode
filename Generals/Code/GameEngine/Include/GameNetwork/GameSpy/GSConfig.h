@@ -55,10 +55,10 @@ public:
 
 	// Player Info
 	virtual Int getPointsForRank(Int rank) = 0;
-	virtual Bool isPlayerVIP(Int id) = 0;
+	virtual bool isPlayerVIP(Int id) = 0;
 
 	// mangler Info
-	virtual Bool getManglerLocation(Int index, AsciiString& host, UnsignedShort& port) = 0;
+	virtual bool getManglerLocation(Int index, AsciiString& host, UnsignedShort& port) = 0;
 
 	// Ladder / Any other external parsing
 	virtual AsciiString getLeftoverConfig(void) = 0;
@@ -72,7 +72,7 @@ public:
 	virtual time_t getRoundTimeout() = 0;
 
 	// Custom match
-	virtual Bool restrictGamesToLobby() = 0;
+	virtual bool restrictGamesToLobby() = 0;
 
 	static GameSpyConfigInterface* create(AsciiString config);
 };

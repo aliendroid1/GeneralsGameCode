@@ -89,8 +89,8 @@ static GameWindow *buttonDeleteAccount = NULL;
 static GameWindow *checkBoxAsianFont = NULL;
 static GameWindow *checkBoxNonAsianFont = NULL;
 
-static Bool isOverlayActive = false;
-static Bool raiseMessageBox = false;
+static bool isOverlayActive = false;
+static bool raiseMessageBox = false;
 static Int lookAtPlayerID = 0;
 static std::string lookAtPlayerName;
 
@@ -459,7 +459,7 @@ void ResetBattleHonorInsertion(void)
 {
 	rowsToSkip = 0;
 }
-void InsertBattleHonor(GameWindow *list, const Image *image, Bool enabled, Int itemData, Int& row, Int& column, UnicodeString text = UnicodeString::TheEmptyString)
+void InsertBattleHonor(GameWindow *list, const Image *image, bool enabled, Int itemData, Int& row, Int& column, UnicodeString text = UnicodeString::TheEmptyString)
 {
 	Int width = MAX_BATTLE_HONOR_IMAGE_WIDTH * (TheDisplay->getWidth() / 800.0f);
 	Int height = MAX_BATTLE_HONOR_IMAGE_HEIGHT * (TheDisplay->getHeight() / 600.0f);
@@ -506,7 +506,7 @@ static void populateBattleHonors(const PSPlayerStats& stats, Int battleHonors, I
 	Int column = 0;
 	Int row = 0;
 
-	Bool isFairPlayer = FALSE;
+	bool isFairPlayer = FALSE;
 	Int numGames = 0;
 	Int numDiscons = 0;
 	PerGeneralMap::const_iterator it;
@@ -583,7 +583,7 @@ static void populateBattleHonors(const PSPlayerStats& stats, Int battleHonors, I
 	}
 
 	/*
-	Bool isLoyal;
+	bool isLoyal;
 	isLoyal = ThePlayerTemplateStore->getNthPlayerTemplate(lastGen)->getSide().compareNoCase( "america") == 0 && gamesInRow >= 20;
 	InsertBattleHonor(list, TheMappedImageCollection->findImageByName("Loyalty_USA"), isLoyal,
 		BATTLE_HONOR_LOYALTY_USA, row, column);
@@ -751,7 +751,7 @@ void PopulatePlayerInfoWindows( AsciiString parentWindowName )
 
 	PSPlayerStats stats = TheGameSpyPSMessageQueue->findPlayerStatsByID(lookupID);
 
-	Bool weHaveStats = (stats.id != 0);
+	bool weHaveStats = (stats.id != 0);
 
 	// if we don't have the stats from the server, see if we have cached stats
 	if( !weHaveStats && lookupID == TheGameSpyInfo->getLocalProfileID() )
@@ -1094,7 +1094,7 @@ void HandlePersistentStorageResponses( void )
 						else
 							req.statsToPush.side = favorite;
 
-						Bool isPreorder = TheGameSpyInfo->didPlayerPreorder( TheGameSpyInfo->getLocalProfileID() );
+						bool isPreorder = TheGameSpyInfo->didPlayerPreorder( TheGameSpyInfo->getLocalProfileID() );
 						req.statsToPush.preorder = isPreorder;
 
 						DEBUG_LOG(("PEERREQUEST_PUSHSTATS: stats will be %d,%d,%d,%d,%d,%d\n",
@@ -1391,7 +1391,7 @@ WindowMsgHandledType GameSpyPlayerInfoOverlaySystem( GameWindow *window, Unsigne
 				}
 				else if (controlID == checkBoxAsianFontID)
 				{
-					Bool isChecked = !GadgetCheckBoxIsChecked(control);
+					bool isChecked = !GadgetCheckBoxIsChecked(control);
 					CustomMatchPreferences pref;
 					pref.setDisallowAsianText(isChecked);
 					pref.write();
@@ -1410,7 +1410,7 @@ WindowMsgHandledType GameSpyPlayerInfoOverlaySystem( GameWindow *window, Unsigne
 				}
 				else if (controlID == checkBoxNonAsianFontID)
 				{
-					Bool isChecked = !GadgetCheckBoxIsChecked(control);
+					bool isChecked = !GadgetCheckBoxIsChecked(control);
 					CustomMatchPreferences pref;
 					pref.setDisallowNonAsianText(isChecked);
 					pref.write();				

@@ -539,7 +539,7 @@ Real WeaponTemplate::getSecondaryDamageRadius(const WeaponBonus& bonus) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool WeaponTemplate::isContactWeapon() const
+bool WeaponTemplate::isContactWeapon() const
 {
 #ifdef RATIONALIZE_ATTACK_RANGE
 	// Note - undersize by 1/4 of a pathfind cell, so that the goal is not teetering on the edge
@@ -633,7 +633,7 @@ Real WeaponTemplate::estimateWeaponTemplateDamage(
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool WeaponTemplate::shouldProjectileCollideWith(
+bool WeaponTemplate::shouldProjectileCollideWith(
 	const Object* projectileLauncher, 
 	const Object* projectile, 
 	const Object* thingWeCollidedWith,
@@ -737,8 +737,8 @@ UnsignedInt WeaponTemplate::fireWeaponTemplate
 	const Object *victimObj, 
 	const Coord3D* victimPos, 
 	const WeaponBonus& bonus,
-	Bool isProjectileDetonation,
-	Bool ignoreRanges,
+	bool isProjectileDetonation,
+	bool ignoreRanges,
 	Weapon *firingWeapon,
 	ObjectID* projectileID
 ) const
@@ -899,7 +899,7 @@ UnsignedInt WeaponTemplate::fireWeaponTemplate
 		if ( TheGameLogic->getFrame() < firingWeapon->getSuspendFXFrame() )
 			fx = NULL;
 
-		Bool handled;
+		bool handled;
 		
 		if(!sourceObj->isLocallyControlled()									// if user watching is not controller and
 			&&  sourceObj->testStatus(OBJECT_STATUS_STEALTHED)	// if unit is stealthed (like a Pathfinder)
@@ -1133,14 +1133,14 @@ void WeaponTemplate::trimOldHistoricDamage() const
 }
 
 //-------------------------------------------------------------------------------------------------
-static Bool is2DDistSquaredLessThan(const Coord3D& a, const Coord3D& b, Real distSqr)
+static bool is2DDistSquaredLessThan(const Coord3D& a, const Coord3D& b, Real distSqr)
 {
 	Real da = sqr(a.x - b.x) + sqr(a.y - b.y);
 	return da <= distSqr;
 }
 
 //-------------------------------------------------------------------------------------------------
-void WeaponTemplate::dealDamageInternal(ObjectID sourceID, ObjectID victimID, const Coord3D *pos, const WeaponBonus& bonus, Bool isProjectileDetonation) const
+void WeaponTemplate::dealDamageInternal(ObjectID sourceID, ObjectID victimID, const Coord3D *pos, const WeaponBonus& bonus, bool isProjectileDetonation) const
 {
 	if (sourceID == 0)	// must have a source
 		return;
@@ -1242,7 +1242,7 @@ void WeaponTemplate::dealDamageInternal(ObjectID sourceID, ObjectID victimID, co
 
 		for (; curVictim != NULL; curVictim = iter ? iter->nextWithNumeric(&curVictimDistSqr) : NULL)
 		{
-			Bool killSelf = false;
+			bool killSelf = false;
 			if (source != NULL)
 			{
 				// anytime something is designated as the "primary victim" (ie, the direct target
@@ -1472,7 +1472,7 @@ void WeaponStore::update()
 		if (curFrame >= ddi->m_delayDamageFrame)
 		{
 			// we never do projectile-detonation-damage via this code path.
-			const Bool isProjectileDetonation = false;
+			const bool isProjectileDetonation = false;
 			ddi->m_delayedWeapon->dealDamageInternal(ddi->m_delaySourceID, ddi->m_delayIntendedVictimID, &ddi->m_delayDamagePos, ddi->m_bonus, isProjectileDetonation);
 			ddi = m_weaponDDI.erase(ddi);
 		}
@@ -1711,7 +1711,7 @@ UnsignedInt Weapon::getClipReloadTime(const Object *source) const
 }
 
 //-------------------------------------------------------------------------------------------------
-void Weapon::setClipPercentFull(Real percent, Bool allowReduction)
+void Weapon::setClipPercentFull(Real percent, bool allowReduction)
 {
 	if (m_template->getClipSize() == 0)
 		return;
@@ -1743,7 +1743,7 @@ void Weapon::rebuildScatterTargets()
 }
 
 //-------------------------------------------------------------------------------------------------
-void Weapon::reloadWithBonus(const Object *sourceObj, const WeaponBonus& bonus, Bool loadInstantly)
+void Weapon::reloadWithBonus(const Object *sourceObj, const WeaponBonus& bonus, bool loadInstantly)
 {
 	if (m_template->getClipSize() > 0 
 			&& m_ammoInClip == m_template->getClipSize()
@@ -1801,7 +1801,7 @@ static void clipToTerrainExtent(Coord3D& approachTargetPos)
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool Weapon::computeApproachTarget(const Object *source, const Object *target, const Coord3D *pos, Real angleOffset, Coord3D& approachTargetPos) const
+bool Weapon::computeApproachTarget(const Object *source, const Object *target, const Coord3D *pos, Real angleOffset, Coord3D& approachTargetPos) const
 {
 	// compute unit direction vector from us to our victim
 	const Coord3D *targetPos;
@@ -1934,7 +1934,7 @@ Bool Weapon::computeApproachTarget(const Object *source, const Object *target, c
 //actually moving the object. This is used to help determine if a garrisoned unit not yet 
 //positioned can attack someone.
 //-------------------------------------------------------------------------------------------------
-Bool Weapon::isSourceObjectWithGoalPositionWithinAttackRange( const Object *source, const Coord3D *goalPos, const Object *target, const Coord3D *targetPos ) const
+bool Weapon::isSourceObjectWithGoalPositionWithinAttackRange( const Object *source, const Coord3D *goalPos, const Object *target, const Coord3D *targetPos ) const
 {
 	
 	Real distSqr;
@@ -1959,7 +1959,7 @@ Bool Weapon::isSourceObjectWithGoalPositionWithinAttackRange( const Object *sour
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool Weapon::isWithinAttackRange(const Object *source, const Coord3D* pos) const
+bool Weapon::isWithinAttackRange(const Object *source, const Coord3D* pos) const
 {
 	Real distSqr = ThePartitionManager->getDistanceSquared( source, pos, ATTACK_RANGE_CALC_TYPE );
 	Real attackRangeSqr = sqr(getAttackRange(source));
@@ -1976,7 +1976,7 @@ Bool Weapon::isWithinAttackRange(const Object *source, const Coord3D* pos) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool Weapon::isWithinAttackRange(const Object *source, const Object *target) const
+bool Weapon::isWithinAttackRange(const Object *source, const Object *target) const
 {
 	Real distSqr;
 	Real attackRangeSqr = sqr(getAttackRange(source));
@@ -2035,7 +2035,7 @@ Bool Weapon::isWithinAttackRange(const Object *source, const Object *target) con
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool Weapon::isTooClose(const Object *source, const Object *target) const
+bool Weapon::isTooClose(const Object *source, const Object *target) const
 {
 	Real minAttackRange = m_template->getMinimumAttackRange();
 	if (minAttackRange == 0.0f)
@@ -2050,7 +2050,7 @@ Bool Weapon::isTooClose(const Object *source, const Object *target) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool Weapon::isTooClose( const Object *source, const Coord3D *pos ) const
+bool Weapon::isTooClose( const Object *source, const Coord3D *pos ) const
 {
 	Real minAttackRange = m_template->getMinimumAttackRange();
 	if (minAttackRange == 0.0f)
@@ -2065,7 +2065,7 @@ Bool Weapon::isTooClose( const Object *source, const Coord3D *pos ) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool Weapon::isGoalPosWithinAttackRange(const Object *source, const Coord3D* goalPos, const Object *target, const Coord3D* targetPos)	const
+bool Weapon::isGoalPosWithinAttackRange(const Object *source, const Coord3D* goalPos, const Object *target, const Coord3D* targetPos)	const
 {
 	Real distSqr;
 	// Note - undersize by 1/4 of a pathfind cell, so that the goal is not teetering on the edge
@@ -2272,12 +2272,12 @@ void Weapon::createLaser( const Object *sourceObj, const Object *victimObj, cons
 //-------------------------------------------------------------------------------------------------
 // return true if we auto-reloaded our clip after firing.
 //DECLARE_PERF_TIMER(fireWeapon)
-Bool Weapon::privateFireWeapon(
+bool Weapon::privateFireWeapon(
 	const Object *sourceObj, 
 	Object *victimObj, 
 	const Coord3D* victimPos, 
-	Bool isProjectileDetonation, 
-	Bool ignoreRanges, 
+	bool isProjectileDetonation, 
+	bool ignoreRanges, 
 	WeaponBonusConditionFlags extraBonusFlags,
 	ObjectID* projectileID
 )
@@ -2327,7 +2327,7 @@ Bool Weapon::privateFireWeapon(
 		{
 			if (sourceObj && victimObj)
 			{
-				Bool found = false;
+				bool found = false;
 				for (BehaviorModule** bmi = victimObj->getBehaviorModules(); *bmi; ++bmi)
 				{
 					LandMineInterface* lmi = (*bmi)->getLandMineInterface();
@@ -2383,7 +2383,7 @@ Bool Weapon::privateFireWeapon(
 		return false;
 
 	UnsignedInt now = TheGameLogic->getFrame();
-	Bool reloaded = false;
+	bool reloaded = false;
 	if (m_ammoInClip > 0)
 	{
 		Int barrelCount = sourceObj->getDrawable()->getBarrelCount(m_wslot);
@@ -2501,7 +2501,7 @@ void Weapon::preFireWeapon( const Object *source, const Object *victim )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool Weapon::fireWeapon(const Object *source, Object *target, ObjectID* projectileID)
+bool Weapon::fireWeapon(const Object *source, Object *target, ObjectID* projectileID)
 {
 	//CRCDEBUG_LOG(("Weapon::fireWeapon() for %s at %s\n", DescribeObject(source).str(), DescribeObject(target).str()));
 	return privateFireWeapon(source, target, NULL, false, false, 0, projectileID);
@@ -2509,7 +2509,7 @@ Bool Weapon::fireWeapon(const Object *source, Object *target, ObjectID* projecti
 
 //-------------------------------------------------------------------------------------------------
 // return true if we auto-reloaded our clip after firing.
-Bool Weapon::fireWeapon(const Object *source, const Coord3D* pos, ObjectID* projectileID)
+bool Weapon::fireWeapon(const Object *source, const Coord3D* pos, ObjectID* projectileID)
 {
 	//CRCDEBUG_LOG(("Weapon::fireWeapon() for %s\n", DescribeObject(source).str()));
 	return privateFireWeapon(source, NULL, pos, false, false, 0, projectileID);
@@ -2539,7 +2539,7 @@ Object* Weapon::forceFireWeapon( const Object *source, const Coord3D *pos)
 	//loadAmmoNow( source );
 	//Fire the weapon at the position. Internally, it'll store the weapon projectile ID if so created.
 	ObjectID projectileID = INVALID_ID;
-	const Bool ignoreRange = true;
+	const bool ignoreRange = true;
 	privateFireWeapon(source, NULL, pos, false, ignoreRange, NULL, &projectileID);
 	return TheGameLogic->findObjectByID( projectileID );
 }
@@ -2564,7 +2564,7 @@ WeaponStatus Weapon::getStatus() const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool Weapon::isWithinTargetPitch(const Object *source, const Object *victim) const
+bool Weapon::isWithinTargetPitch(const Object *source, const Object *victim) const
 {
 	if (isContactWeapon() || !isPitchLimited())
 		return true;
@@ -2598,7 +2598,7 @@ Real Weapon::getPrimaryDamageRadius(const Object *source) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool Weapon::isDamageWeapon() const
+bool Weapon::isDamageWeapon() const
 {
 	//These damage types are special attacks that don't do damage directly, even
 	//if they can indirectly. These are here to prevent the UI from allowing the
@@ -2870,7 +2870,7 @@ void Weapon::getFiringLineOfSightOrigin(const Object* source, Coord3D& origin) c
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-Bool Weapon::isClearFiringLineOfSightTerrain(const Object* source, const Object* victim) const
+bool Weapon::isClearFiringLineOfSightTerrain(const Object* source, const Object* victim) const
 {
 	Coord3D origin;
 	origin = *source->getPosition();
@@ -2887,7 +2887,7 @@ Bool Weapon::isClearFiringLineOfSightTerrain(const Object* source, const Object*
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-Bool Weapon::isClearFiringLineOfSightTerrain(const Object* source, const Coord3D& victimPos) const
+bool Weapon::isClearFiringLineOfSightTerrain(const Object* source, const Coord3D& victimPos) const
 {
 	Coord3D origin;
 	origin = *source->getPosition();
@@ -2900,7 +2900,7 @@ Bool Weapon::isClearFiringLineOfSightTerrain(const Object* source, const Coord3D
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
 /** Determine whether if source was at goalPos whether it would have clear line of sight. */
-Bool Weapon::isClearGoalFiringLineOfSightTerrain(const Object* source, const Coord3D& goalPos, const Object* victim) const
+bool Weapon::isClearGoalFiringLineOfSightTerrain(const Object* source, const Coord3D& goalPos, const Object* victim) const
 {
 	Coord3D origin=goalPos;
 	//CRCDEBUG_LOG(("Weapon::isClearGoalFiringLineOfSightTerrain(Object) for %s\n", DescribeObject(source).str()));
@@ -2914,7 +2914,7 @@ Bool Weapon::isClearGoalFiringLineOfSightTerrain(const Object* source, const Coo
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
 /** Determine whether if source was at goalPos whether it would have clear line of sight. */
-Bool Weapon::isClearGoalFiringLineOfSightTerrain(const Object* source, const Coord3D& goalPos, const Coord3D& victimPos) const
+bool Weapon::isClearGoalFiringLineOfSightTerrain(const Object* source, const Coord3D& goalPos, const Coord3D& victimPos) const
 {
 	Coord3D origin=goalPos;
 	//CRCDEBUG_LOG(("Weapon::isClearGoalFiringLineOfSightTerrain(Coord3D) for %s\n", DescribeObject(source).str()));
@@ -2933,7 +2933,7 @@ void Weapon::crc( Xfer *xfer )
 #ifdef DEBUG_CRC
 	AsciiString logString;
 	AsciiString tmp;
-	Bool doLogging = g_logObjectCRCs;
+	bool doLogging = g_logObjectCRCs;
 	if (doLogging)
 	{
 		tmp.format("CRC of weapon %s: ", m_template->getName().str());

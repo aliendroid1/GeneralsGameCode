@@ -43,7 +43,7 @@ class Player;
 class RadarUpgradeModuleData : public UpgradeModuleData
 {
 public:
-	Bool m_isDisableProof;// Super radar, ignores radarDisabled checks
+	bool m_isDisableProof;// Super radar, ignores radarDisabled checks
 
 	RadarUpgradeModuleData()
 	{
@@ -69,12 +69,12 @@ public:
 
 	virtual void onDelete( void );																///< we have some work to do when this module goes away
 	virtual void onCapture( Player *oldOwner, Player *newOwner );	///< object containing upgrade has changed teams
-	Bool getIsDisableProof(void) const { return getRadarUpgradeModuleData()->m_isDisableProof; }
+	bool getIsDisableProof(void) const { return getRadarUpgradeModuleData()->m_isDisableProof; }
 
 protected:
 
 	virtual void upgradeImplementation( void ); ///< Here's the actual work of Upgrading
-	virtual Bool isSubObjectsUpgrade() { return false; }
+	virtual bool isSubObjectsUpgrade() { return false; }
 
 
 };

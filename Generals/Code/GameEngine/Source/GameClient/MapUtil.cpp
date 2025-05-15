@@ -126,9 +126,9 @@ static UnsignedInt calcCRC( AsciiString dirName, AsciiString fname )
 	return theCRC.get();
 }
 
-static Bool ParseObjectDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
+static bool ParseObjectDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
-	Bool readDict = info->version >= K_OBJECTS_VERSION_2;
+	bool readDict = info->version >= K_OBJECTS_VERSION_2;
 
 	Coord3D loc;
 	loc.x = file.readReal();
@@ -175,20 +175,20 @@ static Bool ParseObjectDataChunk(DataChunkInput &file, DataChunkInfo *info, void
 	return TRUE;
 }
 
-static Bool ParseObjectsDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
+static bool ParseObjectsDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 	file.m_currentObject = NULL;
 	file.registerParser( AsciiString("Object"), info->label, ParseObjectDataChunk );
 	return (file.parse(userData));
 }
 
-static Bool ParseWorldDictDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
+static bool ParseWorldDictDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 	worldDict = file.readDict();
 	return true;
 }
 
-static Bool ParseSizeOnly(DataChunkInput &file, DataChunkInfo *info, void *userData)
+static bool ParseSizeOnly(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 	m_width = file.readInt();
 	m_height = file.readInt();
@@ -230,12 +230,12 @@ static Bool ParseSizeOnly(DataChunkInput &file, DataChunkInfo *info, void *userD
 	return true;
 }
 
-static Bool ParseSizeOnlyInChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
+static bool ParseSizeOnlyInChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 	return ParseSizeOnly(file, info, userData);
 }
 
-static Bool loadMap( AsciiString filename )
+static bool loadMap( AsciiString filename )
 {
 	char	tempBuf[_MAX_PATH];
 	char	filenameBuf[_MAX_PATH];
@@ -369,7 +369,7 @@ AsciiString MapCache::getMapExtension() const
 	return AsciiString("map");
 }
 
-void MapCache::writeCacheINI( Bool userDir )
+void MapCache::writeCacheINI( bool userDir )
 {
 	AsciiString mapDir;
 	if (!userDir || TheGlobalData->m_buildMapCache)
@@ -469,7 +469,7 @@ void MapCache::updateCache( void )
 	if (TheLocalFileSystem->doesFileExist(getMapDir().str()))
 	{
 		// only create the map cache file if "Maps" exist
-		Bool wasBuildMapCache = TheGlobalData->m_buildMapCache;
+		bool wasBuildMapCache = TheGlobalData->m_buildMapCache;
 		TheWritableGlobalData->m_buildMapCache = true;
 		loadUserMaps();
 		TheWritableGlobalData->m_buildMapCache = wasBuildMapCache;
@@ -478,10 +478,10 @@ void MapCache::updateCache( void )
 #endif
 }
 
-Bool MapCache::clearUnseenMaps( AsciiString dirName )
+bool MapCache::clearUnseenMaps( AsciiString dirName )
 {
 	dirName.toLower();
-	Bool erasedSomething = FALSE;
+	bool erasedSomething = FALSE;
 
 	std::map<AsciiString, Bool>::iterator it = m_seen.begin();
 
@@ -517,7 +517,7 @@ void MapCache::loadStandardMaps(void)
 #endif
 }
 
-Bool MapCache::loadUserMaps()
+bool MapCache::loadUserMaps()
 {
 	// Read in map list from disk
 	AsciiString mapDir;
@@ -554,7 +554,7 @@ Bool MapCache::loadUserMaps()
 	FilenameListIter iter;
 	AsciiString toplevelPattern;
 	toplevelPattern.format("%s\\", mapDir.str());
-	Bool parsedAMap = FALSE;
+	bool parsedAMap = FALSE;
 	AsciiString filenamepattern;
 	filenamepattern.format("*.%s", getMapExtension().str());
 
@@ -582,7 +582,7 @@ Bool MapCache::loadUserMaps()
 
 			endingStr.format("%s\\%s%s", fname.str(), fname.str(), mapExtension);
 
-			Bool skipMap = FALSE;
+			bool skipMap = FALSE;
 			if (TheGlobalData->m_buildMapCache)
 			{
 				std::set<AsciiString>::const_iterator sit = m_allowedMaps.find(fname);
@@ -635,8 +635,8 @@ Bool MapCache::loadUserMaps()
 	return parsedAMap;
 }
 
-//Bool MapCache::addMap( AsciiString dirName, AsciiString fname, WinTimeStamp timestamp, UnsignedInt filesize, Bool isOfficial )
-Bool MapCache::addMap( AsciiString dirName, AsciiString fname, FileInfo *fileInfo, Bool isOfficial)
+//Bool MapCache::addMap( AsciiString dirName, AsciiString fname, WinTimeStamp timestamp, UnsignedInt filesize, bool isOfficial )
+bool MapCache::addMap( AsciiString dirName, AsciiString fname, FileInfo *fileInfo, bool isOfficial)
 {
 	if (fileInfo == NULL) {
 		return FALSE;
@@ -687,7 +687,7 @@ Bool MapCache::addMap( AsciiString dirName, AsciiString fname, FileInfo *fileInf
 	md.m_techPositions = m_techPositions;
 	md.m_CRC = calcCRC(dirName, fname);
 
-	Bool exists = false;
+	bool exists = false;
 	AsciiString munkee = worldDict.getAsciiString(TheKey_mapName, &exists);
 	if (!exists || munkee.isEmpty())
 	{
@@ -757,7 +757,7 @@ MapCache *TheMapCache = NULL;
 
 // PUBLIC FUNCTIONS //////////////////////////////////////////////////////////////////////////////
 
-Bool WouldMapTransfer( const AsciiString& mapName )
+bool WouldMapTransfer( const AsciiString& mapName )
 {
 	return mapName.startsWithNoCase(TheMapCache->getUserMapDir());
 }
@@ -765,7 +765,7 @@ Bool WouldMapTransfer( const AsciiString& mapName )
 //-------------------------------------------------------------------------------------------------
 /** Load the listbox with all the map files available to play */
 //-------------------------------------------------------------------------------------------------
-Int populateMapListboxNoReset( GameWindow *listbox, Bool useSystemMaps, Bool isMultiplayer, AsciiString mapToSelect )
+Int populateMapListboxNoReset( GameWindow *listbox, bool useSystemMaps, bool isMultiplayer, AsciiString mapToSelect )
 {
 	if(!TheMapCache)
 		return -1;
@@ -941,7 +941,7 @@ typedef MapDisplayToFileNameList::iterator MapDisplayToFileNameListIter;
 //-------------------------------------------------------------------------------------------------
 /** Load the listbox with all the map files available to play */
 //-------------------------------------------------------------------------------------------------
-Int populateMapListbox( GameWindow *listbox, Bool useSystemMaps, Bool isMultiplayer, AsciiString mapToSelect )
+Int populateMapListbox( GameWindow *listbox, bool useSystemMaps, bool isMultiplayer, AsciiString mapToSelect )
 {
 	if(!TheMapCache)
 		return -1;
@@ -960,7 +960,7 @@ Int populateMapListbox( GameWindow *listbox, Bool useSystemMaps, Bool isMultipla
 //-------------------------------------------------------------------------------------------------
 /** Validate a map */
 //-------------------------------------------------------------------------------------------------
-Bool isValidMap( AsciiString mapName, Bool isMultiplayer )
+bool isValidMap( AsciiString mapName, bool isMultiplayer )
 {
 	if(!TheMapCache || mapName.isEmpty())
 		return FALSE;
@@ -982,7 +982,7 @@ Bool isValidMap( AsciiString mapName, Bool isMultiplayer )
 //-------------------------------------------------------------------------------------------------
 /** Find a valid map */
 //-------------------------------------------------------------------------------------------------
-AsciiString getDefaultMap( Bool isMultiplayer )
+AsciiString getDefaultMap( bool isMultiplayer )
 {
 	if(!TheMapCache)
 		return AsciiString::TheEmptyString;
@@ -1111,7 +1111,7 @@ Image *getMapPreviewImage( AsciiString mapName )
 
 		mapPreviewDir.concat(name);
 
-		Bool success = false;
+		bool success = false;
 		try
 		{
 			copyFromBigToDir(tgaName, mapPreviewDir);	
@@ -1205,7 +1205,7 @@ Image *getMapPreviewImage( AsciiString mapName )
 	return NULL;
 }
 
-Bool parseMapPreviewChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
+bool parseMapPreviewChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 /*
 	ICoord2D size;

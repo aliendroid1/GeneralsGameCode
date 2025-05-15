@@ -73,7 +73,7 @@ public:
 
 	inline AsciiString getName( void ) { return m_name; }
 	inline AsciiString getTexture( void ) { return m_texture; }
-	inline Bool isBridge( void ) { return m_isBridge; }
+	inline bool isBridge( void ) { return m_isBridge; }
 	inline UnsignedInt getID( void ) { return m_id; }
 
 	inline Real getRoadWidth( void ) { return m_roadWidth; }
@@ -103,7 +103,7 @@ public:
 	// friend access methods to be used by the road collection only!
 	inline void friend_setName( AsciiString name ) { m_name = name; }
 	inline void friend_setTexture( AsciiString texture ) { m_texture = texture; }
-	inline void friend_setBridge( Bool isBridge ) { m_isBridge = isBridge; }
+	inline void friend_setBridge( bool isBridge ) { m_isBridge = isBridge; }
 	inline void friend_setID( UnsignedInt id ) { m_id = id; }							
 	inline void friend_setNext( TerrainRoadType *next ) { m_next = next; }
 	inline TerrainRoadType *friend_getNext( void ) { return m_next; }			
@@ -136,7 +136,7 @@ public:
 protected:
 
 	AsciiString m_name;								///< entry name
-	Bool m_isBridge;									///< true if entry is for a bridge
+	bool m_isBridge;									///< true if entry is for a bridge
 	UnsignedInt m_id;									///< unique id
 	TerrainRoadType *m_next;					///< next in road list
 

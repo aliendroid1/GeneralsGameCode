@@ -495,7 +495,7 @@ void GameClient::update( void )
 	// create the FRAME_TICK message
 	GameMessage *frameMsg = TheMessageStream->appendMessage( GameMessage::MSG_FRAME_TICK );
 	frameMsg->appendTimestampArgument( getFrame() );
-	static Bool playSizzle = FALSE;
+	static bool playSizzle = FALSE;
 	// We need to show the movie first.
 	if(TheGlobalData->m_playIntro && !TheDisplay->isMoviePlaying())
 	{
@@ -604,7 +604,7 @@ void GameClient::update( void )
 		TheVideoPlayer->UPDATE();
 	}
 
-	Bool freezeTime = TheTacticalView->isTimeFrozen() && !TheTacticalView->isCameraMovementFinished();
+	bool freezeTime = TheTacticalView->isTimeFrozen() && !TheTacticalView->isCameraMovementFinished();
 	freezeTime = freezeTime || TheScriptEngine->isTimeFrozenDebug();
 	freezeTime = freezeTime || TheScriptEngine->isTimeFrozenScript();
 	freezeTime = freezeTime || TheGameLogic->isGamePaused();
@@ -845,7 +845,7 @@ void GameClient::removeDrawableFromLookupTable( Drawable *draw )
 
 //-------------------------------------------------------------------------------------------------
 /** Load a map into the game interface */
-Bool GameClient::loadMap( AsciiString mapName )
+bool GameClient::loadMap( AsciiString mapName )
 {
 
 	// sanity
@@ -1205,7 +1205,7 @@ void GameClient::addTOCEntry( AsciiString name, UnsignedShort id )
 }  // end addTOCEntry
 
 // ------------------------------------------------------------------------------------------------
-static Bool shouldSaveDrawable(const Drawable* draw)
+static bool shouldSaveDrawable(const Drawable* draw)
 {
 	if (draw->testDrawableStatus(DRAWABLE_STATUS_NO_SAVE))
 	{

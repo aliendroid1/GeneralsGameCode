@@ -67,7 +67,7 @@ void ControlBar::resetCommonCommandData( void )
 //-------------------------------------------------------------------------------------------------
 /** add the common commands of this drawable to the common command set */
 //-------------------------------------------------------------------------------------------------
-void ControlBar::addCommonCommands( Drawable *draw, Bool firstDrawable )
+void ControlBar::addCommonCommands( Drawable *draw, bool firstDrawable )
 {
 	Int i;
 	const CommandButton *command;
@@ -159,7 +159,7 @@ void ControlBar::addCommonCommands( Drawable *draw, Bool firstDrawable )
 			// get the command
 			command = commandSet->getCommandButton(i);
 					
-			Bool attackMove = (command && command->getCommandType() == GUI_COMMAND_ATTACK_MOVE) || 
+			bool attackMove = (command && command->getCommandType() == GUI_COMMAND_ATTACK_MOVE) || 
 												(m_commonCommands[ i ] && m_commonCommands[ i ]->getCommandType() == GUI_COMMAND_ATTACK_MOVE);
 
 			// Kris: When any units have attack move, they all get it. This is to allow
@@ -211,8 +211,8 @@ void ControlBar::addCommonCommands( Drawable *draw, Bool firstDrawable )
 void ControlBar::populateMultiSelect( void )
 {
 	Drawable *draw;
-	Bool firstDrawable = TRUE;
-	Bool portraitSet = FALSE;
+	bool firstDrawable = TRUE;
+	bool portraitSet = FALSE;
 	const Image *portrait = NULL;
 	Object *portraitObj = NULL;
 

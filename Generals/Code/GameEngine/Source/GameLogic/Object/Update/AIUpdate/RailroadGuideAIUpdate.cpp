@@ -77,7 +77,7 @@ void TrainTrack::incReference()
 	++m_refCount; 
 }
 
-Bool TrainTrack::releaseReference() 
+bool TrainTrack::releaseReference() 
 { 
 	return ( --m_refCount == 0 ); 
 }
@@ -191,7 +191,7 @@ RailroadBehavior::~RailroadBehavior( void )
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
 
-Bool RailroadBehavior::isRailroad() const 
+bool RailroadBehavior::isRailroad() const 
 {
 	if ( ! m_track )
 		return FALSE;// I haven't even started yet!
@@ -305,7 +305,7 @@ void RailroadBehavior::onCollide( Object *other, const Coord3D *loc, const Coord
 	//if ( other->getModelConditionFlags().test( MODELCONDITION_RUBBLE ) == TRUE )
 	//	return; // I don't mess with rubble
 
-	Bool victimIsInfantry = other->isKindOf( KINDOF_INFANTRY );
+	bool victimIsInfantry = other->isKindOf( KINDOF_INFANTRY );
 
 	const Coord3D *myDir = obj->getUnitDirectionVector2D();
 	const Coord3D *myLoc = obj->getPosition();
@@ -442,7 +442,7 @@ void RailroadBehavior::playImpactSound(Object *victim, const Coord3D *impactPosi
 	//AudioEventRTS *pImpact = &impact;
 	PhysicsBehavior *theirPhys = victim->getPhysics();
 
-	Bool hasBounceSound = FALSE;
+	bool hasBounceSound = FALSE;
 
 	if ( theirPhys )
 	{
@@ -875,7 +875,7 @@ public:
 	virtual const char* debugGetName() { return "PartitionFilterIsValidCarriage"; }
 #endif
 
-	virtual Bool allow(Object *objOther)
+	virtual bool allow(Object *objOther)
 	{
 
 		// must exist!
@@ -1333,7 +1333,7 @@ void RailroadBehavior::destroyTheWholeTrainNow( void )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-void RailroadBehavior::FindPosByPathDistance( Coord3D *pos, const Real dist, const Real length, Bool setState )
+void RailroadBehavior::FindPosByPathDistance( Coord3D *pos, const Real dist, const Real length, bool setState )
 {
 	
 	if ( ! m_track )
@@ -1400,7 +1400,7 @@ void RailroadBehavior::FindPosByPathDistance( Coord3D *pos, const Real dist, con
 			{
 				//I am between this point and the next
 				const Int handleFound = ((TrackPoint*)thisPoint)->getHandle();
-				Bool edge = (m_currentPointHandle != handleFound);
+				bool edge = (m_currentPointHandle != handleFound);
 				if ( setState  )
 				{
 					m_inTunnel = thisPoint->m_isTunnelOrBridge;

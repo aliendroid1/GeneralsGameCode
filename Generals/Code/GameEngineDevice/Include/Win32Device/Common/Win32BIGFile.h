@@ -41,7 +41,7 @@ class Win32BIGFile : public ArchiveFile
 		Win32BIGFile();
 		virtual ~Win32BIGFile();
 
-		virtual Bool					getFileInfo(const AsciiString& filename, FileInfo *fileInfo) const;	///< fill in the fileInfo struct with info about the requested file.
+		virtual bool					getFileInfo(const AsciiString& filename, FileInfo *fileInfo) const;	///< fill in the fileInfo struct with info about the requested file.
 		virtual File*					openFile( const Char *filename, Int access = 0 );///< Open the specified file within the BIG file
 		virtual void					closeAllFiles( void );									///< Close all file opened in this BIG file
 		virtual AsciiString		getName( void );												///< Returns the name of the BIG file

@@ -235,7 +235,7 @@ void W3DTruckDraw::createEmitters( void )
 /**
  * Stop creating debris from the tank treads
  */
-void W3DTruckDraw::enableEmitters( Bool enable  )
+void W3DTruckDraw::enableEmitters( bool enable  )
 {
 	// don't check... if we are hidden the first time thru, then we'll never create the emitters.
 	// eg, if we are loading a game and the unit is in a tunnel, he'll never get emitteres even when he exits.
@@ -396,7 +396,7 @@ void W3DTruckDraw::doDrawModule(const Matrix3D* transformMtx)
 	const W3DTruckDrawModuleData *moduleData = getW3DTruckDrawModuleData();
 	if (moduleData==NULL) return; // shouldn't ever happen.
 
- 	Bool frozen = TheTacticalView->isTimeFrozen() && !TheTacticalView->isCameraMovementFinished();
+ 	bool frozen = TheTacticalView->isTimeFrozen() && !TheTacticalView->isCameraMovementFinished();
  	frozen = frozen || TheScriptEngine->isTimeFrozenDebug() || TheScriptEngine->isTimeFrozenScript();
 	if (frozen)
 		return;
@@ -575,13 +575,13 @@ void W3DTruckDraw::doDrawModule(const Matrix3D* transformMtx)
 		}
 	}
 
-	Bool wasPowersliding = m_isPowersliding;
+	bool wasPowersliding = m_isPowersliding;
 	m_isPowersliding = false;
 	if (physics->isMotive() && !obj->isSignificantlyAboveTerrain()) {
 		enableEmitters(true);
 		Coord3D accel = *physics->getAcceleration();
 		accel.z = 0; // ignore gravitational force.
-		Bool accelerating = accel.length()>ACCEL_THRESHOLD;
+		bool accelerating = accel.length()>ACCEL_THRESHOLD;
 		//DEBUG_LOG(("Accel %f, speed %f\n", accel.length(), speed));
 		if (accelerating)	{
 			Real dot = accel.x*vel->x + accel.y*vel->y;

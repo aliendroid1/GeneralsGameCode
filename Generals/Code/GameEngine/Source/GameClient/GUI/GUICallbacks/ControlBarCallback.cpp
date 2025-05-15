@@ -101,7 +101,7 @@ WindowMsgHandledType LeftHUDInput( GameWindow *window, UnsignedInt msg,
 			// consider changing the mouse cursor if we are not in the process of firing
 			// targeted "superweapons" which we can use the radar itself to fire
 			//
-			Bool targeting = FALSE;
+			bool targeting = FALSE;
 			const CommandButton *command = TheInGameUI->getGUICommand();
 			if( command 
 					&& (command->getCommandType() == GUI_COMMAND_SPECIAL_POWER || command->getCommandType() == GUI_COMMAND_SPECIAL_POWER_FROM_COMMAND_CENTER)
@@ -499,7 +499,7 @@ extern void toggleReplayControls( void );
 //-------------------------------------------------------------------------------------------------
 /** Force the control bar to be shown */
 //-------------------------------------------------------------------------------------------------
-void ShowControlBar( Bool immediate )
+void ShowControlBar( bool immediate )
 {
 	showReplayControls();
 	if(TheControlBar)
@@ -534,7 +534,7 @@ void ShowControlBar( Bool immediate )
 //-------------------------------------------------------------------------------------------------
 /** Force the control bar to be hidden */
 //-------------------------------------------------------------------------------------------------
-void HideControlBar( Bool immediate )
+void HideControlBar( bool immediate )
 {
 	hideReplayControls();
 	if(TheControlBar)
@@ -576,7 +576,7 @@ void HideControlBar( Bool immediate )
 //-------------------------------------------------------------------------------------------------
 /** Toggle the control bar on or off */
 //-------------------------------------------------------------------------------------------------
-void ToggleControlBar( Bool immediate )
+void ToggleControlBar( bool immediate )
 {
 	toggleReplayControls();
 

@@ -50,14 +50,14 @@ public:
 
 	PartitionFilterFlammable(){ }
 	
-	virtual Bool allow(Object *objOther);
+	virtual bool allow(Object *objOther);
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterFlammable"; }
 #endif
 };
 
 //-------------------------------------------------------------------------------------------------
-Bool PartitionFilterFlammable::allow(Object *objOther)
+bool PartitionFilterFlammable::allow(Object *objOther)
 {
 	// It must be burnable in general, and burnable now
 	static NameKeyType key_FlammableUpdate = NAMEKEY("FlammableUpdate");

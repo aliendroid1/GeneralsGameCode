@@ -67,7 +67,7 @@ public:
 	virtual void liteupdate( void ) = 0;															///< does a lightweight update for passing messages around.
 
 	virtual void setLocalAddress(UnsignedInt ip, UnsignedInt port) = 0;	///< Tell the network what local ip and port to bind to.
-	virtual Bool isFrameDataReady( void ) = 0;												///< Are the commands for the next frame available?
+	virtual bool isFrameDataReady( void ) = 0;												///< Are the commands for the next frame available?
 	virtual void parseUserList( const GameInfo *game ) = 0;						///< Parse a userlist, creating connections
 	virtual void startGame(void) = 0;																	///< Sets the network game frame counter to -1
 	virtual UnsignedInt getRunAhead(void) = 0;												///< Get the current RunAhead value
@@ -81,14 +81,14 @@ public:
 	virtual void sendFile(AsciiString path, UnsignedByte playerMask, UnsignedShort commandID) = 0;
 	virtual UnsignedShort sendFileAnnounce(AsciiString path, UnsignedByte playerMask) = 0;
 	virtual Int getFileTransferProgress(Int playerID, AsciiString path) = 0;
-	virtual Bool areAllQueuesEmpty(void) = 0;
+	virtual bool areAllQueuesEmpty(void) = 0;
 
 	virtual void quitGame() = 0;																			///< Quit the game right now.
 	
 	virtual void selfDestructPlayer(Int index) = 0;
 
 	virtual void voteForPlayerDisconnect(Int slot) = 0;								///< register a vote towards this player's disconnect.
-	virtual Bool isPacketRouter( void ) = 0;
+	virtual bool isPacketRouter( void ) = 0;
 
 	// Bandwidth metrics
 	virtual Real getIncomingBytesPerSecond( void ) = 0;
@@ -110,10 +110,10 @@ public:
 
 	virtual void attachTransport(Transport *transport) = 0;
 	virtual void initTransport() = 0;
-	virtual Bool sawCRCMismatch() = 0;
+	virtual bool sawCRCMismatch() = 0;
 	virtual void setSawCRCMismatch() = 0;
 
-	virtual Bool isPlayerConnected(Int playerID) = 0;
+	virtual bool isPlayerConnected(Int playerID) = 0;
 
 	virtual void notifyOthersOfCurrentFrame() = 0;					///< Tells all the other players what frame we are on.
 	virtual void notifyOthersOfNewFrame(UnsignedInt frame) = 0;							///< Tells all the other players that we are on a new frame.

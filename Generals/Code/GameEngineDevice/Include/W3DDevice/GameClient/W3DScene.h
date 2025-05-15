@@ -67,7 +67,7 @@ public:
 	~RTS3DScene();  ///< RTSScene desctructor
 
 	/// ray picking against objects in scene
-	Bool castRay(RayCollisionTestClass & raytest, Bool testAll, Int collisionType);
+	bool castRay(RayCollisionTestClass & raytest, bool testAll, Int collisionType);
 
 	/// customizable renderer for the RTS3DScene
 	virtual void	Customized_Render( RenderInfoClass &rinfo );

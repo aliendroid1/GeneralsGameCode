@@ -115,10 +115,10 @@ struct SelectionData
 {
 	const ThingTemplate *templateToSelect;
 	DrawableList newlySelectedDrawables;
-	Bool isCarBomb;
+	bool isCarBomb;
 };
 // ------------------------------------------------------------------------------------------------
-static Bool similarUnitSelection( Drawable *test, void *userData )
+static bool similarUnitSelection( Drawable *test, void *userData )
 {
 	SelectionData *data = (SelectionData *) userData;
 	const ThingTemplate *selectedType = data->templateToSelect;
@@ -131,7 +131,7 @@ static Bool similarUnitSelection( Drawable *test, void *userData )
 		if (!object)
 			return FALSE;
 
-		Bool isEquivalent = object->getTemplate()->isEquivalentTo( selectedType );
+		bool isEquivalent = object->getTemplate()->isEquivalentTo( selectedType );
 		if( data->isCarBomb && !isEquivalent && object->testStatus( OBJECT_STATUS_IS_CARBOMB ) )
 		{
 			isEquivalent = TRUE;
@@ -174,7 +174,7 @@ void showReplayControls( void )
 {
 	if (m_replayWindow)
 	{
-		Bool show = TheGameLogic->isInReplayGame();
+		bool show = TheGameLogic->isInReplayGame();
 		m_replayWindow->winHide(!show);
 	}
 }
@@ -195,7 +195,7 @@ void toggleReplayControls( void )
 {
 	if (m_replayWindow)
 	{
-		Bool show = TheGameLogic->isInReplayGame() && m_replayWindow->winIsHidden();
+		bool show = TheGameLogic->isInReplayGame() && m_replayWindow->winIsHidden();
 		m_replayWindow->winHide(!show);
 	}
 }
@@ -205,12 +205,12 @@ void toggleReplayControls( void )
 SuperweaponInfo::SuperweaponInfo(
 	ObjectID id,
 	UnsignedInt timestamp,
-	Bool hiddenByScript,
-	Bool hiddenByScience,
-	Bool ready,
+	bool hiddenByScript,
+	bool hiddenByScience,
+	bool ready,
 	const AsciiString& superweaponNormalFont, 
 	Int superweaponNormalPointSize, 
-	Bool superweaponNormalBold,
+	bool superweaponNormalBold,
 	Color c, 
 	const SpecialPowerTemplate* spt
 ) :
@@ -251,7 +251,7 @@ SuperweaponInfo::~SuperweaponInfo()
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-void SuperweaponInfo::setFont(const AsciiString& superweaponNormalFont, Int superweaponNormalPointSize, Bool superweaponNormalBold)
+void SuperweaponInfo::setFont(const AsciiString& superweaponNormalFont, Int superweaponNormalPointSize, bool superweaponNormalBold)
 {
 	m_nameDisplayString->setFont( TheFontLibrary->getFont( superweaponNormalFont, 
 		TheGlobalLanguageData->adjustFontSize(superweaponNormalPointSize), superweaponNormalBold ) );
@@ -321,7 +321,7 @@ void InGameUI::xfer( Xfer *xfer )
 		// For the timers themselves, all I need to save is the things that are used in the call to addNamedTimer.
 		// It is okay to do this, because SuperweaponInfos pushes things on to a map; addNamedTimer is just a more
 		// organized way to push things on the namedTimer Map.
-		// addNamedTimer needs (const AsciiString& timerName, const UnicodeString& text, Bool isCountdown)
+		// addNamedTimer needs (const AsciiString& timerName, const UnicodeString& text, bool isCountdown)
 		if (xfer->getXferMode() == XFER_SAVE)
 		{
 			Int timerCount = m_namedTimers.size();
@@ -341,7 +341,7 @@ void InGameUI::xfer( Xfer *xfer )
 			{
 				AsciiString timerName;
 				UnicodeString timerText;
-				Bool isCountdown;
+				bool isCountdown;
 				xfer->xferAsciiString( &timerName );
 				xfer->xferUnicodeString( &timerText );
 				xfer->xferBool( &isCountdown );
@@ -413,7 +413,7 @@ void InGameUI::xfer( Xfer *xfer )
 			AsciiString powerName;
 			ObjectID id;
 			UnsignedInt timestamp;
-			Bool hiddenByScript, hiddenByScience, ready;
+			bool hiddenByScript, hiddenByScience, ready;
 
 			xfer->xferAsciiString(&powerName);
 			xfer->xferObjectID(&id);
@@ -509,7 +509,7 @@ void InGameUI::addSuperweapon(Int playerIndex, const AsciiString& powerName, Obj
 		return;
 
 	const Player* player = ThePlayerList->getNthPlayer(playerIndex);
-	Bool hiddenByScience = (powerTemplate->getRequiredScience() != SCIENCE_INVALID) && (player->hasScience(powerTemplate->getRequiredScience()) == false);
+	bool hiddenByScience = (powerTemplate->getRequiredScience() != SCIENCE_INVALID) && (player->hasScience(powerTemplate->getRequiredScience()) == false);
 
 	DEBUG_LOG(("Adding superweapon UI timer\n"));
 	SuperweaponInfo *info = newInstance(SuperweaponInfo)(
@@ -531,7 +531,7 @@ void InGameUI::addSuperweapon(Int playerIndex, const AsciiString& powerName, Obj
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool InGameUI::removeSuperweapon(Int playerIndex, const AsciiString& powerName, ObjectID id, const SpecialPowerTemplate *powerTemplate)
+bool InGameUI::removeSuperweapon(Int playerIndex, const AsciiString& powerName, ObjectID id, const SpecialPowerTemplate *powerTemplate)
 {
 	DEBUG_LOG(("Removing superweapon UI timer\n"));
 	SuperweaponMap::iterator mapIt = m_superweapons[playerIndex].find(powerName);
@@ -576,7 +576,7 @@ void InGameUI::objectChangedTeam(const Object *obj, Int oldPlayerIndex, Int newP
 			powerName = powerTemplate->getName();
 
 			SuperweaponMap::iterator mapIt = m_superweapons[oldPlayerIndex].find(powerName);
-			Bool found = false;
+			bool found = false;
 			if (mapIt != m_superweapons[oldPlayerIndex].end())
 			{
 				for (SuperweaponList::iterator listIt = mapIt->second.begin(); listIt != mapIt->second.end(); ++listIt)
@@ -649,14 +649,14 @@ void InGameUI::setSuperweaponDisplayEnabledByScript(Bool enable)
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool InGameUI::getSuperweaponDisplayEnabledByScript(void) const
+bool InGameUI::getSuperweaponDisplayEnabledByScript(void) const
 {
 	return m_superweaponHiddenByScript;
 }
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-void InGameUI::addNamedTimer( const AsciiString& timerName, const UnicodeString& text, Bool isCountdown )
+void InGameUI::addNamedTimer( const AsciiString& timerName, const UnicodeString& text, bool isCountdown )
 {
 	NamedTimerInfo *info = newInstance( NamedTimerInfo );	
 	info->m_timerName = timerName;
@@ -692,7 +692,7 @@ void InGameUI::removeNamedTimer( const AsciiString& timerName )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-void InGameUI::showNamedTimerDisplay( Bool show )
+void InGameUI::showNamedTimerDisplay( bool show )
 {
 	m_showNamedTimers = show;
 }
@@ -1223,7 +1223,7 @@ void InGameUI::handleRadiusCursor()
 		// from screen to world
 		// But only if the radar is on.
 		//
-		Bool radarOn = TheRadar->isRadarForced() 
+		bool radarOn = TheRadar->isRadarForced() 
 									|| ( !TheRadar->isRadarHidden() 
 												&& ThePlayerList->getLocalPlayer() 
 												&& ThePlayerList->getLocalPlayer()->hasRadar()
@@ -2138,7 +2138,7 @@ void InGameUI::createMouseoverHint( const GameMessage *msg )
 
 	GameWindow *window = NULL;
 	const MouseIO *io = TheMouse->getMouseStatus();
-	Bool underWindow = false;
+	bool underWindow = false;
 	if (io && TheWindowManager)
 		window = TheWindowManager->getWindowUnderCursor(io->pos.x, io->pos.y);
 
@@ -2212,7 +2212,7 @@ void InGameUI::createMouseoverHint( const GameMessage *msg )
 			if (player == NULL)
 				player = obj->getControllingPlayer();
 
-			Bool disguised = false;
+			bool disguised = false;
 			if( obj->isKindOf( KINDOF_DISGUISER ) )
 			{
 				//Because we have support for disguised units pretending to be units from another
@@ -2380,7 +2380,7 @@ void InGameUI::createMouseoverHint( const GameMessage *msg )
 			
 			//Add basic logic to determine if we can select a unit (or hint)
 			const Object *obj = draw ? draw->getObject() : NULL;
-			Bool drawSelectable = CanSelectDrawable(draw, FALSE);
+			bool drawSelectable = CanSelectDrawable(draw, FALSE);
 			if( !obj )
 			{
 				drawSelectable = false;
@@ -2437,7 +2437,7 @@ void InGameUI::createCommandHint( const GameMessage *msg )
 	// set cursor to normal if there is a window under the cursor
 	GameWindow *window = NULL;
 	const MouseIO *io = TheMouse->getMouseStatus();
-	Bool underWindow = false;
+	bool underWindow = false;
 	if (io && TheWindowManager)
 		window = TheWindowManager->getWindowUnderCursor(io->pos.x, io->pos.y);
 
@@ -2461,7 +2461,7 @@ void InGameUI::createCommandHint( const GameMessage *msg )
 
 	//Add basic logic to determine if we can select a unit (or hint)
 	const Object *obj = draw ? draw->getObject() : NULL;
-	Bool drawSelectable = CanSelectDrawable(draw, FALSE);
+	bool drawSelectable = CanSelectDrawable(draw, FALSE);
 	if( !obj )
 	{
 		drawSelectable = false;
@@ -2678,7 +2678,7 @@ DrawableID InGameUI::getMousedOverDrawableID( void ) const
 //-------------------------------------------------------------------------------------------------
 /// set right-click scroll mode
 //-------------------------------------------------------------------------------------------------
-void InGameUI::setScrolling( Bool isScrolling )
+void InGameUI::setScrolling( bool isScrolling )
 {
 	if (m_isScrolling == isScrolling)
 	{
@@ -2707,7 +2707,7 @@ void InGameUI::setScrolling( Bool isScrolling )
 //-------------------------------------------------------------------------------------------------
 /// are we scrolling?
 //-------------------------------------------------------------------------------------------------
-Bool InGameUI::isScrolling( void )
+bool InGameUI::isScrolling( void )
 {
 	return m_isScrolling;
 }
@@ -2715,7 +2715,7 @@ Bool InGameUI::isScrolling( void )
 //-------------------------------------------------------------------------------------------------
 /// set drag select mode
 //-------------------------------------------------------------------------------------------------
-void InGameUI::setSelecting( Bool isSelecting )
+void InGameUI::setSelecting( bool isSelecting )
 {
 	if (m_isSelecting == isSelecting)
 	{
@@ -2729,7 +2729,7 @@ void InGameUI::setSelecting( Bool isSelecting )
 //-------------------------------------------------------------------------------------------------
 /// are we selecting?
 //-------------------------------------------------------------------------------------------------
-Bool InGameUI::isSelecting( void )
+bool InGameUI::isSelecting( void )
 {
 	return m_isSelecting;
 }
@@ -3007,7 +3007,7 @@ void InGameUI::setPlacementEnd( const ICoord2D *end )
 //-------------------------------------------------------------------------------------------------
 /** Is the angle selection interface for placing building at angles up? */
 //-------------------------------------------------------------------------------------------------
-Bool InGameUI::isPlacementAnchored( void )
+bool InGameUI::isPlacementAnchored( void )
 {
 
 	return m_placeAnchorInProgress;
@@ -3112,7 +3112,7 @@ void InGameUI::deselectDrawable( Drawable *draw )
 //-------------------------------------------------------------------------------------------------
 /** Clear all drawables' "select" status */
 //-------------------------------------------------------------------------------------------------
-void InGameUI::deselectAllDrawables( Bool postMsg )
+void InGameUI::deselectAllDrawables( bool postMsg )
 {
 	const DrawableList *selected = TheInGameUI->getAllSelectedDrawables();
 
@@ -3192,7 +3192,7 @@ Drawable *InGameUI::getFirstSelectedDrawable( void )
 //-------------------------------------------------------------------------------------------------
 /** Return true if the selected ID is in the drawable list */
 //-------------------------------------------------------------------------------------------------
-Bool InGameUI::isDrawableSelected( DrawableID idToCheck ) const
+bool InGameUI::isDrawableSelected( DrawableID idToCheck ) const
 {
 
 	for( DrawableListCIt it = m_selectedDrawables.begin(); it != m_selectedDrawables.end(); ++it ) 
@@ -3209,7 +3209,7 @@ Bool InGameUI::isDrawableSelected( DrawableID idToCheck ) const
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool InGameUI::isAnySelectedKindOf( KindOfType kindOf ) const
+bool InGameUI::isAnySelectedKindOf( KindOfType kindOf ) const
 {
 	Drawable *draw;
 
@@ -3233,7 +3233,7 @@ Bool InGameUI::isAnySelectedKindOf( KindOfType kindOf ) const
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool InGameUI::isAllSelectedKindOf( KindOfType kindOf ) const
+bool InGameUI::isAllSelectedKindOf( KindOfType kindOf ) const
 {
 	Drawable *draw;
 
@@ -3258,12 +3258,12 @@ Bool InGameUI::isAllSelectedKindOf( KindOfType kindOf ) const
 //-------------------------------------------------------------------------------------------------
 /** Set the input enabled/disabled */
 //-------------------------------------------------------------------------------------------------
-void InGameUI::setInputEnabled( Bool enable )
+void InGameUI::setInputEnabled( bool enable )
 {
 	if(!enable)
 		setSelecting( FALSE );
 	
-	Bool wasEnabled = m_inputEnabled;
+	bool wasEnabled = m_inputEnabled;
 
 	m_inputEnabled = enable;
 	
@@ -3374,7 +3374,7 @@ void InGameUI::postDraw( void )
 			
 
 
-		Bool marginExceeded = FALSE;
+		bool marginExceeded = FALSE;
 
 		for (Int i=0; i<MAX_PLAYER_COUNT; ++i)
 		{
@@ -3425,7 +3425,7 @@ void InGameUI::postDraw( void )
 							if (module)
 							{
 								// found one - draw it
- 								Bool isReady = module->isReady();
+ 								bool isReady = module->isReady();
  								Int readySecs;
  
 								// IsReady includes disabledness, so if you have a 0 timer disabled super, you don't want 
@@ -3437,7 +3437,7 @@ void InGameUI::postDraw( void )
 								// Yes, integer math.  We can't have float imprecision display 4:01 on a disabled superweapon.
  
  								// Similarly, only checking timers is not truly indicitive of readyness.
- 								Bool changeBolding = (readySecs != info->m_timestamp) || (isReady != info->m_ready) || info->m_forceUpdateText;
+ 								bool changeBolding = (readySecs != info->m_timestamp) || (isReady != info->m_ready) || info->m_forceUpdateText;
  								if (changeBolding)
  								{
  									if (isReady)
@@ -3520,7 +3520,7 @@ void InGameUI::postDraw( void )
 	if (TheGameLogic->getFrame() > 0 && m_showNamedTimers)
 	{
 //		Int namedTimerCount = 0;
-		Bool reverseXDir = (m_namedTimerPosition.x >= 0.5f);
+		bool reverseXDir = (m_namedTimerPosition.x >= 0.5f);
 		Int startX = (Int)(m_namedTimerPosition.x * TheDisplay->getWidth());
 		Int startY = (Int)(m_namedTimerPosition.y * TheDisplay->getHeight());
 		Color bgColor = GameMakeColor( 0, 0, 0, 255 );
@@ -3928,7 +3928,7 @@ void InGameUI::removeMilitarySubtitle( void )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool InGameUI::areSelectedObjectsControllable() const
+bool InGameUI::areSelectedObjectsControllable() const
 {
 	const DrawableList *selected = TheInGameUI->getAllSelectedDrawables();
 
@@ -3963,7 +3963,7 @@ void InGameUI::resetCamera()
 //translator to determine whether to do something to an object or select it instead based on the context of what is currently
 //selected.
 //------------------------------------------------------------------------------
-Bool InGameUI::canSelectedObjectsNonAttackInteractWithObject( const Object *objectToInteractWith, SelectionRules rule ) const
+bool InGameUI::canSelectedObjectsNonAttackInteractWithObject( const Object *objectToInteractWith, SelectionRules rule ) const
 {
 	for( int i = 1; i < NUM_ACTIONTYPES; i++ )
 	{
@@ -3978,7 +3978,7 @@ Bool InGameUI::canSelectedObjectsNonAttackInteractWithObject( const Object *obje
 	return FALSE;
 }
 
-CanAttackResult InGameUI::getCanSelectedObjectsAttack( ActionType action, const Object *objectToInteractWith, SelectionRules rule, Bool additionalChecking ) const
+CanAttackResult InGameUI::getCanSelectedObjectsAttack( ActionType action, const Object *objectToInteractWith, SelectionRules rule, bool additionalChecking ) const
 {
 	// Setting a rally point doesn't require an object to interact with.
 	if( (objectToInteractWith == NULL) != (action == ACTIONTYPE_SET_RALLY_POINT))
@@ -4067,7 +4067,7 @@ CanAttackResult InGameUI::getCanSelectedObjectsAttack( ActionType action, const 
 //------------------------------------------------------------------------------
 //Wrapper function that checks a specific action.
 //------------------------------------------------------------------------------
-Bool InGameUI::canSelectedObjectsDoAction( ActionType action, const Object *objectToInteractWith, SelectionRules rule, Bool additionalChecking ) const
+bool InGameUI::canSelectedObjectsDoAction( ActionType action, const Object *objectToInteractWith, SelectionRules rule, bool additionalChecking ) const
 {
 	// Setting a rally point doesn't require an object to interact with.
 	if( (objectToInteractWith == NULL) != (action == ACTIONTYPE_SET_RALLY_POINT))
@@ -4090,7 +4090,7 @@ Bool InGameUI::canSelectedObjectsDoAction( ActionType action, const Object *obje
 		// get this drawable
 		other = *it;
 		count++;
-		Bool success = FALSE;
+		bool success = FALSE;
 
 		switch( action )
 		{
@@ -4202,7 +4202,7 @@ Bool InGameUI::canSelectedObjectsDoAction( ActionType action, const Object *obje
 }
 
 //------------------------------------------------------------------------------
-Bool InGameUI::canSelectedObjectsDoSpecialPower( const CommandButton *command, const Object *objectToInteractWith, const Coord3D *position, SelectionRules rule, UnsignedInt commandOptions, Object* ignoreSelObj ) const
+bool InGameUI::canSelectedObjectsDoSpecialPower( const CommandButton *command, const Object *objectToInteractWith, const Coord3D *position, SelectionRules rule, UnsignedInt commandOptions, Object* ignoreSelObj ) const
 {
 	//Get the special power template.
 	const SpecialPowerTemplate *spTemplate = command->getSpecialPowerTemplate();
@@ -4211,8 +4211,8 @@ Bool InGameUI::canSelectedObjectsDoSpecialPower( const CommandButton *command, c
 	//1) NO TARGET OR POS
 	//2) COMMAND_OPTION_NEED_OBJECT_TARGET
 	//3) NEED_TARGET_POS
-	Bool doAtPosition = BitIsSet( command->getOptions(), NEED_TARGET_POS );
-	Bool doAtObject = BitIsSet( command->getOptions(), COMMAND_OPTION_NEED_OBJECT_TARGET );
+	bool doAtPosition = BitIsSet( command->getOptions(), NEED_TARGET_POS );
+	bool doAtObject = BitIsSet( command->getOptions(), COMMAND_OPTION_NEED_OBJECT_TARGET );
 
 	//Sanity checks
 	if( doAtObject && !objectToInteractWith )
@@ -4290,7 +4290,7 @@ Bool InGameUI::canSelectedObjectsDoSpecialPower( const CommandButton *command, c
 }
 
 //------------------------------------------------------------------------------
-Bool InGameUI::canSelectedObjectsOverrideSpecialPowerDestination( const Coord3D *loc, SelectionRules rule, SpecialPowerType spType ) const
+bool InGameUI::canSelectedObjectsOverrideSpecialPowerDestination( const Coord3D *loc, SelectionRules rule, SpecialPowerType spType ) const
 {
 	// set up counters for rule checking
 	Int count = 0;
@@ -4326,7 +4326,7 @@ Bool InGameUI::canSelectedObjectsOverrideSpecialPowerDestination( const Coord3D 
 
 
 //------------------------------------------------------------------------------
-Bool InGameUI::canSelectedObjectsEffectivelyUseWeapon( const CommandButton *command, const Object *objectToInteractWith, const Coord3D *position, SelectionRules rule ) const
+bool InGameUI::canSelectedObjectsEffectivelyUseWeapon( const CommandButton *command, const Object *objectToInteractWith, const Coord3D *position, SelectionRules rule ) const
 {
 	//Get the special power template.
 	WeaponSlotType slot = command->getWeaponSlot();
@@ -4335,8 +4335,8 @@ Bool InGameUI::canSelectedObjectsEffectivelyUseWeapon( const CommandButton *comm
 	//1) NO TARGET OR POS
 	//2) COMMAND_OPTION_NEED_OBJECT_TARGET
 	//3) NEED_TARGET_POS
-	Bool doAtPosition = BitIsSet( command->getOptions(), NEED_TARGET_POS );
-	Bool doAtObject = BitIsSet( command->getOptions(), COMMAND_OPTION_NEED_OBJECT_TARGET );
+	bool doAtPosition = BitIsSet( command->getOptions(), NEED_TARGET_POS );
+	bool doAtObject = BitIsSet( command->getOptions(), COMMAND_OPTION_NEED_OBJECT_TARGET );
 
 	//Sanity checks
 	if( doAtObject && !objectToInteractWith )
@@ -4423,7 +4423,7 @@ Int InGameUI::selectAcrossRegion( IRegion2D *region )
 
 	//std::set<AsciiString> drawableList;
 	std::set<const ThingTemplate*> drawableList;
-	Bool carBomb = FALSE;
+	bool carBomb = FALSE;
 	
 	for( DrawableListCIt it = selected->begin(); it != selected->end(); ++it )
 	{
@@ -4654,7 +4654,7 @@ Int InGameUI::selectMatchingUnits()
 		Drawable *draw;
 
 		//see if player has any units selected, if not, give message
-		Bool check = FALSE;
+		bool check = FALSE;
 		for( DrawableListCIt it1 = selected->begin(); it1 != selected->end(); ++it1 )
 		{
 			draw = *it1;
@@ -4778,8 +4778,8 @@ void InGameUI::addFloatingText(const UnicodeString& text,const Coord3D *pos, Col
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
-inline Bool isClose(Real a, Real b) { return fabs(a-b) <= 1.0f; }
-inline Bool isClose(const Coord3D& a, const Coord3D& b) 
+inline bool isClose(Real a, Real b) { return fabs(a-b) <= 1.0f; }
+inline bool isClose(const Coord3D& a, const Coord3D& b) 
 {
 		return	isClose(a.x, b.x) && 
 			isClose(a.y, b.y) && 
@@ -4934,7 +4934,7 @@ void InGameUI::clearFloatingText( void )
 //-------------------------------------------------------------------------------------------------
 /** If we want to use the default text color, then we call this function */
 //-------------------------------------------------------------------------------------------------
-void InGameUI::popupMessage( const AsciiString& message, Int x, Int y, Int width, Bool pause, Bool pauseMusic)
+void InGameUI::popupMessage( const AsciiString& message, Int x, Int y, Int width, bool pause, bool pauseMusic)
 {
 	popupMessage( message, x, y, width, m_popupMessageColor, pause, pauseMusic);
 }
@@ -4942,7 +4942,7 @@ void InGameUI::popupMessage( const AsciiString& message, Int x, Int y, Int width
 //-------------------------------------------------------------------------------------------------
 /** initialize, and popup a message box to the user */
 //-------------------------------------------------------------------------------------------------
-void InGameUI::popupMessage( const AsciiString& identifier, Int x, Int y, Int width, Color textColor, Bool pause, Bool pauseMusic)
+void InGameUI::popupMessage( const AsciiString& identifier, Int x, Int y, Int width, Color textColor, bool pause, bool pauseMusic)
 {
 	if(m_popupMessageData)
 		clearPopupMessageData();
@@ -5444,7 +5444,7 @@ void InGameUI::clearTooltipsDisabled()
 	m_tooltipsDisabledUntil = 0;
 }
 
-Bool InGameUI::areTooltipsDisabled() const
+bool InGameUI::areTooltipsDisabled() const
 {
 	return (TheGameLogic->getFrame() < m_tooltipsDisabledUntil);
 }

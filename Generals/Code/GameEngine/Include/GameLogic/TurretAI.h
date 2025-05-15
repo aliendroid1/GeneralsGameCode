@@ -270,7 +270,7 @@ public:
 	Real getTurretAngle() const { return m_angle; }
 	Real getTurretPitch() const { return m_pitch; }
 	Real getMinPitch() const { return m_data->m_minPitch; }
-	Bool isAllowsPitch() const { return m_data->m_isAllowsPitch; }
+	bool isAllowsPitch() const { return m_data->m_isAllowsPitch; }
 	Real getTurnRate() const { return m_data->m_turnRate; }
 	Real getNaturalTurretAngle() const { return m_data->m_naturalTurretAngle; }
 	Real getPitchRate() const { return m_data->m_pitchRate; }
@@ -287,47 +287,47 @@ public:
 	Object* getOwner() { return m_owner; }
 	const Object* getOwner() const { return m_owner; }
 
-	Bool isOwnersCurWeaponOnTurret() const;
-	Bool isWeaponSlotOnTurret(WeaponSlotType wslot) const;
-	Bool isAttackingObject() const { return m_target == TARGET_OBJECT; } 
-	Bool isForceAttacking() const { return m_isForceAttacking; }
+	bool isOwnersCurWeaponOnTurret() const;
+	bool isWeaponSlotOnTurret(WeaponSlotType wslot) const;
+	bool isAttackingObject() const { return m_target == TARGET_OBJECT; } 
+	bool isForceAttacking() const { return m_isForceAttacking; }
 
 	// this will cause the turret to continuously track the given victim.
 	// passing null will allow the turret to revert back to "normal" position.
-	void setTurretTargetObject(Object* o, Bool forceAttacking);
+	void setTurretTargetObject(Object* o, bool forceAttacking);
 	void setTurretTargetPosition(const Coord3D* pos);
 	void recenterTurret();
-	Bool isTurretInNaturalPosition() const;
+	bool isTurretInNaturalPosition() const;
 
-	void setTurretEnabled( Bool enabled );
-	Bool isTurretEnabled() const { return m_enabled; }
+	void setTurretEnabled( bool enabled );
+	bool isTurretEnabled() const { return m_enabled; }
 
 	/**
 		return true iff the turret is trying to aim at the victim, BUT not yet pointing in
 		the right dir.
 	*/
-	Bool isTryingToAimAtTarget(const Object* victim) const;
+	bool isTryingToAimAtTarget(const Object* victim) const;
 
 	UpdateSleepTime updateTurretAI();			///< implement this module's behavior
 
 	virtual void notifyFired();
 	virtual void notifyNewVictimChosen(Object* victim);
 	virtual const Coord3D* getOriginalVictimPos() const { return NULL; }	// yes, we return NULL here
-	virtual Bool isWeaponSlotOkToFire(WeaponSlotType wslot) const;
+	virtual bool isWeaponSlotOkToFire(WeaponSlotType wslot) const;
 
 	// these are only for use by the state machines... don't call them otherwise, please
-	Bool friend_turnTowardsAngle(Real desiredAngle, Real rateModifier, Real relThresh);
-	Bool friend_turnTowardsPitch(Real pitch, Real rateModifier);
-	Bool friend_getPositiveSweep() const { return m_positiveSweep; }
+	bool friend_turnTowardsAngle(Real desiredAngle, Real rateModifier, Real relThresh);
+	bool friend_turnTowardsPitch(Real pitch, Real rateModifier);
+	bool friend_getPositiveSweep() const { return m_positiveSweep; }
 	void friend_setPositiveSweep(Bool b) { m_positiveSweep = b; }
-	Bool friend_isSweepEnabled() const;
+	bool friend_isSweepEnabled() const;
 	WhichTurretType friend_getWhichTurret() const { return m_whichTurret; }
 #ifdef INTER_TURRET_DELAY
 	UnsignedInt friend_getInterTurretDelay();
 #endif
-	Bool friend_isAnyWeaponInRangeOf(const Object* o) const;
+	bool friend_isAnyWeaponInRangeOf(const Object* o) const;
 	TurretTargetType friend_getTurretTarget(Object*& obj, Coord3D& pos) const;
-	Bool friend_getTargetWasSetByIdleMood() const { return m_targetWasSetByIdleMood; }
+	bool friend_getTargetWasSetByIdleMood() const { return m_targetWasSetByIdleMood; }
 	const Team* friend_getVictimInitialTeam() const { return m_victimInitialTeam; }
 	void friend_checkForIdleMoodTarget();
 	UnsignedInt friend_getNextIdleMoodTargetFrame() const;
@@ -370,7 +370,7 @@ private:
 	Bool										m_enabled : 1;
 	Bool										m_firesWhileTurning : 1;
 	Bool										m_isForceAttacking : 1;
-	mutable Bool						m_targetWasSetByIdleMood : 1;
+	mutable bool						m_targetWasSetByIdleMood : 1;
 
 };
 

@@ -71,7 +71,7 @@
 // W3DFontLibrary::loadFontData ===============================================
 /** Load a font */
 //=============================================================================
-Bool W3DFontLibrary::loadFontData( GameFont *font )
+bool W3DFontLibrary::loadFontData( GameFont *font )
 {
 	FontCharsClass *fontChar;
 

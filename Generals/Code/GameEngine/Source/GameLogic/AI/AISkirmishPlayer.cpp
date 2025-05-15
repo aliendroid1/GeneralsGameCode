@@ -106,12 +106,12 @@ void AISkirmishPlayer::processBaseBuilding( void )
 	{
 		const ThingTemplate *bldgPlan=NULL;
 		BuildListInfo	*bldgInfo = NULL;
-		Bool isPriority = false;	
+		bool isPriority = false;	
 		Object *bldg = NULL;
 		const ThingTemplate *powerPlan=NULL;
 		BuildListInfo	*powerInfo = NULL;
-		Bool isUnderPowered = !m_player->getEnergy()->hasSufficientPower();
-		Bool powerUnderConstruction = false;
+		bool isUnderPowered = !m_player->getEnergy()->hasSufficientPower();
+		bool powerUnderConstruction = false;
 		for( BuildListInfo *info = m_player->getBuildList(); info; info = info->getNext() )
 		{
 			AsciiString name = info->getTemplateName();
@@ -320,7 +320,7 @@ void AISkirmishPlayer::onUnitProduced( Object *factory, Object *unit )
  * If busyOK is true, it will queue a unit even if one is building.  This lets 
  * script invoked teams "push" to the front of the queue.
  */
-Bool AISkirmishPlayer::startTraining( WorkOrder *order, Bool busyOK, AsciiString teamName)
+bool AISkirmishPlayer::startTraining( WorkOrder *order, bool busyOK, AsciiString teamName)
 {
 	Object *factory = findFactory(order->m_thing, busyOK);
 	if( factory )
@@ -347,7 +347,7 @@ Bool AISkirmishPlayer::startTraining( WorkOrder *order, Bool busyOK, AsciiString
 /**
  * Check if this team is buildable, doesn't exceed maximum limits, meets conditions, and isn't under construction.
  */
-Bool AISkirmishPlayer::isAGoodIdeaToBuildTeam( TeamPrototype *proto )
+bool AISkirmishPlayer::isAGoodIdeaToBuildTeam( TeamPrototype *proto )
 {
 	// Check condition.
 	if (!proto->evaluateProductionCondition()) {
@@ -370,7 +370,7 @@ Bool AISkirmishPlayer::isAGoodIdeaToBuildTeam( TeamPrototype *proto )
 			return false; // currently building one of these.
 		}
 	}
-	Bool needMoney;
+	bool needMoney;
 	if (!isPossibleToBuildTeam( proto, true, needMoney)) {
 		if (TheGlobalData->m_debugAI) {	
 			AsciiString str;
@@ -389,7 +389,7 @@ Bool AISkirmishPlayer::isAGoodIdeaToBuildTeam( TeamPrototype *proto )
 /**
  * See if any existing teams need reinforcements, and have higher priority.
  */
-Bool AISkirmishPlayer::selectTeamToReinforce( Int minPriority )
+bool AISkirmishPlayer::selectTeamToReinforce( Int minPriority )
 {
 	return AIPlayer::selectTeamToReinforce(minPriority);
 }
@@ -397,7 +397,7 @@ Bool AISkirmishPlayer::selectTeamToReinforce( Int minPriority )
 /**
  * Determine the next team to build.  Return true if one was selected.
  */
-Bool AISkirmishPlayer::selectTeamToBuild( void )
+bool AISkirmishPlayer::selectTeamToBuild( void )
 {
 	return AIPlayer::selectTeamToBuild();	
 }
@@ -408,8 +408,8 @@ Bool AISkirmishPlayer::selectTeamToBuild( void )
 void AISkirmishPlayer::buildSpecificAIBuilding(const AsciiString &thingName)
 {
 	//
-	Bool found = false;
-	Bool foundUnbuilt = false;
+	bool found = false;
+	bool foundUnbuilt = false;
 	for( BuildListInfo *info = m_player->getBuildList(); info; info = info->getNext() )
 	{
 		if (info->getTemplateName()==thingName) 
@@ -481,7 +481,7 @@ void AISkirmishPlayer::acquireEnemy(void)
 	Real bestDistanceSqr = HUGE_DIST*HUGE_DIST;
 
 	if (m_currentEnemy) {
-		Bool inBadShape = !m_currentEnemy->hasAnyUnits() || !m_currentEnemy->hasAnyBuildFacility();
+		bool inBadShape = !m_currentEnemy->hasAnyUnits() || !m_currentEnemy->hasAnyBuildFacility();
 		if (!inBadShape) return;
 	}
 
@@ -493,7 +493,7 @@ void AISkirmishPlayer::acquireEnemy(void)
 			if (curPlayer->hasAnyObjects()==false) continue; // not much of an enemy.
 			// ok, we got an enemy;
 			// If a player is out of units, or out of build facilities, we can lower his priority.
-			Bool inBadShape = !curPlayer->hasAnyUnits() || !curPlayer->hasAnyBuildFacility();
+			bool inBadShape = !curPlayer->hasAnyUnits() || !curPlayer->hasAnyBuildFacility();
 
 			Coord3D enemyPos = m_baseCenter;
 			Region2D bounds;
@@ -594,7 +594,7 @@ void AISkirmishPlayer::buildAIBaseDefense(Bool flank)
 	John A.
 
 	*/
-void AISkirmishPlayer::buildAIBaseDefenseStructure(const AsciiString &thingName, Bool flank)
+void AISkirmishPlayer::buildAIBaseDefenseStructure(const AsciiString &thingName, bool flank)
 {
 	const ThingTemplate *tTemplate = TheThingFactory->findTemplate(thingName);
 	if (tTemplate==NULL) {
@@ -683,7 +683,7 @@ void AISkirmishPlayer::buildAIBaseDefenseStructure(const AsciiString &thingName,
 		buildPos.y += offset.y*c + offset.x*s;
 
 		/* See if we can build there. */
-		Bool canBuild;
+		bool canBuild;
 		Real placeAngle = tTemplate->getPlacementViewAngle();
 		canBuild = LBC_OK == TheBuildAssistant->isLocationLegalToBuild(&buildPos, tTemplate, placeAngle, 
 			BuildAssistant::TERRAIN_RESTRICTIONS|BuildAssistant::NO_OBJECT_OVERLAP, NULL, m_player);
@@ -706,7 +706,7 @@ void AISkirmishPlayer::buildAIBaseDefenseStructure(const AsciiString &thingName,
 	Checks bridges along a waypoint path.  If any are destroyed, sends a dozer to fix, and returns true.
 	If there is no bridge problem, returns false.
 	*/
-Bool AISkirmishPlayer::checkBridges(Object *unit, Waypoint *way)
+bool AISkirmishPlayer::checkBridges(Object *unit, Waypoint *way)
 {
 	Coord3D unitPos = *unit->getPosition();
 	AIUpdateInterface *ai = unit->getAI();
@@ -731,7 +731,7 @@ Bool AISkirmishPlayer::checkBridges(Object *unit, Waypoint *way)
 /** 
 	Build a specific team.  If priorityBuild, put at front of queue with priority set.
 	*/
-void AISkirmishPlayer::buildSpecificAITeam( TeamPrototype *teamProto, Bool priorityBuild)
+void AISkirmishPlayer::buildSpecificAITeam( TeamPrototype *teamProto, bool priorityBuild)
 {
 	AIPlayer::buildSpecificAITeam(teamProto, priorityBuild);
 }
@@ -955,7 +955,7 @@ void AISkirmishPlayer::update( void )
  */
 void AISkirmishPlayer::adjustBuildList(BuildListInfo *list)
 {
-	Bool foundStart = false;
+	bool foundStart = false;
 	Coord3D startPos;
 	
 	// Find our command center location.
@@ -981,7 +981,7 @@ void AISkirmishPlayer::adjustBuildList(BuildListInfo *list)
 		return;
 	}
 	// Find the location of the command center in the build list.
-	Bool foundInBuildList = false;
+	bool foundInBuildList = false;
 	Coord3D buildPos;
 	BuildListInfo *cur = list;
 	while (cur) {

@@ -62,11 +62,11 @@ public:
 	Real m_initialVelocityPercent;
 	Real m_initialAccelPercent;
 	Real m_bounceVelocityPercent;
-	Bool m_killWhenToppled;
-	Bool m_killWhenStartToppled;
-	Bool m_killStumpWhenToppled;
-	Bool m_toppleLeftOrRightOnly;	// constrained to topple to my left or right only
-	Bool m_reorientToppledRubble;
+	bool m_killWhenToppled;
+	bool m_killWhenStartToppled;
+	bool m_killStumpWhenToppled;
+	bool m_toppleLeftOrRightOnly;	// constrained to topple to my left or right only
+	bool m_reorientToppledRubble;
 
 	ToppleUpdateModuleData();
 	static void buildFieldParse(MultiIniFieldParse& p);
@@ -92,7 +92,7 @@ public:
 	virtual CollideModuleInterface* getCollide() { return this; }
 
 	void applyTopplingForce( const Coord3D* toppleDirection, Real toppleSpeed, UnsignedInt options);
-	Bool isAbleToBeToppled() const;
+	bool isAbleToBeToppled() const;
 
 	// UpdateModuleInterface
 	virtual UpdateSleepTime update();	
@@ -100,11 +100,11 @@ public:
 	// CollideModuleInterface
 	virtual void onCollide( Object *other, const Coord3D *loc, const Coord3D *normal );
 	/// this is used for things like pilots, to determine if they can "enter" something
-	virtual Bool wouldLikeToCollideWith(const Object* other) const { return false; }
-	virtual Bool isHijackedVehicleCrateCollide() const { return false; }
-	virtual Bool isCarBombCrateCollide() const { return false; }
-	virtual Bool isRailroad() const { return false; }
-	virtual Bool isSalvageCrateCollide() const { return false; }
+	virtual bool wouldLikeToCollideWith(const Object* other) const { return false; }
+	virtual bool isHijackedVehicleCrateCollide() const { return false; }
+	virtual bool isCarBombCrateCollide() const { return false; }
+	virtual bool isRailroad() const { return false; }
+	virtual bool isSalvageCrateCollide() const { return false; }
 
 protected:
 

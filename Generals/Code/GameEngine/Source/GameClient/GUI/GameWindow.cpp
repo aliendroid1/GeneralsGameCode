@@ -334,7 +334,7 @@ Int GameWindow::winNextTab( void )
 {
 /*
 	GameWindow *newTab = this;
-	Bool firstTry = TRUE;
+	bool firstTry = TRUE;
 
 	// Un-hilite the current window
 	m_instData.m_state &= ~WIN_STATE_HILITED;
@@ -369,7 +369,7 @@ Int GameWindow::winPrevTab( void )
 {
 /*
 	GameWindow *newTab = this;
-	Bool firstTry = TRUE;
+	bool firstTry = TRUE;
 
 	// Un-hilite the current window
 	m_instData.m_state &= ~WIN_STATE_HILITED;
@@ -581,7 +581,7 @@ Int GameWindow::winGetRegion( IRegion2D *region )
 /** Check to see if the given point is inside the window.  Will
 	* still return true if the point is actually in a child. */
 //=============================================================================
-Bool GameWindow::winPointInWindow( Int x, Int y )
+bool GameWindow::winPointInWindow( Int x, Int y )
 {
 	Int winX, winY, width, height;
 
@@ -637,7 +637,7 @@ Int GameWindow::winGetSize( Int *width, Int *height )
 /** Enable or disable a window based on the enable parameter.
 	* A disabled window can be seen but accepts no input. */
 //=============================================================================
-Int GameWindow::winEnable( Bool enable )
+Int GameWindow::winEnable( bool enable )
 {
 	GameWindow *child;
 
@@ -662,7 +662,7 @@ Int GameWindow::winEnable( Bool enable )
 /** Hide or show a window based on the hide parameter.
 	* A hidden window can't be seen and accepts no input. */
 //=============================================================================
-Int GameWindow::winHide( Bool hide )
+Int GameWindow::winHide( bool hide )
 {
 
 	if( hide )
@@ -696,7 +696,7 @@ Int GameWindow::winHide( Bool hide )
 // GameWindow::winIsHidden ====================================================
 /** Am I hidden? */
 //=============================================================================
-Bool GameWindow::winIsHidden( void )
+bool GameWindow::winIsHidden( void )
 {
 
 	return BitIsSet( m_status, WIN_STATUS_HIDDEN );
@@ -755,7 +755,7 @@ UnsignedInt GameWindow::winGetStyle( void )
 // GameWindow::winSetHiliteState ==============================================
 /** Set whether window is highlighted or not */
 //=============================================================================
-void GameWindow::winSetHiliteState( Bool state )
+void GameWindow::winSetHiliteState( bool state )
 {
 
 	if( state )
@@ -1148,7 +1148,7 @@ GameWindow *GameWindow::winGetParent( void )
 // GameWindow::winIsChild =====================================================
 /** Determins if a window is a child/grand-child of a parent */
 //=============================================================================
-Bool GameWindow::winIsChild( GameWindow *child )
+bool GameWindow::winIsChild( GameWindow *child )
 {
 
 	while( child )
@@ -1379,7 +1379,7 @@ Int GameWindow::winDrawWindow( void )
 	* window which contains the mouse pointer.  Child windows are
 	* relative to their parents */
 //=============================================================================
-GameWindow *GameWindow::winPointInChild( Int x, Int y, Bool ignoreEnableCheck, Bool playDisabledSound )
+GameWindow *GameWindow::winPointInChild( Int x, Int y, bool ignoreEnableCheck, bool playDisabledSound )
 {
 	GameWindow *parent;
 	GameWindow *child;
@@ -1403,8 +1403,8 @@ GameWindow *GameWindow::winPointInChild( Int x, Int y, Bool ignoreEnableCheck, B
 		if( x >= origin.x && x <= origin.x + child->m_size.x &&
 				y >= origin.y && y <= origin.y + child->m_size.y )
 		{
-			Bool enabled = ignoreEnableCheck || BitIsSet( child->m_status, WIN_STATUS_ENABLED );
-			Bool hidden = BitIsSet( child->m_status, WIN_STATUS_HIDDEN );
+			bool enabled = ignoreEnableCheck || BitIsSet( child->m_status, WIN_STATUS_ENABLED );
+			bool hidden = BitIsSet( child->m_status, WIN_STATUS_HIDDEN );
 			if( !hidden )
 			{
 				if( enabled )
@@ -1433,7 +1433,7 @@ GameWindow *GameWindow::winPointInChild( Int x, Int y, Bool ignoreEnableCheck, B
 /** Find the child in which the cursor resides; regardless of
 	* whether or not the window is actually enabled */
 //=============================================================================
-GameWindow *GameWindow::winPointInAnyChild( Int x, Int y, Bool ignoreHidden, Bool ignoreEnableCheck )
+GameWindow *GameWindow::winPointInAnyChild( Int x, Int y, bool ignoreHidden, bool ignoreEnableCheck )
 {
 	GameWindow *parent;
 	GameWindow *child;

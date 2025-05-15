@@ -69,7 +69,7 @@
 
 
 static ShaderClass detailOpaqueShader(SC_ALPHA);
-Bool W3DStatusCircle::m_needUpdate;
+bool W3DStatusCircle::m_needUpdate;
 Int W3DStatusCircle::m_diffuse=255; // blue.
 
 W3DStatusCircle::~W3DStatusCircle(void)
@@ -312,7 +312,7 @@ void W3DStatusCircle::Render(RenderInfoClass & rinfo)
 	if (m_indexBuffer == NULL) {
 		return;
 	}
-	Bool setIndex = false;
+	bool setIndex = false;
 	Matrix3D tm(true);
 	if( TheGlobalData->m_showTeamDot )
 	{

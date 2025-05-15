@@ -53,7 +53,7 @@ UnitCrateCollide::~UnitCrateCollide( void )
 }  
 
 //-------------------------------------------------------------------------------------------------
-Bool UnitCrateCollide::executeCrateBehavior( Object *other )
+bool UnitCrateCollide::executeCrateBehavior( Object *other )
 {
 	UnsignedInt unitCount = getUnitCrateCollideModuleData()->m_unitCount;
 	ThingTemplate const *unitType = TheThingFactory->findTemplate( getUnitCrateCollideModuleData()->m_unitType );

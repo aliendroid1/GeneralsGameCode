@@ -1070,7 +1070,7 @@ GlobalData::~GlobalData( void )
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-Bool GlobalData::setTimeOfDay( TimeOfDay tod )
+bool GlobalData::setTimeOfDay( TimeOfDay tod )
 {
 	if( tod >= TIME_OF_DAY_COUNT || tod < TIME_OF_DAY_FIRST )
 	{

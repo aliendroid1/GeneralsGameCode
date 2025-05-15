@@ -69,7 +69,7 @@ public:
 protected:
 
 	virtual void upgradeImplementation( ); ///< Here's the actual work of Upgrading
-	virtual Bool isSubObjectsUpgrade() { return false; }
+	virtual bool isSubObjectsUpgrade() { return false; }
 
 };
 

@@ -203,7 +203,7 @@ void MissileLauncherBuildingUpdate::switchToState(DoorStateType dst)
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool MissileLauncherBuildingUpdate::initiateIntentToDoSpecialPower( const SpecialPowerTemplate *specialPowerTemplate, const Object *targetObj, const Coord3D *targetPos, const Waypoint *way, UnsignedInt commandOptions )
+bool MissileLauncherBuildingUpdate::initiateIntentToDoSpecialPower( const SpecialPowerTemplate *specialPowerTemplate, const Object *targetObj, const Coord3D *targetPos, const Waypoint *way, UnsignedInt commandOptions )
 {
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	DEBUG_ASSERTCRASH(!TheGlobalData->m_specialPowerUsesDelay || m_doorState == DOOR_OPEN, ("door is not fully open when specialpower is fired!"));
@@ -214,7 +214,7 @@ Bool MissileLauncherBuildingUpdate::initiateIntentToDoSpecialPower( const Specia
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool MissileLauncherBuildingUpdate::isPowerCurrentlyInUse( const CommandButton *command ) const
+bool MissileLauncherBuildingUpdate::isPowerCurrentlyInUse( const CommandButton *command ) const
 {
 	//@todo -- Implement me in such a way that it still works with Ctrl+s cheat key...
 	//In fact, this code doesn't really care because in legit mode, the game will 

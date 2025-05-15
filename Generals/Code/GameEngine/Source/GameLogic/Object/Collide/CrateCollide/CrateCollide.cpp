@@ -139,7 +139,7 @@ void CrateCollide::onCollide( Object *other, const Coord3D *, const Coord3D * )
 } 
 
 //-------------------------------------------------------------------------------------------------
-Bool CrateCollide::isValidToExecute( const Object *other ) const
+bool CrateCollide::isValidToExecute( const Object *other ) const
 {
 	//The ground never picks up a crate
 	if( other == NULL )
@@ -150,7 +150,7 @@ Bool CrateCollide::isValidToExecute( const Object *other ) const
 		return FALSE;
 
 	const CrateCollideModuleData* md = getCrateCollideModuleData();
-	Bool validBuildingAttempt = md->m_isBuildingPickup && other->isKindOf( KINDOF_STRUCTURE );
+	bool validBuildingAttempt = md->m_isBuildingPickup && other->isKindOf( KINDOF_STRUCTURE );
 
 	// Must be a "Unit" type thing.  Real Game Object, not just Object
 	if( other->getAIUpdateInterface() == NULL  &&  !validBuildingAttempt )// Building exception flag for Drop Zone

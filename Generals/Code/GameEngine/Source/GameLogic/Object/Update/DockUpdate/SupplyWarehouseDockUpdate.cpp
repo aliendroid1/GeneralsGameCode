@@ -90,7 +90,7 @@ void SupplyWarehouseDockUpdate::onObjectCreated()
 	}
 }
 
-Bool SupplyWarehouseDockUpdate::action( Object* docker, Object *drone )
+bool SupplyWarehouseDockUpdate::action( Object* docker, Object *drone )
 {
 	if( m_boxesStored == 0 )
 		return FALSE;
@@ -139,7 +139,7 @@ Bool SupplyWarehouseDockUpdate::action( Object* docker, Object *drone )
 	return FALSE;
 }
 
-void SupplyWarehouseDockUpdate::setDockCrippled( Bool setting )
+void SupplyWarehouseDockUpdate::setDockCrippled( bool setting )
 {
 	// At this level, Crippling means I kill any activeDocker between enter and exit.
 	if( setting )

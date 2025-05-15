@@ -96,7 +96,7 @@ void W3DTerrainLogic::reset( void )
 //-------------------------------------------------------------------------------------------------
 /** newMap */
 //-------------------------------------------------------------------------------------------------
-void W3DTerrainLogic::newMap( Bool saveGame )
+void W3DTerrainLogic::newMap( bool saveGame )
 {
 
 	TheTerrainRenderObject->loadRoadsAndBridges( this, saveGame );
@@ -115,7 +115,7 @@ void W3DTerrainLogic::update( void )
 /** Device DEPENDENT implementation for load details of logical terrain.
 Note - if query is true, we are  */
 //-------------------------------------------------------------------------------------------------
-Bool W3DTerrainLogic::loadMap( AsciiString filename , Bool query )
+bool W3DTerrainLogic::loadMap( AsciiString filename , bool query )
 {
 	if(!TheMapCache)
 		return FALSE;
@@ -262,7 +262,7 @@ void W3DTerrainLogic::getExtentIncludingBorder( Region3D *extent ) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool W3DTerrainLogic::isClearLineOfSight(const Coord3D& pos, const Coord3D& posOther) const
+bool W3DTerrainLogic::isClearLineOfSight(const Coord3D& pos, const Coord3D& posOther) const
 {
 	if (TheTerrainRenderObject) 
 	{
@@ -302,7 +302,7 @@ Real W3DTerrainLogic::getGroundHeight( Real x, Real y, Coord3D* normal ) const
 //-------------------------------------------------------------------------------------------------
 /** Get the height considering the layer. */
 //-------------------------------------------------------------------------------------------------
-Real W3DTerrainLogic::getLayerHeight( Real x, Real y, PathfindLayerEnum layer, Coord3D* normal, Bool clip ) const
+Real W3DTerrainLogic::getLayerHeight( Real x, Real y, PathfindLayerEnum layer, Coord3D* normal, bool clip ) const
 {
 #ifdef USE_THE_TERRAIN_OBJECT
 
@@ -356,7 +356,7 @@ Real W3DTerrainLogic::getLayerHeight( Real x, Real y, PathfindLayerEnum layer, C
 //-------------------------------------------------------------------------------------------------
 /** W3D isCliffCell for terrain logic */
 //-------------------------------------------------------------------------------------------------
-Bool W3DTerrainLogic::isCliffCell( Real x, Real y) const
+bool W3DTerrainLogic::isCliffCell( Real x, Real y) const
 {
 
 	return TheTerrainRenderObject->isCliffCell(x,y);

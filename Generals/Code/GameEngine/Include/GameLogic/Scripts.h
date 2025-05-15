@@ -146,9 +146,9 @@ public:
 	void setNextGroup(ScriptGroup *pGr) {m_nextGroup = pGr;}
 
 	AsciiString getName(void) const { return m_groupName;}
-	Bool isActive(void) const { return m_isGroupActive;}
-	Bool isSubroutine(void) const { return m_isGroupSubroutine;}
-	Bool hasWarnings(void) const { return m_hasWarnings;}
+	bool isActive(void) const { return m_isGroupActive;}
+	bool isSubroutine(void) const { return m_isGroupSubroutine;}
+	bool hasWarnings(void) const { return m_hasWarnings;}
 	ScriptGroup *getNext(void) const {return m_nextGroup;};
 	Script *getScript(void) {return m_firstScript;};
 
@@ -156,7 +156,7 @@ public:
 	void deleteScript(Script *pScr);
 
 	static void WriteGroupDataChunk(DataChunkOutput &chunkWriter, ScriptGroup *pGroup);
-	static Bool ParseGroupDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
+	static bool ParseGroupDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
 };
 
 //-------------------------------------------------------------------------------------------------
@@ -188,7 +188,7 @@ public:
 	Condition *removeCondition(Condition *pCond);
 	void deleteCondition(Condition *pCond);
 	static void WriteOrConditionDataChunk(DataChunkOutput &chunkWriter, OrCondition *pCondition);
-	static Bool ParseOrConditionDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
+	static bool ParseOrConditionDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
 	
 	// Utility for moving scripts upwards
 	Condition *findPreviousCondition( Condition *curCond );
@@ -577,14 +577,14 @@ public:
 
 		return NULL;
 	}
-	Bool hasWarnings(void) const { return m_hasWarnings;}
+	bool hasWarnings(void) const { return m_hasWarnings;}
 	Int getNumParameters(void) {return m_numParms;}
 	Int getUiStrings(AsciiString strings[MAX_PARMS]);
 
 	static void WriteActionDataChunk(DataChunkOutput &chunkWriter, ScriptAction *pAct);
-	static Bool ParseActionDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
+	static bool ParseActionDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
 	static void WriteActionFalseDataChunk(DataChunkOutput &chunkWriter, ScriptAction *pAct);
-	static Bool ParseActionFalseDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
+	static bool ParseActionFalseDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
 
 };
 
@@ -668,13 +668,13 @@ public:
 	AsciiString getComment(void) const {return m_comment;}
 	AsciiString getActionComment(void) const {return m_actionComment;}
 	AsciiString getConditionComment(void) const {return m_conditionComment;}
-	Bool hasWarnings(void) const { return m_hasWarnings;}
-	Bool isActive(void) const { return m_isActive;}
-	Bool isOneShot(void) const { return m_isOneShot;}
-	Bool isEasy(void) const { return m_easy;}
-	Bool isNormal(void) const { return m_normal;}
-	Bool isHard(void) const { return m_hard;}
-	Bool isSubroutine(void) const { return m_isSubroutine;}
+	bool hasWarnings(void) const { return m_hasWarnings;}
+	bool isActive(void) const { return m_isActive;}
+	bool isOneShot(void) const { return m_isOneShot;}
+	bool isEasy(void) const { return m_easy;}
+	bool isNormal(void) const { return m_normal;}
+	bool isHard(void) const { return m_hard;}
+	bool isSubroutine(void) const { return m_isSubroutine;}
 	Script *getNext(void) const {return m_nextScript;}
 	OrCondition *getOrCondition(void) const {return m_condition;}
 	ScriptAction *getAction(void) const	{return m_action;}
@@ -687,8 +687,8 @@ public:
 
 	static void WriteScriptDataChunk(DataChunkOutput &chunkWriter, Script *pScript);
 	static Script *ParseScript(DataChunkInput &file, unsigned short version);
-	static Bool ParseScriptFromListDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
-	static Bool ParseScriptFromGroupDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
+	static bool ParseScriptFromListDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
+	static bool ParseScriptFromGroupDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
 
 	// Support routines for moving conditions around
 	OrCondition *findPreviousOrCondition( OrCondition *curOr );
@@ -1003,12 +1003,12 @@ public:
 
 	Int getNumParameters(void) {return m_numParms;}
 	Int getUiStrings(AsciiString strings[MAX_PARMS]);
-	Bool hasWarnings(void) const { return m_hasWarnings;}
+	bool hasWarnings(void) const { return m_hasWarnings;}
 	Int getCustomData(void) const {return m_customData;}
 	void setCustomData(Int val) { m_customData = val;}
 
 	static void WriteConditionDataChunk(DataChunkOutput &chunkWriter, Condition *pCond);
-	static Bool ParseConditionDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
+	static bool ParseConditionDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
 
 };
 
@@ -1087,7 +1087,7 @@ public:
 	ScriptGroup *getScriptGroup(void) {return m_firstGroup;};
 	Script *getScript(void) {return m_firstScript;};
 	void WriteScriptListDataChunk(DataChunkOutput &chunkWriter);
-	static Bool ParseScriptListDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
+	static bool ParseScriptListDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
 	
 	void addGroup(ScriptGroup *pGrp, Int ndx);
 	void addScript(Script *pScr, Int ndx);
@@ -1100,7 +1100,7 @@ public:
 	ScriptList *duplicateAndQualify(const AsciiString& qualifier, 
 			const AsciiString& playerTemplateName, const AsciiString& newPlayerName ) const;		
 	/// Reads a set of scripts into m_readScripts.  Use getReadScripts to access.
-	static Bool ParseScriptsDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
+	static bool ParseScriptsDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
 	/// Writes sides (including build list info.)
 	static void WriteScriptsDataChunk(DataChunkOutput &chunkWriter, ScriptList *scriptLists[], Int numLists);
 

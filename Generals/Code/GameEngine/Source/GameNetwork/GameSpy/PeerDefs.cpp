@@ -117,7 +117,7 @@ void GameSpyInfo::reset( void )
 	m_additionalDisconnects = -1;
 }
 
-Bool GameSpyInfo::didPlayerPreorder( Int profileID ) const
+bool GameSpyInfo::didPlayerPreorder( Int profileID ) const
 {
 	std::set<Int>::const_iterator it = m_preorderPlayers.find(profileID);
 	return (it != m_preorderPlayers.end());
@@ -156,7 +156,7 @@ GameSpyInfoInterface* GameSpyInfoInterface::createNewGameSpyInfoInterface( void 
 	return NEW GameSpyInfo;
 }
 
-Bool GameSpyInfo::amIHost( void )
+bool GameSpyInfo::amIHost( void )
 {
 	return m_isHosting;
 }
@@ -293,7 +293,7 @@ void GameSpyInfo::setGameOptions( void )
 	TheGameSpyPeerMessageQueue->addRequest(req);
 }
 
-Bool GameSpyInfo::isBuddy( Int id )
+bool GameSpyInfo::isBuddy( Int id )
 {
 	return m_buddyMap.find(id) != m_buddyMap.end();
 }
@@ -319,7 +319,7 @@ void GameSpyInfo::addGroupRoom( GameSpyGroupRoom room )
 				AsciiString groupLabel;
 				groupLabel.format("GUI:%s", room.m_name.str());
 
-				Bool exists = FALSE;
+				bool exists = FALSE;
 				UnicodeString groupName = TheGameText->fetch(groupLabel, &exists);
 				if (exists)
 				{
@@ -502,9 +502,9 @@ void GameSpyInfo::removeStagingRoom( GameSpyStagingRoom room )
 	}
 }
 
-Bool GameSpyInfo::hasStagingRoomListChanged( void )
+bool GameSpyInfo::hasStagingRoomListChanged( void )
 {
-	Bool val = m_stagingRoomsDirty;
+	bool val = m_stagingRoomsDirty;
 	m_stagingRoomsDirty = false;
 	return val;
 }
@@ -566,7 +566,7 @@ void GameSpyInfo::markAsStagingRoomJoiner( Int game )
 		info->cleanUpSlotPointers();
 		AsciiString options = GameInfoToAsciiString(info);
 #ifdef DEBUG_CRASHING
-		Bool res =
+		bool res =
 #endif
 		ParseAsciiStringToGameInfo(&m_localStagingRoom, options);
 		DEBUG_ASSERTCRASH(res, ("Could not parse game info \"%s\"", options.str()));
@@ -743,7 +743,7 @@ void GameSpyInfo::removeFromIgnoreList( AsciiString nick )
 	m_ignoreList.erase(nick);
 }
 
-Bool GameSpyInfo::isIgnored( AsciiString nick )
+bool GameSpyInfo::isIgnored( AsciiString nick )
 {
 	return m_ignoreList.find(nick) != m_ignoreList.end();
 }
@@ -769,7 +769,7 @@ void GameSpyInfo::removeFromSavedIgnoreList( Int profileID )
 	pref.write();
 }
 
-Bool GameSpyInfo::isSavedIgnored( Int profileID )
+bool GameSpyInfo::isSavedIgnored( Int profileID )
 {
 	return m_savedIgnoreMap.find(profileID) != m_savedIgnoreMap.end();
 }
@@ -817,7 +817,7 @@ Int GameSpyInfo::getPingValue( const AsciiString& otherPing )
 	return best * TheGameSpyConfig->getPingTimeoutInMs() / (255+255);
 }
 
-Bool PlayerInfo::isIgnored( void )
+bool PlayerInfo::isIgnored( void )
 {
 	return (m_profileID)?TheGameSpyInfo->isSavedIgnored(m_profileID):TheGameSpyInfo->isIgnored(m_name);
 }
@@ -829,21 +829,21 @@ void GameSpyInfo::loadSavedIgnoreList( void )
 	m_savedIgnoreMap = prefs.getIgnores();	
 }
 
-void GameSpyInfo::setDisallowAsianText( Bool val )
+void GameSpyInfo::setDisallowAsianText( bool val )
 {
 	m_disallowAsainText = val;
 }
 
-void GameSpyInfo::setDisallowNonAsianText( Bool val )
+void GameSpyInfo::setDisallowNonAsianText( bool val )
 {
 	m_disallowNonAsianText = val;
 }
 
-Bool GameSpyInfo::getDisallowAsianText( void )
+bool GameSpyInfo::getDisallowAsianText( void )
 {
 	return m_disallowAsainText;
 }
-Bool GameSpyInfo::getDisallowNonAsianText(void )
+bool GameSpyInfo::getDisallowNonAsianText(void )
 {
 	return m_disallowNonAsianText;
 }
@@ -886,7 +886,7 @@ void GameSpyInfo::updateAdditionalGameSpyDisconnections(Int count)
 			}
 		}
 
-		Bool anyAI = FALSE;
+		bool anyAI = FALSE;
 		for (Int i=0; i<MAX_SLOTS; ++i)
 		{
 			const GameSlot *slot = TheGameInfo->getConstSlot(i);

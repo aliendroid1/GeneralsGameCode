@@ -393,7 +393,7 @@ StaticGameLODLevel GameLODManager::findStaticLODLevel(void)
 }
 
 /**Set all game systems to match the desired LOD level.*/
-Bool GameLODManager::setStaticLODLevel(StaticGameLODLevel level)
+bool GameLODManager::setStaticLODLevel(StaticGameLODLevel level)
 {
 	if (!TheGlobalData->m_enableStaticLOD)
 	{	m_currentStaticLOD = STATIC_GAME_LOD_CUSTOM; 
@@ -429,7 +429,7 @@ void GameLODManager::applyStaticLODLevel(StaticGameLODLevel level)
 	StaticGameLODInfo *prevLodInfo=&prevLodBackup;
 
 	Int requestedTextureReduction = 0;
-	Bool requestedTrees = m_memPassed;	//only use trees if memory requirement passed.
+	bool requestedTrees = m_memPassed;	//only use trees if memory requirement passed.
 	if (level == STATIC_GAME_LOD_CUSTOM)
 	{	requestedTextureReduction = lodInfo->m_textureReduction;
 		requestedTrees = lodInfo->m_useTrees;
@@ -562,7 +562,7 @@ DynamicGameLODLevel GameLODManager::findDynamicLODLevel(Real averageFPS)
 }
 
 /**Set all game systems to match the desired LOD level.*/
-Bool GameLODManager::setDynamicLODLevel(DynamicGameLODLevel level)
+bool GameLODManager::setDynamicLODLevel(DynamicGameLODLevel level)
 {
 	if (level == DYNAMIC_GAME_LOD_UNKNOWN || m_currentDynamicLOD == level)
 		return FALSE;
@@ -605,7 +605,7 @@ Int GameLODManager::getLevelTextureReduction(StaticGameLODLevel level)
 	return 0;
 }
 
-Bool GameLODManager::didMemPass( void )
+bool GameLODManager::didMemPass( void )
 { 
 	return TRUE;	
 }

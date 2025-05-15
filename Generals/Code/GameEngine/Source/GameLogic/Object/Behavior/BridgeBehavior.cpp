@@ -658,7 +658,7 @@ void BridgeBehavior::onBodyDamageStateChange( const DamageInfo* damageInfo,
 	// given the old state and the new state, did we get worse (damaged) or did
 	// we get better (repaired)?
 	//
-	Bool gotRepaired = IS_CONDITION_WORSE( oldState, newState );
+	bool gotRepaired = IS_CONDITION_WORSE( oldState, newState );
 
 	// get the effect data
 	AsciiString soundString;
@@ -1335,7 +1335,7 @@ void BridgeBehavior::removeScaffolding( void )
 // ------------------------------------------------------------------------------------------------
 /** Is any of the scaffolding in motion */
 // ------------------------------------------------------------------------------------------------
-Bool BridgeBehavior::isScaffoldInMotion( void )
+bool BridgeBehavior::isScaffoldInMotion( void )
 {
 	Object *obj;
 

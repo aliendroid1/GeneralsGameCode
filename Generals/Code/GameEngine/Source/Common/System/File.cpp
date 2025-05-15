@@ -135,7 +135,7 @@ File::~File()
 	*/
 //=================================================================
 
-Bool File::open( const Char *filename, Int access )
+bool File::open( const Char *filename, Int access )
 {
 	if( m_open )
 	{

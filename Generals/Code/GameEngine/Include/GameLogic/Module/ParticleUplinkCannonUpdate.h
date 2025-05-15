@@ -156,13 +156,13 @@ public:
 	// virtual destructor prototype provided by memory pool declaration
 
 	// SpecialPowerUpdateInterface
-	virtual Bool initiateIntentToDoSpecialPower(const SpecialPowerTemplate *specialPowerTemplate, const Object *targetObj, const Coord3D *targetPos, const Waypoint *way, UnsignedInt commandOptions );
-	virtual Bool isSpecialAbility() const { return false; }
-	virtual Bool isSpecialPower() const { return true; }
-	virtual Bool isActive() const {return m_status != STATUS_IDLE;}
+	virtual bool initiateIntentToDoSpecialPower(const SpecialPowerTemplate *specialPowerTemplate, const Object *targetObj, const Coord3D *targetPos, const Waypoint *way, UnsignedInt commandOptions );
+	virtual bool isSpecialAbility() const { return false; }
+	virtual bool isSpecialPower() const { return true; }
+	virtual bool isActive() const {return m_status != STATUS_IDLE;}
 	virtual SpecialPowerUpdateInterface* getSpecialPowerUpdateInterface() { return this; }
 	virtual CommandOption getCommandOption() const { return (CommandOption)0; }
-	virtual Bool isPowerCurrentlyInUse( const CommandButton *command = NULL ) const;
+	virtual bool isPowerCurrentlyInUse( const CommandButton *command = NULL ) const;
 
 	virtual void onObjectCreated();
 	virtual UpdateSleepTime update();
@@ -177,11 +177,11 @@ public:
 	void createOrbitToTargetLaser( UnsignedInt growthFrames );
 	void createGroundHitParticleSystem( IntensityTypes intensity );
 
-	Bool calculateDefaultInformation();
-	Bool calculateUpBonePositions();
+	bool calculateDefaultInformation();
+	bool calculateUpBonePositions();
 
-	virtual Bool doesSpecialPowerHaveOverridableDestinationActive() const; //Is it active now?
-	virtual Bool doesSpecialPowerHaveOverridableDestination() const { return true; }	//Does it have it, even if it's not active?
+	virtual bool doesSpecialPowerHaveOverridableDestinationActive() const; //Is it active now?
+	virtual bool doesSpecialPowerHaveOverridableDestination() const { return true; }	//Does it have it, even if it's not active?
 	virtual void setSpecialPowerOverridableDestination( const Coord3D *loc );
 
 	// Disabled conditions to process (termination conditions!)
@@ -190,7 +190,7 @@ public:
 protected:
 
 	void setLogicalStatus( PUCStatus status );
-	void setClientStatus( PUCStatus status, Bool revealThisFrame );
+	void setClientStatus( PUCStatus status, bool revealThisFrame );
 	void killEverything();
 
 	SpecialPowerModuleInterface* m_specialPowerModule;

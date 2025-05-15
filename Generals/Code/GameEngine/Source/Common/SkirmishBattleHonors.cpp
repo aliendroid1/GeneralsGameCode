@@ -141,7 +141,7 @@ void SkirmishBattleHonors::setBuiltSCUD(void)
 	setBool("SCUD", TRUE);
 }
 
-Bool SkirmishBattleHonors::builtSCUD(void) const
+bool SkirmishBattleHonors::builtSCUD(void) const
 {
 	return getBool("SCUD", FALSE);
 }
@@ -151,7 +151,7 @@ void SkirmishBattleHonors::setBuiltParticleCannon(void)
 	setBool("PPC", TRUE);
 }
 
-Bool SkirmishBattleHonors::builtParticleCannon(void) const
+bool SkirmishBattleHonors::builtParticleCannon(void) const
 {
 	return getBool("PPC", FALSE);
 }
@@ -161,7 +161,7 @@ void SkirmishBattleHonors::setBuiltNuke(void)
 	setBool("Nuke", TRUE);
 }
 
-Bool SkirmishBattleHonors::builtNuke(void) const
+bool SkirmishBattleHonors::builtNuke(void) const
 {
 	return getBool("Nuke", FALSE);
 }

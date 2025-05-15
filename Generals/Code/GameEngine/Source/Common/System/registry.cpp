@@ -36,7 +36,7 @@
 //#pragma MESSAGE("************************************** WARNING, optimization disabled for debugging purposes")
 #endif
 
-Bool  getStringFromRegistry(HKEY root, AsciiString path, AsciiString key, AsciiString& val)
+bool  getStringFromRegistry(HKEY root, AsciiString path, AsciiString key, AsciiString& val)
 {
 	HKEY handle;
 	unsigned char buffer[256];
@@ -59,7 +59,7 @@ Bool  getStringFromRegistry(HKEY root, AsciiString path, AsciiString key, AsciiS
 	return FALSE;
 }
 
-Bool getUnsignedIntFromRegistry(HKEY root, AsciiString path, AsciiString key, UnsignedInt& val)
+bool getUnsignedIntFromRegistry(HKEY root, AsciiString path, AsciiString key, UnsignedInt& val)
 {
 	HKEY handle;
 	unsigned char buffer[4];
@@ -82,7 +82,7 @@ Bool getUnsignedIntFromRegistry(HKEY root, AsciiString path, AsciiString key, Un
 	return FALSE;
 }
 
-Bool setStringInRegistry( HKEY root, AsciiString path, AsciiString key, AsciiString val)
+bool setStringInRegistry( HKEY root, AsciiString path, AsciiString key, AsciiString val)
 {
 	HKEY handle;
 	unsigned long type;
@@ -101,7 +101,7 @@ Bool setStringInRegistry( HKEY root, AsciiString path, AsciiString key, AsciiStr
 	return (returnValue == ERROR_SUCCESS);
 }
 
-Bool setUnsignedIntInRegistry( HKEY root, AsciiString path, AsciiString key, UnsignedInt val)
+bool setUnsignedIntInRegistry( HKEY root, AsciiString path, AsciiString key, UnsignedInt val)
 {
 	HKEY handle;
 	unsigned long type;
@@ -120,7 +120,7 @@ Bool setUnsignedIntInRegistry( HKEY root, AsciiString path, AsciiString key, Uns
 	return (returnValue == ERROR_SUCCESS);
 }
 
-Bool GetStringFromRegistry(AsciiString path, AsciiString key, AsciiString& val)
+bool GetStringFromRegistry(AsciiString path, AsciiString key, AsciiString& val)
 {
 	AsciiString fullPath = "SOFTWARE\\Electronic Arts\\EA Games\\Generals";
 
@@ -134,7 +134,7 @@ Bool GetStringFromRegistry(AsciiString path, AsciiString key, AsciiString& val)
 	return getStringFromRegistry(HKEY_CURRENT_USER, fullPath.str(), key.str(), val);
 }
 
-Bool GetUnsignedIntFromRegistry(AsciiString path, AsciiString key, UnsignedInt& val)
+bool GetUnsignedIntFromRegistry(AsciiString path, AsciiString key, UnsignedInt& val)
 {
 	AsciiString fullPath = "SOFTWARE\\Electronic Arts\\EA Games\\Generals";
 
@@ -150,7 +150,7 @@ Bool GetUnsignedIntFromRegistry(AsciiString path, AsciiString key, UnsignedInt& 
 
 AsciiString GetRegistryLanguage(void)
 {
-	static Bool cached = FALSE;
+	static bool cached = FALSE;
 	static AsciiString val = "english";
 	if (cached) {
 		return val;

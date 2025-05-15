@@ -181,7 +181,7 @@ void W3DBufferManager::ReleaseResources(void)
 	}
 }
 
-Bool W3DBufferManager::ReAcquireResources(void)
+bool W3DBufferManager::ReAcquireResources(void)
 {
 	for (Int i=0; i<MAX_FVF; i++)
 	{

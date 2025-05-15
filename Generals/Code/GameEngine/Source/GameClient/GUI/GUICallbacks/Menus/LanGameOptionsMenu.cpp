@@ -64,8 +64,8 @@
 #endif
 
 extern char *LANnextScreen;
-extern Bool LANisShuttingDown;
-extern Bool LANbuttonPushed;
+extern bool LANisShuttingDown;
+extern bool LANbuttonPushed;
 extern void MapSelectorTooltip(GameWindow *window, WinInstanceData *instData,	UnsignedInt mouse);
 extern void gameAcceptTooltip(GameWindow *window, WinInstanceData *instData, UnsignedInt mouse);
 Color white = GameMakeColor( 255, 255, 255, 255 );
@@ -184,7 +184,7 @@ static Int getFirstSelectablePlayer(const GameInfo *game)
 	return game->getLocalSlotNum();
 }
 
-void updateMapStartSpots( GameInfo *myGame, GameWindow *buttonMapStartPositions[], Bool onLoadScreen = FALSE );
+void updateMapStartSpots( GameInfo *myGame, GameWindow *buttonMapStartPositions[], bool onLoadScreen = FALSE );
 void positionStartSpots( GameInfo *myGame, GameWindow *buttonMapStartPositions[], GameWindow *mapWindow);
 void LanPositionStartSpots( void )
 {
@@ -228,8 +228,8 @@ void StartPressed(void)
 {
 	LANGameInfo *myGame = TheLAN->GetMyGame();
 
-	Bool isReady = true;
-	Bool allHaveMap = true;
+	bool isReady = true;
+	bool allHaveMap = true;
 	Int playerCount = 0;
 	if (!myGame)
 	{
@@ -327,7 +327,7 @@ void StartPressed(void)
 	// see if everyone's accepted and count the number of players in the game
 	UnicodeString mapDisplayName;
 	const MapMetaData *mapData = TheMapCache->findMap( myGame->getMap() );
-	Bool willTransfer = TRUE;
+	bool willTransfer = TRUE;
 	if (mapData)
 	{
 		mapDisplayName.format(L"%ls", mapData->m_displayName.str());
@@ -412,7 +412,7 @@ static void handleColorSelection(int index)
 
 		if (color >= -1 && color < TheMultiplayerSettings->getNumColors())
 		{
-			Bool colorAvailable = TRUE;
+			bool colorAvailable = TRUE;
 			if(color != -1 )
 			{
 				for(Int i=0; i <MAX_SLOTS; i++)
@@ -518,7 +518,7 @@ static void handleStartPositionSelection(Int player, int startPos)
 		LANGameSlot * slot = myGame->getLANSlot(player);
 		if (startPos == slot->getStartPos())
 			return;
-		Bool skip = FALSE;
+		bool skip = FALSE;
 		if (startPos < 0)
 		{
 			skip = TRUE;
@@ -526,7 +526,7 @@ static void handleStartPositionSelection(Int player, int startPos)
 
 		if(!skip)
 		{	
-			Bool isAvailable = TRUE;
+			bool isAvailable = TRUE;
 			for(Int i = 0; i < MAX_SLOTS; ++i)
 			{
 				if(i != player && myGame->getSlot(i)->getStartPos() == startPos)
@@ -935,7 +935,7 @@ void LanGameOptionsMenuShutdown( WindowLayout *layout, void *userData )
 	LANisShuttingDown = true;
 
 	// if we are shutting down for an immediate pop, skip the animations
-	Bool popImmediate = *(Bool *)userData;
+	bool popImmediate = *(Bool *)userData;
 	if( popImmediate )
 	{
 
@@ -1082,9 +1082,9 @@ WindowMsgHandledType LanGameOptionsMenuSystem( GameWindow *window, UnsignedInt m
 							}
 							else if( myGame->getLANSlot(i)->getState() != pos )
 							{
-								Bool wasAI = (myGame->getLANSlot(i)->isAI());
+								bool wasAI = (myGame->getLANSlot(i)->isAI());
 								myGame->getLANSlot(i)->setState(SlotState(pos));
-								Bool isAI = (myGame->getLANSlot(i)->isAI());
+								bool isAI = (myGame->getLANSlot(i)->isAI());
 								if (wasAI || isAI)
 									myGame->resetAccepted();
 								if (wasAI ^ isAI)

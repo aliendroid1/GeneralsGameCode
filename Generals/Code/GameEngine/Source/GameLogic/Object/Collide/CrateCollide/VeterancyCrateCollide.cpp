@@ -66,7 +66,7 @@ Int VeterancyCrateCollide::getLevelsToGain() const
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-Bool VeterancyCrateCollide::isValidToExecute( const Object *other ) const
+bool VeterancyCrateCollide::isValidToExecute( const Object *other ) const
 {
 	const VeterancyCrateCollideModuleData* d = getVeterancyCrateCollideModuleData();
 	if( !d )
@@ -122,7 +122,7 @@ Bool VeterancyCrateCollide::isValidToExecute( const Object *other ) const
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-Bool VeterancyCrateCollide::executeCrateBehavior( Object *other )
+bool VeterancyCrateCollide::executeCrateBehavior( Object *other )
 {
  	//Make sure the pilot is actually *TRYING* to enter the object
  	//unlike other crates 

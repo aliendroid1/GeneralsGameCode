@@ -77,7 +77,7 @@ SupplyCenterDockUpdate::~SupplyCenterDockUpdate()
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool SupplyCenterDockUpdate::action( Object* docker, Object *drone )
+bool SupplyCenterDockUpdate::action( Object* docker, Object *drone )
 {
 	SupplyTruckAIInterface* supplyTruckAI = NULL;
 	if( docker->getAIUpdateInterface() == NULL )

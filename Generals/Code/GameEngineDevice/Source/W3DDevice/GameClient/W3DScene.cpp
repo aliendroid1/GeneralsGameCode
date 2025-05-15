@@ -74,7 +74,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 ///@todo: Remove these globals since we no longer need W3D to call them for us.
 extern void DoTrees(RenderInfoClass & rinfo);
-extern void DoShadows(RenderInfoClass & rinfo, Bool stencilPass);
+extern void DoShadows(RenderInfoClass & rinfo, bool stencilPass);
 extern void DoParticles(RenderInfoClass & rinfo);
 
 // No texturing, no zbuffer reading/writing, primary gradient, no
@@ -239,7 +239,7 @@ void RTS3DScene::flagOccludedObjects(CameraClass * camera)
 	RenderObjClass **occludee=m_potentialOccludees;
 	LineSegClass lineseg;
 	CastResultStruct result;
-	Bool hit=FALSE;
+	bool hit=FALSE;
 	Vector3 newEndPoint;
 	result.ComputeContactPoint=false;
 	RayCollisionTestClass raytest(lineseg,&result,COLL_TYPE_ALL,false,false);
@@ -302,7 +302,7 @@ void RTS3DScene::flagOccludedObjects(CameraClass * camera)
 	CollisionType is used as a mask to ignore certain types of objects.
  */
 //=============================================================================
-Bool RTS3DScene::castRay(RayCollisionTestClass & raytest, Bool testAll, Int collisionType)
+bool RTS3DScene::castRay(RayCollisionTestClass & raytest, bool testAll, Int collisionType)
 {
 // this shouldn't be necessary here, and would be an undesirable performance hit.
 // if you ever add or modify code here, it MIGHT become necessary... so do so with caution. (srj)
@@ -314,7 +314,7 @@ Bool RTS3DScene::castRay(RayCollisionTestClass & raytest, Bool testAll, Int coll
 	CastResultStruct result;
 	RayCollisionTestClass tempRayTest(raytest.Ray,&result);
 	Vector3 newEndPoint;
-	Bool hit=FALSE;
+	bool hit=FALSE;
 
 	tempRayTest.CollisionType = COLL_TYPE_ALL;
 	//check if a mesh is translucent before colliding with it. Skips headlights, etc.
@@ -532,7 +532,7 @@ void RTS3DScene::renderSpecificDrawables(RenderInfoClass &rinfo, Int numDrawable
 		if (drawInfo)
 			draw = drawInfo->m_drawable;
 		if (!draw) continue;
-		Bool match = false;
+		bool match = false;
 		for (Int i = 0; i<numDrawable; i++) {
 			if (theDrawables[i] == draw) {
 				match = true;
@@ -555,11 +555,11 @@ void RTS3DScene::renderOneObject(RenderInfoClass &rinfo, RenderObjClass *robj, I
 
 	Drawable *draw = NULL;
 	DrawableInfo *drawInfo = NULL;
-	Bool drawableHidden=FALSE;
+	bool drawableHidden=FALSE;
 	Object* obj = NULL;
 	ObjectShroudStatus ss=OBJECTSHROUD_INVALID;
-	Bool doExtraMaterialPop=FALSE;
-	Bool doExtraFlagsPop=FALSE;
+	bool doExtraMaterialPop=FALSE;
+	bool doExtraFlagsPop=FALSE;
 	LightClass **sceneLights=m_globalLight;
 
 	if (robj->Class_ID() == RenderObjClass::CLASSID_IMAGE3D	)
@@ -725,7 +725,7 @@ void RTS3DScene::renderOneObject(RenderInfoClass &rinfo, RenderObjClass *robj, I
 		{	
 			LightClass *pLight = (LightClass*)it2.Peek_Obj();
 			SphereClass lSph = pLight->Get_Bounding_Sphere();
-			Bool cull = (pLight->Get_Type() == LightClass::POINT && !Spheres_Intersect(sph, lSph));
+			bool cull = (pLight->Get_Type() == LightClass::POINT && !Spheres_Intersect(sph, lSph));
 			if (!cull) {
 				lightEnv.Add_Light(*pLight);
 			}
@@ -941,7 +941,7 @@ void RTS3DScene::Render(RenderInfoClass & rinfo)
 	}
 	else
 	{
-		Bool old_enable=WW3D::Is_Texturing_Enabled();
+		bool old_enable=WW3D::Is_Texturing_Enabled();
 		if (Get_Extra_Pass_Polygon_Mode() == EXTRA_PASS_CLEAR_LINE)
 		{	//render scene with solid black color but have destination alpha store
 			//a projected alpha texture which will later be used to determine where
@@ -1169,7 +1169,7 @@ Int playerIndexToColorIndex(Int playerIndex)
 
 /**Utility function used to render a full screen quad with the specified color and
 stencil mask*/
-void renderStenciledPlayerColor( UnsignedInt color, UnsignedInt stencilRef, Bool clear=FALSE)
+void renderStenciledPlayerColor( UnsignedInt color, UnsignedInt stencilRef, bool clear=FALSE)
 {
 	struct _TRANSLITVERTEX {
 	    Vector4 p;

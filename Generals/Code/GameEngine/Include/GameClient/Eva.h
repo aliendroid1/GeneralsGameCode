@@ -103,13 +103,13 @@ struct EvaCheck
 	const EvaCheckInfo *m_evaInfo;
 	UnsignedInt m_triggeredOnFrame;
 	UnsignedInt m_timeForNextCheck;
-	Bool m_alreadyPlayed;	
+	bool m_alreadyPlayed;	
 
 		EvaCheck();
 };
 
 //-------------------------------------------------------------------------------- ShouldPlayStruct
-typedef Bool (*ShouldPlayFunc)( Player *localPlayer );
+typedef bool (*ShouldPlayFunc)( Player *localPlayer );
 
 //--------------------------------------------------------------------------------------------- Eva
 class Eva : public SubsystemInterface
@@ -137,9 +137,9 @@ class Eva : public SubsystemInterface
 		Int m_previousBuildingCount;
 		Int m_previousUnitCount;
 		mutable EvaMessage m_messageBeingTested;	// Used by the generic hooks so they can figure out which flag to test.
-		Bool m_shouldPlay[EVA_COUNT];	// These aren't all used, but some of them are.
+		bool m_shouldPlay[EVA_COUNT];	// These aren't all used, but some of them are.
 		
-		Bool m_enabled;
+		bool m_enabled;
 
 	public:
 		Eva();
@@ -161,12 +161,12 @@ class Eva : public SubsystemInterface
 		void setEvaEnabled(Bool enabled);
 
 	protected: 	// Note: These are all protected. They should *NEVER* be made public. They are for internal use only
-		Bool isTimeForCheck(EvaMessage messageToTest, UnsignedInt currentFrame) const;
-		Bool messageShouldPlay(EvaMessage messageToTest, UnsignedInt currentFrame) const;
+		bool isTimeForCheck(EvaMessage messageToTest, UnsignedInt currentFrame) const;
+		bool messageShouldPlay(EvaMessage messageToTest, UnsignedInt currentFrame) const;
 
 		// As soon as you want the logic of these to be public, make a logical representation and have these call that instead.
-		static Bool shouldPlayLowPower( Player *localPlayer );
-		static Bool shouldPlayGenericHandler( Player * );
+		static bool shouldPlayLowPower( Player *localPlayer );
+		static bool shouldPlayGenericHandler( Player * );
 
 		void playMessage(EvaMessage messageToTest, UnsignedInt currentFrame);
 		void processPlayingMessages(UnsignedInt currentFrame);

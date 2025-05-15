@@ -100,7 +100,7 @@ void ProjectileStreamUpdate::cullFrontOfList()
 	}
 }
 
-Bool ProjectileStreamUpdate::considerDying()
+bool ProjectileStreamUpdate::considerDying()
 {
 	if( m_firstValidIndex == m_nextFreeIndex  &&  m_owningObject != INVALID_ID )
 	{

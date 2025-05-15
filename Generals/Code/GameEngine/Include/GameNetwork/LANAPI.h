@@ -88,12 +88,12 @@ public:
 	virtual void RequestChat( UnicodeString message, ChatType format ) = 0;						///< Send a chat message
 	virtual void RequestGameStart( void ) = 0;																				///< Tell everyone the game is starting
 	virtual void RequestGameStartTimer( Int seconds ) = 0;
-	virtual void RequestGameOptions( AsciiString gameOptions, Bool isPublic, UnsignedInt ip = 0 ) = 0;		///< Change the game options
-	virtual void RequestGameCreate( UnicodeString gameName, Bool isDirectConnect ) = 0;	///< Try to host a game
+	virtual void RequestGameOptions( AsciiString gameOptions, bool isPublic, UnsignedInt ip = 0 ) = 0;		///< Change the game options
+	virtual void RequestGameCreate( UnicodeString gameName, bool isDirectConnect ) = 0;	///< Try to host a game
 	virtual void RequestGameAnnounce( void ) = 0;																			///< Sound out current game info if host
 //	virtual void RequestSlotList( void ) = 0;																					///< Pump out the Slot info.
 	virtual void RequestSetName( UnicodeString newName ) = 0;													///< Pick a new name
-	virtual void RequestLobbyLeave( Bool forced ) = 0;																///< Announce that we're leaving the lobby
+	virtual void RequestLobbyLeave( bool forced ) = 0;																///< Announce that we're leaving the lobby
 	virtual void ResetGameStartTimer( void ) = 0;
 
 	// Possible result codes passed to On functions
@@ -121,8 +121,8 @@ public:
 	virtual void OnPlayerJoin( Int slot, UnicodeString playerName ) = 0;													///< Someone else joined our game (host only; joiners get a slotlist)
 	virtual void OnHostLeave( void ) = 0;																													///< Host left the game
 	virtual void OnPlayerLeave( UnicodeString player ) = 0;																				///< Someone left the game
-	virtual void OnAccept( UnsignedInt playerIP, Bool status ) = 0;																///< Someone's accept status changed
-	virtual void OnHasMap( UnsignedInt playerIP, Bool status ) = 0;																///< Someone's map status changed
+	virtual void OnAccept( UnsignedInt playerIP, bool status ) = 0;																///< Someone's accept status changed
+	virtual void OnHasMap( UnsignedInt playerIP, bool status ) = 0;																///< Someone's map status changed
 	virtual void OnChat( UnicodeString player, UnsignedInt ip,
 											 UnicodeString message, ChatType format ) = 0;														///< Chat message from someone
 	virtual void OnGameStart( void ) = 0;																													///< The game is starting
@@ -135,9 +135,9 @@ public:
 	// Misc utility functions
 	virtual LANGameInfo * LookupGame( UnicodeString gameName ) = 0;														///< return a pointer to a game we know about
 	virtual LANGameInfo * LookupGameByListOffset( Int offset ) = 0;														///< return a pointer to a game we know about
-	virtual Bool SetLocalIP( UnsignedInt localIP ) = 0;																		///< For multiple NIC machines
+	virtual bool SetLocalIP( UnsignedInt localIP ) = 0;																		///< For multiple NIC machines
 	virtual void SetLocalIP( AsciiString localIP ) = 0;																		///< For multiple NIC machines
-	virtual Bool AmIHost( void ) = 0;																											///< Am I hosting a game?
+	virtual bool AmIHost( void ) = 0;																											///< Am I hosting a game?
 	virtual inline UnicodeString GetMyName( void ) = 0;																		///< What's my name?
 	virtual inline LANGameInfo *GetMyGame( void ) = 0;															          ///< What's my Game?
 	virtual void fillInLANMessage( LANMessage *msg ) = 0;																	///< Fill in default params
@@ -172,12 +172,12 @@ public:
 	virtual void RequestChat( UnicodeString message, ChatType format );						///< Send a chat message
 	virtual void RequestGameStart( void );																				///< Tell everyone the game is starting
 	virtual void RequestGameStartTimer( Int seconds );
-	virtual void RequestGameOptions( AsciiString gameOptions, Bool isPublic, UnsignedInt ip = 0 );		///< Change the game options
-	virtual void RequestGameCreate( UnicodeString gameName, Bool isDirectConnect );	///< Try to host a game
+	virtual void RequestGameOptions( AsciiString gameOptions, bool isPublic, UnsignedInt ip = 0 );		///< Change the game options
+	virtual void RequestGameCreate( UnicodeString gameName, bool isDirectConnect );	///< Try to host a game
 	virtual void RequestGameAnnounce( void );																			///< Send out game info if host
 	virtual void RequestSetName( UnicodeString newName );													///< Pick a new name
 //	virtual void RequestSlotList( void );																					///< Pump out the Slot info.
-	virtual void RequestLobbyLeave( Bool forced );																///< Announce that we're leaving the lobby
+	virtual void RequestLobbyLeave( bool forced );																///< Announce that we're leaving the lobby
 	virtual void ResetGameStartTimer( void );
 
 	// On functions are (generally) the result of network traffic
@@ -187,8 +187,8 @@ public:
 	virtual void OnPlayerJoin( Int slot, UnicodeString playerName );													///< Someone else joined our game (host only; joiners get a slotlist)
 	virtual void OnHostLeave( void );																													///< Host left the game
 	virtual void OnPlayerLeave( UnicodeString player );																				///< Someone left the game
-	virtual void OnAccept( UnsignedInt playerIP, Bool status );																///< Someone's accept status changed
-	virtual void OnHasMap( UnsignedInt playerIP, Bool status );																///< Someone's map status changed
+	virtual void OnAccept( UnsignedInt playerIP, bool status );																///< Someone's accept status changed
+	virtual void OnHasMap( UnsignedInt playerIP, bool status );																///< Someone's map status changed
 	virtual void OnChat( UnicodeString player, UnsignedInt ip,
 											 UnicodeString message, ChatType format );														///< Chat message from someone
 	virtual void OnGameStart( void );																													///< The game is starting
@@ -204,9 +204,9 @@ public:
 	virtual LANGameInfo * LookupGame( UnicodeString gameName );														///< return a pointer to a game we know about
 	virtual LANGameInfo * LookupGameByListOffset( Int offset );														///< return a pointer to a game we know about
 	virtual LANPlayer * LookupPlayer( UnsignedInt playerIP );													///< return a pointer to a player we know about
-	virtual Bool SetLocalIP( UnsignedInt localIP );																		///< For multiple NIC machines
+	virtual bool SetLocalIP( UnsignedInt localIP );																		///< For multiple NIC machines
 	virtual void SetLocalIP( AsciiString localIP );																		///< For multiple NIC machines
-	virtual Bool AmIHost( void );																											///< Am I hosting a game?
+	virtual bool AmIHost( void );																											///< Am I hosting a game?
 	virtual inline UnicodeString GetMyName( void ) { return m_name; }                 ///< What's my name?
 	virtual inline LANGameInfo* GetMyGame( void ) { return m_currentGame; }					      ///< What's my Game?
 	virtual inline UnsignedInt GetLocalIP( void ) { return m_localIP; }								///< What's my IP?
@@ -347,9 +347,9 @@ struct LANMessage
 		struct
 		{
 			WideChar gameName[g_lanGameNameLength+1];
-			Bool inProgress;
+			bool inProgress;
 			char options[m_lanMaxOptionsLength+1];
-			Bool isDirectConnect;
+			bool isDirectConnect;
 		} GameInfo;
 
 		// PlayerInfo is sent with REQUEST_GAME_INFO for direct connect games.
@@ -390,7 +390,7 @@ struct LANMessage
 		struct
 		{
 			WideChar gameName[g_lanGameNameLength+1];
-			Bool isAccepted;
+			bool isAccepted;
 		} Accept;
 
 		// Accept is sent with MAP_AVAILABILITY
@@ -398,7 +398,7 @@ struct LANMessage
 		{
 			WideChar gameName[g_lanGameNameLength+1];
 			UnsignedInt mapCRC;	// to make sure we're talking about the same map
-			Bool hasMap;
+			bool hasMap;
 		} MapStatus;
 
 		// Chat is sent with CHAT

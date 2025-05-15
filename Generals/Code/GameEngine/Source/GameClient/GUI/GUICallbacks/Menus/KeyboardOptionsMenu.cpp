@@ -101,12 +101,12 @@ static GameWindow *buttonAssign = NULL;
 
 //use Bools to test if modifiers are used
 
-Bool shiftDown = false;
-Bool altDown = false;
-Bool ctrlDown = false;
+bool shiftDown = false;
+bool altDown = false;
+bool ctrlDown = false;
 
 // shows whether or not a correctly formatted hotkey assignment is in the text area
-Bool absolute = false;
+bool absolute = false;
 
 // initialize these, they will be used a lot
 UnicodeString alt;
@@ -134,7 +134,7 @@ void populateCategoryBox()
 }
 
 // keeps track of whether or not each text modifier is being currently displayed in the text entry field
-void setKeyDown( UnicodeString mod, Bool b )
+void setKeyDown( UnicodeString mod, bool b )
 {
 	if( mod == TheGameText->fetch( "KEYBOARD:Shift+" ) )
 		shiftDown = b;

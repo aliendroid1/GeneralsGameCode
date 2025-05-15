@@ -82,7 +82,7 @@ class BinkVideoStream : public VideoStream
 																											
 		virtual void update( void );											///< Update bink stream
 
-		virtual Bool	isFrameReady( void );								///< Is the frame ready to be displayed
+		virtual bool	isFrameReady( void );								///< Is the frame ready to be displayed
 		virtual void	frameDecompress( void );						///< Render current frame in to buffer
 		virtual void	frameRender( VideoBuffer *buffer ); ///< Render current frame in to buffer
 		virtual void	frameNext( void );									///< Advance to next frame
@@ -130,7 +130,7 @@ class BinkVideoPlayer : public VideoPlayer
 		virtual VideoStreamInterface*	open( AsciiString movieTitle );	///< Open video file for playback
 		virtual VideoStreamInterface*	load( AsciiString movieTitle );	///< Load video file in to memory for playback
 
-		virtual void notifyVideoPlayerOfNewProvider( Bool nowHasValid );
+		virtual void notifyVideoPlayerOfNewProvider( bool nowHasValid );
 		virtual void initializeBinkWithMiles( void );
 };
 

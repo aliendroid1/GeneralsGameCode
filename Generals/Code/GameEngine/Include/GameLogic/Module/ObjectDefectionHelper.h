@@ -80,7 +80,7 @@ public:
 	virtual DisabledMaskType getDisabledTypesToProcess() const { return DISABLEDMASK_ALL; }
 
 	// specific to this class.
-	void startDefectionTimer(UnsignedInt numFrames, Bool withDefectorFX = TRUE);
+	void startDefectionTimer(UnsignedInt numFrames, bool withDefectorFX = TRUE);
 
 };
 

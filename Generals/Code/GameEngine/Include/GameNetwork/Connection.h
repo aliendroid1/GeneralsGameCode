@@ -59,8 +59,8 @@ public:
 	UnsignedInt doSend();
 	void doRecv();
 
-	Bool allCommandsReady(UnsignedInt frame);
-	Bool isQueueEmpty();
+	bool allCommandsReady(UnsignedInt frame);
+	bool isQueueEmpty();
 	void attachTransport(Transport *transport);
 	void setUser(User *user);
 	User *getUser();
@@ -77,7 +77,7 @@ public:
 	void clearCommandsExceptFrom( Int playerIndex );
 
 	void setQuitting( void );
-	Bool isQuitting( void ) { return m_isQuitting; }
+	bool isQuitting( void ) { return m_isQuitting; }
 
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	void debugPrintCommands();
@@ -86,7 +86,7 @@ public:
 protected:
 	void doRetryMetrics();
 
-	Bool m_isQuitting;
+	bool m_isQuitting;
 	UnsignedInt m_quitTime;
 
 	Transport *m_transport;

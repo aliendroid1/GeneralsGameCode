@@ -54,11 +54,11 @@ public:
 	Int m_spawnStartNumberData;				  	///< How many spawn I start with
 	Int m_spawnReplaceDelayData;					///< After this many frames, I can replace one
 	Int m_initialBurst;						        ///< How many should I make immediately, ignoring the delay?
-	Bool m_isOneShotData;									///< Do I just spawn once and go dormant?
-	Bool m_canReclaimOrphans;							///< Can I reclaim orphans for purposes of spawning
-	Bool m_aggregateHealth;								///< should I calc an offset for the healthbox, averaging all my spawn
-	Bool m_exitByBudding;									///< do I create each new spawn atop an existing one?
-	Bool m_spawnedRequireSpawner;					///< Spawned objects can only exist while the spawner (us) is alive and present
+	bool m_isOneShotData;									///< Do I just spawn once and go dormant?
+	bool m_canReclaimOrphans;							///< Can I reclaim orphans for purposes of spawning
+	bool m_aggregateHealth;								///< should I calc an offset for the healthbox, averaging all my spawn
+	bool m_exitByBudding;									///< do I create each new spawn atop an existing one?
+	bool m_spawnedRequireSpawner;					///< Spawned objects can only exist while the spawner (us) is alive and present
 	DamageTypeFlags m_damageTypesToPropagateToSlaves;
 	std::vector<AsciiString> m_spawnTemplateNameData;
 	DieMuxData m_dieMuxData;
@@ -108,14 +108,14 @@ class SpawnBehaviorInterface
 
 public:
 
-	virtual Bool maySpawnSelfTaskAI( Real maxSelfTaskersRatio ) = 0;
+	virtual bool maySpawnSelfTaskAI( Real maxSelfTaskersRatio ) = 0;
 	virtual void onSpawnDeath( ObjectID deadSpawn, DamageInfo *damageInfo ) = 0;
 	virtual Object* getClosestSlave( const Coord3D *pos ) = 0;
 	virtual void orderSlavesToAttackTarget( Object *target, Int maxShotsToFire, CommandSourceType cmdSource ) = 0;
 	virtual void orderSlavesToAttackPosition( const Coord3D *pos, Int maxShotsToFire, CommandSourceType cmdSource ) = 0;
 	virtual CanAttackResult getCanAnySlavesAttackSpecificTarget( AbleToAttackType attackType, const Object *target, CommandSourceType cmdSource ) = 0;
 	virtual CanAttackResult getCanAnySlavesUseWeaponAgainstTarget( AbleToAttackType attackType, const Object *victim, const Coord3D *pos, CommandSourceType cmdSource ) = 0;
-	virtual Bool canAnySlavesAttack() = 0;
+	virtual bool canAnySlavesAttack() = 0;
 	virtual void orderSlavesToGoIdle( CommandSourceType cmdSource ) = 0;
 };
 
@@ -157,14 +157,14 @@ public:
 																				BodyDamageType newState) { }
 
 	// SpawnBehaviorInterface methods
-	virtual Bool maySpawnSelfTaskAI( Real maxSelfTaskersRatio );
+	virtual bool maySpawnSelfTaskAI( Real maxSelfTaskersRatio );
 	virtual void onSpawnDeath( ObjectID deadSpawn, DamageInfo *damageInfo );	///< Something we spawned and set up to tell us it died just died.
 	virtual Object* getClosestSlave( const Coord3D *pos );
 	virtual void orderSlavesToAttackTarget( Object *target, Int maxShotsToFire, CommandSourceType cmdSource );
 	virtual void orderSlavesToAttackPosition( const Coord3D *pos, Int maxShotsToFire, CommandSourceType cmdSource );
 	virtual CanAttackResult getCanAnySlavesAttackSpecificTarget( AbleToAttackType attackType, const Object *target, CommandSourceType cmdSource );
 	virtual CanAttackResult getCanAnySlavesUseWeaponAgainstTarget( AbleToAttackType attackType, const Object *victim, const Coord3D *pos, CommandSourceType cmdSource );
-	virtual Bool canAnySlavesAttack();
+	virtual bool canAnySlavesAttack();
 	virtual void orderSlavesToGoIdle( CommandSourceType cmdSource );
 
 	// **********************************************************************************************
@@ -173,12 +173,12 @@ public:
 	void startSpawning();	///< Whoever owns this module may want to turn it on
 
 	void computeAggregateStates(void);
-//	void notifySelfTasking( Bool isSelfTasking );
+//	void notifySelfTasking( bool isSelfTasking );
 
 private:
 
-	Bool shouldTryToSpawn(); ///< For my own use, should I even think of spawning
-	Bool createSpawn();										///< Actual work of creating a guy
+	bool shouldTryToSpawn(); ///< For my own use, should I even think of spawning
+	bool createSpawn();										///< Actual work of creating a guy
 
 	const ThingTemplate* m_spawnTemplate;	///< What it is I spawn
 	Int m_oneShotCountdown;						///< and if so, this is what "once" entails
@@ -195,13 +195,13 @@ private:
 
 	intList m_replacementTimes;			///< A list of frame times that I need to create new spawns
 	objectIDList m_spawnIDs;				///< My darling little spawns.  I need to keep track of them explicitly for the Slave type stuff
-	Bool m_active;									///< Am I currently turned on
+	bool m_active;									///< Am I currently turned on
 	
 
 	Object *reclaimOrphanSpawn( void );		///< find existing orphaned spawn object if present
 
-	Bool m_aggregateHealth;			///< should I calc an offset for the healthbox, averaging all my spawn
-	Bool m_initialBurstTimesInited;
+	bool m_aggregateHealth;			///< should I calc an offset for the healthbox, averaging all my spawn
+	bool m_initialBurstTimesInited;
 	Int m_spawnCount;						///< so I can track for zero = kill; (aggregate)
 	UnsignedInt m_selfTaskingSpawnCount;		///< How many of my spawn have I authorized to do their own thing?
 

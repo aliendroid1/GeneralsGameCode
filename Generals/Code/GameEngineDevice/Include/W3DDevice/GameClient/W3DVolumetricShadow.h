@@ -57,7 +57,7 @@ public:
 	
 	W3DVolumetricShadowManager( void );
 	~W3DVolumetricShadowManager( void );
-	Bool init( void );	///<initialize resources used by manager, must have valid D3D device.
+	bool init( void );	///<initialize resources used by manager, must have valid D3D device.
 	// shadow list management
 	void reset( void );
 	W3DVolumetricShadow* addShadow( RenderObjClass *robj, Shadow::ShadowTypeInfo *shadowInfo, Drawable *draw);	///< adds shadow caster to rendering system.
@@ -73,9 +73,9 @@ public:
 	void loadTerrainShadows(void);
 
 	// rendering
-	void renderShadows( Bool forceStencilFill );
+	void renderShadows( bool forceStencilFill );
 	void ReleaseResources(void);
-	Bool ReAcquireResources(void);
+	bool ReAcquireResources(void);
 
 protected:
 
@@ -143,14 +143,14 @@ class W3DVolumetricShadow	: public Shadow
 		void addSilhouetteEdge(Int meshIndex, PolyNeighbor *visible, PolyNeighbor *hidden );
 		void addNeighborlessEdges(Int meshIndex, PolyNeighbor *us );
 		void addSilhouetteIndices(Int meshIndex, Short edgeStart, Short edgeEnd );
-		Bool allocateSilhouette(Int meshIndex, Int numVertices );  // allocate memory for sil
+		bool allocateSilhouette(Int meshIndex, Int numVertices );  // allocate memory for sil
 		void deleteSilhouette(Int meshIndex );  // resets and frees silhouette memory
 		void resetSilhouette( Int meshIndex );  // reset silhouette to empty
 
 		// shadow volume access
 		void constructVolume( Vector3 *lightPos, Real shadowExtrudeDistance, Int volumeIndex, Int meshIndex );
 		void constructVolumeVB( Vector3 *lightPosObject,Real shadowExtrudeDistance, Int volumeIndex, Int meshIndex );
-		Bool allocateShadowVolume( Int volumeIndex, Int meshIndex );  // allocate mem
+		bool allocateShadowVolume( Int volumeIndex, Int meshIndex );  // allocate mem
 		void deleteShadowVolume( Int volumeIndex );  // delete all volume data
 		void resetShadowVolume( Int volumeIndex, Int meshIndex );  // reset shadow volume
 

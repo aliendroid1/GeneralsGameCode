@@ -66,7 +66,7 @@ static CommandMsg *CommandTail[MAX_SLOTS] = {
 /**
  * AddToNetCommandList adds a CommandMsg to a list of commands.
  *
-static Bool AddToNetCommandList(GameMessage *msg, UnsignedInt timestamp, CommandMsg *& CommandHead, CommandMsg *& CommandTail)
+static bool AddToNetCommandList(GameMessage *msg, UnsignedInt timestamp, CommandMsg *& CommandHead, CommandMsg *& CommandTail)
 {
 	CommandMsg *cmdMsg = NEW CommandMsg(timestamp, msg);
 	if (!cmdMsg)
@@ -93,7 +93,7 @@ static Bool AddToNetCommandList(GameMessage *msg, UnsignedInt timestamp, Command
 /**
  * AddToRemoteNetCommandList is used by TheNetwork to queue up commands recieved from other players.
  *
-Bool AddToNetCommandList(Int playerNum, GameMessage *msg, UnsignedInt timestamp)
+bool AddToNetCommandList(Int playerNum, GameMessage *msg, UnsignedInt timestamp)
 {
 	if (playerNum < 0 || playerNum >= MAX_SLOTS)
 		return false;
@@ -171,7 +171,7 @@ void ClearCommandPacket(UnsignedInt frame)
  * AddCommandToPacket creates a packet containing all move/attack/etc commands
  * for the current frame.
  *
-Bool AddCommandToPacket(const GameMessage *msg)
+bool AddCommandToPacket(const GameMessage *msg)
 {
 	int messageSize = sizeofMessageHeader + sizeofMessageArg * msg->getArgumentCount();
 

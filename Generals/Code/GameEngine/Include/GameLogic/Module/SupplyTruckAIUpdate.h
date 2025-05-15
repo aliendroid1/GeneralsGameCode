@@ -43,12 +43,12 @@ public:
 
 // state transition conditions
 
-	static Bool ownerDocking( State *thisState, void* userData );
-	static Bool ownerIdle( State *thisState, void* userData );
-	static Bool ownerAvailableForSupplying( State *thisState, void* userData );
-	static Bool ownerNotDockingOrIdle( State *thisState, void* userData );
-	static Bool isForcedIntoWantingState( State *thisState, void* userData );
-	static Bool isForcedIntoBusyState( State *thisState, void* userData );
+	static bool ownerDocking( State *thisState, void* userData );
+	static bool ownerIdle( State *thisState, void* userData );
+	static bool ownerAvailableForSupplying( State *thisState, void* userData );
+	static bool ownerNotDockingOrIdle( State *thisState, void* userData );
+	static bool isForcedIntoWantingState( State *thisState, void* userData );
+	static bool isForcedIntoBusyState( State *thisState, void* userData );
 
 protected:
 	// snapshot interface
@@ -163,19 +163,19 @@ class SupplyTruckAIInterface
 	// who look this up by name.
 public:
 	virtual Int getNumberBoxes() const = 0;
-	virtual Bool loseOneBox() = 0;
-	virtual Bool gainOneBox( Int remainingStock ) = 0;
+	virtual bool loseOneBox() = 0;
+	virtual bool gainOneBox( Int remainingStock ) = 0;
 
 	// returns true if we can fetch/deliver supplies. normally returns true
 	// if the AI is idle, but subclasses might add further restrictions.
-	virtual Bool isAvailableForSupplying() const = 0;
-	virtual Bool isCurrentlyFerryingSupplies() const = 0;
+	virtual bool isAvailableForSupplying() const = 0;
+	virtual bool isCurrentlyFerryingSupplies() const = 0;
 	virtual Real getWarehouseScanDistance() const = 0; ///< How far can I look for a warehouse?
 
 	virtual void setForceWantingState(Bool v) = 0;
-	virtual Bool isForcedIntoWantingState() const = 0;
+	virtual bool isForcedIntoWantingState() const = 0;
 	virtual void setForceBusyState(Bool v) = 0;
-	virtual Bool isForcedIntoBusyState() const = 0;
+	virtual bool isForcedIntoBusyState() const = 0;
 	virtual ObjectID getPreferredDockID() const = 0;
 	virtual UnsignedInt getActionDelayForDock( Object *dock ) = 0;
 };
@@ -198,20 +198,20 @@ public:
 	virtual const SupplyTruckAIInterface* getSupplyTruckAIInterface() const {return this;}
 
 	virtual Int getNumberBoxes() const { return m_numberBoxes; }
-	virtual Bool loseOneBox();
-	virtual Bool gainOneBox( Int remainingStock );
+	virtual bool loseOneBox();
+	virtual bool gainOneBox( Int remainingStock );
 
 	// this is present for subclasses (eg, Chinook) to override, to
 	// prevent supply-ferry behavior in some cases (eg, when toting passengers)
-	virtual Bool isAvailableForSupplying() const;
-	virtual Bool isCurrentlyFerryingSupplies() const;
+	virtual bool isAvailableForSupplying() const;
+	virtual bool isCurrentlyFerryingSupplies() const;
 	virtual Real getWarehouseScanDistance() const; ///< How far can I look for a warehouse?
 
 	virtual void setForceWantingState(Bool v) { m_forcePending = v; } // When a Supply Center creates us (or maybe other sources later), we need to hop into autopilot mode.
-	virtual Bool isForcedIntoWantingState() const { return m_forcePending; }
+	virtual bool isForcedIntoWantingState() const { return m_forcePending; }
 
 	virtual void setForceBusyState(Bool v) { m_forcedBusyPending = v; } 
-	virtual Bool isForcedIntoBusyState() const { return m_forcedBusyPending; }
+	virtual bool isForcedIntoBusyState() const { return m_forcedBusyPending; }
 
 	virtual ObjectID getPreferredDockID() const { return m_preferredDock; }
 	virtual UnsignedInt getActionDelayForDock( Object *dock );

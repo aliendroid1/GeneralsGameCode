@@ -117,7 +117,7 @@ public:
 
 	virtual void addScorch(const Coord3D *pos, Real radius, Scorches type) = 0;
 
-	virtual Bool loadMap( AsciiString mapName );  ///< load a map into our scene
+	virtual bool loadMap( AsciiString mapName );  ///< load a map into our scene
 	virtual void unloadMap( AsciiString mapName );  ///< unload the specified map from our scene
 
 	virtual void iterateDrawablesInRegion( Region3D *region, GameClientFuncPtr userFunc, void *userData );		///< Calls userFunc for each drawable contained within the region

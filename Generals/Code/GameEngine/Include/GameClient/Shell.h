@@ -127,34 +127,34 @@ public:
 
 	void showShellMap(Bool useShellMap );										///< access function to turn on and off the shell map
 
-	void hide( Bool hide );																	///< show/hide all shell layouts
+	void hide( bool hide );																	///< show/hide all shell layouts
 
 	// pseudo-stack operations for manipulating layouts
-	void push( AsciiString filename, Bool shutdownImmediate = FALSE );	///< load new screen on top, optionally doing an immediate shutdown
+	void push( AsciiString filename, bool shutdownImmediate = FALSE );	///< load new screen on top, optionally doing an immediate shutdown
 	void pop( void );																				///< pop top layout
 	void popImmediate( void );															///< pop now, don't wait for shutdown
-	void showShell( Bool runInit = TRUE );									///< init the top of stack
+	void showShell( bool runInit = TRUE );									///< init the top of stack
 	void hideShell( void );																	///< shutdown the top of stack
 	WindowLayout *top( void );															///< return top layout
 	
-	void shutdownComplete( WindowLayout *layout, Bool impendingPush = FALSE );	///< layout has completed shutdown
+	void shutdownComplete( WindowLayout *layout, bool impendingPush = FALSE );	///< layout has completed shutdown
 
 	WindowLayout *findScreenByFilename( AsciiString filename );		///< find screen
-	inline Bool isShellActive( void ) { return m_isShellActive; }  ///<	Returns true if the shell is active
+	inline bool isShellActive( void ) { return m_isShellActive; }  ///<	Returns true if the shell is active
 	
 	inline Int getScreenCount(void) { return m_screenCount; }			///< Return the current number of screens
 
-	void registerWithAnimateManager( GameWindow *win, AnimTypes animType, Bool needsToFinish, UnsignedInt delayMS = 0);
-	Bool isAnimFinished( void );
+	void registerWithAnimateManager( GameWindow *win, AnimTypes animType, bool needsToFinish, UnsignedInt delayMS = 0);
+	bool isAnimFinished( void );
 	void reverseAnimatewindow( void );
-	Bool isAnimReversed( void );
+	bool isAnimReversed( void );
 
 	void loadScheme( AsciiString name );
 	ShellMenuSchemeManager *getShellMenuSchemeManager( void ) { return m_schemeManager;	}
 
 	WindowLayout *getSaveLoadMenuLayout( void );		///< create if necessary and return layout for save load menu
 	WindowLayout *getPopupReplayLayout( void );			///< create if necessary and return layout for replay save menu
-	WindowLayout *getOptionsLayout( Bool create );	///< return layout for options menu, create if necessary and we are allowed to.
+	WindowLayout *getOptionsLayout( bool create );	///< return layout for options menu, create if necessary and we are allowed to.
 	void destroyOptionsLayout( void );							///< destroy the shell's options layout.
 
 protected:
@@ -163,20 +163,20 @@ protected:
 	void unlinkScreen( WindowLayout *screen );							///< remove screen from list
 
 	void doPush( AsciiString layoutFile );									///< workhorse for push action
-	void doPop( Bool impendingPush );												///< workhorse for pop action
+	void doPop( bool impendingPush );												///< workhorse for pop action
 
 	enum { MAX_SHELL_STACK = 16 };													///< max simultaneous shell screens
 	WindowLayout *m_screenStack[ MAX_SHELL_STACK ];					///< the screen layout stack
 	Int m_screenCount;																			///< # of screens in screen stack
 
 	WindowLayout *m_background;															///< The Background layout if the 3d shell isn't running
-	Bool m_clearBackground;																	///< Flag if we're going to clear the background or not
+	bool m_clearBackground;																	///< Flag if we're going to clear the background or not
 
-	Bool m_pendingPush;																			///< TRUE when a push is pending
-	Bool m_pendingPop;																			///< TRUE when a pop is pending
+	bool m_pendingPush;																			///< TRUE when a push is pending
+	bool m_pendingPop;																			///< TRUE when a pop is pending
 	AsciiString m_pendingPushName;													///< layout name to be pushed
-	Bool m_isShellActive;																		///< TRUE when the shell is active
-	Bool m_shellMapOn;																			///< TRUE when the shell map is on
+	bool m_isShellActive;																		///< TRUE when the shell is active
+	bool m_shellMapOn;																			///< TRUE when the shell map is on
 	AnimateWindowManager *m_animateWindowManager;						///< The animate Window Manager
 	ShellMenuSchemeManager *m_schemeManager;								///< The Shell Scheme Manager
 

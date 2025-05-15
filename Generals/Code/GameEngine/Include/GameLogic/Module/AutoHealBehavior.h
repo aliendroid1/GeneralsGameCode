@@ -152,14 +152,14 @@ protected:
 		getAutoHealBehaviorModuleData()->m_upgradeMuxData.performUpgradeFX(getObject());
 	}
 
-	virtual Bool requiresAllActivationUpgrades() const
+	virtual bool requiresAllActivationUpgrades() const
 	{
 		return getAutoHealBehaviorModuleData()->m_upgradeMuxData.m_requiresAllTriggers;
 	}
 
-	inline Bool isUpgradeActive() const { return isAlreadyUpgraded(); }
+	inline bool isUpgradeActive() const { return isAlreadyUpgraded(); }
 	
-	virtual Bool isSubObjectsUpgrade() { return false; }
+	virtual bool isSubObjectsUpgrade() { return false; }
 
 
 private:
@@ -174,7 +174,7 @@ private:
 																		a sleepy module.  I never want to run update unless I am going to heal.
 																 */
 
-	Bool m_stopped;
+	bool m_stopped;
 
 };
 

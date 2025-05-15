@@ -90,21 +90,21 @@ public:
 	SalvageCrateCollide( Thing *thing, const ModuleData* moduleData );
 	// virtual destructor prototype provided by memory pool declaration
 
-	virtual Bool isSalvageCrateCollide() const { return true; }
+	virtual bool isSalvageCrateCollide() const { return true; }
 
 protected:
 
 	/// This allows specific vetoes to certain types of crates and their data
-	virtual Bool isValidToExecute( const Object *other ) const;
+	virtual bool isValidToExecute( const Object *other ) const;
 
 	/// This is the game logic execution function that all real CrateCollides will implement
-	virtual Bool executeCrateBehavior( Object *other );
+	virtual bool executeCrateBehavior( Object *other );
 
 private:
-	Bool eligibleForWeaponSet( Object *other );
-	Bool eligibleForLevel( Object *other );
-	Bool testWeaponChance();
-	Bool testLevelChance();
+	bool eligibleForWeaponSet( Object *other );
+	bool eligibleForLevel( Object *other );
+	bool testWeaponChance();
+	bool testLevelChance();
 
 	void doWeaponSet( Object *other );
 	void doLevelGain( Object *other );

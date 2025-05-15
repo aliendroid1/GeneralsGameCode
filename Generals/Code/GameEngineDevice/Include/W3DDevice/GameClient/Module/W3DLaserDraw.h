@@ -49,7 +49,7 @@ public:
 	Real m_innerBeamWidth;
 	Real m_outerBeamWidth;
 	Real m_scrollRate;
-	Bool m_tile;
+	bool m_tile;
   UnsignedInt m_numBeams;
   UnsignedInt m_maxIntensityFrames;
   UnsignedInt m_fadeFrames;
@@ -85,7 +85,7 @@ public:
 	virtual void setFullyObscuredByShroud(Bool fullyObscured) { };
 	virtual void reactToTransformChange(const Matrix3D* oldMtx, const Coord3D* oldPos, Real oldAngle) { }
 	virtual void reactToGeometryChange() { }
-	virtual Bool isLaser() const { return true; }
+	virtual bool isLaser() const { return true; }
 	Real getLaserTemplateWidth() const;
 	
 	virtual LaserDrawInterface* getLaserDrawInterface() { return this; }
@@ -96,7 +96,7 @@ protected:
 	SegmentedLineClass **m_line3D;  ///< line 3D for effect
 	TextureClass *m_texture;
 	Real m_textureAspectRatio;			///< aspect ratio of texture
-	Bool m_selfDirty;								// not saved
+	bool m_selfDirty;								// not saved
 
 };
 

@@ -144,7 +144,7 @@ protected:
 
 	void createEmitters( void );					///< Create particle effects.
 	void tossEmitters( void );					///< Create particle effects.
-	void enableEmitters( Bool enable );						///< stop creating debris from the tank treads
+	void enableEmitters( bool enable );						///< stop creating debris from the tank treads
 	void updateBones( void );
 
 	void startMoveDebris( void );												///< start creating debris from the tank treads

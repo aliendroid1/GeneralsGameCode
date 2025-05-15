@@ -82,16 +82,16 @@ public:
 	static Int getInterfaceMask() { return OpenContain::getInterfaceMask() | (MODULEINTERFACE_CREATE); }
 
 	virtual OpenContain *asOpenContain() { return this; }  ///< treat as open container
-	virtual Bool isGarrisonable() const { return false; }	///< can this unit be Garrisoned? (ick)
-	virtual Bool isHealContain() const { return false; } ///< true when container only contains units while healing (not a transport!)
+	virtual bool isGarrisonable() const { return false; }	///< can this unit be Garrisoned? (ick)
+	virtual bool isHealContain() const { return false; } ///< true when container only contains units while healing (not a transport!)
 
 	virtual void onContaining( Object *obj );		///< object now contains 'obj'
 	virtual void onRemoving( Object *obj );			///< object no longer contains 'obj'
 
-	virtual Bool isValidContainerFor(const Object* obj, Bool checkCapacity) const;
+	virtual bool isValidContainerFor(const Object* obj, bool checkCapacity) const;
 	virtual void addToContainList( Object *obj );		///< The part of AddToContain that inheritors can override (Can't do whole thing because of all the private stuff involved)
-	virtual void removeFromContain( Object *obj, Bool exposeStealthUnits = FALSE );	///< remove 'obj' from contain list
-	virtual void removeAllContained( Bool exposeStealthUnits = FALSE );				///< remove all objects on contain list
+	virtual void removeFromContain( Object *obj, bool exposeStealthUnits = FALSE );	///< remove 'obj' from contain list
+	virtual void removeAllContained( bool exposeStealthUnits = FALSE );				///< remove all objects on contain list
 
 	/**
 		return the player that *appears* to control this unit. if null, use getObject()->getControllingPlayer() instead.
@@ -99,18 +99,18 @@ public:
 	virtual void recalcApparentControllingPlayer( void );
 
 	// contain list access
-	virtual void iterateContained( ContainIterateFunc func, void *userData, Bool reverse );
+	virtual void iterateContained( ContainIterateFunc func, void *userData, bool reverse );
 	virtual UnsignedInt getContainCount() const;
 	virtual Int getContainMax( void ) const;
 	virtual const ContainedItemsList* getContainedItemsList() const;	
-	virtual Bool isKickOutOnCapture(){ return FALSE; }///< Caves and Tunnels don't kick out on capture.
+	virtual bool isKickOutOnCapture(){ return FALSE; }///< Caves and Tunnels don't kick out on capture.
 
 	// override the onDie we inherit from OpenContain
 	virtual void onDie( const DamageInfo *damageInfo );  ///< the die callback
 
 	virtual void onCreate( void );
 	virtual void onBuildComplete();	///< This is called when you are a finished game object
-	virtual Bool shouldDoOnBuildComplete() const { return m_needToRunOnBuildComplete; }
+	virtual bool shouldDoOnBuildComplete() const { return m_needToRunOnBuildComplete; }
 
 	// Unique to Cave Contain
 	virtual void tryToSetCaveIndex( Int newIndex );	///< Called by script as an alternative to instancing separate objects.  'Try', because can fail.
@@ -118,9 +118,9 @@ public:
 
 protected:
 
-	void changeTeamOnAllConnectedCaves( Team *newTeam, Bool setOriginalTeams );	///< When one gets captured, all connected ones get captured.  DistributedGarrison.
+	void changeTeamOnAllConnectedCaves( Team *newTeam, bool setOriginalTeams );	///< When one gets captured, all connected ones get captured.  DistributedGarrison.
 
-	Bool m_needToRunOnBuildComplete; 
+	bool m_needToRunOnBuildComplete; 
 	Int m_caveIndex;
 
 	Team *m_originalTeam;												///< our original team before we were garrisoned

@@ -101,7 +101,7 @@ static Int getSlotIndex(const GameSlot *slot)
 	return -1;
 }
 
-static Bool isSlotLocalAlly(const GameSlot *slot)
+static bool isSlotLocalAlly(const GameSlot *slot)
 {
 	Int slotIndex = getSlotIndex(slot);
 	Int localIndex = TheGameInfo->getLocalSlotNum();
@@ -189,7 +189,7 @@ void GameSlot::unAccept( void )
 	}
 }
 
-void GameSlot::setMapAvailability( Bool hasMap )
+void GameSlot::setMapAvailability( bool hasMap )
 {
 	if (isHuman())
 	{
@@ -247,39 +247,39 @@ void GameSlot::setState( SlotState state, UnicodeString name, UnsignedInt IP )
 }
 
 // Various tests
-Bool GameSlot::isHuman( void ) const
+bool GameSlot::isHuman( void ) const
 {
 	return m_state == SLOT_PLAYER;
 }
 
-Bool GameSlot::isOccupied( void ) const
+bool GameSlot::isOccupied( void ) const
 {
 	return m_state == SLOT_PLAYER || m_state == SLOT_EASY_AI || m_state == SLOT_MED_AI || m_state == SLOT_BRUTAL_AI;
 }
 
-Bool GameSlot::isAI( void ) const
+bool GameSlot::isAI( void ) const
 {
 	return m_state == SLOT_EASY_AI || m_state == SLOT_MED_AI || m_state == SLOT_BRUTAL_AI;
 }
 
-Bool GameSlot::isPlayer( AsciiString userName ) const
+bool GameSlot::isPlayer( AsciiString userName ) const
 {
 	UnicodeString uName;
 	uName.translate(userName);
 	return (m_state == SLOT_PLAYER && !m_name.compareNoCase(uName));
 }
 
-Bool GameSlot::isPlayer( UnicodeString userName ) const
+bool GameSlot::isPlayer( UnicodeString userName ) const
 {
 	return (m_state == SLOT_PLAYER && !m_name.compareNoCase(userName));
 }
 
-Bool GameSlot::isPlayer( UnsignedInt ip ) const
+bool GameSlot::isPlayer( UnsignedInt ip ) const
 {
 	return (m_state == SLOT_PLAYER && m_IP == ip);
 }
 
-Bool GameSlot::isOpen( void ) const
+bool GameSlot::isOpen( void ) const
 {
 	return m_state == SLOT_OPEN;
 }
@@ -327,7 +327,7 @@ void GameInfo::reset( void )
 	m_preorderMask = 0;
 }
 
-Bool GameInfo::isPlayerPreorder(Int index)
+bool GameInfo::isPlayerPreorder(Int index)
 {
 	if (index >= 0 && index < MAX_SLOTS)
 		return ((m_preorderMask & (1 << index)) != 0);
@@ -425,8 +425,8 @@ void GameInfo::setSlot( Int slotNum, GameSlot slotInfo )
 	if (!m_slot[slotNum])
 		return;
 
-//	Bool isHuman = slotInfo.isHuman();
-//	Bool wasHuman = m_slot[slotNum]->isHuman();
+//	bool isHuman = slotInfo.isHuman();
+//	bool wasHuman = m_slot[slotNum]->isHuman();
 
 	if (slotNum == 0)
 	{
@@ -496,7 +496,7 @@ Int GameInfo::getSlotNum( AsciiString userName ) const
 	return -1;
 }
 
-Bool GameInfo::amIHost( void ) const
+bool GameInfo::amIHost( void ) const
 {
 	DEBUG_ASSERTCRASH(m_inGame, ("Looking for game slot while not in game"));
 	if (!m_inGame)
@@ -694,7 +694,7 @@ void GameInfo::setSlotPointer( Int index, GameSlot *slot )
 	m_slot[index] = slot;
 }
 
-Bool GameInfo::isColorTaken(Int colorIdx, Int slotToIgnore ) const
+bool GameInfo::isColorTaken(Int colorIdx, Int slotToIgnore ) const
 {
 	for (Int i=0; i<MAX_SLOTS; ++i)
 	{
@@ -705,7 +705,7 @@ Bool GameInfo::isColorTaken(Int colorIdx, Int slotToIgnore ) const
 	return false;
 }
 
-Bool GameInfo::isStartPositionTaken(Int positionIdx, Int slotToIgnore ) const
+bool GameInfo::isStartPositionTaken(Int positionIdx, Int slotToIgnore ) const
 {
 	for (Int i=0; i<MAX_SLOTS; ++i)
 	{
@@ -810,7 +810,7 @@ void GameInfo::closeOpenSlots()
 	}
 }
 
-static Bool isSlotLocalAlly(GameInfo *game, const GameSlot *slot)
+static bool isSlotLocalAlly(GameInfo *game, const GameSlot *slot)
 {
 	const GameSlot *localSlot = game->getConstSlot(game->getLocalSlotNum());
 	if (!localSlot)
@@ -825,9 +825,9 @@ static Bool isSlotLocalAlly(GameInfo *game, const GameSlot *slot)
 	return slot->getTeamNumber() == localSlot->getTeamNumber();
 }
 
-Bool GameInfo::isSkirmish(void)
+bool GameInfo::isSkirmish(void)
 {
-	Bool sawAI = FALSE;
+	bool sawAI = FALSE;
 
 	for (Int i=0; i<MAX_SLOTS; ++i)
 	{
@@ -847,7 +847,7 @@ Bool GameInfo::isSkirmish(void)
 	return sawAI;
 }
 
-Bool GameInfo::isMultiPlayer(void)
+bool GameInfo::isMultiPlayer(void)
 {
 	for (Int i=0; i<MAX_SLOTS; ++i)
 	{
@@ -861,7 +861,7 @@ Bool GameInfo::isMultiPlayer(void)
 	return FALSE;
 }
 
-Bool GameInfo::isSandbox(void)
+bool GameInfo::isSandbox(void)
 {
 	Int localSlotNum = getLocalSlotNum();
 	Int localTeam = getConstSlot(localSlotNum)->getTeamNumber();
@@ -977,22 +977,22 @@ static Int grabHexInt(const char *s)
 	Int b = strtol(tmp, NULL, 16);
 	return b;
 }
-Bool ParseAsciiStringToGameInfo(GameInfo *game, AsciiString options)
+bool ParseAsciiStringToGameInfo(GameInfo *game, AsciiString options)
 {
 	// Parse game options
 	char *buf = strdup(options.str());
 	char *bufPtr = buf;
 	char *strPos, *keyValPair;
 	GameSlot newSlot[MAX_SLOTS];
-	Bool optionsOk = true;
+	bool optionsOk = true;
 	AsciiString mapName;
 	Int mapContentsMask;
 	UnsignedInt mapCRC, mapSize;
 	Int seed = 0;
 	Int crc = 100;
-	Bool sawCRC = FALSE;
+	bool sawCRC = FALSE;
 
-	Bool sawMap, sawMapCRC, sawMapSize, sawSeed, sawSlotlist;
+	bool sawMap, sawMapCRC, sawMapSize, sawSeed, sawSlotlist;
 	sawMap = sawMapCRC = sawMapSize = sawSeed = sawSlotlist = FALSE;
 
 	//DEBUG_LOG(("Saw options of %s\n", options.str()));
@@ -1077,7 +1077,7 @@ Bool ParseAsciiStringToGameInfo(GameInfo *game, AsciiString options)
 			char *rawSlotBuf = strdup(val.str());
 			char *freeMe = NULL;
 			AsciiString rawSlot;
-//			Bool slotsOk = true;	//flag that lets us know whether or not the slot list is good.
+//			bool slotsOk = true;	//flag that lets us know whether or not the slot list is good.
 
 //			DEBUG_LOG(("ParseAsciiStringToGameInfo - Parsing slot list\n"));
 			for (int i=0; i<MAX_SLOTS; ++i)
@@ -1335,7 +1335,7 @@ Bool ParseAsciiStringToGameInfo(GameInfo *game, AsciiString options)
 								break;
 							}
 							Int startPos = atoi(slotValue.str());
-							Bool isStartPosBad = FALSE;
+							bool isStartPosBad = FALSE;
 							if (startPos < -1 || startPos >= MAX_SLOTS)
 							{
 								isStartPosBad = TRUE;
@@ -1481,10 +1481,10 @@ void SkirmishGameInfo::xfer( Xfer *xfer )
 			xfer->xferUnicodeString(&name);
 		}
 
-		Bool isAccepted=m_slot[slot]->isAccepted();
+		bool isAccepted=m_slot[slot]->isAccepted();
 		xfer->xferBool(&isAccepted);
 
-		Bool isMuted=m_slot[slot]->isMuted();
+		bool isMuted=m_slot[slot]->isMuted();
 		xfer->xferBool(&isMuted);
 		m_slot[slot]->mute(isMuted);
 

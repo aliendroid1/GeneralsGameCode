@@ -256,7 +256,7 @@ public:
 	virtual void onEnslave( const Object *slaver ) = 0;
 	virtual void onSlaverDie( const DamageInfo *info ) = 0;
 	virtual void onSlaverDamage( const DamageInfo *info ) = 0;
-	virtual	Bool isSelfTasking() const = 0;
+	virtual	bool isSelfTasking() const = 0;
 
 };
 
@@ -266,9 +266,9 @@ class ProjectileUpdateInterface
 public:
 	virtual void projectileLaunchAtObjectOrPosition(const Object *victim, const Coord3D* victimPos, const Object *launcher, WeaponSlotType wslot, Int specificBarrelToUse, const WeaponTemplate* detWeap, const ParticleSystemTemplate* exhaustSysOverride) = 0;						///< launch the projectile at the given victim
 	virtual void projectileFireAtObjectOrPosition( const Object *victim, const Coord3D *victimPos, const WeaponTemplate *detWeap, const ParticleSystemTemplate* exhaustSysOverride ) = 0;
-	virtual Bool projectileIsArmed() const = 0;													///< return true if the projectile is armed and ready to explode
+	virtual bool projectileIsArmed() const = 0;													///< return true if the projectile is armed and ready to explode
 	virtual ObjectID projectileGetLauncherID() const = 0;								///< All projectiles need to keep track of their firer
-	virtual Bool projectileHandleCollision(Object *other) = 0;
+	virtual bool projectileHandleCollision(Object *other) = 0;
 };
 
 //-------------------------------------------------------------------------------------------------
@@ -278,27 +278,27 @@ public:
 	/** Returns true if it is okay for the docker to approach and prepare to dock.
 			False could mean the queue is full, for example.
 	*/
-	virtual Bool isClearToApproach( Object const* docker ) const = 0;
+	virtual bool isClearToApproach( Object const* docker ) const = 0;
 
 	/** Give me a Queue point to drive to, and record that that point is taken.
 			Returning NULL means there are none free
 	*/
-	virtual Bool reserveApproachPosition( Object* docker, Coord3D *position, Int *index ) = 0;
+	virtual bool reserveApproachPosition( Object* docker, Coord3D *position, Int *index ) = 0;
 
 	/** Give me the next Queue point to drive to, and record that that point is taken.
 	*/
-	virtual Bool advanceApproachPosition( Object* docker, Coord3D *position, Int *index ) = 0;
+	virtual bool advanceApproachPosition( Object* docker, Coord3D *position, Int *index ) = 0;
 
 	/** Return true when it is OK for docker to begin entering the dock 
 			The Dock will lift the restriction on one particular docker on its own, 
 			so you must continually ask.
 	*/
-	virtual Bool isClearToEnter( Object const* docker ) const = 0;
+	virtual bool isClearToEnter( Object const* docker ) const = 0;
 
 	/** Return true when it is OK for docker to request a new Approach position.  The dock is in
 			charge of keeping track of holes in the line, but the docker will remind us of their spot.
 	*/
-	virtual Bool isClearToAdvance( Object const* docker, Int dockerIndex ) const = 0;
+	virtual bool isClearToAdvance( Object const* docker, Int dockerIndex ) const = 0;
 
 	/** Give me the point that is the start of your docking path
 			Returning NULL means there is none free
@@ -318,18 +318,18 @@ public:
 	virtual void onDockReached( Object* docker ) = 0;				///< I have reached the Dock point
 	virtual void onExitReached( Object* docker ) = 0;				///< I have reached the exit.  You are no longer busy
 
-	virtual Bool action( Object* docker, Object *drone = NULL ) = 0;			///< Perform your specific action on me.  Returning FALSE means there is nothing for you to do so I should leave
+	virtual bool action( Object* docker, Object *drone = NULL ) = 0;			///< Perform your specific action on me.  Returning FALSE means there is nothing for you to do so I should leave
 
 	virtual void cancelDock( Object* docker ) = 0;	///< Clear me from any reserved points, and if I was the reason you were Busy, you aren't anymore.
 
-	virtual Bool isDockOpen( void ) = 0;						///< Is the dock open to accepting dockers
-	virtual void setDockOpen( Bool open ) = 0;			///< Open/Close the dock
+	virtual bool isDockOpen( void ) = 0;						///< Is the dock open to accepting dockers
+	virtual void setDockOpen( bool open ) = 0;			///< Open/Close the dock
 	
-	virtual void setDockCrippled( Bool setting ) = 0; ///< Game Logic can set me as inoperative.  I get to decide what that means.
+	virtual void setDockCrippled( bool setting ) = 0; ///< Game Logic can set me as inoperative.  I get to decide what that means.
 
-	virtual Bool isAllowPassthroughType() = 0;	///< Not all docks allow you to path through them in your AIDock machine
+	virtual bool isAllowPassthroughType() = 0;	///< Not all docks allow you to path through them in your AIDock machine
 	
-	virtual Bool isRallyPointAfterDockType() = 0; ///< A minority of docks want to give you a final command to their rally point
+	virtual bool isRallyPointAfterDockType() = 0; ///< A minority of docks want to give you a final command to their rally point
 };
 
 //-------------------------------------------------------------------------------------------------
@@ -351,7 +351,7 @@ enum ExitDoorType : Int
 class ExitInterface
 { 
 public:
-	virtual Bool isExitBusy() const = 0;	///< Contain style exiters are getting the ability to space out exits, so ask this before reserveDoor as a kind of no-commitment check.
+	virtual bool isExitBusy() const = 0;	///< Contain style exiters are getting the ability to space out exits, so ask this before reserveDoor as a kind of no-commitment check.
 	virtual ExitDoorType reserveDoorForExit( const ThingTemplate* objType, Object *specificObject ) = 0;		///< All types can answer if they are free to exit or not, and you can ask about a specific guy or just exit anything in general
 	virtual void exitObjectViaDoor( Object *newObj, ExitDoorType exitDoor ) = 0;							///< Here is the object for you to exit to the world in your own special way
 	virtual void exitObjectByBudding( Object *newObj, Object *budHost ) = 0;	///< puts new spawn on top of an existing one
@@ -361,15 +361,15 @@ public:
 
 	virtual void setRallyPoint( const Coord3D *pos ) = 0;				///< define a "rally point" for units to move towards
 	virtual const Coord3D *getRallyPoint( void ) const = 0;			///< define a "rally point" for units to move towards
-	virtual Bool getNaturalRallyPoint( Coord3D& rallyPoint, Bool offset = TRUE ) const {rallyPoint.x=rallyPoint.y=rallyPoint.z=0; return false;}	///< get the natural "rally point" for units to move towards
-	virtual Bool getExitPosition( Coord3D& exitPosition ) const {exitPosition.x=exitPosition.y=exitPosition.z=0; return false;};					///< access to the "Door" position of the production object
+	virtual bool getNaturalRallyPoint( Coord3D& rallyPoint, bool offset = TRUE ) const {rallyPoint.x=rallyPoint.y=rallyPoint.z=0; return false;}	///< get the natural "rally point" for units to move towards
+	virtual bool getExitPosition( Coord3D& exitPosition ) const {exitPosition.x=exitPosition.y=exitPosition.z=0; return false;};					///< access to the "Door" position of the production object
 };
 
 //-------------------------------------------------------------------------------------------------
 class DelayedUpgradeUpdateInterface
 {
 public:
-	virtual Bool isTriggeredBy( UpgradeMaskType potentialMask ) = 0;	///< If you were an upgrade, would you trigger for this?
+	virtual bool isTriggeredBy( UpgradeMaskType potentialMask ) = 0;	///< If you were an upgrade, would you trigger for this?
 	virtual void setDelay( UnsignedInt startingDelay ) = 0;	///< Start the upgrade doing countdown
 };
 

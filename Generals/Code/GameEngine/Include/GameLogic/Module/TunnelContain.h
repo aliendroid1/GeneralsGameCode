@@ -90,26 +90,26 @@ public:
 	static Int getInterfaceMask() { return OpenContain::getInterfaceMask() | (MODULEINTERFACE_CREATE); }
 
 	virtual OpenContain *asOpenContain() { return this; }  ///< treat as open container
-	virtual Bool isGarrisonable() const { return false; }	///< can this unit be Garrisoned? (ick)
-	virtual Bool isHealContain() const { return false; } ///< true when container only contains units while healing (not a transport!)
-	virtual Bool isImmuneToClearBuildingAttacks() const { return true; }
+	virtual bool isGarrisonable() const { return false; }	///< can this unit be Garrisoned? (ick)
+	virtual bool isHealContain() const { return false; } ///< true when container only contains units while healing (not a transport!)
+	virtual bool isImmuneToClearBuildingAttacks() const { return true; }
 
 	virtual void onContaining( Object *obj );		///< object now contains 'obj'
 	virtual void onRemoving( Object *obj );			///< object no longer contains 'obj'
 	virtual void onSelling();///< Container is being sold.  Tunnel responds by kicking people out if this is the last tunnel.
 
-	virtual Bool isValidContainerFor(const Object* obj, Bool checkCapacity) const;
+	virtual bool isValidContainerFor(const Object* obj, bool checkCapacity) const;
 	virtual void addToContainList( Object *obj );		///< The part of AddToContain that inheritors can override (Can't do whole thing because of all the private stuff involved)
-	virtual void removeFromContain( Object *obj, Bool exposeStealthUnits = FALSE );	///< remove 'obj' from contain list
-	virtual void removeAllContained( Bool exposeStealthUnits = FALSE );				///< remove all objects on contain list
+	virtual void removeFromContain( Object *obj, bool exposeStealthUnits = FALSE );	///< remove 'obj' from contain list
+	virtual void removeAllContained( bool exposeStealthUnits = FALSE );				///< remove all objects on contain list
 
 	// contain list access
-	virtual void iterateContained( ContainIterateFunc func, void *userData, Bool reverse );
+	virtual void iterateContained( ContainIterateFunc func, void *userData, bool reverse );
 	virtual UnsignedInt getContainCount() const;
 	virtual Int getContainMax( void ) const;
 	virtual const ContainedItemsList* getContainedItemsList() const;	
-	virtual Bool isDisplayedOnControlBar() const { return TRUE; } ///< Does this container display its contents on the ControlBar?
-	virtual Bool isKickOutOnCapture(){ return FALSE; }///< Caves and Tunnels don't kick out on capture.
+	virtual bool isDisplayedOnControlBar() const { return TRUE; } ///< Does this container display its contents on the ControlBar?
+	virtual bool isKickOutOnCapture(){ return FALSE; }///< Caves and Tunnels don't kick out on capture.
 
 	// override the onDie we inherit from OpenContain
 	virtual void onDie( const DamageInfo *damageInfo );  ///< the die callback
@@ -117,7 +117,7 @@ public:
 	virtual void onDelete( void );
 	virtual void onCreate( void );
 	virtual void onBuildComplete();	///< This is called when you are a finished game object
-	virtual Bool shouldDoOnBuildComplete() const { return m_needToRunOnBuildComplete; }
+	virtual bool shouldDoOnBuildComplete() const { return m_needToRunOnBuildComplete; }
 
 	// so that the ppl within the tunnel network can get healed	
 	virtual UpdateSleepTime update();												///< called once per frame
@@ -125,8 +125,8 @@ public:
 protected:
 
 	void scatterToNearbyPosition(Object* obj);
-	Bool m_needToRunOnBuildComplete; 
-	Bool m_isCurrentlyRegistered; ///< Keeps track if this is registered with the player, so we don't double remove and mess up
+	bool m_needToRunOnBuildComplete; 
+	bool m_isCurrentlyRegistered; ///< Keeps track if this is registered with the player, so we don't double remove and mess up
 
 };
 

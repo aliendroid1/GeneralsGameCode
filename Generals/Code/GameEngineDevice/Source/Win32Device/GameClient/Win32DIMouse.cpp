@@ -193,7 +193,7 @@ void DirectInputMouse::closeMouse( void )
 //-------------------------------------------------------------------------------------------------
 /** Get a single mouse event from the device */
 //-------------------------------------------------------------------------------------------------
-UnsignedByte DirectInputMouse::getMouseEvent( MouseIO *result, Bool flush )
+UnsignedByte DirectInputMouse::getMouseEvent( MouseIO *result, bool flush )
 {
 	HRESULT hr;
 	DIDEVICEOBJECTDATA mdat;

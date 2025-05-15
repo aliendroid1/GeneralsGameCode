@@ -235,7 +235,7 @@ UpdateSleepTime SpecialAbilityUpdate::update( void )
 		return calcSleepTime();
 	}
 
-	Bool shouldAbort = false;
+	bool shouldAbort = false;
 
 	// A dead target will end our special (if we are using a target).
 	if (m_targetID != INVALID_ID)
@@ -309,7 +309,7 @@ UpdateSleepTime SpecialAbilityUpdate::update( void )
 		else
 		{
 			//Process the preparation if it's still not complete.
-			Bool continuePrep = continuePreparation();
+			bool continuePrep = continuePreparation();
 			if( !continuePrep )
 			{
 				//We failed so abort!
@@ -380,7 +380,7 @@ UpdateSleepTime SpecialAbilityUpdate::update( void )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool SpecialAbilityUpdate::initiateIntentToDoSpecialPower( const SpecialPowerTemplate *specialPowerTemplate, 
+bool SpecialAbilityUpdate::initiateIntentToDoSpecialPower( const SpecialPowerTemplate *specialPowerTemplate, 
 																													 const Object *targetObj, 
 																													 const Coord3D *targetPos, 
 																													 const Waypoint *way, 
@@ -463,7 +463,7 @@ Bool SpecialAbilityUpdate::initiateIntentToDoSpecialPower( const SpecialPowerTem
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool SpecialAbilityUpdate::isPowerCurrentlyInUse( const CommandButton *command ) const
+bool SpecialAbilityUpdate::isPowerCurrentlyInUse( const CommandButton *command ) const
 {
 	if( command )
 	{
@@ -496,7 +496,7 @@ Bool SpecialAbilityUpdate::isPowerCurrentlyInUse( const CommandButton *command )
 }
 
 //-------------------------------------------------------------------------------------------------
-void SpecialAbilityUpdate::onExit( Bool cleanup )
+void SpecialAbilityUpdate::onExit( bool cleanup )
 {
 	const SpecialAbilityUpdateModuleData* data = getSpecialAbilityUpdateModuleData();
 
@@ -535,7 +535,7 @@ void SpecialAbilityUpdate::onExit( Bool cleanup )
 //decrement the counter and clear the model state when finished.
 //Returns TRUE if we are still packing or unpacking.
 //-------------------------------------------------------------------------------------------------
-Bool SpecialAbilityUpdate::handlePackingProcessing()
+bool SpecialAbilityUpdate::handlePackingProcessing()
 {
 	const SpecialAbilityUpdateModuleData* data = getSpecialAbilityUpdateModuleData();
 	if( m_animFrames > 0 )
@@ -598,7 +598,7 @@ Bool SpecialAbilityUpdate::handlePackingProcessing()
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool SpecialAbilityUpdate::needToPack() const
+bool SpecialAbilityUpdate::needToPack() const
 {
 	const SpecialAbilityUpdateModuleData* data = getSpecialAbilityUpdateModuleData();
 	if( m_packingState == STATE_UNPACKED )
@@ -616,7 +616,7 @@ Bool SpecialAbilityUpdate::needToPack() const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool SpecialAbilityUpdate::needToUnpack() const
+bool SpecialAbilityUpdate::needToUnpack() const
 {
 	const SpecialAbilityUpdateModuleData* data = getSpecialAbilityUpdateModuleData();
 	if( m_packingState == STATE_PACKED )
@@ -714,7 +714,7 @@ void SpecialAbilityUpdate::startUnpacking()
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool SpecialAbilityUpdate::isWithinStartAbilityRange() const
+bool SpecialAbilityUpdate::isWithinStartAbilityRange() const
 {
 	const SpecialAbilityUpdateModuleData* data = getSpecialAbilityUpdateModuleData();
 	const Object *self = getObject();
@@ -794,7 +794,7 @@ Bool SpecialAbilityUpdate::isWithinStartAbilityRange() const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool SpecialAbilityUpdate::isWithinAbilityAbortRange() const
+bool SpecialAbilityUpdate::isWithinAbilityAbortRange() const
 {
 	const SpecialAbilityUpdateModuleData* data = getSpecialAbilityUpdateModuleData();
 	const Object *self = getObject();
@@ -850,7 +850,7 @@ Bool SpecialAbilityUpdate::isWithinAbilityAbortRange() const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool SpecialAbilityUpdate::approachTarget()
+bool SpecialAbilityUpdate::approachTarget()
 {
 	Object *self = getObject();
 	if( m_targetID != INVALID_ID )
@@ -994,7 +994,7 @@ SpecialPowerModuleInterface* SpecialAbilityUpdate::getMySPM()
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool SpecialAbilityUpdate::initLaser(Object* specialObject, Object* target )
+bool SpecialAbilityUpdate::initLaser(Object* specialObject, Object* target )
 {
 	const SpecialAbilityUpdateModuleData* data = getSpecialAbilityUpdateModuleData();
 	static NameKeyType key_LaserUpdate = NAMEKEY( "LaserUpdate" );
@@ -1032,7 +1032,7 @@ Bool SpecialAbilityUpdate::initLaser(Object* specialObject, Object* target )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool SpecialAbilityUpdate::continuePreparation()
+bool SpecialAbilityUpdate::continuePreparation()
 {
 	const SpecialAbilityUpdateModuleData* data = getSpecialAbilityUpdateModuleData();
 	const SpecialPowerTemplate *spTemplate = data->m_specialPowerTemplate;
@@ -1106,13 +1106,13 @@ Bool SpecialAbilityUpdate::continuePreparation()
 
 				if (targetDraw) // skip fx if merely 'invulnerable'
 				{
-					Bool lastPhase = ( ((Int)m_captureFlashPhase) & 1 );// were we in a flashy phase last frame?
+					bool lastPhase = ( ((Int)m_captureFlashPhase) & 1 );// were we in a flashy phase last frame?
 					
 					Real denominator = MAX(1, data->m_preparationFrames);
 					Real increment = 1.0f - ((Real)m_prepFrames / denominator );
 					m_captureFlashPhase += increment / 3.0f;
 
-					Bool thisPhase = ( ((Int)m_captureFlashPhase) & 1 );// are we in a flashy phase this frame?
+					bool thisPhase = ( ((Int)m_captureFlashPhase) & 1 );// are we in a flashy phase this frame?
 
 					if ( lastPhase && ( ! thisPhase ) ) 
 					{
@@ -1179,7 +1179,7 @@ void SpecialAbilityUpdate::triggerAbilityEffect()
 	TheAudio->addAudioEvent( &sound );
 	
 
-	Bool okToLoseStealth = TRUE;
+	bool okToLoseStealth = TRUE;
 
 	switch( spTemplate->getSpecialPowerType() )
 	{
@@ -1594,7 +1594,7 @@ void SpecialAbilityUpdate::finishAbility()
 	//If we don't have a valid target, then we don't flee -- the specific example is when Colonel Burton
 	//uses his remote charge special ability. With a target, he will plant the charge then flee. Without
 	//a target, he simply detonates it without fleeing.
-	Bool validTarget = m_targetPos.x || m_targetPos.y || m_targetPos.z || m_targetID != INVALID_ID;
+	bool validTarget = m_targetPos.x || m_targetPos.y || m_targetPos.z || m_targetID != INVALID_ID;
 	if( data->m_fleeRangeAfterCompletion && validTarget )
 	{
 		Coord3D pos;
@@ -1673,7 +1673,7 @@ void SpecialAbilityUpdate::finishAbility()
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool SpecialAbilityUpdate::isFacing()
+bool SpecialAbilityUpdate::isFacing()
 {
 	AIUpdateInterface *ai = getObject()->getAIUpdateInterface();
 	if( ai )
@@ -1701,7 +1701,7 @@ Bool SpecialAbilityUpdate::isFacing()
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool SpecialAbilityUpdate::needToFace() const
+bool SpecialAbilityUpdate::needToFace() const
 {
 	const AIUpdateInterface *ai = getObject()->getAIUpdateInterface();
 	if( !ai )

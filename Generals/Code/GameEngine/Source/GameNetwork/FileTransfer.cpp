@@ -38,9 +38,9 @@
 //-------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------
 
-static Bool doFileTransfer( AsciiString filename, MapTransferLoadScreen *ls, Int mask )
+static bool doFileTransfer( AsciiString filename, MapTransferLoadScreen *ls, Int mask )
 {
-	Bool fileTransferDone = FALSE;
+	bool fileTransferDone = FALSE;
 	Int fileTransferPercent = 0;
 	Int i;
 
@@ -56,7 +56,7 @@ static Bool doFileTransfer( AsciiString filename, MapTransferLoadScreen *ls, Int
 		fileTransferPercent = 0;
 
 		UnsignedShort fileCommandID = 0;
-		Bool sentFile = FALSE;
+		bool sentFile = FALSE;
 		if (TheGameInfo->amIHost())
 		{
 			Sleep(500);
@@ -241,7 +241,7 @@ AsciiString GetReadmeFromMap( AsciiString path )
 //-------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------
 
-Bool DoAnyMapTransfers(GameInfo *game)
+bool DoAnyMapTransfers(GameInfo *game)
 {
 	TheGameInfo = game;
 	Int mask = 0;
@@ -260,7 +260,7 @@ Bool DoAnyMapTransfers(GameInfo *game)
 	TheShell->hideShell();
 	MapTransferLoadScreen *ls = NEW MapTransferLoadScreen;
 	ls->init(TheGameInfo);
-	Bool ok = TRUE;
+	bool ok = TRUE;
 	if (TheGameInfo->getMapContentsMask() & 2)
 		ok = doFileTransfer(GetPreviewFromMap(game->getMap()), ls, mask);
 	if (ok && TheGameInfo->getMapContentsMask() & 4)

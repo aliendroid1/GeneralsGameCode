@@ -300,7 +300,7 @@ Int ConnectionManager::getPingsRecieved()
 	return (m_disconnectManager)?m_disconnectManager->getPingsRecieved():0;
 }
 
-Bool ConnectionManager::isPlayerConnected( Int playerID )
+bool ConnectionManager::isPlayerConnected( Int playerID )
 {
 	return ( playerID == m_localSlot || (m_connections[playerID] && !m_connections[playerID]->isQuitting()) );
 }
@@ -421,7 +421,7 @@ void ConnectionManager::doRelay() {
  * This is where the non-synchronized network commands should be processed.
  * Return TRUE if the command should not be relayed. Return FALSE if it should be relayed.
  */
-Bool ConnectionManager::processNetCommand(NetCommandRef *ref) {
+bool ConnectionManager::processNetCommand(NetCommandRef *ref) {
 	NetCommandMsg *msg = ref->getCommand();
 
 	if ((msg->getNetCommandType() == NETCOMMANDTYPE_ACKSTAGE1) ||
@@ -664,9 +664,9 @@ void ConnectionManager::processChat(NetChatCommandMsg *msg)
 		return;
 	}
 	
-	Bool fromObserver = !player->isPlayerActive();
-	Bool amIObserver = !ThePlayerList->getLocalPlayer()->isPlayerActive();
-	Bool canSeeChat = amIObserver || !fromObserver && !TheGameInfo->getConstSlot(playerID)->isMuted();
+	bool fromObserver = !player->isPlayerActive();
+	bool amIObserver = !ThePlayerList->getLocalPlayer()->isPlayerActive();
+	bool canSeeChat = amIObserver || !fromObserver && !TheGameInfo->getConstSlot(playerID)->isMuted();
 	
 	if ( ((1<<m_localSlot) & msg->getPlayerMask() ) && canSeeChat  )
 	{
@@ -699,7 +699,7 @@ void ConnectionManager::processFile(NetFileCommandMsg *msg)
 
 	// uncompress Targas
 #ifdef COMPRESS_TARGAS
-	Bool deleteBuf = FALSE;
+	bool deleteBuf = FALSE;
 	if (msg->getFilename().endsWith(".tga") && CompressionManager::isDataCompressed(buf, len))
 	{
 		Int uncompLen = CompressionManager::getUncompressedSize(buf, len);
@@ -828,7 +828,7 @@ void ConnectionManager::processFrameInfo(NetFrameCommandMsg *msg) {
  */
 void ConnectionManager::processAckStage1(NetCommandMsg *msg) {
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
-	Bool doDebug = (msg->getNetCommandType() == NETCOMMANDTYPE_DISCONNECTFRAME) ? TRUE : FALSE;
+	bool doDebug = (msg->getNetCommandType() == NETCOMMANDTYPE_DISCONNECTFRAME) ? TRUE : FALSE;
 #endif
 
 	UnsignedByte playerID = msg->getPlayerID();
@@ -976,8 +976,8 @@ UnsignedInt ConnectionManager::getPacketRouterSlot() {
 	return m_packetRouterSlot;
 }
 
-Bool ConnectionManager::areAllQueuesEmpty(void) {
-	Bool retval = TRUE;
+bool ConnectionManager::areAllQueuesEmpty(void) {
+	bool retval = TRUE;
 	for (Int i = 0; (i < MAX_SLOTS) && retval; ++i) {
 		if (m_connections[i] != NULL) {
 			if (m_connections[i]->isQueueEmpty() == FALSE) {
@@ -991,7 +991,7 @@ Bool ConnectionManager::areAllQueuesEmpty(void) {
 	return retval;
 }
 
-Bool ConnectionManager::canILeave() {
+bool ConnectionManager::canILeave() {
 	return areAllQueuesEmpty();
 }
 
@@ -1036,7 +1036,7 @@ void ConnectionManager::ackCommand(NetCommandRef *ref, UnsignedInt localSlot) {
 	}
 
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
-	Bool doDebug = (msg->getNetCommandType() == NETCOMMANDTYPE_DISCONNECTFRAME) ? TRUE : FALSE;
+	bool doDebug = (msg->getNetCommandType() == NETCOMMANDTYPE_DISCONNECTFRAME) ? TRUE : FALSE;
 #endif
 
 	sendRelay = sendRelay & ref->getRelay();
@@ -1213,7 +1213,7 @@ void ConnectionManager::update(Bool isInGame) {
 	m_transport->doSend();
 }
 
-void ConnectionManager::updateRunAhead(Int oldRunAhead, Int frameRate, Bool didSelfSlug, Int nextExecutionFrame) {
+void ConnectionManager::updateRunAhead(Int oldRunAhead, Int frameRate, bool didSelfSlug, Int nextExecutionFrame) {
 	static time_t lasttimesent = 0;
 	time_t curTime = timeGetTime();
 
@@ -1552,8 +1552,8 @@ Int commandsReadyDebugSpewage = 0;
 /**
  * Returns true if all the commands for the given frame are ready to be executed.
  */
-Bool ConnectionManager::allCommandsReady(UnsignedInt frame, Bool justTesting /* = FALSE */) {
-	Bool retval = TRUE;
+bool ConnectionManager::allCommandsReady(UnsignedInt frame, bool justTesting /* = FALSE */) {
+	bool retval = TRUE;
 	FrameDataReturnType frameRetVal = FRAMEDATA_NOTREADY;
 //	retval = FALSE;  // ****for testing purposes only!!!!!!****
 	Int i = 0;
@@ -2307,7 +2307,7 @@ void ConnectionManager::sendTimeOutGameStart()
 	msg->detach();
 }
 
-Bool ConnectionManager::isPacketRouter( void )
+bool ConnectionManager::isPacketRouter( void )
 {
 	return m_localSlot == m_packetRouterSlot;
 }

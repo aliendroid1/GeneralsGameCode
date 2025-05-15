@@ -77,12 +77,12 @@ protected:
 	virtual void privateEvacuate( Int exposeStealthUnits, CommandSourceType cmdSource );
 
 	// our methods
-	void setInTransit( Bool inTransit );
+	void setInTransit( bool inTransit );
 	void loadWaypointData( void );
 	void pickAndMoveToInitialLocation( void );
 
 	// our data
-	Bool m_inTransit;								///< in transit
+	bool m_inTransit;								///< in transit
 	struct WaypointPathInfo
 	{
 		UnsignedInt startWaypointID;
@@ -93,7 +93,7 @@ protected:
 	Int m_numPaths;								///< how many waypoint paths are in m_path
 	Int m_currentPath;						///< index into m_path for our current path
 
-	Bool m_waypointDataLoaded;		///< TRUE once we've searched the map to load m_path
+	bool m_waypointDataLoaded;		///< TRUE once we've searched the map to load m_path
 
 };
 

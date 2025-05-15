@@ -22,7 +22,7 @@
 
 #include "Common/GameMemoryNull.h"
 
-static Bool theMainInitFlag = false;
+static bool theMainInitFlag = false;
 
 // ----------------------------------------------------------------------------
 // PUBLIC DATA 
@@ -121,7 +121,7 @@ void initMemoryManager()
 }
 
 //-----------------------------------------------------------------------------
-Bool isMemoryManagerOfficiallyInited()
+bool isMemoryManagerOfficiallyInited()
 {
 	return theMainInitFlag;
 }

@@ -64,7 +64,7 @@
 VictoryConditionsInterface *TheVictoryConditions = NULL;
 
 //-------------------------------------------------------------------------------------------------
-inline static Bool areAllies(const Player *p1, const Player *p2)
+inline static bool areAllies(const Player *p1, const Player *p2)
 {
 	if (p1 != p2 && 
 		p1->getRelationship(p2->getDefaultTeam()) == ALLIES &&
@@ -84,16 +84,16 @@ public:
 	void reset( void );
 	void update( void );
 
-	Bool hasAchievedVictory(Player *player);					///< has a specific player and his allies won?
-	Bool hasBeenDefeated(Player *player);							///< has a specific player and his allies lost?
-	Bool hasSinglePlayerBeenDefeated(Player *player);	///< has a specific player lost?
+	bool hasAchievedVictory(Player *player);					///< has a specific player and his allies won?
+	bool hasBeenDefeated(Player *player);							///< has a specific player and his allies lost?
+	bool hasSinglePlayerBeenDefeated(Player *player);	///< has a specific player lost?
 
 	void cachePlayerPtrs( void );											///< players have been created - cache the ones of interest
 
-	Bool isLocalAlliedVictory( void );								///< convenience function
-	Bool isLocalAlliedDefeat( void );									///< convenience function
-	Bool isLocalDefeat( void );												///< convenience function
-	Bool amIObserver( void ) { return m_isObserver;} 	///< Am I an observer?( need this for scripts )
+	bool isLocalAlliedVictory( void );								///< convenience function
+	bool isLocalAlliedDefeat( void );									///< convenience function
+	bool isLocalDefeat( void );												///< convenience function
+	bool amIObserver( void ) { return m_isObserver;} 	///< Am I an observer?( need this for scripts )
 	virtual UnsignedInt getEndFrame( void ) { return m_endFrame; }	///< on which frame was the game effectively over?
 private:
 	Player*				m_players[MAX_PLAYER_COUNT];
@@ -151,7 +151,7 @@ void VictoryConditions::update( void )
 	// Check for a single winning alliance
 	if (!m_singleAllianceRemaining)
 	{
-		Bool multipleAlliances = false;
+		bool multipleAlliances = false;
 		Player *alive = NULL;
 		Player *player;
 		for (Int i=0; i<MAX_PLAYER_COUNT; ++i)
@@ -238,7 +238,7 @@ void VictoryConditions::update( void )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool VictoryConditions::hasAchievedVictory(Player *player)
+bool VictoryConditions::hasAchievedVictory(Player *player)
 {
 	if (!player)
 		return false;
@@ -257,7 +257,7 @@ Bool VictoryConditions::hasAchievedVictory(Player *player)
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool VictoryConditions::hasBeenDefeated(Player *player)
+bool VictoryConditions::hasBeenDefeated(Player *player)
 {
 	if (!player)
 		return false;
@@ -269,7 +269,7 @@ Bool VictoryConditions::hasBeenDefeated(Player *player)
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool VictoryConditions::hasSinglePlayerBeenDefeated(Player *player)
+bool VictoryConditions::hasSinglePlayerBeenDefeated(Player *player)
 {
 	if (!player)
 		return false;
@@ -338,7 +338,7 @@ void VictoryConditions::cachePlayerPtrs( void )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool VictoryConditions::isLocalAlliedVictory( void )
+bool VictoryConditions::isLocalAlliedVictory( void )
 {
 	if (m_isObserver)
 		return false;
@@ -347,7 +347,7 @@ Bool VictoryConditions::isLocalAlliedVictory( void )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool VictoryConditions::isLocalAlliedDefeat( void )
+bool VictoryConditions::isLocalAlliedDefeat( void )
 {
 	if (m_isObserver)
 		return m_singleAllianceRemaining;
@@ -356,7 +356,7 @@ Bool VictoryConditions::isLocalAlliedDefeat( void )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool VictoryConditions::isLocalDefeat( void )
+bool VictoryConditions::isLocalDefeat( void )
 {
 	if (m_isObserver)
 		return FALSE;

@@ -220,7 +220,7 @@ void AIPlayer::checkForSupplyCenter( BuildListInfo *info, Object *bldg )
 // ------------------------------------------------------------------------------------------------
 void AIPlayer::queueSupplyTruck( void )
 {			
-	Bool truckInQueue = false;
+	bool truckInQueue = false;
 	for ( DLINK_ITERATOR<TeamInQueue> iter = iterate_TeamBuildQueue(); !iter.done(); iter.advance())
 	{
 		TeamInQueue *team = iter.cur();
@@ -379,12 +379,12 @@ void AIPlayer::queueSupplyTruck( void )
 			if (totalHarvesters >= desiredGatherers*3) {
 				continue; // we got lotsa gatherers.
 			}
-			Bool canBuildUnits = m_player->getCanBuildUnits();
+			bool canBuildUnits = m_player->getCanBuildUnits();
 			// If we need a supply truck thingy, turn on unit building for a moment.
 			m_player->setCanBuildUnits(true);
 			const ThingTemplate *tTemplate = TheThingFactory->firstTemplate();
 			while (tTemplate) {	 
-				Bool isSupplyTruck = tTemplate->isKindOf(KINDOF_HARVESTER);;
+				bool isSupplyTruck = tTemplate->isKindOf(KINDOF_HARVESTER);;
 				if (isSupplyTruck) {
 					Object *factory = findFactory(tTemplate, false);
 					if (factory) {
@@ -486,7 +486,7 @@ Object *AIPlayer::buildStructureNow(const ThingTemplate *bldgPlan, BuildListInfo
 		if( exitInterface )
 		{
 			Coord3D rallyPoint;
-			Bool gotOffset = false;
+			bool gotOffset = false;
 			if (fabs(info->getRallyOffset()->x) > 1.0f || fabs(info->getRallyOffset()->y)>1.0f) {
 				gotOffset;
 			}
@@ -545,7 +545,7 @@ Object *AIPlayer::buildStructureWithDozer(const ThingTemplate *bldgPlan, BuildLi
 			TheScriptEngine->AppendDebugMessage(bldgName, false);
 			// try to fix.
 			Real posOffset;
-			Bool valid = false;
+			bool valid = false;
 			// Wiggle it a little :)
 			Real limit = 10*PATHFIND_CELL_SIZE_F;
 			if (isSkirmishAI()) {
@@ -666,7 +666,7 @@ Object *AIPlayer::buildStructureWithDozer(const ThingTemplate *bldgPlan, BuildLi
 		if( exitInterface )
 		{
 			Coord3D rallyPoint;
-			Bool gotOffset = false;
+			bool gotOffset = false;
 			if (fabs(info->getRallyOffset()->x) > 1.0f || fabs(info->getRallyOffset()->y)>1.0f) {
 				gotOffset;
 			}
@@ -920,7 +920,7 @@ void AIPlayer::guardSupplyCenter( Team *team, Int minSupplies )
 //-------------------------------------------------------------------------------------------------
 /** Is a supply source attacked? */
 //-------------------------------------------------------------------------------------------------
-Bool AIPlayer::isSupplySourceAttacked( void )
+bool AIPlayer::isSupplySourceAttacked( void )
 {
 	const Int SCAN_RATE = 10; // don't scan more often than every 10 seconds.
 	UnsignedInt curFrame = TheGameLogic->getFrame();
@@ -978,7 +978,7 @@ Bool AIPlayer::isSupplySourceAttacked( void )
 //-------------------------------------------------------------------------------------------------
 /** Is the nearest supply source safe? */
 //-------------------------------------------------------------------------------------------------
-Bool AIPlayer::isSupplySourceSafe( Int minSupplies )
+bool AIPlayer::isSupplySourceSafe( Int minSupplies )
 {
 	Object *warehouse = findSupplyCenter(minSupplies);
 	if (warehouse==NULL) return true; // it's safe cause it doesn't exist.
@@ -988,7 +988,7 @@ Bool AIPlayer::isSupplySourceSafe( Int minSupplies )
 //-------------------------------------------------------------------------------------------------
 /** Is this location safe for building this thing? */
 //-------------------------------------------------------------------------------------------------
-Bool AIPlayer::isLocationSafe(const Coord3D *pos, const ThingTemplate *tthing )
+bool AIPlayer::isLocationSafe(const Coord3D *pos, const ThingTemplate *tthing )
 {
 	if (tthing == NULL) return 0;
 
@@ -1040,13 +1040,13 @@ Bool AIPlayer::isLocationSafe(const Coord3D *pos, const ThingTemplate *tthing )
 // ------------------------------------------------------------------------------------------------
 void AIPlayer::onUnitProduced( Object *factory, Object *unit )
 {
-	Bool found = false;
+	bool found = false;
 	// TheSuperHackers @fix Mauller 26/04/2025 Fixes uninitialized variable.
 	// To keep retail compatibility this needs to remain uninitialized in VS6 builds.
 #if defined(_MSC_VER) && _MSC_VER < 1300
-	Bool supplyTruck;
+	bool supplyTruck;
 #else
-	Bool supplyTruck = false;
+	bool supplyTruck = false;
 #endif
 
 	// factory could be NULL at the start of the game.
@@ -1267,7 +1267,7 @@ Int AIPlayer::getPlayerSuperweaponValue(Coord3D *center, Int playerNdx, Real rad
 	* If busyOK is true, it will queue a unit even if one is building.  This lets 
 	* script invoked teams "push" to the front of the queue. */
 // ------------------------------------------------------------------------------------------------
-Bool AIPlayer::startTraining( WorkOrder *order, Bool busyOK, AsciiString teamName)
+bool AIPlayer::startTraining( WorkOrder *order, bool busyOK, AsciiString teamName)
 {
 	Object *factory = findFactory(order->m_thing, busyOK);
 	if( factory )
@@ -1295,7 +1295,7 @@ Bool AIPlayer::startTraining( WorkOrder *order, Bool busyOK, AsciiString teamNam
 	* If busyOK is true, it will return a busy factory if there are no idle ones.  This is 
 	* used for script invoked teams "push" to the front of the queue. */
 // ------------------------------------------------------------------------------------------------
-Object *AIPlayer::findFactory(const ThingTemplate *thing, Bool busyOK) 
+Object *AIPlayer::findFactory(const ThingTemplate *thing, bool busyOK) 
 {
 	Object *busyFactory = NULL; // We prefer a factory that isn't busy.
 	for( BuildListInfo *info = m_player->getBuildList(); info; info = info->getNext() )
@@ -1320,7 +1320,7 @@ Object *AIPlayer::findFactory(const ThingTemplate *thing, Bool busyOK)
 			if( TheBuildAssistant->isPossibleToMakeUnit( factory, thing ) == FALSE )
 				continue;
 			// If the factory is not busy, return it.
-			Bool busy = pu->getProductionCount()>0;
+			bool busy = pu->getProductionCount()>0;
 			if (!busy) return factory; // found a not busy factory.
 			if (busyOK) busyFactory = factory;
 		}  // end if
@@ -1334,10 +1334,10 @@ Object *AIPlayer::findFactory(const ThingTemplate *thing, Bool busyOK)
 // ------------------------------------------------------------------------------------------------
 /** Return true if team can be considered for building */
 // ------------------------------------------------------------------------------------------------
-Bool AIPlayer::isPossibleToBuildTeam( TeamPrototype *proto, Bool requireIdleFactory, Bool &notEnoughMoney)
+bool AIPlayer::isPossibleToBuildTeam( TeamPrototype *proto, bool requireIdleFactory, bool &notEnoughMoney)
 {
 	/* Make sure we have at least one idle factory, and factories for all unit types. */
-	Bool anyIdle = false;
+	bool anyIdle = false;
 	Int cost=0;
 	notEnoughMoney = false;
 	for( int i=0; i<proto->getTemplateInfo()->m_numUnitsInfo; i++ )
@@ -1378,7 +1378,7 @@ Bool AIPlayer::isPossibleToBuildTeam( TeamPrototype *proto, Bool requireIdleFact
 /** Check if this team is buildable, doesn't exceed maximum limits, meets conditions, 
 	* and isn't under construction. */
 // ------------------------------------------------------------------------------------------------
-Bool AIPlayer::isAGoodIdeaToBuildTeam( TeamPrototype *proto )
+bool AIPlayer::isAGoodIdeaToBuildTeam( TeamPrototype *proto )
 {
 	// Check condition.
 	if (!proto->evaluateProductionCondition()) {
@@ -1401,7 +1401,7 @@ Bool AIPlayer::isAGoodIdeaToBuildTeam( TeamPrototype *proto )
 			return false; // currently building one of these.
 		}
 	}
-	Bool needMoney;
+	bool needMoney;
 	if (!isPossibleToBuildTeam( proto, true, needMoney)) {
 		if (TheGlobalData->m_debugAI) {	
 			AsciiString str;
@@ -1420,7 +1420,7 @@ Bool AIPlayer::isAGoodIdeaToBuildTeam( TeamPrototype *proto )
 // ------------------------------------------------------------------------------------------------
 /** See if any existing teams need reinforcements, and have higher priority. */
 // ------------------------------------------------------------------------------------------------
-Bool AIPlayer::selectTeamToReinforce( Int minPriority )
+bool AIPlayer::selectTeamToReinforce( Int minPriority )
 {
 	// Find a high production priority team that needs reinforcements.
 	Player::PlayerTeamList::const_iterator t;
@@ -1430,7 +1430,7 @@ Bool AIPlayer::selectTeamToReinforce( Int minPriority )
 	for (t = m_player->getPlayerTeams()->begin(); t != m_player->getPlayerTeams()->end(); ++t)
 	{
 		TeamPrototype *proto = (*t);
-		Bool busy = false;
+		bool busy = false;
 		for ( DLINK_ITERATOR<TeamInQueue> iter = iterate_TeamBuildQueue(); !iter.done(); iter.advance())
 		{
 			TeamInQueue *team = iter.cur();
@@ -1537,7 +1537,7 @@ Bool AIPlayer::selectTeamToReinforce( Int minPriority )
 // ------------------------------------------------------------------------------------------------
 /** Determine the next team to build.  Return true if one was selected. */
 // ------------------------------------------------------------------------------------------------
-Bool AIPlayer::selectTeamToBuild( void )
+bool AIPlayer::selectTeamToBuild( void )
 {
 
 	// find the highest priority of all teams
@@ -1691,7 +1691,7 @@ void AIPlayer::buildUpgrade(const AsciiString &upgrade)
 				continue;
 			if( factory->getStatusBits().test( OBJECT_STATUS_SOLD ) )
 				continue;
-			Bool canUpgradeHere = false;
+			bool canUpgradeHere = false;
 			const CommandSet *commandSet = TheControlBar->findCommandSet( factory->getCommandSetString() );
 			if( commandSet == NULL) continue;
 			for( Int j = 0; j < MAX_COMMANDS_PER_SET; j++ )
@@ -1770,7 +1770,7 @@ void AIPlayer::buildBySupplies(Int minimumCash, const AsciiString& thingName)
 		Real angle = tTemplate->getPlacementViewAngle();
 
  		// validate the the position to build at is valid
-		Bool valid=false;
+		bool valid=false;
 		Coord3D newPos = location;
 		if( TheBuildAssistant->isLocationLegalToBuild( &location, tTemplate, angle,
 																									 BuildAssistant::NO_OBJECT_OVERLAP,
@@ -1942,7 +1942,7 @@ void AIPlayer::buildAIBaseDefense(Bool flank)
 // ------------------------------------------------------------------------------------------------
 /** Build a base defense. */
 // ------------------------------------------------------------------------------------------------
-void AIPlayer::buildAIBaseDefenseStructure(const AsciiString &thingName, Bool flank)
+void AIPlayer::buildAIBaseDefenseStructure(const AsciiString &thingName, bool flank)
 {
 	//
 	AsciiString teamStr = "Error : Solo ai doesn't support buildAIBaseDefenseStructure. '";
@@ -2087,7 +2087,7 @@ void AIPlayer::updateBridgeRepair(void)
 // ------------------------------------------------------------------------------------------------
 /** Build a specific team.  If priorityBuild, put at front of queue with priority set. */
 // ------------------------------------------------------------------------------------------------
-void AIPlayer::buildSpecificAITeam( TeamPrototype *teamProto, Bool priorityBuild)
+void AIPlayer::buildSpecificAITeam( TeamPrototype *teamProto, bool priorityBuild)
 {
 	//
 	// Create "Team in queue" based on team population
@@ -2111,7 +2111,7 @@ void AIPlayer::buildSpecificAITeam( TeamPrototype *teamProto, Bool priorityBuild
 			}
 		}
 		// Check & make sure we have factories.
-		Bool needMoney;
+		bool needMoney;
 		if (!isPossibleToBuildTeam(teamProto, false, needMoney)) {
 			if (needMoney) {
 				// Queue it up anyway.
@@ -2344,7 +2344,7 @@ void AIPlayer::queueUnits( void )
 			// @todo: Should this try to alter the home location of the recruiting area to 
 			// the center of the team, or to the home area of this player?
 			Coord3D home = team->m_team->getPrototype()->getTemplateInfo()->m_homeLocation;
-			Bool hasHome = false;
+			bool hasHome = false;
 			if (team->m_team->getPrototype()->getTemplateInfo()->m_hasHomeLocation) {
 				hasHome = true; 
 			} else {
@@ -2435,9 +2435,9 @@ void AIPlayer::checkReadyTeams( void )
 		{
 			TeamInQueue *team = iter.cur();
 			// If 60 seconds passed, start anyway.
-			Bool timeExpired = team->m_frameStarted+60*LOGICFRAMES_PER_SECOND < TheGameLogic->getFrame();
-			Bool allIdle=TRUE;	
-			Bool anyIdle = FALSE;
+			bool timeExpired = team->m_frameStarted+60*LOGICFRAMES_PER_SECOND < TheGameLogic->getFrame();
+			bool allIdle=TRUE;	
+			bool anyIdle = FALSE;
 			if (team->m_reinforcement) {
 				Object *obj = TheGameLogic->findObjectByID(team->m_reinforcementID);
 				if (obj && obj->getAIUpdateInterface()) {
@@ -2552,7 +2552,7 @@ void AIPlayer::checkQueuedTeams( void )
 				iter = iterate_TeamBuildQueue();
 				continue;
 			}
-			Bool anyIdle = false;
+			bool anyIdle = false;
 			for (DLINK_ITERATOR<Object> iter = team->m_team->iterate_TeamMemberList(); !iter.done(); iter.advance()) {
 				Object *obj = iter.cur();	
 				if (obj && obj->getAI() && obj->getAI()->isIdle()) {
@@ -2613,7 +2613,7 @@ void AIPlayer::doUpgradesAndSkills( void )
 		return;
 	}
 
-	Bool checkScience = m_player->getSciencePurchasePoints()>0;
+	bool checkScience = m_player->getSciencePurchasePoints()>0;
 	if (!checkScience) {
 		return;
 	}
@@ -2807,7 +2807,7 @@ void AIPlayer::computeCenterAndRadiusOfBase(Coord3D *center, Real *radius)
 /**
  * Checks to see if we're building a dozer.
  */
-Bool AIPlayer::dozerInQueue( void )
+bool AIPlayer::dozerInQueue( void )
 {
 	{	// needed to scope iter.  silly ms c++.
 		for ( DLINK_ITERATOR<TeamInQueue> iter = iterate_TeamBuildQueue(); !iter.done(); iter.advance())
@@ -2832,7 +2832,7 @@ void AIPlayer::queueDozer( void )
 	if (dozerInQueue()) return;
 	// Find a factory that can build a dozer.
 
-	Bool canBuildUnits = m_player->getCanBuildUnits();
+	bool canBuildUnits = m_player->getCanBuildUnits();
 	// If we need a dozer, turn on unit building for a moment.
 	m_player->setCanBuildUnits(true);
 	const ThingTemplate *tTemplate = TheThingFactory->firstTemplate();
@@ -2890,7 +2890,7 @@ Object * AIPlayer::findDozer( const Coord3D *pos )
 	// Add any factories placed to the build list.
 	Object *obj;
 	Object *dozer = NULL;
-	Bool needDozer = true; 
+	bool needDozer = true; 
 	Object *closestDozer=NULL;
 	Real closestDistSqr = 0;
 
@@ -3169,11 +3169,11 @@ TeamInQueue::~TeamInQueue()
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool TeamInQueue::isAllBuilt()
+bool TeamInQueue::isAllBuilt()
 {
 	WorkOrder *order;
 
-	Bool stillBuilding = false;
+	bool stillBuilding = false;
 	for( order = m_workOrders; order; order = order->m_next )
 	{
 		if (order->m_numRequired>order->m_numCompleted) 
@@ -3186,7 +3186,7 @@ Bool TeamInQueue::isAllBuilt()
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool TeamInQueue::isBuildTimeExpired()
+bool TeamInQueue::isBuildTimeExpired()
 {
 	if (m_team->getPrototype()->getTemplateInfo()->m_initialIdleFrames<1) {
 		return false; // Unlimited time.
@@ -3199,7 +3199,7 @@ Bool TeamInQueue::isBuildTimeExpired()
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool TeamInQueue::isMinimumBuilt()
+bool TeamInQueue::isMinimumBuilt()
 {
 	WorkOrder *order;
 
@@ -3221,7 +3221,7 @@ Bool TeamInQueue::isMinimumBuilt()
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool TeamInQueue::includesADozer()
+bool TeamInQueue::includesADozer()
 {
 	WorkOrder *order;
 
@@ -3237,7 +3237,7 @@ Bool TeamInQueue::includesADozer()
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool TeamInQueue::areBuildsComplete()
+bool TeamInQueue::areBuildsComplete()
 {
 	WorkOrder *order;
 
@@ -3462,8 +3462,8 @@ void WorkOrder::loadPostProcess( void )
 void AIPlayer::getPlayerStructureBounds(Region2D *bounds, Int playerNdx )
 {
 	Player::PlayerTeamList::const_iterator it;
-	Bool firstObject = true;
-	Bool firstStructure = true;
+	bool firstObject = true;
+	bool firstStructure = true;
 	bounds->hi.x = bounds->lo.x = bounds->hi.y = bounds->lo.x = 0;
 	Region2D objBounds;
 	objBounds.hi.x = objBounds.lo.x = objBounds.hi.y = objBounds.lo.x = 0;

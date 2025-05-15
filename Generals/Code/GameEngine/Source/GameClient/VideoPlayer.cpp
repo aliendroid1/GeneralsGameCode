@@ -425,7 +425,7 @@ void VideoStream::close( void )
 // VideoStream::isFrameReady
 //============================================================================
 
-Bool VideoStream::isFrameReady( void )
+bool VideoStream::isFrameReady( void )
 {
 	return TRUE;
 }

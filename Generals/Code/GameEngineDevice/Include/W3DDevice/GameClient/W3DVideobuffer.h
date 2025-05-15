@@ -87,7 +87,7 @@ class W3DVideoBuffer : public VideoBuffer
 		virtual void		free( void);					///< Free buffer
 		virtual	void*		lock( void );					///< Returns memory pointer to start of buffer
 		virtual void		unlock( void );				///< Release buffer
-		virtual Bool		valid( void );				///< Is the buffer valid to use
+		virtual bool		valid( void );				///< Is the buffer valid to use
 
 		TextureClass		*texture( void );			///< Returns texture object
 

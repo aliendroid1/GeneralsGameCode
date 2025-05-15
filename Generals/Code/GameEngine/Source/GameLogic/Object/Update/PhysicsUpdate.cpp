@@ -256,7 +256,7 @@ void PhysicsBehavior::setIgnoreCollisionsWith(const Object* obj)
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool PhysicsBehavior::isIgnoringCollisionsWith(ObjectID id) const
+bool PhysicsBehavior::isIgnoringCollisionsWith(ObjectID id) const
 {
 	return id != INVALID_ID && id == m_ignoreCollisionsWith;
 }
@@ -342,7 +342,7 @@ void PhysicsBehavior::applyForce( const Coord3D *force )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool PhysicsBehavior::isMotive() const 
+bool PhysicsBehavior::isMotive() const 
 { 
 	return m_motiveForceExpires > TheGameLogic->getFrame(); 
 }
@@ -429,7 +429,7 @@ void PhysicsBehavior::applyFrictionalForces()
 
 
 //-------------------------------------------------------------------------------------------------
-Bool PhysicsBehavior::handleBounce(Real oldZ, Real newZ, Real groundZ, Coord3D* bounceForce)
+bool PhysicsBehavior::handleBounce(Real oldZ, Real newZ, Real groundZ, Coord3D* bounceForce)
 {
 	if (getFlag(ALLOW_BOUNCE) && newZ <= groundZ)
 	{
@@ -472,14 +472,14 @@ Bool PhysicsBehavior::handleBounce(Real oldZ, Real newZ, Real groundZ, Coord3D* 
 }
 
 //-------------------------------------------------------------------------------------------------
-inline Bool isVerySmall3D(const Coord3D& v)
+inline bool isVerySmall3D(const Coord3D& v)
 {
 	const Real THRESH = 0.01f;
 	return (fabs(v.x) < THRESH && fabs(v.y) < THRESH && fabs(v.z) < THRESH);
 }
 
 //-------------------------------------------------------------------------------------------------
-inline Bool isZero3D(const Coord3D& v)
+inline bool isZero3D(const Coord3D& v)
 {
 	return v.x == 0.0f && v.y == 0.0f && v.z == 0.0f;
 }
@@ -712,7 +712,7 @@ UpdateSleepTime PhysicsBehavior::update()
 		applyForce(&bounceForce);
 	}
 
-	Bool airborneAtEnd = obj->isAboveTerrain();
+	bool airborneAtEnd = obj->isAboveTerrain();
 
 	// it's not good enough to check for airborne being different between 
 	// the start and end of this func... we have to compare since last frame,
@@ -879,13 +879,13 @@ Real PhysicsBehavior::getForwardSpeed3D() const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool PhysicsBehavior::isCurrentlyOverlapped(Object *obj) const
+bool PhysicsBehavior::isCurrentlyOverlapped(Object *obj) const
 { 
 	return obj != NULL && obj->getID() == m_currentOverlap;
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool PhysicsBehavior::wasPreviouslyOverlapped(Object *obj) const
+bool PhysicsBehavior::wasPreviouslyOverlapped(Object *obj) const
 { 
 	return obj != NULL && obj->getID() == m_previousOverlap;
 }
@@ -1117,8 +1117,8 @@ void PhysicsBehavior::onCollide( Object *other, const Coord3D *loc, const Coord3
 		return;
 	}
 
-	Bool immobile = obj->isKindOf( KINDOF_IMMOBILE );
-	Bool otherImmobile = other->isKindOf( KINDOF_IMMOBILE );
+	bool immobile = obj->isKindOf( KINDOF_IMMOBILE );
+	bool otherImmobile = other->isKindOf( KINDOF_IMMOBILE );
 
 	PhysicsBehavior* otherPhysics = other->getPhysics();
 	if (otherPhysics)
@@ -1158,7 +1158,7 @@ void PhysicsBehavior::onCollide( Object *other, const Coord3D *loc, const Coord3
 		// or parachuting and colliding with something immobile. (srj)
 		if (!((obj->isEffectivelyDead() || obj->testStatus(OBJECT_STATUS_PARACHUTING)) && otherImmobile))
 		{
-			Bool doForce = ai->processCollision(this, other);
+			bool doForce = ai->processCollision(this, other);
 			if (!doForce) 
 				return;
 		}
@@ -1299,7 +1299,7 @@ void PhysicsBehavior::onCollide( Object *other, const Coord3D *loc, const Coord3
 }
 
 //-------------------------------------------------------------------------------------------------
-static Bool perpsLogicallyEqual( Real perpOne, Real perpTwo )
+static bool perpsLogicallyEqual( Real perpOne, Real perpTwo )
 {
 	// Equality with a wiggle fudge.
   const Real PERP_RANGE = 0.15f;
@@ -1320,7 +1320,7 @@ static Bool perpsLogicallyEqual( Real perpOne, Real perpTwo )
  * Return true if we want to skip having physics push us apart // LORENZEN
  */
 //-------------------------------------------------------------------------------------------------
-Bool PhysicsBehavior::checkForOverlapCollision(Object *other)
+bool PhysicsBehavior::checkForOverlapCollision(Object *other)
 {
 	//This is the most Supreme Truth... that unless I am moving right now, I may not crush anyhing!
 	if ( isVerySmall3D( *getVelocity() ) )
@@ -1331,8 +1331,8 @@ Bool PhysicsBehavior::checkForOverlapCollision(Object *other)
   Object* crusheeOther = other;
 
 	//Determine if we can crush the other object.
-	Bool selfCrushingOther = crusherMe->canCrushOrSquish( crusheeOther, TEST_CRUSH_ONLY );
-	Bool selfBeingCrushed = crusheeOther->canCrushOrSquish( crusherMe, TEST_CRUSH_ONLY );
+	bool selfCrushingOther = crusherMe->canCrushOrSquish( crusheeOther, TEST_CRUSH_ONLY );
+	bool selfBeingCrushed = crusheeOther->canCrushOrSquish( crusherMe, TEST_CRUSH_ONLY );
 
 	if( selfCrushingOther && selfBeingCrushed )
 	{
@@ -1378,11 +1378,11 @@ Bool PhysicsBehavior::checkForOverlapCollision(Object *other)
   const Coord3D *crusherPos = crusherMe->getPosition();
 
 	BodyModuleInterface* crusheeBody = crusheeOther->getBodyModule();
-	Bool frontCrushed = crusheeBody->getFrontCrushed();
-	Bool backCrushed = crusheeBody->getBackCrushed();
+	bool frontCrushed = crusheeBody->getFrontCrushed();
+	bool backCrushed = crusheeBody->getBackCrushed();
 	if( !(frontCrushed && backCrushed) )
 	{
-		Bool crushIt = FALSE;
+		bool crushIt = FALSE;
 
 		const Coord3D *dir = crusherMe->getUnitDirectionVector2D();
 		const Coord3D *crusheeDir = crusheeOther->getUnitDirectionVector2D();

@@ -93,21 +93,21 @@ public:
 	virtual void onDelete();
 
  	virtual void aiDoCommand(const AICommandParms* parms);
-	virtual Bool chooseLocomotorSet(LocomotorSetType wst);
+	virtual bool chooseLocomotorSet(LocomotorSetType wst);
 	virtual void setLocomotorGoalNone();
-	virtual Bool isIdle() const;
+	virtual bool isIdle() const;
 
-	virtual Bool isAllowedToMoveAwayFromUnit() const;
-	virtual Bool getSneakyTargetingOffset(Coord3D* offset) const;
-	virtual void addTargeter(ObjectID id, Bool add);
-	virtual Bool isTemporarilyPreventingAimSuccess() const;
-	virtual Bool isDoingGroundMovement() const;
+	virtual bool isAllowedToMoveAwayFromUnit() const;
+	virtual bool getSneakyTargetingOffset(Coord3D* offset) const;
+	virtual void addTargeter(ObjectID id, bool add);
+	virtual bool isTemporarilyPreventingAimSuccess() const;
+	virtual bool isDoingGroundMovement() const;
 	virtual void notifyVictimIsDead();
 
 	const Coord3D* friend_getProducerLocation() const { return &m_producerLocation; }
 	Real friend_getOutOfAmmoDamagePerSecond() const { return getJetAIUpdateModuleData()->m_outOfAmmoDamagePerSecond; }
-	Bool friend_keepsParkingSpaceWhenAirborne() const { return getJetAIUpdateModuleData()->m_keepsParkingSpaceWhenAirborne; }
-	Bool friend_needsRunway() const { return getJetAIUpdateModuleData()->m_needsRunway; }
+	bool friend_keepsParkingSpaceWhenAirborne() const { return getJetAIUpdateModuleData()->m_keepsParkingSpaceWhenAirborne; }
+	bool friend_needsRunway() const { return getJetAIUpdateModuleData()->m_needsRunway; }
 	Real friend_getTakeoffSpeedForMaxLift() const { return getJetAIUpdateModuleData()->m_takeoffSpeedForMaxLift; }
 	Real friend_getMinHeight() const { return getJetAIUpdateModuleData()->m_minHeight; }
 	Real friend_getParkingOffset() const { return getJetAIUpdateModuleData()->m_parkingOffset; }
@@ -121,7 +121,7 @@ public:
 	const Coord3D& friend_getLandingPosForHelipadStuff() const { return m_landingPosForHelipadStuff; }
 	void friend_enableAfterburners(Bool v);
 	void friend_setAllowAirLoco(Bool a);
-	Bool friend_isTakeoffOrLandingInProgress() const
+	bool friend_isTakeoffOrLandingInProgress() const
 	{
 		return (getFlag(TAKEOFF_IN_PROGRESS) || getFlag(LANDING_IN_PROGRESS));
 	}
@@ -130,7 +130,7 @@ protected:
 
 	virtual AIStateMachine* makeStateMachine();
 
-	virtual void privateFollowPath( const std::vector<Coord3D>* path, Object *ignoreObject, CommandSourceType cmdSource, Bool exitProduction );///< follow the path defined by the given array of points
+	virtual void privateFollowPath( const std::vector<Coord3D>* path, Object *ignoreObject, CommandSourceType cmdSource, bool exitProduction );///< follow the path defined by the given array of points
 	virtual void privateFollowPathAppend( const Coord3D *pos, CommandSourceType cmdSource );
 	virtual void privateEnter( Object *obj, CommandSourceType cmdSource );							///< enter the given object
 	virtual void privateGetRepaired( Object *repairDepot, CommandSourceType cmdSource );///< get repaired at repair depot
@@ -138,8 +138,8 @@ protected:
 	void pruneDeadTargeters();
 	void positionLockon();
 	
-	virtual Bool getTreatAsAircraftForLocoDistToGoal() const;
-	Bool isParkedAt(const Object* obj) const;
+	virtual bool getTreatAsAircraftForLocoDistToGoal() const;
+	bool isParkedAt(const Object* obj) const;
 
 private:
 
@@ -172,8 +172,8 @@ private:
 	void getProducerLocation();
 	void buildLockonDrawableIfNecessary();
 	void doLandingCommand(Object *airfield, CommandSourceType cmdSource);
-	inline Bool getFlag(FlagType f) const { return (m_flags & (1<<f)) != 0; }
-	inline void setFlag(FlagType f, Bool v) { if (v) m_flags |= (1<<f); else m_flags &= ~(1<<f); }
+	inline bool getFlag(FlagType f) const { return (m_flags & (1<<f)) != 0; }
+	inline void setFlag(FlagType f, bool v) { if (v) m_flags |= (1<<f); else m_flags &= ~(1<<f); }
 };
 
 #endif

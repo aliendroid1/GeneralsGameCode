@@ -51,7 +51,7 @@ static const char* const protectGUID =
 */
 
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
-Bool skipProtection(void)
+bool skipProtection(void)
 {
 	//return FALSE;
 	if (FindWindow("Afx:400000:8:10011:0:fe8e0125", NULL) != NULL) // DevStudio
@@ -65,13 +65,13 @@ Bool skipProtection(void)
 #endif
 
 // ---------------------------------------------------------------------------
-Bool CopyProtect::isLauncherRunning(void)
+bool CopyProtect::isLauncherRunning(void)
 {
 	DEBUG_LOG(("COPYPROTECTION - Checking if launcher is running\n"));
 
 	HANDLE launcherMutex = CreateMutex(NULL, FALSE, LAUNCHER_GUID);
 
-	Bool isRunning = (GetLastError() == ERROR_ALREADY_EXISTS);
+	bool isRunning = (GetLastError() == ERROR_ALREADY_EXISTS);
 
 	if (launcherMutex != NULL)
 	{
@@ -91,7 +91,7 @@ Bool CopyProtect::isLauncherRunning(void)
 }
 
 // ---------------------------------------------------------------------------
-Bool CopyProtect::notifyLauncher(void)
+bool CopyProtect::notifyLauncher(void)
 {
 	DEBUG_LOG(("COPYPROTECTION - Notify launcher\n"));
 
@@ -196,7 +196,7 @@ void CopyProtect::checkForMessage(UINT message, LPARAM lParam)
 }
 
 // ---------------------------------------------------------------------------
-Bool CopyProtect::validate(void)
+bool CopyProtect::validate(void)
 {
 	DEBUG_LOG(("COPYPROTECTION - Validating\n"));
 	DEBUG_LOG(("s_protectedData = %d (%s)\n", s_protectedData, (s_protectedData)?s_protectedData:"EEK!"));

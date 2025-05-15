@@ -80,8 +80,8 @@ protected:
 	void doDamageScan( void );
 
 	ParticleSystemID m_myParticleSystemID[ MAX_FIRESTORM_SYSTEMS ];
-	Bool m_effectsFired;							///< TRUE once the effects have been fired off
-	Bool m_scorchPlaced;							///< TRUE once we have placed the scorch mark
+	bool m_effectsFired;							///< TRUE once the effects have been fired off
+	bool m_scorchPlaced;							///< TRUE once we have placed the scorch mark
 	UnsignedInt m_lastDamageFrame;		///< frame we last did damage on
 };
 

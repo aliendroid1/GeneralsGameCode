@@ -512,7 +512,7 @@ void GameEngine::reset( void )
 	background->hide(FALSE);
 	background->bringForward();
 	background->getFirstWindow()->winClearStatus(WIN_STATUS_IMAGE);
-	Bool deleteNetwork = false;
+	bool deleteNetwork = false;
 	if (TheGameLogic->isInMultiplayerGame())
 		deleteNetwork = true;
 
@@ -714,7 +714,7 @@ FileSystem *GameEngine::createFileSystem( void )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool GameEngine::isMultiplayerSession( void )
+bool GameEngine::isMultiplayerSession( void )
 {
 	return TheRecorder->isMultiplayer();
 }
@@ -875,7 +875,7 @@ void updateTGAtoDDS()
 		filenameDDS.removeLastChar();	// t
 		filenameDDS.concat("dds");
 
-		Bool needsToBeUpdated = FALSE;
+		bool needsToBeUpdated = FALSE;
 		FileInfo infoDDS;
 		if (TheFileSystem->doesFileExist(filenameDDS.str())) {
 			TheFileSystem->getFileInfo(filenameDDS, &infoDDS);
@@ -907,4 +907,4 @@ void updateTGAtoDDS()
 // If we're using the Wide character version of MessageBox, then there's no additional
 // processing necessary. Please note that this is a sleazy way to get this information,
 // but pending a better one, this'll have to do.
-extern const Bool TheSystemIsUnicode = (((void*) (::MessageBox)) == ((void*) (::MessageBoxW)));
+extern const bool TheSystemIsUnicode = (((void*) (::MessageBox)) == ((void*) (::MessageBoxW)));

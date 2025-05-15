@@ -429,7 +429,7 @@ void UpgradeCenter::unlinkUpgrade( UpgradeTemplate *upgrade )
 //-------------------------------------------------------------------------------------------------
 /** does this player have all the necessary things to make this upgrade */
 //-------------------------------------------------------------------------------------------------
-Bool UpgradeCenter::canAffordUpgrade( Player *player, const UpgradeTemplate *upgradeTemplate, Bool displayReason ) const
+bool UpgradeCenter::canAffordUpgrade( Player *player, const UpgradeTemplate *upgradeTemplate, bool displayReason ) const
 {
  
 	// sanity

@@ -148,12 +148,12 @@ static GameWindow *buttonMapStartPosition[MAX_SLOTS] = {NULL,NULL,NULL,NULL,
 WindowLayout *skirmishMapSelectLayout = NULL;
 
 static Int	initialGadgetDelay = 2;
-static Bool justEntered = FALSE;
-static Bool buttonPushed = FALSE;
+static bool justEntered = FALSE;
+static bool buttonPushed = FALSE;
 void skirmishUpdateSlotList( void );
 static void populateSkirmishBattleHonors( void );
 enum{ GREATER_NO_FPS_LIMIT = 60};
-Bool doUpdateSlotList = TRUE;
+bool doUpdateSlotList = TRUE;
 
 static Int getNextSelectablePlayer(Int start)
 {
@@ -254,7 +254,7 @@ Int SkirmishPreferences::getPreferredFaction(void)
 	return ret;
 }
 
-Bool SkirmishPreferences::usesSystemMapDir(void)
+bool SkirmishPreferences::usesSystemMapDir(void)
 {
 	OptionPreferences::const_iterator it = find("UseSystemMapDir");
 	if (it == end())
@@ -287,7 +287,7 @@ AsciiString SkirmishPreferences::getPreferredMap(void)
 	return ret;
 }
 
-Bool SkirmishPreferences::write(void)
+bool SkirmishPreferences::write(void)
 {
 	if (!TheSkirmishGameInfo)
 		return FALSE;
@@ -378,7 +378,7 @@ void reallyDoStart( void )
   TheSkirmishGameInfo->startGame(0);
 	InitGameLogicRandom(TheSkirmishGameInfo->getSeed());
 
-		Bool isSkirmish = TRUE;
+		bool isSkirmish = TRUE;
 	const MapMetaData *md = TheMapCache->findMap(TheSkirmishGameInfo->getMap());
 	if (md)
 	{
@@ -409,7 +409,7 @@ static MessageBoxReturnType cancelStartBecauseOfNoCD( void *userData )
 	return MB_RETURN_CLOSE;
 }
 
-Bool IsFirstCDPresent(void)
+bool IsFirstCDPresent(void)
 {
 #if !defined(RTS_INTERNAL) && !defined(RTS_DEBUG)
 	return TheFileSystem->areMusicFilesOnCD();
@@ -447,7 +447,7 @@ void CheckForCDAtGameStart( gameStartCallback callback )
 	}
 }
 
-Bool sandboxOk = FALSE;
+bool sandboxOk = FALSE;
 static void startPressed(void)
 {
 
@@ -596,7 +596,7 @@ void positionStartSpotControls( GameWindow *win, GameWindow *mapWindow, Coord3D 
 }
 TechAndSupplyImages TheSupplyAndTechImageLocations;
 
-void positionAdditionalImages( MapMetaData *mmd, GameWindow *mapWindow, Bool force)
+void positionAdditionalImages( MapMetaData *mmd, GameWindow *mapWindow, bool force)
 {
 	TheSupplyAndTechImageLocations.m_supplyPosList.clear();
 	TheSupplyAndTechImageLocations.m_techPosList.clear();
@@ -770,7 +770,7 @@ void positionStartSpots( GameInfo *myGame, GameWindow *buttonMapStartPositions[]
 	positionStartSpots(localMapFname, buttonMapStartPositions, mapWindow);	
 }
 
-void updateMapStartSpots( GameInfo *myGame, GameWindow *buttonMapStartPositions[], Bool onLoadScreen )
+void updateMapStartSpots( GameInfo *myGame, GameWindow *buttonMapStartPositions[], bool onLoadScreen )
 {
 	AsciiString lowerMap = myGame->getMap();
 	lowerMap.toLower();
@@ -876,7 +876,7 @@ static void handleColorSelection(int index)
 
 		if (color >= -1 && color < TheMultiplayerSettings->getNumColors())
 		{
-			Bool colorAvailable = TRUE;
+			bool colorAvailable = TRUE;
 			if(color != -1 )
 			{
 				for(Int i=0; i <MAX_SLOTS; i++)
@@ -934,7 +934,7 @@ static void handleStartPositionSelection(int index, Int position)
 			return;
 		}
 
-		Bool isAvailable = TRUE;
+		bool isAvailable = TRUE;
 		for(Int i = 0; i < MAX_SLOTS; ++i)
 		{
 			if(i != index && myGame->getSlot(i)->getStartPos() == position)
@@ -1148,7 +1148,7 @@ static const char *perPlayerGadgetsToHide[] =
 //-------------------------------------------------------------------------------------------------
 void updateSkirmishGameOptions( void )
 {
-	Bool isSkirmish = TRUE;
+	bool isSkirmish = TRUE;
 	const MapMetaData *md = TheMapCache->findMap(TheSkirmishGameInfo->getMap());
 	if (md)
 	{
@@ -1338,7 +1338,7 @@ void SkirmishGameOptionsMenuShutdown( WindowLayout *layout, void *userData )
 	TheMouse->setCursor(Mouse::ARROW);
 	TheMouse->setMouseText(UnicodeString::TheEmptyString,NULL,NULL);
   // if we are shutting down for an immediate pop, skip the animations
-	Bool popImmediate = *(Bool *)userData;
+	bool popImmediate = *(Bool *)userData;
 	if( popImmediate )
 	{
 
@@ -1705,17 +1705,17 @@ void populateSkirmishBattleHonors(void)
 	row = 3;
 	// endurance medals
 	MapCache::const_iterator it;
-	Bool missingEasy = FALSE;
-	Bool missingMedium = FALSE;
-	Bool missingBrutal = FALSE;
+	bool missingEasy = FALSE;
+	bool missingMedium = FALSE;
+	bool missingBrutal = FALSE;
 	for (it = TheMapCache->begin(); it != TheMapCache->end(); ++it)
 	{
 		if (!it->second.m_isOfficial || !it->second.m_isMultiplayer)
 			continue;
 
-		Bool easy = TRUE;
-		Bool med = TRUE;
-		Bool hard = TRUE;
+		bool easy = TRUE;
+		bool med = TRUE;
+		bool hard = TRUE;
 		if (stats.getEnduranceMedal(it->first, SLOT_EASY_AI) == 0)
 			easy = FALSE;
 		if (stats.getEnduranceMedal(it->first, SLOT_MED_AI) == 0)

@@ -61,7 +61,7 @@ struct FXLocInfo
 {
 	FXDamageLocType locType;			// location is bone or coord
 	AsciiString boneName;					// bone name to use for effect pos
-	Bool randomBone;							// if true, boneName is a prefix and we will do the effect at one of the bones with that prefix
+	bool randomBone;							// if true, boneName is a prefix and we will do the effect at one of the bones with that prefix
 	Coord3D loc;									// location is a specified point in space
 };
 

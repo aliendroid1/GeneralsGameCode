@@ -83,7 +83,7 @@ class WaterTransparencySetting : public Overridable
 		Real m_minWaterOpacity;
 		RGBColor m_standingWaterColor;
 		RGBColor m_radarColor;
-		Bool m_additiveBlend;
+		bool m_additiveBlend;
 		AsciiString m_standingWaterTexture;
 		
 		AsciiString m_skyboxTextureN;

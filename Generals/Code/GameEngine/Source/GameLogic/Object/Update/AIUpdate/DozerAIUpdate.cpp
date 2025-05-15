@@ -492,7 +492,7 @@ StateReturnType DozerActionDoActionState::update( void )
 		return STATE_FAILURE;
 
 	// do the task
-	Bool complete = FALSE;
+	bool complete = FALSE;
 	switch( m_task )
 	{
 
@@ -679,7 +679,7 @@ StateReturnType DozerActionDoActionState::update( void )
 			}  // end if
 			else
 			{
-				Bool canHeal = TRUE;
+				bool canHeal = TRUE;
 
 				// if we are repairing a bridge, create scaffolding over the bridge if we need to
 				if( goalObject->isKindOf( KINDOF_BRIDGE_TOWER ) )
@@ -988,7 +988,7 @@ protected:
 
 	UnsignedInt m_idleTooLongTimestamp;		///< when this is more than our idle too long time we try to do something about it
 	Int m_idlePlayerNumber;				///< Remeber what list we were added to.
-	Bool m_isMarkedAsIdle;
+	bool m_isMarkedAsIdle;
 };
 EMPTY_DTOR(DozerPrimaryIdleState)
 
@@ -1330,7 +1330,7 @@ void DozerPrimaryStateMachine::loadPostProcess( void )
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-Bool DozerPrimaryStateMachine::isBuildMostImportant( State *thisState, void* userData )
+bool DozerPrimaryStateMachine::isBuildMostImportant( State *thisState, void* userData )
 {
 	Object *dozer = thisState->getMachineOwner();
 	AIUpdateInterface *ai = dozer->getAIUpdateInterface();
@@ -1355,7 +1355,7 @@ Bool DozerPrimaryStateMachine::isBuildMostImportant( State *thisState, void* use
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-Bool DozerPrimaryStateMachine::isRepairMostImportant( State *thisState, void* userData )
+bool DozerPrimaryStateMachine::isRepairMostImportant( State *thisState, void* userData )
 {
 	Object *dozer = thisState->getMachineOwner();
 	AIUpdateInterface *ai = dozer->getAIUpdateInterface();
@@ -1380,7 +1380,7 @@ Bool DozerPrimaryStateMachine::isRepairMostImportant( State *thisState, void* us
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-Bool DozerPrimaryStateMachine::isFortifyMostImportant( State *thisState, void* userData )
+bool DozerPrimaryStateMachine::isFortifyMostImportant( State *thisState, void* userData )
 {
 	Object *dozer = thisState->getMachineOwner();
 	AIUpdateInterface *ai = dozer->getAIUpdateInterface();
@@ -1599,7 +1599,7 @@ UpdateSleepTime DozerAIUpdate::update( void )
 
 		ObjectID taskTarget = getTaskTarget( currentTask );
 		Object *targetObject = TheGameLogic->findObjectByID( taskTarget );
-		Bool invalidTask = FALSE;
+		bool invalidTask = FALSE;
 
 		// validate the task and the target
 		if( currentTask == DOZER_TASK_REPAIR &&
@@ -1628,7 +1628,7 @@ Object *DozerAIUpdate::construct( const ThingTemplate *what,
 																	const Coord3D *pos, 
 																	Real angle, 
 																	Player *owningPlayer,
-																	Bool isRebuild )
+																	bool isRebuild )
 {
 
 	// !!! NOTE: If you modify this you must modify the worker too !!!
@@ -1653,7 +1653,7 @@ Object *DozerAIUpdate::construct( const ThingTemplate *what,
 	{
 
 		// AI has weaker restriction on building
-		Bool dozerIsAI = owningPlayer->getPlayerType() == PLAYER_COMPUTER;
+		bool dozerIsAI = owningPlayer->getPlayerType() == PLAYER_COMPUTER;
 		if( dozerIsAI )
 		{
 
@@ -1742,7 +1742,7 @@ Object *DozerAIUpdate::construct( const ThingTemplate *what,
 // ------------------------------------------------------------------------------------------------
 /** Given our current task and repair target, can we accept this as a new repair target */
 // ------------------------------------------------------------------------------------------------
-Bool DozerAIUpdate::canAcceptNewRepair( Object *obj )
+bool DozerAIUpdate::canAcceptNewRepair( Object *obj )
 {
 
 	// sanity
@@ -1871,7 +1871,7 @@ void DozerAIUpdate::privateResumeConstruction( Object *obj, CommandSourceType cm
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-/*static*/ Bool DozerAIUpdate::findGoodBuildOrRepairPosition(const Object* me, const Object* target, Coord3D& positionOut)
+/*static*/ bool DozerAIUpdate::findGoodBuildOrRepairPosition(const Object* me, const Object* target, Coord3D& positionOut)
 {
 	// The place we go to build or repair is the closest spot from us to them
 	Coord3D ourPosition = *me->getPosition();
@@ -1906,7 +1906,7 @@ void DozerAIUpdate::privateResumeConstruction( Object *obj, CommandSourceType cm
 	if( me->isUsingAirborneLocomotor() )
 		fpOptions.ignoreObject = target;// Flyers can ignore stuff, so they can approach right over the target if they want.
 
-	Bool spotFound = ThePartitionManager->findPositionAround( &workingPosition, &fpOptions, &bestPosition );
+	bool spotFound = ThePartitionManager->findPositionAround( &workingPosition, &fpOptions, &bestPosition );
 
 	positionOut = spotFound ? bestPosition : workingPosition;
 
@@ -1934,7 +1934,7 @@ void DozerAIUpdate::privateResumeConstruction( Object *obj, CommandSourceType cm
 				if( tower )
 				{
 					Coord3D tmp;
-					Bool found = findGoodBuildOrRepairPosition(me, tower, tmp);
+					bool found = findGoodBuildOrRepairPosition(me, tower, tmp);
 					// do isPathAvail against the result of this, NOT the tower pos,
 					// since towers are often in cliff cells.
 					if (found && ai->isPathAvailable(&tmp))
@@ -2046,7 +2046,7 @@ void DozerAIUpdate::cancelTask( DozerTask task )
 //-------------------------------------------------------------------------------------------------
 /** Is there a given task waiting to be done */
 //-------------------------------------------------------------------------------------------------
-Bool DozerAIUpdate::isTaskPending( DozerTask task )
+bool DozerAIUpdate::isTaskPending( DozerTask task )
 {
 
 	// sanity
@@ -2059,7 +2059,7 @@ Bool DozerAIUpdate::isTaskPending( DozerTask task )
 //-------------------------------------------------------------------------------------------------
 /** Is there any task pending */
 //-------------------------------------------------------------------------------------------------
-Bool DozerAIUpdate::isAnyTaskPending( void )
+bool DozerAIUpdate::isAnyTaskPending( void )
 {
 	
 	for( Int i = 0; i < DOZER_NUM_TASKS; i++ )

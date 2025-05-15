@@ -135,7 +135,7 @@ void AssaultTransportAIUpdate::beginAssault( const Object *designatedTarget ) co
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool AssaultTransportAIUpdate::isIdle() const
+bool AssaultTransportAIUpdate::isIdle() const
 {
 	return AIUpdateInterface::isIdle();
 }
@@ -208,7 +208,7 @@ UpdateSleepTime AssaultTransportAIUpdate::update( void )
 			passengerIterator++;
 
 			//Make sure it isn't in our list already.
-			Bool found = FALSE;
+			bool found = FALSE;
 			for( int i = 0; i < m_currentMembers; i++ )
 			{
 				if( passenger->getID() == m_memberIDs[ i ] )
@@ -281,8 +281,8 @@ UpdateSleepTime AssaultTransportAIUpdate::update( void )
 			
 			if( member && ai )
 			{
-				Bool contained = member->isContained();
-				Bool wounded = isMemberWounded( member );
+				bool contained = member->isContained();
+				bool wounded = isMemberWounded( member );
 				if( contained && isMemberHealthy( member ) && !m_newMember[ i ] )
 				{
 					//This contained member is healthy so order him to exit to start fighting!
@@ -383,7 +383,7 @@ UpdateSleepTime AssaultTransportAIUpdate::update( void )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool AssaultTransportAIUpdate::isAttackPointless() const
+bool AssaultTransportAIUpdate::isAttackPointless() const
 {
 	//If all members are new members (thus can't attack), and the transport itself
 	//is still attacking, stop!
@@ -408,7 +408,7 @@ Bool AssaultTransportAIUpdate::isAttackPointless() const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool AssaultTransportAIUpdate::isMemberWounded( const Object *member ) const
+bool AssaultTransportAIUpdate::isMemberWounded( const Object *member ) const
 {
 	const AssaultTransportAIUpdateModuleData *data = getAssaultTransportAIUpdateModuleData();
 	BodyModuleInterface *body = member->getBodyModule();
@@ -424,7 +424,7 @@ Bool AssaultTransportAIUpdate::isMemberWounded( const Object *member ) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool AssaultTransportAIUpdate::isMemberHealthy( const Object *member ) const
+bool AssaultTransportAIUpdate::isMemberHealthy( const Object *member ) const
 {
 	BodyModuleInterface *body = member->getBodyModule();
 	if( body )
@@ -447,7 +447,7 @@ void AssaultTransportAIUpdate::retrieveMembers()
 		AIUpdateInterface *ai = member ? member->getAI() : NULL;
 		if( member && ai )
 		{
-			Bool contained = member->isContained();
+			bool contained = member->isContained();
 			if( !contained )
 			{
 				//This contained member is healthy so order him to exit to start fighting!

@@ -174,7 +174,7 @@ public:
 	void sustain(void) { m_envState = ENVELOPE_STATE_SUSTAIN; }
 	void release(void) { m_envState = ENVELOPE_STATE_DECAY; }
 	void rest(void)    { m_envState = ENVELOPE_STATE_REST; } // goes away now!
-	Bool isEffective() const { return m_affect; }
+	bool isEffective() const { return m_affect; }
 	const Vector3* getColor() const { return &m_currentColor; }
 
 protected:
@@ -296,7 +296,7 @@ public:
 	
 	void setTintStatus( TintStatus statusBits ) { BitSet( m_tintStatus, statusBits ); };
 	void clearTintStatus( TintStatus statusBits ) { BitClear( m_tintStatus, statusBits ); };
-	Bool testTintStatus( TintStatus statusBits ) const { return BitIsSet( m_tintStatus, statusBits ); };
+	bool testTintStatus( TintStatus statusBits ) const { return BitIsSet( m_tintStatus, statusBits ); };
 	TintEnvelope *getColorTintEnvelope( void ) { return m_colorTintEnvelope; }
 	void setColorTintEnvelope( TintEnvelope &source ) { if (m_colorTintEnvelope) *m_colorTintEnvelope = source; }
 
@@ -309,16 +309,16 @@ public:
 
 	inline DrawableInfo *getDrawableInfo(void) {return &m_drawableInfo;}
 
-	void setDrawableHidden( Bool hidden );																		///< hide or unhide drawable
+	void setDrawableHidden( bool hidden );																		///< hide or unhide drawable
 	//
 	// note that this is not necessarily the 'get' reflection of setDrawableHidden, since drawables
 	// can spontaneously hide via stealth. (srj)
 	//
-	inline Bool isDrawableEffectivelyHidden() const { return m_hidden || m_hiddenByStealth; }
+	inline bool isDrawableEffectivelyHidden() const { return m_hidden || m_hiddenByStealth; }
 
-	void setSelectable( Bool selectable );												///< Changes the drawables selectability	
-	Bool isSelectable( void ) const;
-	Bool isMassSelectable( void ) const;
+	void setSelectable( bool selectable );												///< Changes the drawables selectability	
+	bool isSelectable( void ) const;
+	bool isMassSelectable( void ) const;
 
 
 	void setStealthLook(StealthLookType look);
@@ -352,21 +352,21 @@ public:
 	//---------------------------------------------------------------------------
 	void setDrawableStatus( DrawableStatus bit )  { BitSet( m_status, bit ); }
 	void clearDrawableStatus( DrawableStatus bit ) { BitClear( m_status, bit ); }
-	inline Bool testDrawableStatus( DrawableStatus bit ) const { return (m_status & bit) != 0; }
+	inline bool testDrawableStatus( DrawableStatus bit ) const { return (m_status & bit) != 0; }
 
 	void setShroudClearFrame( UnsignedInt frame )  { m_shroudClearFrame = frame; }
 	UnsignedInt getShroudClearFrame( void ) { return m_shroudClearFrame; }
  
 	void setShadowsEnabled(Bool enable);
-	Bool getShadowsEnabled() const { return BitIsSet(m_status, DRAWABLE_STATUS_SHADOWS); }
+	bool getShadowsEnabled() const { return BitIsSet(m_status, DRAWABLE_STATUS_SHADOWS); }
 
 	void releaseShadows(void);	///< frees all shadow resources used by this module - used by Options screen.
 	void allocateShadows(void); ///< create shadow resources if not already present. Used by Options screen.
 
 	void setFullyObscuredByShroud(Bool fullyObscured);
-	inline Bool getFullyObscuredByShroud(void) {return m_drawableFullyObscuredByShroud;}
+	inline bool getFullyObscuredByShroud(void) {return m_drawableFullyObscuredByShroud;}
 
-	Bool getDrawsInMirror() const { return BitIsSet(m_status, DRAWABLE_STATUS_DRAWS_IN_MIRROR) || isKindOf(KINDOF_CAN_CAST_REFLECTIONS); }
+	bool getDrawsInMirror() const { return BitIsSet(m_status, DRAWABLE_STATUS_DRAWS_IN_MIRROR) || isKindOf(KINDOF_CAN_CAST_REFLECTIONS); }
 
 	void colorFlash( const RGBColor *color, UnsignedInt decayFrames = DEF_DECAY_FRAMES, UnsignedInt attackFrames = 0, UnsignedInt sustainAtPeak = FALSE );  ///< flash a drawable in the color specified for a short time
 	void colorTint( const RGBColor *color );	 ///< tint this drawable the color specified
@@ -374,7 +374,7 @@ public:
 	void flashAsSelected( const RGBColor *color = NULL ); ///< drawable takes care of the details if you spec no color
 	
 	/// Return true if drawable has been marked as "selected"
-	Bool isSelected( void ) const {	return m_selected; }
+	bool isSelected( void ) const {	return m_selected; }
 	void onSelected();														///< Work unrelated to selection that must happen at time of selection
 	void onUnselected();													///< Work unrelated to selection that must happen at time of unselection
 
@@ -383,7 +383,7 @@ public:
 	// an "instance" matrix defines the local transform of the Drawable, and is concatenated with the global transform
 	void setInstanceMatrix( const Matrix3D *instance );									///< set the Drawable's instance transform
 	const Matrix3D *getInstanceMatrix( void ) const { return &m_instance; }		///< get drawable instance transform
-	inline Bool isInstanceIdentity() const { return m_instanceIsIdentity; }
+	inline bool isInstanceIdentity() const { return m_instanceIsIdentity; }
 
 	inline Real getInstanceScale( void ) const { return m_instanceScale; }		///< get scale that will be applied to instance matrix
 	void setInstanceScale(Real value) { m_instanceScale = value;}	///< set scale that will be applied to instance matrix before rendering.
@@ -397,7 +397,7 @@ public:
 
 	void startAmbientSound();
 	void stopAmbientSound( void );
-	void enableAmbientSound( Bool enable );
+	void enableAmbientSound( bool enable );
 	void setTimeOfDay( TimeOfDay tod );
 
 	void prependToList(Drawable **pListHead);
@@ -418,12 +418,12 @@ public:
 	void clearModelConditionFlags( const ModelConditionFlags& clr ) { ModelConditionFlags empty; clearAndSetModelConditionFlags(clr, empty); }
 	void setModelConditionFlags( const ModelConditionFlags& set ) { ModelConditionFlags empty; clearAndSetModelConditionFlags(empty, set); }
 	void clearAndSetModelConditionFlags( const ModelConditionFlags& clr, const ModelConditionFlags& set );
-	void replaceModelConditionFlags( const ModelConditionFlags &flags, Bool forceReplace = FALSE );
+	void replaceModelConditionFlags( const ModelConditionFlags &flags, bool forceReplace = FALSE );
 
 	void attachToParticleSystem( Particle *p );								///< attach this Drawable to a particle system
 	void detachFromParticleSystem( void );										///< detach this from any particle system 
 
-	Bool handleWeaponFireFX(
+	bool handleWeaponFireFX(
 							WeaponSlotType wslot, 
 							Int specificBarrelToUse, 
 							const FXList* fxl, 
@@ -445,7 +445,7 @@ public:
 	const TWheelInfo *getWheelInfo(void) const { return m_locoInfo ? &m_locoInfo->m_wheelInfo : NULL; }
 
 	// this method must ONLY be called from the client, NEVER From the logic, not even indirectly.
-	Bool clientOnly_getFirstRenderObjInfo(Coord3D* pos, Real* boundingSphereRadius, Matrix3D* transform);
+	bool clientOnly_getFirstRenderObjInfo(Coord3D* pos, Real* boundingSphereRadius, Matrix3D* transform);
 
 	/**
 		Find the bone(s) with the given name and return their positions and/or transforms in the given arrays.
@@ -464,9 +464,9 @@ public:
 	Int getCurrentClientBonePositions(const char* boneNamePrefix, Int startIndex, Coord3D* positions, Matrix3D* transforms, Int maxBones) const;
 	
 	// this is a special-purpose call for W3DModelDraw. (srj)
-	Bool getCurrentWorldspaceClientBonePositions(const char* boneName, Matrix3D& transform) const;
+	bool getCurrentWorldspaceClientBonePositions(const char* boneName, Matrix3D& transform) const;
 
-	Bool getProjectileLaunchOffset(WeaponSlotType wslot, Int specificBarrelToUse, Matrix3D* launchPos, WhichTurretType tur, Coord3D* turretRotPos, Coord3D* turretPitchPos = NULL) const;
+	bool getProjectileLaunchOffset(WeaponSlotType wslot, Int specificBarrelToUse, Matrix3D* launchPos, WhichTurretType tur, Coord3D* turretRotPos, Coord3D* turretPitchPos = NULL) const;
 
 	/**
 		This call says, "I want the current animation (if any) to take n frames to complete a single cycle". 
@@ -482,7 +482,7 @@ public:
 	*/
 	void setAnimationCompletionTime(UnsignedInt numFrames);
 	void updateSubObjects();
-	void showSubObject( const AsciiString& name, Bool show );
+	void showSubObject( const AsciiString& name, bool show );
 
 #ifdef ALLOW_ANIM_INQUIRIES
 // srj sez: not sure if this is a good idea, for net sync reasons...
@@ -522,9 +522,9 @@ public:
 
 	void preloadAssets( TimeOfDay timeOfDay );	///< preload the assets
 	
-	Bool isVisible();											///< for limiting tree sway, etc to visible objects
+	bool isVisible();											///< for limiting tree sway, etc to visible objects
 
-	Bool getShouldAnimate( Bool considerPower ) const;
+	bool getShouldAnimate( bool considerPower ) const;
 
 	void friend_setParticle( Particle *particle ) { m_particle = particle; }
 
@@ -543,7 +543,7 @@ public:
 
 	DrawableIconInfo* getIconInfo();															///< lazily allocates, if necessary
 	void killIcon(DrawableIconType t) { if (m_iconInfo) m_iconInfo->killIcon(t); }
-	Bool hasIconInfo() const { return m_iconInfo != NULL; }
+	bool hasIconInfo() const { return m_iconInfo != NULL; }
 
   const AudioEventRTS * getAmbientSound() const { return m_ambientSound == NULL ? NULL : &m_ambientSound->m_event; }
 protected:
@@ -583,7 +583,7 @@ protected:
 		PhysicsXformInfo() : m_totalPitch(0), m_totalRoll(0), m_totalYaw(0), m_totalZ(0) { }
 	};
 
-	Bool calcPhysicsXform(PhysicsXformInfo& info);
+	bool calcPhysicsXform(PhysicsXformInfo& info);
 	void calcPhysicsXformThrust(const Locomotor *locomotor, PhysicsXformInfo& info);
 	void calcPhysicsXformHoverOrWings(const Locomotor *locomotor, PhysicsXformInfo& info);
 	void calcPhysicsXformTreads(const Locomotor *locomotor, PhysicsXformInfo& info);
@@ -672,12 +672,12 @@ private:
 
 	// --------- BYTE-SIZED THINGS GO HERE
 	Byte m_selected;						///< drawable is selected or not
-	Bool m_hidden;							///< drawable is "hidden" or not (overrides stealth effects)
-	Bool m_hiddenByStealth;			///< drawable is hidden due to stealth
-	Bool m_instanceIsIdentity;	///< If true, instance matrix can be skipped
-	Bool m_drawableFullyObscuredByShroud;	///<drawable is hidden by shroud/fog
+	bool m_hidden;							///< drawable is "hidden" or not (overrides stealth effects)
+	bool m_hiddenByStealth;			///< drawable is hidden due to stealth
+	bool m_instanceIsIdentity;	///< If true, instance matrix can be skipped
+	bool m_drawableFullyObscuredByShroud;	///<drawable is hidden by shroud/fog
 #ifdef DIRTY_CONDITION_FLAGS
-	mutable Bool m_isModelDirty;				///< if true, must call replaceModelConditionState() before drawing or accessing drawmodule info
+	mutable bool m_isModelDirty;				///< if true, must call replaceModelConditionState() before drawing or accessing drawmodule info
 #endif
 
 	//*******************************************
@@ -714,9 +714,9 @@ private:
 	void drawDisabled( const IRegion2D* healthBarRegion );					///< draw icons
 	void drawBattlePlans( const IRegion2D* healthBarRegion );				///< Icons rendering for active battle plan statii
 
-	Bool drawsAnyUIText( void );
+	bool drawsAnyUIText( void );
 	
-	static Bool							s_staticImagesInited;
+	static bool							s_staticImagesInited;
 	static const Image*			s_veterancyImage[LEVEL_COUNT];
 	static const Image*			s_fullAmmo;
 	static const Image*			s_emptyAmmo;

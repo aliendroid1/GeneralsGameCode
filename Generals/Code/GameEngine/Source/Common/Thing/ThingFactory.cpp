@@ -216,7 +216,7 @@ void ThingFactory::reset( void )
 	// go through all templates and delete any overrides
 	for( t = m_firstTemplate; t; /* empty */ )
 	{
-		Bool possibleAdjustment = FALSE;
+		bool possibleAdjustment = FALSE;
 		// t itself can be deleted if it is something created for this map only. Therefore, 
 		// we need to store what the next item is so that we don't orphan a bunch of templates.
 		ThingTemplate *nextT = t->friend_getNextTemplate();

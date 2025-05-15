@@ -87,7 +87,7 @@ class WebBrowser :
 		void update( void );
 
 		// Create an instance of the embedded browser for Dune Emperor.
-		virtual Bool createBrowserWindow(const char *tag, GameWindow *win) = 0;
+		virtual bool createBrowserWindow(const char *tag, GameWindow *win) = 0;
 		virtual void closeBrowserWindow(GameWindow *win) = 0;
 
 		WebBrowserURL *makeNewURL(AsciiString tag);
@@ -102,8 +102,8 @@ class WebBrowser :
 		WebBrowser(const WebBrowser&);
 		const WebBrowser& operator=(const WebBrowser&);
 
-//		Bool RetrievePageURL(const char* page, char* url, int size);
-//		Bool RetrieveHTMLPath(char* path, int size);
+//		bool RetrievePageURL(const char* page, char* url, int size);
+//		bool RetrieveHTMLPath(char* path, int size);
 
 	protected:
 		ULONG mRefCount;

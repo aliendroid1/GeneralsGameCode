@@ -78,7 +78,7 @@ void TunnelContain::addToContainList( Object *obj )
 	* This will trigger an onRemoving event for the object that this module
 	* is a part of and an onRemovedFrom event for the object being removed */
 //-------------------------------------------------------------------------------------------------
-void TunnelContain::removeFromContain( Object *obj, Bool exposeStealthUnits )
+void TunnelContain::removeFromContain( Object *obj, bool exposeStealthUnits )
 {
 
 	// sanity
@@ -114,7 +114,7 @@ void TunnelContain::removeFromContain( Object *obj, Bool exposeStealthUnits )
 //-------------------------------------------------------------------------------------------------
 /** Remove all contained objects from the contained list */
 //-------------------------------------------------------------------------------------------------
-void TunnelContain::removeAllContained( Bool exposeStealthUnits )
+void TunnelContain::removeAllContained( bool exposeStealthUnits )
 {
 	Player *owningPlayer = getObject()->getControllingPlayer();
 	const ContainedItemsList *fullList = owningPlayer->getTunnelSystem()->getContainedItemsList();
@@ -133,7 +133,7 @@ void TunnelContain::removeAllContained( Bool exposeStealthUnits )
 //-------------------------------------------------------------------------------------------------
 /** Iterate the contained list and call the callback on each of the objects */
 //-------------------------------------------------------------------------------------------------
-void TunnelContain::iterateContained( ContainIterateFunc func, void *userData, Bool reverse )
+void TunnelContain::iterateContained( ContainIterateFunc func, void *userData, bool reverse )
 {
 	Player *owningPlayer = getObject()->getControllingPlayer();
 	owningPlayer->getTunnelSystem()->iterateContained( func, userData, reverse );
@@ -196,7 +196,7 @@ void TunnelContain::onSelling()
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool TunnelContain::isValidContainerFor(const Object* obj, Bool checkCapacity) const
+bool TunnelContain::isValidContainerFor(const Object* obj, bool checkCapacity) const
 {
 	Player *owningPlayer = getObject()->getControllingPlayer();
 	return owningPlayer->getTunnelSystem()->isValidContainerFor( obj, checkCapacity );

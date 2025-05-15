@@ -70,7 +70,7 @@ HackInternetAIUpdate::~HackInternetAIUpdate( void )
 } 
 
 //-------------------------------------------------------------------------------------------------
-Bool HackInternetAIUpdate::isIdle() const
+bool HackInternetAIUpdate::isIdle() const
 {
 	// we need to do this because we enter an idle state briefly between takeoff/landing in these cases,
 	// but scripting relies on us never claiming to be "idle"...
@@ -81,7 +81,7 @@ Bool HackInternetAIUpdate::isIdle() const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool HackInternetAIUpdate::isHacking() const
+bool HackInternetAIUpdate::isHacking() const
 {
 	if( getStateMachine()->getCurrentStateID() == HACK_INTERNET )
 	{
@@ -91,7 +91,7 @@ Bool HackInternetAIUpdate::isHacking() const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool HackInternetAIUpdate::isHackingPackingOrUnpacking() const
+bool HackInternetAIUpdate::isHackingPackingOrUnpacking() const
 {
 	if( getStateMachine()->getCurrentStateID() == HACK_INTERNET || 
 			getStateMachine()->getCurrentStateID() == PACKING ||

@@ -370,7 +370,7 @@ NetCommandRef * NetCommandList::findMessage(UnsignedShort commandID, UnsignedByt
 	return retval;
 }
 
-Bool NetCommandList::isEqualCommandMsg(NetCommandMsg *msg1, NetCommandMsg *msg2) {
+bool NetCommandList::isEqualCommandMsg(NetCommandMsg *msg1, NetCommandMsg *msg2) {
 	if (DoesCommandRequireACommandID(msg1->getNetCommandType()) != DoesCommandRequireACommandID(msg2->getNetCommandType())) {
 		return FALSE;
 	}

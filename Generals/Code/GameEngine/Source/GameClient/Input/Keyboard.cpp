@@ -196,9 +196,9 @@ void Keyboard::updateKeys( void )
 //-------------------------------------------------------------------------------------------------
 /** check key repeat sequences, TRUE is returned if repeat is occurring */
 //-------------------------------------------------------------------------------------------------
-Bool Keyboard::checkKeyRepeat( void )
+bool Keyboard::checkKeyRepeat( void )
 {
-	Bool retVal = FALSE;
+	bool retVal = FALSE;
 	Int index = 0;
 	Int key;
 
@@ -774,9 +774,9 @@ UnsignedByte Keyboard::getKeyStatusData( UnsignedByte key )
 }  // end getKeyStatusData
 
 //-------------------------------------------------------------------------------------------------
-/** Get the key state data as a Bool for the specified key */
+/** Get the key state data as a bool for the specified key */
 //-------------------------------------------------------------------------------------------------
-Bool Keyboard::getKeyStateBit( UnsignedByte key, Int bit )
+bool Keyboard::getKeyStateBit( UnsignedByte key, Int bit )
 {
 	return (m_keyStatus[ key ].state & bit) ? 1 : 0;
 }  // end getKeyStateBit
@@ -939,7 +939,7 @@ WideChar Keyboard::translateKey( WideChar keyCode )
 //-------------------------------------------------------------------------------------------------
 /** returns true if any shift state is pressed */
 //-------------------------------------------------------------------------------------------------
-Bool Keyboard::isShift()
+bool Keyboard::isShift()
 {
 		if( m_modifiers & KEY_STATE_LSHIFT || m_modifiers & KEY_STATE_RSHIFT || m_modifiers & KEY_STATE_SHIFT2 )
 		{
@@ -951,7 +951,7 @@ Bool Keyboard::isShift()
 //-------------------------------------------------------------------------------------------------
 /** returns true if any control state is pressed */
 //-------------------------------------------------------------------------------------------------
-Bool Keyboard::isCtrl()
+bool Keyboard::isCtrl()
 {
 		if( m_modifiers & KEY_STATE_LCONTROL || m_modifiers & KEY_STATE_RCONTROL )
 		{
@@ -963,7 +963,7 @@ Bool Keyboard::isCtrl()
 //-------------------------------------------------------------------------------------------------
 /** returns true if any shift state is pressed */
 //-------------------------------------------------------------------------------------------------
-Bool Keyboard::isAlt()
+bool Keyboard::isAlt()
 {
 	if( m_modifiers & KEY_STATE_LALT || m_modifiers & KEY_STATE_RALT )
 	{

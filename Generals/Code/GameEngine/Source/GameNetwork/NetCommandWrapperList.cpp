@@ -68,7 +68,7 @@ NetCommandWrapperListNode::~NetCommandWrapperListNode() {
 	}
 }
 
-Bool NetCommandWrapperListNode::isComplete() {
+bool NetCommandWrapperListNode::isComplete() {
 	return m_numChunksPresent == m_numChunks;
 }
 

@@ -280,7 +280,7 @@ void LList::merge( LList *list )
 // LList::hasReference
 //============================================================================
 
-Bool LList::hasItem( void *item )
+bool LList::hasItem( void *item )
 {
 	return findItem( item ) != NULL;
 }
@@ -445,7 +445,7 @@ void	LListNode::destroy( void )
 // LList::addToEndOfGroup
 //============================================================================
 
-void	LList::addToEndOfGroup( Bool yes )
+void	LList::addToEndOfGroup( bool yes )
 {
 	m_addToEndOfGroup = yes;
 }

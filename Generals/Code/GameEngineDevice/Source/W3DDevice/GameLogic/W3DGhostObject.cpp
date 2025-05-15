@@ -62,9 +62,9 @@ class W3DRenderObjectSnapshot : public Snapshot
 {
 	friend W3DGhostObject;
 
-	W3DRenderObjectSnapshot(RenderObjClass *m_parentRobj, DrawableInfo *drawInfo, Bool cloneParentRobj = TRUE);
+	W3DRenderObjectSnapshot(RenderObjClass *m_parentRobj, DrawableInfo *drawInfo, bool cloneParentRobj = TRUE);
 	~W3DRenderObjectSnapshot() {REF_PTR_RELEASE(m_robj);}
-	inline void update(RenderObjClass *robj, DrawableInfo *drawInfo, Bool cloneParentRobj=TRUE);	///<refresh the current snapshot with latest state
+	inline void update(RenderObjClass *robj, DrawableInfo *drawInfo, bool cloneParentRobj=TRUE);	///<refresh the current snapshot with latest state
 	inline void addToScene(void);	///< add this fogged renderobject to the scene.
 protected:
 
@@ -116,7 +116,7 @@ void disableUVAnimations(RenderObjClass *robj)
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
 void W3DRenderObjectSnapshot::update(RenderObjClass *robj, DrawableInfo *drawInfo,
-																		 Bool cloneParentRobj)
+																		 bool cloneParentRobj)
 {
 	REF_PTR_RELEASE(m_robj);
 
@@ -157,7 +157,7 @@ void W3DRenderObjectSnapshot::addToScene(void)
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
 W3DRenderObjectSnapshot::W3DRenderObjectSnapshot(RenderObjClass *robj, DrawableInfo *drawInfo,
-																								 Bool cloneParentRobj)
+																								 bool cloneParentRobj)
 {
 	m_robj=NULL;
 	m_next=NULL;
@@ -199,7 +199,7 @@ void W3DRenderObjectSnapshot::xfer( Xfer *xfer )
 	Int subObjectCount = m_robj->Get_Num_Sub_Objects();
 	xfer->xferInt( &subObjectCount );
 
-	Bool visible;
+	bool visible;
 	RenderObjClass *subObject;
 	AsciiString subObjectName;
 	for( Int i = 0; i < subObjectCount; ++i )

@@ -89,10 +89,10 @@ public:
 	virtual void onDie( const DamageInfo *damageInfo ); 
 
 private:
-	Bool testCreationChance( CrateTemplate const *currentCrateData );
-	Bool testVeterancyLevel( CrateTemplate const *currentCrateData );
-	Bool testKillerType( CrateTemplate const *currentCrateData, Object *killer );
-	Bool testKillerScience( CrateTemplate const *currentCrateData, Object *killer );
+	bool testCreationChance( CrateTemplate const *currentCrateData );
+	bool testVeterancyLevel( CrateTemplate const *currentCrateData );
+	bool testKillerType( CrateTemplate const *currentCrateData, Object *killer );
+	bool testKillerScience( CrateTemplate const *currentCrateData, Object *killer );
 
 	Object *createCrate( CrateTemplate const *currentCrateData );
 };

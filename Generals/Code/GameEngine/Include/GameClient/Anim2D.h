@@ -85,7 +85,7 @@ public:
 	UnsignedShort getNumFrames( void ) const { return m_numFrames; }
 	UnsignedShort getNumFramesBetweenUpdates( void ) const { return m_framesBetweenUpdates; }
 	Anim2DMode getAnimMode( void ) const { return m_animMode; }
-	Bool isRandomizedStartFrame( void ) const { return m_randomizeStartFrame; }
+	bool isRandomizedStartFrame( void ) const { return m_randomizeStartFrame; }
 
 	// list access for use by the Anim2DCollection only
 	void friend_setNextTemplate( Anim2DTemplate *animTemplate ) { m_nextTemplate = animTemplate; }

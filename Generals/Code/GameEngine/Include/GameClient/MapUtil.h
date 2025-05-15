@@ -77,9 +77,9 @@ public:
 	UnicodeString m_displayName;
 	Region3D m_extent;
 	Int m_numPlayers;
-	Bool m_isMultiplayer;
+	bool m_isMultiplayer;
 
-	Bool m_isOfficial;
+	bool m_isOfficial;
 	UnsignedInt m_filesize;
 	UnsignedInt m_CRC;
 
@@ -107,13 +107,13 @@ public:
 	void addShippingMap(AsciiString mapName) { mapName.toLower(); m_allowedMaps.insert(mapName); }
 
 private:
-	Bool clearUnseenMaps( AsciiString dirName );
+	bool clearUnseenMaps( AsciiString dirName );
 	void loadStandardMaps(void);
-	Bool loadUserMaps(void);				// returns true if we needed to (re)parse a map
-//	Bool addMap( AsciiString dirName, AsciiString fname, WinTimeStamp timestamp,
-//		UnsignedInt filesize, Bool isOfficial );	///< returns true if it had to (re)parse the map
-	Bool addMap( AsciiString dirName, AsciiString fname, FileInfo *fileInfo, Bool isOfficial); ///< returns true if it had to (re)parse the map
-	void writeCacheINI( Bool userDir );
+	bool loadUserMaps(void);				// returns true if we needed to (re)parse a map
+//	bool addMap( AsciiString dirName, AsciiString fname, WinTimeStamp timestamp,
+//		UnsignedInt filesize, bool isOfficial );	///< returns true if it had to (re)parse the map
+	bool addMap( AsciiString dirName, AsciiString fname, FileInfo *fileInfo, bool isOfficial); ///< returns true if it had to (re)parse the map
+	void writeCacheINI( bool userDir );
 
 	static const char * m_mapCacheName;
 	std::map<AsciiString, Bool> m_seen;
@@ -123,13 +123,13 @@ private:
 
 extern MapCache *TheMapCache;
 extern TechAndSupplyImages TheSupplyAndTechImageLocations;
-Int populateMapListbox( GameWindow *listbox, Bool useSystemMaps, Bool isMultiplayer, AsciiString mapToSelect = AsciiString::TheEmptyString );		/// Read a list of maps from the run directory and fill in the listbox.  Return the selected index
-Int populateMapListboxNoReset( GameWindow *listbox, Bool useSystemMaps, Bool isMultiplayer, AsciiString mapToSelect = AsciiString::TheEmptyString );		/// Read a list of maps from the run directory and fill in the listbox.  Return the selected index
-Bool isValidMap( AsciiString mapName, Bool isMultiplayer );						/// Validate a map
+Int populateMapListbox( GameWindow *listbox, bool useSystemMaps, bool isMultiplayer, AsciiString mapToSelect = AsciiString::TheEmptyString );		/// Read a list of maps from the run directory and fill in the listbox.  Return the selected index
+Int populateMapListboxNoReset( GameWindow *listbox, bool useSystemMaps, bool isMultiplayer, AsciiString mapToSelect = AsciiString::TheEmptyString );		/// Read a list of maps from the run directory and fill in the listbox.  Return the selected index
+bool isValidMap( AsciiString mapName, bool isMultiplayer );						/// Validate a map
 Image *getMapPreviewImage( AsciiString mapName );
-AsciiString getDefaultMap( Bool isMultiplayer );											/// Find a valid map
-Bool parseMapPreviewChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
+AsciiString getDefaultMap( bool isMultiplayer );											/// Find a valid map
+bool parseMapPreviewChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
 void findDrawPositions( Int startX, Int startY, Int width, Int height, Region3D extent,
 															 ICoord2D *ul, ICoord2D *lr );
-Bool WouldMapTransfer( const AsciiString& mapName );
+bool WouldMapTransfer( const AsciiString& mapName );
 #endif // __MAPUTIL_H__

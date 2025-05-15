@@ -66,10 +66,10 @@ public:
 
 	virtual void setWidth( UnsignedInt width );
 	virtual void setHeight( UnsignedInt height );
-	virtual Bool setDisplayMode( UnsignedInt xres, UnsignedInt yres, UnsignedInt bitdepth, Bool windowed );
+	virtual bool setDisplayMode( UnsignedInt xres, UnsignedInt yres, UnsignedInt bitdepth, bool windowed );
 	virtual Int getDisplayModeCount(void);	///<return number of display modes/resolutions supported by video card.
 	virtual void getDisplayModeDescription(Int modeIndex, Int *xres, Int *yres, Int *bitDepth);	///<return description of mode
- 	virtual void setGamma(Real gamma, Real bright, Real contrast, Bool calibrate);
+ 	virtual void setGamma(Real gamma, Real bright, Real contrast, bool calibrate);
 	virtual void doSmartAssetPurgeAndPreload(const char* usageFileName);
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual void dumpAssetUsage(const char* mapname);
@@ -78,14 +78,14 @@ public:
 	//---------------------------------------------------------------------------
 	// Drawing management
 	virtual void setClipRegion( IRegion2D *region );	///< Set clip rectangle for 2D draw operations.
-	virtual Bool	isClippingEnabled( void ) 	{ return m_isClippedEnabled; }
-	virtual void	enableClipping( Bool onoff )		{ m_isClippedEnabled = onoff; }
+	virtual bool	isClippingEnabled( void ) 	{ return m_isClippedEnabled; }
+	virtual void	enableClipping( bool onoff )		{ m_isClippedEnabled = onoff; }
 
 	virtual void draw( void );  ///< redraw the entire display
 
 	/// @todo Replace these light management routines with a LightManager singleton
 	virtual void createLightPulse( const Coord3D *pos, const RGBColor *color, Real innerRadius,Real outerRadius, 
-																 UnsignedInt increaseFrameTime, UnsignedInt decayFrameTime//, Bool donut = FALSE 
+																 UnsignedInt increaseFrameTime, UnsignedInt decayFrameTime//, bool donut = FALSE 
 																 );
 	virtual void setTimeOfDay ( TimeOfDay tod );
 
@@ -127,7 +127,7 @@ public:
 	virtual void toggleLetterBox(void);	///<enabled letter-boxed display
 	virtual void enableLetterBox(Bool enable);	///<forces letter-boxed display on/off
 
-	virtual Bool isLetterBoxFading(void);	///<returns true while letterbox fades in/out
+	virtual bool isLetterBoxFading(void);	///<returns true while letterbox fades in/out
 
 	virtual void clearShroud();
 	virtual void setShroudLevel(Int x, Int y, CellShroudStatus setting);
@@ -164,7 +164,7 @@ protected:
 	LightClass *m_myLight[LightEnvironmentClass::MAX_LIGHTS];										///< light hack for now
 	Render2DClass *m_2DRender;								///< interface for common 2D functions
 	IRegion2D m_clipRegion;									///< the clipping region for images
-	Bool m_isClippedEnabled;	///<used by 2D drawing operations to define clip re
+	bool m_isClippedEnabled;	///<used by 2D drawing operations to define clip re
 	Real m_averageFPS;		///<average fps over the last 30 frames.
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	Int64 m_timerAtCumuFPSStart;

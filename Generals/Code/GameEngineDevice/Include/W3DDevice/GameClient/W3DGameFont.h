@@ -71,7 +71,7 @@ public:
 protected:
 
 	/// load the font data pointer based on everything else we already have set
-	Bool loadFontData( GameFont *font );
+	bool loadFontData( GameFont *font );
 	/// release the font data pointer
 	void releaseFontData( GameFont *font );
 

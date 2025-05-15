@@ -259,7 +259,7 @@ CanMakeType ProductionUpdate::canQueueCreateUnit( const ThingTemplate *unitType 
 //-------------------------------------------------------------------------------------------------
 /** Queue an upgrade to be produced */
 //-------------------------------------------------------------------------------------------------
-Bool ProductionUpdate::queueUpgrade( const UpgradeTemplate *upgrade )
+bool ProductionUpdate::queueUpgrade( const UpgradeTemplate *upgrade )
 {
 
 	// sanity
@@ -383,7 +383,7 @@ void ProductionUpdate::cancelUpgrade( const UpgradeTemplate *upgrade )
 /** Queue the prodcution of a unit.  Returns TRUE if unit was added to queue, FALSE if it
 	* was not */
 //-------------------------------------------------------------------------------------------------
-Bool ProductionUpdate::queueCreateUnit( const ThingTemplate *unitType, ProductionID productionID )
+bool ProductionUpdate::queueCreateUnit( const ThingTemplate *unitType, ProductionID productionID )
 {
 	const ProductionUpdateModuleData *data = getProductionUpdateModuleData();
 
@@ -1093,7 +1093,7 @@ void ProductionUpdate::removeFromProductionQueue( ProductionEntry *production )
 /** Is the upgrade already in the production queue.  Note that you can only have one 
 	* production entry for any given upgrade in the queue */
 //-------------------------------------------------------------------------------------------------
-Bool ProductionUpdate::isUpgradeInQueue( const UpgradeTemplate *upgrade ) const
+bool ProductionUpdate::isUpgradeInQueue( const UpgradeTemplate *upgrade ) const
 {
 	const ProductionEntry *production;
 
@@ -1162,7 +1162,7 @@ void ProductionUpdate::cancelAndRefundAllProduction( void )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-void ProductionUpdate::setHoldDoorOpen(ExitDoorType exitDoor, Bool holdIt)
+void ProductionUpdate::setHoldDoorOpen(ExitDoorType exitDoor, bool holdIt)
 {
 	if (exitDoor >= DOOR_1 && exitDoor < DOOR_COUNT_MAX)
 	{

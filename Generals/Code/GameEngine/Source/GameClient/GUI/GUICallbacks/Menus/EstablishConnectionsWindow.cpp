@@ -115,12 +115,12 @@ static const char *qmperPlayerGadgetsToHide[] =
 	NULL // keep this last
 };
 
-static void showGameSpyGameOptionsUnderlyingGUIElements( Bool show )
+static void showGameSpyGameOptionsUnderlyingGUIElements( bool show )
 {
 	ShowUnderlyingGUIElements( show, layoutFilename, parentName, gadgetsToHide, perPlayerGadgetsToHide );
 	
 }
-static void showGameSpyQMUnderlyingGUIElements( Bool show )
+static void showGameSpyQMUnderlyingGUIElements( bool show )
 {
 	ShowUnderlyingGUIElements( show, qmlayoutFilename, qmparentName, qmgadgetsToHide, qmperPlayerGadgetsToHide );
 }

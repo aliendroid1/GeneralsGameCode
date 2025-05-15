@@ -162,10 +162,10 @@ void W3DBridge::clearBridge(void)
 //=============================================================================
 /** Culls bridge to camera.  */
 //=============================================================================
-Bool W3DBridge::cullBridge(CameraClass * camera)
+bool W3DBridge::cullBridge(CameraClass * camera)
 {
 	///@todo - cull bridges. 
-	Bool wasVisible = m_visible;
+	bool wasVisible = m_visible;
 
 	m_visible = true;
 
@@ -194,7 +194,7 @@ void W3DBridge::init(Vector3 fromLoc, Vector3 toLoc, AsciiString bridgeTemplateN
 /** Loads a bridge model(if not already loaded) and gets meshes for use at 
 specified location.  */
 //=============================================================================
-Bool W3DBridge::load(enum BodyDamageType curDamageState)
+bool W3DBridge::load(enum BodyDamageType curDamageState)
 {
 	REF_PTR_RELEASE(m_bridgeTexture);
 	REF_PTR_RELEASE(m_leftMesh);
@@ -803,7 +803,7 @@ void W3DBridgeBuffer::clearAllBridges(void)
 //=============================================================================
 /** loadBridges.  When loaded, tell the terrain logic where the bridge is. */
 //=============================================================================
-void W3DBridgeBuffer::loadBridges(W3DTerrainLogic *pTerrainLogic, Bool saveGame)
+void W3DBridgeBuffer::loadBridges(W3DTerrainLogic *pTerrainLogic, bool saveGame)
 {
 	clearAllBridges();
 	MapObject *pMapObj;
@@ -1018,7 +1018,7 @@ void W3DBridgeBuffer::worldBuilderUpdateBridgeTowers( W3DAssetManager *assetMana
 					m_bridges[ i ].getBridgeInfo( &bridgeInfo );
 
 					// go through all bridge tower render objects
-					Bool created;
+					bool created;
 					for( Int j = 0; j < BRIDGE_MAX_TOWERS; ++j )
 					{
 
@@ -1105,7 +1105,7 @@ void W3DBridgeBuffer::updateCenter(CameraClass *camera, RefRenderObjListIterator
 //=============================================================================
 /** Draws the bridges. */
 //=============================================================================
-void W3DBridgeBuffer::drawBridges(CameraClass * camera, Bool wireframe, TextureClass *cloudTexture)
+void W3DBridgeBuffer::drawBridges(CameraClass * camera, bool wireframe, TextureClass *cloudTexture)
 {
 
 	Int curBridge;
@@ -1114,7 +1114,7 @@ void W3DBridgeBuffer::drawBridges(CameraClass * camera, Bool wireframe, TextureC
 			m_bridges[curBridge].setEnabled(false);
 		}
 		/* Check for any changed damage states. */
-		Bool changed = false;
+		bool changed = false;
 		for (Bridge *bridge = TheTerrainLogic->getFirstBridge(); bridge; bridge = bridge->getNext()) {
 			BridgeInfo info;
 			bridge->getBridgeInfo(&info);

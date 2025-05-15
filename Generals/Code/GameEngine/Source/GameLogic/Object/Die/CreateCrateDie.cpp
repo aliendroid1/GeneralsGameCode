@@ -126,7 +126,7 @@ void CreateCrateDie::onDie( const DamageInfo * damageInfo )
 	}
 }  
 
-Bool CreateCrateDie::testCreationChance( CrateTemplate const *currentCrateData )
+bool CreateCrateDie::testCreationChance( CrateTemplate const *currentCrateData )
 {
 	Real testAgainst = currentCrateData->m_creationChance;
 	Real testWith = GameLogicRandomValueReal( 0, 1 );
@@ -134,7 +134,7 @@ Bool CreateCrateDie::testCreationChance( CrateTemplate const *currentCrateData )
 	return testWith < testAgainst;
 }
 
-Bool CreateCrateDie::testVeterancyLevel( CrateTemplate const *currentCrateData )
+bool CreateCrateDie::testVeterancyLevel( CrateTemplate const *currentCrateData )
 {
 	VeterancyLevel testAgainst = currentCrateData->m_veterancyLevel;
 	VeterancyLevel testWith = getObject()->getVeterancyLevel();
@@ -142,7 +142,7 @@ Bool CreateCrateDie::testVeterancyLevel( CrateTemplate const *currentCrateData )
 	return testAgainst == testWith;
 }
 
-Bool CreateCrateDie::testKillerType( CrateTemplate const *currentCrateData, Object *killer )
+bool CreateCrateDie::testKillerType( CrateTemplate const *currentCrateData, Object *killer )
 {
 	if( killer == NULL )
 		return FALSE;
@@ -154,7 +154,7 @@ Bool CreateCrateDie::testKillerType( CrateTemplate const *currentCrateData, Obje
 	return TRUE;
 }
 
-Bool CreateCrateDie::testKillerScience( CrateTemplate const *currentCrateData, Object *killer )
+bool CreateCrateDie::testKillerScience( CrateTemplate const *currentCrateData, Object *killer )
 {
 	if( killer == NULL )
 		return FALSE;
@@ -201,7 +201,7 @@ Object *CreateCrateDie::createCrate( CrateTemplate const *currentCrateData )
 	if( crateType == NULL )
 		return NULL;
 
-	Bool spotFound = FALSE;
+	bool spotFound = FALSE;
 	Coord3D creationPoint;
 	FindPositionOptions fpOptions;
 

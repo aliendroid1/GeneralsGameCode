@@ -84,15 +84,15 @@ public:
 	const VecObjectPtr& getAllObjects(void);					// get all objects on the list that haven't been deleted
 	const VecObjectPtr& getLiveObjects(void);					// get all objects that pass "isEffectivelyDead" test
 	Int getSizeOfGroup(void) const;										// get the current number of objects, including dead objects
-	Bool isOnSquad(const Object *objToTest) const;		// returns true if the object is on this squad, otherwise false
+	bool isOnSquad(const Object *objToTest) const;		// returns true if the object is on this squad, otherwise false
 
 	// convenience function to fill this squad with members of a team
 	// There SHOULD NOT be a TeamFromSquad Function. See comments in Squad.cpp for details
-	void squadFromTeam(const Team* fromTeam, Bool clearSquadFirst);
+	void squadFromTeam(const Team* fromTeam, bool clearSquadFirst);
 
 	// convenience function to create a squad from an AIGroup, and an AIGroup from a team.
 	// When creating the AIGroup from the Squad, the old AIGroup affiliations are broken.
-	void squadFromAIGroup(const AIGroup* fromAIGroup, Bool clearSquadFirst);
+	void squadFromAIGroup(const AIGroup* fromAIGroup, bool clearSquadFirst);
 	void aiGroupFromSquad(AIGroup* aiGroupToFill);
 };
 EMPTY_DTOR(Squad)

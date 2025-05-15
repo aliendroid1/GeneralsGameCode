@@ -120,7 +120,7 @@ void ScoreKeeper::reset( Int playerIdx )
 	
 void ScoreKeeper::addObjectBuilt( const Object *o)
 {
-	Bool addToCount = FALSE;
+	bool addToCount = FALSE;
 
 	if (TheGameLogic->isScoringEnabled() == FALSE) {
 		return;
@@ -187,7 +187,7 @@ void ScoreKeeper::removeObjectBuilt( const Object *o)
 		return;
 	}
 
-	Bool removeFromCount = FALSE;
+	bool removeFromCount = FALSE;
 	if (o->getTemplate()->isKindOfMulti(scoringBuildingMask, KINDOFMASK_NONE))
 	{
 		--m_totalBuildingsBuilt;
@@ -223,7 +223,7 @@ void ScoreKeeper::addObjectCaptured( const Object *o )
 		return;
 	}
 
-	Bool addToCount = FALSE;
+	bool addToCount = FALSE;
 	if(o->getTemplate()->isKindOf(KINDOF_STRUCTURE))
 	{
 		if (o->getTemplate()->isKindOf(KINDOF_SCORE))
@@ -258,7 +258,7 @@ void ScoreKeeper::addObjectDestroyed( const Object *o)
 
 	Int playerIdx = o->getControllingPlayer()->getPlayerIndex();
 
-	Bool addToCount = FALSE;
+	bool addToCount = FALSE;
 	if(o->getTemplate()->isKindOfMulti(scoringBuildingMask, KINDOFMASK_NONE))
 	{
 		if (!(o->testStatus(OBJECT_STATUS_UNDER_CONSTRUCTION))) {
@@ -300,7 +300,7 @@ void ScoreKeeper::addObjectLost( const Object *o )
 		return;
 	}
 
-	Bool addToCount = FALSE;
+	bool addToCount = FALSE;
 	if(o->getTemplate()->isKindOfMulti(scoringBuildingMask, KINDOFMASK_NONE))
 	{
 		if (!(o->testStatus(OBJECT_STATUS_UNDER_CONSTRUCTION))) {

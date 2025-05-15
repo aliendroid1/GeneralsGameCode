@@ -217,18 +217,18 @@ public:
 		Coord3D		hangarInternal;
 		Real			hangarInternalOrient;
 	};
-	virtual Bool shouldReserveDoorWhenQueued(const ThingTemplate* thing) const = 0; 
-	virtual Bool hasAvailableSpaceFor(const ThingTemplate* thing) const = 0; 
-	virtual Bool hasReservedSpace(ObjectID id) const = 0; 
-	virtual Bool reserveSpace(ObjectID id, Real parkingOffset, PPInfo* info) = 0;
+	virtual bool shouldReserveDoorWhenQueued(const ThingTemplate* thing) const = 0; 
+	virtual bool hasAvailableSpaceFor(const ThingTemplate* thing) const = 0; 
+	virtual bool hasReservedSpace(ObjectID id) const = 0; 
+	virtual bool reserveSpace(ObjectID id, Real parkingOffset, PPInfo* info) = 0;
 	virtual void releaseSpace(ObjectID id) = 0; 
-	virtual Bool reserveRunway(ObjectID id, Bool forLanding) = 0;
+	virtual bool reserveRunway(ObjectID id, bool forLanding) = 0;
 	virtual void releaseRunway(ObjectID id) = 0; 
 	virtual Int getRunwayCount() const = 0;
 	virtual ObjectID getRunwayReservation(Int r) = 0;
 	virtual void transferRunwayReservationToNextInLineForTakeoff(ObjectID id) = 0;
 	virtual Real getApproachHeight() const = 0;
-	virtual void setHealee(Object* healee, Bool add) = 0;
+	virtual void setHealee(Object* healee, bool add) = 0;
 	virtual void killAllParkedUnits() = 0;
 	virtual void defectAllParkedUnits(Team* newTeam, UnsignedInt detectionTime) = 0;
 };
@@ -237,7 +237,7 @@ public:
 class TransportPassengerInterface
 {
 public:
-	virtual Bool tryToEvacuate( Bool exposeStealthedUnits ) = 0; ///< Will try to kick everybody out with game checks, and will return whether anyone made it
+	virtual bool tryToEvacuate( bool exposeStealthedUnits ) = 0; ///< Will try to kick everybody out with game checks, and will return whether anyone made it
 };
 
 //-------------------------------------------------------------------------------------------------

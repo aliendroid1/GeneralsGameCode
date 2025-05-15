@@ -246,10 +246,10 @@ public:
 	Int winGetSize( Int *width, Int *height );  ///< return size
 	Int winActivate( void );  ///< pop window to top of list and activate
 	Int winBringToTop( void );  ///< bring this window to the top of the win list
-	Int winEnable( Bool enable );  /**< enable/disable a window, a disbled
+	Int winEnable( bool enable );  /**< enable/disable a window, a disbled
 																 window can be seen but accepts no input */
-	Int winHide( Bool hide );  ///< hide/unhide a window
-	Bool winIsHidden( void );  ///< is this window hidden/
+	Int winHide( bool hide );  ///< hide/unhide a window
+	bool winIsHidden( void );  ///< is this window hidden/
 	UnsignedInt winSetStatus( UnsignedInt status );  ///< set status bits
 	UnsignedInt winClearStatus( UnsignedInt status );  ///< clear status bits
 	UnsignedInt winGetStatus( void );  ///< get status bits
@@ -291,7 +291,7 @@ public:
 	Int winDrawWindow( void );  ///< draws the default background
 	void winSetDrawOffset( Int x, Int y );  ///< set offset for drawing background image data
 	void winGetDrawOffset( Int *x, Int *y );  ///< get draw offset
-	void winSetHiliteState( Bool state );  ///< set hilite state
+	void winSetHiliteState( bool state );  ///< set hilite state
 	void winSetTooltip( UnicodeString tip );  ///< set tooltip text
   Int  getTooltipDelay() { return m_instData.m_tooltipDelay; } ///< get tooltip delay
   void setTooltipDelay(Int delay) { m_instData.m_tooltipDelay = delay; } ///< set tooltip delay
@@ -325,7 +325,7 @@ public:
 	// heirarchy methods
 	Int winSetParent( GameWindow *parent );  ///< set parent
 	GameWindow *winGetParent( void );  ///< get parent
-	Bool winIsChild( GameWindow *child );  ///< verifies parent
+	bool winIsChild( GameWindow *child );  ///< verifies parent
 	GameWindow *winGetChild( void );  ///< get the child window
 	Int winSetOwner( GameWindow *owner );  ///< set owner
 	GameWindow *winGetOwner( void );  ///< get window's owner
@@ -352,16 +352,16 @@ public:
 											 GameWinTooltipFunc tooltip );  ///< set draw, input, tooltip
 
 	// pick correlation ---------------------------------------------------------
-	Bool winPointInWindow( Int x, Int y );  /**is point inside this window?
+	bool winPointInWindow( Int x, Int y );  /**is point inside this window?
 																					also return TRUE if point is in 
 																					a child */
 	/** given a piont, return the child window which contains the mouse pointer,
 	if the point is not in a chilc, the function returns the 'window' paramater
 	back to the caller */
-	GameWindow *winPointInChild( Int x, Int y, Bool ignoreEnableCheck = FALSE, Bool playDisabledSound = FALSE );
+	GameWindow *winPointInChild( Int x, Int y, bool ignoreEnableCheck = FALSE, bool playDisabledSound = FALSE );
 	/** finds the child which contains the mouse pointer - reguardless of
 	the enabled status of the child */
-	GameWindow *winPointInAnyChild( Int x, Int y, Bool ignoreHidden, Bool ignoreEnableCheck = FALSE );
+	GameWindow *winPointInAnyChild( Int x, Int y, bool ignoreHidden, bool ignoreEnableCheck = FALSE );
 
   // get the callbacks for a window -------------------------------------------
 	GameWinInputFunc		winGetInputFunc( void );
@@ -377,7 +377,7 @@ protected:
 
 	/// 'images' should be taken care of when we hide ourselves or are destroyed
 	void freeImages( void ) { }
-	Bool isEnabled( void );  ///< see if we and our parents are enabled
+	bool isEnabled( void );  ///< see if we and our parents are enabled
 
 	void normalizeWindowRegion( void );  ///< put UL corner in window region.lo
 

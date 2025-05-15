@@ -51,7 +51,7 @@ ShroudCrateCollide::~ShroudCrateCollide( void )
 }  
 
 //-------------------------------------------------------------------------------------------------
-Bool ShroudCrateCollide::executeCrateBehavior( Object *other )
+bool ShroudCrateCollide::executeCrateBehavior( Object *other )
 {
 	Player* cratePlayer = other->getControllingPlayer();
 	ThePartitionManager->revealMapForPlayer( cratePlayer->getPlayerIndex() );

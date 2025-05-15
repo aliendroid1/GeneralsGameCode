@@ -243,7 +243,7 @@ WindowLayout *Shell::findScreenByFilename( AsciiString filename )
 //-------------------------------------------------------------------------------------------------
 /** Hide or unhide all window layouts loaded */
 //-------------------------------------------------------------------------------------------------
-void Shell::hide( Bool hide )
+void Shell::hide( bool hide )
 {
 	Int i;
 
@@ -259,7 +259,7 @@ void Shell::hide( Bool hide )
 //-------------------------------------------------------------------------------------------------
 /** Push layout onto shell */
 //-------------------------------------------------------------------------------------------------
-void Shell::push( AsciiString filename, Bool shutdownImmediate )
+void Shell::push( AsciiString filename, bool shutdownImmediate )
 {
 
 	// sanity
@@ -352,7 +352,7 @@ void Shell::pop( void )
 	// will call Shell::shutdownComplete(), where the pending pop will be seen
 	// and the actual pop will occur
 	//
-	Bool immediatePop = FALSE;
+	bool immediatePop = FALSE;
 	screen->runShutdown( &immediatePop );
 
 	if (TheIMEManager)
@@ -387,7 +387,7 @@ void Shell::popImmediate( void )
 	m_pendingPop = FALSE;
 
 	// run the shutdown
-	Bool immediatePop = TRUE;
+	bool immediatePop = TRUE;
 	screen->runShutdown( &immediatePop );
 
 	// pop the screen of the stack
@@ -404,7 +404,7 @@ void Shell::popImmediate( void )
 	* pushed on the stack, but it's already there (ie going from in game back to the
 	* pre-game shell menus */
 //-------------------------------------------------------------------------------------------------
-void Shell::showShell( Bool runInit )
+void Shell::showShell( bool runInit )
 {
 	DEBUG_LOG(("Shell:showShell() - %s (%s)\n", TheGlobalData->m_initialFile.str(), (top())?top()->getFilename().str():"no top screen"));
 
@@ -521,7 +521,7 @@ void Shell::hideShell( void )
 
 	if( layout )
 	{
-		Bool immediatePop = TRUE;
+		bool immediatePop = TRUE;
 
 		layout->runShutdown( &immediatePop );
 
@@ -623,7 +623,7 @@ void Shell::doPush( AsciiString layoutFile )
 //-------------------------------------------------------------------------------------------------
 /** Actually do the work for a pop */
 //-------------------------------------------------------------------------------------------------
-void Shell::doPop( Bool impendingPush )
+void Shell::doPop( bool impendingPush )
 {
 	WindowLayout *currentTop = top();
 
@@ -662,7 +662,7 @@ void Shell::doPop( Bool impendingPush )
 	*       short circuiting the shutdown logic because there is no layout
 	*				to actually shutdown (ie, the stack is empty and we push) */
 //-------------------------------------------------------------------------------------------------
-void Shell::shutdownComplete( WindowLayout *screen, Bool impendingPush )
+void Shell::shutdownComplete( WindowLayout *screen, bool impendingPush )
 {
 
 	// there should never be a pending push AND pop operation
@@ -710,7 +710,7 @@ void Shell::shutdownComplete( WindowLayout *screen, Bool impendingPush )
 }  // end shutdownComplete
 
 
-void Shell::registerWithAnimateManager( GameWindow *win, AnimTypes animType, Bool needsToFinish, UnsignedInt delayMS)
+void Shell::registerWithAnimateManager( GameWindow *win, AnimTypes animType, bool needsToFinish, UnsignedInt delayMS)
 {
 	if(!m_animateWindowManager)
 	{
@@ -721,7 +721,7 @@ void Shell::registerWithAnimateManager( GameWindow *win, AnimTypes animType, Boo
 		m_animateWindowManager->registerGameWindow(win,animType,needsToFinish, 500,delayMS);
 }
 
-Bool Shell::isAnimFinished( void )
+bool Shell::isAnimFinished( void )
 {
 	// check the new way also.
 	if (!TheTransitionHandler->isFinished())
@@ -749,7 +749,7 @@ void Shell::reverseAnimatewindow( void )
 		m_animateWindowManager->reverseAnimateWindow();
 }
 
-Bool Shell::isAnimReversed( void )
+bool Shell::isAnimReversed( void )
 {
 	if(!m_animateWindowManager)
 	{
@@ -807,7 +807,7 @@ WindowLayout *Shell::getPopupReplayLayout( void )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-WindowLayout *Shell::getOptionsLayout( Bool create )
+WindowLayout *Shell::getOptionsLayout( bool create )
 {
 	// if layout has not been created, create it now
 	if ((m_optionsLayout == NULL) && (create == TRUE))

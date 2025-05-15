@@ -128,19 +128,19 @@ static GameWindow *chatBoxBorder = NULL;
 static GameWindow *buttonBuddies = NULL;
 static GameWindow *staticTextGameSaved = NULL;
 
-static Bool overidePlayerDisplayName = FALSE;
+static bool overidePlayerDisplayName = FALSE;
 
 //Extrenal declarations
 NameKeyType listboxChatWindowScoreScreenID = NAMEKEY_INVALID;
 GameWindow *listboxChatWindowScoreScreen = NULL;
 std::string LastReplayFileName;
-static Bool canSaveReplay = FALSE;
+static bool canSaveReplay = FALSE;
 extern void PopupReplayUpdate(WindowLayout *layout, void *userData);
 
 void initSinglePlayer( void );
 void finishSinglePlayerInit( void );
-static Bool s_needToFinishSinglePlayerInit = FALSE;
-static Bool buttonIsFinishCampaign = FALSE;
+static bool s_needToFinishSinglePlayerInit = FALSE;
+static bool buttonIsFinishCampaign = FALSE;
 static WindowLayout *s_blankLayout = NULL;
 
 void initSkirmish( void );
@@ -217,8 +217,8 @@ void ScoreScreenEnableControls(Bool enable)
 	}
 }
 
-extern Bool DontShowMainMenu; //KRIS
-Bool ReplayWasPressed = FALSE;
+extern bool DontShowMainMenu; //KRIS
+bool ReplayWasPressed = FALSE;
 /** Initialize the ScoreScreen */
 //-------------------------------------------------------------------------------------------------
 void ScoreScreenInit( WindowLayout *layout, void *userData )
@@ -504,7 +504,7 @@ WindowMsgHandledType ScoreScreenSystem( GameWindow *window, UnsignedInt msg,
 				name.format("ScoreScreen.wnd:ButtonAdd%d", i);
 				if( controlID == TheNameKeyGenerator->nameToKey(name))
 				{
-					Bool notBuddy = TRUE;
+					bool notBuddy = TRUE;
 					Int playerID = (Int)GadgetButtonGetData(TheWindowManager->winGetWindowFromId(NULL,controlID));
 											// request to add a buddy
 					BuddyInfoMap *buddies = TheGameSpyInfo->getBuddyMap();
@@ -677,7 +677,7 @@ void initSinglePlayer( void )
 
 void finishSinglePlayerInit( void )
 {
-	Bool copyProtectOK = TRUE;
+	bool copyProtectOK = TRUE;
 #ifdef DO_COPY_PROTECTION
 	copyProtectOK = CopyProtect::validate();
 #endif
@@ -720,7 +720,7 @@ void finishSinglePlayerInit( void )
 				{
 					AsciiString vidName;
 					vidName = campaign->getFinalVictoryMovie();
-					Bool useLowRes = FALSE;
+					bool useLowRes = FALSE;
 					if (TheGameLODManager) {
 						if (!TheGameLODManager->didMemPass()) {
 							useLowRes = TRUE;
@@ -895,7 +895,7 @@ void initReplayMultiPlayer(void)
 //		buttonRehost->winHide(TRUE);
 }
 
-static Bool isSlotLocalAlly(GameInfo *game, const GameSlot *slot)
+static bool isSlotLocalAlly(GameInfo *game, const GameSlot *slot)
 {
 	const GameSlot *localSlot = game->getConstSlot(game->getLocalSlotNum());
 	if (!localSlot)
@@ -973,7 +973,7 @@ static void updateSkirmishBattleHonors(SkirmishBattleHonors& stats)
 	Int numEasy = 0;
 	Int numMedium = 0;
 	Int numBrutal = 0;
-	Bool anyAlliedAI = FALSE;
+	bool anyAlliedAI = FALSE;
 	for (Int i=0; i<MAX_SLOTS; ++i)
 	{
 		const GameSlot *slot = TheGameInfo->getConstSlot(i);
@@ -1397,10 +1397,10 @@ winName.format("ScoreScreen.wnd:StaticTextScore%d", pos);
 
 					UnsignedInt latestHumanInGame = 0;
 					UnsignedInt lastFrameOfGame = 0;
-					Bool gameEndedInDisconnect = TRUE;
-					Bool sawAnyDisconnects = FALSE;
-					Bool anyNonAI = FALSE;
-					Bool anyAI = FALSE;
+					bool gameEndedInDisconnect = TRUE;
+					bool sawAnyDisconnects = FALSE;
+					bool anyNonAI = FALSE;
+					bool anyAI = FALSE;
 					Int i=0;
 					for (; i<MAX_SLOTS; ++i)
 					{
@@ -1483,7 +1483,7 @@ winName.format("ScoreScreen.wnd:StaticTextScore%d", pos);
  					if (TheGameSpyInfo)
 						TheGameSpyInfo->updateAdditionalGameSpyDisconnections(-1);
 
-					Bool sawEndOfGame = FALSE;
+					bool sawEndOfGame = FALSE;
 					if (TheVictoryConditions->isLocalAlliedDefeat() || TheVictoryConditions->isLocalAlliedVictory())
 					{
 						sawEndOfGame = TRUE;
@@ -1877,7 +1877,7 @@ void grabSinglePlayerInfo( void )
 	// We have no way of telling what sides we have in the game.  Hence, the hardcoding.
 	for(Int j = 0; j < MAX_RELATIONS; ++j )
 	{
-		Bool isFriend = TRUE;
+		bool isFriend = TRUE;
 		
 		// set the string we'll be compairing to
 		switch (j) {
@@ -1907,7 +1907,7 @@ void grabSinglePlayerInfo( void )
 		sg.m_totalUnitsDestroyed = 0;
 		sg.m_totalUnitsLost = 0;
 		sg.m_sideImage = NULL;
-		Bool populate = FALSE;
+		bool populate = FALSE;
 		Color color;
 		for(Int i = 0; i < MAX_PLAYER_COUNT; ++i)
 		{

@@ -43,12 +43,12 @@ public:
 	virtual void update();
 
 	virtual File * openFile(const Char *filename, Int access = 0);	///< open the given file.
-	virtual Bool doesFileExist(const Char *filename) const;								///< does the given file exist?
+	virtual bool doesFileExist(const Char *filename) const;								///< does the given file exist?
 
-	virtual void getFileListInDirectory(const AsciiString& currentDirectory, const AsciiString& originalDirectory, const AsciiString& searchName, FilenameList &filenameList, Bool searchSubdirectories) const; ///< search the given directory for files matching the searchName (egs. *.ini, *.rep).  Possibly search subdirectories.
-	virtual Bool getFileInfo(const AsciiString& filename, FileInfo *fileInfo) const;
+	virtual void getFileListInDirectory(const AsciiString& currentDirectory, const AsciiString& originalDirectory, const AsciiString& searchName, FilenameList &filenameList, bool searchSubdirectories) const; ///< search the given directory for files matching the searchName (egs. *.ini, *.rep).  Possibly search subdirectories.
+	virtual bool getFileInfo(const AsciiString& filename, FileInfo *fileInfo) const;
 
-	virtual Bool createDirectory(AsciiString directory);
+	virtual bool createDirectory(AsciiString directory);
 
 protected:
 };

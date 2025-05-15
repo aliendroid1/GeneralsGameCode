@@ -160,8 +160,8 @@ private:
 
 	WindowVideoMap m_playingVideos;								///< List of currently playin Videos
 	//WindowVideoMap m_pausedVideos;									///< List of currently paused Videos
-	Bool m_stopAllMovies;														///< Maintains is we're in a stop all Movies State
-	Bool m_pauseAllMovies;													///< Maintains if we're in a pause all movies state
+	bool m_stopAllMovies;														///< Maintains is we're in a stop all Movies State
+	bool m_pauseAllMovies;													///< Maintains if we're in a pause all movies state
 
 
 };

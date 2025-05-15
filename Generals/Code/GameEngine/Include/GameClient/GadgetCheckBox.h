@@ -78,8 +78,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 extern void GadgetCheckBoxSetText( GameWindow *g, UnicodeString text );
-extern Bool GadgetCheckBoxIsChecked( GameWindow *g );
-extern void GadgetCheckBoxSetChecked( GameWindow *g, Bool isChecked);
+extern bool GadgetCheckBoxIsChecked( GameWindow *g );
+extern void GadgetCheckBoxSetChecked( GameWindow *g, bool isChecked);
 
 inline void GadgetCheckBoxSetEnabledImage( GameWindow *g, const Image *image )						{ g->winSetEnabledImage( 0, image ); }
 inline void GadgetCheckBoxSetEnabledColor( GameWindow *g, Color color )								{ g->winSetEnabledColor( 0, color ); }

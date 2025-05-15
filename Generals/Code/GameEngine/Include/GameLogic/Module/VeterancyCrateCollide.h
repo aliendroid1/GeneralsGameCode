@@ -44,8 +44,8 @@ class VeterancyCrateCollideModuleData : public CrateCollideModuleData
 {
 public:
 	UnsignedInt m_rangeOfEffect;
-	Bool m_addsOwnerVeterancy;
-	Bool m_isPilot;
+	bool m_addsOwnerVeterancy;
+	bool m_isPilot;
 
 	VeterancyCrateCollideModuleData()
 	{
@@ -85,10 +85,10 @@ public:
 protected:
 
 	/// This allows specific vetoes to certain types of crates and their data
-	virtual Bool isValidToExecute( const Object *other ) const;
+	virtual bool isValidToExecute( const Object *other ) const;
 
 	/// This is the game logic execution function that all real CrateCollides will implement
-	virtual Bool executeCrateBehavior( Object *other );
+	virtual bool executeCrateBehavior( Object *other );
 
 	Int getLevelsToGain() const;
 

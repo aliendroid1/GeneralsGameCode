@@ -48,9 +48,9 @@ public:
 	LANPlayer *getUser( void );																	///< Get the User structure associated with the slot (NULL for non-humans)
 
 	// Various tests
-	Bool isUser( LANPlayer *user );															///< Does this slot contain the given user?  Based off user->name
-	Bool isUser( UnicodeString userName );									///< Does this slot contain the given user?
-	Bool isLocalPlayer( void ) const;															///< Is this slot me?
+	bool isUser( LANPlayer *user );															///< Does this slot contain the given user?  Based off user->name
+	bool isUser( UnicodeString userName );									///< Does this slot contain the given user?
+	bool isLocalPlayer( void ) const;															///< Is this slot me?
 	inline void setLogin( UnicodeString name ) { m_user.setLogin(name); }
 	inline void setLogin( AsciiString name ) { m_user.setLogin(name); }
 	inline void setHost( UnicodeString name ) { m_user.setHost(name); }
@@ -102,7 +102,7 @@ public:
 
 	// Convinience functions that interface with the LANPlayer held in the slot list	
 	virtual void resetAccepted(void);														///< Reset the accepted flag on all players
-	Bool amIHost( void );																///< Convenience function - is the local player the game host?
+	bool amIHost( void );																///< Convenience function - is the local player the game host?
 
 	/// Get the IP of selected player or return 0
 	inline UnsignedInt getIP( int who ) 
@@ -123,7 +123,7 @@ public:
 	}
 
 	/// returns whether or not this is a direct connect game or not.
-	inline Bool getIsDirectConnect()
+	inline bool getIsDirectConnect()
 	{
 		return m_isDirectConnect;
 	}
@@ -169,7 +169,7 @@ private:
 	LANGameInfo *m_next;																///< Pointer for linked list
 	UnsignedInt m_lastHeard;														///< The last time we heard from this game (for timeout purposes)
 	UnicodeString m_gameName;														///< Game name.  @todo: are game names based off of host player names?
-	Bool m_isDirectConnect;															///< Is this game a direct connect game, or a LAN game?
+	bool m_isDirectConnect;															///< Is this game a direct connect game, or a LAN game?
 };
 
 void LANDisplayGameList( GameWindow *gameListbox, LANGameInfo *gameList );	///< Displays the list of games in a listbox, preserving selections
@@ -179,7 +179,7 @@ void LANDisplaySlotList( void );		///< Displays the slot list according to TheLA
 void LANDisplayGameOptions( void );	///< Displays the game options according to TheLANGameInfo
 
 AsciiString GenerateGameOptionsString( void );
-Bool ParseGameOptionsString(LANGameInfo *game, AsciiString options);
+bool ParseGameOptionsString(LANGameInfo *game, AsciiString options);
 
 
 #endif // __LANGAMEINFO_H__

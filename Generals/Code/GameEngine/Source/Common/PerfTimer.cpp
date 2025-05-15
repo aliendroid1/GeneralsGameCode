@@ -131,7 +131,7 @@ void InitPrecisionTimer()
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
 
-/*static*/ Bool AutoPerfGatherIgnore::s_ignoring = false;
+/*static*/ bool AutoPerfGatherIgnore::s_ignoring = false;
 
 //-------------------------------------------------------------------------------------------------
 typedef std::vector< std::pair< AsciiString, AsciiString > > StringPairVec;
@@ -477,7 +477,7 @@ void PerfGather::reset()
 //-------------------------------------------------------------------------------------------------
 
 //-------------------------------------------------------------------------------------------------
-PerfTimer::PerfTimer( const char *identifier, Bool crashWithInfo, Int startFrame, Int endFrame) :
+PerfTimer::PerfTimer( const char *identifier, bool crashWithInfo, Int startFrame, Int endFrame) :
 	m_identifier(identifier), 
 	m_crashWithInfo(crashWithInfo), 
 	m_startFrame(startFrame), 

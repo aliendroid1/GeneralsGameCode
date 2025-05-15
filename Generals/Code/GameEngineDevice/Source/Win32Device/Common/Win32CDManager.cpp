@@ -128,7 +128,7 @@ Win32CDDrive::~Win32CDDrive()
 
 void Win32CDDrive::refreshInfo( void )
 {
-	Bool mayRequireUpdate = (m_disk != CD::NO_DISK);
+	bool mayRequireUpdate = (m_disk != CD::NO_DISK);
 	Char volName[1024];
 	// read the volume info
 	if ( GetVolumeInformation( m_drivePath.str(), volName, sizeof(volName) -1, NULL, NULL, NULL, NULL, 0 ))

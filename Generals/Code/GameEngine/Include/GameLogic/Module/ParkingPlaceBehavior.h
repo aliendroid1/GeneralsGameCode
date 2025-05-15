@@ -106,14 +106,14 @@ public:
 	virtual ExitInterface* getUpdateExitInterface() { return this; }
 
 	// ExitInterface
-	virtual Bool isExitBusy() const {return FALSE;}	///< Contain style exiters are getting the ability to space out exits, so ask this before reserveDoor as a kind of no-commitment check.
+	virtual bool isExitBusy() const {return FALSE;}	///< Contain style exiters are getting the ability to space out exits, so ask this before reserveDoor as a kind of no-commitment check.
 	virtual ExitDoorType reserveDoorForExit( const ThingTemplate* objType, Object *specificObject );
 	virtual void exitObjectViaDoor( Object *newObj, ExitDoorType exitDoor );
 	virtual void unreserveDoorForExit( ExitDoorType exitDoor );
 	virtual void exitObjectByBudding( Object *newObj, Object *budHost ) { return; }
 
-	virtual Bool getExitPosition( Coord3D& rallyPoint ) const;		
-	virtual Bool getNaturalRallyPoint( Coord3D& rallyPoint, Bool offset = TRUE ) const;
+	virtual bool getExitPosition( Coord3D& rallyPoint ) const;		
+	virtual bool getNaturalRallyPoint( Coord3D& rallyPoint, bool offset = TRUE ) const;
 	virtual void setRallyPoint( const Coord3D *pos );			///< define a "rally point" for units to move towards
 	virtual const Coord3D *getRallyPoint( void ) const;			///< define a "rally point" for units to move towards
 
@@ -124,18 +124,18 @@ public:
 	virtual void onDie( const DamageInfo *damageInfo );
 
 	// ParkingPlaceBehaviorInterface
-	Bool shouldReserveDoorWhenQueued(const ThingTemplate* thing) const; 
-	Bool hasAvailableSpaceFor(const ThingTemplate* thing) const; 
-	Bool hasReservedSpace(ObjectID id) const; 
-	Bool reserveSpace(ObjectID id, Real parkingOffset, PPInfo* info);
+	bool shouldReserveDoorWhenQueued(const ThingTemplate* thing) const; 
+	bool hasAvailableSpaceFor(const ThingTemplate* thing) const; 
+	bool hasReservedSpace(ObjectID id) const; 
+	bool reserveSpace(ObjectID id, Real parkingOffset, PPInfo* info);
 	void releaseSpace(ObjectID id); 
-	Bool reserveRunway(ObjectID id, Bool forLanding);
+	bool reserveRunway(ObjectID id, bool forLanding);
 	void releaseRunway(ObjectID id); 
 	Int getRunwayCount() const { return m_runways.size(); }
 	ObjectID getRunwayReservation(Int r);
 	void transferRunwayReservationToNextInLineForTakeoff(ObjectID id);
 	Real getApproachHeight() const { return getParkingPlaceBehaviorModuleData()->m_approachHeight; }
-	void setHealee(Object* healee, Bool add);
+	void setHealee(Object* healee, bool add);
 	void killAllParkedUnits();
 	void defectAllParkedUnits(Team* newTeam, UnsignedInt detectionTime);
 
@@ -196,7 +196,7 @@ private:
 	ParkingPlaceInfo* findEmptyPPI();
 
 	Coord3D m_heliRallyPoint;		
-	Bool m_heliRallyPointExists;				///< Only move to the rally point if this is true
+	bool m_heliRallyPointExists;				///< Only move to the rally point if this is true
 };
 
 #endif // __ParkingPlaceBehavior_H_

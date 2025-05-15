@@ -146,7 +146,7 @@ void Win32BIGFile::close( void )
 // Win32BIGFile::getFileInfo
 //============================================================================
 
-Bool Win32BIGFile::getFileInfo(const AsciiString& filename, FileInfo *fileInfo) const 
+bool Win32BIGFile::getFileInfo(const AsciiString& filename, FileInfo *fileInfo) const 
 {
 	const ArchivedFileInfo *tempFileInfo = getArchivedFileInfo(filename);
 

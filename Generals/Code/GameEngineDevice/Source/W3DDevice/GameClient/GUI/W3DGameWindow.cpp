@@ -65,7 +65,7 @@ enum
 ///////////////////////////////////////////////////////////////////////////////
 // PRIVATE DATA ///////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
-static Bool bordersInit = FALSE;
+static bool bordersInit = FALSE;
 static const Image *borderPieces[NUM_BORDER_PIECES] = { 0 };
 
 // PUBLIC DATA ////////////////////////////////////////////////////////////////
@@ -394,7 +394,7 @@ void W3DGameWinDefaultDraw( GameWindow *window, WinInstanceData *instData )
 //=============================================================================
 void W3DGameWindow::winDrawBorder( void )
 {
-	Bool found = FALSE;
+	bool found = FALSE;
 	Int originalX, originalY;
 	Int x, y;
 	Int width;
@@ -620,7 +620,7 @@ void W3DGameWindow::setTextLoc( Int x, Int y )
 //=============================================================================
 void W3DGameWindow::drawText( Color color )
 {
-	Bool needDraw = FALSE;
+	bool needDraw = FALSE;
 
 	// if new text pos we need to redraw
 	if( m_newTextPos )

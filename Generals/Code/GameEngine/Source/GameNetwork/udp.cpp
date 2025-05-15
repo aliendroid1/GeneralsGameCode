@@ -388,7 +388,7 @@ int UDP::Wait(Int sec,Int usec,fd_set &givenSet,fd_set &returnSet)
   Wtime        timeout,timenow,timethen;
   fd_set       backupSet;
   int          retval=0,done,givenMax;
-  Bool         noTimeout=FALSE;
+  bool         noTimeout=FALSE;
   timeval      tv;
  
   returnSet=givenSet;

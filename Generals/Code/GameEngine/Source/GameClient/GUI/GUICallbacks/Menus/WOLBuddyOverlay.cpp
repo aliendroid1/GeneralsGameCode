@@ -97,7 +97,7 @@ static GameWindow *parentBuddies = NULL;
 static GameWindow *parentIgnore = NULL;
 static GameWindow *listboxIgnore = NULL;
 
-static Bool isOverlayActive = false;
+static bool isOverlayActive = false;
 void insertChat( BuddyMessage msg );
 // RightClick pointers ---------------------------------------------------------------------
 static GameWindow *rcMenu = NULL;
@@ -109,7 +109,7 @@ void setUnignoreText( WindowLayout *layout, AsciiString nick, GPProfile id);
 void refreshIgnoreList( void );
 void showNotificationBox( AsciiString nick, UnicodeString message);
 void deleteNotificationBox( void );
-static Bool lastNotificationWasStatus = FALSE;
+static bool lastNotificationWasStatus = FALSE;
 static Int numOnlineInNotification = 0;
 
 class BuddyControls
@@ -124,7 +124,7 @@ public:
 
 	GameWindow *textEntryEdit;
 	NameKeyType textEntryEditID;
-	Bool isInit;
+	bool isInit;
 };
 
 static BuddyControls buddyControls;
@@ -354,7 +354,7 @@ static void insertChat( BuddyMessage msg )
 		BuddyInfoMap *m = TheGameSpyInfo->getBuddyMap();
 		BuddyInfoMap::iterator senderIt = m->find(msg.m_senderID);
 		BuddyInfoMap::iterator recipientIt = m->find(msg.m_recipientID);
-		Bool localSender = (msg.m_senderID == TheGameSpyInfo->getLocalProfileID());
+		bool localSender = (msg.m_senderID == TheGameSpyInfo->getLocalProfileID());
 		UnicodeString s;
 		//UnicodeString timeStr = UnicodeString(_wctime( (const time_t *)&msg.m_timestamp ));
 		UnicodeString timeStr;
@@ -591,7 +591,7 @@ void HandleBuddyResponses( void )
 				{
 					BuddyInfoMap *m = TheGameSpyInfo->getBuddyMap();
 					BuddyInfoMap::const_iterator bit = m->find(resp.profile);
-					Bool seenPreviously = FALSE;
+					bool seenPreviously = FALSE;
 					GPEnum oldStatus = GP_OFFLINE;
 					GPEnum newStatus = resp.arg.status.status;
 					if (bit != m->end())
@@ -891,7 +891,7 @@ WindowMsgHandledType WOLBuddyOverlaySystem( GameWindow *window, UnsignedInt msg,
 					if(rc->pos < 0)
 						break;
 
-					Bool isBuddy = false, isRequest = false;
+					bool isBuddy = false, isRequest = false;
 					GPProfile profileID = (GPProfile)GadgetListBoxGetItemData(control, rc->pos);
 					UnicodeString nick = GadgetListBoxGetText(control, rc->pos);
 					BuddyInfoMap *buddies = TheGameSpyInfo->getBuddyMap();
@@ -1044,7 +1044,7 @@ WindowMsgHandledType WOLBuddyOverlaySystem( GameWindow *window, UnsignedInt msg,
 										GroupRoomMap *rooms = TheGameSpyChat->getGroupRooms();
 										if (rooms)
 										{
-											Bool needToJoin = true;
+											bool needToJoin = true;
 											GroupRoomMap::iterator it = rooms->find(groupRoom);
 											if (it != rooms->end())
 											{
@@ -1197,7 +1197,7 @@ void RequestBuddyAdd(Int profileID, AsciiString nick)
 	TheGameSpyBuddyMessageQueue->addRequest(req);
 
 	UnicodeString s;
-	Bool exists = TRUE;
+	bool exists = TRUE;
 	s.format(TheGameText->fetch("Buddy:InviteSent", &exists));
 	if (!exists)
 	{
@@ -1272,8 +1272,8 @@ WindowMsgHandledType WOLBuddyOverlayRCMenuSystem( GameWindow *window, UnsignedIn
 				GPProfile profileID = rcData->m_id;
 				AsciiString nick = rcData->m_nick;
 
-				Bool isBuddy = false, isRequest = false;
-				Bool isGameSpyUser = profileID > 0;
+				bool isBuddy = false, isRequest = false;
+				bool isGameSpyUser = profileID > 0;
 				if (rcData->m_itemType == ITEM_BUDDY)
 					isBuddy = TRUE;
 				else if (rcData->m_itemType == ITEM_REQUEST)

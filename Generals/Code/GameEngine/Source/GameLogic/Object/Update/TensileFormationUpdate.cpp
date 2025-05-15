@@ -79,7 +79,7 @@ public:
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual const char* debugGetName() { return "PartitionFilterTensileFormationMember"; }
 #endif
-	virtual Bool allow( Object *objOther )
+	virtual bool allow( Object *objOther )
 	{
 		return ( getTFU( objOther ) != NULL );
 	}
@@ -388,7 +388,7 @@ UpdateSleepTime TensileFormationUpdate::update( void )
 //-------------------------------------------------------------------------------------
 
 //-------------------------------------------------------------------------------
-void TensileFormationUpdate::propagateDislodgement ( Bool enabled )
+void TensileFormationUpdate::propagateDislodgement ( bool enabled )
 {
 	PartitionFilterTensileFormationMember tfmFilter( getObject() );
 	PartitionFilter *filters[] = { &tfmFilter, NULL };

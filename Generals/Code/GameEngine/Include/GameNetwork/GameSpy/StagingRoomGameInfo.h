@@ -81,12 +81,12 @@ private:
 	Int m_id;
 	Transport *m_transport;
 	AsciiString m_localName;
-	Bool m_requiresPassword;
-	Bool m_allowObservers;
+	bool m_requiresPassword;
+	bool m_allowObservers;
 	UnsignedInt m_version;
 	UnsignedInt m_exeCRC;
 	UnsignedInt m_iniCRC;
-	Bool m_isQM;
+	bool m_isQM;
 
 	AsciiString m_ladderIP;
 	AsciiString m_pingStr;
@@ -106,9 +106,9 @@ public:
 	inline Int getID( void ) const { return m_id; }
 
 	inline void setHasPassword(Bool val) { m_requiresPassword = val; }
-	inline Bool getHasPassword(void) const { return m_requiresPassword; }
+	inline bool getHasPassword(void) const { return m_requiresPassword; }
 	inline void setAllowObservers(Bool val) { m_allowObservers = val; }
-	inline Bool getAllowObservers(void) const { return m_allowObservers; }
+	inline bool getAllowObservers(void) const { return m_allowObservers; }
 
 	inline void setVersion(UnsignedInt val) { m_version = val; }
 	inline UnsignedInt getVersion(void) const { return m_version; }
@@ -134,14 +134,14 @@ public:
 	inline AsciiString getPingString( void ) const { return m_pingStr; }
 	inline Int getPingAsInt( void ) const { return m_pingInt; }
 
-	virtual Bool amIHost( void ) const;															///< Convenience function - is the local player the game host?
+	virtual bool amIHost( void ) const;															///< Convenience function - is the local player the game host?
 	
 	GameSpyGameSlot *getGameSpySlot( Int index );
 
 	AsciiString generateGameSpyGameResultsPacket( void );
 	AsciiString generateLadderGameResultsPacket( void );
 	void markGameAsQM( void ) { m_isQM = TRUE; }
-	Bool isQMGame( void ) { return m_isQM; }
+	bool isQMGame( void ) { return m_isQM; }
 
 	virtual void init(void);
 	virtual void resetAccepted(void);															///< Reset the accepted flag on all players

@@ -88,7 +88,7 @@ RepairDockUpdate::~RepairDockUpdate( void )
 	* Return TRUE to continue the docking process
 	* Return FALSE to complete the dockin process */
 // ------------------------------------------------------------------------------------------------
-Bool RepairDockUpdate::action( Object *docker, Object *drone )
+bool RepairDockUpdate::action( Object *docker, Object *drone )
 {
 
 	// sanity

@@ -53,7 +53,7 @@ Some info about partioning problems:
 
 #include "Common/PartitionSolver.h"
 
-static Bool greater_than(PairObjectIDAndUInt a, PairObjectIDAndUInt b)
+static bool greater_than(PairObjectIDAndUInt a, PairObjectIDAndUInt b)
 {
 	return a.second > b.second;
 }

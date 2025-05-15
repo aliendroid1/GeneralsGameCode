@@ -61,16 +61,16 @@ public:
 	inline void setVictoryConditions( Int victoryConditions ) { m_victoryConditions = victoryConditions; }
 	inline Int getVictoryConditions( void ) { return m_victoryConditions; }
 
-	virtual Bool hasAchievedVictory(Player *player) = 0;					///< has a specific player and his allies won?
-	virtual Bool hasBeenDefeated(Player *player) = 0;							///< has a specific player and his allies lost?
-	virtual Bool hasSinglePlayerBeenDefeated(Player *player) = 0;	///< has a specific player lost?
+	virtual bool hasAchievedVictory(Player *player) = 0;					///< has a specific player and his allies won?
+	virtual bool hasBeenDefeated(Player *player) = 0;							///< has a specific player and his allies lost?
+	virtual bool hasSinglePlayerBeenDefeated(Player *player) = 0;	///< has a specific player lost?
 
 	virtual void cachePlayerPtrs( void ) = 0;											///< players have been created - cache the ones of interest
 
-	virtual Bool isLocalAlliedVictory( void ) = 0;								///< convenience function
-	virtual Bool isLocalAlliedDefeat( void ) = 0;									///< convenience function
-	virtual Bool isLocalDefeat( void ) = 0;												///< convenience function
-	virtual Bool amIObserver( void ) = 0;													///< Am I an observer?( need this for scripts )
+	virtual bool isLocalAlliedVictory( void ) = 0;								///< convenience function
+	virtual bool isLocalAlliedDefeat( void ) = 0;									///< convenience function
+	virtual bool isLocalDefeat( void ) = 0;												///< convenience function
+	virtual bool amIObserver( void ) = 0;													///< Am I an observer?( need this for scripts )
 	virtual UnsignedInt getEndFrame( void ) = 0;									///< on which frame was the game effectively over?
 protected:
 	Int m_victoryConditions;

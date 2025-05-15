@@ -57,9 +57,9 @@ public:
 	Real m_firstPercentIndent;	///< The first point will be this percent along the target line
 	Real m_secondPercentIndent;	///< And the second, this.
 	UnsignedInt m_maxLifespan;
-	Bool m_tumbleRandomly;
-	Bool m_orientToFlightPath;
-	Bool m_detonateCallsKill;
+	bool m_tumbleRandomly;
+	bool m_orientToFlightPath;
+	bool m_detonateCallsKill;
 	Int							m_garrisonHitKillCount;
 	KindOfMaskType	m_garrisonHitKillKindof;			///< the kind(s) of units that can be collided with
 	KindOfMaskType	m_garrisonHitKillKindofNot;		///< the kind(s) of units that CANNOT be collided with
@@ -92,8 +92,8 @@ public:
 	// ProjectileUpdateInterface
 	virtual void projectileLaunchAtObjectOrPosition(const Object *victim, const Coord3D* victimPos, const Object *launcher, WeaponSlotType wslot, Int specificBarrelToUse, const WeaponTemplate* detWeap, const ParticleSystemTemplate* exhaustSysOverride);
 	virtual void projectileFireAtObjectOrPosition( const Object *victim, const Coord3D *victimPos, const WeaponTemplate *detWeap, const ParticleSystemTemplate* exhaustSysOverride );
-	virtual Bool projectileHandleCollision( Object *other );
-	virtual Bool projectileIsArmed() const { return true; }
+	virtual bool projectileHandleCollision( Object *other );
+	virtual bool projectileIsArmed() const { return true; }
 	virtual ObjectID projectileGetLauncherID() const { return m_launcherID; }
 
 protected:
@@ -115,7 +115,7 @@ private:
 	Int										m_currentFlightPathStep;	///< Our current index in the flight path vector.  Quicker than popping off.
 	WeaponBonusConditionFlags		m_extraBonusFlags;
 
-	Bool calcFlightPath(Bool recalcNumSegments);
+	bool calcFlightPath(Bool recalcNumSegments);
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	void displayFlightPath();	///< Uses little debug icons in worldspace to show the path chosen when it is decided upon
 #endif

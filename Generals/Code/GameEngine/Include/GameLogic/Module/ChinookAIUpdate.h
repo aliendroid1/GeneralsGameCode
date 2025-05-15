@@ -88,19 +88,19 @@ public:
 
 	virtual UpdateSleepTime update();
  	virtual void aiDoCommand(const AICommandParms* parms);
-	virtual Bool chooseLocomotorSet(LocomotorSetType wst);
+	virtual bool chooseLocomotorSet(LocomotorSetType wst);
 	// this is present solely for some transports to override, so that they can land before 
 	// allowing people to exit...
 	virtual AIFreeToExitType getAiFreeToExit(const Object* exiter) const;
-	virtual Bool isAllowedToAdjustDestination() const;
+	virtual bool isAllowedToAdjustDestination() const;
 	virtual ObjectID getBuildingToNotPathAround() const;
 
 	// this is present for subclasses (eg, Chinook) to override, to
 	// prevent supply-ferry behavior in some cases (eg, when toting passengers)
-	virtual Bool isAvailableForSupplying() const;
-	virtual Bool isCurrentlyFerryingSupplies() const;
+	virtual bool isAvailableForSupplying() const;
+	virtual bool isCurrentlyFerryingSupplies() const;
 	
-	virtual Bool isIdle() const;
+	virtual bool isIdle() const;
 
 	const ChinookAIUpdateModuleData* friend_getData() const { return getChinookAIUpdateModuleData(); }
 	void friend_setFlightStatus(ChinookFlightStatus a) { m_flightStatus = a; }

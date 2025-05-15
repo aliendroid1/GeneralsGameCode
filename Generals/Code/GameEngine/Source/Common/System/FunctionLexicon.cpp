@@ -605,9 +605,9 @@ char *FunctionLexicon::functionToName( void *func )
 	* same parameters) which we MUST keep separate for when we add code to
 	* them */
 //-------------------------------------------------------------------------------------------------
-Bool FunctionLexicon::validate( void )
+bool FunctionLexicon::validate( void )
 {
-	Bool valid = TRUE;
+	bool valid = TRUE;
 	Int i, j;
 	TableEntry *sourceEntry, *lookAtEntry;
 

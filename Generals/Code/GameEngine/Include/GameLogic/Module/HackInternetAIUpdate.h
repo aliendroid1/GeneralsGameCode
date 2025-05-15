@@ -179,8 +179,8 @@ public:
 class HackInternetAIInterface
 {
 public:
-	virtual Bool isHacking() const = 0;
-	virtual Bool isHackingPackingOrUnpacking() const = 0;
+	virtual bool isHacking() const = 0;
+	virtual bool isHackingPackingOrUnpacking() const = 0;
 };
 
 //-------------------------------------------------------------------------------------------------
@@ -210,20 +210,20 @@ public:
 	void hackInternet();
 	virtual UpdateSleepTime update();
 
-	virtual Bool isIdle() const;
+	virtual bool isIdle() const;
 
 	virtual HackInternetAIInterface* getHackInternetAIInterface() { return this; }
 	virtual const HackInternetAIInterface* getHackInternetAIInterface() const { return this; }
 
-	virtual Bool isHacking() const;
-	virtual Bool isHackingPackingOrUnpacking() const;
+	virtual bool isHacking() const;
+	virtual bool isHackingPackingOrUnpacking() const;
 
 protected:
 
 	virtual AIStateMachine* makeStateMachine();
 	
 	AICommandParmsStorage		m_pendingCommand;
-	Bool m_hasPendingCommand;	
+	bool m_hasPendingCommand;	
 };
 
 #endif

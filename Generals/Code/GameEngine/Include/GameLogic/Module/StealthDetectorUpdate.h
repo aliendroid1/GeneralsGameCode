@@ -88,13 +88,13 @@ public:
 	StealthDetectorUpdate( Thing *thing, const ModuleData* moduleData );
 	// virtual destructor prototype provided by memory pool declaration
 
-	Bool isSDEnabled() const { return m_enabled; }
-	void setSDEnabled( Bool enabled );
+	bool isSDEnabled() const { return m_enabled; }
+	void setSDEnabled( bool enabled );
 	virtual UpdateSleepTime update();
 	virtual DisabledMaskType getDisabledTypesToProcess() const { return MAKE_DISABLED_MASK( DISABLED_HELD ); }
 
 private:
-	Bool m_enabled;
+	bool m_enabled;
 
 };
 

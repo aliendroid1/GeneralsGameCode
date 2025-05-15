@@ -84,12 +84,12 @@ protected:
 		getFireOCLAfterWeaponCooldownUpdateModuleData()->m_upgradeMuxData.performUpgradeFX(getObject());
 	}
 
-	virtual Bool requiresAllActivationUpgrades() const
+	virtual bool requiresAllActivationUpgrades() const
 	{
 		return getFireOCLAfterWeaponCooldownUpdateModuleData()->m_upgradeMuxData.m_requiresAllTriggers;
 	}
 
-	virtual Bool isSubObjectsUpgrade() { return false; }
+	virtual bool isSubObjectsUpgrade() { return false; }
 
 	void resetStats();
 	void fireOCL();

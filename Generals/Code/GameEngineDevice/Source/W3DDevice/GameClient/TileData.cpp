@@ -50,7 +50,7 @@ TileData::TileData()
 #define TILE_PIXEL_EXTENT_MIP5 2
 #define TILE_PIXEL_EXTENT_MIP6 1
 
-Bool TileData::hasRGBDataForWidth(Int width) 
+bool TileData::hasRGBDataForWidth(Int width) 
 {
 	if (width == TILE_PIXEL_EXTENT) return(true);
 	if (width == TILE_PIXEL_EXTENT_MIP1) return(true);

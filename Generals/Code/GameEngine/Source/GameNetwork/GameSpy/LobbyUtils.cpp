@@ -94,7 +94,7 @@ static GameWindow *windowSortPing = NULL;
 static GameWindow *windowSortBuddies = NULL;
 
 static GameSortType theGameSortType = GAMESORT_ALPHA_ASCENDING;
-static Bool sortBuddies = TRUE;
+static bool sortBuddies = TRUE;
 static void showSortIcons(void)
 {
 	if (windowSortAlpha && windowSortPing)
@@ -140,9 +140,9 @@ static void showSortIcons(void)
 	}
 }
 void setSortMode( GameSortType sortType ) { theGameSortType = sortType; showSortIcons(); RefreshGameListBoxes(); }
-void sortByBuddies( Bool doSort ) { sortBuddies = doSort; showSortIcons(); RefreshGameListBoxes(); }
+void sortByBuddies( bool doSort ) { sortBuddies = doSort; showSortIcons(); RefreshGameListBoxes(); }
 
-Bool HandleSortButton( NameKeyType sortButton )
+bool HandleSortButton( NameKeyType sortButton )
 {
 	if (sortButton == buttonSortBuddiesID)
 	{
@@ -332,7 +332,7 @@ static void gameTooltip(GameWindow *window,
 	TheMouse->setCursorTooltip( tooltip, 10, NULL, 2.0f ); // the text and width are the only params used.  the others are the default values.
 }
 
-static Bool isSmall = TRUE;
+static bool isSmall = TRUE;
 
 GameWindow *GetGameListBox( void )
 {
@@ -462,24 +462,24 @@ struct GameSortStruct
 	bool operator()(GameSpyStagingRoom *g1, GameSpyStagingRoom *g2) const
 	{
 		// sort CRC mismatches to the bottom
-		Bool g1Good = (g1->getExeCRC() != TheGlobalData->m_exeCRC || g1->getIniCRC() != TheGlobalData->m_iniCRC);
-		Bool g2Good = (g1->getExeCRC() != TheGlobalData->m_exeCRC || g1->getIniCRC() != TheGlobalData->m_iniCRC);
+		bool g1Good = (g1->getExeCRC() != TheGlobalData->m_exeCRC || g1->getIniCRC() != TheGlobalData->m_iniCRC);
+		bool g2Good = (g1->getExeCRC() != TheGlobalData->m_exeCRC || g1->getIniCRC() != TheGlobalData->m_iniCRC);
 		if ( g1Good ^ g2Good )
 		{
 			return g1Good;
 		}
 
 		// sort games with private ladders to the bottom
-		Bool g1UnknownLadder = (g1->getLadderPort() && TheLadderList->findLadder(g1->getLadderIP(), g1->getLadderPort()) == NULL);
-		Bool g2UnknownLadder = (g2->getLadderPort() && TheLadderList->findLadder(g2->getLadderIP(), g2->getLadderPort()) == NULL);
+		bool g1UnknownLadder = (g1->getLadderPort() && TheLadderList->findLadder(g1->getLadderIP(), g1->getLadderPort()) == NULL);
+		bool g2UnknownLadder = (g2->getLadderPort() && TheLadderList->findLadder(g2->getLadderIP(), g2->getLadderPort()) == NULL);
 		if ( g1UnknownLadder ^ g2UnknownLadder )
 		{
 			return g2UnknownLadder;
 		}
 
 		// sort full games to the bottom
-		Bool g1Full = (g1->getNumNonObserverPlayers() == g1->getMaxPlayers() || g1->getNumPlayers() == MAX_SLOTS);
-		Bool g2Full = (g2->getNumNonObserverPlayers() == g2->getMaxPlayers() || g2->getNumPlayers() == MAX_SLOTS);
+		bool g1Full = (g1->getNumNonObserverPlayers() == g1->getMaxPlayers() || g1->getNumPlayers() == MAX_SLOTS);
+		bool g2Full = (g2->getNumNonObserverPlayers() == g2->getMaxPlayers() || g2->getNumPlayers() == MAX_SLOTS);
 		if ( g1Full ^ g2Full )
 		{
 			return g2Full;
@@ -487,8 +487,8 @@ struct GameSortStruct
 
 		if (sortBuddies)
 		{
-			Bool g1HasBuddies = (theBuddyGames->find(g1) != theBuddyGames->end());
-			Bool g2HasBuddies = (theBuddyGames->find(g2) != theBuddyGames->end());
+			bool g1HasBuddies = (theBuddyGames->find(g1) != theBuddyGames->end());
+			bool g2HasBuddies = (theBuddyGames->find(g2) != theBuddyGames->end());
 			if ( g1HasBuddies ^ g2HasBuddies )
 			{
 				return g1HasBuddies;
@@ -514,7 +514,7 @@ struct GameSortStruct
 	}
 };
 
-static Int insertGame( GameWindow *win, GameSpyStagingRoom *game, Bool showMap )
+static Int insertGame( GameWindow *win, GameSpyStagingRoom *game, bool showMap )
 {
 	game->cleanUpSlotPointers();
 	Color gameColor = GameSpyColor[GSCOLOR_GAME];
@@ -542,7 +542,7 @@ static Int insertGame( GameWindow *win, GameSpyStagingRoom *game, Bool showMap )
 	{
 		const WideChar *buff = gameName.str();
 		Int length =  gameName.getLength();	
-		Bool hasUnicode = FALSE;
+		bool hasUnicode = FALSE;
 		for(Int i = 0; i < length; ++i)
 		{
 			if(buff[i] >= 256)
@@ -660,7 +660,7 @@ static Int insertGame( GameWindow *win, GameSpyStagingRoom *game, Bool showMap )
 	return index;
 }
 
-void RefreshGameListBox( GameWindow *win, Bool showMap )
+void RefreshGameListBox( GameWindow *win, bool showMap )
 {
 	if (!win)
 		return;

@@ -123,7 +123,7 @@ ArchiveFileSystem::~ArchiveFileSystem()
 	}
 }
 
-void ArchiveFileSystem::loadIntoDirectoryTree(const ArchiveFile *archiveFile, const AsciiString& archiveFilename, Bool overwrite)
+void ArchiveFileSystem::loadIntoDirectoryTree(const ArchiveFile *archiveFile, const AsciiString& archiveFilename, bool overwrite)
 {
 
 	FilenameList filenameList;
@@ -141,7 +141,7 @@ void ArchiveFileSystem::loadIntoDirectoryTree(const ArchiveFile *archiveFile, co
 
 		ArchivedDirectoryInfo *dirInfo = &m_rootDirectory;
 
-		Bool infoInPath;
+		bool infoInPath;
 		infoInPath = path.nextToken(&token, "\\/");
 
 		while (infoInPath && (!token.find('.') || path.find('.'))) {
@@ -191,14 +191,14 @@ void ArchiveFileSystem::loadMods() {
 	if (TheGlobalData->m_modDir.isNotEmpty())
 	{
 #ifdef DEBUG_LOGGING
-		Bool ret =
+		bool ret =
 #endif
 		loadBigFilesFromDirectory(TheGlobalData->m_modDir, "*.big", TRUE);
 		DEBUG_ASSERTLOG(ret, ("loadBigFilesFromDirectory(%s) returned FALSE!\n", TheGlobalData->m_modDir.str()));
 	}
 }
 
-Bool ArchiveFileSystem::doesFileExist(const Char *filename) const
+bool ArchiveFileSystem::doesFileExist(const Char *filename) const
 {
 	AsciiString path = filename;
 	path.toLower();
@@ -242,7 +242,7 @@ File * ArchiveFileSystem::openFile(const Char *filename, Int access /* = 0 */)
 	return m_archiveFileMap[archiveFilename]->openFile(filename, access);
 }
 
-Bool ArchiveFileSystem::getFileInfo(const AsciiString& filename, FileInfo *fileInfo) const
+bool ArchiveFileSystem::getFileInfo(const AsciiString& filename, FileInfo *fileInfo) const
 {
 	if (fileInfo == NULL) {
 		return FALSE;
@@ -317,7 +317,7 @@ AsciiString ArchiveFileSystem::getArchiveFilenameForFile(const AsciiString& file
 
 }
 
-void ArchiveFileSystem::getFileListInDirectory(const AsciiString& currentDirectory, const AsciiString& originalDirectory, const AsciiString& searchName, FilenameList &filenameList, Bool searchSubdirectories) const
+void ArchiveFileSystem::getFileListInDirectory(const AsciiString& currentDirectory, const AsciiString& originalDirectory, const AsciiString& searchName, FilenameList &filenameList, bool searchSubdirectories) const
 {
 	ArchiveFileMap::const_iterator it = m_archiveFileMap.begin();
 	while (it != m_archiveFileMap.end()) {

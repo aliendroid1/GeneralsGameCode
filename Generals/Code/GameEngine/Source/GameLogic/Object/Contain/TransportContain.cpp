@@ -151,7 +151,7 @@ TransportContain::~TransportContain( void )
 	can this container contain this kind of object? 
 	and, if checkCapacity is TRUE, does this container have enough space left to hold the given unit?
 */
-Bool TransportContain::isValidContainerFor(const Object* rider, Bool checkCapacity) const
+bool TransportContain::isValidContainerFor(const Object* rider, bool checkCapacity) const
 {
 
 	// sanity
@@ -446,7 +446,7 @@ void TransportContain::killRidersWhoAreNotFreeToExit()
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool TransportContain::isSpecificRiderFreeToExit(Object* specificObject)
+bool TransportContain::isSpecificRiderFreeToExit(Object* specificObject)
 {
 	if( specificObject == NULL )
 		return TRUE;	// I can, in general, exit people.
@@ -489,7 +489,7 @@ ExitDoorType TransportContain::reserveDoorForExit( const ThingTemplate* objType,
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool TransportContain::isExitBusy() const	///< Contain style exiters are getting the ability to space out exits, so ask this before reserveDoor as a kind of no-commitment check.
+bool TransportContain::isExitBusy() const	///< Contain style exiters are getting the ability to space out exits, so ask this before reserveDoor as a kind of no-commitment check.
 {
 	return TheGameLogic->getFrame() < m_frameExitNotBusy;
 }

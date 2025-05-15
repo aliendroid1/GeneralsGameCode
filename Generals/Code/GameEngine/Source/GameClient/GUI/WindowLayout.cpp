@@ -77,7 +77,7 @@ WindowLayout::~WindowLayout( void )
 //-------------------------------------------------------------------------------------------------
 /** Set the hidden/visible status of all the windows in this layout */
 //-------------------------------------------------------------------------------------------------
-void WindowLayout::hide( Bool hide )
+void WindowLayout::hide( bool hide )
 {
 	GameWindow *window;
 
@@ -196,7 +196,7 @@ void WindowLayout::destroyWindows( void )
 /** Create the windows using the .wnd file script and load all windows into
 	* this layout */
 //-------------------------------------------------------------------------------------------------
-Bool WindowLayout::load( AsciiString filename )
+bool WindowLayout::load( AsciiString filename )
 {
 
 	// sanity

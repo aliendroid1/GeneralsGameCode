@@ -51,7 +51,7 @@ HealCrateCollide::~HealCrateCollide( void )
 }  
 
 //-------------------------------------------------------------------------------------------------
-Bool HealCrateCollide::executeCrateBehavior( Object *other )
+bool HealCrateCollide::executeCrateBehavior( Object *other )
 {
 	Player* cratePlayer = other->getControllingPlayer();
 	cratePlayer->healAllObjects();

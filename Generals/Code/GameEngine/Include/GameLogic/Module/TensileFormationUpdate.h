@@ -48,7 +48,7 @@ public:
 
 	static void buildFieldParse(MultiIniFieldParse& p);
 
-	Bool m_enabled;							///< enabled
+	bool m_enabled;							///< enabled
 	AudioEventRTS				m_crackSound;						
 
 };
@@ -65,12 +65,12 @@ public:
 	TensileFormationUpdate( Thing *thing, const ModuleData* moduleData );
 	// virtual destructor prototype provided by memory pool declaration
 
-	void setEnabled( Bool enabled ) { m_enabled = enabled; }  ///< enable/disable formation
+	void setEnabled( bool enabled ) { m_enabled = enabled; }  ///< enable/disable formation
 	virtual UpdateSleepTime update();	///< Deciding whether or not to make new guys
 
 protected:
 
-	void propagateDislodgement( Bool enabled );
+	void propagateDislodgement( bool enabled );
 	void initLinks( void );
 
 	struct TensileLink
@@ -81,8 +81,8 @@ protected:
 
 	TensileLink m_links[4];//standard textile algorithm
 	Coord3D m_inertia;
-	Bool m_enabled;			///< enabled
-	Bool m_linksInited;
+	bool m_enabled;			///< enabled
+	bool m_linksInited;
 	UnsignedInt m_motionlessCounter; 
 	UnsignedInt m_life;
 	Real m_lowestSlideElevation;

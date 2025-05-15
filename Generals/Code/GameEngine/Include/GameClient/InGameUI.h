@@ -172,18 +172,18 @@ public:
 	SuperweaponInfo(
 		ObjectID id,
 		UnsignedInt timestamp,
-		Bool hiddenByScript,
-		Bool hiddenByScience,
-		Bool ready,
+		bool hiddenByScript,
+		bool hiddenByScience,
+		bool ready,
 		const AsciiString& superweaponNormalFont, 
 		Int superweaponNormalPointSize, 
-		Bool superweaponNormalBold,
+		bool superweaponNormalBold,
 		Color c, 
 		const SpecialPowerTemplate* spt
 	);
 
 	const SpecialPowerTemplate*	getSpecialPowerTemplate() const { return m_powerTemplate; }
-	void setFont(const AsciiString& superweaponNormalFont, Int superweaponNormalPointSize, Bool superweaponNormalBold);
+	void setFont(const AsciiString& superweaponNormalFont, Int superweaponNormalPointSize, bool superweaponNormalBold);
 	void setText(const UnicodeString& name, const UnicodeString& time);
 	void drawName(Int x, Int y, Color color, Color dropColor);
 	void drawTime(Int x, Int y, Color color, Color dropColor);
@@ -353,8 +353,8 @@ public:  // ********************************************************************
 	//-----------------------------------------------------------------------------------------------
 
 	// interface for the popup messages
-	virtual void popupMessage( const AsciiString& message, Int x, Int y, Int width, Bool pause, Bool pauseMusic);
-	virtual void popupMessage( const AsciiString& message, Int x, Int y, Int width, Color textColor, Bool pause, Bool pauseMusic);
+	virtual void popupMessage( const AsciiString& message, Int x, Int y, Int width, bool pause, bool pauseMusic);
+	virtual void popupMessage( const AsciiString& message, Int x, Int y, Int width, Color textColor, bool pause, bool pauseMusic);
 	PopupMessageData *getPopupMessageData( void ) { return m_popupMessageData; }
 	void clearPopupMessageData( void );
 
@@ -364,7 +364,7 @@ public:  // ********************************************************************
 	virtual void message( UnicodeString format, ... );				  ///< display a message to the user
 	virtual void message( AsciiString stringManagerLabel, ... );///< display a message to the user
 	virtual void toggleMessages( void ) { m_messagesOn = 1 - m_messagesOn; }	///< toggle messages on/off
-	virtual Bool isMessagesOn( void ) { return m_messagesOn; }	///< are the display messages on
+	virtual bool isMessagesOn( void ) { return m_messagesOn; }	///< are the display messages on
 	void freeMessageResources( void );				///< free resources for the ui messages
 	Color getMessageColor(Bool altColor) { return (altColor)?m_messageColor2:m_messageColor1; }
 	
@@ -387,24 +387,24 @@ public:  // ********************************************************************
 	virtual void createGarrisonHint( const GameMessage *msg );  ///< A garrison command has occurred, start graphical "hint"
 	
 	virtual void addSuperweapon(Int playerIndex, const AsciiString& powerName, ObjectID id, const SpecialPowerTemplate *powerTemplate);
-	virtual Bool removeSuperweapon(Int playerIndex, const AsciiString& powerName, ObjectID id, const SpecialPowerTemplate *powerTemplate);
+	virtual bool removeSuperweapon(Int playerIndex, const AsciiString& powerName, ObjectID id, const SpecialPowerTemplate *powerTemplate);
 	virtual void objectChangedTeam(const Object *obj, Int oldPlayerIndex, Int newPlayerIndex);	// notification for superweapons, etc
 
-	virtual void setSuperweaponDisplayEnabledByScript( Bool enable );	///< Set the superweapon display enabled or disabled
-	virtual Bool getSuperweaponDisplayEnabledByScript( void ) const;				///< Get the current superweapon display status
+	virtual void setSuperweaponDisplayEnabledByScript( bool enable );	///< Set the superweapon display enabled or disabled
+	virtual bool getSuperweaponDisplayEnabledByScript( void ) const;				///< Get the current superweapon display status
 
 	virtual void hideObjectSuperweaponDisplayByScript(const Object *obj);
 	virtual void showObjectSuperweaponDisplayByScript(const Object *obj);
 
-	void addNamedTimer( const AsciiString& timerName, const UnicodeString& text, Bool isCountdown );
+	void addNamedTimer( const AsciiString& timerName, const UnicodeString& text, bool isCountdown );
 	void removeNamedTimer( const AsciiString& timerName );
-	void showNamedTimerDisplay( Bool show );
+	void showNamedTimerDisplay( bool show );
 
 	// mouse mode interface
-	virtual void setScrolling( Bool isScrolling );							///< set right-click scroll mode
-	virtual Bool isScrolling( void );														///< are we scrolling?
-	virtual void setSelecting( Bool isSelecting );							///< set drag select mode
-	virtual Bool isSelecting( void );														///< are we selecting?
+	virtual void setScrolling( bool isScrolling );							///< set right-click scroll mode
+	virtual bool isScrolling( void );														///< are we scrolling?
+	virtual void setSelecting( bool isSelecting );							///< set drag select mode
+	virtual bool isSelecting( void );														///< are we selecting?
 	virtual void setScrollAmount( Coord2D amt );								///< set scroll amount
 	virtual Coord2D getScrollAmount( void );										///< get scroll amount
 
@@ -418,14 +418,14 @@ public:  // ********************************************************************
 	virtual const ObjectID getPendingPlaceSourceObjectID( void );			///< get producing object
 	virtual void setPlacementStart( const ICoord2D *start );					///< placement anchor point (for choosing angles)
 	virtual void setPlacementEnd( const ICoord2D *end );							///< set target placement point (for choosing angles)
-	virtual Bool isPlacementAnchored( void );													///< is placement arrow anchor set
+	virtual bool isPlacementAnchored( void );													///< is placement arrow anchor set
 	virtual void getPlacementPoints( ICoord2D *start, ICoord2D *end );///< get the placemnt arrow points
 	virtual Real getPlacementAngle( void );														///< placement angle of drawable at cursor when placing down structures
 
 	// Drawable selection mechanisms
 	virtual void selectDrawable( Drawable *draw );					///< Mark given Drawable as "selected"
 	virtual void deselectDrawable( Drawable *draw );				///< Clear "selected" status from Drawable
-	virtual void deselectAllDrawables( Bool postMsg = true );							///< Clear the "select" flag from all drawables
+	virtual void deselectAllDrawables( bool postMsg = true );							///< Clear the "select" flag from all drawables
 	virtual Int getSelectCount( void ) { return m_selectCount; }		///< Get count of currently selected drawables
 	virtual Int getMaxSelectCount( void ) { return m_maxSelectCount; }	///< Get the max number of selected drawables
 	virtual UnsignedInt getFrameSelectionChanged( void ) { return m_frameSelectionChanged; }	///< Get the max number of selected drawables
@@ -433,15 +433,15 @@ public:  // ********************************************************************
 	virtual const DrawableList *getAllSelectedLocalDrawables( void );		///< Return the list of all the currently selected Drawable IDs owned by the current player.
 	virtual Drawable *getFirstSelectedDrawable( void );							///< get the first selected drawable (if any)
 	virtual DrawableID getSoloNexusSelectedDrawableID( void ) { return m_soloNexusSelectedDrawableID; }  ///< Return the one drawable of the nexus if only 1 angry mob is selected 
-	virtual Bool isDrawableSelected( DrawableID idToCheck ) const;	///< Return true if the selected ID is in the drawable list
-	virtual Bool isAnySelectedKindOf( KindOfType kindOf ) const;		///< is any selected object a kind of 
-	virtual Bool isAllSelectedKindOf( KindOfType kindOf ) const;		///< are all selected objects a kind of
+	virtual bool isDrawableSelected( DrawableID idToCheck ) const;	///< Return true if the selected ID is in the drawable list
+	virtual bool isAnySelectedKindOf( KindOfType kindOf ) const;		///< is any selected object a kind of 
+	virtual bool isAllSelectedKindOf( KindOfType kindOf ) const;		///< are all selected objects a kind of
 
 	virtual void setRadiusCursor(RadiusCursorType r, const SpecialPowerTemplate* sp, WeaponSlotType wslot);
 	virtual void setRadiusCursorNone() { setRadiusCursor(RADIUSCURSOR_NONE, NULL, PRIMARY_WEAPON); }
 
-	virtual void setInputEnabled( Bool enable );										///< Set the input enabled or disabled
-	virtual Bool getInputEnabled( void ) { return m_inputEnabled; }	///< Get the current input status
+	virtual void setInputEnabled( bool enable );										///< Set the input enabled or disabled
+	virtual bool getInputEnabled( void ) { return m_inputEnabled; }	///< Get the current input status
 
 	virtual void disregardDrawable( Drawable *draw );				///< Drawable is being destroyed, clean up any UI elements associated with it
 
@@ -463,23 +463,23 @@ public:  // ********************************************************************
 	virtual DrawableID getMousedOverDrawableID( void ) const;	///< Get drawble ID of drawable under cursor
 	
 	/// Set the ingame flag as to if we have the Quit menu up or not
-	virtual void setQuitMenuVisible( Bool t ) { m_isQuitMenuVisible = t; }
-	virtual Bool isQuitMenuVisible( void ) const { return m_isQuitMenuVisible; }
+	virtual void setQuitMenuVisible( bool t ) { m_isQuitMenuVisible = t; }
+	virtual bool isQuitMenuVisible( void ) const { return m_isQuitMenuVisible; }
 
 	// INI file parsing
 	virtual const FieldParse* getFieldParse( void ) const { return s_fieldParseTable; }
 
 
 	//Provides a global way to determine whether or not we can issue orders to what we have selected.
-	Bool areSelectedObjectsControllable() const;
+	bool areSelectedObjectsControllable() const;
 	//Wrapper function that includes any non-attack canSelectedObjectsXXX checks.
-	Bool canSelectedObjectsNonAttackInteractWithObject( const Object *objectToInteractWith, SelectionRules rule ) const;
+	bool canSelectedObjectsNonAttackInteractWithObject( const Object *objectToInteractWith, SelectionRules rule ) const;
 	//Wrapper function that checks a specific action.
-	CanAttackResult getCanSelectedObjectsAttack( ActionType action, const Object *objectToInteractWith, SelectionRules rule, Bool additionalChecking = FALSE ) const;
-	Bool canSelectedObjectsDoAction( ActionType action, const Object *objectToInteractWith, SelectionRules rule, Bool additionalChecking = FALSE ) const;
-	Bool canSelectedObjectsDoSpecialPower( const CommandButton *command, const Object *objectToInteractWith, const Coord3D *position, SelectionRules rule, UnsignedInt commandOptions, Object* ignoreSelObj ) const;
-	Bool canSelectedObjectsEffectivelyUseWeapon( const CommandButton *command, const Object *objectToInteractWith, const Coord3D *position, SelectionRules rule ) const;
-	Bool canSelectedObjectsOverrideSpecialPowerDestination( const Coord3D *loc, SelectionRules rule, SpecialPowerType spType = SPECIAL_INVALID ) const;
+	CanAttackResult getCanSelectedObjectsAttack( ActionType action, const Object *objectToInteractWith, SelectionRules rule, bool additionalChecking = FALSE ) const;
+	bool canSelectedObjectsDoAction( ActionType action, const Object *objectToInteractWith, SelectionRules rule, bool additionalChecking = FALSE ) const;
+	bool canSelectedObjectsDoSpecialPower( const CommandButton *command, const Object *objectToInteractWith, const Coord3D *position, SelectionRules rule, UnsignedInt commandOptions, Object* ignoreSelObj ) const;
+	bool canSelectedObjectsEffectivelyUseWeapon( const CommandButton *command, const Object *objectToInteractWith, const Coord3D *position, SelectionRules rule ) const;
+	bool canSelectedObjectsOverrideSpecialPowerDestination( const Coord3D *loc, SelectionRules rule, SpecialPowerType spType = SPECIAL_INVALID ) const;
 
 	// Selection Methods
 	virtual Int selectMatchingUnits();                        ///< selects matching units
@@ -488,8 +488,8 @@ public:  // ********************************************************************
 	virtual Int selectAcrossRegion( IRegion2D *region );			// -1 = no locally-owned selection, 0+ = # of units selected
 	virtual void buildRegion( const ICoord2D *anchor, const ICoord2D *dest, IRegion2D *region );  ///< builds a region around the specified coordinates
 
-	virtual Bool getDisplayedMaxWarning( void ) { return m_displayedMaxWarning; }
-	virtual void setDisplayedMaxWarning( Bool selected ) { m_displayedMaxWarning = selected; }
+	virtual bool getDisplayedMaxWarning( void ) { return m_displayedMaxWarning; }
+	virtual void setDisplayedMaxWarning( bool selected ) { m_displayedMaxWarning = selected; }
 
 	// Floating Test Methods
 	virtual void addFloatingText(const UnicodeString& text,const Coord3D * pos, Color color);
@@ -500,32 +500,32 @@ public:  // ********************************************************************
 	Bool				isDrawableCaptionBold( void )				{ return m_drawableCaptionBold; }
 	Color				getDrawableCaptionColor( void )			{ return m_drawableCaptionColor; }
 
-	inline Bool shouldMoveRMBScrollAnchor( void ) { return m_moveRMBScrollAnchor; }
+	inline bool shouldMoveRMBScrollAnchor( void ) { return m_moveRMBScrollAnchor; }
 
-	Bool isClientQuiet( void ) const			{ return m_clientQuiet; }
-	Bool isInWaypointMode( void ) const			{ return m_waypointMode; }
-	Bool isInForceAttackMode( void ) const	{ return m_forceAttackMode; }
-	Bool isInForceMoveToMode( void ) const	{ return m_forceMoveToMode; }
-	Bool isInPreferSelectionMode( void ) const { return m_preferSelection; }
+	bool isClientQuiet( void ) const			{ return m_clientQuiet; }
+	bool isInWaypointMode( void ) const			{ return m_waypointMode; }
+	bool isInForceAttackMode( void ) const	{ return m_forceAttackMode; }
+	bool isInForceMoveToMode( void ) const	{ return m_forceMoveToMode; }
+	bool isInPreferSelectionMode( void ) const { return m_preferSelection; }
 
-	void setClientQuiet( Bool enabled )  { m_clientQuiet = enabled; }
-	void setWaypointMode( Bool enabled )		{ m_waypointMode = enabled; }
-	void setForceMoveMode( Bool enabled )		{ m_forceMoveToMode = enabled; }
-	void setForceAttackMode( Bool enabled )		{ m_forceAttackMode = enabled; }
-	void setPreferSelectionMode( Bool enabled )		{ m_preferSelection = enabled; }
+	void setClientQuiet( bool enabled )  { m_clientQuiet = enabled; }
+	void setWaypointMode( bool enabled )		{ m_waypointMode = enabled; }
+	void setForceMoveMode( bool enabled )		{ m_forceMoveToMode = enabled; }
+	void setForceAttackMode( bool enabled )		{ m_forceAttackMode = enabled; }
+	void setPreferSelectionMode( bool enabled )		{ m_preferSelection = enabled; }
 	
 	void toggleAttackMoveToMode( void )				{ m_attackMoveToMode = !m_attackMoveToMode; }
-	Bool isInAttackMoveToMode( void ) const		{ return m_attackMoveToMode; }
+	bool isInAttackMoveToMode( void ) const		{ return m_attackMoveToMode; }
 	void clearAttackMoveToMode( void )				{ m_attackMoveToMode = FALSE; }
 	
-	void setCameraRotateLeft( Bool set )		{ m_cameraRotatingLeft = set; }
-	void setCameraRotateRight( Bool set )		{ m_cameraRotatingRight = set; }
-	void setCameraZoomIn( Bool set )				{ m_cameraZoomingIn = set; }
-	void setCameraZoomOut( Bool set )				{ m_cameraZoomingOut = set; }
-	Bool isCameraRotatingLeft() const { return m_cameraRotatingLeft; }
-	Bool isCameraRotatingRight() const { return m_cameraRotatingRight; }
-	Bool isCameraZoomingIn() const { return m_cameraZoomingIn; }
-	Bool isCameraZoomingOut() const { return m_cameraZoomingOut; }
+	void setCameraRotateLeft( bool set )		{ m_cameraRotatingLeft = set; }
+	void setCameraRotateRight( bool set )		{ m_cameraRotatingRight = set; }
+	void setCameraZoomIn( bool set )				{ m_cameraZoomingIn = set; }
+	void setCameraZoomOut( bool set )				{ m_cameraZoomingOut = set; }
+	bool isCameraRotatingLeft() const { return m_cameraRotatingLeft; }
+	bool isCameraRotatingRight() const { return m_cameraRotatingRight; }
+	bool isCameraZoomingIn() const { return m_cameraZoomingIn; }
+	bool isCameraZoomingOut() const { return m_cameraZoomingOut; }
 	void resetCamera();
 
 	virtual void addIdleWorker( Object *obj );
@@ -536,10 +536,10 @@ public:  // ********************************************************************
 
 	virtual void disableTooltipsUntil(UnsignedInt frameNum);
 	virtual void clearTooltipsDisabled();
-	virtual Bool areTooltipsDisabled() const;
+	virtual bool areTooltipsDisabled() const;
 
-	Bool getDrawRMBScrollAnchor() const { return m_drawRMBScrollAnchor; }
-	Bool getMoveRMBScrollAnchor() const { return m_moveRMBScrollAnchor; }
+	bool getDrawRMBScrollAnchor() const { return m_drawRMBScrollAnchor; }
+	bool getMoveRMBScrollAnchor() const { return m_moveRMBScrollAnchor; }
 
 	void setDrawRMBScrollAnchor(Bool b) { m_drawRMBScrollAnchor = b; }
 	void setMoveRMBScrollAnchor(Bool b) { m_moveRMBScrollAnchor = b; }
@@ -624,7 +624,7 @@ protected:
 		DisplayString *displayStrings[MAX_SUBTITLE_LINES];	///< We'll only allow MAX_SUBTITLE_LINES worth of display strings
 		UnsignedInt currentDisplayString;					///< contains the current display string we're on. (also lets us know the last display string allocated
 		UnsignedInt lifetime;											///< the Lifetime of the Military Subtitle in frames
-		Bool blockDrawn;													///< True if the block is drawn false if it's blank
+		bool blockDrawn;													///< True if the block is drawn false if it's blank
 		UnsignedInt blockBeginFrame;							///< The frame at which the block started it's current state
 		ICoord2D blockPos;												///< where the upper left of the block should begin
 		UnsignedInt incrementOnFrame;							///< if we're currently on a frame greater then this, increment our position
@@ -809,9 +809,9 @@ protected:
 	Bool												m_preferSelection;		///< the shift key has been depressed.
 
 	Bool												m_cameraRotatingLeft; 
-	Bool 												m_cameraRotatingRight;
-	Bool 												m_cameraZoomingIn;
-	Bool 												m_cameraZoomingOut;
+	bool 												m_cameraRotatingRight;
+	bool 												m_cameraZoomingIn;
+	bool 												m_cameraZoomingOut;
 	
 	Bool												m_drawRMBScrollAnchor;
 	Bool												m_moveRMBScrollAnchor;

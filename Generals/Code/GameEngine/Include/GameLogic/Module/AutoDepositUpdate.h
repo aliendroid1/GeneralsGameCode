@@ -111,8 +111,8 @@ public:
 protected:
 
 	UnsignedInt m_depositOnFrame;
-	Bool m_awardInitialCaptureBonus;
-	Bool m_initialized;
+	bool m_awardInitialCaptureBonus;
+	bool m_initialized;
 
 };
 

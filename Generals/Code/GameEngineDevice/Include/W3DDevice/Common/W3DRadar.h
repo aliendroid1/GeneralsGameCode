@@ -80,7 +80,7 @@ protected:
 	void drawViewBox( Int pixelX, Int pixelY, Int width, Int height );  ///< draw view box
 	void buildTerrainTexture( TerrainLogic *terrain );	 ///< create the terrain texture of the radar
 	void drawIcons( Int pixelX, Int pixelY, Int width, Int height );	///< draw all of the radar icons
-	void renderObjectList( const RadarObject *listHead, TextureClass *texture, Bool calcHero = FALSE );			 ///< render an object list to the texture
+	void renderObjectList( const RadarObject *listHead, TextureClass *texture, bool calcHero = FALSE );			 ///< render an object list to the texture
 	void interpolateColorForHeight( RGBColor *color, 
 																	Real height, 
 																	Real hiZ, 
@@ -113,7 +113,7 @@ protected:
 	// the 4 points visible on the edge of the screen will "jitter" unevenly as we
 	// translate real world coords to integer radar spots
 	//
-	Bool m_reconstructViewBox;										///< true when we need to reconstruct the box
+	bool m_reconstructViewBox;										///< true when we need to reconstruct the box
 	Real m_viewAngle;															///< camera angle used for the view box we have
 	Real m_viewZoom;															///< camera zoom used for the view box we have	
 	ICoord2D m_viewBox[ 4 ];											///< radar cell points for the 4 corners of view box

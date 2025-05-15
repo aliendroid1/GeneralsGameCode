@@ -47,7 +47,7 @@ static void raiseOverlays( void );
 static GameWindow *messageBoxWindow = NULL;
 static GameWinMsgBoxFunc okFunc = NULL;
 static GameWinMsgBoxFunc cancelFunc = NULL;
-static Bool reOpenPlayerInfoFlag = FALSE;
+static bool reOpenPlayerInfoFlag = FALSE;
 /**
 	* messageBoxOK is called when a message box is destroyed
 	* by way of an OK button, so we can clear our pointers to it.
@@ -272,7 +272,7 @@ void GameSpyCloseOverlay( GSOverlayType overlay )
 	}
 }
 
-Bool GameSpyIsOverlayOpen( GSOverlayType overlay )
+bool GameSpyIsOverlayOpen( GSOverlayType overlay )
 {
 	return (overlayLayouts[overlay] != NULL);
 }

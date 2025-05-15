@@ -34,9 +34,9 @@ struct DrawGroupInfo
 {
 	AsciiString m_fontName;
 	Int m_fontSize;
-	Bool m_fontIsBold;
+	bool m_fontIsBold;
 
-	Bool m_usePlayerColor;
+	bool m_usePlayerColor;
 	Color m_colorForText;
 	Color m_colorForTextDropShadow;
 
@@ -48,14 +48,14 @@ struct DrawGroupInfo
 		Int m_pixelOffsetX;
 		Real m_percentOffsetX;
 	};
-	Bool m_usingPixelOffsetX;
+	bool m_usingPixelOffsetX;
 
 	union 
 	{
 		Int m_pixelOffsetY;
 		Real m_percentOffsetY;
 	};
-	Bool m_usingPixelOffsetY;
+	bool m_usingPixelOffsetY;
 
 	DrawGroupInfo();
 	

@@ -177,7 +177,7 @@ void OverlordContain::onCapture( Player *oldOwner, Player *newOwner )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool OverlordContain::isGarrisonable() const
+bool OverlordContain::isGarrisonable() const
 {
 	if( getRedirectedContain() == NULL )
 		return FALSE;
@@ -186,7 +186,7 @@ Bool OverlordContain::isGarrisonable() const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool OverlordContain::isKickOutOnCapture()
+bool OverlordContain::isKickOutOnCapture()
 {
 	if( getRedirectedContain() == NULL )
 		return FALSE;// Me the Overlord doesn't want to
@@ -226,7 +226,7 @@ void OverlordContain::addToContain( Object *obj )
 	* This will trigger an onRemoving event for the object that this module
 	* is a part of and an onRemovedFrom event for the object being removed */
 //-------------------------------------------------------------------------------------------------
-void OverlordContain::removeFromContain( Object *obj, Bool exposeStealthUnits )
+void OverlordContain::removeFromContain( Object *obj, bool exposeStealthUnits )
 {
 	// Do you mean me the Overlord, or my behavior of passing stuff on to my passengers?
 	if( getRedirectedContain() == NULL )
@@ -242,7 +242,7 @@ void OverlordContain::removeFromContain( Object *obj, Bool exposeStealthUnits )
 //-------------------------------------------------------------------------------------------------
 /** Remove all contained objects from the contained list */
 //-------------------------------------------------------------------------------------------------
-void OverlordContain::removeAllContained( Bool exposeStealthUnits )
+void OverlordContain::removeAllContained( bool exposeStealthUnits )
 {
 	// Do you mean me the Overlord, or my behavior of passing stuff on to my passengers?
 	if( getRedirectedContain() == NULL )
@@ -267,7 +267,7 @@ void OverlordContain::removeAllContained( Bool exposeStealthUnits )
 //-------------------------------------------------------------------------------------------------
 /** Iterate the contained list and call the callback on each of the objects */
 //-------------------------------------------------------------------------------------------------
-void OverlordContain::iterateContained( ContainIterateFunc func, void *userData, Bool reverse )
+void OverlordContain::iterateContained( ContainIterateFunc func, void *userData, bool reverse )
 {
 	// Do you mean me the Overlord, or my behavior of passing stuff on to my passengers?
 	if( getRedirectedContain() == NULL )
@@ -313,7 +313,7 @@ void OverlordContain::onRemoving( Object *obj )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool OverlordContain::isValidContainerFor(const Object* obj, Bool checkCapacity) const
+bool OverlordContain::isValidContainerFor(const Object* obj, bool checkCapacity) const
 {
 	// Do you mean me the Overlord, or my behavior of passing stuff on to my passengers?
 	if( getRedirectedContain() == NULL )
@@ -335,7 +335,7 @@ UnsignedInt OverlordContain::getContainCount() const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool OverlordContain::getContainerPipsToShow(Int& numTotal, Int& numFull)
+bool OverlordContain::getContainerPipsToShow(Int& numTotal, Int& numFull)
 {
 	// Do you mean me the Overlord, or my behavior of passing stuff on to my passengers?
 	if( getRedirectedContain() == NULL )
@@ -371,7 +371,7 @@ const ContainedItemsList* OverlordContain::getContainedItemsList() const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool OverlordContain::isEnclosingContainerFor( const Object *obj ) const
+bool OverlordContain::isEnclosingContainerFor( const Object *obj ) const
 {
 	// All of this redirection stuff makes it so that while I am normally a transport
 	// for Overlord subObjects, once I have a passenger, _I_ become a transport of their type.
@@ -384,7 +384,7 @@ Bool OverlordContain::isEnclosingContainerFor( const Object *obj ) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool OverlordContain::isDisplayedOnControlBar() const
+bool OverlordContain::isDisplayedOnControlBar() const
 {
 	// Do you mean me the Overlord, or my behavior of passing stuff on to my passengers?
 	if( getRedirectedContain() == NULL )

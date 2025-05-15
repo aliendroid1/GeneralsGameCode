@@ -92,7 +92,7 @@ void FireWeaponCollide::onCollide( Object *other, const Coord3D *loc, const Coor
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool FireWeaponCollide::shouldFireWeapon()
+bool FireWeaponCollide::shouldFireWeapon()
 {
 	const FireWeaponCollideModuleData *d = getFireWeaponCollideModuleData();
 
@@ -140,7 +140,7 @@ void FireWeaponCollide::xfer( Xfer *xfer )
 	CollideModule::xfer( xfer );
 
 	// weapon
-	Bool collideWeaponPresent = m_collideWeapon ? TRUE : FALSE;
+	bool collideWeaponPresent = m_collideWeapon ? TRUE : FALSE;
 	xfer->xferBool( &collideWeaponPresent );
 	if( collideWeaponPresent )
 	{

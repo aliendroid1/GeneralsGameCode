@@ -758,7 +758,7 @@ private:
 
 	const FXList*		m_fx;
   AsciiString     m_boneName;
-  Bool            m_orientToBone;
+  bool            m_orientToBone;
 };  
 EMPTY_DTOR(FXListAtBonePosFXNugget)
 

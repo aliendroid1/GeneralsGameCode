@@ -72,14 +72,14 @@ AssistedTargetingUpdate::~AssistedTargetingUpdate( void )
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-Bool AssistedTargetingUpdate::isFreeToAssist() const
+bool AssistedTargetingUpdate::isFreeToAssist() const
 {
 	// The reload times of my two weapons are tied together, so Ready is indicitive of either.
 	const Object *me = getObject();
 	if( !me->isAbleToAttack() )
 		return FALSE;// This will cover under construction among other things
 
-	Bool ready = me->getCurrentWeapon() && me->getCurrentWeapon()->getStatus() == READY_TO_FIRE;
+	bool ready = me->getCurrentWeapon() && me->getCurrentWeapon()->getStatus() == READY_TO_FIRE;
 	return ready;
 }
 

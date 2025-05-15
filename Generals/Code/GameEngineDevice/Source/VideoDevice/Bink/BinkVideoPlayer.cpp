@@ -268,7 +268,7 @@ VideoStreamInterface*	BinkVideoPlayer::load( AsciiString movieTitle )
 
 //============================================================================
 //============================================================================
-void BinkVideoPlayer::notifyVideoPlayerOfNewProvider( Bool nowHasValid )
+void BinkVideoPlayer::notifyVideoPlayerOfNewProvider( bool nowHasValid )
 {
 	if (!nowHasValid) {
 		TheAudio->releaseHandleForBink();
@@ -331,7 +331,7 @@ void BinkVideoStream::update( void )
 // BinkVideoStream::isFrameReady
 //============================================================================
 
-Bool BinkVideoStream::isFrameReady( void )
+bool BinkVideoStream::isFrameReady( void )
 {
 	return !BinkWait( m_handle );
 }

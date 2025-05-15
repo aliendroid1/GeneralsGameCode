@@ -50,7 +50,7 @@ class GameResultsResponse
 public:
 	std::string hostname;
 	UnsignedShort port;
-	Bool sentOk;
+	bool sentOk;
 };
 
 //-------------------------------------------------------------------------
@@ -62,17 +62,17 @@ public:
 	virtual ~GameResultsInterface() {}
 	virtual void startThreads( void ) = 0;
 	virtual void endThreads( void ) = 0;
-	virtual Bool areThreadsRunning( void ) = 0;
+	virtual bool areThreadsRunning( void ) = 0;
 
 	virtual void addRequest( const GameResultsRequest& req ) = 0;
-	virtual Bool getRequest( GameResultsRequest& resp ) = 0;
+	virtual bool getRequest( GameResultsRequest& resp ) = 0;
 
 	virtual void addResponse( const GameResultsResponse& resp ) = 0;
-	virtual Bool getResponse( GameResultsResponse& resp ) = 0;
+	virtual bool getResponse( GameResultsResponse& resp ) = 0;
 
 	static GameResultsInterface* createNewGameResultsInterface( void );
 
-	virtual Bool areGameResultsBeingSent( void ) = 0;
+	virtual bool areGameResultsBeingSent( void ) = 0;
 };
 
 extern GameResultsInterface *TheGameResultsQueue;

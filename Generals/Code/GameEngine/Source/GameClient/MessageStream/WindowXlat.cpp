@@ -173,7 +173,7 @@ WindowTranslator::~WindowTranslator()
 GameMessageDisposition WindowTranslator::translateGameMessage(const GameMessage *msg)
 {
 	GameMessageDisposition disp = KEEP_MESSAGE;
-	Bool forceKeepMessage = FALSE;
+	bool forceKeepMessage = FALSE;
 	WinInputReturnCode returnCode = WIN_INPUT_NOT_USED;
 
 	if (TheTacticalView && TheTacticalView->isMouseLocked())

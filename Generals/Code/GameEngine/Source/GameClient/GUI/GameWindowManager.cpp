@@ -75,7 +75,7 @@ UnsignedInt WindowLayoutCurrentVersion = 2;
 // it is necessary for any code that needs to look at objects or anything under
 // the radar cursor
 //
-static Bool sendMousePosMessages = TRUE;
+static bool sendMousePosMessages = TRUE;
 
 //-------------------------------------------------------------------------------------------------
 /** Process windows waiting to be destroyed */
@@ -429,7 +429,7 @@ void GameWindowManager::unlinkChildWindow( GameWindow *window )
 //-------------------------------------------------------------------------------------------------
 /** Check window and parents to see if this window is enabled */
 //-------------------------------------------------------------------------------------------------
-Bool GameWindowManager::isEnabled( GameWindow *win )
+bool GameWindowManager::isEnabled( GameWindow *win )
 {
 
 	// sanity
@@ -457,7 +457,7 @@ Bool GameWindowManager::isEnabled( GameWindow *win )
 //-------------------------------------------------------------------------------------------------
 /** Check window and parents to see if this window is hidden */
 //-------------------------------------------------------------------------------------------------
-Bool GameWindowManager::isHidden( GameWindow *win )
+bool GameWindowManager::isHidden( GameWindow *win )
 {
 
 	// we'll allow for the idea that if a window doesn't exist it is hidden
@@ -577,7 +577,7 @@ void GameWindowManager::windowHiding( GameWindow *window )
 //-------------------------------------------------------------------------------------------------
 void GameWindowManager::hideWindowsInRange( GameWindow *baseWindow, 
 																						Int first, Int last, 
-																						Bool hideFlag )
+																						bool hideFlag )
 {
 	Int i;
 	GameWindow *window;
@@ -598,7 +598,7 @@ void GameWindowManager::hideWindowsInRange( GameWindow *baseWindow,
 //-------------------------------------------------------------------------------------------------
 void GameWindowManager::enableWindowsInRange( GameWindow *baseWindow, 
 																							Int first, Int last, 
-																							Bool enableFlag )
+																							bool enableFlag )
 {
 	Int i;
 	GameWindow *window;
@@ -744,7 +744,7 @@ GameWindow *GameWindowManager::winGetFocus( void )
 //-------------------------------------------------------------------------------------------------
 Int GameWindowManager::winSetFocus( GameWindow *window )
 {
-	Bool wantsFocus = FALSE;
+	bool wantsFocus = FALSE;
 
 	// if a window doesn't want keyboard focus don't give it
 	if( window )
@@ -757,7 +757,7 @@ Int GameWindowManager::winSetFocus( GameWindow *window )
 	//
 	if( (m_keyboardFocus) && (m_keyboardFocus != window) )
 	{
-		Bool wf;	// dummy var, ignored, but must be passed
+		bool wf;	// dummy var, ignored, but must be passed
 		winSendSystemMsg( m_keyboardFocus, GWM_INPUT_FOCUS, FALSE, (WindowMsgData)&wf );
 	}
 
@@ -836,13 +836,13 @@ WinInputReturnCode GameWindowManager::winProcessMouseEvent( GameWindowMessage ms
 																														void *data )
 {
 	WinInputReturnCode returnCode = WIN_INPUT_NOT_USED;
-	Bool objectTooltip = FALSE;
+	bool objectTooltip = FALSE;
 	UnsignedInt packedMouseCoords;
 	GameWindow *window = NULL;
 	GameWindow *toolTipWindow = NULL;
 	GameWindow *childWindow;
 	Int dx, dy;
-	Bool clearGrabWindow = FALSE;
+	bool clearGrabWindow = FALSE;
 
 	// pack mouse coords into one entity for message passing
 	packedMouseCoords = SHORTTOLONG( mousePos->x, mousePos->y );
@@ -1204,7 +1204,7 @@ WinInputReturnCode GameWindowManager::winProcessMouseEvent( GameWindowMessage ms
 			}  // end if
 
 			// if tooltips are on set them into the window
-			Bool tooltipsOn = TRUE;
+			bool tooltipsOn = TRUE;
 			if( tooltipsOn )
 			{
 //				if( toolTipWindow && toolTipWindow->winGetParent() && BitIsSet( toolTipWindow->winGetParent()->winGetInstanceData()->getStyle(), GWS_COMBO_BOX ))
@@ -1672,7 +1672,7 @@ GameWindow *GameWindowManager::gogoMessageBox(Int x, Int y, Int width, Int heigh
                         GameWinMsgBoxFunc yesCallback,
                         GameWinMsgBoxFunc noCallback,
                         GameWinMsgBoxFunc okCallback,
-                        GameWinMsgBoxFunc cancelCallback, Bool useLogo )
+                        GameWinMsgBoxFunc cancelCallback, bool useLogo )
 
 {
 	// first check to make sure we have some buttons to display
@@ -1844,7 +1844,7 @@ GameWindow *GameWindowManager::gogoGadgetPushButton( GameWindow *parent,
 																										 Int width, Int height,
 																										 WinInstanceData *instData,
 																										 GameFont *defaultFont,
-																										 Bool defaultVisual )
+																										 bool defaultVisual )
 {
 	GameWindow *button;
 
@@ -1911,7 +1911,7 @@ GameWindow *GameWindowManager::gogoGadgetCheckbox( GameWindow *parent,
 																									 Int width, Int height, 
 																									 WinInstanceData *instData,
 																									 GameFont *defaultFont,
-																									 Bool defaultVisual )
+																									 bool defaultVisual )
 
 {
 	GameWindow *checkbox;
@@ -1977,7 +1977,7 @@ GameWindow *GameWindowManager::gogoGadgetRadioButton( GameWindow *parent,
 																										  WinInstanceData *instData,
 																											RadioButtonData *rData,
 																										  GameFont *defaultFont,
-																										  Bool defaultVisual )
+																										  bool defaultVisual )
 
 {
 	GameWindow *radioButton;
@@ -2049,7 +2049,7 @@ GameWindow *GameWindowManager::gogoGadgetTabControl( GameWindow *parent,
 																										  WinInstanceData *instData,
 																											TabControlData *tData,
 																										  GameFont *defaultFont,
-																										  Bool defaultVisual )
+																										  bool defaultVisual )
 
 {
 	GameWindow *tabControl;
@@ -2120,12 +2120,12 @@ GameWindow *GameWindowManager::gogoGadgetListBox( GameWindow *parent,
 																									WinInstanceData *instData, 
 																									ListboxData *listboxDataTemplate,
 																								  GameFont *defaultFont,
-																								  Bool defaultVisual )
+																								  bool defaultVisual )
 
 {
   GameWindow *listbox;
   ListboxData *listboxData;
-	Bool title = FALSE;
+	bool title = FALSE;
 
 	// we MUST have a push button style window to do this
 	if( BitIsSet( instData->getStyle(), GWS_SCROLL_LISTBOX ) == FALSE )
@@ -2265,7 +2265,7 @@ GameWindow *GameWindowManager::gogoGadgetSlider( GameWindow *parent,
 																								 WinInstanceData *instData, 
 																								 SliderData *sliderData,
 																								 GameFont *defaultFont,
-																								 Bool defaultVisual )
+																								 bool defaultVisual )
 
 {
 	GameWindow *slider;
@@ -2389,11 +2389,11 @@ GameWindow *GameWindowManager::gogoGadgetComboBox( GameWindow *parent,
 																									WinInstanceData *instData, 
 																									ComboBoxData *comboBoxDataTemplate,
 																								  GameFont *defaultFont,
-																								  Bool defaultVisual )
+																								  bool defaultVisual )
 {
   GameWindow *comboBox;
   ComboBoxData *comboBoxData;
-	Bool title = FALSE;
+	bool title = FALSE;
 
 	// we MUST have a push button style window to do this
 	if( BitIsSet( instData->getStyle(), GWS_COMBO_BOX) == FALSE )
@@ -2594,7 +2594,7 @@ GameWindow *GameWindowManager::gogoGadgetProgressBar( GameWindow *parent,
 																										  Int width, Int height, 
 																										  WinInstanceData *instData,
 																										  GameFont *defaultFont,
-																										  Bool defaultVisual )
+																										  bool defaultVisual )
 
 {
 	GameWindow *progressBar;
@@ -2653,7 +2653,7 @@ GameWindow *GameWindowManager::gogoGadgetStaticText( GameWindow *parent,
 																										 WinInstanceData *instData, 
 																										 TextData *textData,
 																										 GameFont *defaultFont,
-																										 Bool defaultVisual )
+																										 bool defaultVisual )
 
 {
   GameWindow *textWin;
@@ -2722,7 +2722,7 @@ GameWindow *GameWindowManager::gogoGadgetTextEntry( GameWindow *parent,
 																										WinInstanceData *instData, 
 																										EntryData *entryData,
 																										GameFont *defaultFont,
-																										Bool defaultVisual )
+																										bool defaultVisual )
 
 {
 	GameWindow *entry;
@@ -2864,7 +2864,7 @@ GameWindow *GameWindowManager::gogoGadgetTextEntry( GameWindow *parent,
 //-------------------------------------------------------------------------------------------------
 void GameWindowManager::assignDefaultGadgetLook( GameWindow *gadget,
 																								 GameFont *defaultFont,
-																								 Bool assignVisual )
+																								 bool assignVisual )
 {
 	UnsignedByte alpha = 255;
 	static Color red				= TheWindowManager->winMakeColor( 255,   0,   0, alpha );
@@ -3600,7 +3600,7 @@ UnicodeString GameWindowManager::winTextLabelToText( AsciiString label )
 //-------------------------------------------------------------------------------------------------
 /** find the top window at the given coordinates */
 //-------------------------------------------------------------------------------------------------
-GameWindow *GameWindowManager::getWindowUnderCursor( Int x, Int y, Bool ignoreEnabled )
+GameWindow *GameWindowManager::getWindowUnderCursor( Int x, Int y, bool ignoreEnabled )
 {
 	if( m_mouseCaptor )
 	{
@@ -3729,7 +3729,7 @@ static WindowMsgHandledType testGrab( GameWindow *window, UnsignedInt msg,
 //-------------------------------------------------------------------------------------------------
 /** Just for testing */
 //-------------------------------------------------------------------------------------------------
-Bool GameWindowManager::initTestGUI( void )
+bool GameWindowManager::initTestGUI( void )
 {
 
 //	winCreateFromScript( "_ATest.wnd" );

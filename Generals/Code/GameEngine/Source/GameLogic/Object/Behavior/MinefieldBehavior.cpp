@@ -406,7 +406,7 @@ void MinefieldBehavior::onCollide( Object *other, const Coord3D *loc, const Coor
 	}
 
 	// if we detonated another one nearby, we have to move a little bit to detonate another one.
-	Bool found = false;
+	bool found = false;
 	for (std::vector<DetonatorInfo>::iterator it = m_detonators.begin(); it != m_detonators.end(); ++it)
 	{
 		if (other->getID() == it->id)

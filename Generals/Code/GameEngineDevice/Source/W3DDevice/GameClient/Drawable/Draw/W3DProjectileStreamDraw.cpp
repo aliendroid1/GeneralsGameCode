@@ -193,7 +193,7 @@ void W3DProjectileStreamDraw::doDrawModule(const Matrix3D* )
 
 void W3DProjectileStreamDraw::makeOrUpdateLine( Vector3 *points, UnsignedInt pointCount, Int lineIndex )
 {
-	Bool newLine = FALSE;
+	bool newLine = FALSE;
 
 	if( m_allLines[lineIndex] == NULL )
 	{

@@ -75,7 +75,7 @@ public:
 protected:
 
 	EnumeratedIP *m_IPlist;
-	Bool m_isWinsockInitialized;
+	bool m_isWinsockInitialized;
 };
 
 

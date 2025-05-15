@@ -284,7 +284,7 @@ StateMachine::~StateMachine()
 
 //-----------------------------------------------------------------------------
 #ifdef STATE_MACHINE_DEBUG
-Bool StateMachine::getWantsDebugOutput() const 
+bool StateMachine::getWantsDebugOutput() const 
 { 
 	if (m_debugOutput)
 	{
@@ -660,7 +660,7 @@ void StateMachine::setGoalObject( const Object *obj )
 }
 
 //-----------------------------------------------------------------------------
-Bool StateMachine::isGoalObjectDestroyed() const
+bool StateMachine::isGoalObjectDestroyed() const
 { 
 	if (m_goalObjectID == 0) 
 	{
@@ -756,7 +756,7 @@ void StateMachine::xfer( Xfer *xfer )
 		m_currentState = internalGetState( curStateID );
 	}
 
-	Bool snapshotAllStates = false;
+	bool snapshotAllStates = false;
 #ifdef RTS_DEBUG
 	//snapshotAllStates = true;
 #endif

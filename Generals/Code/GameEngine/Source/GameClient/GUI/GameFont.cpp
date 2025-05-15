@@ -176,7 +176,7 @@ void FontLibrary::reset( void )
 /** Get a font from our list, if we don't have that font loaded we will
 	* attempt to load it */
 //-------------------------------------------------------------------------------------------------
-GameFont *FontLibrary::getFont( AsciiString name, Int pointSize, Bool bold )
+GameFont *FontLibrary::getFont( AsciiString name, Int pointSize, bool bold )
 {
 	GameFont *font;
 

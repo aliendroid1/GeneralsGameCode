@@ -195,8 +195,8 @@ DECLARE_PERF_TIMER(MemoryPoolInitFilling)
 
 #endif
 
-static Bool thePreMainInitFlag = false;
-static Bool theMainInitFlag = false;
+static bool thePreMainInitFlag = false;
+static bool theMainInitFlag = false;
 
 // ----------------------------------------------------------------------------
 // PRIVATE PROTOTYPES 
@@ -401,7 +401,7 @@ public:
 	
 	static void freeList(BlockCheckpointInfo **pHead);
 
-	Bool shouldBeInReport(Int flags, Int startCheckpoint, Int endCheckpoint);
+	bool shouldBeInReport(Int flags, Int startCheckpoint, Int endCheckpoint);
 
 	static void doBlockCheckpointReport( BlockCheckpointInfo *bi, const char *poolName, 
 									Int flags, Int startCheckpoint, Int endCheckpoint );
@@ -476,8 +476,8 @@ public:
 	void debugSetWastedSize(Int waste);
 	void debugVerifyBlock();
 	void debugMarkBlockAsFree();
-	Bool debugCheckUnderrun();
-	Bool debugCheckOverrun();
+	bool debugCheckUnderrun();
+	bool debugCheckOverrun();
 	Int debugSingleBlockReportLeak(const char* owner);
 #endif	// MEMORYPOOL_DEBUG
 #ifdef MEMORYPOOL_CHECKPOINTING
@@ -509,7 +509,7 @@ public:
 	void addBlobToList(MemoryPoolBlob **ppHead, MemoryPoolBlob **ppTail);
 	void removeBlobFromList(MemoryPoolBlob **ppHead, MemoryPoolBlob **ppTail);
 	MemoryPoolBlob *getNextInList();
-	Bool hasAnyFreeBlocks();
+	bool hasAnyFreeBlocks();
 
 	MemoryPoolSingleBlock *allocateSingleBlock(DECLARE_LITERALSTRING_ARG1);
 	void freeSingleBlock(MemoryPoolSingleBlock *block);
@@ -522,7 +522,7 @@ public:
 #ifdef MEMORYPOOL_DEBUG
 	void debugMemoryVerifyBlob();
 	Int debugBlobReportLeaks(const char* owner);
-	Bool debugIsBlockInBlob(void *pBlock);
+	bool debugIsBlockInBlob(void *pBlock);
 #endif
 #ifdef MEMORYPOOL_CHECKPOINTING
 	void debugResetCheckpoints();
@@ -732,7 +732,7 @@ inline void MemoryPoolSingleBlock::debugResetCheckpoint()
 /// accessor
 inline MemoryPoolBlob *MemoryPoolBlob::getNextInList() { return m_nextBlob; }
 /// accessor
-inline Bool MemoryPoolBlob::hasAnyFreeBlocks() { return m_firstFreeBlock != NULL; }
+inline bool MemoryPoolBlob::hasAnyFreeBlocks() { return m_firstFreeBlock != NULL; }
 /// accessor
 inline MemoryPool *MemoryPoolBlob::getOwningPool() { return m_owningPool; }
 /// accessor
@@ -749,10 +749,10 @@ inline Int MemoryPoolBlob::getTotalBlockCount() { return m_totalBlocksInBlob; }
 //-----------------------------------------------------------------------------
 #ifdef MEMORYPOOL_CHECKPOINTING
 /// return true iff this checkpointinfo should be included in a checkpointreport with the given parameters.
-Bool BlockCheckpointInfo::shouldBeInReport(Int flags, Int startCheckpoint, Int endCheckpoint)
+bool BlockCheckpointInfo::shouldBeInReport(Int flags, Int startCheckpoint, Int endCheckpoint)
 {
-	Bool allocFlagsOK = false;
-	Bool freedFlagsOK = false;
+	bool allocFlagsOK = false;
+	bool freedFlagsOK = false;
 
 	if (m_allocCheckpoint < startCheckpoint && (flags & _REPORT_CP_ALLOCATED_BEFORE))
 		allocFlagsOK = true;
@@ -1094,7 +1094,7 @@ void MemoryPoolSingleBlock::debugMarkBlockAsFree()
 	Returns true iff someone overwrote part of the first bounding wall
 	(ie, tromped on memory just before the block)
 */
-Bool MemoryPoolSingleBlock::debugCheckUnderrun()
+bool MemoryPoolSingleBlock::debugCheckUnderrun()
 {
 	USE_PERF_TIMER(MemoryPoolDebugging)
 
@@ -1119,7 +1119,7 @@ Bool MemoryPoolSingleBlock::debugCheckUnderrun()
 	Returns true iff someone overwrote part of the second bounding wall
 	(ie, tromped on memory just after the block)
 */
-Bool MemoryPoolSingleBlock::debugCheckOverrun()
+bool MemoryPoolSingleBlock::debugCheckOverrun()
 {
 	USE_PERF_TIMER(MemoryPoolDebugging)
 
@@ -1367,7 +1367,7 @@ Int MemoryPoolBlob::debugBlobReportLeaks(const char* owner)
 /**
 	return true iff this block belongs to this blob.
 */
-Bool MemoryPoolBlob::debugIsBlockInBlob(void *pBlockPtr)
+bool MemoryPoolBlob::debugIsBlockInBlob(void *pBlockPtr)
 {
 	USE_PERF_TIMER(MemoryPoolDebugging)
 
@@ -1941,7 +1941,7 @@ void MemoryPool::debugMemoryVerifyPool()
 /**
 	return true iff the block is a valid block in this pool.
 */
-Bool MemoryPool::debugIsBlockInPool(void *pBlockPtr)
+bool MemoryPool::debugIsBlockInPool(void *pBlockPtr)
 {
 	USE_PERF_TIMER(MemoryPoolDebugging)
 
@@ -1952,7 +1952,7 @@ Bool MemoryPool::debugIsBlockInPool(void *pBlockPtr)
 	debugMemoryVerifyPool();
 #endif
 
-	Bool check1 = false, check2 = false;
+	bool check1 = false, check2 = false;
 
 	MemoryPoolSingleBlock *block = MemoryPoolSingleBlock::recoverBlockFromUserData(pBlockPtr);
 	MemoryPoolBlob *ownerBlob = block->getOwningBlob();
@@ -2407,7 +2407,7 @@ void DynamicMemoryAllocator::reset()
 /**
 	return true iff the given pool is a subpool of this dma.
 */
-Bool DynamicMemoryAllocator::debugIsPoolInDma(MemoryPool *pool)
+bool DynamicMemoryAllocator::debugIsPoolInDma(MemoryPool *pool)
 {
 	USE_PERF_TIMER(MemoryPoolDebugging)
 
@@ -2430,7 +2430,7 @@ Bool DynamicMemoryAllocator::debugIsPoolInDma(MemoryPool *pool)
 	return true iff the block was allocated by this dma
 	(either from a subpool or as a raw block).
 */
-Bool DynamicMemoryAllocator::debugIsBlockInDma(void *pBlockPtr)
+bool DynamicMemoryAllocator::debugIsBlockInDma(void *pBlockPtr)
 {
 	USE_PERF_TIMER(MemoryPoolDebugging)
 
@@ -2895,7 +2895,7 @@ void MemoryPoolFactory::debugMemoryVerify()
 	return true iff the block was allocated by any of the pools/dmas owned
 	by this factory.
 */
-Bool MemoryPoolFactory::debugIsBlockInAnyPool(void *pBlock)
+bool MemoryPoolFactory::debugIsBlockInAnyPool(void *pBlock)
 {
 	USE_PERF_TIMER(MemoryPoolDebugging)
 
@@ -3009,7 +3009,7 @@ void MemoryPoolFactory::memoryPoolUsageReport( const char* filename, FILE *appen
 #endif
 	for (;;)
 	{
-		Bool keepGoing = false;
+		bool keepGoing = false;
 		if (pool)
 		{
 			if (lineIdx == 0)
@@ -3085,7 +3085,7 @@ void MemoryPoolFactory::debugMemoryReport(Int flags, Int startCheckpoint, Int en
 #endif
 
 #ifdef MEMORYPOOL_CHECKPOINTING
-	Bool doBlockReport = (flags & _REPORT_CP_ALLOCATED_DONTCARE) != 0 && (flags & _REPORT_CP_FREED_DONTCARE) != 0;
+	bool doBlockReport = (flags & _REPORT_CP_ALLOCATED_DONTCARE) != 0 && (flags & _REPORT_CP_FREED_DONTCARE) != 0;
 	DEBUG_ASSERTCRASH(startCheckpoint >= 0 && startCheckpoint <= endCheckpoint && endCheckpoint <= m_curCheckpoint, ("bad checkpoints"));
 	DEBUG_ASSERTCRASH(((flags & _REPORT_CP_ALLOCATED_DONTCARE) != 0) == ((flags & _REPORT_CP_FREED_DONTCARE) != 0), ("bad flags: must set at both alloc and free flag"));
 #endif
@@ -3479,7 +3479,7 @@ void initMemoryManager()
 }
 
 //-----------------------------------------------------------------------------
-Bool isMemoryManagerOfficiallyInited()
+bool isMemoryManagerOfficiallyInited()
 {
 	return theMainInitFlag;
 }

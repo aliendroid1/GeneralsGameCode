@@ -52,10 +52,10 @@ static NameKeyType radioButtonSystemMapsID = NAMEKEY_INVALID;
 static NameKeyType radioButtonUserMapsID = NAMEKEY_INVALID;
 static GameWindow *mapList = NULL;
 
-static Bool showSoloMaps = true;
-static Bool isShuttingDown = false;
-static Bool startGame = false;
-static Bool buttonPushed = false;
+static bool showSoloMaps = true;
+static bool isShuttingDown = false;
+static bool startGame = false;
+static bool buttonPushed = false;
 static GameDifficulty s_AIDiff = DIFFICULTY_NORMAL;
 static void setupGameStart(AsciiString mapName)
 {
@@ -168,7 +168,7 @@ void MapSelectMenuInit( WindowLayout *layout, void *userData )
 	layout->hide( FALSE );
 
 	OptionPreferences pref;
-	Bool usesSystemMapDir = pref.usesSystemMapDir();
+	bool usesSystemMapDir = pref.usesSystemMapDir();
 
 	// get the listbox window
 	AsciiString listString( "MapSelectMenu.wnd:ListboxMap" );
@@ -219,7 +219,7 @@ void MapSelectMenuShutdown( WindowLayout *layout, void *userData )
 		isShuttingDown = true;
 
 	// if we are shutting down for an immediate pop, skip the animations
-	Bool popImmediate = *(Bool *)userData;
+	bool popImmediate = *(Bool *)userData;
 	if( popImmediate )
 	{
 

@@ -48,7 +48,7 @@
 #include "GameNetwork/networkutil.h"
 
 LANAPI *TheLAN = NULL;
-extern Bool LANbuttonPushed;
+extern bool LANbuttonPushed;
 
 #ifdef RTS_INTERNAL
 // for occasional debugging...
@@ -100,7 +100,7 @@ UnicodeString LANAPIInterface::getErrorStringFromReturnType( ReturnType ret )
 
 // On functions are (generally) the result of network traffic
 
-void LANAPI::OnAccept( UnsignedInt playerIP, Bool status ) 
+void LANAPI::OnAccept( UnsignedInt playerIP, bool status ) 
 { 
 	if( AmIHost() )
 	{
@@ -132,9 +132,9 @@ void LANAPI::OnAccept( UnsignedInt playerIP, Bool status )
 			OnChat(UnicodeString(L"SYSTEM"), m_localIP, text, LANCHAT_SYSTEM);				
 		}
 	}
-}// void LANAPI::OnAccept( UnicodeString player, Bool status ) 
+}// void LANAPI::OnAccept( UnicodeString player, bool status ) 
 
-void LANAPI::OnHasMap( UnsignedInt playerIP, Bool status ) 
+void LANAPI::OnHasMap( UnsignedInt playerIP, bool status ) 
 { 
 	if( AmIHost() )
 	{
@@ -151,7 +151,7 @@ void LANAPI::OnHasMap( UnsignedInt playerIP, Bool status )
 		{
 			UnicodeString mapDisplayName;
 			const MapMetaData *mapData = TheMapCache->findMap( m_currentGame->getMap() );
-			Bool willTransfer = TRUE;
+			bool willTransfer = TRUE;
 			if (mapData)
 			{
 				mapDisplayName.format(L"%ls", mapData->m_displayName.str());
@@ -175,7 +175,7 @@ void LANAPI::OnHasMap( UnsignedInt playerIP, Bool status )
 			lanUpdateSlotList();
 		}
 	}//if
-}// void LANAPI::OnHasMap( UnicodeString player, Bool status ) 
+}// void LANAPI::OnHasMap( UnicodeString player, bool status ) 
 
 void LANAPI::OnGameStartTimer( Int seconds )
 {
@@ -227,7 +227,7 @@ void LANAPI::OnGameStart( void )
 		if (TheGameLogic->isInGame())
 			TheGameLogic->clearGameData();
 
-		Bool filesOk = DoAnyMapTransfers(m_currentGame);
+		bool filesOk = DoAnyMapTransfers(m_currentGame);
 
 		// see if we really have the map.  if not, back out.
 		TheMapCache->updateCache();
@@ -286,7 +286,7 @@ void LANAPI::OnGameOptions( UnsignedInt playerIP, Int playerSlot, AsciiString op
 			lanUpdateSlotList();
 			updateGameOptions();
 		}
-		Bool booted = true;
+		bool booted = true;
 		for(Int player = 1; player< MAX_SLOTS; player++)
 		{
 			if(m_currentGame->getIP(player) == m_localIP)
@@ -338,8 +338,8 @@ void LANAPI::OnGameOptions( UnsignedInt playerIP, Int playerSlot, AsciiString op
 			else
 			{
 				m_currentGame->setPlayerLastHeard(playerSlot, timeGetTime());
-				Bool change = false;
-				Bool shouldUnaccept = false;
+				bool change = false;
+				bool shouldUnaccept = false;
 				AsciiString key;
 				options.nextToken(&key, "=");
 				Int val = atoi(options.str()+1);
@@ -353,7 +353,7 @@ void LANAPI::OnGameOptions( UnsignedInt playerIP, Int playerSlot, AsciiString op
 				{
 					if (val >= -1 && val < TheMultiplayerSettings->getNumColors() && val != slot->getColor() && slot->getPlayerTemplate() != PLAYERTEMPLATE_OBSERVER)
 					{
-						Bool colorAvailable = TRUE;
+						bool colorAvailable = TRUE;
 						if(val != -1 )
 						{
 							for(Int i=0; i <MAX_SLOTS; i++)
@@ -399,7 +399,7 @@ void LANAPI::OnGameOptions( UnsignedInt playerIP, Int playerSlot, AsciiString op
 						
 					if (val >= -1 && val < MAX_SLOTS && val != slot->getStartPos())
 					{
-						Bool startPosAvailable = TRUE;
+						bool startPosAvailable = TRUE;
 						if(val != -1)
 							for(Int i=0; i <MAX_SLOTS; i++)
 							{
@@ -470,7 +470,7 @@ void LANAPI::OnSlotList( ReturnType ret, LANGameInfo *theGame )
 	if (!theGame || theGame != m_currentGame)
 		return;
 
-	Bool foundMe = false;
+	bool foundMe = false;
 	for (int player = 0; player < MAX_SLOTS; ++player)
 	{
 		if (m_currentGame->getIP(player) == m_localIP)

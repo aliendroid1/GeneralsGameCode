@@ -546,7 +546,7 @@ void createGame( void )
 	passwd.translate(GadgetTextEntryGetText(textEntryGamePassword));
 	req.password = passwd.str();
 	CustomMatchPreferences customPref;
-	Bool aO = GadgetCheckBoxIsChecked(checkBoxAllowObservers);
+	bool aO = GadgetCheckBoxIsChecked(checkBoxAllowObservers);
 	customPref.setAllowsObserver(aO);
 	customPref.write();
 	req.stagingRoomCreation.allowObservers = aO;

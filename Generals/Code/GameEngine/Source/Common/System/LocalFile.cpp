@@ -163,7 +163,7 @@ LocalFile::~LocalFile()
 //=================================================================
 
 //DECLARE_PERF_TIMER(LocalFile)
-Bool LocalFile::open( const Char *filename, Int access )
+bool LocalFile::open( const Char *filename, Int access )
 {
 	//USE_PERF_TIMER(LocalFile)
 	if( !File::open( filename, access) )
@@ -402,7 +402,7 @@ Int LocalFile::seek( Int pos, seekMode mode)
 //=================================================================
 // skips preceding whitespace and stops at the first non-number
 // or at EOF
-Bool LocalFile::scanInt(Int &newInt)
+bool LocalFile::scanInt(Int &newInt)
 {
 	newInt = 0;
 	AsciiString tempstr;
@@ -449,13 +449,13 @@ Bool LocalFile::scanInt(Int &newInt)
 //=================================================================
 // skips preceding whitespace and stops at the first non-number
 // or at EOF
-Bool LocalFile::scanReal(Real &newReal) 
+bool LocalFile::scanReal(Real &newReal) 
 {
 	newReal = 0.0;
 	AsciiString tempstr;
 	Char c;
 	Int val;
-	Bool sawDec = FALSE;
+	bool sawDec = FALSE;
 
 	// skip the preceding white space
 	do {
@@ -499,7 +499,7 @@ Bool LocalFile::scanReal(Real &newReal)
 //=================================================================
 // skips preceding whitespace and stops at the first whitespace
 // or at EOF
-Bool LocalFile::scanString(AsciiString &newString) 
+bool LocalFile::scanString(AsciiString &newString) 
 {
 	Char c;
 	Int val;

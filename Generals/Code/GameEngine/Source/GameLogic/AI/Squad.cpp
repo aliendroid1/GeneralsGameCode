@@ -128,7 +128,7 @@ Int Squad::getSizeOfGroup(void) const
 }
 
 // isOnSquad //////////////////////////////////////////////////////////////////////////////////////
-Bool Squad::isOnSquad(const Object *objToTest) const
+bool Squad::isOnSquad(const Object *objToTest) const
 {
 	// @todo need a faster way to do this. Perhaps a more efficient data structure?
 	ObjectID objID = objToTest->getID();
@@ -148,7 +148,7 @@ Bool Squad::isOnSquad(const Object *objToTest) const
  */
 
 // squadFromTeam //////////////////////////////////////////////////////////////////////////////////
-void Squad::squadFromTeam(const Team* fromTeam, Bool clearSquadFirst)
+void Squad::squadFromTeam(const Team* fromTeam, bool clearSquadFirst)
 {
 	if (!fromTeam) {
 		return;
@@ -165,7 +165,7 @@ void Squad::squadFromTeam(const Team* fromTeam, Bool clearSquadFirst)
 }
 
 // squadFromAIGroup ///////////////////////////////////////////////////////////////////////////////
-void Squad::squadFromAIGroup(const AIGroup* fromAIGroup, Bool clearSquadFirst)
+void Squad::squadFromAIGroup(const AIGroup* fromAIGroup, bool clearSquadFirst)
 {
 	if (!fromAIGroup) {
 		return;

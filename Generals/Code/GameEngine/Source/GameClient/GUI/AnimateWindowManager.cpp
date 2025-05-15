@@ -245,7 +245,7 @@ void AnimateWindowManager::update( void )
 }
 
 
-void AnimateWindowManager::registerGameWindow(GameWindow *win, AnimTypes animType, Bool needsToFinish, UnsignedInt ms, UnsignedInt delayMs)
+void AnimateWindowManager::registerGameWindow(GameWindow *win, AnimTypes animType, bool needsToFinish, UnsignedInt ms, UnsignedInt delayMs)
 {
 	if(!win)
 	{	

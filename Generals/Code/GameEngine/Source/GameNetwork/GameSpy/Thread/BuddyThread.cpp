@@ -60,15 +60,15 @@ public:
 	GameSpyBuddyMessageQueue();
 	virtual void startThread( void );
 	virtual void endThread( void );
-	virtual Bool isThreadRunning( void );
-	virtual Bool isConnected( void );
-	virtual Bool isConnecting( void );
+	virtual bool isThreadRunning( void );
+	virtual bool isConnected( void );
+	virtual bool isConnecting( void );
 
 	virtual void addRequest( const BuddyRequest& req );
-	virtual Bool getRequest( BuddyRequest& req );
+	virtual bool getRequest( BuddyRequest& req );
 
 	virtual void addResponse( const BuddyResponse& resp );
-	virtual Bool getResponse( BuddyResponse& resp );
+	virtual bool getResponse( BuddyResponse& resp );
 
 	virtual GPProfile getLocalProfileID( void );
 
@@ -106,18 +106,18 @@ public:
 	void requestCallback( GPConnection *con, GPRecvBuddyRequestArg *arg );
 	void statusCallback( GPConnection *con, GPRecvBuddyStatusArg *arg );
 
-	Bool isConnecting( void ) { return m_isConnecting; }
-	Bool isConnected( void ) { return m_isConnected; }
+	bool isConnecting( void ) { return m_isConnecting; }
+	bool isConnected( void ) { return m_isConnected; }
 
 	GPProfile getLocalProfileID( void ) { return m_profileID; }
 
 private:
-	Bool m_isNewAccount;
-	Bool m_isConnecting;
-	Bool m_isConnected;
+	bool m_isNewAccount;
+	bool m_isConnecting;
+	bool m_isConnected;
 	GPProfile m_profileID;
 	Int m_lastErrorCode;
-	Bool m_isdeleting;
+	bool m_isdeleting;
 	std::string m_nick, m_email, m_pass;
 };
 
@@ -193,17 +193,17 @@ void GameSpyBuddyMessageQueue::endThread( void )
 	m_thread = NULL;
 }
 
-Bool GameSpyBuddyMessageQueue::isThreadRunning( void )
+bool GameSpyBuddyMessageQueue::isThreadRunning( void )
 {
 	return (m_thread) ? m_thread->Is_Running() : false;
 }
 
-Bool GameSpyBuddyMessageQueue::isConnected( void )
+bool GameSpyBuddyMessageQueue::isConnected( void )
 {
 	return (m_thread) ? m_thread->isConnected() : false;
 }
 
-Bool GameSpyBuddyMessageQueue::isConnecting( void )
+bool GameSpyBuddyMessageQueue::isConnecting( void )
 {
 	return (m_thread) ? m_thread->isConnecting() : false;
 }
@@ -217,7 +217,7 @@ void GameSpyBuddyMessageQueue::addRequest( const BuddyRequest& req )
 	m_requests.push(req);
 }
 
-Bool GameSpyBuddyMessageQueue::getRequest( BuddyRequest& req )
+bool GameSpyBuddyMessageQueue::getRequest( BuddyRequest& req )
 {
 	MutexClass::LockClass m(m_requestMutex, 0);
 	if (m.Failed())
@@ -239,7 +239,7 @@ void GameSpyBuddyMessageQueue::addResponse( const BuddyResponse& resp )
 	m_responses.push(resp);
 }
 
-Bool GameSpyBuddyMessageQueue::getResponse( BuddyResponse& resp )
+bool GameSpyBuddyMessageQueue::getResponse( BuddyResponse& resp )
 {
 	MutexClass::LockClass m(m_responseMutex, 0);
 	if (m.Failed())

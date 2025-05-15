@@ -33,15 +33,15 @@
 class GameWindow;
 class GameInfo;
 
-void ShowUnderlyingGUIElements( Bool show, const char *layoutFilename, const char *parentName,
+void ShowUnderlyingGUIElements( bool show, const char *layoutFilename, const char *parentName,
 															 const char **gadgetsToHide, const char **perPlayerGadgetsToHide );
 
-void PopulateColorComboBox(Int comboBox, GameWindow *comboArray[], GameInfo *myGame, Bool isObserver = FALSE);
-void PopulatePlayerTemplateComboBox(Int comboBox, GameWindow *comboArray[], GameInfo *myGame, Bool allowObservers);
-void PopulateTeamComboBox(Int comboBox, GameWindow *comboArray[], GameInfo *myGame, Bool isObserver = FALSE);
+void PopulateColorComboBox(Int comboBox, GameWindow *comboArray[], GameInfo *myGame, bool isObserver = FALSE);
+void PopulatePlayerTemplateComboBox(Int comboBox, GameWindow *comboArray[], GameInfo *myGame, bool allowObservers);
+void PopulateTeamComboBox(Int comboBox, GameWindow *comboArray[], GameInfo *myGame, bool isObserver = FALSE);
 
-void EnableSlotListUpdates( Bool val );
-Bool AreSlotListUpdatesEnabled( void );
+void EnableSlotListUpdates( bool val );
+bool AreSlotListUpdatesEnabled( void );
 
 void UpdateSlotList( GameInfo *myGame, GameWindow *comboPlayer[],
 										GameWindow *comboColor[], GameWindow *comboPlayerTemplate[],

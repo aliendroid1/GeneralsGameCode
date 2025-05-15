@@ -83,10 +83,10 @@ public:
 	// Containment ==================================================================================
 	//===============================================================================================
 
-	virtual Bool isGarrisonable() const = 0;
-	virtual Bool isSpecialZeroSlotContainer() const = 0;
-	virtual Bool isHealContain() const = 0;
-	virtual Bool isImmuneToClearBuildingAttacks() const = 0;
+	virtual bool isGarrisonable() const = 0;
+	virtual bool isSpecialZeroSlotContainer() const = 0;
+	virtual bool isHealContain() const = 0;
+	virtual bool isImmuneToClearBuildingAttacks() const = 0;
 
 	
 	///< if my object gets selected, then my visible passengers should, too
@@ -104,7 +104,7 @@ public:
 	virtual void onObjectWantsToEnterOrExit(Object* obj, ObjectEnterExitType wants) = 0;
 
 	// returns true iff there are objects currently waiting to enter.
-	virtual Bool hasObjectsWantingToEnterOrExit() const = 0;
+	virtual bool hasObjectsWantingToEnterOrExit() const = 0;
 
 	/**
 		return the player that *appears* to control this unit, given an observing player.
@@ -138,39 +138,39 @@ public:
 		can this container contain this kind of object? 
 		and, if checkCapacity is TRUE, does this container have enough space left to hold the given unit?
 	*/
-	virtual Bool isValidContainerFor(const Object* obj, Bool checkCapacity) const = 0;
+	virtual bool isValidContainerFor(const Object* obj, bool checkCapacity) const = 0;
 	virtual void addToContain( Object *obj ) = 0;						///< add 'obj' to contain list
 	virtual void addToContainList( Object *obj ) = 0;		///< The part of AddToContain that inheritors can override (Can't do whole thing because of all the private stuff involved)
-	virtual void removeFromContain( Object *obj, Bool exposeStealthUnits = FALSE ) = 0;			///< remove 'obj' from contain list
-	virtual void removeAllContained( Bool exposeStealthUnits = FALSE ) = 0;									///< remove all objects on contain list
-	virtual Bool isEnclosingContainerFor( const Object *obj ) const = 0;	///< Does this type of Contain Visibly enclose its contents?
-	virtual Bool isPassengerAllowedToFire() const = 0;	///< Hey, can I shoot out of this container?
+	virtual void removeFromContain( Object *obj, bool exposeStealthUnits = FALSE ) = 0;			///< remove 'obj' from contain list
+	virtual void removeAllContained( bool exposeStealthUnits = FALSE ) = 0;									///< remove all objects on contain list
+	virtual bool isEnclosingContainerFor( const Object *obj ) const = 0;	///< Does this type of Contain Visibly enclose its contents?
+	virtual bool isPassengerAllowedToFire() const = 0;	///< Hey, can I shoot out of this container?
 	virtual void setOverrideDestination( const Coord3D * ) = 0; ///< Instead of falling peacefully towards a clear spot, I will now aim here
-	virtual Bool isDisplayedOnControlBar() const = 0;///< Does this container display its contents on the ControlBar?
+	virtual bool isDisplayedOnControlBar() const = 0;///< Does this container display its contents on the ControlBar?
 	virtual Int getExtraSlotsInUse( void ) = 0;
-	virtual Bool isKickOutOnCapture() = 0;///< Does this contain module kick people out when captured?
+	virtual bool isKickOutOnCapture() = 0;///< Does this contain module kick people out when captured?
 
 	// list access
-	virtual void iterateContained( ContainIterateFunc func, void *userData, Bool reverse ) = 0;		///< iterate the contain list
+	virtual void iterateContained( ContainIterateFunc func, void *userData, bool reverse ) = 0;		///< iterate the contain list
 	virtual UnsignedInt getContainCount() const = 0;											///< contained count
 	virtual const ContainedItemsList* getContainedItemsList() const = 0;
 	virtual const Object *friend_getRider() const = 0; ///< Damn.  The draw order dependency bug for riders means that our draw module needs to cheat to get around it.
 	virtual Real getContainedItemsMass() const = 0;
 	virtual UnsignedInt getStealthUnitsContained() const = 0;
 	
-	virtual Bool calcBestGarrisonPosition( Coord3D *sourcePos, const Coord3D *targetPos ) = 0;
-	virtual Bool attemptBestFirePointPosition( Object *source, Weapon *weapon, Object *victim ) = 0;
-	virtual Bool attemptBestFirePointPosition( Object *source, Weapon *weapon, const Coord3D *targetPos ) = 0;
+	virtual bool calcBestGarrisonPosition( Coord3D *sourcePos, const Coord3D *targetPos ) = 0;
+	virtual bool attemptBestFirePointPosition( Object *source, Weapon *weapon, Object *victim ) = 0;
+	virtual bool attemptBestFirePointPosition( Object *source, Weapon *weapon, const Coord3D *targetPos ) = 0;
 
 	// Player Occupancy.
 	virtual PlayerMaskType getPlayerWhoEntered(void) const = 0;
 
 	virtual void processDamageToContained() = 0; ///< Do our % damage to units now.
 
-	virtual void enableLoadSounds( Bool enable ) = 0;
+	virtual void enableLoadSounds( bool enable ) = 0;
 
 	// this exists really just so someone can override it to prevent pip showings...
-	virtual Bool getContainerPipsToShow(Int& numTotal, Int& numFull)
+	virtual bool getContainerPipsToShow(Int& numTotal, Int& numFull)
 	{
 		numTotal = getContainMax();
 		numFull = getContainCount() + getExtraSlotsInUse();

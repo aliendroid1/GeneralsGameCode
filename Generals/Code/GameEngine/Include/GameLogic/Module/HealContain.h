@@ -65,11 +65,11 @@ public:
 	// virtual destructor prototype provided by memory pool declaration
 
 	virtual UpdateSleepTime update();												///< called once per frame
-	virtual Bool isHealContain() const { return true; } ///< true when container only contains units while healing (not a transport!)
+	virtual bool isHealContain() const { return true; } ///< true when container only contains units while healing (not a transport!)
 
 protected:
 
-	Bool doHeal( Object *obj, UnsignedInt framesForFullHeal );		///< do the heal on an object
+	bool doHeal( Object *obj, UnsignedInt framesForFullHeal );		///< do the heal on an object
 
 };
 

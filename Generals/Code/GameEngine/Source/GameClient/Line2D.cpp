@@ -54,7 +54,7 @@ const static Coord2D reallyFarPoint = { 1000000.0, 1000000.0 };
 	*				FALSE - Line is not visible
 	*/
 //-------------------------------------------------------------------------------------------------
-Bool ClipLine2D( ICoord2D *p1, ICoord2D *p2, ICoord2D *c1, ICoord2D *c2,
+bool ClipLine2D( ICoord2D *p1, ICoord2D *p2, ICoord2D *c1, ICoord2D *c2,
 								 IRegion2D *clipRegion )
 {
 	Int x1, y1, x2, y2;
@@ -230,7 +230,7 @@ Bool ClipLine2D( ICoord2D *p1, ICoord2D *p2, ICoord2D *c1, ICoord2D *c2,
 // This solution uses the 
 // http://www.faqs.org/faqs/graphics/algorithms-faq/ 
 // Subject 1.03
-Bool IntersectLine2D( const Coord2D *a, const Coord2D *b, 
+bool IntersectLine2D( const Coord2D *a, const Coord2D *b, 
 										   const Coord2D *c, const Coord2D *d, 
 											 Coord2D *intersection)
 {
@@ -265,7 +265,7 @@ Bool IntersectLine2D( const Coord2D *a, const Coord2D *b,
 
 // determines whether a point lies within a rectangle. Doesnt' determine whether the shape is
 // actually a rectangle or not.
-Bool PointInsideRect2D(const Coord2D *bl, const Coord2D *tl, const Coord2D *br, const Coord2D *tr, 
+bool PointInsideRect2D(const Coord2D *bl, const Coord2D *tl, const Coord2D *br, const Coord2D *tr, 
 											 const Coord2D *inputPoint)
 {
 	if (!(bl && br && tl && tr && inputPoint)) {
@@ -285,7 +285,7 @@ Bool PointInsideRect2D(const Coord2D *bl, const Coord2D *tl, const Coord2D *br, 
 }
 
 // convenience. Just prunes out the Z coordinate for a call to PointInsideRect2D
-Bool PointInsideRect3D(const Coord3D *bl, const Coord3D *tl, const Coord3D *br, const Coord3D *tr,
+bool PointInsideRect3D(const Coord3D *bl, const Coord3D *tl, const Coord3D *br, const Coord3D *tr,
 											 const Coord3D *inputPoint)
 {
 	Coord2D bl2d, tl2d, br2d, tr2d, pt;
@@ -306,7 +306,7 @@ Bool PointInsideRect3D(const Coord3D *bl, const Coord3D *tl, const Coord3D *br, 
 
 
 // This function uses even-odd winding to determine whether a point is inside an area.
-Bool PointInsideArea2D(const Coord2D *ptToTest, const Coord2D *area, const Int numPointsInArea)
+bool PointInsideArea2D(const Coord2D *ptToTest, const Coord2D *area, const Int numPointsInArea)
 {
 	int numIntersections = 0;
 	for (int i = 0; i < numPointsInArea; ++i) {
@@ -318,7 +318,7 @@ Bool PointInsideArea2D(const Coord2D *ptToTest, const Coord2D *area, const Int n
 }
 
 // This function uses even-odd winding to determine whether a point is inside an area.
-Bool PointInsideArea2D( const Coord3D *ptToTest, const Coord3D *area, Int numPointsInArea)
+bool PointInsideArea2D( const Coord3D *ptToTest, const Coord3D *area, Int numPointsInArea)
 {
 	int numIntersections = 0;
 	Coord2D pt2D, area2D1, area2D2;
@@ -338,7 +338,7 @@ Bool PointInsideArea2D( const Coord3D *ptToTest, const Coord3D *area, Int numPoi
 }
 
 ///< Checks if a point is inside a perfect rectangle (top left and bottom right)
-Bool Coord3DInsideRect2D( const Coord3D *inputPoint, const Coord2D *tl, const Coord2D *br )
+bool Coord3DInsideRect2D( const Coord3D *inputPoint, const Coord2D *tl, const Coord2D *br )
 {
 	if( inputPoint->x >= tl->x && inputPoint->x <= br->x )
 	{

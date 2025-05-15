@@ -44,7 +44,7 @@ class DeliverPayloadStateMachine : public StateMachine
 public:
 	DeliverPayloadStateMachine( Object *owner );
 
-	static Bool isOffMap( State *thisState, void* userData );
+	static bool isOffMap( State *thisState, void* userData );
 
 protected:
 	// snapshot interface
@@ -92,7 +92,7 @@ protected:
 
 private:
 	UnsignedInt m_dropDelayLeft;
-	Bool m_didOpen;
+	bool m_didOpen;
 };
 EMPTY_DTOR(DeliveringState)
 
@@ -326,7 +326,7 @@ public:
 	const Coord3D* getTargetPos() const { return &m_targetPos; }
 	const Coord3D* getMoveToPos() const { return &m_moveToPos; }
 	UnsignedInt getDoorDelay() const { return getDeliverPayloadAIUpdateModuleData()->m_doorDelay; }
-	Bool isDeliveringPayload() const { return m_deliverPayloadStateMachine != NULL; }
+	bool isDeliveringPayload() const { return m_deliverPayloadStateMachine != NULL; }
 	const ThingTemplate* getPutInContainerTemplateViaModuleData() const;
 
 	Real getAllowedDistanceToTarget() const { return m_data.m_distToTarget; }
@@ -335,12 +335,12 @@ public:
 	UnsignedInt getDropDelay() const { return m_data.m_dropDelay; }
 	const Coord3D& getDropOffset() const { return m_data.m_dropOffset; }
 	const Coord3D& getDropVariance() const { return m_data.m_dropVariance; }
-	Bool isFireWeapon() const { return m_data.m_fireWeapon; }
+	bool isFireWeapon() const { return m_data.m_fireWeapon; }
 	Int getVisibleItemsDelivered() const { return m_visibleItemsDelivered; }
 	void setVisibleItemsDelivered( Int num ) { m_visibleItemsDelivered = num; }
 
-	Bool isCloseEnoughToTarget();
-	Bool isOffMap() const;
+	bool isCloseEnoughToTarget();
+	bool isOffMap() const;
 	Real calcMinTurnRadius(Real* timeToTravelThatDist) const;
 
 	void deliverPayload( const Coord3D *moveToPos, const Coord3D *targetPos, const DeliverPayloadData *data );
@@ -358,7 +358,7 @@ public:
 protected:
 
 	virtual AIStateMachine* makeStateMachine();
-	virtual Bool isAllowedToRespondToAiCommands(const AICommandParms* parms) const;
+	virtual bool isAllowedToRespondToAiCommands(const AICommandParms* parms) const;
 
 	DeliverPayloadStateMachine*		m_deliverPayloadStateMachine;	///< Controls my special logic
 	Coord3D												m_targetPos;									///< Where I plan to deliver my little friends, if obj is null

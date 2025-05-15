@@ -271,7 +271,7 @@ public:
 	virtual void setRedrawMode(RedrawMode mode)	{m_currentRedrawMode=mode;} ///<set cursor drawing method.
 	virtual RedrawMode getRedrawMode(void) { return m_currentRedrawMode; } //get cursor drawing method
 	virtual void setVisibility(Bool visible) { m_visible = visible; } // set visibility for load screens, etc
-	inline Bool getVisibility(void) { return m_visible; } // get visibility state
+	inline bool getVisibility(void) { return m_visible; } // get visibility state
 	
 	void drawTooltip( void );					///< draw the tooltip text
 	void drawCursorText( void );			///< draw the mouse cursor text
@@ -280,12 +280,12 @@ public:
 
 	void mouseNotifyResolutionChange(void);
 
-	Bool isClick(const ICoord2D *anchor, const ICoord2D *dest, UnsignedInt previousMouseClick, UnsignedInt currentMouseClick);
+	bool isClick(const ICoord2D *anchor, const ICoord2D *dest, UnsignedInt previousMouseClick, UnsignedInt currentMouseClick);
 	
 	AsciiString m_tooltipFontName;		///< tooltip font
 	Int m_tooltipFontSize;						///< tooltip font
-	Bool m_tooltipFontIsBold;					///< tooltip font
-	Bool m_tooltipAnimateBackground;	///< animate the background with the text
+	bool m_tooltipFontIsBold;					///< tooltip font
+	bool m_tooltipAnimateBackground;	///< animate the background with the text
 	Int m_tooltipFillTime;						///< milliseconds to animate tooltip
 	Int m_tooltipDelayTime;						///< milliseconds to wait before showing tooltip
 	Real m_tooltipWidth;							///< default tooltip width in screen width %
@@ -296,10 +296,10 @@ public:
 	RGBAColorInt m_tooltipColorBackground;
 	RGBAColorInt m_tooltipColorBorder;
 	RedrawMode	m_currentRedrawMode;	///< mouse cursor drawing method
-	Bool m_useTooltipAltTextColor;		///< draw tooltip text with house colors?
-	Bool m_useTooltipAltBackColor;		///< draw tooltip backgrounds with house colors?
-	Bool m_adjustTooltipAltColor;			///< adjust house colors (darker/brighter) for tooltips?
-	Bool m_orthoCamera;								///< use an ortho camera for 3D cursors?
+	bool m_useTooltipAltTextColor;		///< draw tooltip text with house colors?
+	bool m_useTooltipAltBackColor;		///< draw tooltip backgrounds with house colors?
+	bool m_adjustTooltipAltColor;			///< adjust house colors (darker/brighter) for tooltips?
+	bool m_orthoCamera;								///< use an ortho camera for 3D cursors?
 	Real m_orthoZoom;									///< uniform zoom to apply to 3D cursors when using ortho cameras
 	UnsignedInt m_dragTolerance;
 	UnsignedInt m_dragTolerance3D;
@@ -309,7 +309,7 @@ public:
 protected:
 
 	/// you must implement getting a buffered mouse event from you device here
-	virtual UnsignedByte getMouseEvent( MouseIO *result, Bool flush ) = 0;
+	virtual UnsignedByte getMouseEvent( MouseIO *result, bool flush ) = 0;
 
 	//-----------------------------------------------------------------------------------------------
 
@@ -324,13 +324,13 @@ protected:
 
 	UnsignedByte m_numButtons;  ///< number of buttons on this mouse
 	UnsignedByte m_numAxes;			///< number of axes this mouse has
-	Bool m_forceFeedback;				///< set to TRUE if mouse supprots force feedback
+	bool m_forceFeedback;				///< set to TRUE if mouse supprots force feedback
 
 	UnicodeString m_tooltipString;	///< tooltip text
 	DisplayString *m_tooltipDisplayString; ///< tooltipDisplayString
-	Bool m_displayTooltip;  /**< when the mouse has been still long enough this will be
+	bool m_displayTooltip;  /**< when the mouse has been still long enough this will be
 													set to TRUE indicating it's Ok to fire off a tooltip */
-	Bool m_isTooltipEmpty;
+	bool m_isTooltipEmpty;
 
 	enum { NUM_MOUSE_EVENTS = 256 };
 	MouseIO m_mouseEvents[ NUM_MOUSE_EVENTS ];  ///< for event list
@@ -345,12 +345,12 @@ protected:
 	UnsignedInt m_inputFrame;				///< frame input was gathered on
 	UnsignedInt m_deadInputFrame;		///< Frame which last input occured
 
-	Bool m_inputMovesAbsolute;			/**< if TRUE, when processing mouse position
+	bool m_inputMovesAbsolute;			/**< if TRUE, when processing mouse position
 																	chanages the movement will be done treating
 																	the	coords as ABSOLUTE positions and NOT
 																	relative coordinate changes */
 
-	Bool m_visible;	// visibility status
+	bool m_visible;	// visibility status
 	
 	MouseCursor m_currentCursor;		///< current mouse cursor
 

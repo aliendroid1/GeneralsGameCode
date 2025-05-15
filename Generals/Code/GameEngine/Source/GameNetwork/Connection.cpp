@@ -163,7 +163,7 @@ void Connection::sendNetCommandMsg(NetCommandMsg *msg, UnsignedByte relay) {
 
 		NetCommandRef *tempref = NEW_NETCOMMANDREF(msg);
 
-		Bool msgFits = packet->addCommand(tempref);
+		bool msgFits = packet->addCommand(tempref);
 		tempref->deleteInstance(); // delete the temporary reference.
 		tempref = NULL;
 
@@ -241,7 +241,7 @@ void Connection::clearCommandsExceptFrom( Int playerIndex )
 	}
 }
 
-Bool Connection::isQueueEmpty() {
+bool Connection::isQueueEmpty() {
 	if (m_netCommandList->getFirstMessage() == NULL) {
 		return TRUE;
 	}
@@ -262,7 +262,7 @@ void Connection::setQuitting( void )
 UnsignedInt Connection::doSend() {
 	Int numpackets = 0;
 	time_t curtime = timeGetTime();
-	Bool couldQueue = TRUE;
+	bool couldQueue = TRUE;
 
 	// Do this check first, since it's an important fail-safe
 	if (m_isQuitting && curtime > m_quitTime + MaxQuitFlushTime)
@@ -285,7 +285,7 @@ UnsignedInt Connection::doSend() {
 		packet->init();
 		packet->setAddress(m_user->GetIPAddr(), m_user->GetPort());
 
-		Bool notDone = TRUE;
+		bool notDone = TRUE;
 
 		// add the command messages until either we run out of messages or the packet is full.
 		while ((msg != NULL) && notDone) {
@@ -372,7 +372,7 @@ NetCommandRef * Connection::processAck(UnsignedShort commandID, UnsignedByte ori
 	}
 
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
-	Bool doDebug = FALSE;
+	bool doDebug = FALSE;
 	if (temp->getCommand()->getNetCommandType() == NETCOMMANDTYPE_DISCONNECTFRAME) {
 		doDebug = TRUE;
 	}

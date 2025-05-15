@@ -80,8 +80,8 @@ public:
 	virtual UpdateSleepTime update();
 
 protected:
-	Bool m_enemyNear;
-	Bool m_allyNear;
+	bool m_enemyNear;
+	bool m_allyNear;
 	Real m_maxMinorRadius;
 
 	UnsignedInt m_enemyScanDelay;

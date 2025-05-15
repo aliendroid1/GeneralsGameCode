@@ -68,7 +68,7 @@ extern void GadgetComboBoxSetText( GameWindow *comboBox, UnicodeString text );
 extern Int  GadgetComboBoxAddEntry( GameWindow *comboBox, UnicodeString text, Color color );
 extern void GadgetComboBoxReset( GameWindow *comboBox );
 
-extern void GadgetComboBoxSetSelectedPos( GameWindow *comboBox, Int selectedIndex, Bool dontHide = FALSE );
+extern void GadgetComboBoxSetSelectedPos( GameWindow *comboBox, Int selectedIndex, bool dontHide = FALSE );
 extern void GadgetComboBoxGetSelectedPos( GameWindow *comboBox, Int *selectedIndex );
 extern void GadgetComboBoxSetItemData( GameWindow *comboBox, Int index, void *data );
 extern void *GadgetComboBoxGetItemData( GameWindow *comboBox, Int index );
@@ -76,11 +76,11 @@ extern Int  GadgetComboBoxGetLength( GameWindow *comboBox );
 
 extern void GadgetComboBoxHideList( GameWindow *comboBox );
 // Functions that set the ComboBoxData Paramaters
-extern void GadgetComboBoxSetAsciiOnly(GameWindow *comboBox, Bool isAsciiOnly  );
-extern void GadgetComboBoxSetLettersAndNumbersOnly(GameWindow *comboBox, Bool isLettersAndNumbersOnly  );
+extern void GadgetComboBoxSetAsciiOnly(GameWindow *comboBox, bool isAsciiOnly  );
+extern void GadgetComboBoxSetLettersAndNumbersOnly(GameWindow *comboBox, bool isLettersAndNumbersOnly  );
 extern void GadgetComboBoxSetMaxChars( GameWindow *comboBox, Int maxChars );
 extern void GadgetComboBoxSetMaxDisplay( GameWindow *comboBox, Int maxDisplay );
-extern void GadgetComboBoxSetIsEditable(GameWindow *comboBox, Bool isEditable  );
+extern void GadgetComboBoxSetIsEditable(GameWindow *comboBox, bool isEditable  );
 
 //setup all the Font Colors
 extern void GadgetComboBoxSetEnabledTextColors( GameWindow *comboBox,Color color, Color borderColor );

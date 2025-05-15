@@ -421,7 +421,7 @@ UpdateSleepTime HelicopterSlowDeathBehavior::update( void )
 
 
 
-	Bool hitATree = FALSE;
+	bool hitATree = FALSE;
 	// Here we want to make sure we crash if we collide with a tree on the way down
 	PhysicsBehavior *phys = copter->getPhysics();
 	if ( m_hitGroundFrame == 0 && phys )

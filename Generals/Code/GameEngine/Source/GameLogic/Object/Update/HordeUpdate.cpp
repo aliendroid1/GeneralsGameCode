@@ -83,7 +83,7 @@ public:
 	virtual const char* debugGetName() { return "PartitionFilterHordeMember"; }
 #endif
 
-	virtual Bool allow(Object *objOther)
+	virtual bool allow(Object *objOther)
 	{
 		// must be exact same type as us (well, maybe)
 		if (m_data->m_exactMatch && m_obj->getTemplate() != objOther->getTemplate())
@@ -184,9 +184,9 @@ HordeUpdate::~HordeUpdate()
 	* Thank You for reading, MLorenzen
 */
 // ------------------------------------------------------------------------------------------------
-void HordeUpdate::joinOrLeaveHorde(SimpleObjectIterator *iter, Bool join)
+void HordeUpdate::joinOrLeaveHorde(SimpleObjectIterator *iter, bool join)
 {
-	Bool prevInHorde = m_inHorde;
+	bool prevInHorde = m_inHorde;
 
 	m_inHorde = join;
 
@@ -259,12 +259,12 @@ UpdateSleepTime HordeUpdate::update( void )
 
 	const HordeUpdateModuleData *md = getHordeUpdateModuleData();
 
-	Bool wasInHorde = m_inHorde;
+	bool wasInHorde = m_inHorde;
 
 	// This is a sticky situation, where refreshing the model state (like from default to damaged, for example)
 	// will rebuild the terraindecal and set its size to the default size.... since Vehicles have a special size,
 	// we want to keep it fresh, here, but not do the horde-ing test every frame...
-	Bool isInfantry = ( obj->isKindOf(KINDOF_INFANTRY) );
+	bool isInfantry = ( obj->isKindOf(KINDOF_INFANTRY) );
 	if ( isInfantry || (TheGameLogic->getFrame() > m_lastHordeRefreshFrame + md->m_updateRate) )
 	{
 		m_lastHordeRefreshFrame = TheGameLogic->getFrame();

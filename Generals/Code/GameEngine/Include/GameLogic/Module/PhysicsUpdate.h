@@ -93,11 +93,11 @@ public:
 
 	// CollideModuleInterface
 	virtual void onCollide( Object *other, const Coord3D *loc, const Coord3D *normal );
-	virtual Bool wouldLikeToCollideWith(const Object* other) const { return false; }
-	virtual Bool isCarBombCrateCollide() const { return false; }
-	virtual Bool isHijackedVehicleCrateCollide() const { return false; }
-	virtual Bool isRailroad() const { return false;}
-	virtual Bool isSalvageCrateCollide() const { return false; }
+	virtual bool wouldLikeToCollideWith(const Object* other) const { return false; }
+	virtual bool isCarBombCrateCollide() const { return false; }
+	virtual bool isHijackedVehicleCrateCollide() const { return false; }
+	virtual bool isRailroad() const { return false;}
+	virtual bool isSalvageCrateCollide() const { return false; }
 
 	// UpdateModuleInterface
 	virtual UpdateSleepTime update();
@@ -139,11 +139,11 @@ public:
 	ObjectID getCurrentOverlap() const;					///< return object(s) being overlapped
 	ObjectID getPreviousOverlap() const;					///< return object(s) that were overlapped last frame
 	ObjectID getLastCollidee() const;					///< return object that was last collided with... can be quite old
-	Bool isCurrentlyOverlapped(Object *obj) const;
-	Bool wasPreviouslyOverlapped(Object *obj) const;
+	bool isCurrentlyOverlapped(Object *obj) const;
+	bool wasPreviouslyOverlapped(Object *obj) const;
 	void addOverlap(Object *obj);
 
-	Bool isMotive() const;
+	bool isMotive() const;
 
 	PhysicsTurningType getTurning(void) const { return m_turning; }		///< 0 = not turning, -1 = turn negative, 1 = turn positive.
 	void setTurning(PhysicsTurningType turning) { m_turning = turning; }
@@ -174,10 +174,10 @@ public:
 	void setAllowAirborneFriction(Bool allow) { setFlag(APPLY_FRICTION2D_WHEN_AIRBORNE, allow); }
 	void setImmuneToFallingDamage(Bool allow) { setFlag(IMMUNE_TO_FALLING_DAMAGE, allow); }
 
-	Bool getAllowToFall() const { return getFlag(ALLOW_TO_FALL); }
+	bool getAllowToFall() const { return getFlag(ALLOW_TO_FALL); }
 
 	void setIsInFreeFall(Bool allow) { setFlag(IS_IN_FREEFALL, allow); }
-	Bool getIsInFreeFall() const { return getFlag(IS_IN_FREEFALL); }
+	bool getIsInFreeFall() const { return getFlag(IS_IN_FREEFALL); }
 
 	void setExtraBounciness(Real b) { m_extraBounciness = b; }
 	void setExtraFriction(Real b) { m_extraFriction = b; }
@@ -196,9 +196,9 @@ public:
 	void resetDynamicPhysics();
 
 	void setIgnoreCollisionsWith(const Object* obj);
-	Bool isIgnoringCollisionsWith(ObjectID id) const;
+	bool isIgnoringCollisionsWith(ObjectID id) const;
 
-	inline Bool getAllowCollideForce() const { return getFlag(ALLOW_COLLIDE_FORCE); }
+	inline bool getAllowCollideForce() const { return getFlag(ALLOW_COLLIDE_FORCE); }
 
 protected:
 
@@ -218,13 +218,13 @@ protected:
 
 	void applyGravitationalForces();
 	void applyFrictionalForces();
-	Bool handleBounce(Real oldZ, Real newZ, Real groundZ, Coord3D* bounceForce);
+	bool handleBounce(Real oldZ, Real newZ, Real groundZ, Coord3D* bounceForce);
 	void applyYPRDamping(Real factor);
 	UpdateSleepTime calcSleepTime() const;
 
 	void doBounceSound(const Coord3D& prevPos);
 
-	Bool checkForOverlapCollision(Object *other);
+	bool checkForOverlapCollision(Object *other);
 
 private:
 
@@ -269,8 +269,8 @@ private:
 	ProjectileUpdateInterface*	m_pui;
 	mutable Real								m_velMag;									///< magnitude of cur vel (recalced when m_vel changes)
 
-	inline void setFlag(PhysicsFlagsType f, Bool set) { if (set) m_flags |= f; else m_flags &= ~f; }
-	inline Bool getFlag(PhysicsFlagsType f) const { return (m_flags & f) != 0; }
+	inline void setFlag(PhysicsFlagsType f, bool set) { if (set) m_flags |= f; else m_flags &= ~f; }
+	inline bool getFlag(PhysicsFlagsType f) const { return (m_flags & f) != 0; }
 
 
 };

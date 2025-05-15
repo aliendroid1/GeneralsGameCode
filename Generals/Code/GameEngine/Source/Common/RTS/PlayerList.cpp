@@ -139,7 +139,7 @@ void PlayerList::newGame()
 	reset();
 
 	// ok, now create the rest of players we need.
-	Bool setLocal = false;
+	bool setLocal = false;
 	for( i = 0; i < TheSidesList->getNumSides(); i++)
 	{
 		Dict *d = TheSidesList->getSideInfo(i)->getDict();
@@ -152,7 +152,7 @@ void PlayerList::newGame()
 		p->initFromDict(d);
 
 		// Multiplayer override
-		Bool exists;	// throwaway, since we don't care if it exists
+		bool exists;	// throwaway, since we don't care if it exists
 		if (d->getBool(TheKey_multiplayerIsLocal, &exists))
 		{
 			DEBUG_LOG(("Player %s is multiplayer local\n", pname.str()));

@@ -55,7 +55,7 @@
 
 //Since there can't be more than 1 mouse, might as well keep these static.
 static CriticalSectionClass mutex;
-static Bool isThread;
+static bool isThread;
 static TextureClass *cursorTextures[Mouse::NUM_MOUSE_CURSORS][MAX_2D_CURSOR_ANIM_FRAMES];	///<Textures for each cursor type
 static const Image *cursorImages[Mouse::NUM_MOUSE_CURSORS];			///<Images for use with the RM_POLYGON method.
 static RenderObjClass *cursorModels[Mouse::NUM_MOUSE_CURSORS];	///< W3D models for each cursor type
@@ -159,7 +159,7 @@ void W3DMouse::freePolygonAssets(void)
 }
 
 /**Release the textures required to display the selected cursor*/
-Bool W3DMouse::releaseD3DCursorTextures(MouseCursor cursor)
+bool W3DMouse::releaseD3DCursorTextures(MouseCursor cursor)
 {
 	if (cursor == NONE || !cursorTextures[cursor][0])
 		return TRUE;	//no texture for this cursor or texture never loaded
@@ -174,7 +174,7 @@ Bool W3DMouse::releaseD3DCursorTextures(MouseCursor cursor)
 }
 
 /**Load the textures required to display the selected cursor*/
-Bool W3DMouse::loadD3DCursorTextures(MouseCursor cursor)
+bool W3DMouse::loadD3DCursorTextures(MouseCursor cursor)
 {
 	if (cursor == NONE || cursorTextures[cursor][0])
 		return TRUE;	//no texture for this cursor or texture already loaded
@@ -393,7 +393,7 @@ void W3DMouse::setCursor( MouseCursor cursor )
 		SetCursor(NULL);	//Kill Windows Cursor
 
 		LPDIRECT3DDEVICE8 m_pDev=DX8Wrapper::_Get_D3D_Device8();
-		Bool doImageChange=FALSE;
+		bool doImageChange=FALSE;
 
 		if (m_pDev != NULL)
 		{

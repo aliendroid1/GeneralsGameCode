@@ -121,7 +121,7 @@ static void mapListTooltipFunc(GameWindow *window,
 void positionStartSpots( AsciiString mapName, GameWindow *buttonMapStartPositions[], GameWindow *mapWindow);
 void skirmishPositionStartSpots( void );
 void skirmishUpdateSlotList( void );
-void showSkirmishGameOptionsUnderlyingGUIElements( Bool show )
+void showSkirmishGameOptionsUnderlyingGUIElements( bool show )
 {                          
 	AsciiString parentName( "SkirmishGameOptionsMenu.wnd:SkirmishGameOptionsMenuParent" );
 	NameKeyType parentID = TheNameKeyGenerator->nameToKey( parentName );
@@ -252,7 +252,7 @@ void SkirmishMapSelectMenuInit( WindowLayout *layout, void *userData )
 	TheWindowManager->winSetFocus( parent );
 
 	LANPreferences pref;
-	Bool usesSystemMapDir = pref.usesSystemMapDir();
+	bool usesSystemMapDir = pref.usesSystemMapDir();
 
 	const MapMetaData *mmd = TheMapCache->findMap(TheSkirmishGameInfo->getMap());
 	if (mmd)

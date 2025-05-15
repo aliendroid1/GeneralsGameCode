@@ -93,7 +93,7 @@
 
 
 #define MAX_PATH_SUBJECTS 64
-static Bool theBuildPlan = false;
+static bool theBuildPlan = false;
 static Object *thePlanSubject[ MAX_PATH_SUBJECTS ];
 static int thePlanSubjectCount = 0;
 //static WindowLayout *background = NULL;
@@ -135,7 +135,7 @@ static void doMoveTo( Object *obj, const Coord3D *pos )
 // ------------------------------------------------------------------------------------------------
 static void doSetRallyPoint( Object *obj, const Coord3D& pos )
 {
-	Bool isLocalPlayer = obj->isLocallyControlled();
+	bool isLocalPlayer = obj->isLocallyControlled();
 
 	//
 	// we must be able to find a path from the object to the point they have chosen, cause setting
@@ -243,7 +243,7 @@ void GameLogic::closeWindows( void )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-void GameLogic::clearGameData( Bool showScoreScreen )
+void GameLogic::clearGameData( bool showScoreScreen )
 {
 	if( !isInGame() )
 	{
@@ -261,7 +261,7 @@ void GameLogic::clearGameData( Bool showScoreScreen )
 
 	TheScriptActions->closeWindows(FALSE); // Close victory or defeat windows.
 
-	Bool shellGame = FALSE;
+	bool shellGame = FALSE;
 	if ((!isInShellGame() || !isInGame()) && showScoreScreen)
 	{
 		shellGame = TRUE;
@@ -944,7 +944,7 @@ void GameLogic::logicMessageDispatcher( GameMessage *msg, void *userData )
 			if( currentlySelectedGroup )
 			{
 				Object* objWeSurrenderedTo = TheGameLogic->findObjectByID( msg->getArgument( 0 )->objectID );
-				Bool surrender = msg->getArgument( 1 )->boolean;
+				bool surrender = msg->getArgument( 1 )->boolean;
 				currentlySelectedGroup->groupSurrender( objWeSurrenderedTo, surrender, CMD_FROM_PLAYER );
 			}
 			break;
@@ -1235,7 +1235,7 @@ void GameLogic::logicMessageDispatcher( GameMessage *msg, void *userData )
 				//      the new lock. In this case, the temp lock attempt will fail whenever
 				//      a permanent lock is in effect, thus fixing the ranger and scud and
 				//      allowing the tox tractor to work as well.
-				Bool forceAttackRequiresPrimaryWeapon = !currentlySelectedGroup->isIdle();
+				bool forceAttackRequiresPrimaryWeapon = !currentlySelectedGroup->isIdle();
 				if ( forceAttackRequiresPrimaryWeapon )
 				{
 					currentlySelectedGroup->setWeaponLockForGroup( PRIMARY_WEAPON, LOCKED_TEMPORARILY );
@@ -1505,7 +1505,7 @@ void GameLogic::logicMessageDispatcher( GameMessage *msg, void *userData )
 		case GameMessage::MSG_CREATE_SELECTED_GROUP_NO_SOUND:
 		case GameMessage::MSG_CREATE_SELECTED_GROUP:
 		{
-			Bool createNewGroup = msg->getArgument( 0 )->boolean;
+			bool createNewGroup = msg->getArgument( 0 )->boolean;
 			Player *player = ThePlayerList->getNthPlayer(msg->getPlayerIndex());
 
 			if (player == NULL) {
@@ -1513,7 +1513,7 @@ void GameLogic::logicMessageDispatcher( GameMessage *msg, void *userData )
 				break;
 			}
 
-			Bool firstObject = TRUE;
+			bool firstObject = TRUE;
 
 			for (Int i = 1; i < msg->getArgumentCount(); ++i) {
 				Object *obj = TheGameLogic->findObjectByID( msg->getArgument( i )->objectID );

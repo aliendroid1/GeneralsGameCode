@@ -86,12 +86,12 @@ private:
 	Int m_currentD3DFrame;	///< current frame actually sent to the hardware.
 	Int m_lastAnimTime;		///< ms at last animation update.
 	Real m_currentFMS;		///< frames per ms.
-	Bool m_drawing;			///< flag to indicate mouse cursor is currently in the act of drawing.
+	bool m_drawing;			///< flag to indicate mouse cursor is currently in the act of drawing.
 ///@todo: remove the textures if we only need surfaces
 	void initD3DAssets(void);		///< load textures for mouse cursors, etc.
 	void freeD3DAssets(void);		///< unload textures used by mouse cursors.
-	Bool loadD3DCursorTextures(MouseCursor cursor);	///<load the textures/animation for given cursor.
-	Bool releaseD3DCursorTextures(MouseCursor cursor);	///<release loaded textures for cursor.
+	bool loadD3DCursorTextures(MouseCursor cursor);	///<load the textures/animation for given cursor.
+	bool releaseD3DCursorTextures(MouseCursor cursor);	///<release loaded textures for cursor.
 
 	// W3D animated model cursor
 	CameraClass *m_camera;								///< our camera

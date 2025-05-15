@@ -80,14 +80,14 @@ extern Int  GadgetListBoxGetColumnWidth( GameWindow *listbox, Int column );
 extern void GadgetListBoxSetFont( GameWindow *listbox, GameFont *font );
 extern UnicodeString GadgetListBoxGetText( GameWindow *listbox, Int row, Int column = 0);
 extern UnicodeString GadgetListBoxGetTextAndColor( GameWindow *listbox, Color *color, Int row, Int column = 0);
-extern Int GadgetListBoxAddEntryText( GameWindow *listbox,	UnicodeString text,	Color color, Int row, Int column = -1, Bool overwrite = TRUE);
+extern Int GadgetListBoxAddEntryText( GameWindow *listbox,	UnicodeString text,	Color color, Int row, Int column = -1, bool overwrite = TRUE);
 extern Int GadgetListBoxAddEntryImage( GameWindow *listbox, const Image *image,
 																			Int row, Int column = -1,
-																			Bool overwrite = TRUE, Color color = 0xFFFFFFFF );
+																			bool overwrite = TRUE, Color color = 0xFFFFFFFF );
 extern Int GadgetListBoxAddEntryImage( GameWindow *listbox, const Image *image,
 																			Int row, Int column,
 																			Int hight, Int width,
-																			Bool overwrite = TRUE, Color color = 0xFFFFFFFF );
+																			bool overwrite = TRUE, Color color = 0xFFFFFFFF );
 extern void GadgetListBoxSetSelected( GameWindow *listbox, Int selectIndex );
 extern void GadgetListBoxSetSelected( GameWindow *listbox, const Int *selectList, Int selectCount = 1 );
 extern void GadgetListBoxGetSelected( GameWindow *listbox, Int *selectList );
@@ -103,7 +103,7 @@ extern void GadgetListBoxSetBottomVisibleEntry( GameWindow *window, Int newPos )
 extern Int GadgetListBoxGetTopVisibleEntry( GameWindow *window );
 extern void GadgetListBoxSetTopVisibleEntry( GameWindow *window, Int newPos );
 
-extern void GadgetListBoxSetAudioFeedback( GameWindow *listbox, Bool enable );
+extern void GadgetListBoxSetAudioFeedback( GameWindow *listbox, bool enable );
 
 //
 // you can use this to set the colors for the list box all at once, note that

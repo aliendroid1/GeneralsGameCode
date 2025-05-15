@@ -341,7 +341,7 @@ void BoneFXUpdate::initTimes() {
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-inline Bool inList(Int value, Int count, const Int idxList[])
+inline bool inList(Int value, Int count, const Int idxList[])
 {
 	for (Int j = 0; j < count; ++j)
 	{
@@ -642,7 +642,7 @@ void BoneFXUpdate::xfer( Xfer *xfer )
 	xfer->xferUser( &m_curBodyState, sizeof( BodyDamageType ) );
 
 	// bones resolved
-	xfer->xferUser( m_bonesResolved, sizeof( Bool ) * BODYDAMAGETYPE_COUNT );
+	xfer->xferUser( m_bonesResolved, sizeof( bool ) * BODYDAMAGETYPE_COUNT );
 
 	// active
 	xfer->xferBool( &m_active );

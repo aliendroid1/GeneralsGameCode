@@ -106,7 +106,7 @@ void SubObjectsUpgrade::upgradeImplementation( )
 	if( draw )
 	{
 		std::vector<AsciiString>::const_iterator subObjectName;
-		Bool updateSubObjects = false;
+		bool updateSubObjects = false;
 
 		//Show these subobjects
 		for( subObjectName = data->m_showSubObjectNames.begin(); subObjectName != data->m_showSubObjectNames.end(); ++subObjectName )

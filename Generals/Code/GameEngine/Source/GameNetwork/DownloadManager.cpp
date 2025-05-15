@@ -91,12 +91,12 @@ HRESULT DownloadManager::update( void )
 	return m_download->PumpMessages();
 }
 
-HRESULT DownloadManager::downloadFile( AsciiString server, AsciiString username, AsciiString password, AsciiString file, AsciiString localfile, AsciiString regkey, Bool tryResume )
+HRESULT DownloadManager::downloadFile( AsciiString server, AsciiString username, AsciiString password, AsciiString file, AsciiString localfile, AsciiString regkey, bool tryResume )
 {
 	return m_download->DownloadFile( server.str(), username.str(), password.str(), file.str(), localfile.str(), regkey.str(), tryResume );
 }
 
-void DownloadManager::queueFileForDownload( AsciiString server, AsciiString username, AsciiString password, AsciiString file, AsciiString localfile, AsciiString regkey, Bool tryResume )
+void DownloadManager::queueFileForDownload( AsciiString server, AsciiString username, AsciiString password, AsciiString file, AsciiString localfile, AsciiString regkey, bool tryResume )
 {
 	QueuedDownload q;
 	q.file = file;

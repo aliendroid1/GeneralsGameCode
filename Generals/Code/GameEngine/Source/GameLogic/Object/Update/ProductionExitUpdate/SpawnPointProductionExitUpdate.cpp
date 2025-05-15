@@ -219,7 +219,7 @@ void SpawnPointProductionExitUpdate::xfer( Xfer *xfer )
 	// we can ignore all the data with the bone position arrays and spawn point counts
 	// because this module will load them lazily
 	//
-	//	Bool m_bonesInitialized;													///< To prevent creation bugs, only init the World coords when first asked for one
+	//	bool m_bonesInitialized;													///< To prevent creation bugs, only init the World coords when first asked for one
 	//	Int m_spawnPointCount;														///< How many in the array are actually live and valid
 	//	Coord3D m_worldCoordSpawnPoints[MAX_SPAWN_POINTS];///< Where my little friends will be created
 	//	Real m_worldAngleSpawnPoints[MAX_SPAWN_POINTS];		///< And what direction they should face

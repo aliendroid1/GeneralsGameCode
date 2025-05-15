@@ -94,7 +94,7 @@ public:
 	// virtual destructor prototype provided by memory pool declaration
 
  	virtual void aiDoCommand(const AICommandParms* parms);
-	virtual Bool isIdle() const;
+	virtual bool isIdle() const;
 	virtual UpdateSleepTime update();
 	virtual AssaultTransportAIInterface* getAssaultTransportAIInterface() { return this; }
 	virtual const AssaultTransportAIInterface* getAssaultTransportAIInterface() const { return this; }
@@ -103,11 +103,11 @@ public:
 	UpdateSleepTime calcSleepTime();
 
 	void reset();
-	Bool isMemberWounded( const Object *member ) const;	//Member requires medical attention?
-	Bool isMemberHealthy( const Object *member ) const; //Member has full health?
+	bool isMemberWounded( const Object *member ) const;	//Member requires medical attention?
+	bool isMemberHealthy( const Object *member ) const; //Member has full health?
 	void retrieveMembers();
 	void giveFinalOrders();
-  Bool isAttackPointless() const;
+  bool isAttackPointless() const;
 
 protected:
 

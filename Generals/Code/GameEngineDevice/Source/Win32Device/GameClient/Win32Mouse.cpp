@@ -56,7 +56,7 @@ HCURSOR cursorResources[Mouse::NUM_MOUSE_CURSORS][MAX_2D_CURSOR_DIRECTIONS];
 	* from the windows message meanings to our own internal mouse 
 	* structure */
 //-------------------------------------------------------------------------------------------------
-UnsignedByte Win32Mouse::getMouseEvent( MouseIO *result, Bool flush )
+UnsignedByte Win32Mouse::getMouseEvent( MouseIO *result, bool flush )
 {
 
 	// if there is nothing here there is no event data to do
@@ -390,7 +390,7 @@ void Win32Mouse::initCursorResources(void)
 					sprintf(resourcePath,"data\\cursors\\%s.ANI",m_cursorInfo[cursor].textureName.str());
 				
 				// check for a MOD cursor.
-				Bool loaded = FALSE;
+				bool loaded = FALSE;
 				if (TheGlobalData->m_modDir.isNotEmpty())
 				{
 					AsciiString fname;

@@ -104,7 +104,7 @@ public:
 	W3DTreeBuffer(void);
 	~W3DTreeBuffer(void);
 	/// Add a tree at location.  Name is the w3d model name.
-	void addTree(Coord3D location, Real scale, Real angle, AsciiString name, Bool visibleInMirror);
+	void addTree(Coord3D location, Real scale, Real angle, AsciiString name, bool visibleInMirror);
 	/// Empties the tree buffer.
 	void clearAllTrees(void);
 	/// Draws the trees.  Uses camera for culling.
@@ -113,7 +113,7 @@ public:
 	/// Normally sortKey gets calculated when a tree becomes visible.
 	void doFullUpdate(void) {m_updateAllKeys = true;};
 	void setIsTerrain(void) {m_isTerrainPass = true;}; ///< Terrain calls this to tell trees to draw.
-	Bool needToDraw(void) {return m_isTerrainPass;};
+	bool needToDraw(void) {return m_isTerrainPass;};
 protected:
 	enum { MAX_TREE_VERTEX=4000, 
 					MAX_TREE_INDEX=2*4000, 

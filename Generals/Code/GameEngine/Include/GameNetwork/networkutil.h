@@ -32,10 +32,10 @@
 
 UnsignedInt ResolveIP(AsciiString host);
 UnsignedShort GenerateNextCommandID();
-Bool DoesCommandRequireACommandID(NetCommandType type);
-Bool CommandRequiresAck(NetCommandMsg *msg);
-Bool CommandRequiresDirectSend(NetCommandMsg *msg);
-Bool IsCommandSynchronized(NetCommandType type);
+bool DoesCommandRequireACommandID(NetCommandType type);
+bool CommandRequiresAck(NetCommandMsg *msg);
+bool CommandRequiresDirectSend(NetCommandMsg *msg);
+bool IsCommandSynchronized(NetCommandType type);
 AsciiString GetAsciiNetCommandType(NetCommandType type);
 
 #ifdef DEBUG_LOGGING

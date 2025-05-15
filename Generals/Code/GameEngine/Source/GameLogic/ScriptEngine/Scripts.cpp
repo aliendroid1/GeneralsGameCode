@@ -525,7 +525,7 @@ void ScriptList::deleteGroup(ScriptGroup *pGrp)
 *	Input: DataChunkInput 
 *		
 */
-Bool ScriptList::ParseScriptsDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
+bool ScriptList::ParseScriptsDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 	Int i;
 	file.registerParser( AsciiString("ScriptList"), info->label, ScriptList::ParseScriptListDataChunk );
@@ -613,7 +613,7 @@ void ScriptList::WriteScriptListDataChunk(DataChunkOutput &chunkWriter)
 *	Input: DataChunkInput 
 *		
 */
-Bool ScriptList::ParseScriptListDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
+bool ScriptList::ParseScriptListDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 	TScriptListReadInfo *pInfo = (TScriptListReadInfo*)userData;
 	DEBUG_ASSERTCRASH(pInfo->numLists < MAX_PLAYER_COUNT, ("Too many."));
@@ -878,7 +878,7 @@ void ScriptGroup::WriteGroupDataChunk(DataChunkOutput &chunkWriter, ScriptGroup 
 *	Input: DataChunkInput 
 *		
 */
-Bool ScriptGroup::ParseGroupDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
+bool ScriptGroup::ParseGroupDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 	ScriptList *pList = (ScriptList *)userData;
 	ScriptGroup *pGroup = newInstance(ScriptGroup);
@@ -973,7 +973,7 @@ void Script::xfer( Xfer *xfer )
 	xfer->xferVersion( &version, currentVersion );
 
 	// active
-	Bool active = isActive();
+	bool active = isActive();
 	xfer->xferBool( &active );
 	setActive( active );
 
@@ -1289,7 +1289,7 @@ Script *Script::ParseScript(DataChunkInput &file, unsigned short version)
 *	Input: DataChunkInput 
 *		
 */
-Bool Script::ParseScriptFromListDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
+bool Script::ParseScriptFromListDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 	ScriptList *pList = (ScriptList *)userData;
 	Script *pScript = ParseScript(file, info->version);
@@ -1305,7 +1305,7 @@ Bool Script::ParseScriptFromListDataChunk(DataChunkInput &file, DataChunkInfo *i
 *	Input: DataChunkInput 
 *		
 */
-Bool Script::ParseScriptFromGroupDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
+bool Script::ParseScriptFromGroupDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 	ScriptGroup *pGroup = (ScriptGroup *)userData;
 	Script *pScript = ParseScript(file, info->version);
@@ -1455,7 +1455,7 @@ void OrCondition::WriteOrConditionDataChunk(DataChunkOutput &chunkWriter, OrCond
 *	Input: DataChunkInput 
 *		
 */
-Bool OrCondition::ParseOrConditionDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
+bool OrCondition::ParseOrConditionDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 	Script *pScript = (Script *)userData;
 	OrCondition *pOrCondition = newInstance(OrCondition);
@@ -1665,7 +1665,7 @@ void Condition::WriteConditionDataChunk(DataChunkOutput &chunkWriter, Condition	
 *	Input: DataChunkInput 
 *		
 */
-Bool Condition::ParseConditionDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
+bool Condition::ParseConditionDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 	Condition	*pCondition = newInstance(Condition);
 	OrCondition *pOr = (OrCondition *)userData;
@@ -2127,7 +2127,7 @@ Parameter *Parameter::ReadParameter(DataChunkInput &file)
 		const char** kindofNames = KindOfMaskType::getBitNames();
 		if (!pParm->m_string.isEmpty()) 
     {
-			Bool found = false;
+			bool found = false;
 			for (int i = 0; kindofNames[i]; ++i) 
 			{
 				if (pParm->m_string.compareNoCase(kindofNames[i]) == 0) 
@@ -2364,7 +2364,7 @@ void ScriptAction::WriteActionDataChunk(DataChunkOutput &chunkWriter, ScriptActi
 *	Input: DataChunkInput 
 *		
 */
-Bool ScriptAction::ParseActionDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
+bool ScriptAction::ParseActionDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 	Script *pScript = (Script *)userData;
 
@@ -2408,7 +2408,7 @@ Bool ScriptAction::ParseActionDataChunk(DataChunkInput &file, DataChunkInfo *inf
 		case SKIRMISH_BUILD_BASE_DEFENSE_FRONT:
 			if (pScriptAction->m_numParms == 1)
 			{		
-				Bool flank = pScriptAction->m_parms[0]->getInt()!=0;
+				bool flank = pScriptAction->m_parms[0]->getInt()!=0;
 				pScriptAction->m_parms[0]->deleteInstance();
 				pScriptAction->m_numParms = 0;
 				if (flank) pScriptAction->m_actionType = SKIRMISH_BUILD_BASE_DEFENSE_FLANK;
@@ -2499,7 +2499,7 @@ void ScriptAction::WriteActionFalseDataChunk(DataChunkOutput &chunkWriter, Scrip
 *	Input: DataChunkInput 
 *		
 */
-Bool ScriptAction::ParseActionFalseDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
+bool ScriptAction::ParseActionFalseDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 	Script *pScript = (Script *)userData;
 

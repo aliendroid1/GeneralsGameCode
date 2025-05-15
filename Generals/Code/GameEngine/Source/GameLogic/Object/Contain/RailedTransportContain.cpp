@@ -89,7 +89,7 @@ void RailedTransportContain::onRemoving( Object *obj )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool RailedTransportContain::isSpecificRiderFreeToExit( Object *obj )
+bool RailedTransportContain::isSpecificRiderFreeToExit( Object *obj )
 {
 	Object *us = getObject();
 

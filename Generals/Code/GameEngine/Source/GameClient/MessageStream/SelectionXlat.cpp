@@ -66,20 +66,20 @@
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
-static Bool TheHurtSelectionMode = false;
-static Bool TheHandOfGodSelectionMode = false;
-static Bool TheDebugSelectionMode = false;
+static bool TheHurtSelectionMode = false;
+static bool TheHandOfGodSelectionMode = false;
+static bool TheDebugSelectionMode = false;
 #endif
 
 //-----------------------------------------------------------------------------
-static Bool currentlyLookingForSelection( )
+static bool currentlyLookingForSelection( )
 {
 	// This needs to check if we are currently targetting for special weapons fire.
 	return TheInGameUI->getGUICommand() == NULL;
 }
 
 //-----------------------------------------------------------------------------
-static Bool areAllSelected( const DrawableList& listToCheck )
+static bool areAllSelected( const DrawableList& listToCheck )
 {
 	DrawableListCIt it;
 	for ( it = listToCheck.begin(); it != listToCheck.end(); ++it ) {
@@ -98,17 +98,17 @@ struct SFWRec
 {
 	SelectionTranslator *translator;
 	GameMessage *createTeamMsg;
-	Bool dragSelecting;
+	bool dragSelecting;
 };
 
 //-----------------------------------------------------------------------------
-/*friend*/ Bool selectFriendsWrapper( Drawable *draw, void *userData )
+/*friend*/ bool selectFriendsWrapper( Drawable *draw, void *userData )
 {
 	SFWRec *info = (SFWRec *)userData;
 	return info->translator->selectFriends(draw, info->createTeamMsg, info->dragSelecting) != 0;
 }  // end selectFriendsWrapper
 
-/*friend*/ Bool killThemKillThemAllWrapper( Drawable *draw, void *userData )
+/*friend*/ bool killThemKillThemAllWrapper( Drawable *draw, void *userData )
 {
 	SFWRec *info = (SFWRec *)userData;
 	info->translator->killThemKillThemAll( draw, info->createTeamMsg );
@@ -120,7 +120,7 @@ struct SFWRec
  * Returns true if the drawable can be selected under the current rules
  * of the system 
  */
-Bool CanSelectDrawable( const Drawable *draw, Bool dragSelecting )
+bool CanSelectDrawable( const Drawable *draw, bool dragSelecting )
 {
 
 	if(!draw || !draw->getObject())
@@ -210,9 +210,9 @@ Bool CanSelectDrawable( const Drawable *draw, Bool dragSelecting )
 }  // end canSelect
 
 //-----------------------------------------------------------------------------
-static Bool canSelectWrapper( Drawable *draw, void *userData )
+static bool canSelectWrapper( Drawable *draw, void *userData )
 {
-	Bool dragSelecting = *((Bool *)userData);
+	bool dragSelecting = *((Bool *)userData);
 	return CanSelectDrawable( draw, dragSelecting );
 }
 
@@ -233,7 +233,7 @@ static void deselectAll()
  * Select the given drawable, without playing its sound.
  * Returns true.
  */
-static Bool selectSingleDrawableWithoutSound( Drawable *draw )
+static bool selectSingleDrawableWithoutSound( Drawable *draw )
 {
 
 	// since we are single selecting a drawable, unselect everything else
@@ -289,8 +289,8 @@ SelectionTranslator::~SelectionTranslator()
 /** 
  * If this drawable is a 'friend' of mine, select it.
  */
-Bool SelectionTranslator::selectFriends( Drawable *draw, GameMessage *createTeamMsg, 
-																				 Bool dragSelecting )
+bool SelectionTranslator::selectFriends( Drawable *draw, GameMessage *createTeamMsg, 
+																				 bool dragSelecting )
 {
 	if (CanSelectDrawable( draw, dragSelecting ))
 	{
@@ -325,7 +325,7 @@ Bool SelectionTranslator::selectFriends( Drawable *draw, GameMessage *createTeam
 
 
 //-----------------------------------------------------------------------------
-Bool SelectionTranslator::killThemKillThemAll( Drawable *draw, GameMessage *killThemAllMsg )
+bool SelectionTranslator::killThemKillThemAll( Drawable *draw, GameMessage *killThemAllMsg )
 {
 	if( draw )
 	{
@@ -478,7 +478,7 @@ GameMessageDisposition SelectionTranslator::translateGameMessage(const GameMessa
 			// Single point. If there's a unit in there, double click will select all of them.
 			if (region.height() == 0 && region.width() == 0) 
 			{
-				Bool selectAcrossMap = (BitIsSet(modifiers, KEY_STATE_ALT) ? TRUE : FALSE);
+				bool selectAcrossMap = (BitIsSet(modifiers, KEY_STATE_ALT) ? TRUE : FALSE);
 
 				// only allow things that are selectable. Also, we aren't allowed to 
 				Drawable *picked = TheTacticalView->pickDrawable( &region.lo, FALSE, PICK_TYPE_SELECTABLE);
@@ -557,7 +557,7 @@ GameMessageDisposition SelectionTranslator::translateGameMessage(const GameMessa
 				disp = DESTROY_MESSAGE;
 				const CommandButton *command = TheInGameUI->getGUICommand();
 
-				Bool ignoreCommand = FALSE;
+				bool ignoreCommand = FALSE;
 				if( command )
 				{
 					if( command->getCommandType() == GUI_COMMAND_ATTACK_MOVE ||
@@ -599,7 +599,7 @@ GameMessageDisposition SelectionTranslator::translateGameMessage(const GameMessa
 			// Basically, we need to first determine if there are any drawables in the region of interest.
 			// If there aren't then this click should move forward.
 			IRegion2D selectionRegion = msg->getArgument(0)->pixelRegion;
-			Bool isPoint = (selectionRegion.height() == 0 && selectionRegion.width() == 0);
+			bool isPoint = (selectionRegion.height() == 0 && selectionRegion.width() == 0);
 			
 			DrawableList drawablesThatWillSelect;
 			PickDrawableStruct pds;
@@ -629,7 +629,7 @@ GameMessageDisposition SelectionTranslator::translateGameMessage(const GameMessa
 			// determine whether or not we should create a new group, or append these guys to our existing
 			// group.
 			
-			Bool addToGroup = TheInGameUI->isInPreferSelectionMode();
+			bool addToGroup = TheInGameUI->isInPreferSelectionMode();
 
 			if (si.currentCountEnemies > 0 || 
 					si.currentCountCivilians > 0 || 
@@ -904,7 +904,7 @@ GameMessageDisposition SelectionTranslator::translateGameMessage(const GameMessa
 			delta.x = m_deselectFeedbackAnchor.x - pixel.x;
 			delta.y = m_deselectFeedbackAnchor.y - pixel.y;
 
-			Bool isClick = TRUE;
+			bool isClick = TRUE;
 			if (isClick && 
 					abs(delta.x) > TheMouse->m_dragTolerance || 
 					abs(delta.y) > TheMouse->m_dragTolerance)

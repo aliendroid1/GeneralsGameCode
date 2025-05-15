@@ -71,7 +71,7 @@ DeployStyleAIUpdate::~DeployStyleAIUpdate( void )
 } 
 
 //-------------------------------------------------------------------------------------------------
-Bool DeployStyleAIUpdate::isIdle() const
+bool DeployStyleAIUpdate::isIdle() const
 {
 	// we need to do this because we enter an idle state during deploy states in these cases,
 	// but scripting relies on us never claiming to be "idle"...
@@ -158,9 +158,9 @@ UpdateSleepTime DeployStyleAIUpdate::update( void )
 	// when we have a pending command...
 	Object *self = getObject();
 	Weapon *weapon = self->getCurrentWeapon();
-	Bool inRange = FALSE;
+	bool inRange = FALSE;
 	Object *designatedTarget = NULL;
-	Bool isAttacking = FALSE;
+	bool isAttacking = FALSE;
 
 	if( weapon )
 	{
@@ -186,7 +186,7 @@ UpdateSleepTime DeployStyleAIUpdate::update( void )
 		}
 		else if( m_isAttackMultiple )
 		{
-			Bool newTarget = FALSE;
+			bool newTarget = FALSE;
 			//Handle attackmove and guard.
 			//We are attacking in a different way... so attempt to figure out how.
 			WhichTurretType tur = getWhichTurretForCurWeapon();
@@ -256,7 +256,7 @@ UpdateSleepTime DeployStyleAIUpdate::update( void )
 		}
 	}
 
-	Bool remainDeployed = m_isGuardingPosition && !designatedTarget && !isMoving() && !isWaitingForPath();
+	bool remainDeployed = m_isGuardingPosition && !designatedTarget && !isMoving() && !isWaitingForPath();
 
 	UnsignedInt now = TheGameLogic->getFrame();
 	switch( m_state )

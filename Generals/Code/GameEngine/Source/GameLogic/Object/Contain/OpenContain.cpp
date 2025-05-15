@@ -213,7 +213,7 @@ UpdateSleepTime OpenContain::update( void )
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-void OpenContain::addOrRemoveObjFromWorld(Object* obj, Bool add) 
+void OpenContain::addOrRemoveObjFromWorld(Object* obj, bool add) 
 { 
 
 	//
@@ -357,7 +357,7 @@ void OpenContain::addToContainList( Object *rider )
 	* This will trigger an onRemoving event for the object that this module
 	* is a part of and an onRemovedFrom event for the object being removed */
 //-------------------------------------------------------------------------------------------------
-void OpenContain::removeFromContain( Object *rider, Bool exposeStealthUnits )
+void OpenContain::removeFromContain( Object *rider, bool exposeStealthUnits )
 {
 
 	// sanity
@@ -393,7 +393,7 @@ void OpenContain::removeFromContain( Object *rider, Bool exposeStealthUnits )
 //-------------------------------------------------------------------------------------------------
 /** Remove all contained objects from the contained list */
 //-------------------------------------------------------------------------------------------------
-void OpenContain::removeAllContained( Bool exposeStealthUnits )
+void OpenContain::removeAllContained( bool exposeStealthUnits )
 {
 	ContainedItemsList::iterator it;
 
@@ -457,7 +457,7 @@ void OpenContain::doUnloadSound()
 //-------------------------------------------------------------------------------------------------
 /** Iterate the contained list and call the callback on each of the objects */
 //-------------------------------------------------------------------------------------------------
-void OpenContain::iterateContained( ContainIterateFunc func, void *userData, Bool reverse )
+void OpenContain::iterateContained( ContainIterateFunc func, void *userData, bool reverse )
 {
 	if (reverse)
 	{
@@ -511,7 +511,7 @@ struct DropData
 /** Remove an object from the containment of this module given the item
 	* to remove and trigger the proper callback events */
 //-------------------------------------------------------------------------------------------------
-void OpenContain::removeFromContainViaIterator( ContainedItemsList::iterator it, Bool exposeStealthUnits )
+void OpenContain::removeFromContainViaIterator( ContainedItemsList::iterator it, bool exposeStealthUnits )
 {
 
 /*
@@ -759,7 +759,7 @@ void OpenContain::onDie( const DamageInfo * damageInfo )
 // ------------------------------------------------------------------------------------------------
 /** Check to see if we are a valid container for 'obj' */
 // ------------------------------------------------------------------------------------------------
-Bool OpenContain::isValidContainerFor(const Object* obj, Bool checkCapacity) const
+bool OpenContain::isValidContainerFor(const Object* obj, bool checkCapacity) const
 {
 	const Object *us = getObject();
 	const OpenContainModuleData *modData = getOpenContainModuleData();
@@ -775,7 +775,7 @@ Bool OpenContain::isValidContainerFor(const Object* obj, Bool checkCapacity) con
  	// check relationship, note that this behavior is defined as the relation between
  	// 'obj' and the container 'us', and not the reverse
  	//
- 	Bool relationshipRestricted = FALSE;
+ 	bool relationshipRestricted = FALSE;
  	Relationship r = obj->getRelationship( us );
  	switch( r )
  	{
@@ -874,7 +874,7 @@ void OpenContain::exitObjectViaDoor( Object *exitObj, ExitDoorType exitDoor )
 		// and their final destination (adjustToPossibleDestination) considers them as pathfinding, so they
 		// don't stack up.  Then we turn the flag back, so if they are parachuting, they can fly down
 		//  on their parachute.  jba.
-		Bool canFall = false;
+		bool canFall = false;
 		if (physics) 
 		{
 			canFall = physics->getAllowToFall();
@@ -1030,7 +1030,7 @@ void OpenContain::exitObjectInAHurry( Object *exitObj )
 
 
 //-------------------------------------------------------------------------------------------------
-Bool OpenContain::isPassengerAllowedToFire() const
+bool OpenContain::isPassengerAllowedToFire() const
 {
 	const OpenContainModuleData *modData = getOpenContainModuleData();
 	if( ! modData->m_passengersAllowedToFire )
@@ -1052,7 +1052,7 @@ Bool OpenContain::isPassengerAllowedToFire() const
 void OpenContain::monitorConditionChanges( void )
 {
 	Drawable *draw = getObject()->getDrawable();
-	Bool stateChanged = false;
+	bool stateChanged = false;
 	ModelConditionFlags currCondition;
 
 	if( draw )
@@ -1306,13 +1306,13 @@ void OpenContain::processDamageToContained()
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool OpenContain::isEnclosingContainerFor( const Object * ) const
+bool OpenContain::isEnclosingContainerFor( const Object * ) const
 {
 	return TRUE; 
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool OpenContain::hasObjectsWantingToEnterOrExit() const
+bool OpenContain::hasObjectsWantingToEnterOrExit() const
 {
 	return !m_objectEnterExitInfo.empty();
 }
@@ -1335,7 +1335,7 @@ const Coord3D *OpenContain::getRallyPoint( void ) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool OpenContain::getNaturalRallyPoint( Coord3D& rallyPoint, Bool offset )  const
+bool OpenContain::getNaturalRallyPoint( Coord3D& rallyPoint, bool offset )  const
 {
 	Int numberExits = getOpenContainModuleData()->m_numberOfExitPaths;
 	if( numberExits > 0 )

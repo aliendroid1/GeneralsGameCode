@@ -82,7 +82,7 @@ public:
 		
 	virtual void addScorch(const Coord3D *pos, Real radius, Scorches type);
 	virtual void createRayEffectByTemplate( const Coord3D *start, const Coord3D *end, const ThingTemplate* tmpl );  ///< create effect needing start and end location
-	//virtual Bool getBonePos(Drawable *draw, AsciiString boneName, Coord3D* pos, Matrix3D* transform) const;
+	//virtual bool getBonePos(Drawable *draw, AsciiString boneName, Coord3D* pos, Matrix3D* transform) const;
 
 	virtual void setTimeOfDay( TimeOfDay tod );							///< Tell all the drawables what time of day it is now
 

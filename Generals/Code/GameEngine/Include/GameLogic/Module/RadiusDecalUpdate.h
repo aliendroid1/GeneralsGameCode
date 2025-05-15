@@ -82,7 +82,7 @@ public:
 private:
 
 	RadiusDecal m_deliveryDecal;
-	Bool m_killWhenNoLongerAttacking;
+	bool m_killWhenNoLongerAttacking;
 };
 
 #endif // __RadiusDecalUpdate_H_

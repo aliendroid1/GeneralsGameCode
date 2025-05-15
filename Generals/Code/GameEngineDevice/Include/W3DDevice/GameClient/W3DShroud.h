@@ -52,7 +52,7 @@ public:
 	void enableTransparentObjectPass(Bool enable) {m_isTransparentObjectPass = enable;}
 protected:
 	//customized version to deal with transparent (alpha-tested) polys.
-	Bool m_isTransparentObjectPass;
+	bool m_isTransparentObjectPass;
 };
 
 /** Custom W3D material pass which has been modified to apply
@@ -71,7 +71,7 @@ public:
 
 protected:
 	TextureClass *m_texture;	///<texture to be projected.
-	Bool m_allowUninstall;		///<flag which allows uninstalling this material.
+	bool m_allowUninstall;		///<flag which allows uninstalling this material.
 };
 
 /** Terrain shroud rendering class */
@@ -87,7 +87,7 @@ public:
 	void reset(void);
 	TextureClass *getShroudTexture(void) { return m_pDstTexture;}	//<return shroud projection texture.
 	void ReleaseResources(void);	///<release resources that can't survive D3D device reset.
-	Bool ReAcquireResources(void);	///<allocate resources that can't survive D3D device reset.
+	bool ReAcquireResources(void);	///<allocate resources that can't survive D3D device reset.
 	void fillShroudData(W3DShroudLevel level);	///<sets the state of the current shroud to some constant value
 	Int	getNumShroudCellsY(void)	{return m_numCellsY;}
 	Int getNumShroudCellsX(void)	{return m_numCellsX;}
@@ -119,8 +119,8 @@ protected:
 	TextureFilterClass::FilterType m_shroudFilter;
 	Real m_drawOriginX;
 	Real m_drawOriginY;
-	Bool m_drawFogOfWar;					///<switch to draw alternate fog style instead of solid black
-	Bool m_clearDstTexture;				///<flag indicating we must clear video memory destination texture
+	bool m_drawFogOfWar;					///<switch to draw alternate fog style instead of solid black
+	bool m_clearDstTexture;				///<flag indicating we must clear video memory destination texture
 	W3DShroudLevel m_boderShroudLevel;			///<color used to clear the shroud border
 	W3DShroudLevel *m_finalFogData;			///<copy of logical shroud in an easier to access array.
 	W3DShroudLevel *m_currentFogData;		///<copy of intermediate logical shroud while it's interpolated.

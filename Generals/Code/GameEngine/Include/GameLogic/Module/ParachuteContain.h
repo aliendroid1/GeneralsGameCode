@@ -65,9 +65,9 @@ public:
 
 	virtual void onDrawableBoundToObject();
 
-	virtual Bool isValidContainerFor( const Object* obj, bool checkCapacity) const;
-	virtual Bool isEnclosingContainerFor( const Object *obj ) const { return FALSE; }	///< Does this type of Contain Visibly enclose its contents?
-	virtual Bool isSpecialZeroSlotContainer() const { return true; }
+	virtual bool isValidContainerFor( const Object* obj, bool checkCapacity) const;
+	virtual bool isEnclosingContainerFor( const Object *obj ) const { return FALSE; }	///< Does this type of Contain Visibly enclose its contents?
+	virtual bool isSpecialZeroSlotContainer() const { return true; }
 
 	virtual void onContaining( Object *obj );		///< object now contains 'obj'
 	virtual void onRemoving( Object *obj );			///< object no longer contains 'obj'
@@ -83,7 +83,7 @@ public:
 
 protected:
 
-	virtual Bool isFullyEnclosingContainer() const { return false; }
+	virtual bool isFullyEnclosingContainer() const { return false; }
 	virtual void positionContainedObjectsRelativeToContainer();
 
 private:
@@ -99,7 +99,7 @@ private:
 	Real m_pitchRate;
 	Real m_rollRate;
 	Real m_startZ;
-	Bool m_isLandingOverrideSet;
+	bool m_isLandingOverrideSet;
 	Coord3D m_landingOverride;
 	Coord3D m_riderAttachBone;
 	Coord3D m_riderSwayBone;
@@ -109,9 +109,9 @@ private:
 	Coord3D m_riderSwayOffset;
 	Coord3D m_paraAttachOffset;
 	Coord3D m_paraSwayOffset;
-	Bool m_needToUpdateRiderBones;
-	Bool m_needToUpdateParaBones;
-	Bool m_opened;
+	bool m_needToUpdateRiderBones;
+	bool m_needToUpdateParaBones;
+	bool m_opened;
 };
 
 #endif // __ParachuteContain_H_

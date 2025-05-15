@@ -109,7 +109,7 @@ DockUpdate::~DockUpdate()
 {
 }
 
-Bool DockUpdate::isClearToApproach( Object const* docker ) const
+bool DockUpdate::isClearToApproach( Object const* docker ) const
 {
 	// If we allow infinite approaches, we don't even need to look up.  Just say yes.
 	// The reserve code will handle appending a free spot to the end.
@@ -133,7 +133,7 @@ Bool DockUpdate::isClearToApproach( Object const* docker ) const
 	return FALSE;
 }
 
-Bool DockUpdate::reserveApproachPosition( Object* docker, Coord3D *position, Int *index )
+bool DockUpdate::reserveApproachPosition( Object* docker, Coord3D *position, Int *index )
 {
 
 	// load dock positions if not loaded yet
@@ -185,7 +185,7 @@ Bool DockUpdate::reserveApproachPosition( Object* docker, Coord3D *position, Int
 	return FALSE;
 }
 
-Bool DockUpdate::advanceApproachPosition( Object* docker, Coord3D *position, Int *index )
+bool DockUpdate::advanceApproachPosition( Object* docker, Coord3D *position, Int *index )
 {
 	// load dock positions if not loaded yet
 	if( m_positionsLoaded == FALSE )
@@ -213,21 +213,21 @@ Bool DockUpdate::advanceApproachPosition( Object* docker, Coord3D *position, Int
 	return TRUE;
 }
 
-Bool DockUpdate::isClearToEnter( Object const* docker ) const
+bool DockUpdate::isClearToEnter( Object const* docker ) const
 {
 	ObjectID dockerID = docker->getID();
 	return dockerID == m_activeDocker;
 }
 
-Bool DockUpdate::isClearToAdvance( Object const* docker, Int dockerIndex ) const
+bool DockUpdate::isClearToAdvance( Object const* docker, Int dockerIndex ) const
 {
 	if( dockerIndex < 0 )
 		return FALSE;
 
 	ObjectID dockerID = docker->getID();
-	Bool correctRequest = dockerID == m_approachPositionOwners[dockerIndex];
-	Bool approachReached = m_approachPositionReached[dockerIndex];
-	Bool nextSpotFree = (dockerIndex > 0)  &&  (m_approachPositionOwners[dockerIndex - 1] == INVALID_ID);
+	bool correctRequest = dockerID == m_approachPositionOwners[dockerIndex];
+	bool approachReached = m_approachPositionReached[dockerIndex];
+	bool nextSpotFree = (dockerIndex > 0)  &&  (m_approachPositionOwners[dockerIndex - 1] == INVALID_ID);
 	
 	return correctRequest && approachReached && nextSpotFree;
 }
@@ -407,7 +407,7 @@ void DockUpdate::cancelDock( Object* docker )
 	}
 }
 
-void DockUpdate::setDockCrippled( Bool setting )
+void DockUpdate::setDockCrippled( bool setting )
 {
 	// At this level, Crippling means I will accept Approach requests, but I will never grant Enter clearence.
 	m_dockCrippled = setting;
@@ -479,7 +479,7 @@ Coord3D DockUpdate::computeApproachPosition( Int positionIndex, Object *forWhom 
 	if( forWhom->isUsingAirborneLocomotor() )
 		fpOptions.ignoreObject = getObject();// Flyers can ignore us, so they can approach right over us if they want.
 
-	Bool spotFound = ThePartitionManager->findPositionAround( &workingPosition, &fpOptions, &bestPosition );
+	bool spotFound = ThePartitionManager->findPositionAround( &workingPosition, &fpOptions, &bestPosition );
 
 	if( spotFound)
 		return bestPosition;
@@ -522,7 +522,7 @@ void DockUpdate::loadDockPositions()
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool DockUpdate::isAllowPassthroughType()
+bool DockUpdate::isAllowPassthroughType()
 {
 	return getDockUpdateModuleData()->m_isAllowPassthrough;
 }
@@ -595,8 +595,8 @@ void DockUpdate::xfer( Xfer *xfer )
 	m_approachPositionReached.resize(vectorSize);
 	for( vectorIndex = 0; vectorIndex < vectorSize; ++vectorIndex )
 	{
-		// Vector of Bool gets packed as bitfield internally
-		Bool unpack = m_approachPositionReached[vectorIndex];
+		// Vector of bool gets packed as bitfield internally
+		bool unpack = m_approachPositionReached[vectorIndex];
 		xfer->xferBool( &unpack );
 	}
 

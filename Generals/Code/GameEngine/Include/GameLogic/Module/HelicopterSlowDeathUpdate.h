@@ -104,7 +104,7 @@ protected:
 																	which is independent of the actual direction angle of the object */
 	Real m_forwardSpeed;			 ///< the speed we're travelling forward in our spiral orbit
 	Real m_selfSpin;					 ///< rads per frame that we change our facing direction
-	Bool m_selfSpinTowardsMax; ///< TRUE when our self spin rate is increasing towards the MaxSelfSpin
+	bool m_selfSpinTowardsMax; ///< TRUE when our self spin rate is increasing towards the MaxSelfSpin
 	UnsignedInt m_lastSelfSpinUpdateFrame;	///< frame we last updated the self spin on
 	UnsignedInt m_bladeFlyOffFrame;		///< frame we throw the blade off at
 	UnsignedInt m_hitGroundFrame;			///< frame we hit the ground on

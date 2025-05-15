@@ -62,11 +62,11 @@
 
 // PRIVATE DATA ///////////////////////////////////////////////////////////////////////////////////
 
-extern Bool LANbuttonPushed;
-extern Bool LANisShuttingDown;
+extern bool LANbuttonPushed;
+extern bool LANisShuttingDown;
 
-static Bool isShuttingDown = false;
-static Bool buttonPushed = false;
+static bool isShuttingDown = false;
+static bool buttonPushed = false;
 
 static NameKeyType buttonBackID = NAMEKEY_INVALID;
 static NameKeyType buttonHostID = NAMEKEY_INVALID;
@@ -149,7 +149,7 @@ void UpdateRemoteIPList()
 
 				swscanf(oldIP.str(), L"%d.%d.%d.%d", &(n2[0]), &(n2[1]), &(n2[2]), &(n2[3]));
 
-				Bool isEqual = TRUE;
+				bool isEqual = TRUE;
 				for (Int i = 0; (i < 4) && (isEqual == TRUE); ++i) {
 					if (n1[i] != n2[i]) {
 						isEqual = FALSE;
@@ -326,7 +326,7 @@ void NetworkDirectConnectInit( WindowLayout *layout, void *userData )
 				/// @todo: display error and exit lan lobby if no IPs are found
 			}
 
-			Bool foundIP = FALSE;
+			bool foundIP = FALSE;
 			EnumeratedIP *tempIP = IPlist;
 			while ((tempIP != NULL) && (foundIP == FALSE)) {
 				if (IP == tempIP->getIP()) {
@@ -382,7 +382,7 @@ void NetworkDirectConnectShutdown( WindowLayout *layout, void *userData )
 	isShuttingDown = true;
 
 	// if we are shutting down for an immediate pop, skip the animations
-	Bool popImmediate = *(Bool *)userData;
+	bool popImmediate = *(Bool *)userData;
 	if( popImmediate )
 	{
 

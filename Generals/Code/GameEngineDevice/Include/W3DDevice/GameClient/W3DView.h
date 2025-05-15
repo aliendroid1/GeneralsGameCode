@@ -136,11 +136,11 @@ public:
 	virtual void draw( );  ///< draw this view
 	virtual void update( );	///<called once per frame to determine the final camera and object transforms
 
-	virtual Drawable *pickDrawable( const ICoord2D *screen, Bool forceAttack, PickType pickType );  ///< pick drawable given the screen pixel coords.  If force attack, picks bridges.
+	virtual Drawable *pickDrawable( const ICoord2D *screen, bool forceAttack, PickType pickType );  ///< pick drawable given the screen pixel coords.  If force attack, picks bridges.
 
 	/// all drawables in the 2D screen region will call the 'callback'
 	virtual Int iterateDrawablesInRegion( IRegion2D *screenRegion,
-																Bool (*callback)( Drawable *draw, void *userData ),
+																bool (*callback)( Drawable *draw, void *userData ),
 																void *userData );
 
 	virtual void setWidth( Int width );
@@ -157,16 +157,16 @@ public:
 
 	virtual void lookAt( const Coord3D *o );											///< Center the view on the given coordinate
 	virtual void initHeightForMap( void );												///<  Init the camera height for the map at the current position.
-	virtual void moveCameraTo(const Coord3D *o, Int miliseconds,  Int shutter, Bool orient);
-	virtual void moveCameraAlongWaypointPath(Waypoint *pWay, Int frames, Int shutter, Bool orient);
-	virtual Bool isCameraMovementFinished(void);
+	virtual void moveCameraTo(const Coord3D *o, Int miliseconds,  Int shutter, bool orient);
+	virtual void moveCameraAlongWaypointPath(Waypoint *pWay, Int frames, Int shutter, bool orient);
+	virtual bool isCameraMovementFinished(void);
  	virtual void resetCamera(const Coord3D *location, Int frames);	///< Move camera to location, and reset to default angle & zoom.
  	virtual void rotateCamera(Real rotations, Int frames);					///< Rotate camera about current viewpoint.
 	virtual void rotateCameraTowardObject(ObjectID id, Int milliseconds, Int holdMilliseconds);	///< Rotate camera to face an object, and hold on it
 	virtual void rotateCameraTowardPosition(const Coord3D *pLoc, Int milliseconds);	///< Rotate camera to face a location.
 	virtual void cameraModFreezeTime(void){ m_freezeTimeForCameraMovement = true;}					///< Freezes time during the next camera movement.
 	virtual void cameraModFreezeAngle(void);												///< Freezes time during the next camera movement.
-	virtual Bool isTimeFrozen(void){ return m_freezeTimeForCameraMovement;}					///< Freezes time during the next camera movement.
+	virtual bool isTimeFrozen(void){ return m_freezeTimeForCameraMovement;}					///< Freezes time during the next camera movement.
 	virtual void cameraModFinalZoom(Real finalZoom);								///< Final zoom for current camera movement.
 	virtual void cameraModRollingAverage(Int framesToAverage);			///< Number of frames to average movement for current camera movement.
 	virtual void cameraModFinalTimeMultiplier(Int finalMultiplier); ///< Final time multiplier for current camera movement.
@@ -203,15 +203,15 @@ public:
 	
 	virtual Real getFXPitch( void ) const { return m_FXPitch; }					///< returns the FX pitch angle
 
-	virtual Bool setViewFilterMode(enum FilterModes filterMode);			///< Turns on viewport special effect (black & white mode)
-	virtual Bool setViewFilter(enum FilterTypes filter);			///< Turns on viewport special effect (black & white mode)
+	virtual bool setViewFilterMode(enum FilterModes filterMode);			///< Turns on viewport special effect (black & white mode)
+	virtual bool setViewFilter(enum FilterTypes filter);			///< Turns on viewport special effect (black & white mode)
 	virtual void setViewFilterPos(const Coord3D *pos);			///<  Passes a position to the special effect filter.
 	virtual enum FilterModes getViewFilterMode(void) {return m_viewFilterMode;}			///< Turns on viewport special effect (black & white mode)
 	virtual enum FilterTypes getViewFilterType(void) {return m_viewFilter;}			///< Turns on viewport special effect (black & white mode)
 	virtual void setFadeParameters(Int fadeFrames, Int direction);
 	virtual void set3DWireFrameMode(Bool enable);	///<enables custom wireframe rendering of 3D viewport
 
-	Bool updateCameraMovements(void); 
+	bool updateCameraMovements(void); 
 	virtual void forceCameraConstraintRecalc(void) { calcCameraConstraints(); }
 
 	virtual void setGuardBandBias( const Coord2D *gb ) { m_guardBandBias.x = gb->x; m_guardBandBias.y = gb->y; }
@@ -223,8 +223,8 @@ private:
 	CameraClass *m_2DCamera;												///< camera for UI overlayed on top of 3D scene
 	enum FilterModes m_viewFilterMode;
 	enum FilterTypes m_viewFilter;
-	Bool m_isWireFrameEnabled;
-	Bool m_nextWireFrameEnabled;											///< used to delay wireframe changes by 1 frame (needed for transitions).
+	bool m_isWireFrameEnabled;
+	bool m_nextWireFrameEnabled;											///< used to delay wireframe changes by 1 frame (needed for transitions).
 
 
 	Coord2D m_shakeOffset;													///< the offset to add to the camera position
@@ -237,11 +237,11 @@ private:
 	Bool		m_doingRotateCamera;										///< True if we are doing a camera rotate.
 
 	TPitchCameraInfo m_pcInfo;
-	Bool m_doingPitchCamera;
+	bool m_doingPitchCamera;
 	TZoomCameraInfo m_zcInfo;
-	Bool m_doingZoomCamera;
+	bool m_doingZoomCamera;
 	
-	Bool m_doingScriptedCameraLock;									///< True if we are following a unit via script
+	bool m_doingScriptedCameraLock;									///< True if we are following a unit via script
 
 	Real		m_FXPitch;															///< Camera effects pitch.  0 = flat, infinite = look down, 1 = normal.
 
@@ -262,7 +262,7 @@ private:
 	Real m_groundLevel;															///< height of ground.
 	
 	Region2D m_cameraConstraint;										///< m_pos should be constrained to be within this area
-	Bool m_cameraConstraintValid;										///< if f, recalc cam constraints
+	bool m_cameraConstraintValid;										///< if f, recalc cam constraints
 
 	void setCameraTransform( void );								///< set the transform matrix of m_3DCamera, based on m_pos & m_angle
 	void buildCameraTransform( Matrix3D *transform ) ;			///< calculate (but do not set) the transform matrix of m_3DCamera, based on m_pos & m_angle

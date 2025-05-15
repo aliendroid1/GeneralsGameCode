@@ -241,13 +241,13 @@ Object* CommandButtonHuntUpdate::scanClosestTarget(void)
 
  	const SpecialPowerTemplate *spTemplate = m_commandButton->getSpecialPowerTemplate();
 	if( !spTemplate ) return NULL;  // isn't going to happen.
-	Bool isBlackLotusVehicleHack = 	(spTemplate->getSpecialPowerType() == SPECIAL_BLACKLOTUS_DISABLE_VEHICLE_HACK);
-	Bool isCaptureBuilding = 	(spTemplate->getSpecialPowerType() == SPECIAL_INFANTRY_CAPTURE_BUILDING);
+	bool isBlackLotusVehicleHack = 	(spTemplate->getSpecialPowerType() == SPECIAL_BLACKLOTUS_DISABLE_VEHICLE_HACK);
+	bool isCaptureBuilding = 	(spTemplate->getSpecialPowerType() == SPECIAL_INFANTRY_CAPTURE_BUILDING);
 	if (isCaptureBuilding) {
 		filters[2] = NULL;  // It's ok (in fact necessary for oil derricks) to capture special buildings.
 	}
 
-	Bool isPlaceExplosive = false;
+	bool isPlaceExplosive = false;
 	if (spTemplate->getSpecialPowerType() == SPECIAL_TIMED_CHARGES) isPlaceExplosive = true;
 	if (spTemplate->getSpecialPowerType() == SPECIAL_TANKHUNTER_TNT_ATTACK) isPlaceExplosive = true;
 

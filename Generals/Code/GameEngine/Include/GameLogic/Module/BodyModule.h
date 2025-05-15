@@ -148,7 +148,7 @@ public:
 
 	virtual BodyDamageType getDamageState() const = 0;
 	virtual void setDamageState( BodyDamageType newState ) = 0;	///< control damage state directly.  Will adjust hitpoints.
-	virtual void setAflame( Bool setting ) = 0;///< This is a major change like a damage state.  
+	virtual void setAflame( bool setting ) = 0;///< This is a major change like a damage state.  
 
 	virtual void onVeterancyLevelChanged( VeterancyLevel oldLevel, VeterancyLevel newLevel ) = 0;	///< I just achieved this level right this moment
 
@@ -160,8 +160,8 @@ public:
 	virtual UnsignedInt getLastHealingTimestamp() const = 0;
 	virtual ObjectID getClearableLastAttacker() const = 0;
 	virtual void clearLastAttacker() = 0;
-	virtual Bool getFrontCrushed() const = 0;
-	virtual Bool getBackCrushed() const = 0;
+	virtual bool getFrontCrushed() const = 0;
+	virtual bool getBackCrushed() const = 0;
 
 	virtual void setInitialHealth(Int initialPercent)  = 0;
 	virtual void setMaxHealth( Real maxHealth, MaxHealthChangeType healthChangeType = SAME_CURRENTHEALTH )  = 0;
@@ -181,8 +181,8 @@ public:
 	*/
 	virtual void internalChangeHealth( Real delta ) = 0;
 
-	virtual void setIndestructible( Bool indestructible ) = 0;
-	virtual Bool isIndestructible( void ) const = 0;
+	virtual void setIndestructible( bool indestructible ) = 0;
+	virtual bool isIndestructible( void ) const = 0;
 
 	virtual void evaluateVisualCondition() = 0;
 	virtual void updateBodyParticleSystems() = 0; // made public for topple and building collapse updates -ML
@@ -235,7 +235,7 @@ public:
 
 	virtual BodyDamageType getDamageState() const = 0;
 	virtual void setDamageState( BodyDamageType newState ) = 0;	///< control damage state directly.  Will adjust hitpoints.
-	virtual void setAflame( Bool setting ) = 0;///< This is a major change like a damage state.  
+	virtual void setAflame( bool setting ) = 0;///< This is a major change like a damage state.  
 
 	virtual void onVeterancyLevelChanged( VeterancyLevel oldLevel, VeterancyLevel newLevel ) = 0;	///< I just achieved this level right this moment
 
@@ -247,8 +247,8 @@ public:
 	virtual UnsignedInt getLastHealingTimestamp() const { return 0; }	///< return frame of last healing dealt
 	virtual ObjectID getClearableLastAttacker() const { return INVALID_ID; }
 	virtual void clearLastAttacker() { }
-	virtual Bool getFrontCrushed() const { return false; }
-	virtual Bool getBackCrushed() const { return false; }
+	virtual bool getFrontCrushed() const { return false; }
+	virtual bool getBackCrushed() const { return false; }
 
 	virtual void setInitialHealth(Int initialPercent)  {  } ///< Sets the inital load health %.
 	virtual void setMaxHealth(Real maxHealth, MaxHealthChangeType healthChangeType = SAME_CURRENTHEALTH )  {  } ///< Sets the max health.
@@ -257,8 +257,8 @@ public:
 	virtual void setBackCrushed(Bool v) { DEBUG_CRASH(("you should never call this for generic Bodys")); }
 
 
-	virtual void setIndestructible( Bool indestructible ) { }
-	virtual Bool isIndestructible( void ) const { return TRUE; }
+	virtual void setIndestructible( bool indestructible ) { }
+	virtual bool isIndestructible( void ) const { return TRUE; }
 
 	//Allows outside systems to apply defensive bonuses or penalties (they all stack as a multiplier!)
 	virtual void applyDamageScalar( Real scalar ) { m_damageScalar *= scalar; }

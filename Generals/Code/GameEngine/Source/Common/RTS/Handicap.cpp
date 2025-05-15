@@ -100,7 +100,7 @@ void Handicap::readFromDict(const Dict* d)
 			c.concat("_");
 			c.concat(ttNames[j]);
 			NameKeyType k = TheNameKeyGenerator->nameToKey(c);
-			Bool exists;
+			bool exists;
 			Real r = d->getReal(k, &exists);
 			if (exists)
 				m_handicaps[i][j] = r;

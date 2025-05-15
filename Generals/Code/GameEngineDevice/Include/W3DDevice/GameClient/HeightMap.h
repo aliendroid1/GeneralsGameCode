@@ -121,12 +121,12 @@ public:
 	virtual RenderObjClass *	Clone(void) const;
 	virtual int						Class_ID(void) const;
 	virtual void					Render(RenderInfoClass & rinfo);
-	virtual bool					Cast_Ray(RayCollisionTestClass & raytest); // This CANNOT be Bool, as it will not inherit properly if you make Bool == Int
+	virtual bool					Cast_Ray(RayCollisionTestClass & raytest); // This CANNOT be Bool, as it will not inherit properly if you make bool == Int
 ///@todo: Add methods for collision detection with terrain
-//	virtual Bool					Cast_AABox(AABoxCollisionTestClass & boxtest);
-//	virtual Bool					Cast_OBBox(OBBoxCollisionTestClass & boxtest);
-//	virtual Bool					Intersect_AABox(AABoxIntersectionTestClass & boxtest);
-//	virtual Bool					Intersect_OBBox(OBBoxIntersectionTestClass & boxtest);
+//	virtual bool					Cast_AABox(AABoxCollisionTestClass & boxtest);
+//	virtual bool					Cast_OBBox(OBBoxCollisionTestClass & boxtest);
+//	virtual bool					Intersect_AABox(AABoxIntersectionTestClass & boxtest);
+//	virtual bool					Intersect_OBBox(OBBoxIntersectionTestClass & boxtest);
 
 	virtual void					Get_Obj_Space_Bounding_Sphere(SphereClass & sphere) const;
 	virtual void					Get_Obj_Space_Bounding_Box(AABoxClass & aabox) const;
@@ -163,12 +163,12 @@ public:
 	/// Update the diffuse value from static light info for one vertex.
 	void doTheLight(VERTEX_FORMAT *vb, Vector3*light, Vector3*normal, RefRenderObjListIterator *pLightsIterator, UnsignedByte alpha);
 	void addScorch(Vector3 location, Real radius, Scorches type);
-	void addTree(Coord3D location, Real scale, Real angle, AsciiString name, Bool visibleInMirror);
+	void addTree(Coord3D location, Real scale, Real angle, AsciiString name, bool visibleInMirror);
 	void renderTrees(CameraClass * camera); ///< renders the tree buffer.
 
 	/// Add a bib at location.  
-	void addTerrainBib(Vector3 corners[4], ObjectID id, Bool highlight);
-	void addTerrainBibDrawable(Vector3 corners[4], DrawableID id, Bool highlight);
+	void addTerrainBib(Vector3 corners[4], ObjectID id, bool highlight);
+	void addTerrainBibDrawable(Vector3 corners[4], DrawableID id, bool highlight);
 	/// Remove a bib.  
 	void removeTerrainBib(ObjectID id);
 	void removeTerrainBibDrawable(DrawableID id);
@@ -186,7 +186,7 @@ public:
 	void clearAllScorches(void);
 	void setTimeOfDay( TimeOfDay tod );
 	void staticLightingChanged(void);
-	void loadRoadsAndBridges(W3DTerrainLogic *pTerrainLogic, Bool saveGame); ///< Load the roads from the map objects.
+	void loadRoadsAndBridges(W3DTerrainLogic *pTerrainLogic, bool saveGame); ///< Load the roads from the map objects.
 	void worldBuilderUpdateBridgeTowers( W3DAssetManager *assetManager, SimpleSceneClass *scene );							///< for the editor updating of bridge tower visuals
 	Int  getStaticDiffuse(Int x, Int y); ///< Gets the diffuse terrain lighting value for a point on the mesh.
 	void adjustTerrainLOD(Int adj);
@@ -196,28 +196,28 @@ public:
 	Int	getNumExtraBlendTiles(void) { return m_numExtraBlendTiles;}
 	Int getNumShoreLineTiles(void)	{ return m_numShoreLineTiles;}
 	void setShoreLineDetail(void);	///<update shoreline tiles in case the feature was toggled by user.
-	Bool getMaximumVisibleBox(const FrustumClass &frustum,  AABoxClass *box, Bool ignoreMaxHeight);	///<3d extent of visible terrain.
+	bool getMaximumVisibleBox(const FrustumClass &frustum,  AABoxClass *box, bool ignoreMaxHeight);	///<3d extent of visible terrain.
 	Real getHeightMapHeight(Real x, Real y, Coord3D* normal) const;	///<return height and normal at given point
-	Bool isCliffCell(Real x, Real y);	///<return height and normal at given point
+	bool isCliffCell(Real x, Real y);	///<return height and normal at given point
 	Real getMinHeight(void) const {return m_minHeight;}	///<return minimum height of entire terrain
 	Real getMaxHeight(void) const {return m_maxHeight;}	///<return maximum height of entire terrain
 	Real getMaxCellHeight(Real x, Real y) const;	///< returns maximum height of the 4 cell corners.
 	WorldHeightMap *getMap(void) {return m_map;}	///< returns object holding the heightmap samples - need this for fast access.
-	Bool isClearLineOfSight(const Coord3D& pos, const Coord3D& posOther) const;
+	bool isClearLineOfSight(const Coord3D& pos, const Coord3D& posOther) const;
 
-	Bool getShowImpassableAreas(void) {return m_showImpassableAreas;}
+	bool getShowImpassableAreas(void) {return m_showImpassableAreas;}
 	void setShowImpassableAreas(Bool show) {m_showImpassableAreas = show;}
 
-	Bool showAsVisibleCliff(Int xIndex, Int yIndex) const;
+	bool showAsVisibleCliff(Int xIndex, Int yIndex) const;
 	
-	Bool evaluateAsVisibleCliff(Int xIndex, Int yIndex, Real valuesGreaterThanRad);
+	bool evaluateAsVisibleCliff(Int xIndex, Int yIndex, Real valuesGreaterThanRad);
 
 	void oversizeTerrain(Int tilesToOversize);
 
 	Real getViewImpassableAreaSlope(void) const { return m_curImpassableSlope; }
 	void setViewImpassableAreaSlope(Real viewSlope) { m_curImpassableSlope = viewSlope; }
 	
-	Bool doesNeedFullUpdate(void) {return m_needFullUpdate;}
+	bool doesNeedFullUpdate(void) {return m_needFullUpdate;}
 
 protected:
 #ifdef DO_SCORCH
@@ -249,13 +249,13 @@ protected:
 	Int	m_y;	///< dimensions of heightmap
 	Int m_originX; ///<  Origin point in the grid.  Slides around.
 	Int m_originY; ///< Origin point in the grid.  Slides around.
-	Bool m_useDepthFade;	///<fade terrain lighting under water
+	bool m_useDepthFade;	///<fade terrain lighting under water
 	Vector3 m_depthFade;	///<depth based fall off values for r,g,b
-	Bool m_disableTextures;
-	Bool m_needFullUpdate; ///< True if lighting changed, and we need to update all instead of what moved.
-	Bool m_updating;	 ///< True if we are updating vertex buffers.  (can't draw while buffers are locked.)
-	Bool m_halfResMesh; ///< True if we are doing half resolution mesh of the terrain.
-	Bool m_doXNextTime; ///< True if we updated y scroll, and need to do x scroll next frame.
+	bool m_disableTextures;
+	bool m_needFullUpdate; ///< True if lighting changed, and we need to update all instead of what moved.
+	bool m_updating;	 ///< True if we are updating vertex buffers.  (can't draw while buffers are locked.)
+	bool m_halfResMesh; ///< True if we are doing half resolution mesh of the terrain.
+	bool m_doXNextTime; ///< True if we updated y scroll, and need to do x scroll next frame.
 	Real	m_minHeight;	///<minimum value of height samples in heightmap
 	Real	m_maxHeight;	///<maximum value of height samples in heightmap
 	Int	m_numVBTilesX;	///<dimensions of array containing all the vertex buffers 
@@ -263,7 +263,7 @@ protected:
 	Int m_numVertexBufferTiles;	///<number of vertex buffers needed to store this heightmap
 	Int	m_numBlockColumnsInLastVB;///<a VB tile may be partially filled, this indicates how many 2x2 vertex blocks are filled.
 	Int	m_numBlockRowsInLastVB;///<a VB tile may be partially filled, this indicates how many 2x2 vertex blocks are filled.
-	Bool m_showImpassableAreas; ///< If true, shade impassable areas.
+	bool m_showImpassableAreas; ///< If true, shade impassable areas.
 
 	// STL is "smart." This is a variable sized bitset. Very memory efficient.
 	std::vector<bool> m_showAsVisibleCliff;

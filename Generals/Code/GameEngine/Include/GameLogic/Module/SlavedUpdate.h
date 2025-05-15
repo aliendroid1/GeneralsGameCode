@@ -71,7 +71,7 @@ public:
 	AsciiString m_weldingSysName;
 	AsciiString m_weldingFXBone;
 
-	Bool m_stayOnSameLayerAsMaster;
+	bool m_stayOnSameLayerAsMaster;
 
 	SlavedUpdateModuleData()
 	{
@@ -153,7 +153,7 @@ public:
 	virtual void onSlaverDie( const DamageInfo *info );
 	virtual void onSlaverDamage( const DamageInfo *info );
 	virtual void onObjectCreated();
-	virtual Bool isSelfTasking() const { return FALSE; };
+	virtual bool isSelfTasking() const { return FALSE; };
 
 
 	void doScoutLogic( const Coord3D *mastersDestination );
@@ -175,7 +175,7 @@ private:
 	Coord3D m_guardPointOffset;	///< Where we should go when not busy and still enslaved
 	Int m_framesToWait;
 	RepairStates m_repairState;
-	Bool m_repairing;
+	bool m_repairing;
 };
 
 #endif

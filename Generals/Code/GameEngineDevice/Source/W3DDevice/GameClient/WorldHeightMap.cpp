@@ -101,7 +101,7 @@ MapObject::MapObject(Coord3D loc, AsciiString name, Real angle, Int flags, const
 	{
 		m_properties = *props;
 		if (thingTemplate && !props->known(TheKey_objectSelectable, Dict::DICT_BOOL)) {
-			Bool selectable = thingTemplate->isKindOf(KINDOF_SELECTABLE);
+			bool selectable = thingTemplate->isKindOf(KINDOF_SELECTABLE);
 			m_properties.setBool(TheKey_objectSelectable, selectable);
 		}
 	} 
@@ -115,7 +115,7 @@ MapObject::MapObject(Coord3D loc, AsciiString name, Real angle, Int flags, const
 		m_properties.setBool(TheKey_objectRecruitableAI, true);
 		m_properties.setBool(TheKey_objectTargetable, false );
 		
-		Bool selectable = false;
+		bool selectable = false;
 		if (thingTemplate) {
 			selectable = thingTemplate->isKindOf(KINDOF_SELECTABLE);
 		}
@@ -188,10 +188,10 @@ void MapObject::verifyValidTeam(void)
 	// if this map object has a valid team, then do nothing.
 	// if it has an invalid team, the place it on the default neutral team, (by clearing the 
 	// existing team name.)
-	Bool exists;
+	bool exists;
 	AsciiString teamName = getProperties()->getAsciiString(TheKey_originalOwner, &exists);
 	if (exists) {
-		Bool valid = false;
+		bool valid = false;
 
 		int numSides = TheSidesList->getNumTeams();
 
@@ -201,7 +201,7 @@ void MapObject::verifyValidTeam(void)
 				continue;
 			}
 			
-			Bool itBetter;
+			bool itBetter;
 			AsciiString testAgainstTeamName = teamInfo->getDict()->getAsciiString(TheKey_teamName, &itBetter);
 			if (itBetter) {
 				if (testAgainstTeamName.compare(teamName) == 0) {
@@ -218,7 +218,7 @@ void MapObject::verifyValidTeam(void)
 
 void MapObject::verifyValidUniqueID(void)
 {
-	Bool exists;
+	bool exists;
 	AsciiString uniqueID = getProperties()->getAsciiString(TheKey_uniqueID, &exists);
 	MapObject *obj = MapObject::getFirstMapObject();
 
@@ -238,7 +238,7 @@ void MapObject::verifyValidUniqueID(void)
 			continue;
 		}
 
-		Bool iterateExists;
+		bool iterateExists;
 		AsciiString tempStr = obj->getProperties()->getAsciiString(TheKey_uniqueID, &iterateExists);
 		const char* lastSpace = tempStr.reverseFind(' ');
 
@@ -459,7 +459,7 @@ WorldHeightMap::WorldHeightMap():
 }
 
 #ifdef EVAL_TILING_MODES
-static Bool ParseFunkyTilingDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
+static bool ParseFunkyTilingDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 	WorldHeightMap *pThis = (WorldHeightMap *)userData;
 	*((Int *)&pThis->m_tileMode) = file.readInt();
@@ -474,7 +474,7 @@ static Bool ParseFunkyTilingDataChunk(DataChunkInput &file, DataChunkInfo *info,
 *	Input: ChunkInputStream, 
 *		
 */
-WorldHeightMap::WorldHeightMap(ChunkInputStream *pStrm, Bool logicalDataOnly):
+WorldHeightMap::WorldHeightMap(ChunkInputStream *pStrm, bool logicalDataOnly):
 	m_width(0), m_height(0),  m_dataSize(0), m_data(NULL), m_cellFlipState(NULL), 
 	m_drawOriginX(0),	m_cellCliffState(NULL), m_drawOriginY(0),
 	m_numTextureClasses(0),	
@@ -551,7 +551,7 @@ WorldHeightMap::WorldHeightMap(ChunkInputStream *pStrm, Bool logicalDataOnly):
 /** Optimized version of method to get triangle flip state of a terrain cell.  Use this
 *	instead of getAlphaUVData() whenever possible.
 */
-Bool WorldHeightMap::getFlipState(Int xIndex, Int yIndex) const
+bool WorldHeightMap::getFlipState(Int xIndex, Int yIndex) const
 {
 	if (xIndex<0 || yIndex<0) return false;
 	if (yIndex>=m_height) return false;
@@ -562,7 +562,7 @@ Bool WorldHeightMap::getFlipState(Int xIndex, Int yIndex) const
 
 /** Get whether the cell is a cliff cell (impassable to ground vehicles).
 */
-Bool WorldHeightMap::getCliffState(Int xIndex, Int yIndex) const
+bool WorldHeightMap::getCliffState(Int xIndex, Int yIndex) const
 {
 	if (xIndex<0 || yIndex<0) return false;
 	if (yIndex>=m_height) return false;
@@ -576,7 +576,7 @@ Bool WorldHeightMap::getCliffState(Int xIndex, Int yIndex) const
 //=============================================================================
 /** Sets the cliff state for a given cell. */
 //=============================================================================
-void WorldHeightMap::setCliffState(Int xIndex, Int yIndex, Bool state) 
+void WorldHeightMap::setCliffState(Int xIndex, Int yIndex, bool state) 
 {
 	if (xIndex<0 || yIndex<0) return;
 	if (yIndex>=m_height) return;
@@ -592,11 +592,11 @@ void WorldHeightMap::setCliffState(Int xIndex, Int yIndex, Bool state)
 	m_cellCliffState[yIndex*m_flipStateWidth + (xIndex >> 3)] = flagByte;
 }
 
-Bool WorldHeightMap::ParseWorldDictDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
+bool WorldHeightMap::ParseWorldDictDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 	Dict d = file.readDict();
 	*MapObject::getWorldDict() = d;
-	Bool exists;
+	bool exists;
 	Int theWeather = MapObject::getWorldDict()->getInt(TheKey_weather, &exists);
 	if (exists) {
 		TheWritableGlobalData->m_weather = (Weather) theWeather;
@@ -611,7 +611,7 @@ Bool WorldHeightMap::ParseWorldDictDataChunk(DataChunkInput &file, DataChunkInfo
 *	Input: DataChunkInput 
 *		
 */
-Bool WorldHeightMap::ParseLightingDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
+bool WorldHeightMap::ParseLightingDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 		TheWritableGlobalData->m_timeOfDay = (TimeOfDay)file.readInt();
 		Int i;
@@ -692,7 +692,7 @@ Bool WorldHeightMap::ParseLightingDataChunk(DataChunkInput &file, DataChunkInfo 
 *	Input: DataChunkInput 
 *		
 */
-Bool WorldHeightMap::ParseObjectsDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
+bool WorldHeightMap::ParseObjectsDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 	file.m_currentObject = NULL;
 	file.registerParser( AsciiString("Object"), info->label, ParseObjectDataChunk );
@@ -706,7 +706,7 @@ Bool WorldHeightMap::ParseObjectsDataChunk(DataChunkInput &file, DataChunkInfo *
 *	Input: DataChunkInput 
 *		
 */
-Bool WorldHeightMap::ParseHeightMapDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
+bool WorldHeightMap::ParseHeightMapDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 	WorldHeightMap *pThis = (WorldHeightMap *)userData;
 	return pThis->ParseHeightMapData(file, info, userData);
@@ -719,7 +719,7 @@ Bool WorldHeightMap::ParseHeightMapDataChunk(DataChunkInput &file, DataChunkInfo
 *	Input: DataChunkInput 
 *		
 */
-Bool WorldHeightMap::ParseHeightMapData(DataChunkInput &file, DataChunkInfo *info, void *userData)
+bool WorldHeightMap::ParseHeightMapData(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 	m_width = file.readInt();
 	m_height = file.readInt();
@@ -770,7 +770,7 @@ Bool WorldHeightMap::ParseHeightMapData(DataChunkInput &file, DataChunkInfo *inf
 *	Input: DataChunkInput 
 *		
 */
-Bool WorldHeightMap::ParseSizeOnlyInChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
+bool WorldHeightMap::ParseSizeOnlyInChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 	WorldHeightMap *pThis = (WorldHeightMap *)userData;
 	return pThis->ParseSizeOnly(file, info, userData);
@@ -783,7 +783,7 @@ Bool WorldHeightMap::ParseSizeOnlyInChunk(DataChunkInput &file, DataChunkInfo *i
 *	Input: DataChunkInput 
 *		
 */
-Bool WorldHeightMap::ParseSizeOnly(DataChunkInput &file, DataChunkInfo *info, void *userData)
+bool WorldHeightMap::ParseSizeOnly(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 	m_width = file.readInt();
 	m_height = file.readInt();
@@ -835,7 +835,7 @@ Bool WorldHeightMap::ParseSizeOnly(DataChunkInput &file, DataChunkInfo *info, vo
 *	Input: DataChunkInput 
 *		
 */
-Bool WorldHeightMap::ParseBlendTileDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
+bool WorldHeightMap::ParseBlendTileDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 	WorldHeightMap *pThis = (WorldHeightMap *)userData;
 	return pThis->ParseBlendTileData(file, info, userData);
@@ -890,7 +890,7 @@ void WorldHeightMap::readTexClass(TXTextureClass *texClass, TileData **tileData)
 *	Input: DataChunkInput 
 *		
 */
-Bool WorldHeightMap::ParseBlendTileData(DataChunkInput &file, DataChunkInfo *info, void *userData)
+bool WorldHeightMap::ParseBlendTileData(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 	Int len = file.readInt();
 	if (m_dataSize != len) {
@@ -1046,7 +1046,7 @@ Bool WorldHeightMap::ParseBlendTileData(DataChunkInput &file, DataChunkInfo *inf
 *	Input: DataChunkInput 
 *		
 */
-Bool WorldHeightMap::ParseObjectDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
+bool WorldHeightMap::ParseObjectDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData)
 {
 	WorldHeightMap *pThis = (WorldHeightMap *)file.m_userData;
 	return pThis->ParseObjectData(file, info, userData, info->version >= K_OBJECTS_VERSION_2);
@@ -1059,7 +1059,7 @@ Bool WorldHeightMap::ParseObjectDataChunk(DataChunkInput &file, DataChunkInfo *i
 *	Input: DataChunkInput 
 *		
 */
-Bool WorldHeightMap::ParseObjectData(DataChunkInput &file, DataChunkInfo *info, void *userData, Bool readDict)
+bool WorldHeightMap::ParseObjectData(DataChunkInput &file, DataChunkInfo *info, void *userData, bool readDict)
 {
 	MapObject *pPrevious = (MapObject *)file.m_currentObject;
 
@@ -1181,7 +1181,7 @@ Int WorldHeightMap::countTiles(InputStream *pStr)
 	return(0);
 }
 /*Break down a .tga file into a collection of tiles.  numRows * numRows total tiles.*/
-Bool WorldHeightMap::readTiles(InputStream *pStr, TileData **tiles, Int numRows)
+bool WorldHeightMap::readTiles(InputStream *pStr, TileData **tiles, Int numRows)
 {
 	TTargaHeader hdr;
 	pStr->read(&hdr, sizeof(hdr));
@@ -1191,7 +1191,7 @@ Bool WorldHeightMap::readTiles(InputStream *pStr, TileData **tiles, Int numRows)
 	if (tileWidth<numRows && tileHeight<numRows) {
 		return(false);
 	}
-	Bool compressed = false;
+	bool compressed = false;
 	if (hdr.imageType & 0x08) {
 		compressed = true;
 	}
@@ -1207,8 +1207,8 @@ Bool WorldHeightMap::readTiles(InputStream *pStr, TileData **tiles, Int numRows)
 	}
 	UnsignedByte buf[4];
 	int repeatCount = 0;
-//	Bool read = false;
-	Bool running = false;
+//	bool read = false;
+	bool running = false;
 	for (row = 0; row < numRows*TILE_PIXEL_EXTENT; row++) {
 		for (column=0; column<hdr.imageWidth; column++) {
 			UnsignedByte r, g, b;
@@ -1261,7 +1261,7 @@ Int WorldHeightMap::updateTileTexturePositions(Int *edgeHeight)
 	Int maxHeight = 0;
 	const Int tilesPerRow = TEXTURE_WIDTH/(TILE_PIXEL_EXTENT+TILE_OFFSET);
 
-	Bool availableGrid[tilesPerRow][tilesPerRow];
+	bool availableGrid[tilesPerRow][tilesPerRow];
 	Int row, column;
 	for (row=0; row<tilesPerRow; row++) {
 		for (column=0; column<tilesPerRow; column++) {
@@ -1284,11 +1284,11 @@ Int WorldHeightMap::updateTileTexturePositions(Int *edgeHeight)
 			Int width = m_textureClasses[texClass].width;
 			if (width != tileWidth) continue;
 			// Find an available block of space.
-			Bool found = false;
+			bool found = false;
 			for (row=0; row<tilesPerRow-width+1 && !found; row++) {
 				for (column=0; column<tilesPerRow-width+1 && !found; column++) {
 					if (availableGrid[row][column]) {
-						Bool open = true;
+						bool open = true;
 						for (i=0; i<width && open; i++) {
 							for (j=0; j<width&&open; j++) {
 								if (!availableGrid[row+j][column+i]) {
@@ -1348,11 +1348,11 @@ Int WorldHeightMap::updateTileTexturePositions(Int *edgeHeight)
 	for (texClass=0; texClass<m_numEdgeTextureClasses; texClass++) {
 		Int width = m_edgeTextureClasses[texClass].width;
 		// Find an available block of space.
-		Bool found = false;
+		bool found = false;
 		for (row=0; row<tilesPerRow-width+1 && !found; row++) {
 			for (column=0; column<tilesPerRow-width+1 && !found; column++) {
 				if (availableGrid[row][column]) {
-					Bool open = true;
+					bool open = true;
 					for (i=0; i<width && open; i++) {
 						for (j=0; j<width&&open; j++) {
 							if (!availableGrid[row+j][column+i]) {
@@ -1399,7 +1399,7 @@ Int WorldHeightMap::updateTileTexturePositions(Int *edgeHeight)
 
 /** getUVData - Gets the texture coordinates to use.  See getTerrainTexture.
 */
-void WorldHeightMap::getUVForNdx(Int tileNdx, float *minU, float *minV, float *maxU, float*maxV, Bool fullTile)
+void WorldHeightMap::getUVForNdx(Int tileNdx, float *minU, float *minV, float *maxU, float*maxV, bool fullTile)
 {
 	Short baseNdx = tileNdx>>2;
 	if (m_sourceTiles[baseNdx] == NULL) {
@@ -1459,7 +1459,7 @@ void WorldHeightMap::getUVForBlend(Int edgeClass, Region2D *range)
 }
 
 /// Get whether something is cliff indexed with the offset that HeightMapRenderObjClass uses built in.
-Bool WorldHeightMap::isCliffMappedTexture(Int x, Int y) { 
+bool WorldHeightMap::isCliffMappedTexture(Int x, Int y) { 
 	Int ndx = x+m_drawOriginX+m_width*(y+m_drawOriginY);
 	if (ndx>=0 && ndx<m_dataSize) {
 		return m_cliffInfoNdxes[ndx] != 0;
@@ -1473,7 +1473,7 @@ Bool WorldHeightMap::isCliffMappedTexture(Int x, Int y) {
 		fullTile is true if we are doing 1/2 resolution height map, and require a full
 		tile to texture  a cell.  Otherwise, we use quarter tiles per cell.
 */
-Bool WorldHeightMap::getUVData(Int xIndex, Int yIndex, float U[4], float V[4], Bool fullTile)
+bool WorldHeightMap::getUVData(Int xIndex, Int yIndex, float U[4], float V[4], bool fullTile)
 {
 #define dont_SHOW_THE_TEXTURE_FOR_DEBUG 1
 #if SHOW_THE_TEXTURE_FOR_DEBUG
@@ -1514,7 +1514,7 @@ Bool WorldHeightMap::getUVData(Int xIndex, Int yIndex, float U[4], float V[4], B
 		tile to texture  a cell.  Otherwise, we use quarter tiles per cell.
 */
 
-Bool WorldHeightMap::getUVForTileIndex(Int ndx, Short tileNdx, float U[4], float V[4], Bool fullTile)
+bool WorldHeightMap::getUVForTileIndex(Int ndx, Short tileNdx, float U[4], float V[4], bool fullTile)
 {
 	Real nU, nV, xU, xV;
 	nU=nV=xU=xV = 0.0f;
@@ -1536,7 +1536,7 @@ Bool WorldHeightMap::getUVForTileIndex(Int ndx, Short tileNdx, float U[4], float
 		}
 		if (m_cliffInfoNdxes[ndx]) {
 			TCliffInfo info = m_cliffInfo[m_cliffInfoNdxes[ndx]]; 
-			Bool tilesMatch = false;
+			bool tilesMatch = false;
 			Int ndx1 = tileNdx>>2;
 			Int ndx2 = info.tileIndex>>2;
 			Int i;
@@ -1766,7 +1766,7 @@ Bool WorldHeightMap::getUVForTileIndex(Int ndx, Short tileNdx, float U[4], float
 }
 
 ///@todo: Are the different "if" cases mutually exclusive?  If so, should add else statements.
-Bool WorldHeightMap::getExtraAlphaUVData(Int xIndex, Int yIndex, float U[4], float V[4], UnsignedByte alpha[4], Bool *needFlip, Bool *cliff)
+bool WorldHeightMap::getExtraAlphaUVData(Int xIndex, Int yIndex, float U[4], float V[4], UnsignedByte alpha[4], bool *needFlip, bool *cliff)
 {
 	Int ndx = (yIndex*m_width)+xIndex;
 	*needFlip = FALSE;
@@ -1853,13 +1853,13 @@ Bool WorldHeightMap::getExtraAlphaUVData(Int xIndex, Int yIndex, float U[4], flo
 		alpha coordinates blend properly.  Filling a square with 2 triangles is not symmetrical :)
 */
 void WorldHeightMap::getAlphaUVData(Int xIndex, Int yIndex, float U[4], float V[4], 
-																		UnsignedByte alpha[4], Bool *flip, Bool fullTile)
+																		UnsignedByte alpha[4], bool *flip, bool fullTile)
 {
 	xIndex += m_drawOriginX;
 	yIndex += m_drawOriginY;
 	Int ndx = (yIndex*m_width)+xIndex;
-	Bool stretchedForCliff = false;
-	Bool needFlip = false;
+	bool stretchedForCliff = false;
+	bool needFlip = false;
 
 	if ((ndx<m_dataSize) && m_tileNdxes) {
 		Short blendNdx = m_blendTileNdxes[ndx];
@@ -1981,7 +1981,7 @@ TextureClass *WorldHeightMap::getTerrainTexture(void)
 			{
 				UnsignedByte alpha[4];
 				float UA[4], VA[4];
-				Bool flipForBlend;
+				bool flipForBlend;
 
 				getAlphaUVData(x, y, UA, VA, alpha, &flipForBlend, false);
 
@@ -2009,7 +2009,7 @@ TextureClass *WorldHeightMap::getEdgeTerrainTexture(void)
 	return m_alphaEdgeTex;
 }
 	
-Bool WorldHeightMap::setDrawOrg(Int xOrg, Int yOrg)
+bool WorldHeightMap::setDrawOrg(Int xOrg, Int yOrg)
 {
 	Int newX, newY;
 	Int newWidth, newHeight;
@@ -2031,7 +2031,7 @@ Bool WorldHeightMap::setDrawOrg(Int xOrg, Int yOrg)
 	if (newX<0) newX=0;
 	if (newY > m_height - newHeight) newY = m_height - newHeight; 
 	if (newY<0) newY=0;
-	Bool anythingDifferent = (m_drawOriginX!=newX) ||
+	bool anythingDifferent = (m_drawOriginX!=newX) ||
 										 (m_drawOriginY!=newY) ||
 										 (m_drawWidthX!=newWidth) ||
 										 (m_drawHeightY!=newHeight) ;
@@ -2047,7 +2047,7 @@ Bool WorldHeightMap::setDrawOrg(Int xOrg, Int yOrg)
 }
 
 /** Gets global texture class. */
-Int WorldHeightMap::getTextureClass(Int xIndex, Int yIndex, Bool baseClass)
+Int WorldHeightMap::getTextureClass(Int xIndex, Int yIndex, bool baseClass)
 {
 	Int ndx = (yIndex*m_width)+xIndex;
 	DEBUG_ASSERTCRASH((ndx>=0 && ndx<this->m_dataSize),("oops"));
@@ -2088,7 +2088,7 @@ void WorldHeightMap::setCellCliffFlagFromHeights(Int xIndex, Int yIndex)
 	if (maxZ < height3) maxZ = height3;
 	if (maxZ < height4) maxZ = height4;
 	const Real cliffRange = PATHFIND_CLIFF_SLOPE_LIMIT_F;	
-	Bool isCliff = (maxZ-minZ > cliffRange);
+	bool isCliff = (maxZ-minZ > cliffRange);
 	setCliffState(xIndex, yIndex, isCliff);
 
 }

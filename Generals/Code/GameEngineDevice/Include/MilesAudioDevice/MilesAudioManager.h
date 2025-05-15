@@ -64,8 +64,8 @@ struct PlayingAudio
 	volatile PlayingStatus m_status;	// This member is adjusted by another running thread.
 	AudioEventRTS *m_audioEventRTS;
 	void *m_file;		// The file that was opened to play this
-	Bool m_requestStop;
-	Bool m_cleanupAudioEventRTS;
+	bool m_requestStop;
+	bool m_cleanupAudioEventRTS;
 	Int m_framesFaded;
 	
 	PlayingAudio() : 
@@ -82,7 +82,7 @@ struct ProviderInfo
 {
   AsciiString name;
   HPROVIDER id;
-	Bool m_isValid;
+	bool m_isValid;
 };
 
 struct OpenAudioFile
@@ -92,7 +92,7 @@ struct OpenAudioFile
 	UnsignedInt m_openCount;
 	UnsignedInt m_fileSize;
 
-	Bool m_compressed;	// if the file was compressed, then we need to free it with a miles function.
+	bool m_compressed;	// if the file was compressed, then we need to free it with a miles function.
 	
 	// Note: OpenAudioFile does not own this m_eventInfo, and should not delete it.
 	const AudioEventInfo *m_eventInfo;	// Not mutable, unlike the one on AudioEventRTS.
@@ -123,7 +123,7 @@ class AudioFileCache
 		void releaseOpenAudioFile( OpenAudioFile *fileToRelease );
 
 		// This function will return TRUE if it was able to free enough space, and FALSE otherwise.
-		Bool freeEnoughSpaceForSample(const OpenAudioFile& sampleThatNeedsSpace);
+		bool freeEnoughSpaceForSample(const OpenAudioFile& sampleThatNeedsSpace);
 		
 		OpenFilesHash m_openFiles;
 		UnsignedInt m_currentlyUsedSize;
@@ -153,8 +153,8 @@ class MilesAudioManager : public AudioManager
 
 		virtual void nextMusicTrack( void );
 		virtual void prevMusicTrack( void );
-		virtual Bool isMusicPlaying( void ) const;
-		virtual Bool hasMusicTrackCompleted( const AsciiString& trackName, Int numberOfTimes ) const;
+		virtual bool isMusicPlaying( void ) const;
+		virtual bool hasMusicTrackCompleted( const AsciiString& trackName, Int numberOfTimes ) const;
 		virtual AsciiString getMusicTrackName( void ) const;
 
 		virtual void openDevice( void );
@@ -164,13 +164,13 @@ class MilesAudioManager : public AudioManager
 		virtual void stopAudio( AudioAffect which );
 		virtual void pauseAudio( AudioAffect which );
 		virtual void resumeAudio( AudioAffect which );
-		virtual void pauseAmbient( Bool shouldPause );
+		virtual void pauseAmbient( bool shouldPause );
 
 		virtual void killAudioEventImmediately( AudioHandle audioEvent );
 
 		///< Return whether the current audio is playing or not. 
 		///< NOTE NOTE NOTE !!DO NOT USE THIS IN FOR GAMELOGIC PURPOSES!! NOTE NOTE NOTE
-		virtual Bool isCurrentlyPlaying( AudioHandle handle );
+		virtual bool isCurrentlyPlaying( AudioHandle handle );
 
 		virtual void notifyOfAudioCompletion( UnsignedInt audioCompleted, UnsignedInt flags );
 		virtual PlayingAudio *findPlayingAudioFrom( UnsignedInt audioCompleted, UnsignedInt flags );
@@ -193,11 +193,11 @@ class MilesAudioManager : public AudioManager
 		virtual UnsignedInt getNum3DSamples( void ) const;
 		virtual UnsignedInt getNumStreams( void ) const;
 
-		virtual Bool doesViolateLimit( AudioEventRTS *event ) const;
-		virtual Bool isPlayingLowerPriority( AudioEventRTS *event ) const;
-		virtual Bool isPlayingAlready( AudioEventRTS *event ) const;
-		virtual Bool isObjectPlayingVoice( UnsignedInt objID ) const;
-		Bool killLowestPrioritySoundImmediately( AudioEventRTS *event );
+		virtual bool doesViolateLimit( AudioEventRTS *event ) const;
+		virtual bool isPlayingLowerPriority( AudioEventRTS *event ) const;
+		virtual bool isPlayingAlready( AudioEventRTS *event ) const;
+		virtual bool isObjectPlayingVoice( UnsignedInt objID ) const;
+		bool killLowestPrioritySoundImmediately( AudioEventRTS *event );
 		AudioEventRTS* findLowestPrioritySound( AudioEventRTS *event );
 
 		virtual void adjustVolumeOfPlayingAudio(AsciiString eventName, Real newVolume);
@@ -210,9 +210,9 @@ class MilesAudioManager : public AudioManager
 		virtual void processFadingList( void );
 		virtual void processStoppedList( void );
 
-		Bool shouldProcessRequestThisFrame( AudioRequest *req ) const;
+		bool shouldProcessRequestThisFrame( AudioRequest *req ) const;
 		void adjustRequest( AudioRequest *req );
-		Bool checkForSample( AudioRequest *req );
+		bool checkForSample( AudioRequest *req );
 
 		virtual void setHardwareAccelerated(Bool accel);
 		virtual void setSpeakerSurround(Bool surround);
@@ -225,18 +225,18 @@ class MilesAudioManager : public AudioManager
 		virtual void closeAnySamplesUsingFile( const void *fileToClose );
 
     
-    virtual Bool has3DSensitiveStreamsPlaying( void ) const; 
+    virtual bool has3DSensitiveStreamsPlaying( void ) const; 
 
 
 	protected:	
 		// 3-D functions
 		virtual void setDeviceListenerPosition( void );
 		const Coord3D *getCurrentPositionFromEvent( AudioEventRTS *event );
-		Bool isOnScreen( const Coord3D *pos ) const;
+		bool isOnScreen( const Coord3D *pos ) const;
 		Real getEffectiveVolume(AudioEventRTS *event) const;
 
 		// Looping functions
-		Bool startNextLoop( PlayingAudio *looping );
+		bool startNextLoop( PlayingAudio *looping );
 
 		void playStream( AudioEventRTS *event, HSTREAM stream );
 		// Returns the file handle for attachment to the PlayingAudio structure
@@ -247,7 +247,7 @@ class MilesAudioManager : public AudioManager
 		void buildProviderList( void );
 		void createListener( void );
 		void initDelayFilter( void );
-		Bool isValidProvider( void );
+		bool isValidProvider( void );
 		void initSamplePools( void );
 		void processRequest( AudioRequest *req );
 

@@ -59,7 +59,7 @@ SalvageCrateCollide::~SalvageCrateCollide( void )
 }  
 
 //-------------------------------------------------------------------------------------------------
-Bool SalvageCrateCollide::isValidToExecute( const Object *other ) const
+bool SalvageCrateCollide::isValidToExecute( const Object *other ) const
 {
 	if( ! CrateCollide::isValidToExecute( other ) )
 		return FALSE;
@@ -72,7 +72,7 @@ Bool SalvageCrateCollide::isValidToExecute( const Object *other ) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool SalvageCrateCollide::executeCrateBehavior( Object *other )
+bool SalvageCrateCollide::executeCrateBehavior( Object *other )
 {
 	if( eligibleForWeaponSet( other ) && testWeaponChance() )
 	{
@@ -110,7 +110,7 @@ Bool SalvageCrateCollide::executeCrateBehavior( Object *other )
 }
 
 // ------------------------------------------------------------------------------------------------
-Bool SalvageCrateCollide::eligibleForWeaponSet( Object *other )
+bool SalvageCrateCollide::eligibleForWeaponSet( Object *other )
 {
 	if( other == NULL )
 		return FALSE;
@@ -125,7 +125,7 @@ Bool SalvageCrateCollide::eligibleForWeaponSet( Object *other )
 }
 
 // ------------------------------------------------------------------------------------------------
-Bool SalvageCrateCollide::eligibleForLevel( Object *other )
+bool SalvageCrateCollide::eligibleForLevel( Object *other )
 {
 	if( other == NULL )
 		return FALSE;
@@ -142,7 +142,7 @@ Bool SalvageCrateCollide::eligibleForLevel( Object *other )
 }
 
 // ------------------------------------------------------------------------------------------------
-Bool SalvageCrateCollide::testWeaponChance()
+bool SalvageCrateCollide::testWeaponChance()
 {
 	const SalvageCrateCollideModuleData *md = getSalvageCrateCollideModuleData();
 	if( md->m_weaponChance == 1.0f )
@@ -155,7 +155,7 @@ Bool SalvageCrateCollide::testWeaponChance()
 	return FALSE;
 }
 
-Bool SalvageCrateCollide::testLevelChance()
+bool SalvageCrateCollide::testLevelChance()
 {
 	const SalvageCrateCollideModuleData *md = getSalvageCrateCollideModuleData();
 	if( md->m_levelChance == 1.0f )

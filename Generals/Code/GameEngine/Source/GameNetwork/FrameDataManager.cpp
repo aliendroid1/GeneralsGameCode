@@ -102,7 +102,7 @@ void FrameDataManager::addNetCommandMsg(NetCommandMsg *msg) {
 /**
  * Returns true if all the commands for the given frame are ready.
  */
-FrameDataReturnType FrameDataManager::allCommandsReady(UnsignedInt frame, Bool debugSpewage) {
+FrameDataReturnType FrameDataManager::allCommandsReady(UnsignedInt frame, bool debugSpewage) {
 	UnsignedInt frameindex = frame % FRAME_DATA_LENGTH;
 	//DEBUG_ASSERTCRASH(m_frameData[frameindex].getFrame() == frame || frame == 256, ("Looking at old commands!"));
 	return m_frameData[frameindex].allCommandsReady(debugSpewage);
@@ -119,7 +119,7 @@ NetCommandList * FrameDataManager::getFrameCommandList(UnsignedInt frame) {
 /**
  * Reset the contents of the given frame.
  */
-void FrameDataManager::resetFrame(UnsignedInt frame, Bool isAdvancing) {
+void FrameDataManager::resetFrame(UnsignedInt frame, bool isAdvancing) {
 	UnsignedInt frameindex = frame % FRAME_DATA_LENGTH;
 
 	m_frameData[frameindex].reset();
@@ -202,6 +202,6 @@ UnsignedInt FrameDataManager::getQuitFrame() {
 /**
  * returns true if this frame data manager is quitting.
  */
-Bool FrameDataManager::getIsQuitting() {
+bool FrameDataManager::getIsQuitting() {
 	return m_isQuitting;
 }

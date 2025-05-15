@@ -59,19 +59,19 @@ public:	// AIPlayer interface methods.
 	/// Invoked when a unit I am training comes into existence
 	virtual void onUnitProduced( Object *factory, Object *unit );
 
-	virtual void buildSpecificAITeam(TeamPrototype *teamProto, Bool priorityBuild); ///< Builds this team immediately.
+	virtual void buildSpecificAITeam(TeamPrototype *teamProto, bool priorityBuild); ///< Builds this team immediately.
 
 	virtual void buildSpecificAIBuilding(const AsciiString &thingName); ///< Builds this building as soon as possible.
 
 	virtual void buildAIBaseDefense(Bool flank); ///< Builds base defense on front or flank of base.
 
-	virtual void buildAIBaseDefenseStructure(const AsciiString &thingName, Bool flank); ///< Builds base defense on front or flank of base.
+	virtual void buildAIBaseDefenseStructure(const AsciiString &thingName, bool flank); ///< Builds base defense on front or flank of base.
 
 	virtual void recruitSpecificAITeam(TeamPrototype *teamProto, Real recruitRadius); ///< Builds this team immediately.
 
-	virtual Bool isSkirmishAI(void) {return true;}
+	virtual bool isSkirmishAI(void) {return true;}
 
-	virtual Bool checkBridges(Object *unit, Waypoint *way);
+	virtual bool checkBridges(Object *unit, Waypoint *way);
 
 	virtual Player *getAiEnemy(void);	///< Solo AI attacks based on scripting.  Only skirmish auto-acquires an enemy at this point.  jba.
 
@@ -91,11 +91,11 @@ protected:
 
 protected:
 
-	virtual Bool selectTeamToBuild( void );			///< determine the next team to build
-	virtual Bool selectTeamToReinforce( Int minPriority );			///< determine the next team to reinforce
-	virtual Bool startTraining( WorkOrder *order, Bool busyOK, AsciiString teamName);	///< find a production building that can handle the order, and start building
+	virtual bool selectTeamToBuild( void );			///< determine the next team to build
+	virtual bool selectTeamToReinforce( Int minPriority );			///< determine the next team to reinforce
+	virtual bool startTraining( WorkOrder *order, bool busyOK, AsciiString teamName);	///< find a production building that can handle the order, and start building
 
-	virtual Bool isAGoodIdeaToBuildTeam( TeamPrototype *proto );		///< return true if team should be built
+	virtual bool isAGoodIdeaToBuildTeam( TeamPrototype *proto );		///< return true if team should be built
 	virtual void processBaseBuilding( void );		///< do base-building behaviors
 	virtual void processTeamBuilding( void );		///< do team-building behaviors
 

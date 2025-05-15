@@ -56,7 +56,7 @@ public:
 	virtual void reset( void );
 	virtual void update( void );
 	
-	virtual Bool load( AsciiString filename );
+	virtual bool load( AsciiString filename );
 
 	void getTerrainColorAt( Real x, Real y, RGBColor *pColor );
 
@@ -65,13 +65,13 @@ public:
 
 	/** intersect the ray with the terrain, if a hit occurs TRUE is returned
 	and the result point on the terrain is returned in "result" */
-	virtual Bool intersectTerrain( Coord3D *rayStart, Coord3D *rayEnd, Coord3D *result );
+	virtual bool intersectTerrain( Coord3D *rayStart, Coord3D *rayEnd, Coord3D *result );
 
 	//
 	// water methods
 	//
 	/// enable/disable the water grid
-	virtual void enableWaterGrid( Bool enable );
+	virtual void enableWaterGrid( bool enable );
 	/// set min/max height values allowed in water grid pointed to by waterTable
 	virtual void setWaterGridHeightClamps( const WaterHandle *waterTable, Real minZ, Real maxZ );
 	/// adjust fallof parameters for grid change method
@@ -92,18 +92,18 @@ public:
 	/// adjust the velocity at a water grid point corresponding to the world x,y
 	virtual void addWaterVelocity( Real worldX, Real worldY, 
 																 Real velocity, Real preferredHeight );
-	virtual Bool getWaterGridHeight( Real worldX, Real worldY, Real *height);
+	virtual bool getWaterGridHeight( Real worldX, Real worldY, Real *height);
 
 	virtual void setTerrainTracksDetail(void);
 	virtual void setShoreLineDetail(void);
 
 	/// Add a bib at location.  
-	void addFactionBib(Object *factionBuilding, Bool highlight, Real extra = 0);
+	void addFactionBib(Object *factionBuilding, bool highlight, Real extra = 0);
 	/// Remove a bib.  
 	void removeFactionBib(Object *factionBuilding);
 
 	/// Add a bib at location.  
-	void addFactionBibDrawable(Drawable *factionBuilding, Bool highlight, Real extra = 0);
+	void addFactionBibDrawable(Drawable *factionBuilding, bool highlight, Real extra = 0);
 	/// Remove a bib.  
 	void removeFactionBibDrawable(Drawable *factionBuilding);
 
@@ -129,7 +129,7 @@ protected:
 	HeightMapRenderObjClass *m_terrainRenderObject;  ///< W3D render object for terrain
 	WaterRenderObjClass	*m_waterRenderObject;	///< W3D render object for water plane
 	WorldHeightMap *m_terrainHeightMap;  ///< height map used for render obj building
-	Bool m_isWaterGridRenderingEnabled;
+	bool m_isWaterGridRenderingEnabled;
 	AsciiString	m_currentSkyboxTexNames[NumSkyboxTextures];	///<store current texture names applied to skybox.
 	AsciiString m_initialSkyboxTexNames[NumSkyboxTextures];	///<store starting texture/default skybox textures.
 

@@ -119,7 +119,7 @@ protected:
 	//Real				m_spinRate;			///HowMuch To Spin each frame;
 	Real				m_currentScale; ///< how big I am drawing this frame
 
-	//static Bool s_lastInstanceSpunPositive;/// so that only every other instance spins positive direction
+	//static bool s_lastInstanceSpunPositive;/// so that only every other instance spins positive direction
 
 
 };

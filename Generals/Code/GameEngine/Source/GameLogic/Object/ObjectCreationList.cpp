@@ -110,7 +110,7 @@ Object* ObjectCreationNugget::create( const Object* primary, const Object* secon
 
 //-------------------------------------------------------------------------------------------------
 //This one is called only when we have a nugget that doesn't care about createOwner.
-Object* ObjectCreationNugget::create( const Object *primaryObj, const Coord3D *primary, const Coord3D *secondary, Bool createOwner, UnsignedInt lifetimeFrames ) const
+Object* ObjectCreationNugget::create( const Object *primaryObj, const Coord3D *primary, const Coord3D *secondary, bool createOwner, UnsignedInt lifetimeFrames ) const
 {
 	return create( primaryObj, primary, secondary, lifetimeFrames );
 }
@@ -268,7 +268,7 @@ public:
 		return create( primaryObj, primary, secondary, true, lifetimeFrames );
 	}
 
-	virtual Object* create(const Object* primaryObj, const Coord3D *primary, const Coord3D* secondary, Bool createOwner, UnsignedInt lifetimeFrames = 0 ) const
+	virtual Object* create(const Object* primaryObj, const Coord3D *primary, const Coord3D* secondary, bool createOwner, UnsignedInt lifetimeFrames = 0 ) const
 	{
 		if (!primaryObj || !primary || !secondary)
 		{
@@ -1441,7 +1441,7 @@ void ObjectCreationList::addObjectCreationNugget(ObjectCreationNugget* nugget)
 }
 
 //-------------------------------------------------------------------------------------------------
-Object* ObjectCreationList::createInternal( const Object* primaryObj, const Coord3D *primary, const Coord3D* secondary, Bool createOwner, UnsignedInt lifetimeFrames ) const
+Object* ObjectCreationList::createInternal( const Object* primaryObj, const Coord3D *primary, const Coord3D* secondary, bool createOwner, UnsignedInt lifetimeFrames ) const
 {
 	DEBUG_ASSERTCRASH(primaryObj != NULL, ("You should always call OCLs with a non-null primary Obj, even for positional calls, to get team ownership right"));
 	Object *theFirstObject = NULL;

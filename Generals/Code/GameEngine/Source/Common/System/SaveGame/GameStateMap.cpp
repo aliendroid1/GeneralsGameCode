@@ -258,7 +258,7 @@ void GameStateMap::xfer( Xfer *xfer )
 	// that refers to map in the save directory so we must always save a filename into
 	// the file that is in the save directory
 	//
-	Bool firstSave = FALSE;  // TRUE if we haven't yet saved a pristine load of a new map
+	bool firstSave = FALSE;  // TRUE if we haven't yet saved a pristine load of a new map
 	if( xfer->getXferMode() == XFER_SAVE )
 	{
 
@@ -456,8 +456,8 @@ void GameStateMap::clearScratchPadMaps( void )
 	AsciiString fileToDelete;
 	WIN32_FIND_DATA item;  // search item
 	HANDLE hFile = INVALID_HANDLE_VALUE;  // handle for search resources
-	Bool done = FALSE;
-	Bool first = TRUE;
+	bool done = FALSE;
+	bool first = TRUE;
 	while( done == FALSE )
 	{
 

@@ -92,7 +92,7 @@ static LogClass s_stateChangedLog("StateChanged.txt");
 
 int isThreadHosting = 0;
 static UnsignedInt s_lastStateChangedHeartbeat = 0;
-static Bool s_wantStateChangedHeartbeat = FALSE;
+static bool s_wantStateChangedHeartbeat = FALSE;
 static UnsignedInt s_heartbeatInterval = 10000;
 
 static SOCKET qr2Sock = INVALID_SOCKET;
@@ -145,15 +145,15 @@ public:
 	GameSpyPeerMessageQueue();
 	virtual void startThread( void );
 	virtual void endThread( void );
-	virtual Bool isThreadRunning( void );
-	virtual Bool isConnected( void );
-	virtual Bool isConnecting( void );
+	virtual bool isThreadRunning( void );
+	virtual bool isConnected( void );
+	virtual bool isConnecting( void );
 
 	virtual void addRequest( const PeerRequest& req );
-	virtual Bool getRequest( PeerRequest& req );
+	virtual bool getRequest( PeerRequest& req );
 
 	virtual void addResponse( const PeerResponse& resp );
-	virtual Bool getResponse( PeerResponse& resp );
+	virtual bool getResponse( PeerResponse& resp );
 
 	virtual SerialAuthResult getSerialAuthResult( void ) { return m_serialAuth; }
 	void setSerialAuthResult( SerialAuthResult result ) { m_serialAuth = result; }
@@ -227,8 +227,8 @@ public:
 	void connectCallback( PEER peer, PEERBool success );
 	void nickErrorCallback( PEER peer, Int type, const char *nick );
 
-	Bool isConnecting( void ) { return m_isConnecting; }
-	Bool isConnected( void ) { return m_isConnected; }
+	bool isConnecting( void ) { return m_isConnecting; }
+	bool isConnected( void ) { return m_isConnected; }
 
 	Int addServerToMap( SBServer server );
 	Int removeServerFromMap( SBServer server );
@@ -237,10 +237,10 @@ public:
 	Int findServer( SBServer server );
 
 	// get info about the game we are hosting
-	Bool isHosting( void ) { return m_isHosting; }
+	bool isHosting( void ) { return m_isHosting; }
 	void stopHostingAlready(PEER peer);
-	Bool hasPassword( void ) { return m_hasPassword; }
-	Bool allowObservers( void ) { return m_allowObservers; }
+	bool hasPassword( void ) { return m_hasPassword; }
+	bool allowObservers( void ) { return m_allowObservers; }
 	std::string getMapName( void ) { return m_mapName; }
 	UnsignedInt exeCRC( void ) { return m_exeCRC; }
 	UnsignedInt iniCRC( void ) { return m_iniCRC; }
@@ -260,7 +260,7 @@ public:
 	Int getMaxPlayers(void) { return m_maxPlayers; }
 	Int getNumObservers(void) { return m_numObservers; }
 
-	void roomJoined( Bool val ) { m_roomJoined = val; }
+	void roomJoined( bool val ) { m_roomJoined = val; }
 	void setQMGroupRoom( Int groupID ) { m_qmGroupRoom = groupID; }
 	void sawEndOfEnumPlayers( void ) { m_sawEndOfEnumPlayers = true; }
 	void sawMatchbot( std::string bot ) { m_sawMatchbot = true; m_matchbotName = bot; }
@@ -281,15 +281,15 @@ public:
 #endif // USE_BROADCAST_KEYS
 
 	void setSawCompleteGameList(Bool val) { m_sawCompleteGameList = val; }
-	Bool getSawCompleteGameList() { return m_sawCompleteGameList; }
+	bool getSawCompleteGameList() { return m_sawCompleteGameList; }
 
 private:
-	Bool m_isConnecting;
-	Bool m_isConnected;
+	bool m_isConnecting;
+	bool m_isConnected;
 	std::string m_loginName, m_originalName, m_password, m_email;
 	Int m_profileID;
 	Int m_groupRoomID;
-	Bool m_sawCompleteGameList;
+	bool m_sawCompleteGameList;
 
 #ifdef USE_BROADCAST_KEYS
 	enum { NumKeys = 6, ValBufSize = 20 };
@@ -304,14 +304,14 @@ private:
 #endif // USE_BROADCAST_KEYS
 
 	// game-hosting info for GOA callbacks
-	Bool m_isHosting;
-	Bool m_hasPassword;
+	bool m_isHosting;
+	bool m_hasPassword;
 	std::string m_mapName;
 	std::string m_playerNames[MAX_SLOTS];
 	UnsignedInt m_exeCRC;
 	UnsignedInt m_iniCRC;
 	UnsignedInt m_gameVersion;
-	Bool m_allowObservers;
+	bool m_allowObservers;
 	std::string m_pingStr;
 	std::string m_ladderIP;
 	UnsignedShort m_ladderPort;
@@ -332,10 +332,10 @@ private:
 	void doQuickMatch( PEER peer );
 	QMStatus m_qmStatus;
 	PeerRequest m_qmInfo;
-	Bool m_roomJoined;
+	bool m_roomJoined;
 	Int m_qmGroupRoom;
-	Bool m_sawEndOfEnumPlayers;
-	Bool m_sawMatchbot;
+	bool m_sawEndOfEnumPlayers;
+	bool m_sawMatchbot;
 	std::string m_matchbotName;
 };
 
@@ -576,17 +576,17 @@ void GameSpyPeerMessageQueue::endThread( void )
 	m_thread = NULL;
 }
 
-Bool GameSpyPeerMessageQueue::isThreadRunning( void )
+bool GameSpyPeerMessageQueue::isThreadRunning( void )
 {
 	return (m_thread) ? m_thread->Is_Running() : false;
 }
 
-Bool GameSpyPeerMessageQueue::isConnected( void )
+bool GameSpyPeerMessageQueue::isConnected( void )
 {
 	return (m_thread) ? m_thread->isConnected() : false;
 }
 
-Bool GameSpyPeerMessageQueue::isConnecting( void )
+bool GameSpyPeerMessageQueue::isConnecting( void )
 {
 	return (m_thread) ? m_thread->isConnecting() : false;
 }
@@ -601,7 +601,7 @@ void GameSpyPeerMessageQueue::addRequest( const PeerRequest& req )
 }
 
 //PeerRequest GameSpyPeerMessageQueue::getRequest( void )
-Bool GameSpyPeerMessageQueue::getRequest( PeerRequest& req )
+bool GameSpyPeerMessageQueue::getRequest( PeerRequest& req )
 {
 	MutexClass::LockClass m(m_requestMutex, 0);
 	if (m.Failed())
@@ -627,7 +627,7 @@ void GameSpyPeerMessageQueue::addResponse( const PeerResponse& resp )
 }
 
 //PeerResponse GameSpyPeerMessageQueue::getResponse( void )
-Bool GameSpyPeerMessageQueue::getResponse( PeerResponse& resp )
+bool GameSpyPeerMessageQueue::getResponse( PeerResponse& resp )
 {
 	MutexClass::LockClass m(m_responseMutex, 0);
 	if (m.Failed())
@@ -1860,7 +1860,7 @@ void PeerThreadClass::handleQMMatch(PEER peer, Int mapIndex, Int seed,
 void PeerThreadClass::doQuickMatch( PEER peer )
 {
 	m_qmStatus = QM_JOININGQMCHANNEL;
-	Bool done = false;
+	bool done = false;
 	matchbotProfileID = m_qmInfo.QM.botID;
 	setQMGroupRoom( m_qmInfo.QM.roomID );
 	m_sawMatchbot = false;
@@ -2862,8 +2862,8 @@ static void listingGamesCallback(PEER peer, PEERBool success, const char * name,
 
 	if (server && (msg == PEER_ADD || msg == PEER_UPDATE))
 	{
-		Bool hasPassword = (Bool)SBServerGetIntValue(server, PW_STR, FALSE);
-		Bool allowObservers = (Bool)SBServerGetIntValue(server, OBS_STR, FALSE);
+		bool hasPassword = (Bool)SBServerGetIntValue(server, PW_STR, FALSE);
+		bool allowObservers = (Bool)SBServerGetIntValue(server, OBS_STR, FALSE);
 		const char *verStr = SBServerGetStringValue(server, "gamever", "000000");
 		const char *exeStr = SBServerGetStringValue(server, EXECRC_STR, "000000");
 		const char *iniStr = SBServerGetStringValue(server, INICRC_STR, "000000");

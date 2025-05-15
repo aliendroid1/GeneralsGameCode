@@ -78,7 +78,7 @@ static GameWindow *staticTextMessage = NULL;
 static GameWindow *buttonOk = NULL;
 
 
-static Bool pause = FALSE;
+static bool pause = FALSE;
 //-----------------------------------------------------------------------------
 // PUBLIC FUNCTIONS ///////////////////////////////////////////////////////////
 //-----------------------------------------------------------------------------

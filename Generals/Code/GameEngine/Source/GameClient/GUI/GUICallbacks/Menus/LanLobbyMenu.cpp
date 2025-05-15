@@ -61,13 +61,13 @@
 #include "GameNetwork/LANAPICallbacks.h"
 #include "GameNetwork/LANGameInfo.h"
 
-Bool LANisShuttingDown = false;
-Bool LANbuttonPushed = false;
-Bool LANSocketErrorDetected = FALSE;
+bool LANisShuttingDown = false;
+bool LANbuttonPushed = false;
+bool LANSocketErrorDetected = FALSE;
 char *LANnextScreen = NULL;
 
 static Int	initialGadgetDelay = 2;
-static Bool justEntered = FALSE;
+static bool justEntered = FALSE;
 
 
 
@@ -145,7 +145,7 @@ Int LANPreferences::getPreferredFaction(void)
 	return ret;
 }
 
-Bool LANPreferences::usesSystemMapDir(void)
+bool LANPreferences::usesSystemMapDir(void)
 {
 	OptionPreferences::const_iterator it = find("UseSystemMapDir");
 	if (it == end())
@@ -263,8 +263,8 @@ NameKeyType listboxGamesID = NAMEKEY_INVALID;
 GameWindow *listboxGames = NULL;
 
 // hack to disable framerate limiter in LAN games
-//static Bool shellmapOn;
-static Bool useFpsLimit;
+//static bool shellmapOn;
+static bool useFpsLimit;
 static UnicodeString defaultName;
 
 static void playerTooltip(GameWindow *window,
@@ -512,7 +512,7 @@ void LanLobbyMenuShutdown( WindowLayout *layout, void *userData )
 	LANisShuttingDown = true;
 
 	// if we are shutting down for an immediate pop, skip the animations
-	Bool popImmediate = *(Bool *)userData;
+	bool popImmediate = *(Bool *)userData;
 
 	LANSocketErrorDetected = FALSE;
 

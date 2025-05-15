@@ -149,7 +149,7 @@ static void updateFunc( WindowLayout *layout, void *param )
 {
 	if (theAnimateWindowManager && TheGlobalData->m_animateWindows)
 	{
-		Bool wasFinished = theAnimateWindowManager->isFinished();
+		bool wasFinished = theAnimateWindowManager->isFinished();
 		theAnimateWindowManager->update();
 		if (theAnimateWindowManager->isFinished() && !wasFinished && theAnimateWindowManager->isReversed())
 			theWindow->winHide( TRUE );
@@ -167,7 +167,7 @@ BriefingList* GetBriefingTextList(void)
 }
 
 //-------------------------------------------------------------------------------------------------
-void UpdateDiplomacyBriefingText(AsciiString newText, Bool clear)
+void UpdateDiplomacyBriefingText(AsciiString newText, bool clear)
 {
 	GameWindow *listboxSolo = TheWindowManager->winGetWindowFromId(theWindow, NAMEKEY("Diplomacy.wnd:ListboxSolo"));
 
@@ -196,7 +196,7 @@ void UpdateDiplomacyBriefingText(AsciiString newText, Bool clear)
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-void ShowDiplomacy( Bool immediate )
+void ShowDiplomacy( bool immediate )
 {
 	if (!TheInGameUI->getInputEnabled() || TheGameLogic->isIntroMoviePlaying() || 
 			TheGameLogic->isLoadingGame())
@@ -302,7 +302,7 @@ void ResetDiplomacy( void )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-void HideDiplomacy( Bool immediate )
+void HideDiplomacy( bool immediate )
 {
 	releaseWindowPointers();
 	if (theWindow)
@@ -322,14 +322,14 @@ void HideDiplomacy( Bool immediate )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-void ToggleDiplomacy( Bool immediate )
+void ToggleDiplomacy( bool immediate )
 {
 	// If we bring this up, let's hide the quit menu
 	HideQuitMenu();
 
 	if (theWindow)
 	{
-		Bool show = theWindow->winIsHidden();
+		bool show = theWindow->winIsHidden();
 		if (show)
 			ShowDiplomacy( immediate );
 		else
@@ -393,7 +393,7 @@ WindowMsgHandledType DiplomacySystem( GameWindow *window, UnsignedInt msg,
 		//---------------------------------------------------------------------------------------------
 		case GGM_FOCUS_CHANGE:
 		{
-//			Bool focus = (Bool) mData1;
+//			bool focus = (Bool) mData1;
 			//if (focus)
 				//TheWindowManager->winSetGrabWindow( chatTextEntry );
 			break;
@@ -470,7 +470,7 @@ void PopulateInGameDiplomacyPopup( void )
 		const GameSlot *slot = TheGameInfo->getConstSlot(slotNum);
 		if (slot && slot->isOccupied())
 		{
-			Bool isInGame = false;
+			bool isInGame = false;
 			// Note - for skirmish, TheNetwork == NULL.  jba.
 			if (TheNetwork &&	TheNetwork->isPlayerConnected(slotNum)) {
 				isInGame = true;
@@ -483,8 +483,8 @@ void PopulateInGameDiplomacyPopup( void )
 			AsciiString playerName;
 			playerName.format("player%d", slotNum);
 			Player *player = ThePlayerList->findPlayerWithNameKey(NAMEKEY(playerName));
-			Bool isAlive = !TheVictoryConditions->hasSinglePlayerBeenDefeated(player);
-			Bool isObserver = player->isPlayerObserver();
+			bool isAlive = !TheVictoryConditions->hasSinglePlayerBeenDefeated(player);
+			bool isObserver = player->isPlayerObserver();
 
 			if (slot->isHuman() && TheGameInfo->getLocalSlotNum() != slotNum && isInGame)
 			{

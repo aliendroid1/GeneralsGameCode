@@ -59,7 +59,7 @@ public:
 
 	// End SubsystemInterface functions
 
-	void updateRunAhead(Int oldRunAhead, Int frameRate, Bool didSelfSlug, Int nextExecutionFrame);	///< Update the run ahead value.  If we are the current packet router, issue the command.
+	void updateRunAhead(Int oldRunAhead, Int frameRate, bool didSelfSlug, Int nextExecutionFrame);	///< Update the run ahead value.  If we are the current packet router, issue the command.
 
 	void attachTransport(Transport *transport);
 
@@ -70,7 +70,7 @@ public:
 	void sendLocalCommandDirect(NetCommandMsg *msg, UnsignedByte relay);		///< Send command directly to the players specified, doesn't go through packet router.
 	void sendLocalGameMessage(GameMessage *msg, UnsignedInt frame);
 	void sendCommand(NetCommandMsg *msg);
-	Bool allCommandsReady(UnsignedInt frame, Bool justTesting = FALSE);
+	bool allCommandsReady(UnsignedInt frame, bool justTesting = FALSE);
 	void handleAllCommandsReady(void);
 	NetCommandList *getFrameCommandList(UnsignedInt frame);
 //	void AddConnection(User *user, UnsignedInt slot);
@@ -86,7 +86,7 @@ public:
 	void sendFile(AsciiString path, UnsignedByte playerMask, UnsignedShort commandID);
 	UnsignedShort sendFileAnnounce(AsciiString path, UnsignedByte playerMask);
 	Int getFileTransferProgress(Int playerID, AsciiString path);
-	Bool areAllQueuesEmpty(void);
+	bool areAllQueuesEmpty(void);
 
 	UnsignedInt getLocalPlayerID();
 	UnicodeString getPlayerName(Int playerNum);
@@ -105,7 +105,7 @@ public:
 	void setFrameGrouping(time_t frameGrouping);				///< Set the number of frames that are grouped together into packets.
 
 	PlayerLeaveCode processPlayerLeave(NetPlayerLeaveCommandMsg *msg);
-	Bool canILeave();																///< Returns true if the local player is allowed to leave.
+	bool canILeave();																///< Returns true if the local player is allowed to leave.
 
 	// Bandwidth metrics
 	Real getIncomingBytesPerSecond( void );
@@ -126,9 +126,9 @@ public:
 	void loadProgressComplete( void );
 	void sendTimeOutGameStart( void );
 	
-	Bool isPacketRouter( void );
+	bool isPacketRouter( void );
 
-	Bool isPlayerConnected( Int playerID );
+	bool isPlayerConnected( Int playerID );
 
 	void notifyOthersOfCurrentFrame(Int frame);
 	void sendFrameDataToPlayer(UnsignedInt playerID, UnsignedInt startingFrame);
@@ -155,7 +155,7 @@ private:
 	void sendRemoteCommand(NetCommandRef *msg);
 	void ackCommand(NetCommandRef *ref, UnsignedInt localSlot);
 
-	Bool processNetCommand(NetCommandRef *ref);
+	bool processNetCommand(NetCommandRef *ref);
 	void processAckStage1(NetCommandMsg *msg);
 	void processAckStage2(NetCommandMsg *msg);
 	void processAck(NetCommandMsg *msg);
@@ -209,7 +209,7 @@ private:
 	Int  m_minFpsPlayer;
 	Int  m_minFps;
 	UnsignedInt m_smallestPacketArrivalCushion;
-	Bool m_didSelfSlug;
+	bool m_didSelfSlug;
 
 	// -----------------------------------------------------------------------------
 	FileCommandMap s_fileCommandMap;

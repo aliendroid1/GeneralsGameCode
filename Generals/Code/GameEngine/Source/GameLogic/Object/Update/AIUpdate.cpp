@@ -305,11 +305,11 @@ AIUpdateInterface::AIUpdateInterface( Thing *thing, const ModuleData* moduleData
 //=============================================================================
 // Object::setSurrendered, and related methods ================================
 //=============================================================================
-void AIUpdateInterface::setSurrendered( const Object *objWeSurrenderedTo, Bool surrendered )
+void AIUpdateInterface::setSurrendered( const Object *objWeSurrenderedTo, bool surrendered )
 {
 	if (surrendered)
 	{
-		Bool wasSurrendered = isSurrendered();
+		bool wasSurrendered = isSurrendered();
 
 		const AIUpdateModuleData* d = getAIUpdateModuleData();
 
@@ -477,7 +477,7 @@ void AIUpdateInterface::doPathfind( PathfindServicesInterface *pathfinder )
 pathfinder (air units just move point to point) it generates the path immediately.  Otherwise the path
 will be processed when we get to the front of the pathfind queue. jba */
 //-------------------------------------------------------------------------------------------------
-void AIUpdateInterface::requestPath( Coord3D *destination, Bool isFinalGoal ) 
+void AIUpdateInterface::requestPath( Coord3D *destination, bool isFinalGoal ) 
 {
 
 	if (m_locomotorSet.getValidSurfaces() == 0) {
@@ -655,7 +655,7 @@ AIUpdateInterface::~AIUpdateInterface( void )
 }
 
 //=============================================================================
-void AIUpdateInterface::setTurretTargetObject(WhichTurretType tur, Object* o, Bool forceAttacking)
+void AIUpdateInterface::setTurretTargetObject(WhichTurretType tur, Object* o, bool forceAttacking)
 {
 	if (m_turretAI[tur])
 	{
@@ -688,7 +688,7 @@ void AIUpdateInterface::setTurretTargetPosition(WhichTurretType tur, const Coord
 }
 
 //=============================================================================
-void AIUpdateInterface::setTurretEnabled(WhichTurretType tur, Bool enabled)
+void AIUpdateInterface::setTurretEnabled(WhichTurretType tur, bool enabled)
 {
 	if (m_turretAI[tur])
 	{
@@ -706,7 +706,7 @@ void AIUpdateInterface::recenterTurret(WhichTurretType tur)
 }
 
 //=============================================================================
-Bool AIUpdateInterface::isTurretEnabled( WhichTurretType tur ) const
+bool AIUpdateInterface::isTurretEnabled( WhichTurretType tur ) const
 {
 	if( m_turretAI[ tur ] )
 	{
@@ -716,7 +716,7 @@ Bool AIUpdateInterface::isTurretEnabled( WhichTurretType tur ) const
 }
 
 //=============================================================================
-Bool AIUpdateInterface::isTurretInNaturalPosition(WhichTurretType tur) const
+bool AIUpdateInterface::isTurretInNaturalPosition(WhichTurretType tur) const
 {
 	if (m_turretAI[tur])
 	{
@@ -726,7 +726,7 @@ Bool AIUpdateInterface::isTurretInNaturalPosition(WhichTurretType tur) const
 }
 
 //=============================================================================
-Bool AIUpdateInterface::isWeaponSlotOnTurretAndAimingAtTarget(WeaponSlotType wslot, const Object* victim) const
+bool AIUpdateInterface::isWeaponSlotOnTurretAndAimingAtTarget(WeaponSlotType wslot, const Object* victim) const
 {
 	for (int i = 0; i < MAX_TURRETS; i++)
 	{
@@ -739,7 +739,7 @@ Bool AIUpdateInterface::isWeaponSlotOnTurretAndAimingAtTarget(WeaponSlotType wsl
 }
 
 //=============================================================================
-Bool AIUpdateInterface::getTurretRotAndPitch(WhichTurretType tur, Real* turretAngle, Real* turretPitch) const
+bool AIUpdateInterface::getTurretRotAndPitch(WhichTurretType tur, Real* turretAngle, Real* turretPitch) const
 {
 	if (m_turretAI[tur])
 	{
@@ -807,7 +807,7 @@ void AIUpdateInterface::setLocomotorUpgrade(Bool set)
 }
 
 //=============================================================================
-Bool AIUpdateInterface::chooseLocomotorSet(LocomotorSetType wst)
+bool AIUpdateInterface::chooseLocomotorSet(LocomotorSetType wst)
 {
 	DEBUG_ASSERTCRASH(wst != LOCOMOTORSET_NORMAL_UPGRADED, ("never pass LOCOMOTORSET_NORMAL_UPGRADED here"));
 	if (wst == LOCOMOTORSET_NORMAL && m_upgradedLocomotors)
@@ -828,7 +828,7 @@ Bool AIUpdateInterface::chooseLocomotorSet(LocomotorSetType wst)
 //=============================================================================
 // this should only be called by load/save, or by chooseLocomotorSet.
 // it does no sanity checking; it just jams it in.
-Bool AIUpdateInterface::chooseLocomotorSetExplicit(LocomotorSetType wst)
+bool AIUpdateInterface::chooseLocomotorSetExplicit(LocomotorSetType wst)
 {
 	const LocomotorTemplateVector* set = getAIUpdateModuleData()->findLocomotorTemplateVector(wst);
 	if (set)
@@ -1153,7 +1153,7 @@ UpdateSleepTime AIUpdateInterface::update( void )
 /**
  * Append waypoint to queue for later movement
  */
-Bool AIUpdateInterface::queueWaypoint( const Coord3D *pos )
+bool AIUpdateInterface::queueWaypoint( const Coord3D *pos )
 {
 	if (m_waypointCount < MAX_WAYPOINTS)
 	{
@@ -1205,7 +1205,7 @@ The way to have a higher priority is:
 3. If exactly tied (usually beacause both units got unfortunately snapped to the same location), ObjectID is used
 to break the tie. 
 */
-Bool AIUpdateInterface::hasHigherPathPriority(AIUpdateInterface *otherAI) const
+bool AIUpdateInterface::hasHigherPathPriority(AIUpdateInterface *otherAI) const
 {
 	Object *other = otherAI->getObject();
 
@@ -1279,7 +1279,7 @@ Real AIUpdateInterface::calculateMaxBlockedSpeed(Object *other) const
 
 
 //-------------------------------------------------------------------------------------------------
-Bool AIUpdateInterface::blockedBy(Object *other)
+bool AIUpdateInterface::blockedBy(Object *other)
 /* Returns TRUE if we are blocked from moving by the other object.*/
 {
 	Coord3D goalPos = *getStateMachine()->getGoalPosition();
@@ -1296,7 +1296,7 @@ Bool AIUpdateInterface::blockedBy(Object *other)
 		}
 	}
 
-	Bool canCrush = obj->canCrushOrSquish(other, TEST_CRUSH_OR_SQUISH);
+	bool canCrush = obj->canCrushOrSquish(other, TEST_CRUSH_OR_SQUISH);
 	if (canCrush) return FALSE; // just run over them.
 
 	AIUpdateInterface* aiOther = other->getAI();
@@ -1309,7 +1309,7 @@ Bool AIUpdateInterface::blockedBy(Object *other)
 	if (getCurLocomotor() && getCurLocomotor()->isMovingBackwards()) {
 		return false; // don't collide.
 	}
-	Bool otherMoving = ( aiOther->m_locomotorGoalType != NONE );
+	bool otherMoving = ( aiOther->m_locomotorGoalType != NONE );
 	Coord3D otherPos = *other->getPosition();
 	Real dx = pos.x-otherPos.x;
 	Real dy = pos.y-otherPos.y;
@@ -1387,7 +1387,7 @@ Bool AIUpdateInterface::blockedBy(Object *other)
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool AIUpdateInterface::needToRotate(void)
+bool AIUpdateInterface::needToRotate(void)
 /* Returns TRUE if we need to rotate to point in our path's direcion.*/
 {
 	if (isWaitingForPath()) 
@@ -1417,7 +1417,7 @@ Bool AIUpdateInterface::needToRotate(void)
 //-------------------------------------------------------------------------------------------------
 /* Returns TRUE if the physics collide should apply the force.  Normally not.  
 Also determines whether objects are blocked, and if so, if they are stuck.  jba.*/
-Bool AIUpdateInterface::processCollision(PhysicsBehavior *physics, Object *other)
+bool AIUpdateInterface::processCollision(PhysicsBehavior *physics, Object *other)
 {
 
 #ifdef DO_UNIT_TIMINGS
@@ -1434,13 +1434,13 @@ Bool AIUpdateInterface::processCollision(PhysicsBehavior *physics, Object *other
 	if (aiOther == NULL) 
 		return FALSE;
 
-	Bool selfMoving = isMoving();
-	Bool otherMoving = ( aiOther && aiOther->isMoving() );
+	bool selfMoving = isMoving();
+	bool otherMoving = ( aiOther && aiOther->isMoving() );
 	if (!isDoingGroundMovement()) return FALSE;
 	if (!aiOther->isDoingGroundMovement()) return FALSE;
 	if (selfMoving) 
 	{
-		Bool blocked = blockedBy(other);
+		bool blocked = blockedBy(other);
 		if (blocked) 
 		{
 			if (getObject()->isKindOf(KINDOF_INFANTRY)) 
@@ -1571,10 +1571,10 @@ Bool AIUpdateInterface::processCollision(PhysicsBehavior *physics, Object *other
 /**
  * See if we can do a quick path without pathfinding.
  */
-Bool AIUpdateInterface::canComputeQuickPath( void )
+bool AIUpdateInterface::canComputeQuickPath( void )
 {
 	/* Basically, if a unit is moving through the air, we can quick path.  jba. */
-	Bool landBound = FALSE;
+	bool landBound = FALSE;
 	// Note - if a truck happens to pop into the air and gets a move to command, it still
 	// needs to pathfind.  So only skip pathfinding for airborne things that can fly... jba.
 	if (!(m_locomotorSet.getValidSurfaces() & LOCOMOTORSURFACE_AIR))
@@ -1582,7 +1582,7 @@ Bool AIUpdateInterface::canComputeQuickPath( void )
 		landBound = TRUE;
 	}
 
-	Bool unitIsFlyingThroughTheAir = FALSE;
+	bool unitIsFlyingThroughTheAir = FALSE;
 	if (landBound) {
 		unitIsFlyingThroughTheAir = FALSE; // Land bound units never fly.
 	}	else {
@@ -1598,7 +1598,7 @@ Bool AIUpdateInterface::canComputeQuickPath( void )
 /**
  * Create a quick path.  (Just places the start & end point as the path). jba.
  */
-Bool AIUpdateInterface::computeQuickPath( const Coord3D *destination )
+bool AIUpdateInterface::computeQuickPath( const Coord3D *destination )
 {
 	// for now, quick path objects don't pathfind, generally airborne units
 	// build a trivial one-node path containing destination
@@ -1651,7 +1651,7 @@ Bool AIUpdateInterface::computeQuickPath( const Coord3D *destination )
 /**
  * Invoke the pathfinder to compute a path to the desired location.
  */
-Bool AIUpdateInterface::computePath( PathfindServicesInterface *pathServices, Coord3D *destination )
+bool AIUpdateInterface::computePath( PathfindServicesInterface *pathServices, Coord3D *destination )
 {
 
 	if (!m_isBlockedAndStuck)	{
@@ -1676,7 +1676,7 @@ Bool AIUpdateInterface::computePath( PathfindServicesInterface *pathServices, Co
 
 	// Special case of exit factory. jba.
 	if ((m_stateMachine->getCurrentStateID() == AI_FOLLOW_EXITPRODUCTION_PATH) && canPathThroughUnits()) {
-		Bool ok = computeQuickPath(destination);
+		bool ok = computeQuickPath(destination);
 		if (ok) {
 			TheAI->pathfinder()->moveAlliesAwayFromDestination(getObject(), *destination);
 			setCanPathThroughUnits(false);
@@ -1765,7 +1765,7 @@ Bool AIUpdateInterface::computePath( PathfindServicesInterface *pathServices, Co
 /**
  * Invoke the pathfinder to compute a path to attack the current victim.
  */
-Bool AIUpdateInterface::computeAttackPath( PathfindServicesInterface *pathServices, const Object *victim, const Coord3D* victimPos )
+bool AIUpdateInterface::computeAttackPath( PathfindServicesInterface *pathServices, const Object *victim, const Coord3D* victimPos )
 {
 	//CRCDEBUG_LOG(("AIUpdateInterface::computeAttackPath() for object %d\n", getObject()->getID()));
 	// See if it has been too soon.
@@ -1782,7 +1782,7 @@ Bool AIUpdateInterface::computeAttackPath( PathfindServicesInterface *pathServic
 			return TRUE;
 		}
 	}
-	Bool landBound = FALSE;
+	bool landBound = FALSE;
 	// Note - if a truck happens to pop into the air and gets a move to command, it still
 	// needs to pathfind.  So only skip pathfinding for airborne things that can fly... jba.
 	if (!(m_locomotorSet.getValidSurfaces() & LOCOMOTORSURFACE_AIR))
@@ -1815,7 +1815,7 @@ Bool AIUpdateInterface::computeAttackPath( PathfindServicesInterface *pathServic
 	{
 		if (weapon->isWithinAttackRange(source, victim))
 		{
-			Bool viewBlocked = FALSE;
+			bool viewBlocked = FALSE;
 			if (isDoingGroundMovement() && !victim->isSignificantlyAboveTerrain()) 
 			{
 				viewBlocked = TheAI->pathfinder()->isAttackViewBlockedByObstacle(source, *source->getPosition(), victim, *victim->getPosition());
@@ -1833,7 +1833,7 @@ Bool AIUpdateInterface::computeAttackPath( PathfindServicesInterface *pathServic
 	{
 		if (weapon->isWithinAttackRange(source, victimPos))
 		{
-			Bool viewBlocked = FALSE;
+			bool viewBlocked = FALSE;
 			if (isDoingGroundMovement()) 
 			{
 				viewBlocked = TheAI->pathfinder()->isAttackViewBlockedByObstacle(source, *source->getPosition(), NULL, *victimPos);
@@ -1857,7 +1857,7 @@ Bool AIUpdateInterface::computeAttackPath( PathfindServicesInterface *pathServic
 		{
 			getCurLocomotor()->setNoSlowDownAsApproachingDest(TRUE);
 		}
-		Bool ok = computePath(pathServices, &tmp);
+		bool ok = computePath(pathServices, &tmp);
 		if (m_path==NULL) return false;
 		Real dx, dy;
 		dx = victimPos->x - m_path->getLastNode()->getPosition()->x;
@@ -2031,7 +2031,7 @@ void AIUpdateInterface::friend_setPath(Path *path)
  */
 void AIUpdateInterface::friend_setGoalObject(Object *obj)
 {
-	Bool locked = getStateMachine()->isLocked();
+	bool locked = getStateMachine()->isLocked();
 	getStateMachine()->unlock();
 	getStateMachine()->setGoalObject(obj);
 	if (locked) {
@@ -2042,7 +2042,7 @@ void AIUpdateInterface::friend_setGoalObject(Object *obj)
 //-------------------------------------------------------------------------------------------------
 /** Is there a path at all that exists from us to the destination location */
 //-------------------------------------------------------------------------------------------------
-Bool AIUpdateInterface::isPathAvailable( const Coord3D *destination ) const
+bool AIUpdateInterface::isPathAvailable( const Coord3D *destination ) const
 {
 	
 	// sanity
@@ -2059,7 +2059,7 @@ Bool AIUpdateInterface::isPathAvailable( const Coord3D *destination ) const
 /** Is there a path (computed using the less accurate but quick method )
 	* at all that exists from us to the destination location */
 //-------------------------------------------------------------------------------------------------
-Bool AIUpdateInterface::isQuickPathAvailable( const Coord3D *destination ) const
+bool AIUpdateInterface::isQuickPathAvailable( const Coord3D *destination ) const
 {
 	
 	// sanity
@@ -2076,7 +2076,7 @@ Bool AIUpdateInterface::isQuickPathAvailable( const Coord3D *destination ) const
 
 
 //-------------------------------------------------------------------------------------------------
-Bool AIUpdateInterface::isValidLocomotorPosition(const Coord3D* pos) const
+bool AIUpdateInterface::isValidLocomotorPosition(const Coord3D* pos) const
 {
 	return TheAI->pathfinder()->validMovementPosition( getObject()->getCrusherLevel()>0, getObject()->getLayer(), m_locomotorSet, pos );
 }
@@ -2106,8 +2106,8 @@ UpdateSleepTime AIUpdateInterface::doLocomotor( void )
 
 	m_isBlocked = FALSE;
 
-	Bool blocked = m_blockedFrames > 0;
-	Bool requiresConstantCalling = TRUE;	// assume the worst.
+	bool blocked = m_blockedFrames > 0;
+	bool requiresConstantCalling = TRUE;	// assume the worst.
 
 	if (m_curLocomotor)
 	{
@@ -2218,7 +2218,7 @@ UpdateSleepTime AIUpdateInterface::doLocomotor( void )
 						if (m_doFinalPosition) 
 						{
 							Coord3D pos = *getObject()->getPosition();
-							Bool onGround = !getObject()->isAboveTerrain() && getObject()->getLayer() == LAYER_GROUND;
+							bool onGround = !getObject()->isAboveTerrain() && getObject()->getLayer() == LAYER_GROUND;
 							Real dx = m_finalPosition.x - pos.x;
 							Real dy = m_finalPosition.y - pos.y;
 							Real dSqr = dx*dx+dy*dy;
@@ -2318,7 +2318,7 @@ void AIUpdateInterface::setLocomotorGoalNone()
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool AIUpdateInterface::isDoingGroundMovement(void) const
+bool AIUpdateInterface::isDoingGroundMovement(void) const
 {
 	if (m_locomotorSet.getValidSurfaces() == LOCOMOTORSURFACE_AIR) 
 	{
@@ -2360,7 +2360,7 @@ Bool AIUpdateInterface::isDoingGroundMovement(void) const
 Others, like missles, should stack destinations.  AdjustDestination in pathfinder unstacks
 destinations, and this routine identifies non-ground units that should unstack. */
 
-Bool AIUpdateInterface::isAircraftThatAdjustsDestination(void) const
+bool AIUpdateInterface::isAircraftThatAdjustsDestination(void) const
 {
 	if (m_curLocomotor == NULL) 
 	{
@@ -2384,9 +2384,9 @@ Bool AIUpdateInterface::isAircraftThatAdjustsDestination(void) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool AIUpdateInterface::getTreatAsAircraftForLocoDistToGoal() const
+bool AIUpdateInterface::getTreatAsAircraftForLocoDistToGoal() const
 {
-	Bool treatAsAircraft = !isDoingGroundMovement();
+	bool treatAsAircraft = !isDoingGroundMovement();
 	if (getPathExtraDistance() > PATHFIND_CLOSE_ENOUGH) 
 	{
 		// We are following a waypoint or other multiple point path, so use the "easy" success criteria.
@@ -2433,7 +2433,7 @@ Real AIUpdateInterface::getLocomotorDistanceToGoal()
 			else 
 			{
 				Coord3D goalPos;
-				Bool treatAsAircraft = getTreatAsAircraftForLocoDistToGoal();
+				bool treatAsAircraft = getTreatAsAircraftForLocoDistToGoal();
 				Real dist;
 				if (treatAsAircraft) 
 				{
@@ -2544,7 +2544,7 @@ void AIUpdateInterface::joinTeam( void )
 }  // end joinTeam
 
 //-------------------------------------------------------------------------------------------------
-Bool AIUpdateInterface::isAllowedToRespondToAiCommands(const AICommandParms* parms) const
+bool AIUpdateInterface::isAllowedToRespondToAiCommands(const AICommandParms* parms) const
 {
 	// the dead don't listen very well
 	// (unless they are seeking to feed on the brains of the living)
@@ -2980,13 +2980,13 @@ void AIUpdateInterface::privateIdle(CommandSourceType cmdSource)
 }
 
 //----------------------------------------------------------------------------------------
-Bool AIUpdateInterface::isIdle() const
+bool AIUpdateInterface::isIdle() const
 {
 	return getStateMachine()->isInIdleState();
 }
 
 //----------------------------------------------------------------------------------------
-Bool AIUpdateInterface::isAttacking() const
+bool AIUpdateInterface::isAttacking() const
 {
 	return getStateMachine()->isInAttackState();
 }
@@ -2994,13 +2994,13 @@ Bool AIUpdateInterface::isAttacking() const
 //----------------------------------------------------------------------------------------
 //Definition of busy -- when explicitly in the busy state. Moving or attacking is not considered busy!
 //----------------------------------------------------------------------------------------
-Bool AIUpdateInterface::isBusy() const
+bool AIUpdateInterface::isBusy() const
 {
 	return getStateMachine()->isInBusyState();
 }
 
 //----------------------------------------------------------------------------------------
-Bool AIUpdateInterface::isClearingMines() const
+bool AIUpdateInterface::isClearingMines() const
 {
 	// if we are attacking with an anti-mine weapon, we are clearing mines, regardless
 	// of our target.
@@ -3036,7 +3036,7 @@ void AIUpdateInterface::privateTightenToPosition( const Coord3D *pos, CommandSou
 /**
  * Is this moving out of the way of another unit.
  */
-Bool AIUpdateInterface::isMovingAwayFrom(Object *obj)	 const
+bool AIUpdateInterface::isMovingAwayFrom(Object *obj)	 const
 {
 	ObjectID id = obj->getID();
 	if (m_stateMachine->getTemporaryState() == AI_MOVE_OUT_OF_THE_WAY) {
@@ -3049,7 +3049,7 @@ Bool AIUpdateInterface::isMovingAwayFrom(Object *obj)	 const
 /**
  * Is this moving out of the way of another unit.
  */
-Bool AIUpdateInterface::isMoving() const
+bool AIUpdateInterface::isMoving() const
 {
 	if (isIdle()) {
 		return false;
@@ -3210,7 +3210,7 @@ void AIUpdateInterface::privateFollowWaypointPathAsTeamExact( const Waypoint *wa
 void AIUpdateInterface::privateFollowPathAppend( const Coord3D *pos, CommandSourceType cmdSource )
 {
 	// We're adding a dynamic waypoint!
-	Bool effectivelyMoving = isMoving() || isWaitingForPath();
+	bool effectivelyMoving = isMoving() || isWaitingForPath();
 
 	if (getAIStateType() == AI_FOLLOW_PATH && getStateMachine()->getGoalPathSize() > 0 && effectivelyMoving)
 	{
@@ -3239,7 +3239,7 @@ void AIUpdateInterface::privateFollowPathAppend( const Coord3D *pos, CommandSour
 /**
  * Follow the path defined by the given array of points
  */
-void AIUpdateInterface::privateFollowPath( const std::vector<Coord3D>* path, Object *ignoreObject, CommandSourceType cmdSource, Bool exitProduction )
+void AIUpdateInterface::privateFollowPath( const std::vector<Coord3D>* path, Object *ignoreObject, CommandSourceType cmdSource, bool exitProduction )
 {
 	if (getObject()->isMobile() == FALSE)
 		return;
@@ -3446,7 +3446,7 @@ void AIUpdateInterface::privateAttackMoveToPosition( const Coord3D *pos, Int max
 /**
  * Attack move down a given waypoint path. If asTeam is TRUE, do so as a team.
  */
-void AIUpdateInterface::privateAttackFollowWaypointPath( const Waypoint *way, Int maxShotsToFire, Bool asTeam, CommandSourceType cmdSource )
+void AIUpdateInterface::privateAttackFollowWaypointPath( const Waypoint *way, Int maxShotsToFire, bool asTeam, CommandSourceType cmdSource )
 {
 	if (m_isAiDead || getObject()->isMobile() == FALSE)
 		return;
@@ -3683,7 +3683,7 @@ void AIUpdateInterface::privateExit( Object *objectToExit, CommandSourceType cmd
 void AIUpdateInterface::doQuickExit( const std::vector<Coord3D>* path )
 {
 
-	Bool locked = getStateMachine()->isLocked();
+	bool locked = getStateMachine()->isLocked();
 	getStateMachine()->unlock();
 
 	// set path info
@@ -4249,7 +4249,7 @@ void AIUpdateInterface::setNextMoodCheckTime( UnsignedInt frame )
 /**
  * Return the next object that our mood suggests we should attack.
  */
-Object* AIUpdateInterface::getNextMoodTarget( Bool calledByAI, Bool calledDuringIdle )
+Object* AIUpdateInterface::getNextMoodTarget( bool calledByAI, bool calledDuringIdle )
 {
 	Object *obj = getObject();
 
@@ -4426,10 +4426,10 @@ void AIUpdateInterface::evaluateMoraleBonus( void )
 {
 	Object *us = getObject();
 #ifdef ALLOW_DEMORALIZE
-	Bool demoralized = isDemoralized();
+	bool demoralized = isDemoralized();
 #endif
-	Bool horde = FALSE;
-	Bool nationalism = FALSE;
+	bool horde = FALSE;
+	bool nationalism = FALSE;
 
 	// are we in a horde
 	HordeUpdateInterface *hui;
@@ -4806,7 +4806,7 @@ void AIUpdateInterface::xfer( Xfer *xfer )
 	}
 
 	xfer->xferBool(&m_waitingForPath);
-	Bool gotPath = (m_path != NULL);
+	bool gotPath = (m_path != NULL);
 	xfer->xferBool(&gotPath);
 	if (xfer->getXferMode() == XFER_LOAD)	{
 		if (gotPath) {

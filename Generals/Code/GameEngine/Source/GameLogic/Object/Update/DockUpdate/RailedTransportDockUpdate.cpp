@@ -121,7 +121,7 @@ UpdateSleepTime RailedTransportDockUpdate::update( void )
 // ------------------------------------------------------------------------------------------------
 /** The dock action callback, return FALSE when done docking */
 // ------------------------------------------------------------------------------------------------
-Bool RailedTransportDockUpdate::action( Object *docker, Object *drone )
+bool RailedTransportDockUpdate::action( Object *docker, Object *drone )
 {
 	Object *us = getObject();
 
@@ -175,12 +175,12 @@ Bool RailedTransportDockUpdate::action( Object *docker, Object *drone )
 // ------------------------------------------------------------------------------------------------
 /** Is clear to enter the railed transport */
 // ------------------------------------------------------------------------------------------------
-Bool RailedTransportDockUpdate::isClearToEnter( Object const *docker ) const
+bool RailedTransportDockUpdate::isClearToEnter( Object const *docker ) const
 {
 	const Object *us = getObject();
 
 	// first do base class restrictions
-	Bool clear = DockUpdate::isClearToEnter( docker );
+	bool clear = DockUpdate::isClearToEnter( docker );
 	if( clear == FALSE )
 		return FALSE;
 
@@ -196,7 +196,7 @@ Bool RailedTransportDockUpdate::isClearToEnter( Object const *docker ) const
 // ------------------------------------------------------------------------------------------------
 /** Is anything currently loading or unloading */
 // ------------------------------------------------------------------------------------------------
-Bool RailedTransportDockUpdate::isLoadingOrUnloading( void )
+bool RailedTransportDockUpdate::isLoadingOrUnloading( void )
 {
 
 	if( m_unloadingObjectID != INVALID_ID || m_dockingObjectID != INVALID_ID )

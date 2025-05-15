@@ -103,7 +103,7 @@ static WindowLayout *theLayout = NULL;
 static GameWindow *theWindow = NULL;
 static AnimateWindowManager *theAnimateWindowManager = NULL;
 static GameWindow *prevWindow = NULL;
-static Bool useAnimation = FALSE;
+static bool useAnimation = FALSE;
 void ControlBarPopupDescriptionUpdateFunc( WindowLayout *layout, void *param )
 {
 	if(TheScriptEngine->isGameEnding())
@@ -117,7 +117,7 @@ void ControlBarPopupDescriptionUpdateFunc( WindowLayout *layout, void *param )
 
 	if ( useAnimation && theAnimateWindowManager && TheGlobalData->m_animateWindows)
 	{
-		Bool wasFinished = theAnimateWindowManager->isFinished();
+		bool wasFinished = theAnimateWindowManager->isFinished();
 		theAnimateWindowManager->update();
 		if (theAnimateWindowManager && theAnimateWindowManager->isFinished() && !wasFinished && theAnimateWindowManager->isReversed())
 		{
@@ -137,8 +137,8 @@ void ControlBar::showBuildTooltipLayout( GameWindow *cmdButton )
 		return;
 	}
 
-	Bool passedWaitTime = FALSE;
-	static Bool isInitialized = FALSE;
+	bool passedWaitTime = FALSE;
+	static bool isInitialized = FALSE;
 	static UnsignedInt beginWaitTime;
 	if(prevWindow == cmdButton)	
 	{
@@ -254,9 +254,9 @@ void ControlBar::populateBuildTooltipLayout( const CommandButton *commandButton,
 	Player *player = ThePlayerList->getLocalPlayer();
 	UnicodeString name, cost, descrip;
 	UnicodeString requiresFormat = UnicodeString::TheEmptyString, requiresList;
-	Bool firstRequirement = true;
+	bool firstRequirement = true;
 	const ProductionPrerequisite *prereq;
-	Bool fireScienceButton = false;
+	bool fireScienceButton = false;
 
 	if(commandButton)
 	{
@@ -421,10 +421,10 @@ void ControlBar::populateBuildTooltipLayout( const CommandButton *commandButton,
 		{
 			//We are looking at an upgrade purchase icon. Maybe we already purchased it?
 
-			Bool hasUpgradeAlready = false;
-			Bool hasConflictingUpgrade = false;
-			Bool playerUpgradeButton = commandButton->getCommandType() == GUI_COMMAND_PLAYER_UPGRADE;
-			Bool objectUpgradeButton = commandButton->getCommandType() == GUI_COMMAND_OBJECT_UPGRADE;
+			bool hasUpgradeAlready = false;
+			bool hasConflictingUpgrade = false;
+			bool playerUpgradeButton = commandButton->getCommandType() == GUI_COMMAND_PLAYER_UPGRADE;
+			bool objectUpgradeButton = commandButton->getCommandType() == GUI_COMMAND_OBJECT_UPGRADE;
 
 			//Check if the local player has the specified upgrade
 			hasUpgradeAlready = player->hasUpgradeComplete( upgradeTemplate );

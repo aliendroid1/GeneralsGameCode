@@ -76,7 +76,7 @@ ConvertToHijackedVehicleCrateCollide::~ConvertToHijackedVehicleCrateCollide( voi
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-Bool ConvertToHijackedVehicleCrateCollide::isValidToExecute( const Object *other ) const
+bool ConvertToHijackedVehicleCrateCollide::isValidToExecute( const Object *other ) const
 {
 	if( !CrateCollide::isValidToExecute(other) )
 	{
@@ -132,7 +132,7 @@ Bool ConvertToHijackedVehicleCrateCollide::isValidToExecute( const Object *other
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-Bool ConvertToHijackedVehicleCrateCollide::executeCrateBehavior( Object *other )
+bool ConvertToHijackedVehicleCrateCollide::executeCrateBehavior( Object *other )
 {
 	//Check to make sure that the other object is also the goal object in the AIUpdateInterface
 	//in order to prevent an unintentional conversion simply by having the terrorist walk too close
@@ -190,7 +190,7 @@ Bool ConvertToHijackedVehicleCrateCollide::executeCrateBehavior( Object *other )
 	}
 
 
-	Bool targetCanEject = FALSE;
+	bool targetCanEject = FALSE;
 	BehaviorModule **dmi = NULL;
 	for( dmi = other->getBehaviorModules(); *dmi; ++dmi )
 	{

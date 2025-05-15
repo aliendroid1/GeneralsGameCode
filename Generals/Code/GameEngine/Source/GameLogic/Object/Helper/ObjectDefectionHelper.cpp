@@ -92,10 +92,10 @@ UpdateSleepTime ObjectDefectionHelper::update()
 
 	if (draw && m_doDefectorFX) // skip fx if merely 'invulnerable'
 	{
-		Bool lastPhase = ( ((Int)m_defectionDetectionFlashPhase) & 1 );// were we in a flashy phase last frame?
+		bool lastPhase = ( ((Int)m_defectionDetectionFlashPhase) & 1 );// were we in a flashy phase last frame?
 		UnsignedInt timeLeft = m_defectionDetectionEnd - now;
 		m_defectionDetectionFlashPhase += 0.5f * ( 1.0f - ((Real)timeLeft / DEFECTION_DETECTION_TIME_MAX ) );
-		Bool thisPhase = ( ((Int)m_defectionDetectionFlashPhase) & 1 );// are we in a flashy phase this frame?
+		bool thisPhase = ( ((Int)m_defectionDetectionFlashPhase) & 1 );// are we in a flashy phase this frame?
 
 		if ( lastPhase && ( ! thisPhase ) ) 
 		{
@@ -113,7 +113,7 @@ UpdateSleepTime ObjectDefectionHelper::update()
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-void ObjectDefectionHelper::startDefectionTimer(UnsignedInt numFrames, Bool withDefectorFX)
+void ObjectDefectionHelper::startDefectionTimer(UnsignedInt numFrames, bool withDefectorFX)
 {
 	Object* obj = getObject();
 

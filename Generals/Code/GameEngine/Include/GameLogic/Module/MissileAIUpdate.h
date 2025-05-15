@@ -92,11 +92,11 @@ public:
 	virtual ProjectileUpdateInterface* getProjectileUpdateInterface() { return this; }
 	virtual void projectileFireAtObjectOrPosition( const Object *victim, const Coord3D *victimPos, const WeaponTemplate *detWeap, const ParticleSystemTemplate* exhaustSysOverride );
 	virtual void projectileLaunchAtObjectOrPosition(const Object *victim, const Coord3D* victimPos, const Object *launcher, WeaponSlotType wslot, Int specificBarrelToUse, const WeaponTemplate* detWeap, const ParticleSystemTemplate* exhaustSysOverride);
-	virtual Bool projectileHandleCollision( Object *other );
-	virtual Bool projectileIsArmed() const { return m_isArmed; }
+	virtual bool projectileHandleCollision( Object *other );
+	virtual bool projectileIsArmed() const { return m_isArmed; }
 	virtual ObjectID projectileGetLauncherID() const { return m_launcherID; }
 
-	virtual Bool processCollision(PhysicsBehavior *physics, Object *other); ///< Returns true if the physics collide should apply the force.  Normally not.  jba.
+	virtual bool processCollision(PhysicsBehavior *physics, Object *other); ///< Returns true if the physics collide should apply the force.  Normally not.  jba.
 
 	virtual UpdateSleepTime update();
 	virtual void onDelete( void );

@@ -161,7 +161,7 @@ void HotKeyManager::addHotKey( GameWindow *win, const AsciiString& keyIn)
 }
 
 //-----------------------------------------------------------------------------
-Bool HotKeyManager::executeHotKey( const AsciiString& keyIn )
+bool HotKeyManager::executeHotKey( const AsciiString& keyIn )
 {
 	AsciiString key = keyIn;
 	key.toLower();

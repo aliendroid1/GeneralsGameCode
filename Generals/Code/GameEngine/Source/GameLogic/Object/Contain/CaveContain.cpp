@@ -75,7 +75,7 @@ void CaveContain::addToContainList( Object *obj )
 	* This will trigger an onRemoving event for the object that this module
 	* is a part of and an onRemovedFrom event for the object being removed */
 //-------------------------------------------------------------------------------------------------
-void CaveContain::removeFromContain( Object *obj, Bool exposeStealthUnits )
+void CaveContain::removeFromContain( Object *obj, bool exposeStealthUnits )
 {
 
 	// sanity
@@ -110,7 +110,7 @@ void CaveContain::removeFromContain( Object *obj, Bool exposeStealthUnits )
 //-------------------------------------------------------------------------------------------------
 /** Remove all contained objects from the contained list */
 //-------------------------------------------------------------------------------------------------
-void CaveContain::removeAllContained( Bool exposeStealthUnits )
+void CaveContain::removeAllContained( bool exposeStealthUnits )
 {
 	TunnelTracker *myTracker = TheCaveSystem->getTunnelTrackerForCaveIndex( m_caveIndex );
 	const ContainedItemsList *fullList = myTracker->getContainedItemsList();
@@ -129,7 +129,7 @@ void CaveContain::removeAllContained( Bool exposeStealthUnits )
 //-------------------------------------------------------------------------------------------------
 /** Iterate the contained list and call the callback on each of the objects */
 //-------------------------------------------------------------------------------------------------
-void CaveContain::iterateContained( ContainIterateFunc func, void *userData, Bool reverse )
+void CaveContain::iterateContained( ContainIterateFunc func, void *userData, bool reverse )
 {
 	TunnelTracker *myTracker = TheCaveSystem->getTunnelTrackerForCaveIndex( m_caveIndex );
 	myTracker->iterateContained( func, userData, reverse );
@@ -191,7 +191,7 @@ void CaveContain::onRemoving( Object *obj )
 	}  // end if
 }
 
-Bool CaveContain::isValidContainerFor(const Object* obj, Bool checkCapacity) const
+bool CaveContain::isValidContainerFor(const Object* obj, bool checkCapacity) const
 {
 	TunnelTracker *myTracker = TheCaveSystem->getTunnelTrackerForCaveIndex( m_caveIndex );
 	return myTracker->isValidContainerFor( obj, checkCapacity );
@@ -331,7 +331,7 @@ static CaveInterface* findCave(Object* obj)
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
-void CaveContain::changeTeamOnAllConnectedCaves( Team *newTeam, Bool setOriginalTeams )
+void CaveContain::changeTeamOnAllConnectedCaves( Team *newTeam, bool setOriginalTeams )
 {
 	TunnelTracker *myTracker = TheCaveSystem->getTunnelTrackerForCaveIndex( m_caveIndex );
 	const std::list<ObjectID> *allCaves = myTracker->getContainerList();

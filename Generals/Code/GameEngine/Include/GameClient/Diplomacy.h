@@ -32,7 +32,7 @@
 #define __DIPLOMACY_H__
 
 void PopulateInGameDiplomacyPopup( void );
-void UpdateDiplomacyBriefingText(AsciiString newText, Bool clear);
+void UpdateDiplomacyBriefingText(AsciiString newText, bool clear);
 
 typedef std::list<AsciiString> BriefingList;
 BriefingList* GetBriefingTextList(void);

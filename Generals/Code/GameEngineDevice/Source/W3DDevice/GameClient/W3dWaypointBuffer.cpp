@@ -235,7 +235,7 @@ void W3DWaypointBuffer::drawWaypoints(RenderInfoClass &rinfo)
 					points[ numPoints ].Set( Vector3( exitPoint.x, exitPoint.y, exitPoint.z ) );
 					numPoints++;
 
-					Bool boxWrap = TRUE;
+					bool boxWrap = TRUE;
 					Coord3D naturalRallyPoint;
 					if (exitInterface->getNaturalRallyPoint(naturalRallyPoint, FALSE))//FALSE means "without the extra offset" 
 					{

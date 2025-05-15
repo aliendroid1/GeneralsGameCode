@@ -66,7 +66,7 @@ struct BaseBoneListInfo
 	BoneLocInfo locInfo;
 	GameClientRandomVariable gameClientDelay;
 	GameLogicRandomVariable gameLogicDelay;
-	Bool onlyOnce;
+	bool onlyOnce;
 };
 
 //-------------------------------------------------------------------------------------------------
@@ -274,8 +274,8 @@ protected:
 	Coord3D m_OCLBonePositions[ BODYDAMAGETYPE_COUNT ][ BONE_FX_MAX_BONES ];
 	Coord3D m_PSBonePositions[ BODYDAMAGETYPE_COUNT ][ BONE_FX_MAX_BONES ];
 	BodyDamageType m_curBodyState;
-	Bool m_bonesResolved[BODYDAMAGETYPE_COUNT];
-	Bool m_active;
+	bool m_bonesResolved[BODYDAMAGETYPE_COUNT];
+	bool m_active;
 };
 
 #endif  // end __BONEFXUPDATE_H_

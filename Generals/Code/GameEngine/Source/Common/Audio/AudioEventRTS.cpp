@@ -512,7 +512,7 @@ void AudioEventRTS::decreaseLoopCount( void )
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool AudioEventRTS::hasMoreLoops( void ) const
+bool AudioEventRTS::hasMoreLoops( void ) const
 {
 	return (m_loopCount >= 0);
 }
@@ -643,31 +643,31 @@ AudioHandle AudioEventRTS::getHandleToKill( void ) const
 }
 
 //-------------------------------------------------------------------------------------------------
-void AudioEventRTS::setShouldFade( Bool shouldFade )
+void AudioEventRTS::setShouldFade( bool shouldFade )
 {
 	m_shouldFade = shouldFade;
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool AudioEventRTS::getShouldFade( void ) const
+bool AudioEventRTS::getShouldFade( void ) const
 {
 	return m_shouldFade;
 }
 
 //-------------------------------------------------------------------------------------------------
-void AudioEventRTS::setIsLogicalAudio( Bool isLogicalAudio )
+void AudioEventRTS::setIsLogicalAudio( bool isLogicalAudio )
 {
 	m_isLogicalAudio = isLogicalAudio;
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool AudioEventRTS::getIsLogicalAudio( void ) const
+bool AudioEventRTS::getIsLogicalAudio( void ) const
 {
 	return m_isLogicalAudio;
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool AudioEventRTS::isPositionalAudio( void ) const
+bool AudioEventRTS::isPositionalAudio( void ) const
 {
 	if( m_eventInfo ) 
 	{
@@ -687,7 +687,7 @@ Bool AudioEventRTS::isPositionalAudio( void ) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool AudioEventRTS::isCurrentlyPlaying( void ) const
+bool AudioEventRTS::isCurrentlyPlaying( void ) const
 {
 	return TheAudio->isCurrentlyPlaying(m_playingHandle);
 }
@@ -767,7 +767,7 @@ const Coord3D *AudioEventRTS::getCurrentPosition( void )
 }
 
 //-------------------------------------------------------------------------------------------------
-AsciiString AudioEventRTS::generateFilenamePrefix( AudioType audioTypeToPlay, Bool localized )
+AsciiString AudioEventRTS::generateFilenamePrefix( AudioType audioTypeToPlay, bool localized )
 {
 	AsciiString retStr;
 	retStr = TheAudio->getAudioSettings()->m_audioRoot;

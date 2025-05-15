@@ -51,7 +51,7 @@ public:
 private:
 
 	Int m_objective;
-	Bool m_teamExists;				///< is there a currently selected "team"?
+	bool m_teamExists;				///< is there a currently selected "team"?
   
  	// these are for determining if a drag occurred or it wasjust a sloppy click
  	ICoord2D m_mouseRightDragAnchor;		// the location of a possible mouse drag start

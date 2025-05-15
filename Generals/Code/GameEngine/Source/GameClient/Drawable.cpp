@@ -226,7 +226,7 @@ const Int MAX_ENABLED_MODULES								= 16;
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
 
-/*static*/ Bool							Drawable::s_staticImagesInited = false;
+/*static*/ bool							Drawable::s_staticImagesInited = false;
 /*static*/ const Image*			Drawable::s_veterancyImage[LEVEL_COUNT]	= { NULL };
 /*static*/ const Image*			Drawable::s_fullAmmo = NULL;
 /*static*/ const Image*			Drawable::s_emptyAmmo = NULL;
@@ -560,7 +560,7 @@ void Drawable::onDestroy( void )
 }  // end onDestroy
 
 //-------------------------------------------------------------------------------------------------
-Bool Drawable::isVisible()
+bool Drawable::isVisible()
 {
 	for (DrawModule** dm = getDrawModules(); *dm; ++dm)
 	{
@@ -573,7 +573,7 @@ Bool Drawable::isVisible()
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool Drawable::getShouldAnimate( Bool considerPower ) const
+bool Drawable::getShouldAnimate( bool considerPower ) const
 {
 	const Object *obj = getObject();
 
@@ -608,7 +608,7 @@ Bool Drawable::getShouldAnimate( Bool considerPower ) const
 
 //-------------------------------------------------------------------------------------------------
 // this method must ONLY be called from the client, NEVER From the logic, not even indirectly.
-Bool Drawable::clientOnly_getFirstRenderObjInfo(Coord3D* pos, Real* boundingSphereRadius, Matrix3D* transform)
+bool Drawable::clientOnly_getFirstRenderObjInfo(Coord3D* pos, Real* boundingSphereRadius, Matrix3D* transform)
 {
 	DrawModule** dm = getDrawModules();
 	const ObjectDrawInterface* di = (dm && *dm) ? (*dm)->getObjectDrawInterface() : NULL;
@@ -620,7 +620,7 @@ Bool Drawable::clientOnly_getFirstRenderObjInfo(Coord3D* pos, Real* boundingSphe
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool Drawable::getProjectileLaunchOffset(WeaponSlotType wslot, Int specificBarrelToUse, Matrix3D* launchPos, WhichTurretType tur, Coord3D* turretRotPos, Coord3D* turretPitchPos) const
+bool Drawable::getProjectileLaunchOffset(WeaponSlotType wslot, Int specificBarrelToUse, Matrix3D* launchPos, WhichTurretType tur, Coord3D* turretRotPos, Coord3D* turretPitchPos) const
 {
 	for (const DrawModule** dm = getDrawModules(); *dm; ++dm)
 	{
@@ -665,7 +665,7 @@ void Drawable::updateSubObjects()
 }
 
 //-------------------------------------------------------------------------------------------------
-void Drawable::showSubObject( const AsciiString& name, Bool show )
+void Drawable::showSubObject( const AsciiString& name, bool show )
 {
 	for (DrawModule** dm = getDrawModules(); *dm; ++dm)
 	{
@@ -758,7 +758,7 @@ Int Drawable::getCurrentClientBonePositions(const char* boneNamePrefix, Int star
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool Drawable::getCurrentWorldspaceClientBonePositions(const char* boneName, Matrix3D& transform) const
+bool Drawable::getCurrentWorldspaceClientBonePositions(const char* boneName, Matrix3D& transform) const
 {
 	for (const DrawModule** dm = getDrawModules(); *dm; ++dm)
 	{
@@ -1267,7 +1267,7 @@ void Drawable::applyPhysicsXform(Matrix3D* mtx)
 		return;
 	}
 
- 	Bool frozen = TheTacticalView->isTimeFrozen() && !TheTacticalView->isCameraMovementFinished();
+ 	bool frozen = TheTacticalView->isTimeFrozen() && !TheTacticalView->isCameraMovementFinished();
  	frozen = frozen || TheScriptEngine->isTimeFrozenDebug() || TheScriptEngine->isTimeFrozenScript();
 	if (frozen)
 		return;
@@ -1283,11 +1283,11 @@ void Drawable::applyPhysicsXform(Matrix3D* mtx)
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-Bool Drawable::calcPhysicsXform(PhysicsXformInfo& info)
+bool Drawable::calcPhysicsXform(PhysicsXformInfo& info)
 {
 	const Object* obj = getObject();
 	const AIUpdateInterface *ai = obj ? obj->getAIUpdateInterface() : NULL;
-	Bool hasPhysicsXform = false;
+	bool hasPhysicsXform = false;
 	if (ai) 
 	{
 		const Locomotor *locomotor = ai->getCurLocomotor(); 
@@ -1602,7 +1602,7 @@ void Drawable::calcPhysicsXformTreads( const Locomotor *locomotor, PhysicsXformI
 			Real height = overlapped->getGeometryInfo().getMaxHeightAbovePosition();
 
 			// do not "go up" flattened crushed things
-			Bool flat = false;
+			bool flat = false;
 			if (overlapped->isKindOf(KINDOF_LOW_OVERLAPPABLE) ||
 					overlapped->isKindOf(KINDOF_INFANTRY) ||
 					(overlapped->getBodyModule()->getFrontCrushed() && overlapped->getBodyModule()->getBackCrushed()))
@@ -1789,7 +1789,7 @@ void Drawable::calcPhysicsXformWheels( const Locomotor *locomotor, PhysicsXformI
 //	const Real MAX_SUSPENSION_COMPRESSION = locomotor->getMaxWheelCompression(); //1.4f;
 	const Real WHEEL_ANGLE = locomotor->getWheelTurnAngle(); //PI/8;
 
-	const Bool DO_WHEELS = locomotor->hasSuspension();
+	const bool DO_WHEELS = locomotor->hasSuspension();
 
 	// get object from logic
 	Object *obj = getObject();
@@ -1826,7 +1826,7 @@ void Drawable::calcPhysicsXformWheels( const Locomotor *locomotor, PhysicsXformI
 	dot = normal.x * perp.x + normal.y * perp.y;
 	Real groundRoll = dot * (PI/2.0f);
 
-	Bool airborne = obj->isSignificantlyAboveTerrain();
+	bool airborne = obj->isSignificantlyAboveTerrain();
 
 	if (airborne) 
 	{
@@ -2236,7 +2236,7 @@ void Drawable::draw( View *view )
 /** Compute the health bar region based on the health of the object and the
 	* zoom level of the camera */
 // ------------------------------------------------------------------------------------------------
-static Bool computeHealthRegion( const Drawable *draw, IRegion2D& region )
+static bool computeHealthRegion( const Drawable *draw, IRegion2D& region )
 {
 
 	// sanity
@@ -2284,7 +2284,7 @@ static Bool computeHealthRegion( const Drawable *draw, IRegion2D& region )
 
 // ------------------------------------------------------------------------------------------------
 
-Bool Drawable::drawsAnyUIText( void )
+bool Drawable::drawsAnyUIText( void )
 {
 	if (!isSelected()) 
 		return FALSE;
@@ -2754,7 +2754,7 @@ void Drawable::drawHealing(const IRegion2D* healthBarRegion)
 
 
 	// see if healing has been done to us recently
-	Bool showHealing = FALSE;
+	bool showHealing = FALSE;
 	BodyModuleInterface *body = obj->getBodyModule();
 	if( body->getHealth() != body->getMaxHealth() )
 	{
@@ -3559,7 +3559,7 @@ void Drawable::clearAndSetModelConditionFlags(const ModelConditionFlags& clr, co
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-void Drawable::replaceModelConditionFlags( const ModelConditionFlags &flags, Bool forceReplace )
+void Drawable::replaceModelConditionFlags( const ModelConditionFlags &flags, bool forceReplace )
 {
 
 	//
@@ -3713,7 +3713,7 @@ void Drawable::reactToGeometryChange()
 } 
 
 //-------------------------------------------------------------------------------------------------
-Bool Drawable::handleWeaponFireFX(WeaponSlotType wslot, Int specificBarrelToUse, const FXList* fxl, Real weaponSpeed, Real recoilAmount, Real recoilAngle, const Coord3D* victimPos, Real damageRadius)
+bool Drawable::handleWeaponFireFX(WeaponSlotType wslot, Int specificBarrelToUse, const FXList* fxl, Real weaponSpeed, Real recoilAmount, Real recoilAngle, const Coord3D* victimPos, Real damageRadius)
 {	  
 	if (recoilAmount != 0.0f)
 	{
@@ -3863,7 +3863,7 @@ void Drawable::startAmbientSound(BodyDamageType dt, TimeOfDay tod)
 
 	//Get the specific ambient sound for the damage type.
 	const AudioEventRTS& audio = getAmbientSoundByDamage(dt);
-	Bool trySound = FALSE;
+	bool trySound = FALSE;
 	if( audio.getEventName().isNotEmpty() )
 	{
 		if (m_ambientSound == NULL)
@@ -3947,7 +3947,7 @@ void	Drawable::stopAmbientSound( void )
 }
 
 //-------------------------------------------------------------------------------------------------
-void Drawable::enableAmbientSound( Bool enable )
+void Drawable::enableAmbientSound( bool enable )
 {
 	if( m_ambientSoundEnabled == enable )
 	{
@@ -3996,7 +3996,7 @@ void Drawable::removeFromList(Drawable **pListHead)
 //-------------------------------------------------------------------------------------------------
 void Drawable::updateHiddenStatus()
 {
-	Bool hidden = m_hidden || m_hiddenByStealth;
+	bool hidden = m_hidden || m_hiddenByStealth;
 	if( hidden )
 		TheInGameUI->deselectDrawable( this );
 
@@ -4012,7 +4012,7 @@ void Drawable::updateHiddenStatus()
 //-------------------------------------------------------------------------------------------------
 /** Hide or un-hide drawable */
 //-------------------------------------------------------------------------------------------------
-void Drawable::setDrawableHidden( Bool hidden )
+void Drawable::setDrawableHidden( bool hidden )
 {
 	if (hidden != m_hidden)
 	{
@@ -4057,7 +4057,7 @@ void Drawable::notifyDrawableDependencyCleared()
 //-------------------------------------------------------------------------------------------------
 /** Set as selectable or not. */
 //-------------------------------------------------------------------------------------------------
-void Drawable::setSelectable( Bool selectable )
+void Drawable::setSelectable( bool selectable )
 {
 	// unselct drawable if it is no longer selectable.
 	if( !selectable )
@@ -4074,7 +4074,7 @@ void Drawable::setSelectable( Bool selectable )
 //-------------------------------------------------------------------------------------------------
 /** Return whether or not this Drawable is selectable. */
 //-------------------------------------------------------------------------------------------------
-Bool Drawable::isSelectable( void ) const
+bool Drawable::isSelectable( void ) const
 {
 	return getObject() && getObject()->isSelectable();
 }
@@ -4082,7 +4082,7 @@ Bool Drawable::isSelectable( void ) const
 //-------------------------------------------------------------------------------------------------
 /** Return whether or not this Drawable is selectable as part of a group. */
 //-------------------------------------------------------------------------------------------------
-Bool Drawable::isMassSelectable( void ) const
+bool Drawable::isMassSelectable( void ) const
 {
 	return getObject() && getObject()->isMassSelectable();
 }
@@ -4319,7 +4319,7 @@ void Drawable::xfer( Xfer *xfer )
 	}
 
 	// selection flash envelope
-	Bool selFlash = (m_selectionFlashEnvelope != NULL);
+	bool selFlash = (m_selectionFlashEnvelope != NULL);
 	xfer->xferBool( &selFlash );
 	if( selFlash )
 	{
@@ -4334,7 +4334,7 @@ void Drawable::xfer( Xfer *xfer )
 	}  // end if
 
 	// color tint envelope
-	Bool colFlash = (m_colorTintEnvelope != NULL);
+	bool colFlash = (m_colorTintEnvelope != NULL);
 	xfer->xferBool( &colFlash );
 	if( colFlash )
 	{
@@ -4439,7 +4439,7 @@ void Drawable::xfer( Xfer *xfer )
 	// time to fade
 	xfer->xferUnsignedInt( &m_timeToFade );
 
-	Bool hasLocoInfo = (m_locoInfo != NULL);
+	bool hasLocoInfo = (m_locoInfo != NULL);
 	xfer->xferBool( &hasLocoInfo );
 	if (hasLocoInfo)
 	{

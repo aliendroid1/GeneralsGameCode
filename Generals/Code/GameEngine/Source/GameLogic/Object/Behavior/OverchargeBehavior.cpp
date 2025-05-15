@@ -174,7 +174,7 @@ void OverchargeBehavior::toggle( void )
 // ------------------------------------------------------------------------------------------------
 /** Enable or disable an overcharge */
 // ------------------------------------------------------------------------------------------------
-void OverchargeBehavior::enable( Bool enable )
+void OverchargeBehavior::enable( bool enable )
 {
 	Object *us = getObject();
 

@@ -100,15 +100,15 @@ public:
 	virtual void reset( void );							///< Reset keyboard system
 	virtual void update( void );						/**< gather current state of all keys, extend 
 																							 this functionality, do not replace */
-	virtual Bool getCapsState( void ) = 0;  ///< get state of caps lock key, return TRUE if down
+	virtual bool getCapsState( void ) = 0;  ///< get state of caps lock key, return TRUE if down
 
 	virtual void createStreamMessages( void );  /**< given state of device, create 
 																							messages and put them on the 
 																							stream for the raw state. */
 	// simplified versions where the caller doesn't care which key type was pressed.
-	Bool isShift();
-	Bool isCtrl();
-	Bool isAlt();
+	bool isShift();
+	bool isCtrl();
+	bool isAlt();
 	Int getModifierFlags() { return m_modifiers; }
 	
 	// access methods for key data
@@ -128,9 +128,9 @@ protected:
 	// internal methods to update the key states
 	void initKeyNames( void );  ///< initialize the key names table
 	void updateKeys( void );  ///< update the state of our key data
-	Bool checkKeyRepeat( void );  ///< check for repeating keys
+	bool checkKeyRepeat( void );  ///< check for repeating keys
 	UnsignedByte getKeyStatusData( UnsignedByte key );  ///< get key status
-	Bool getKeyStateBit( UnsignedByte key, Int bit );  ///< get key state bit
+	bool getKeyStateBit( UnsignedByte key, Int bit );  ///< get key state bit
 	UnsignedInt getKeySequenceData( UnsignedByte key );  ///< get key sequence
 	void setKeyStateData( UnsignedByte key, UnsignedByte data );  ///< get key state
 

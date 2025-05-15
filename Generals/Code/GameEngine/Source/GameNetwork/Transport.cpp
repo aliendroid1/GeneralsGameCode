@@ -83,12 +83,12 @@ Transport::~Transport(void)
 	reset();
 }
 
-Bool Transport::init( AsciiString ip, UnsignedShort port )
+bool Transport::init( AsciiString ip, UnsignedShort port )
 {
 	return init(ResolveIP(ip), port);
 }
 
-Bool Transport::init( UnsignedInt ip, UnsignedShort port )
+bool Transport::init( UnsignedInt ip, UnsignedShort port )
 {
 	// ----- Initialize Winsock -----
 	if (!m_winsockInit)
@@ -180,9 +180,9 @@ void Transport::reset( void )
 	}
 }
 
-Bool Transport::update( void )
+bool Transport::update( void )
 {
-	Bool retval = TRUE;
+	bool retval = TRUE;
 	if (doRecv() == FALSE && m_udpsock && m_udpsock->GetStatus() == UDP::ADDRNOTAVAIL)
 	{
 		retval = FALSE;
@@ -196,14 +196,14 @@ Bool Transport::update( void )
 	return retval;
 }
 
-Bool Transport::doSend() {
+bool Transport::doSend() {
 	if (!m_udpsock)
 	{
 		DEBUG_LOG(("Transport::doSend() - m_udpSock is NULL!\n"));
 		return FALSE;
 	}
 
-	Bool retval = TRUE;
+	bool retval = TRUE;
 
 	// Statistics gathering
 	UnsignedInt now = timeGetTime();
@@ -274,7 +274,7 @@ Bool Transport::doSend() {
 	return retval;
 }
 
-Bool Transport::doRecv() 
+bool Transport::doRecv() 
 {
 	if (!m_udpsock)
 	{
@@ -282,7 +282,7 @@ Bool Transport::doRecv()
 		return FALSE;
 	}
 
-	Bool retval = TRUE;
+	bool retval = TRUE;
 
 	// Read in anything on our socket
 	sockaddr_in from;
@@ -378,7 +378,7 @@ Bool Transport::doRecv()
 	return retval;
 }
 
-Bool Transport::queueSend(UnsignedInt addr, UnsignedShort port, const UnsignedByte *buf, Int len /*,
+bool Transport::queueSend(UnsignedInt addr, UnsignedShort port, const UnsignedByte *buf, Int len /*,
 						  NetMessageFlags flags, Int id */)
 {
 	int i;
@@ -417,7 +417,7 @@ Bool Transport::queueSend(UnsignedInt addr, UnsignedShort port, const UnsignedBy
 	return false;
 }
 
-Bool Transport::isGeneralsPacket( TransportMessage *msg )
+bool Transport::isGeneralsPacket( TransportMessage *msg )
 {
 	if (!msg)
 		return false;

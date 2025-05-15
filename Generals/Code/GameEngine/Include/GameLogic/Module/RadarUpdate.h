@@ -77,15 +77,15 @@ public:
 	// virtual destructor prototype defined by MemoryPoolObject
 
 	void extendRadar( void );									 ///< extend the radar from this object
-	Bool isRadarActive() { return m_radarActive; }
+	bool isRadarActive() { return m_radarActive; }
 
 	virtual UpdateSleepTime update( void ); ///< Here's the actual work of Upgrading
 
 protected:
 
 	UnsignedInt m_extendDoneFrame;						 ///< radar will be done extending on this frame
-	Bool m_extendComplete;										 ///< TRUE when extend is all done
-	Bool m_radarActive;												 ///< TRUE when radar is actually online and generating radar information.
+	bool m_extendComplete;										 ///< TRUE when extend is all done
+	bool m_radarActive;												 ///< TRUE when radar is actually online and generating radar information.
 
 };
 

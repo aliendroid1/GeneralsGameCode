@@ -75,7 +75,7 @@
 
 WaterTracksRenderSystem *TheWaterTracksRenderSystem=NULL;	///< singleton for track drawing system.
 
-static Bool pauseWaves=FALSE;
+static bool pauseWaves=FALSE;
 
 enum waveType : Int
 {

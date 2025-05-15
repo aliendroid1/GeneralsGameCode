@@ -107,7 +107,7 @@ UpdateSleepTime OCLUpdate::update( void )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool OCLUpdate::shouldCreate()
+bool OCLUpdate::shouldCreate()
 {
 	if( TheGameLogic->getFrame() < m_nextCreationFrame )
 		return FALSE;//too soon

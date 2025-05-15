@@ -117,7 +117,7 @@ Color GameSpyColor[GSCOLOR_MAX] =
 	GameMakeColor(255,255,  0,255),	// GSCOLOR_MOTD_HEADING,
 };
 
-Bool GameSpyInfo::sendChat( UnicodeString message, Bool isAction, GameWindow *playerListbox )
+bool GameSpyInfo::sendChat( UnicodeString message, bool isAction, GameWindow *playerListbox )
 {
 	RoomType roomType = StagingRoom;
 	if (getCurrentGroupRoom())
@@ -192,7 +192,7 @@ Bool GameSpyInfo::sendChat( UnicodeString message, Bool isAction, GameWindow *pl
 	return false;
 }
 
-void GameSpyInfo::addChat( AsciiString nick, Int profileID, UnicodeString msg, Bool isPublic, Bool isAction, GameWindow *win )
+void GameSpyInfo::addChat( AsciiString nick, Int profileID, UnicodeString msg, bool isPublic, bool isAction, GameWindow *win )
 {
 	PlayerInfoMap::iterator it = getPlayerInfoMap()->find(nick);
 	if (it != getPlayerInfoMap()->end())
@@ -204,16 +204,16 @@ void GameSpyInfo::addChat( AsciiString nick, Int profileID, UnicodeString msg, B
 	}
 }
 
-void GameSpyInfo::addChat( PlayerInfo p, UnicodeString msg, Bool isPublic, Bool isAction, GameWindow *win )
+void GameSpyInfo::addChat( PlayerInfo p, UnicodeString msg, bool isPublic, bool isAction, GameWindow *win )
 {
 	Int style;
 	if(isSavedIgnored(p.m_profileID) || isIgnored(p.m_name))
 		return;
 	
-	Bool isOwner = p.m_flags & PEER_FLAG_OP;
-	Bool isBuddy = getBuddyMap()->find(p.m_profileID) != getBuddyMap()->end();
+	bool isOwner = p.m_flags & PEER_FLAG_OP;
+	bool isBuddy = getBuddyMap()->find(p.m_profileID) != getBuddyMap()->end();
 
-	Bool isMe = p.m_name.compare(TheGameSpyInfo->getLocalName()) == 0;
+	bool isMe = p.m_name.compare(TheGameSpyInfo->getLocalName()) == 0;
 
 	if(!isMe)
 	{
@@ -231,7 +231,7 @@ void GameSpyInfo::addChat( PlayerInfo p, UnicodeString msg, Bool isPublic, Bool 
 		{
 			const WideChar *buff = msg.str();
 			Int length =  msg.getLength();	
-			Bool hasUnicode = FALSE;
+			bool hasUnicode = FALSE;
 			for(Int i = 0; i < length; ++i)
 			{
 				if(buff[i] >= 256)

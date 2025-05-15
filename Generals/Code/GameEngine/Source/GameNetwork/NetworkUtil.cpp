@@ -116,7 +116,7 @@ UnsignedShort GenerateNextCommandID() {
 /**
  * Returns true if this type of command requires a unique command ID.
  */
-Bool DoesCommandRequireACommandID(NetCommandType type) {
+bool DoesCommandRequireACommandID(NetCommandType type) {
 	if ((type == NETCOMMANDTYPE_GAMECOMMAND) ||
 			(type == NETCOMMANDTYPE_FRAMEINFO) ||
 			(type == NETCOMMANDTYPE_PLAYERLEAVE) ||
@@ -144,7 +144,7 @@ Bool DoesCommandRequireACommandID(NetCommandType type) {
 /**
  * Returns true if this type of network command requires an ack.
  */
-Bool CommandRequiresAck(NetCommandMsg *msg) {
+bool CommandRequiresAck(NetCommandMsg *msg) {
 	if ((msg->getNetCommandType() == NETCOMMANDTYPE_GAMECOMMAND) ||
 			(msg->getNetCommandType() == NETCOMMANDTYPE_FRAMEINFO) ||
 			(msg->getNetCommandType() == NETCOMMANDTYPE_PLAYERLEAVE) ||
@@ -170,7 +170,7 @@ Bool CommandRequiresAck(NetCommandMsg *msg) {
 	return FALSE;
 }
 
-Bool IsCommandSynchronized(NetCommandType type) {
+bool IsCommandSynchronized(NetCommandType type) {
 	if ((type == NETCOMMANDTYPE_GAMECOMMAND) ||
 			(type == NETCOMMANDTYPE_FRAMEINFO) ||
 			(type == NETCOMMANDTYPE_PLAYERLEAVE) ||
@@ -187,7 +187,7 @@ Bool IsCommandSynchronized(NetCommandType type) {
  * rather than going through the packet router.  This should really only be used by commands
  * used on the disconnect screen.
  */
-Bool CommandRequiresDirectSend(NetCommandMsg *msg) {
+bool CommandRequiresDirectSend(NetCommandMsg *msg) {
 	if ((msg->getNetCommandType() == NETCOMMANDTYPE_DISCONNECTVOTE) ||
 			(msg->getNetCommandType() == NETCOMMANDTYPE_DISCONNECTPLAYER) ||
 			(msg->getNetCommandType() == NETCOMMANDTYPE_LOADCOMPLETE) ||

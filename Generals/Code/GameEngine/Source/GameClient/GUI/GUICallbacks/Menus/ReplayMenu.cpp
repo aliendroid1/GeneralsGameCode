@@ -62,7 +62,7 @@ static NameKeyType listboxReplayFilesID = NAMEKEY_INVALID;
 static NameKeyType buttonDeleteID = NAMEKEY_INVALID;
 static NameKeyType buttonCopyID = NAMEKEY_INVALID;
 
-static Bool isShuttingDown = false;
+static bool isShuttingDown = false;
 
 // window pointers --------------------------------------------------------------------------------
 static GameWindow *parentReplayMenu = NULL;
@@ -72,7 +72,7 @@ static GameWindow *listboxReplayFiles = NULL;
 static GameWindow *buttonDelete = NULL;
 static GameWindow *buttonCopy = NULL;
 static Int	initialGadgetDelay = 2;
-static Bool justEntered = FALSE;
+static bool justEntered = FALSE;
 
 
 #if defined RTS_DEBUG || defined RTS_INTERNAL
@@ -81,8 +81,8 @@ static GameWindow *buttonAnalyzeReplay = NULL;
 
 void deleteReplay( void );
 void copyReplay( void );
-static Bool callCopy = FALSE;
-static Bool callDelete = FALSE;
+static bool callCopy = FALSE;
+static bool callDelete = FALSE;
 void deleteReplayFlag( void ) { callDelete = TRUE;}
 void copyReplayFlag( void ) { callCopy = TRUE;}
 
@@ -149,7 +149,7 @@ void PopulateReplayFileListbox(GameWindow *listbox)
 		RecorderClass::ReplayHeader header;
 		header.forPlayback = FALSE;
 		header.filename = asciistr;
-		Bool success = TheRecorder && TheMapCache && TheRecorder->readReplayHeader( header );
+		bool success = TheRecorder && TheMapCache && TheRecorder->readReplayHeader( header );
 		if (success)
 		{
 			ReplayGameInfo info;
@@ -327,7 +327,7 @@ void ReplayMenuInit( WindowLayout *layout, void *userData )
 void ReplayMenuShutdown( WindowLayout *layout, void *userData )
 {
 
-	Bool popImmediate = *(Bool *)userData;
+	bool popImmediate = *(Bool *)userData;
 	if( popImmediate )
 	{
 

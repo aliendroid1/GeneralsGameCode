@@ -67,7 +67,7 @@
 
 // PRIVATE DATA ///////////////////////////////////////////////////////////////////////////////////
 static GameWindow *commandWindows[ MAX_COMMANDS_PER_SET ];
-Bool commandWindowsInitialized = FALSE;
+bool commandWindowsInitialized = FALSE;
 static Color BuildClockColor = GameMakeColor(0,0,0,100);
 // STATIC DATA STORAGE ////////////////////////////////////////////////////////////////////////////
 ControlBar::ContainEntry ControlBar::m_containData[ MAX_COMMANDS_PER_SET ];
@@ -486,7 +486,7 @@ void ControlBar::populateBuildQueue( Object *producer )
 /// @todo srj -- remove hard-coding here, please
 	static const CommandButton *cancelUpgradeCommand = findCommandButton( "Command_CancelUpgradeCreate" );
 	static NameKeyType buildQueueIDs[ MAX_BUILD_QUEUE_BUTTONS ];
-	static Bool idsInitialized = FALSE;
+	static bool idsInitialized = FALSE;
 	Int i;
 
 	// reset the build queue data
@@ -930,7 +930,7 @@ static Int getRappellerCount(Object* obj)
 CommandAvailability ControlBar::getCommandAvailability( const CommandButton *command, 
 																												Object *obj, 
 																												GameWindow *win,
-																												Bool forceDisabledEvaluation ) const
+																												bool forceDisabledEvaluation ) const
 {
 	if (command->getCommandType() == GUI_COMMAND_SPECIAL_POWER_FROM_COMMAND_CENTER)
 	{
@@ -964,7 +964,7 @@ CommandAvailability ControlBar::getCommandAvailability( const CommandButton *com
 	}
  
 	//Other disabled objects are unable to use buttons -- so gray them out.
-	Bool disabled = obj->isDisabled();
+	bool disabled = obj->isDisabled();
 	
 	// if we are only disabled by being underpowered, and this button doesn't care, well, fix it
 	if (disabled
@@ -1022,7 +1022,7 @@ CommandAvailability ControlBar::getCommandAvailability( const CommandButton *com
 		return COMMAND_RESTRICTED;
 	}
 
-	Bool queueMaxed = pu ? ( pu->getProductionCount() == MAX_BUILD_QUEUE_BUTTONS ) : FALSE;
+	bool queueMaxed = pu ? ( pu->getProductionCount() == MAX_BUILD_QUEUE_BUTTONS ) : FALSE;
 
 	switch( command->getCommandType() )
 	{

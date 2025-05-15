@@ -77,7 +77,7 @@ public:
 	Real m_holdTheLineArmorDamageScalar;
 	Real m_searchAndDestroySightRangeScalar;
 	Real m_strategyCenterSearchAndDestroySightRangeScalar;
-	Bool m_strategyCenterSearchAndDestroyDetectsStealth;
+	bool m_strategyCenterSearchAndDestroyDetectsStealth;
 	Real m_strategyCenterHoldTheLineMaxHealthScalar;
 	MaxHealthChangeType m_strategyCenterHoldTheLineMaxHealthChangeType;
 
@@ -137,15 +137,15 @@ public:
 	// virtual destructor prototype provided by memory pool declaration
 
 	// SpecialPowerUpdateInterface
-	virtual Bool initiateIntentToDoSpecialPower(const SpecialPowerTemplate *specialPowerTemplate, const Object *targetObj, const Coord3D *targetPos, const Waypoint *way, UnsignedInt commandOptions );
-	virtual Bool isSpecialAbility() const { return false; }
-	virtual Bool isSpecialPower() const { return true; }
-	virtual Bool isActive() const {return m_status != TRANSITIONSTATUS_IDLE;}
+	virtual bool initiateIntentToDoSpecialPower(const SpecialPowerTemplate *specialPowerTemplate, const Object *targetObj, const Coord3D *targetPos, const Waypoint *way, UnsignedInt commandOptions );
+	virtual bool isSpecialAbility() const { return false; }
+	virtual bool isSpecialPower() const { return true; }
+	virtual bool isActive() const {return m_status != TRANSITIONSTATUS_IDLE;}
 	virtual SpecialPowerUpdateInterface* getSpecialPowerUpdateInterface() { return this; }
-	virtual Bool doesSpecialPowerHaveOverridableDestinationActive() const { return false; } //Is it active now?
-	virtual Bool doesSpecialPowerHaveOverridableDestination() const { return false; }	//Does it have it, even if it's not active?
+	virtual bool doesSpecialPowerHaveOverridableDestinationActive() const { return false; } //Is it active now?
+	virtual bool doesSpecialPowerHaveOverridableDestination() const { return false; }	//Does it have it, even if it's not active?
 	virtual void setSpecialPowerOverridableDestination( const Coord3D *loc ) {}
-	virtual Bool isPowerCurrentlyInUse( const CommandButton *command = NULL ) const;
+	virtual bool isPowerCurrentlyInUse( const CommandButton *command = NULL ) const;
 
 	//Returns the currently active battle plan -- unpacked and ready... returns PLANSTATUS_NONE if in transition!
 	BattlePlanStatus getActiveBattlePlan() const;
@@ -158,9 +158,9 @@ public:
 protected:
 
 	void setStatus( TransitionStatus status );
-	void enableTurret( Bool enable );
+	void enableTurret( bool enable );
 	void recenterTurret();
-	Bool isTurretInNaturalPosition();
+	bool isTurretInNaturalPosition();
 	void setBattlePlan( BattlePlanStatus plan );
 	void createVisionObject();	
 

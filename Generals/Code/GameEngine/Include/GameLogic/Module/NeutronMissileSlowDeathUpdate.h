@@ -58,7 +58,7 @@ enum NeutronBlast : Int
 // ------------------------------------------------------------------------------------------------
 struct BlastInfo
 {
-  Bool enabled;					///< this blast is enabled
+  bool enabled;					///< this blast is enabled
 	Real delay;						///< delay after death to start the regular blast
 	Real scorchDelay;			///< delay after death to start a scorch blast 
 	Real innerRadius;			///< inner radius of damage
@@ -107,9 +107,9 @@ protected:
 	void doScorchBlast( const BlastInfo *blastInfo );  ///< do a scorch blast ring
 
 	UnsignedInt m_activationFrame;									///< frame we were activated on
-	Bool m_completedBlasts[ MAX_NEUTRON_BLASTS ];		///< blasts indexes we've already done
-	Bool m_completedScorchBlasts[ MAX_NEUTRON_BLASTS ];		///< scorch blast indexes we've already done
-	Bool m_scorchPlaced;														///< TRUE once we've placed the scorch mark
+	bool m_completedBlasts[ MAX_NEUTRON_BLASTS ];		///< blasts indexes we've already done
+	bool m_completedScorchBlasts[ MAX_NEUTRON_BLASTS ];		///< scorch blast indexes we've already done
+	bool m_scorchPlaced;														///< TRUE once we've placed the scorch mark
 
 };
 

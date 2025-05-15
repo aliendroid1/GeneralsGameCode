@@ -91,7 +91,7 @@ UpdateSleepTime SpyVisionUpdate::update( void )
 	return UPDATE_SLEEP_FOREVER;
 }
 
-void SpyVisionUpdate::doActivationWork( Bool setting )
+void SpyVisionUpdate::doActivationWork( bool setting )
 {
 	Player *ourPlayer = getObject()->getControllingPlayer();
 	if( ourPlayer == NULL  ||  ThePlayerList == NULL )

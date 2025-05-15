@@ -58,7 +58,7 @@ class RailedTransportDockUpdateInterface
 
 public:
 
-	virtual Bool isLoadingOrUnloading( void ) = 0;
+	virtual bool isLoadingOrUnloading( void ) = 0;
 	virtual void unloadAll( void ) = 0;
 	virtual void unloadSingleObject( Object *obj ) = 0;
 
@@ -86,11 +86,11 @@ public:
 
 	// dock methods
 	virtual DockUpdateInterface* getDockUpdateInterface() { return this; }
-	virtual Bool action( Object* docker, Object *drone = NULL );
-	virtual Bool isClearToEnter( Object const* docker ) const;
+	virtual bool action( Object* docker, Object *drone = NULL );
+	virtual bool isClearToEnter( Object const* docker ) const;
 
 	// our own methods
-	virtual Bool isLoadingOrUnloading( void );
+	virtual bool isLoadingOrUnloading( void );
 	virtual void unloadAll( void );
 	virtual void unloadSingleObject( Object *obj );
 

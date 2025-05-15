@@ -83,7 +83,7 @@ public:
 protected:
 
 	ObjectID m_bestTargetID;
-	Bool m_inRange;
+	bool m_inRange;
 	Int m_nextScanFrames;
 	Int m_nextShotAvailableInFrames;
 };

@@ -67,9 +67,9 @@ public:
 
 	// Player Info
 	Int getPointsForRank(Int rank);
-	virtual Bool isPlayerVIP(Int id);
+	virtual bool isPlayerVIP(Int id);
 	
-	virtual Bool getManglerLocation(Int index, AsciiString& host, UnsignedShort& port);
+	virtual bool getManglerLocation(Int index, AsciiString& host, UnsignedShort& port);
 
 	// Ladder / Any other external parsing
 	AsciiString getLeftoverConfig(void)					{ return m_leftoverConfig; }
@@ -83,7 +83,7 @@ public:
 	virtual time_t getRoundTimeout() { return m_natRoundTimeout; }
 
 	// Custom match
-	virtual Bool restrictGamesToLobby() { return m_restrictGamesToLobby; }
+	virtual bool restrictGamesToLobby() { return m_restrictGamesToLobby; }
 
 protected:
 	std::list<AsciiString> m_pingServers;
@@ -106,7 +106,7 @@ protected:
 	Int m_qmBotID;
 	Int m_qmChannel;
 
-	Bool m_restrictGamesToLobby;
+	bool m_restrictGamesToLobby;
 
 	std::set<Int> m_vip; // VIP people
 
@@ -127,14 +127,14 @@ GameSpyConfigInterface* GameSpyConfigInterface::create(AsciiString config)
 class SectionChecker
 {
 public:
-	typedef std::list<const Bool *> SectionList;
-	void addVar(const Bool *var) { m_bools.push_back(var); }
-	Bool isInSection();
+	typedef std::list<const bool *> SectionList;
+	void addVar(const bool *var) { m_bools.push_back(var); }
+	bool isInSection();
 protected:
 	 SectionList m_bools;
 };
-Bool SectionChecker::isInSection() {
-	Bool ret = FALSE;
+bool SectionChecker::isInSection() {
+	bool ret = FALSE;
 	for (SectionList::const_iterator it = m_bools.begin(); it != m_bools.end(); ++it)
 	{
 		ret = ret || **it;
@@ -171,14 +171,14 @@ m_qmChannel(0)
 	m_rankPoints[9] = 2000;
 
 	AsciiString line;
-	Bool inPingServers = FALSE;
-	Bool inPingDuration = FALSE;
-	Bool inQMMaps = FALSE;
-	Bool inQMBot = FALSE;
-	Bool inManglers = FALSE;
-	Bool inVIP = FALSE;
-	Bool inNAT = FALSE;
-	Bool inCustom = FALSE;
+	bool inPingServers = FALSE;
+	bool inPingDuration = FALSE;
+	bool inQMMaps = FALSE;
+	bool inQMBot = FALSE;
+	bool inManglers = FALSE;
+	bool inVIP = FALSE;
+	bool inNAT = FALSE;
+	bool inCustom = FALSE;
 
 	SectionChecker sections;
 	sections.addVar(&inPingServers);
@@ -464,7 +464,7 @@ Int GameSpyConfig::getPointsForRank(Int rank)
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-Bool GameSpyConfig::getManglerLocation(Int index, AsciiString& host, UnsignedShort& port)
+bool GameSpyConfig::getManglerLocation(Int index, AsciiString& host, UnsignedShort& port)
 {
 	if (index < 0 || index >= m_manglerHosts.size())
 	{
@@ -478,7 +478,7 @@ Bool GameSpyConfig::getManglerLocation(Int index, AsciiString& host, UnsignedSho
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-Bool GameSpyConfig::isPlayerVIP(Int id)
+bool GameSpyConfig::isPlayerVIP(Int id)
 {
 	std::set<Int>::const_iterator it = std::find(m_vip.begin(), m_vip.end(), id);
 	return it != m_vip.end();

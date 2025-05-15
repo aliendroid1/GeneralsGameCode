@@ -93,7 +93,7 @@ public:
 protected:
 
 	virtual void upgradeImplementation();
-	virtual Bool isSubObjectsUpgrade() { return false; }
+	virtual bool isSubObjectsUpgrade() { return false; }
 
 	virtual void getUpgradeActivationMasks(UpgradeMaskType& activation, UpgradeMaskType& conflicting) const
 	{
@@ -103,7 +103,7 @@ protected:
 	{
 		getGenerateMinefieldBehaviorModuleData()->m_upgradeMuxData.performUpgradeFX(getObject());
 	}
-	virtual Bool requiresAllActivationUpgrades() const
+	virtual bool requiresAllActivationUpgrades() const
 	{
 		return getGenerateMinefieldBehaviorModuleData()->m_upgradeMuxData.m_requiresAllTriggers;
 	}
@@ -111,14 +111,14 @@ protected:
 
 private:
 	Coord3D m_target;
-	Bool m_hasTarget;
-	Bool m_generated;
+	bool m_hasTarget;
+	bool m_generated;
 	
 	const Coord3D* getMinefieldTarget() const;
 	void placeMines();
 	void placeMinesInFootprint(const GeometryInfo& geom, const ThingTemplate* mineTemplate);
 	void placeMinesAroundCircle(const Coord3D& pos, Real radius, const ThingTemplate* mineTemplate);
-	void placeMinesAlongLine(const Coord3D& posStart, const Coord3D& posEnd, const ThingTemplate* mineTemplate, Bool skipOneAtStart);
+	void placeMinesAlongLine(const Coord3D& posStart, const Coord3D& posEnd, const ThingTemplate* mineTemplate, bool skipOneAtStart);
 	void placeMinesAroundRect(const Coord3D& pos, Real majorRadius, Real minorRadius, const ThingTemplate* mineTemplate);
 	Object* placeMineAt(const Coord3D& pt, const ThingTemplate* mineTemplate, Team* team, const Object* producer);
 };

@@ -101,7 +101,7 @@ void BezFwdIterator::start(void)
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool BezFwdIterator::done(void)
+bool BezFwdIterator::done(void)
 {
 	return (mStep >= mStepsDesired);
 }

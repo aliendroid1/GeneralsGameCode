@@ -85,7 +85,7 @@ void EnemyNearUpdate::checkForEnemies( void )
 UpdateSleepTime EnemyNearUpdate::update()
 {
 /// @todo srj use SLEEPY_UPDATE here
-	Bool enemyWasNear = m_enemyNear;
+	bool enemyWasNear = m_enemyNear;
 
 	checkForEnemies();
 

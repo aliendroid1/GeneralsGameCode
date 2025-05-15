@@ -63,13 +63,13 @@ Real Energy::getEnergySupplyRatio() const
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool Energy::hasSufficientPower(void) const
+bool Energy::hasSufficientPower(void) const
 {
 	return m_energyProduction >= m_energyConsumption;
 }
 
 //-------------------------------------------------------------------------------------------------
-void Energy::adjustPower(Int powerDelta, Bool adding)
+void Energy::adjustPower(Int powerDelta, bool adding)
 {
 	if (powerDelta == 0) {
 		return;

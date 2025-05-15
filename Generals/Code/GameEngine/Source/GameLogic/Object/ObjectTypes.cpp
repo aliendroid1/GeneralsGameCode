@@ -84,14 +84,14 @@ void ObjectTypes::setListName(const AsciiString& listName)
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ObjectTypes::isInSet(const AsciiString& objectType) const
+bool ObjectTypes::isInSet(const AsciiString& objectType) const
 {
 	return (std::find(m_objectTypes.begin(), m_objectTypes.end(), objectType) != m_objectTypes.end());
 
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ObjectTypes::isInSet(const ThingTemplate* objectType) const
+bool ObjectTypes::isInSet(const ThingTemplate* objectType) const
 {
 	if (!objectType) {
 		return FALSE;
@@ -118,7 +118,7 @@ Int ObjectTypes::prepForPlayerCounting( std::vector<const ThingTemplate *>& temp
 }
 
 //-------------------------------------------------------------------------------------------------
-Bool ObjectTypes::canBuildAny(Player *player)
+bool ObjectTypes::canBuildAny(Player *player)
 {
 	AsciiStringVecIt it;
 	for (it = m_objectTypes.begin(); it != m_objectTypes.end(); ++it) {

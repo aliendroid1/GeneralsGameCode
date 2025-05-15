@@ -68,7 +68,7 @@ enum { OVERLAY_REFRESH_RATE = 6 };  ///< over updates once this many frames
 //-------------------------------------------------------------------------------------------------
 /** Is the point legal, that is, inside the resolution of the radar cells */
 //-------------------------------------------------------------------------------------------------
-inline Bool legalRadarPoint( Int px, Int py )
+inline bool legalRadarPoint( Int px, Int py )
 {
 
 	if( px < 0 || py < 0 || px >= RADAR_CELL_WIDTH || py >= RADAR_CELL_HEIGHT )
@@ -619,7 +619,7 @@ void W3DRadar::drawIcons( Int pixelX, Int pixelY, Int width, Int height )
 //-------------------------------------------------------------------------------------------------
 /** Render an object list into the texture passed in */
 //-------------------------------------------------------------------------------------------------
-void W3DRadar::renderObjectList( const RadarObject *listHead, TextureClass *texture, Bool calcHero )
+void W3DRadar::renderObjectList( const RadarObject *listHead, TextureClass *texture, bool calcHero )
 {
 
 	// sanity
@@ -657,7 +657,7 @@ void W3DRadar::renderObjectList( const RadarObject *listHead, TextureClass *text
 		{
 			m_cachedHeroPosList.push_back(obj->getPosition());
 		}
-    Bool skip = FALSE;
+    bool skip = FALSE;
 
 		// check for shrouded status
 		if (obj->getShroudedStatus(playerIndex) > OBJECTSHROUD_PARTIAL_CLEAR)
@@ -1064,7 +1064,7 @@ void W3DRadar::buildTerrainTexture( TerrainLogic *terrain )
 			z = terrain->getGroundHeight( worldPoint.x, worldPoint.y );
 
 			// check to see if this point is part of a working bridge
-			Bool workingBridge = FALSE;
+			bool workingBridge = FALSE;
 			bridge = TheTerrainLogic->findBridgeAt( &worldPoint );
 			if( bridge != NULL )
 			{
