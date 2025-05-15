@@ -49,11 +49,11 @@ public:
 	Real									m_minesPerSquareFoot;
 	Real									m_randomJitter;
 	Real									m_skipIfThisMuchUnderStructure;
-	Bool									m_onDeath;
-	Bool									m_borderOnly;
-	Bool									m_alwaysCircular;
-	Bool									m_smartBorder;
-	Bool									m_smartBorderSkipInterior;
+	bool									m_onDeath;
+	bool									m_borderOnly;
+	bool									m_alwaysCircular;
+	bool									m_smartBorder;
+	bool									m_smartBorderSkipInterior;
 
 	GenerateMinefieldBehaviorModuleData();
 

@@ -83,7 +83,7 @@ protected:
 	AsciiString m_pathLabel1;
 	AsciiString m_pathLabel2;
 	AsciiString m_pathLabel3;
-	Bool				m_biDirectional;
+	bool				m_biDirectional;
 
 public:
 	// should be protected, but friendly access needed (srj)
@@ -143,7 +143,7 @@ public:
 	BodyDamageType	curDamageState;
 	ObjectID				bridgeObjectID;
 	ObjectID				towerObjectID[ BRIDGE_MAX_TOWERS ];
-	Bool						damageStateChanged;
+	bool						damageStateChanged;
 
 };
 
@@ -349,7 +349,7 @@ protected:
 	Waypoint *m_waypointListHead;
 	Bridge *m_bridgeListHead;
 
-	Bool		m_bridgeDamageStatesChanged;
+	bool		m_bridgeDamageStatesChanged;
 
 	AsciiString m_filenameString;  ///< filename for terrain data
 

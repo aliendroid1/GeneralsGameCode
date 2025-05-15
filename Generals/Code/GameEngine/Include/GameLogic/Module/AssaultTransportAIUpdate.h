@@ -112,16 +112,16 @@ public:
 protected:
 
   ObjectID					m_memberIDs[ MAX_TRANSPORT_SLOTS ];
-	Bool							m_memberHealing[ MAX_TRANSPORT_SLOTS ];
-	Bool							m_newMember[ MAX_TRANSPORT_SLOTS ];
+	bool							m_memberHealing[ MAX_TRANSPORT_SLOTS ];
+	bool							m_newMember[ MAX_TRANSPORT_SLOTS ];
   Coord3D						m_attackMoveGoalPos;
   mutable ObjectID	m_designatedTarget;
 	AssaultStateTypes	m_state;
 	UnsignedInt				m_framesRemaining;
 	Int								m_currentMembers;
-	Bool							m_isAttackMove;
-	Bool							m_isAttackObject;
-	Bool							m_newOccupantsAreNewMembers;
+	bool							m_isAttackMove;
+	bool							m_isAttackObject;
+	bool							m_newOccupantsAreNewMembers;
 };
 
 #endif

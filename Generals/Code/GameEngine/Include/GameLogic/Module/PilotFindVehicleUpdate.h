@@ -77,7 +77,7 @@ public:
 	Object* scanClosestTarget();
 
 protected:
-	Bool		m_didMoveToBase;
+	bool		m_didMoveToBase;
 };
 
 

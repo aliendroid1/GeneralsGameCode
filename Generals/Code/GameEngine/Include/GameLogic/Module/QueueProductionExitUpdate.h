@@ -106,7 +106,7 @@ protected:
 
 	UnsignedInt m_currentDelay;							///< When this hits zero, I can exit again
 	Coord3D			m_rallyPoint;								///< Where units should move to after they have reached the "natural" rally point
-	Bool				m_rallyPointExists;					///< Only move to the rally point if this is true
+	bool				m_rallyPointExists;					///< Only move to the rally point if this is true
 	Real				m_creationClearDistance;		///< I can think of myself as ready when the previous guy is this far away.
 	UnsignedInt m_currentBurstCount;				///< how many times must I still override the delay timer
 

@@ -228,9 +228,9 @@ private:
 	SupplyTruckStateMachine*	m_supplyTruckStateMachine;
 	ObjectID									m_preferredDock;			///< Instead of searching, try this one first
 	Int												m_numberBoxes;
-	Bool											m_forcePending;				// To prevent a function from doing a setState, 
+	bool											m_forcePending;				// To prevent a function from doing a setState, 
 																									// forceWanting will latch into here until serviced.
-	Bool											m_forcedBusyPending;	// A supply truck can't tell the difference between Idle since
+	bool											m_forcedBusyPending;	// A supply truck can't tell the difference between Idle since
 																									// I'm between docking states, or a Stop command without help.
  	AudioEventRTS m_suppliesDepletedVoice;						///< Sound played when I take the last box.
 

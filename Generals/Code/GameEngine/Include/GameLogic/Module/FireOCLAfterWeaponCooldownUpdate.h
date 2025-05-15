@@ -96,7 +96,7 @@ protected:
 
 private:
 	
-	Bool				m_valid;
+	bool				m_valid;
 	UnsignedInt m_consecutiveShots;
 	UnsignedInt m_startFrame;
 

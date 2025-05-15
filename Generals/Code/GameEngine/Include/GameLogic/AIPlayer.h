@@ -65,8 +65,8 @@ public:
 	WorkOrder *m_next;
 	Int			m_numCompleted;					  ///< Number built.
 	Int			m_numRequired;					  ///< Number needed.
-	Bool		m_required;								///< True if part of minimum requirement.
-	Bool		m_isResourceGatherer;			///< True if resource gatherer.
+	bool		m_required;								///< True if part of minimum requirement.
+	bool		m_isResourceGatherer;			///< True if resource gatherer.
 
 protected:
 
@@ -259,8 +259,8 @@ protected:
 
 	Player *m_player;									///< the Player we represent
 
-	Bool		m_readyToBuildTeam;				///< True if the team select timer has expired.
-	Bool		m_readyToBuildStructure;	///< True if the buildDelay timer has expired.
+	bool		m_readyToBuildTeam;				///< True if the team select timer has expired.
+	bool		m_readyToBuildStructure;	///< True if the buildDelay timer has expired.
 	Int			m_teamTimer;							///< Counts out the time between teams, as specified by ini.
 	Int			m_structureTimer;					///< Counts out the time between structures, as specified by ini.
 	Int			m_teamSeconds;						///< How many seconds to delay between teams.
@@ -275,7 +275,7 @@ protected:
 	Int			m_skillsetSelector;
 
 	Coord3D m_baseCenter; // Center of the initial build list of structures.
-	Bool		m_baseCenterSet; // True if baseCenter is valid.
+	bool		m_baseCenterSet; // True if baseCenter is valid.
 	Real m_baseRadius; // Radius of the initial build list of structures.
 
 	// Bridge repair info.
@@ -284,8 +284,8 @@ protected:
 	ObjectID m_repairDozer;
 	Coord3D  m_repairDozerOrigin;
 	Int			 m_structuresInQueue;
-	Bool		 m_dozerQueuedForRepair;
-	Bool		 m_dozerIsRepairing;			///< the repair dozer is trying to repair the bridge.
+	bool		 m_dozerQueuedForRepair;
+	bool		 m_dozerIsRepairing;			///< the repair dozer is trying to repair the bridge.
 	Int			 m_bridgeTimer;
 
 	UnsignedInt	m_supplySourceAttackCheckFrame;

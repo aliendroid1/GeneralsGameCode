@@ -58,7 +58,7 @@ private:
 	UnsignedInt   m_defectionDetectionStart;				///< this is the timer, mentioned above (absolute frame, NOT counter)
 	UnsignedInt   m_defectionDetectionEnd;					///< this is the timer, mentioned above (absolute frame, NOT counter)
 	Real          m_defectionDetectionFlashPhase;   ///< keeps track of the flashing rate logarithmic curve
-	Bool					m_doDefectorFX;	///<AmericaInfPilot uses defect to become temporarily "invulnerable"
+	bool					m_doDefectorFX;	///<AmericaInfPilot uses defect to become temporarily "invulnerable"
 
 public:
 

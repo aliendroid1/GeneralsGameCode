@@ -205,7 +205,7 @@ private:
 	Vector3							m_currentColor;		///< um, the current color, how we are colored, now
 	UnsignedInt					m_sustainCounter;
 	Byte								m_envState;				///< a randomly switchable SUSTAIN state, release is compliment
-	Bool								m_affect;         ///< set TRUE if this has any effect (has a non 0,0,0 color).
+	bool								m_affect;         ///< set TRUE if this has any effect (has a non 0,0,0 color).
 };
 EMPTY_DTOR(TintEnvelope)
 
@@ -645,7 +645,7 @@ private:
 	DrawableLocoInfo*	m_locoInfo;	// lazily allocated
 
 	DynamicAudioEventRTS*	m_ambientSound;		///< sound module for ambient sound (lazily allocated)
-	Bool								m_ambientSoundEnabled;
+	bool								m_ambientSoundEnabled;
 
 	Module** m_modules[NUM_DRAWABLE_MODULE_TYPES];
 

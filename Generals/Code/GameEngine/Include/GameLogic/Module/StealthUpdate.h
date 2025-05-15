@@ -77,12 +77,12 @@ public:
 	Real					m_friendlyOpacityMin;
 	Real					m_friendlyOpacityMax;
 	UnsignedInt		m_pulseFrames;
-	Bool					m_teamDisguised;
+	bool					m_teamDisguised;
 	Real					m_revealDistanceFromTarget;
-	Bool					m_orderIdleEnemiesToAttackMeUponReveal;
+	bool					m_orderIdleEnemiesToAttackMeUponReveal;
 	FXList				*m_disguiseRevealFX;
 	FXList				*m_disguiseFX;
-	Bool					m_innateStealth;
+	bool					m_innateStealth;
 	UnsignedInt		m_disguiseTransitionFrames;
 	UnsignedInt		m_disguiseRevealTransitionFrames;
 
@@ -154,7 +154,7 @@ protected:
 private:
 	UnsignedInt						m_stealthAllowedFrame;
 	UnsignedInt						m_detectionExpiresFrame;
-	Bool									m_enabled;
+	bool									m_enabled;
 	
 	Real                  m_pulsePhaseRate;
 	Real                  m_pulsePhase;
@@ -163,12 +163,12 @@ private:
 	Int										m_disguiseAsPlayerIndex;		//The player team we are wanting to disguise as (might not actually be disguised yet).
 	const ThingTemplate  *m_disguiseAsTemplate;				//The disguise template (might not actually be using it yet)
 	UnsignedInt						m_disguiseTransitionFrames;	//How many frames are left before transition is complete.
-	Bool									m_disguiseHalfpointReached;	//In the middle of the transition, we will switch drawables!
-	Bool									m_transitioningToDisguise;	//Set when we are disguising -- clear when we're transitioning out of.
-	Bool									m_disguised;								//We're disguised as far as other players are concerned.
+	bool									m_disguiseHalfpointReached;	//In the middle of the transition, we will switch drawables!
+	bool									m_transitioningToDisguise;	//Set when we are disguising -- clear when we're transitioning out of.
+	bool									m_disguised;								//We're disguised as far as other players are concerned.
 
 	// runtime xfer members (does not need saving)
-	Bool									m_xferRestoreDisguise;			//Tells us we need to restore our disguise
+	bool									m_xferRestoreDisguise;			//Tells us we need to restore our disguise
 
 };
 

@@ -44,7 +44,7 @@ class StealthDetectorUpdateModuleData : public UpdateModuleData
 public:
 	UnsignedInt											m_updateRate;
 	Real														m_detectionRange;
-	Bool														m_initiallyDisabled;
+	bool														m_initiallyDisabled;
 	AudioEventRTS										m_pingSound;
 	AudioEventRTS										m_loudPingSound;
 	const ParticleSystemTemplate*   m_IRBeaconParticleSysTmpl;
@@ -54,8 +54,8 @@ public:
 	AsciiString											m_IRParticleSysBone;
 	KindOfMaskType									m_extraDetectKindof;			///< units must match any kindof bits set here, in order to be detected
 	KindOfMaskType									m_extraDetectKindofNot;		///< units must NOT match any kindof bits set here, in order to be detected
-	Bool														m_canDetectWhileGarrisoned;
-	Bool														m_canDetectWhileTransported;
+	bool														m_canDetectWhileGarrisoned;
+	bool														m_canDetectWhileTransported;
 
 	StealthDetectorUpdateModuleData()
 	{

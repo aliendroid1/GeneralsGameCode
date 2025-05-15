@@ -171,8 +171,8 @@ protected:
 	
 	UnsignedInt m_nextReadyFrame;
 	SpecialPowerModuleInterface *m_specialPowerModule;
-	Bool				m_invalidSettings;
-	Bool				m_centeringTurret;
+	bool				m_invalidSettings;
+	bool				m_centeringTurret;
 	BattlePlanBonuses* m_bonuses;
 
 	AudioEventRTS		m_bombardmentUnpack;

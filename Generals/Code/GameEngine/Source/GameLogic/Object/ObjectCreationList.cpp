@@ -578,8 +578,8 @@ private:
 	Real									m_errorRadius;
 	UnsignedInt						m_delayDeliveryFramesMax;
 	UnsignedInt						m_formationSize;
-	Bool									m_startAtPreferredHeight;
-	Bool									m_startAtMaxSpeed;
+	bool									m_startAtPreferredHeight;
+	bool									m_startAtMaxSpeed;
 
 	//AI specific data passed over to DeliverPayloadAIUpdate::deliver()
 	DeliverPayloadData		m_data;
@@ -1393,18 +1393,18 @@ private:
 	Real											m_maxDistanceFormation;
 	Int												m_objectCount; // how many objects will there be?
 	AudioEventRTS							m_bounceSound;
-	Bool											m_requiresLivePlayer;
-	Bool											m_containInsideSourceObject; ///< The created stuff will be added to the Conatin module of the SourceObject
-	Bool											m_preserveLayer;
-	Bool											m_nameAreObjects;
-	Bool											m_okToChangeModelColor;
-	Bool											m_orientInForceDirection;
-	Bool											m_spreadFormation;
-	Bool											m_fadeIn;
-	Bool											m_fadeOut;
-	Bool											m_ignorePrimaryObstacle;
-	Bool											m_inheritsVeterancy;
-	Bool											m_skipIfSignificantlyAirborne;
+	bool											m_requiresLivePlayer;
+	bool											m_containInsideSourceObject; ///< The created stuff will be added to the Conatin module of the SourceObject
+	bool											m_preserveLayer;
+	bool											m_nameAreObjects;
+	bool											m_okToChangeModelColor;
+	bool											m_orientInForceDirection;
+	bool											m_spreadFormation;
+	bool											m_fadeIn;
+	bool											m_fadeOut;
+	bool											m_ignorePrimaryObstacle;
+	bool											m_inheritsVeterancy;
+	bool											m_skipIfSignificantlyAirborne;
 
 };  
 EMPTY_DTOR(GenericObjectCreationNugget)

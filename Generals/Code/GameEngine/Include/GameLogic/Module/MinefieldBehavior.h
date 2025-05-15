@@ -52,9 +52,9 @@ public:
 
 	const WeaponTemplate*	m_detonationWeapon;								///< what happens when we detonate
 	Int										m_detonatedBy;										///< can we be triggered by allies, etc?
-	Bool									m_stopsRegenAfterCreatorDies;	
-	Bool									m_regenerates;										///< if t, can't be killed normally
-	Bool									m_workersDetonate;								///< if f, workers don't detonate mines
+	bool									m_stopsRegenAfterCreatorDies;	
+	bool									m_regenerates;										///< if t, can't be killed normally
+	bool									m_workersDetonate;								///< if f, workers don't detonate mines
 	UnsignedInt						m_creatorDeathCheckRate;					///< if above is true, how often to check
 	UnsignedInt						m_scootFromStartingPointTime;			///< if nonzero, gradually scoot to dest pt
 	UnsignedInt						m_numVirtualMines;								///< num of "virtual" mines we have
@@ -134,9 +134,9 @@ private:
 	UnsignedInt		m_virtualMinesRemaining;
 	ImmuneInfo		m_immunes[MAX_IMMUNITY];
 	std::vector<DetonatorInfo>	m_detonators;
-	Bool					m_ignoreDamage;
-	Bool					m_regenerates;
-	Bool					m_draining;
+	bool					m_ignoreDamage;
+	bool					m_regenerates;
+	bool					m_draining;
 
 	void detonateOnce(const Coord3D& position);
 	UpdateSleepTime calcSleepTime();

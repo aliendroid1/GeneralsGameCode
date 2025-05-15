@@ -96,9 +96,9 @@ protected:
 	virtual void onRenderObjRecreated(void);
 
 protected:
-	Bool						m_effectsInitialized;
-	Bool						m_wasAirborne;
-	Bool						m_isPowersliding;
+	bool						m_effectsInitialized;
+	bool						m_wasAirborne;
+	bool						m_isPowersliding;
 	/// debris emitters for when tank is moving
 	ParticleSystem* m_dustEffect;
 	ParticleSystem* m_dirtEffect;

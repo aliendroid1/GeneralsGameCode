@@ -258,15 +258,15 @@ public:
 	Coord3D								m_dropOffset;
 	Coord3D								m_dropVariance;
 	UnsignedInt						m_dropDelay;
-	Bool									m_fireWeapon;
-	Bool									m_selfDestructObject;
+	bool									m_fireWeapon;
+	bool									m_selfDestructObject;
 	Int										m_visibleNumBones;						///< The number of visible bones to process.
 	Real									m_diveStartDistance;
 	Real									m_diveEndDistance;
 	WeaponSlotType				m_strafingWeaponSlot;
 	Int										m_visibleItemsDroppedPerInterval;
-	Bool									m_inheritTransportVelocity;
-	Bool									m_isParachuteDirectly;		///< Instead of parachuting to below the point of exit, go ahead and bunch up on the target
+	bool									m_inheritTransportVelocity;
+	bool									m_isParachuteDirectly;		///< Instead of parachuting to below the point of exit, go ahead and bunch up on the target
 	Real									m_exitPitchRate;
 	const FXList					*m_strafeFX;
 	Real									m_strafeLength;
@@ -367,8 +367,8 @@ protected:
 	Int														m_visibleItemsDelivered;
 	RadiusDecal										m_deliveryDecal;
 	Real													m_previousDistanceSqr;
-	Bool													m_freeToExit;
-	Bool													m_acceptingCommands;
+	bool													m_freeToExit;
+	bool													m_acceptingCommands;
 
 	enum DiveState	// Stored in save file as int, don't renumber!  jba.
 	{

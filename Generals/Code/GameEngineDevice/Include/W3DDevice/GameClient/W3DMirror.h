@@ -90,7 +90,7 @@ protected:
 	Real		m_uScrollPerMs;		///<texels per/ms scroll rate in u direction
 	Real		m_vScrollPerMs;		///<texels per/ms scroll rate in v direction
 	Int			m_LastUpdateTime;	///<time of last cloud update
-	Bool		m_useCloudLayer;	///<flag if clouds are on/off
+	bool		m_useCloudLayer;	///<flag if clouds are on/off
 
 	static TimeOfDay m_tod;	///<time of day setting for reflected cloud layer
 

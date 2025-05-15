@@ -5224,10 +5224,10 @@ void AIAttackState::xfer( Xfer *xfer )
 		xfer->xferSnapshot(m_attackMachine);						///< state sub-machine for attack behavior
 	}
 	/* Not saved or loaded - passed in on creation.
-	Bool										m_follow;
-	Bool										m_isAttackingObject;								// if false, attacking position
+	bool										m_follow;
+	bool										m_isAttackingObject;								// if false, attacking position
 	AttackExitConditionsInterface*	m_attackParameters;					///< these are not owned by this, and will not be deleted on destruction
-	Bool										m_isForceAttacking
+	bool										m_isForceAttacking
 	*/
 }  // end xfer
 

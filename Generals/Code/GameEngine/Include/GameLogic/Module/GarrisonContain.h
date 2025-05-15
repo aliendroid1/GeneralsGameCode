@@ -206,9 +206,9 @@ private:
 	Coord3D							m_garrisonPoint[ MAX_GARRISON_POINT_CONDITIONS ][ MAX_GARRISON_POINTS ];		///< the garrison point positions (in world coords) for pristine, damaged, and really damaged
 	Coord3D							m_exitRallyPoint;												///< Point to rally at when exiting structure (if possible)
 
-	Bool		m_garrisonPointsInitialized;							///< TRUE once we have loaded the garrison point positions from the art
-	Bool		m_hideGarrisonedStateFromNonallies;								///< if T, don't appear to be garrisoned (all stealthy)										
-	Bool		m_rallyValid;															///< TRUE when m_exitRallyPoint is valid
+	bool		m_garrisonPointsInitialized;							///< TRUE once we have loaded the garrison point positions from the art
+	bool		m_hideGarrisonedStateFromNonallies;								///< if T, don't appear to be garrisoned (all stealthy)										
+	bool		m_rallyValid;															///< TRUE when m_exitRallyPoint is valid
 
 };
 

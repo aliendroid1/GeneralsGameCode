@@ -549,8 +549,8 @@ private:
 #ifdef CIRCLE_FOR_LANDING
 	Coord3D		m_circleForLandingPos;
 #endif
-	Bool			m_landing;
-	Bool			m_landingSoundPlayed;
+	bool			m_landing;
+	bool			m_landingSoundPlayed;
 
 public:
 	JetTakeoffOrLandingState( StateMachine *machine, bool landing ) : m_landing(landing), AIFollowPathState( machine, "JetTakeoffOrLandingState" ) { }
@@ -787,7 +787,7 @@ private:
 	Int				m_index;
 	Coord3D		m_parkingLoc;
 	Real			m_parkingOrientation;
-	Bool			m_landing;
+	bool			m_landing;
 public:
 	HeliTakeoffOrLandingState( StateMachine *machine, bool landing ) : m_landing(landing), 
 		State( machine, "HeliTakeoffOrLandingState" ), m_index(0)
@@ -1079,8 +1079,8 @@ private:
 	UnsignedInt		m_when;
 	UnsignedInt		m_whenTransfer;
 	ObjectID			m_waitedForTaxiID;
-	Bool					m_resetTimer;
-	Bool					m_afterburners;
+	bool					m_resetTimer;
+	bool					m_afterburners;
 
 	bool findWaiter()
 	{

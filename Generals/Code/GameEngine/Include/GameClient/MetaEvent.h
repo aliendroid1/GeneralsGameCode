@@ -341,7 +341,7 @@ private:
 
 	enum { NUM_MOUSE_BUTTONS = 3 };
 	ICoord2D m_mouseDownPosition[NUM_MOUSE_BUTTONS];
-	Bool	m_nextUpShouldCreateDoubleClick[NUM_MOUSE_BUTTONS];
+	bool	m_nextUpShouldCreateDoubleClick[NUM_MOUSE_BUTTONS];
 
 public:
 	MetaEventTranslator();

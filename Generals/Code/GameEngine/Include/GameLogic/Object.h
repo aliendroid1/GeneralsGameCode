@@ -752,16 +752,16 @@ private:
 	UnsignedInt										m_safeOcclusionFrame;	///<flag used by occlusion renderer so it knows when objects have exited their production building.
 
 	// --------- BYTE-SIZED THINGS GO HERE
-	Bool													m_isSelectable;
-	Bool													m_modulesReady;
+	bool													m_isSelectable;
+	bool													m_modulesReady;
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
-	Bool													m_hasDiedAlready;
+	bool													m_hasDiedAlready;
 #endif
 	UnsignedByte									m_scriptStatus;					///< status as set by scripting, corresponds to ORed ObjectScriptStatusBits
 	UnsignedByte									m_privateStatus;					///< status bits that are never directly accessible to outside world
 	Byte													m_numTriggerAreasActive;
-	Bool													m_singleUseCommandUsed;
-	Bool													m_isReceivingDifficultyBonus;
+	bool													m_singleUseCommandUsed;
+	bool													m_isReceivingDifficultyBonus;
 
 };  // end class Object
 

@@ -242,8 +242,8 @@ protected:
 	// Resend timer ---------------------------------------------------------------------------
 	UnsignedInt					m_lastResendTime; // in ms
 
-	Bool								m_isInLANMenu;		///< true while we are in a LAN menu (lobby, game options, direct connect)
-	Bool								m_inLobby;											///< Are we in the lobby (not in a game)?
+	bool								m_isInLANMenu;		///< true while we are in a LAN menu (lobby, game options, direct connect)
+	bool								m_inLobby;											///< Are we in the lobby (not in a game)?
 	LANGameInfo *				m_currentGame;							///< Pointer to game (setup screen) we are currently in (NULL for lobby)
 	//LANGameInfo *m_currentGameInfo;			///< Pointer to game setup info we are currently in.
 
@@ -255,7 +255,7 @@ protected:
 	UnsignedInt					m_lastUpdate;
 	AsciiString					m_lastGameopt; /// @todo: hack for demo - remove this
 
-	Bool								m_isActive;			///< is the game currently active?
+	bool								m_isActive;			///< is the game currently active?
 
 protected:
 	void sendMessage(LANMessage *msg, UnsignedInt ip = 0); // Convenience function

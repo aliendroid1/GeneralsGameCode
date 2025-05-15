@@ -52,13 +52,13 @@ class AutoHealBehaviorModuleData : public UpdateModuleData
 {
 public:
 	UpgradeMuxData				m_upgradeMuxData;
-	Bool									m_initiallyActive;
-	Bool									m_singleBurst;
+	bool									m_initiallyActive;
+	bool									m_singleBurst;
 	Int										m_healingAmount;
 	UnsignedInt						m_healingDelay;
 	UnsignedInt						m_startHealingDelay;	///< how long since our last damage till autoheal starts.
 	Real									m_radius; //If non-zero, then it becomes a area effect.
-	Bool									m_affectsWholePlayer; ///< I have more than a range, I try to affect everything the player owns
+	bool									m_affectsWholePlayer; ///< I have more than a range, I try to affect everything the player owns
 	KindOfMaskType				m_kindOf;	//Only these types can heal -- defaults to everything.
 	const ParticleSystemTemplate*				m_radiusParticleSystemTmpl;					//Optional particle system meant to apply to entire effect for entire duration.
 	const ParticleSystemTemplate*				m_unitHealPulseParticleSystemTmpl;	//Optional particle system applying to each object getting healed each heal pulse.

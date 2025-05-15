@@ -81,9 +81,9 @@ protected:
 	mutable Real			m_radius;
 	Int								m_riverStart;	///< Identifies the start point of the river.
 	mutable bool			m_boundsNeedsUpdate;
-	Bool							m_exportWithScripts;
-	Bool							m_isWaterArea; ///< Used to specify water areas in the map.
-	Bool							m_isRiver;		///< Used to specify that a water area is a river.
+	bool							m_exportWithScripts;
+	bool							m_isWaterArea; ///< Used to specify water areas in the map.
+	bool							m_isRiver;		///< Used to specify that a water area is a river.
 
 	static PolygonTrigger* ThePolygonTriggerListPtr;
 	static Int s_currentID; ///< Current id for new triggers.

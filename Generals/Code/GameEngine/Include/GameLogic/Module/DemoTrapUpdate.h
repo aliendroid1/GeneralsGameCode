@@ -51,9 +51,9 @@ public:
 	WeaponSlotType  m_proximityModeWeaponSlot;
 	Real						m_triggerDetonationRange;
 	UnsignedInt			m_scanFrames;
-	Bool						m_defaultsToProximityMode;
-	Bool						m_friendlyDetonation;
-	Bool						m_detonateWhenKilled;
+	bool						m_defaultsToProximityMode;
+	bool						m_friendlyDetonation;
+	bool						m_detonateWhenKilled;
 	
 	DemoTrapUpdateModuleData();
 	static void buildFieldParse(MultiIniFieldParse& p);

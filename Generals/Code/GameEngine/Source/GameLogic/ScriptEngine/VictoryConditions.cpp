@@ -99,10 +99,10 @@ private:
 	Player*				m_players[MAX_PLAYER_COUNT];
 	Int						m_localSlotNum;
 	UnsignedInt		m_endFrame;
-	Bool					m_isDefeated[MAX_PLAYER_COUNT];
-	Bool					m_localPlayerDefeated;												///< prevents condition from being signaled each frame
-	Bool					m_singleAllianceRemaining;										///< prevents condition from being signaled each frame
-	Bool					m_isObserver;
+	bool					m_isDefeated[MAX_PLAYER_COUNT];
+	bool					m_localPlayerDefeated;												///< prevents condition from being signaled each frame
+	bool					m_singleAllianceRemaining;										///< prevents condition from being signaled each frame
+	bool					m_isObserver;
 };
 
 //-------------------------------------------------------------------------------------------------

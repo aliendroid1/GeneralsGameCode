@@ -217,7 +217,7 @@ public:
 	Real  m_supplyCenterSafeRadius;  // Radius to scan for enemies to determine safety.
 
 	Real  m_aiDozerBoredRadiusModifier;  // Modifies ai dozers scan range so the move out farther than human ones.
-	Bool	m_aiCrushesInfantry; // If true, AI vehicles will attempt to crush infantry.
+	bool	m_aiCrushesInfantry; // If true, AI vehicles will attempt to crush infantry.
 
 	AISideInfo *m_sideInfo;
 

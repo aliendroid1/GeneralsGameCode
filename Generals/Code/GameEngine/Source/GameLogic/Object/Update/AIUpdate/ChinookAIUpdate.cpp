@@ -197,7 +197,7 @@ class ChinookTakeoffOrLandingState : public State
 	MEMORY_POOL_GLUE_WITH_USERLOOKUP_CREATE(ChinookTakeoffOrLandingState, "ChinookTakeoffOrLandingState")		
 private:
 	Coord3D		m_destLoc;
-	Bool			m_landing;
+	bool			m_landing;
 
 protected:
 	// snapshot interface

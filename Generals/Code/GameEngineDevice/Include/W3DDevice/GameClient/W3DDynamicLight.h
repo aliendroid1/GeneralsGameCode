@@ -43,17 +43,17 @@ class W3DDynamicLight : public LightClass
 friend class HeightMapRenderObjClass;
 protected:
 	/// Values used by HeightMapRenderObjClass to update the height map.
-	Bool		m_priorEnable;
-	Bool		m_processMe;
+	bool		m_priorEnable;
+	bool		m_processMe;
 	
 
 	Int			m_prevMinX, m_prevMinY, m_prevMaxX, m_prevMaxY;
 	Int			m_minX, m_minY, m_maxX, m_maxY;
 
-	Bool		m_enabled;
+	bool		m_enabled;
 
-	Bool		m_decayRange;
-	Bool		m_decayColor;
+	bool		m_decayRange;
+	bool		m_decayColor;
 	UnsignedInt m_curDecayFrameCount;
 	UnsignedInt m_curIncreaseFrameCount;
 	UnsignedInt m_decayFrameCount;

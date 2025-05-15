@@ -229,11 +229,11 @@ protected:
 	UnsignedInt			m_lastDrivingClickFrame;
 	UnsignedInt			m_2ndLastDrivingClickFrame;
 
-	Bool						m_upBonesCached;
-	Bool						m_defaultInfoCached;
-	Bool						m_invalidSettings;
-	Bool						m_manualTargetMode;
-	Bool						m_clientShroudedLastFrame;
+	bool						m_upBonesCached;
+	bool						m_defaultInfoCached;
+	bool						m_invalidSettings;
+	bool						m_manualTargetMode;
+	bool						m_clientShroudedLastFrame;
 };
 
 

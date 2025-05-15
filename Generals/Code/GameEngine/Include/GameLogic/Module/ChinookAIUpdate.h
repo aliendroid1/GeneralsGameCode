@@ -58,7 +58,7 @@ public:
 	UnsignedInt		m_perRopeDelayMin;
 	UnsignedInt		m_perRopeDelayMax;
 	Real					m_minDropHeight;
-	Bool					m_waitForRopesToDrop;
+	bool					m_waitForRopesToDrop;
 
 	ChinookAIUpdateModuleData();
 	static void buildFieldParse(MultiIniFieldParse& p);
@@ -120,7 +120,7 @@ private:
 	AICommandParmsStorage		m_pendingCommand;
 	ChinookFlightStatus			m_flightStatus;
 	ObjectID								m_airfieldForHealing;
-	Bool										m_hasPendingCommand;
+	bool										m_hasPendingCommand;
 };
 
 #endif

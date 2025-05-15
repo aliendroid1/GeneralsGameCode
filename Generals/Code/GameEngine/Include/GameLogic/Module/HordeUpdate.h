@@ -67,8 +67,8 @@ public:
 	KindOfMaskType						m_kindof;				///< the kind(s) of units that count towards horde-ness
 	Int												m_minCount;		  ///< min count to get "horde" status
   Real											m_minDist;      ///< min dist to contribute to horde-ness
-	Bool											m_alliesOnly;		///< if true, only allied units count towards hordeness
-	Bool											m_exactMatch;		///< if true, only exact same type of units count towards hordeness
+	bool											m_alliesOnly;		///< if true, only allied units count towards hordeness
+	bool											m_exactMatch;		///< if true, only exact same type of units count towards hordeness
 	Real											m_rubOffRadius;///< If I am this close to another guy who is a true hordesman, it'll rub off on me
 	HordeActionType						m_action;				///< what to do if we get horde-ness
 	std::vector<AsciiString>	m_flagSubObjNames;		///< name(s) of the flag subobj
@@ -116,9 +116,9 @@ protected:
 
 private:
 	UnsignedInt m_lastHordeRefreshFrame; //Just like it sounds
-	Bool				m_inHorde;				 //I amy be a trueMember, or I may merely inherit hordehood from a neighbor who is
-	Bool				m_trueHordeMember; //meaning, I have enough hordesman near me to qualify
-	Bool				m_hasFlag;
+	bool				m_inHorde;				 //I amy be a trueMember, or I may merely inherit hordehood from a neighbor who is
+	bool				m_trueHordeMember; //meaning, I have enough hordesman near me to qualify
+	bool				m_hasFlag;
 
 };
 

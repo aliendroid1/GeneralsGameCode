@@ -121,7 +121,7 @@ class VideoBuffer
 		VideoBuffer( Type format );
 		virtual ~VideoBuffer() {};
 
-		virtual	Bool		allocate( UnsignedInt width, UnsignedInt Height ) = 0; ///< Allocate buffer
+		virtual	bool		allocate( UnsignedInt width, UnsignedInt Height ) = 0; ///< Allocate buffer
 		virtual void		free( void ) = 0;			///< Free the buffer
 		virtual	void*		lock( void ) = 0;			///< Returns memory pointer to start of buffer
 		virtual void		unlock( void ) = 0;		///< Release buffer

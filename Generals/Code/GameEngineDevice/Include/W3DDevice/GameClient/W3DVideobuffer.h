@@ -83,7 +83,7 @@ class W3DVideoBuffer : public VideoBuffer
 		W3DVideoBuffer( Type format );
 		virtual ~W3DVideoBuffer();
 
-		virtual	Bool		allocate( UnsignedInt width, UnsignedInt height); ///< Allocates buffer
+		virtual	bool		allocate( UnsignedInt width, UnsignedInt height); ///< Allocates buffer
 		virtual void		free( void);					///< Free buffer
 		virtual	void*		lock( void );					///< Returns memory pointer to start of buffer
 		virtual void		unlock( void );				///< Release buffer

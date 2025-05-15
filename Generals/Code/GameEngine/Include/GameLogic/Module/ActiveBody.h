@@ -136,10 +136,10 @@ private:
 	DamageInfo						m_lastDamageInfo;				///< store the last DamageInfo object that we received
 	UnsignedInt						m_lastDamageTimestamp; 	///< frame of last damage dealt
 	UnsignedInt						m_lastHealingTimestamp; ///< frame of last healing dealt
-	Bool									m_frontCrushed;
-	Bool									m_backCrushed;
-	Bool									m_lastDamageCleared;
-	Bool									m_indestructible;				///< is this object indestructible?
+	bool									m_frontCrushed;
+	bool									m_backCrushed;
+	bool									m_lastDamageCleared;
+	bool									m_indestructible;				///< is this object indestructible?
 
 	BodyParticleSystem *m_particleSystems;				///< particle systems created and attached to this object
 

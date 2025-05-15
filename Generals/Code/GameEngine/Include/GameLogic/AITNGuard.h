@@ -133,7 +133,7 @@ private:
 	AITNGuardMachine* getGuardMachine() { return (AITNGuardMachine*)getMachine(); }
 
 	TunnelNetworkExitConditions m_exitConditions; 
-	Bool			m_scanForEnemy;
+	bool			m_scanForEnemy;
 	AIAttackState *m_attackState;
 };
 EMPTY_DTOR(AITNGuardInnerState)

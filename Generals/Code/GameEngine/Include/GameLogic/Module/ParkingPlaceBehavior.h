@@ -46,8 +46,8 @@ public:
 	Int						m_numRows;
 	Int						m_numCols;
 	Real					m_approachHeight;
-	Bool					m_hasRunways;			// if true, each col has a runway in front of it
-	Bool					m_parkInHangars;	// if true, park at the hangar production spot, not the "real" parking place
+	bool					m_hasRunways;			// if true, each col has a runway in front of it
+	bool					m_parkInHangars;	// if true, park at the hangar production spot, not the "real" parking place
 
 	ParkingPlaceBehaviorModuleData()
 	{
@@ -151,7 +151,7 @@ private:
 		Int						m_runway;
 		ExitDoorType	m_door;
 		ObjectID			m_objectInSpace;
-		Bool					m_reservedForExit;
+		bool					m_reservedForExit;
 
 		ParkingPlaceInfo()
 		{
@@ -173,7 +173,7 @@ private:
 		Coord3D		m_end;
 		ObjectID	m_inUseBy;
 		ObjectID	m_nextInLineForTakeoff;
-		Bool			m_wasInLine;
+		bool			m_wasInLine;
 	};
 
 	struct HealingInfo
@@ -186,7 +186,7 @@ private:
 	std::vector<RunwayInfo>				m_runways;
 	std::list<HealingInfo>				m_healing;	// note, this list can vary in size, and be larger than the parking space count
 	UnsignedInt										m_nextHealFrame;
-	Bool													m_gotInfo;
+	bool													m_gotInfo;
 
 	void buildInfo();
 	void purgeDead();

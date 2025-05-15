@@ -87,7 +87,7 @@ typedef struct
 	Int			endTimeMultiplier;
 	ObjectID targetObjectID;			///< Target if we are tracking an object instead of just rotating
 	Coord3D	targetObjectPos;			///< Target's position (so we can stay looking at that spot if he dies)
-	Bool		trackObject;					///< Are we tracking an object or just rotating?
+	bool		trackObject;					///< Are we tracking an object or just rotating?
 	Int			numHoldFrames;				///< Number of frames to hold the camera before finishing the movement
 } TRotateCameraInfo;
 
@@ -234,7 +234,7 @@ private:
 
 
 	TRotateCameraInfo	m_rcInfo;
-	Bool		m_doingRotateCamera;										///< True if we are doing a camera rotate.
+	bool		m_doingRotateCamera;										///< True if we are doing a camera rotate.
 
 	TPitchCameraInfo m_pcInfo;
 	bool m_doingPitchCamera;
@@ -246,12 +246,12 @@ private:
 	Real		m_FXPitch;															///< Camera effects pitch.  0 = flat, infinite = look down, 1 = normal.
 
 	TMoveAlongWaypointPathInfo m_mcwpInfo;					///< Move camera along waypoint path info.
-	Bool		m_doingMoveCameraOnWaypointPath;				///< If true, moving camera along waypoint path.
+	bool		m_doingMoveCameraOnWaypointPath;				///< If true, moving camera along waypoint path.
 
-	Bool		m_freezeTimeForCameraMovement;
+	bool		m_freezeTimeForCameraMovement;
 	Int			m_timeMultiplier;												///< Time speedup multiplier.
 
-	Bool		m_cameraHasMovedSinceRequest;					///< If true, throw out all saved locations
+	bool		m_cameraHasMovedSinceRequest;					///< If true, throw out all saved locations
 	VecPosRequests	m_locationRequests;		///< These are cached. New requests are added here
 
 	Coord3D m_cameraOffset;													///< offset for camera from view center

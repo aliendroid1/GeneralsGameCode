@@ -758,26 +758,26 @@ private:
 	Int						m_tmpInt;
 
 	// -------------------------------------------------------------------
-	Bool				m_doFinalPosition;					///< True if we are moving towards final position in a non-physics kind of way. 
-	Bool				m_waitingForPath;						///< True if we have a pathfind request outstanding.
-	Bool				m_isAttackPath;							///< True if we have an attack path.
-	Bool				m_isFinalGoal;							///< True if this path ends at our destination (as opposed to an intermediate point on a waypoint path).
-	Bool				m_isApproachPath;						///< True if we are just approaching to tighten.
-	Bool				m_isSafePath;								///< True if we are just approaching to tighten.
-	Bool				m_movementComplete;					///< True if we finished an AIInternalMoveToState.
-	Bool				m_isMoving;									///< True if we are in an AIInternalMoveToState.
-	Bool				m_isBlocked;
-	Bool				m_isBlockedAndStuck;				///< True if we are stuck & need to recompute path.
-	Bool				m_upgradedLocomotors;
-	Bool				m_canPathThroughUnits;			///< Can path through units.
-	Bool				m_randomlyOffsetMoodCheck;	///< If true, randomly offset the mood check rate next time, to avoid "spiking" of ai checks
-	Bool				m_isAiDead;									///< TRUE if dead
-	Bool				m_isRecruitable;						///< TRUE if recruitable by the ai.
-	Bool				m_executingWaypointQueue;						///< if true, we are moving thru the waypoints
-	Bool				m_retryPath;								///< If true, we need to try the path a second time.  jba.
-	Bool				m_allowedToChase;						///< Allowed to pursue targets.
-	Bool				m_isInUpdate;								///< If true, we are inside our update method.
-	Bool				m_fixLocoInPostProcess;		
+	bool				m_doFinalPosition;					///< True if we are moving towards final position in a non-physics kind of way. 
+	bool				m_waitingForPath;						///< True if we have a pathfind request outstanding.
+	bool				m_isAttackPath;							///< True if we have an attack path.
+	bool				m_isFinalGoal;							///< True if this path ends at our destination (as opposed to an intermediate point on a waypoint path).
+	bool				m_isApproachPath;						///< True if we are just approaching to tighten.
+	bool				m_isSafePath;								///< True if we are just approaching to tighten.
+	bool				m_movementComplete;					///< True if we finished an AIInternalMoveToState.
+	bool				m_isMoving;									///< True if we are in an AIInternalMoveToState.
+	bool				m_isBlocked;
+	bool				m_isBlockedAndStuck;				///< True if we are stuck & need to recompute path.
+	bool				m_upgradedLocomotors;
+	bool				m_canPathThroughUnits;			///< Can path through units.
+	bool				m_randomlyOffsetMoodCheck;	///< If true, randomly offset the mood check rate next time, to avoid "spiking" of ai checks
+	bool				m_isAiDead;									///< TRUE if dead
+	bool				m_isRecruitable;						///< TRUE if recruitable by the ai.
+	bool				m_executingWaypointQueue;						///< if true, we are moving thru the waypoints
+	bool				m_retryPath;								///< If true, we need to try the path a second time.  jba.
+	bool				m_allowedToChase;						///< Allowed to pursue targets.
+	bool				m_isInUpdate;								///< If true, we are inside our update method.
+	bool				m_fixLocoInPostProcess;		
 };
 
 //------------------------------------------------------------------------------------------------------------

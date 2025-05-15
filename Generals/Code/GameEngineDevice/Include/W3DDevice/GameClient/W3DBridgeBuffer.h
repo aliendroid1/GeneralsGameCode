@@ -109,10 +109,10 @@ protected:
 	Int				m_numVertex;			///< Number of vertex used.
 	Int				m_firstVertex;		///< First vertex.
 	Int				m_numPolygons;		///< Number of polygons to draw.
-	Bool			m_visible;
+	bool			m_visible;
 	AsciiString m_templateName;					///< Name of the bridge type.
 	enum BodyDamageType m_curDamageState;
-	Bool			m_enabled;
+	bool			m_enabled;
 
 protected:
 	Int getModelVerticesFixed(VertexFormatXYZNDUV1 *destination_vb, Int curVertex, const Matrix3D &mtx, MeshClass *pMesh, RefRenderObjListIterator *pLightsIterator);
@@ -176,9 +176,9 @@ protected:
 	Int			m_curNumBridgeIndices;	///<Number of indices used in b_indexBridge;
 	W3DBridge	m_bridges[MAX_BRIDGES];			///< The bridge buffer.  All bridges are stored here.
 	Int			m_numBridges;						///< Number of bridges in m_bridges.
-	Bool		m_initialized;		///< True if the subsystem initialized.
-	Bool		m_updateVis;			///< True if the camera moved, and we need to recalculate visibility.
-	Bool		m_anythingChanged;	///< Set to true if visibility changed.
+	bool		m_initialized;		///< True if the subsystem initialized.
+	bool		m_updateVis;			///< True if the camera moved, and we need to recalculate visibility.
+	bool		m_anythingChanged;	///< Set to true if visibility changed.
 	/// Add a bridge at location.  Name is the gdf item name.
 	void addBridge(Vector3 fromLoc, Vector3 toLoc, AsciiString name, W3DTerrainLogic *pTerrainLogic, Dict *props);
 	void loadBridgesInVertexAndIndexBuffers(RefRenderObjListIterator *pLightsIterator); ///< Fills the index and vertex buffers for drawing.

@@ -397,7 +397,7 @@ private:
 	DirtyStatus									m_dirtyStatus;
 	ObjectShroudStatus					m_shroudedness[MAX_PLAYER_COUNT];						
 	ObjectShroudStatus					m_shroudednessPrevious[MAX_PLAYER_COUNT];	///<previous frames value of m_shroudedness						
-	Bool												m_everSeenByPlayer[MAX_PLAYER_COUNT];		///<whether this object has ever been seen by a given player.
+	bool												m_everSeenByPlayer[MAX_PLAYER_COUNT];		///<whether this object has ever been seen by a given player.
 	const PartitionCell					*m_lastCell;							///< The last cell I thought my center was in.
 	
 	/**
@@ -1212,7 +1212,7 @@ private:
 	Int							m_totalCellCount;	///< x * y
 	PartitionCell*	m_cells;					///< array of cells
 	PartitionData*	m_dirtyModules;
-	Bool						m_updatedSinceLastReset;	///< Used to force a return of OBJECTSHROUD_INVALID before update has been called.
+	bool						m_updatedSinceLastReset;	///< Used to force a return of OBJECTSHROUD_INVALID before update has been called.
 
 	std::queue<SightingInfo *> m_pendingUndoShroudReveals;	///< Anything can queue up an Undo to happen later. This is a queue, because "later" is a constant
 

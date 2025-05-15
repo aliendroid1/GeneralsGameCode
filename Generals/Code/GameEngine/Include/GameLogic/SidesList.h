@@ -281,31 +281,31 @@ protected:
 	Coord3D					m_location;					///< The location of the object.
 	Coord2D					m_rallyPointOffset; ///< Offset to the natural rally point.
 	Real						m_angle;						///< Initial orientation of the building.
-	Bool						m_isInitiallyBuilt; ///< Whether the building is built at the start of the game.
+	bool						m_isInitiallyBuilt; ///< Whether the building is built at the start of the game.
 	UnsignedInt			m_numRebuilds;			///< Number of rebuilds allowed.
 	BuildListInfo*	m_nextBuildList;		///< linked list.
 	AsciiString		m_script;
 	Int				m_health;
-	Bool			m_whiner;
-	Bool			m_unsellable;
-	Bool			m_repairable;
-	Bool			m_automaticallyBuild;			///< If true, the ai will build.  If false, script has to enable this.
+	bool			m_whiner;
+	bool			m_unsellable;
+	bool			m_repairable;
+	bool			m_automaticallyBuild;			///< If true, the ai will build.  If false, script has to enable this.
 
 
 	// For WorldBuilder use only:
 	RenderObjClass	*m_renderObj;				///< object that renders in the 3d scene.
 	Shadow			*m_shadowObj;				///< object that renders shadows in the 3d scane.
-	Bool				m_selected;					///< True if the obj is selected in the editor.
+	bool				m_selected;					///< True if the obj is selected in the editor.
 
 	// For solo AI use only:
 	ObjectID m_objectID;								///< the object on the map instantiated by this info
 	UnsignedInt m_objectTimestamp;			///< frame when object was built
-	Bool		 m_underConstruction;				///< True if being constructed by dozer.
+	bool		 m_underConstruction;				///< True if being constructed by dozer.
 	ObjectID m_resourceGatherers[MAX_RESOURCE_GATHERERS];	///< gatherers for this supply center type building. 
-	Bool		 m_isSupplyBuilding;				///< Uses gatherers to get supplies.
+	bool		 m_isSupplyBuilding;				///< Uses gatherers to get supplies.
 	Int			 m_desiredGatherers;				///< Number of gatherers desired.
 	Int			 m_currentGatherers;				///< Number of gatherers available.
-	Bool		 m_priorityBuild;						///< Is priority build.
+	bool		 m_priorityBuild;						///< Is priority build.
 
 public:
 	// srj sez: naughty public access to avoid 'friend' -- should be friend for JUST THESE, but hey

@@ -55,7 +55,7 @@ public:
 	void setTimeOfDay(TimeOfDay tod);
 	void invalidateCachedLightPositions(void);	///<forces shadow volumes to update regardless of last lightposition
 	Vector3 &getLightPosWorld(Int lightIndex);	///<returns the position of specified light source.
-	Bool	isShadowScene(void)	{return m_isShadowScene;}
+	bool	isShadowScene(void)	{return m_isShadowScene;}
 	inline void setStencilShadowMask(int mask) {m_stencilShadowMask=mask;}	///<mask used to mask out stencil bits used for storing occlusion/playerColor
 	inline Int getStencilShadowMask(void)	{return m_stencilShadowMask;}
 
@@ -66,7 +66,7 @@ public:
 
 protected:
 
-		Bool	m_isShadowScene;	///<flag if current scene needs shadows.  No shadows on pre-pass and 2D.
+		bool	m_isShadowScene;	///<flag if current scene needs shadows.  No shadows on pre-pass and 2D.
 		UnsignedInt m_shadowColor;	///<color and alpha for all shadows in scene.
 		Int m_stencilShadowMask;
 };  // end class W3DShadowManager

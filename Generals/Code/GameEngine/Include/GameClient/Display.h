@@ -205,7 +205,7 @@ protected:
 	DebugDisplayCallback	*m_debugDisplayCallback;	///< Code to update the debug display
 	void									*m_debugDisplayUserData;	///< Data for debug display update handler
 	Real	m_letterBoxFadeLevel;	///<tracks the current alpha level for fading letter-boxed mode in/out.
-	Bool	m_letterBoxEnabled;		///<current state of letterbox
+	bool	m_letterBoxEnabled;		///<current state of letterbox
 	UnsignedInt	m_letterBoxFadeStartTime;		///< time of letterbox fade start
 	Int		m_movieHoldTime;									///< time that we hold on the last frame of the movie
 	Int		m_copyrightHoldTime;							///< time that the copyright must be on the screen

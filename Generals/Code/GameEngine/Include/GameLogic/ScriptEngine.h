@@ -432,7 +432,7 @@ protected:
 	Team							*m_conditionTeam;				///< Team that is being used to evaluate conditions, used for THIS_TEAM
 	Object						*m_conditionObject;				///< Unit that is being used to evaluate conditions, used for THIS_OBJECT
 	VecNamedRequests	m_namedObjects;
-	Bool							m_firstUpdate;			
+	bool							m_firstUpdate;			
 	Player						*m_currentPlayer;
 	Player						*m_skirmishHumanPlayer;
 	AsciiString				m_currentTrackName;
@@ -470,12 +470,12 @@ protected:
 	BreezeInfo				m_breezeInfo;
 	GameDifficulty		m_gameDifficulty;
 
-	Bool							m_freezeByScript;
+	bool							m_freezeByScript;
 	AllObjectTypes		m_allObjectTypeLists;
-	Bool							m_objectsShouldReceiveDifficultyBonus;
-	Bool							m_ChooseVictimAlwaysUsesNormal;
+	bool							m_objectsShouldReceiveDifficultyBonus;
+	bool							m_ChooseVictimAlwaysUsesNormal;
 	
-	Bool							m_shownMPLocalDefeatWindow;
+	bool							m_shownMPLocalDefeatWindow;
 
 #ifdef SPECIAL_SCRIPT_PROFILING
 #ifdef DEBUG_LOGGING

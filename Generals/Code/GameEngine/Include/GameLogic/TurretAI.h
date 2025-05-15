@@ -235,9 +235,9 @@ public:
 	UnsignedInt			m_minIdleScanInterval;	///< min interval between idle scans
 	UnsignedInt			m_maxIdleScanInterval;	///< max interval between idle scans
 	UnsignedInt			m_recenterTime;					///< time to wait before recentering turret
-	Bool						m_initiallyDisabled;		///< manually controlled and disabled.
-	Bool						m_firesWhileTurning;    ///< so the firing state does not instantly expire the turning state
-	Bool						m_isAllowsPitch;				///< This type of turret can pitch up and down as well as spin
+	bool						m_initiallyDisabled;		///< manually controlled and disabled.
+	bool						m_firesWhileTurning;    ///< so the firing state does not instantly expire the turning state
+	bool						m_isAllowsPitch;				///< This type of turret can pitch up and down as well as spin
 
 	TurretAIData();
 	static void buildFieldParse(MultiIniFieldParse& p);
@@ -363,13 +363,13 @@ private:
 	UnsignedInt								m_continuousFireExpirationFrame;
 	UnsignedInt								m_sleepUntil;
 
-	Bool										m_playRotSound : 1;
-	Bool										m_playPitchSound : 1;
-	Bool										m_positiveSweep : 1;
-	Bool										m_didFire : 1;
-	Bool										m_enabled : 1;
-	Bool										m_firesWhileTurning : 1;
-	Bool										m_isForceAttacking : 1;
+	bool										m_playRotSound : 1;
+	bool										m_playPitchSound : 1;
+	bool										m_positiveSweep : 1;
+	bool										m_didFire : 1;
+	bool										m_enabled : 1;
+	bool										m_firesWhileTurning : 1;
+	bool										m_isForceAttacking : 1;
 	mutable bool						m_targetWasSetByIdleMood : 1;
 
 };

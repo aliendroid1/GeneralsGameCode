@@ -83,14 +83,14 @@ struct TCheckMovementInfo
 	ICoord2D					cell;
 	PathfindLayerEnum layer;
 	Int								radius;	
-	Bool							centerInCell;
-	Bool							considerTransient;
+	bool							centerInCell;
+	bool							considerTransient;
 	LocomotorSurfaceTypeMask acceptableSurfaces;
 	// Output 
 	Int								allyFixedCount;
-	Bool							enemyFixed;
-	Bool							allyMoving;
-	Bool							allyGoal;
+	bool							enemyFixed;
+	bool							allyMoving;
+	bool							allyGoal;
 };
 
 inline Int IABS(Int x) {	if (x>=0) return x; return -x;};
@@ -5499,8 +5499,8 @@ struct ExamineCellsStruct
 {
 	Pathfinder					*thePathfinder;
 	const LocomotorSet	*theLoco;
-	Bool								centerInCell;
-	Bool								isHuman;
+	bool								centerInCell;
+	bool								isHuman;
 	Int									radius;
 	const Object				*obj;
 	PathfindCell				*goalCell;
@@ -6417,10 +6417,10 @@ void Pathfinder::moveAlliesAwayFromDestination(Object *obj,const Coord3D& destin
 struct GroundCellsStruct
 {
 	Pathfinder					*thePathfinder;
-	Bool								centerInCell;
+	bool								centerInCell;
 	Int									pathDiameter;
 	PathfindCell				*goalCell;
-	Bool								crusher;
+	bool								crusher;
 };
 
 /*static*/ Int Pathfinder::groundCellsCallback(Pathfinder* pathfinder, PathfindCell* from, PathfindCell* to, Int to_x, Int to_y, void* userData)
@@ -7803,8 +7803,8 @@ struct TightenPathStruct
 	const LocomotorSet *locomotorSet;
 	PathfindLayerEnum layer;
 	Int		radius;
-	Bool	center;
-	Bool	foundDest;
+	bool	center;
+	bool	foundDest;
 	Coord3D destPos;
 };
 
@@ -9013,7 +9013,7 @@ struct LinePassableStruct
 struct GroundPathPassableStruct
 {
 	Int		diameter;
-	Bool	crusher;
+	bool	crusher;
 };
 
 /*static*/ Int Pathfinder::groundPathPassableCallback(Pathfinder* pathfinder, PathfindCell* from, PathfindCell* to, Int to_x, Int to_y, void* userData)

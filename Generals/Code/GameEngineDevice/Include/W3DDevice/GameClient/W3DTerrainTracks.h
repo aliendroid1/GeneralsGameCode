@@ -93,12 +93,12 @@ protected:
 	Vector3		m_lastAnchor;						///<location of last edge center
 	Int			m_bottomIndex;						///<points at oldest edge on track
 	Int			m_topIndex;						///<points to newest edge on track
-	Bool		m_haveAnchor;					///<set to false until first edge is added
-	Bool		m_bound;						///<object is bound to owner and accepts new edges
+	bool		m_haveAnchor;					///<set to false until first edge is added
+	bool		m_bound;						///<object is bound to owner and accepts new edges
 	Real		m_width;						///<track width
 	Real		m_length;						///<length of each track segment
-	Bool		m_airborne;					///< Did the vehicle bounce up into the air?
-	Bool		m_haveCap;					///< is the segment capped so we can stop and resume at new location.
+	bool		m_airborne;					///< Did the vehicle bounce up into the air?
+	bool		m_haveCap;					///< is the segment capped so we can stop and resume at new location.
 	TerrainTracksRenderObjClass	*m_nextSystem;			///<next track system
 	TerrainTracksRenderObjClass *m_prevSystem;			///<previous track system
 };

@@ -109,8 +109,8 @@ private:
 	const WeaponTemplate*		m_template[WEAPONSLOT_COUNT];
 	UnsignedInt							m_autoChooseMask[WEAPONSLOT_COUNT];
 	KindOfMaskType					m_preferredAgainst[WEAPONSLOT_COUNT];
-	Bool										m_isReloadTimeShared;
-	Bool										m_isWeaponLockSharedAcrossSets; ///< A weapon set so similar that it is safe to hold locks across
+	bool										m_isReloadTimeShared;
+	bool										m_isWeaponLockSharedAcrossSets; ///< A weapon set so similar that it is safe to hold locks across
 
 	static void parseWeapon(INI* ini, void *instance, void *store, const void* userData);
 	static void parseAutoChoose(INI* ini, void *instance, void *store, const void* userData);
@@ -185,8 +185,8 @@ private:
 	UnsignedInt								m_filledWeaponSlotMask;
 	Int												m_totalAntiMask;						///< anti mask of all current weapons
 	UnsignedInt								m_totalDamageTypeMask;			///< damagetype mask of all current weapons
-	Bool											m_hasPitchLimit;
-	Bool											m_hasDamageWeapon;
+	bool											m_hasPitchLimit;
+	bool											m_hasDamageWeapon;
 
 	bool isAnyWithinTargetPitch(const Object* obj, const Object* victim) const;
 

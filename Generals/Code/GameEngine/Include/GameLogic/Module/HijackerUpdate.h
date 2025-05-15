@@ -85,8 +85,8 @@ private:
 	ObjectID m_targetID;
 	Coord3D	 m_ejectPos;
 	bool     m_update;
-	Bool		 m_isInVehicle;
-	Bool		 m_wasTargetAirborne;
+	bool		 m_isInVehicle;
+	bool		 m_wasTargetAirborne;
 
 //	DieModuleInterface *m_ejectPilotDMI; // point to ejectpilotdiemodule 
 																			 // of target vehicle if it has one

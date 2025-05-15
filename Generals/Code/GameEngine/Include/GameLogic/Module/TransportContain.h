@@ -51,12 +51,12 @@ public:
 	InitialPayload		m_initialPayload;
 	Real							m_healthRegen;
 	UnsignedInt				m_exitDelay;
-	Bool							m_scatterNearbyOnExit;
-	Bool							m_orientLikeContainerOnExit;
-	Bool							m_keepContainerVelocityOnExit;
-	Bool							m_goAggressiveOnExit;
-	Bool							m_resetMoodCheckTimeOnExit;
-	Bool							m_destroyRidersWhoAreNotFreeToExit;
+	bool							m_scatterNearbyOnExit;
+	bool							m_orientLikeContainerOnExit;
+	bool							m_keepContainerVelocityOnExit;
+	bool							m_goAggressiveOnExit;
+	bool							m_resetMoodCheckTimeOnExit;
+	bool							m_destroyRidersWhoAreNotFreeToExit;
 
 	TransportContainModuleData();
 

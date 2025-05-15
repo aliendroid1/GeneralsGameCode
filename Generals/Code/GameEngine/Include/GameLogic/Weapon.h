@@ -765,8 +765,8 @@ private:
 	Int												m_curBarrel;								///< current barrel used for firing
 	Int												m_numShotsForCurBarrel;			///< how many shots to fire from cur barrel before moving to next barrel
 	std::vector<Int>					m_scatterTargetsUnused;			///< A running memory of which targets I've used, so I can shoot them all at random
-	Bool											m_pitchLimited;
-	Bool											m_leechWeaponRangeActive;		///< This weapon has unlimited range until attack state is aborted!
+	bool											m_pitchLimited;
+	bool											m_leechWeaponRangeActive;		///< This weapon has unlimited range until attack state is aborted!
 
 	// setter function for status that should not be used outside this class
 	void setStatus( WeaponStatus status) { m_status = status; }

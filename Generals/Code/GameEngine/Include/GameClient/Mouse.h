@@ -132,7 +132,7 @@ public:
 	AsciiString		W3DModelName;
 	AsciiString		W3DAnimName;
 	Real					W3DScale;
-	Bool					loop;
+	bool					loop;
 	ICoord2D			hotSpotPosition;
 	Int						numFrames;
 	Real					fps;	//frames per ms.

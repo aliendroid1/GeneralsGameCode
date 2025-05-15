@@ -3513,11 +3513,11 @@ public:
 	int			 		Load_Geom(RenderObjClass *robj, const char *name);
 	W3DShadowGeometry *		Get_Geom(const char * name);
 	W3DShadowGeometry *		Peek_Geom(const char * name);
-	Bool					Add_Geom(W3DShadowGeometry *new_anim);
+	bool					Add_Geom(W3DShadowGeometry *new_anim);
 	void			 		Free_All_Geoms(void);
 
 	void					Register_Missing( const char * name );
-	Bool					Is_Missing( const char * name );
+	bool					Is_Missing( const char * name );
 	void					Reset_Missing( void );
 
 private:

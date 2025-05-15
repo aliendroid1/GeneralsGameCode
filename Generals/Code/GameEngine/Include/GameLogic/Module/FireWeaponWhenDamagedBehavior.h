@@ -44,7 +44,7 @@ class FireWeaponWhenDamagedBehaviorModuleData : public UpdateModuleData
 {
 public:
 	UpgradeMuxData				m_upgradeMuxData;
-	Bool									m_initiallyActive;
+	bool									m_initiallyActive;
 	DamageTypeFlags				m_damageTypes;					
 	Real									m_damageAmount;	
 	const WeaponTemplate* m_reactionWeaponPristine;///< fire these weapons only when damage is received				

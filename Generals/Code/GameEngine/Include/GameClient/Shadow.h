@@ -78,8 +78,8 @@ public:
 		{	
 				char	m_ShadowName[64];	//when set, overrides the default model shadow (used mostly for Decals).
 				ShadowType m_type;			//type of shadow
-				Bool	allowUpdates;			//whether to update the shadow image when object/light moves.
-				Bool	allowWorldAlign;	//whether to align shadow to world geometry or draw as horizontal decal.
+				bool	allowUpdates;			//whether to update the shadow image when object/light moves.
+				bool	allowWorldAlign;	//whether to align shadow to world geometry or draw as horizontal decal.
 				Real	m_sizeX;			//world size of decal projection
 				Real	m_sizeY;			//world size of decal projection
 				Real	m_offsetX;			//world shift along x axis

@@ -51,9 +51,9 @@ class DeployStyleAIUpdateModuleData : public AIUpdateModuleData
 public:
 	UnsignedInt			m_unpackTime;
 	UnsignedInt			m_packTime;		
-	Bool						m_resetTurretBeforePacking;	
-	Bool						m_turretsFunctionOnlyWhenDeployed;
-	Bool						m_turretsMustCenterBeforePacking;
+	bool						m_resetTurretBeforePacking;	
+	bool						m_turretsFunctionOnlyWhenDeployed;
+	bool						m_turretsMustCenterBeforePacking;
 
 	DeployStyleAIUpdateModuleData()
 	{
@@ -112,18 +112,18 @@ public:
 protected:
 
 	AICommandParmsStorage		m_lastOutsideCommand;
-	Bool										m_hasOutsideCommand;
+	bool										m_hasOutsideCommand;
 	DeployStateTypes				m_state;
 	UnsignedInt							m_frameToWakeForDeploy;
 
   ObjectID								m_designatedTargetID;
 	ObjectID								m_attackObjectID;
 	Coord3D									m_position;	//Used for attack position and guard position.
-	Bool										m_isAttackMultiple;
-	Bool										m_isAttackObject;
-	Bool										m_isAttackPosition;
-	Bool										m_isGuardingPosition;
-	Bool										m_overriddenAttack;
+	bool										m_isAttackMultiple;
+	bool										m_isAttackObject;
+	bool										m_isAttackPosition;
+	bool										m_isGuardingPosition;
+	bool										m_overriddenAttack;
 };
 
 #endif

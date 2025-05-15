@@ -47,9 +47,9 @@ public:
 
 	Int								m_slotCapacity;								///< max units that can be inside us
 	Real							m_exitPitchRate;
-	Bool							m_scatterNearbyOnExit;
-	Bool							m_orientLikeContainerOnExit;
-	Bool							m_keepContainerVelocityOnExit;
+	bool							m_scatterNearbyOnExit;
+	bool							m_orientLikeContainerOnExit;
+	bool							m_keepContainerVelocityOnExit;
 	AsciiString				m_exitBone;
 	InitialPayload		m_initialPayload;
 	Real							m_healthRegen;

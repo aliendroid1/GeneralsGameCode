@@ -346,17 +346,17 @@ typedef struct _ListboxData
 	Short				listLength;				// Max Number of entries in the list
 	Short				columns;					// Number of Columns each line has
 	Int					*columnWidthPercentage;	 // Holds the percentage value of each column in an Int array;
-	Bool				autoScroll;				// If add exceeds number of lines in display
+	bool				autoScroll;				// If add exceeds number of lines in display
 																// scroll up automatically
-	Bool				autoPurge;				// If add exceeds number of entries in list
+	bool				autoPurge;				// If add exceeds number of entries in list
 																// delete top entry automatically
-	Bool				scrollBar;				// Automatically create the up/down/slider buttons
-	Bool				multiSelect;			// Allow for multiple selections
-	Bool				forceSelect;			// Do not allow users to unselect from a listbox
-	Bool				scrollIfAtEnd;		// If we're looking at the bottom of the listbox when a new entry is added,
+	bool				scrollBar;				// Automatically create the up/down/slider buttons
+	bool				multiSelect;			// Allow for multiple selections
+	bool				forceSelect;			// Do not allow users to unselect from a listbox
+	bool				scrollIfAtEnd;		// If we're looking at the bottom of the listbox when a new entry is added,
 																// scroll up automatically
 
-	Bool				audioFeedback;		// Audio click feedback?
+	bool				audioFeedback;		// Audio click feedback?
 
 	//
 	// The following fields are for internal use and should not be initialized 

@@ -56,9 +56,9 @@ public:
 	Real	m_ZFriction;
 	Real	m_aerodynamicFriction;	// The percent of the wind resistance effect you suffer from
 	Real	m_centerOfMassOffset;	// Distance the center of mass is from the center of geometry, to control pitch rate
-	Bool	m_killWhenRestingOnGround;	// when airborne==false and vel==0, kill it.
-	Bool	m_allowBouncing;
-	Bool	m_allowCollideForce;
+	bool	m_killWhenRestingOnGround;	// when airborne==false and vel==0, kill it.
+	bool	m_allowBouncing;
+	bool	m_allowCollideForce;
 	Real	m_minFallSpeedForDamage;
 	Real	m_fallHeightDamageFactor;
 	Real	m_pitchRollYawFactor;

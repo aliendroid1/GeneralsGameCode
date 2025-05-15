@@ -84,10 +84,10 @@ struct TRoadPt
 	Vector2 top;
 	Vector2 bottom;
 	Int			count;
-	Bool		last;	
-	Bool		multi;
-	Bool		isAngled;
-	Bool		isJoin;
+	bool		last;	
+	bool		multi;
+	bool		isAngled;
+	bool		isJoin;
 };
 
 struct TRoadSegInfo 
@@ -160,7 +160,7 @@ protected:
 	Int			m_numRoadVertices; ///<Number of vertices used in m_vertexRoad.
 	Int			m_numRoadIndices;	///<Number of indices used in b_indexRoad;
 	Int					  m_uniqueID;     ///< ID of the road type in INI.
-	Bool					m_isAutoLoaded;
+	bool					m_isAutoLoaded;
 	Int						m_stackingOrder; ///< Order in the drawing.  0 drawn first, then 1 and so on.
 
 #ifdef LOAD_TEST_ASSETS
@@ -214,7 +214,7 @@ protected:
 	RoadType *m_roadTypes;	///<Roads texture
 	RoadSegment	*m_roads;			///< The road buffer.  All roads are stored here.
 	Int			m_numRoads;						///< Number of roads used in m_roads.
-	Bool		m_initialized;		///< True if the subsystem initialized.
+	bool		m_initialized;		///< True if the subsystem initialized.
 	WorldHeightMap *m_map;		///< Pointer to the height map data.
 	RefRenderObjListIterator *m_lightsIterator;	///< Lighting iterator.
 	Int m_minX, m_maxX, m_minY, m_maxY; ///< Bounds on the terrain to be rendered.

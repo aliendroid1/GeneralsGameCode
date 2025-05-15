@@ -94,7 +94,7 @@ private:
 	const FXList*							m_fxFinal;
 	Int												m_state;
 	Int												m_frames;
-	Bool											m_finalStop;
+	bool											m_finalStop;
 	Shadow*										m_shadow;													///< Updates/Renders shadows of this object
 
 };

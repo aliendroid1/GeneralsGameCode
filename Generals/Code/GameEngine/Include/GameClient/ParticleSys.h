@@ -237,10 +237,10 @@ protected:
 
 	Drawable *				m_drawable;												///< drawable associated with this particle
 
-	Bool							m_isCulled;														///< status of particle relative to screen bounds
+	bool							m_isCulled;														///< status of particle relative to screen bounds
 public:
-	Bool							m_inSystemList;
-	Bool							m_inOverallList;
+	bool							m_inSystemList;
+	bool							m_inOverallList;
 
 	union
 	{
@@ -699,13 +699,13 @@ protected:
 	const ParticleSystemTemplate *	m_template;						///< the template this system was constructed from
 	Particle *											m_controlParticle;		///< if non-NULL, this system is controlled by this particle
 
-	Bool							m_isLocalIdentity;										///< if true, the matrix can be ignored
-	Bool							m_isIdentity;													///< if true, the matrix can be ignored
-	Bool							m_isForever;													///< System has infinite lifetime
-	Bool							m_isStopped;													///< if stopped, do not emit particles
-	Bool							m_isDestroyed;												///< are we destroyed and waiting for particles to die
-	Bool							m_isFirstPos;													///< true if this system hasn't been drawn before.
-	Bool							m_isSaveable;													///< true if this system should be saved/loaded
+	bool							m_isLocalIdentity;										///< if true, the matrix can be ignored
+	bool							m_isIdentity;													///< if true, the matrix can be ignored
+	bool							m_isForever;													///< System has infinite lifetime
+	bool							m_isStopped;													///< if stopped, do not emit particles
+	bool							m_isDestroyed;												///< are we destroyed and waiting for particles to die
+	bool							m_isFirstPos;													///< true if this system hasn't been drawn before.
+	bool							m_isSaveable;													///< true if this system should be saved/loaded
 
 
 	// the actual particle system data is inherited from ParticleSystemInfo

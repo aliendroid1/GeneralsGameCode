@@ -82,7 +82,7 @@ class LocomotorSet : public Snapshot
 private:
 	LocomotorVector						m_locomotors;
 	LocomotorSurfaceTypeMask	m_validLocomotorSurfaces;
-	Bool											m_downhillOnly;
+	bool											m_downhillOnly;
 	
 	LocomotorSet(const LocomotorSet& that);
 	LocomotorSet& operator=(const LocomotorSet& that);

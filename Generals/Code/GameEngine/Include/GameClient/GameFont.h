@@ -49,7 +49,7 @@ public:
 	Int						pointSize;		 ///< point size of font
 	Int						height;				///< pixel height of font
 	void*					fontData;  ///< font data to be filled out for device specific font
-	Bool					bold;				 ///< is this font bold
+	bool					bold;				 ///< is this font bold
 };
 EMPTY_DTOR(GameFont)
 

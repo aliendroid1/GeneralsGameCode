@@ -56,8 +56,8 @@ public:
 	Real										m_minHeight;											///< how far off the ground to lift the drawable when taxiing
 	Real										m_parkingOffset;									///< tweaking the park loc
 	Real										m_sneakyOffsetWhenAttacking;			///< our sneaky offset when attacking (or zero)
-	Bool										m_keepsParkingSpaceWhenAirborne;	///< if t, keeps its parking space reservation even when airborne
-	Bool										m_needsRunway;										///< if t, needs runways to takeoff/land
+	bool										m_keepsParkingSpaceWhenAirborne;	///< if t, keeps its parking space reservation even when airborne
+	bool										m_needsRunway;										///< if t, needs runways to takeoff/land
 	UnsignedInt							m_takeoffPause;										///< pre-takeoff pause
 	LocomotorSetType				m_attackingLoco;									///< custom attacking loco
 	LocomotorSetType				m_returningLoco;									///< custom return-for-ammo loco
@@ -167,7 +167,7 @@ private:
 	Drawable*								m_lockonDrawable;
 	Int											m_flags;
 	Coord3D									m_landingPosForHelipadStuff;
-	Bool										m_enginesOn;					///<
+	bool										m_enginesOn;					///<
 
 	void getProducerLocation();
 	void buildLockonDrawableIfNecessary();

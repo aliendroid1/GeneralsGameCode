@@ -46,15 +46,15 @@ class FXList;
 class MissileAIUpdateModuleData : public AIUpdateModuleData
 {
 public:
-	Bool						m_tryToFollowTarget;	///< if true, attack object, not pos
+	bool						m_tryToFollowTarget;	///< if true, attack object, not pos
 	UnsignedInt			m_fuelLifetime;				///< num frames till missile runs out of motive power (0 == inf)
 	UnsignedInt			m_ignitionDelay;			///< delay in frames from when missile is 'fired', to when it starts moving		15
 	Real						m_initialVel;			
 	Real						m_initialDist;
 	Real						m_diveDistance;				///< If I get this close to my target, start ignoring my preferred height
 	const FXList*		m_ignitionFX;					///< FXList to do when missile 'ignites'
-	Bool						m_useWeaponSpeed;			///< if true, limit speed of projectile to the Weapon's info
-	Bool						m_detonateOnNoFuel;		///< If true, don't just stop thrusting, blow up when out of gas
+	bool						m_useWeaponSpeed;			///< if true, limit speed of projectile to the Weapon's info
+	bool						m_detonateOnNoFuel;		///< If true, don't just stop thrusting, blow up when out of gas
 	Int							m_garrisonHitKillCount;
 	KindOfMaskType	m_garrisonHitKillKindof;			///< the kind(s) of units that can be collided with
 	KindOfMaskType	m_garrisonHitKillKindofNot;		///< the kind(s) of units that CANNOT be collided with
@@ -121,8 +121,8 @@ private:
 	const WeaponTemplate*	m_detonationWeaponTmpl;		///< weapon to fire at end (or null)
 	const ParticleSystemTemplate* m_exhaustSysTmpl;
 	ParticleSystemID			m_exhaustID;								///< our exhaust particle system (if any)
-	Bool									m_isTrackingTarget;				///< Was I originally shot at a moving object?
-	Bool									m_isArmed;								///< if true, missile will explode on contact
+	bool									m_isTrackingTarget;				///< Was I originally shot at a moving object?
+	bool									m_isArmed;								///< if true, missile will explode on contact
 
 	void doPrelaunchState();
 	void doLaunchState();

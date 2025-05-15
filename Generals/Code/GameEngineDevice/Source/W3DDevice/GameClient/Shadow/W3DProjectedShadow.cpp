@@ -151,7 +151,7 @@ class W3DProjectedShadow	: public Shadow
 		RenderObjClass	*m_robj;						///<render object used to cast the shadow.
 		Vector3		m_lastObjPosition;	///<position of  object at time of projection matrix update.		
 		W3DProjectedShadow *m_next;	/// for the shadow manager list
-		Bool	m_allowWorldAlign;	/// wrap shadow around world geometry - else align perpendicular to local z-axis.
+		bool	m_allowWorldAlign;	/// wrap shadow around world geometry - else align perpendicular to local z-axis.
 		Real	m_decalOffsetU;		/// texture coordinate offset so not centered at object origin.
 		Real	m_decalOffsetV;		/// texture coordinate offset so not centered at object origin.
 		Int		m_flags;			/// custom rendering flags
@@ -170,12 +170,12 @@ public:
 	int			 		createTexture(RenderObjClass *robj, const char *name);
 	W3DShadowTexture *		getTexture(const char * name);
 	W3DShadowTexture *		peekTexture(const char * name);
-	Bool					addTexture(W3DShadowTexture *new_texture);
+	bool					addTexture(W3DShadowTexture *new_texture);
 	void			 		freeAllTextures(void);
 	void					invalidateCachedLightPositions(void);
 
 	void					registerMissing( const char * name );
-	Bool					isMissing( const char * name );
+	bool					isMissing( const char * name );
 	void					resetMissing( void );
 
 private:
@@ -1505,11 +1505,11 @@ Shadow* W3DProjectedShadowManager::addDecal(Shadow::ShadowTypeInfo *shadowInfo)
 {
 	W3DShadowTexture *st=NULL;
 	ShadowType shadowType=SHADOW_NONE;		/// type of projection
-	Bool	allowWorldAlign=FALSE;	/// wrap shadow around world geometry - else align perpendicular to local z-axis.
+	bool	allowWorldAlign=FALSE;	/// wrap shadow around world geometry - else align perpendicular to local z-axis.
 	Real	decalSizeX=0.0f;
 	Real	decalSizeY=0.0f;
 
-	Bool	allowSunDirection=FALSE;
+	bool	allowSunDirection=FALSE;
 	Char	texture_name[64];
 	Int nameLen;
 
@@ -1621,13 +1621,13 @@ Shadow* W3DProjectedShadowManager::addDecal(RenderObjClass *robj, Shadow::Shadow
 {
 	W3DShadowTexture *st=NULL;
 	ShadowType shadowType=SHADOW_NONE;		/// type of projection
-	Bool	allowWorldAlign=FALSE;	/// wrap shadow around world geometry - else align perpendicular to local z-axis.
+	bool	allowWorldAlign=FALSE;	/// wrap shadow around world geometry - else align perpendicular to local z-axis.
 	Real	decalSizeX=0.0f;
 	Real	decalSizeY=0.0f;
 	Real	decalOffsetX=0.0f;
 	Real	decalOffsetY=0.0f;
 
-	Bool	allowSunDirection=FALSE;
+	bool	allowSunDirection=FALSE;
 	Char	texture_name[64];
 	Int nameLen;
 
@@ -1756,13 +1756,13 @@ W3DProjectedShadow* W3DProjectedShadowManager::addShadow(RenderObjClass *robj, S
 	W3DShadowTexture *st=NULL;
 	static char	defaultDecalName[]={"shadow.tga"};
 	ShadowType shadowType=SHADOW_NONE;		/// type of projection
-	Bool	allowWorldAlign=FALSE;	/// wrap shadow around world geometry - else align perpendicular to local z-axis.
+	bool	allowWorldAlign=FALSE;	/// wrap shadow around world geometry - else align perpendicular to local z-axis.
 	Real	decalSizeX=0.0f;
 	Real	decalSizeY=0.0f;
 	Real	decalOffsetX=0.0f;
 	Real	decalOffsetY=0.0f;
 
-	Bool	allowSunDirection=FALSE;
+	bool	allowSunDirection=FALSE;
 	Char	texture_name[64];
 	Int nameLen;
 

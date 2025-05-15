@@ -46,7 +46,7 @@ class RadiusDecal
 private:
 	const RadiusDecalTemplate*	m_template;
 	Shadow*											m_decal;
-	Bool												m_empty;
+	bool												m_empty;
 public:
 	RadiusDecal();
 	RadiusDecal(const RadiusDecal& that);
@@ -76,7 +76,7 @@ private:
 	Real					m_maxOpacity;
 	UnsignedInt		m_opacityThrobTime;
 	Color					m_color;
-	Bool					m_onlyVisibleToOwningPlayer;
+	bool					m_onlyVisibleToOwningPlayer;
 
 public:
 	RadiusDecalTemplate();

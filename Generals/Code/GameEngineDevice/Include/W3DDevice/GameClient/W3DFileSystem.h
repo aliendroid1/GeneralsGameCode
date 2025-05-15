@@ -75,7 +75,7 @@ public:
 protected:
 
 	File					*m_theFile; /// < The file
-	Bool					m_fileExists;		///< TRUE if the file exists
+	bool					m_fileExists;		///< TRUE if the file exists
 	char					m_filePath[_MAX_PATH];  ///< the file name *and* path (relative)
 	char					m_filename[_MAX_PATH];	///< The file name only
 

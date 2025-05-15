@@ -111,7 +111,7 @@ protected:
 	UnsignedShort		m_numFrames;						///< total number of frames in this animation
 	UnsignedShort		m_framesBetweenUpdates;	///< frames between frame updates
 	Anim2DMode			m_animMode;								///< the animation mode
-	Bool						m_randomizeStartFrame;						///< randomize animation instance start frames
+	bool						m_randomizeStartFrame;						///< randomize animation instance start frames
 
 protected:
 	static const FieldParse s_anim2DFieldParseTable[];		///< the parse table for INI definition

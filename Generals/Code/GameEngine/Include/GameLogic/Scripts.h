@@ -124,10 +124,10 @@ protected:
 protected:
 	Script			*m_firstScript;
 	AsciiString m_groupName;
-	Bool				m_isGroupActive;
-	Bool				m_isGroupSubroutine;
+	bool				m_isGroupActive;
+	bool				m_isGroupSubroutine;
 	ScriptGroup	*m_nextGroup;
-	Bool				m_hasWarnings; ///< Runtime flag used by the editor only.
+	bool				m_hasWarnings; ///< Runtime flag used by the editor only.
 
 public:
 	ScriptGroup();
@@ -559,7 +559,7 @@ protected:
 	Int 							m_numParms;
 	Parameter *				m_parms[MAX_PARMS];
 	ScriptAction *		m_nextAction;
-	Bool							m_hasWarnings; ///< Runtime flag used by the editor only.
+	bool							m_hasWarnings; ///< Runtime flag used by the editor only.
 
 public:
 	void setActionType(ScriptActionType type);
@@ -608,12 +608,12 @@ protected:	// Note - If you add any member vars, you must take them into account
 	AsciiString m_conditionComment;			///< Long comment about conditions.
 	AsciiString m_actionComment;			///< Long comment about actions.
 	Int					m_delayEvaluationSeconds; ///< Number of seconds to delay evaluation.
-	Bool				m_isActive;			 ///< If true, script is enabled.  If false, disabled.
-	Bool				m_isOneShot;    ///< If true, script is made not active after executing the m_action actions.
-	Bool				m_isSubroutine; ///< If true, script is a subroutine.
-	Bool				m_easy;					///< Applies to easy campaign.
-	Bool				m_normal;				///< Applies to normal campaign.
-	Bool				m_hard;					///< Applies to Hard campaign.
+	bool				m_isActive;			 ///< If true, script is enabled.  If false, disabled.
+	bool				m_isOneShot;    ///< If true, script is made not active after executing the m_action actions.
+	bool				m_isSubroutine; ///< If true, script is a subroutine.
+	bool				m_easy;					///< Applies to easy campaign.
+	bool				m_normal;				///< Applies to normal campaign.
+	bool				m_hard;					///< Applies to Hard campaign.
 
 	OrCondition *m_condition;		///< First in a list of ORed clauses.
 	ScriptAction *m_action;			///< First in a list of actions executed if the conditions are true.
@@ -622,7 +622,7 @@ protected:	// Note - If you add any member vars, you must take them into account
 
 // Runtime fields - not saved or read.
 	UnsignedInt m_frameToEvaluateAt; ///< When to evaluate the conditions next, if m_delayEvaluationSeconds>0.
-	Bool				m_hasWarnings; ///< Runtime flag used by the editor only.
+	bool				m_hasWarnings; ///< Runtime flag used by the editor only.
 	AsciiString	m_conditionTeamName; ///< Runtime name used by ScriptEngine only.
 	Real				m_conditionTime;		///< Amount of time (cum) to evaluate conditions.
 	Real				m_curTime;		///< Amount of time (cum) to evaluate conditions.
@@ -795,7 +795,7 @@ public:
 
 private:
 	ParameterType	m_paramType;
-	Bool					m_initialized;
+	bool					m_initialized;
 	Int						m_int;
 	Real					m_real;
 	AsciiString		m_string;

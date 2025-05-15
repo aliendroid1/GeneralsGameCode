@@ -546,10 +546,10 @@ UpdateSleepTime PhysicsBehavior::update()
 
 	Object*														obj = getObject();
 	const PhysicsBehaviorModuleData*	d = getPhysicsBehaviorModuleData();
-	Bool															airborneAtStart = obj->isAboveTerrain();
+	bool															airborneAtStart = obj->isAboveTerrain();
 	Real															activeVelZ = 0;
 	Coord3D														bounceForce;
-	Bool															gotBounceForce = false;
+	bool															gotBounceForce = false;
 
 	DEBUG_ASSERTCRASH(!getFlag(IS_IN_UPDATE), ("impossible"));
 	setFlag(IS_IN_UPDATE, true);

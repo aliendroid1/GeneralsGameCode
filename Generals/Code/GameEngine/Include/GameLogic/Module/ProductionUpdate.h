@@ -243,7 +243,7 @@ protected:
 		UnsignedInt m_doorOpenedFrame;											///< for producer objects that have a door open/close animation when they make something
 		UnsignedInt m_doorWaitOpenFrame;										///< frame we entered into wait open state
 		UnsignedInt m_doorClosedFrame;											///< frame any door was closed on
-		Bool				m_holdOpen;															///< if T, don't allow door to close
+		bool				m_holdOpen;															///< if T, don't allow door to close
 	};
 
 	ProductionEntry*		m_productionQueue;							///< queue of things we want to build
@@ -254,7 +254,7 @@ protected:
 	DoorInfo						m_doors[DOOR_COUNT_MAX];
 	ModelConditionFlags m_clearFlags;										///< flags to clear from model
 	ModelConditionFlags m_setFlags;											///< flags to set in model
-	Bool								m_flagsDirty;										///< clearFlags/setFlags needs to be set into the model
+	bool								m_flagsDirty;										///< clearFlags/setFlags needs to be set into the model
 
 };
 

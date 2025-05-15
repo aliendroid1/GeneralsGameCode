@@ -673,11 +673,11 @@ private:
 	GameClientRandomVariable	m_height;
 	GameClientRandomVariable	m_delay;
 	Real						m_rotateX, m_rotateY, m_rotateZ;
-	Bool						m_orientToObject;
-	Bool						m_attachToObject;
-	Bool						m_createAtGroundHeight;
-	Bool						m_useCallersRadius;
-	Bool						m_ricochet;
+	bool						m_orientToObject;
+	bool						m_attachToObject;
+	bool						m_createAtGroundHeight;
+	bool						m_useCallersRadius;
+	bool						m_ricochet;
 };  
 EMPTY_DTOR(ParticleSystemFXNugget)
 

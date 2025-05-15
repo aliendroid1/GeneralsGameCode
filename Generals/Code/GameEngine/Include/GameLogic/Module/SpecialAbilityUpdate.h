@@ -67,16 +67,16 @@ public:
 	UnsignedInt						m_packTime;
 	UnsignedInt						m_unpackTime;
 	UnsignedInt						m_preTriggerUnstealthFrames;
-	Bool									m_skipPackingWithNoTarget;
-	Bool									m_specialObjectsPersistent;
-	Bool									m_uniqueSpecialObjectTargets;
-	Bool									m_specialObjectsPersistWhenOwnerDies;
-	Bool									m_flipObjectAfterPacking;
-	Bool									m_flipObjectAfterUnpacking;
-	Bool									m_alwaysValidateSpecialObjects;
-	Bool									m_doCaptureFX;					///< the house color flashing while a building is getting captured
-	Bool									m_loseStealthOnTrigger;
-	Bool									m_approachRequiresLOS;
+	bool									m_skipPackingWithNoTarget;
+	bool									m_specialObjectsPersistent;
+	bool									m_uniqueSpecialObjectTargets;
+	bool									m_specialObjectsPersistWhenOwnerDies;
+	bool									m_flipObjectAfterPacking;
+	bool									m_flipObjectAfterUnpacking;
+	bool									m_alwaysValidateSpecialObjects;
+	bool									m_doCaptureFX;					///< the house color flashing while a building is getting captured
+	bool									m_loseStealthOnTrigger;
+	bool									m_approachRequiresLOS;
 	const ParticleSystemTemplate *m_disableFXParticleSystem;
 	AudioEventRTS					m_packSound;
 	AudioEventRTS					m_unpackSound;
@@ -267,12 +267,12 @@ private:
 	UnsignedInt										m_specialObjectEntries;				 //The size of the list of member Objects
 	Real													m_captureFlashPhase;    ///< used to track the accellerating flash of the capture FX
 	PackingState									m_packingState;
-	Bool													m_active;
-	Bool													m_noTargetCommand;
-	Bool													m_facingInitiated;
-	Bool													m_facingComplete;
-	Bool													m_withinStartAbilityRange;
-	Bool													m_doDisableFXParticles;      // smaller targets cause this flag to toggle, making the particle effect more sparse
+	bool													m_active;
+	bool													m_noTargetCommand;
+	bool													m_facingInitiated;
+	bool													m_facingComplete;
+	bool													m_withinStartAbilityRange;
+	bool													m_doDisableFXParticles;      // smaller targets cause this flag to toggle, making the particle effect more sparse
 };
 
 #endif // _SPECIAL_POWER_UPDATE_H_

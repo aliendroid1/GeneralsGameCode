@@ -73,11 +73,11 @@ class MeshClass;
 /// The individual data for a Bib.
 typedef struct {
 	Vector3			m_corners[4];				///< Drawing location
-	Bool				m_highlight;				///< Use the highlight texture.
+	bool				m_highlight;				///< Use the highlight texture.
 	Int					m_color;						///< Tint perhaps.
 	ObjectID		m_objectID;					///< The object id this bib corresponds to.
 	DrawableID	m_drawableID;				///< The object id this bib corresponds to.
-	Bool				m_unused;						///< True if this bib is currently unused.
+	bool				m_unused;						///< True if this bib is currently unused.
 } TBib;
 
 //
@@ -122,10 +122,10 @@ protected:
 
 	TBib	m_bibs[MAX_BIBS];			///< The bib buffer.  All bibs are stored here.
 	Int			m_numBibs;						///< Number of bibs in m_bibs.
-	Bool		m_anythingChanged;	///< Set to true if visibility or sorting changed.
-	Bool		m_updateAllKeys;  ///< Set to true when the view changes.
-	Bool		m_initialized;		///< True if the subsystem initialized.
-	Bool		m_isTerrainPass;  ///< True if the terrain was drawn in this W3D scene render pass.
+	bool		m_anythingChanged;	///< Set to true if visibility or sorting changed.
+	bool		m_updateAllKeys;  ///< Set to true when the view changes.
+	bool		m_initialized;		///< True if the subsystem initialized.
+	bool		m_isTerrainPass;  ///< True if the terrain was drawn in this W3D scene render pass.
 
 	void loadBibsInVertexAndIndexBuffers(void); ///< Fills the index and vertex buffers for drawing.
 	void allocateBibBuffers(void);							 ///< Allocates the buffers.

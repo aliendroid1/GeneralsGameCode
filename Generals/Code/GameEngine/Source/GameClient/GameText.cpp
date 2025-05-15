@@ -167,10 +167,10 @@ class GameTextManager : public GameTextInterface
 		
 		StringInfo			*m_stringInfo;
 		StringLookUp		*m_stringLUT;
-		Bool						m_initialized;
+		bool						m_initialized;
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
-		Bool						m_jabberWockie;
-		Bool						m_munkee;
+		bool						m_jabberWockie;
+		bool						m_munkee;
 #endif
 		NoString				*m_noStringList;
 		Int							m_useStringFile;
@@ -190,12 +190,12 @@ class GameTextManager : public GameTextInterface
 		void						readToEndOfQuote( File *file, Char *in, Char *out, Char *wavefile, Int maxBufLen );
 		void						reverseWord ( Char *file, Char *lp );
 		void						translateCopy( WideChar *outbuf, Char *inbuf );
-		Bool						getStringCount( const Char *filename, Int& textCount );
-		Bool						getCSFInfo ( const Char *filename );
-		Bool						parseCSF(  const Char *filename );
-		Bool						parseStringFile( const char *filename );
-		Bool						parseMapStringFile( const char *filename );
-		Bool						readLine( char *buffer, Int max, File *file );
+		bool						getStringCount( const Char *filename, Int& textCount );
+		bool						getCSFInfo ( const Char *filename );
+		bool						parseCSF(  const Char *filename );
+		bool						parseStringFile( const char *filename );
+		bool						parseMapStringFile( const char *filename );
+		bool						readLine( char *buffer, Int max, File *file );
 		Char						readChar( File *file );
 };
 

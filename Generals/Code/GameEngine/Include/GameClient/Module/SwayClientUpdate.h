@@ -65,8 +65,8 @@ protected:
 	Real			m_curAngleLimit;
 	Real			m_leanAngle;							///<Angle that the tree leans away from the wind.
 	Short			m_curVersion;
-	Bool			m_swaying;
-	Bool			m_unused;
+	bool			m_swaying;
+	bool			m_unused;
 
 	void updateSway(void);
 };

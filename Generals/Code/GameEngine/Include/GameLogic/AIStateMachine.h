@@ -299,11 +299,11 @@ private:
 	AudioHandle		m_ambientPlayingHandle;							///< Audio handle for the looping sound that we may play.
 	UnsignedInt		m_pathTimestamp;										///< time of last pathfind
 	UnsignedInt		m_blockedRepathTimestamp;						///< time of last blocked pathfind
-	Bool					m_adjustDestinations;								///< Adjust destinations to avoid stacking units on top of each other.  Normally true, but 
+	bool					m_adjustDestinations;								///< Adjust destinations to avoid stacking units on top of each other.  Normally true, but 
 																										//   occasionally false for things like car bombs.
 protected:
-	Bool					m_waitingForPath;										///< If we are waiting for a path.
-	Bool					m_tryOneMoreRepath;									///< If true, after we complete movement do another compute path.
+	bool					m_waitingForPath;										///< If we are waiting for a path.
+	bool					m_tryOneMoreRepath;									///< If true, after we complete movement do another compute path.
 };
 EMPTY_DTOR(AIInternalMoveToState)
 
@@ -477,11 +477,11 @@ private:
 
 	Coord3D				m_prevVictimPos;									///< Where we think our victim is
 	UnsignedInt		m_approachTimestamp;							///< When we last computed an approach goal
-	Bool					m_follow;													///< If true, follow object until it dies
-	Bool					m_isAttackingObject;							///< If false, attacking position
-	Bool					m_stopIfInRange;									///< If true, we check and stop as soon we can fire.  Used when we have to path to the object instead of to a firing position.
-	Bool					m_isInitialApproach;							///< If true, we can attack other units along the way. We will check for them every N frames (N specified in AI.ini)
-	Bool					m_isForceAttacking;
+	bool					m_follow;													///< If true, follow object until it dies
+	bool					m_isAttackingObject;							///< If false, attacking position
+	bool					m_stopIfInRange;									///< If true, we check and stop as soon we can fire.  Used when we have to path to the object instead of to a firing position.
+	bool					m_isInitialApproach;							///< If true, we can attack other units along the way. We will check for them every N frames (N specified in AI.ini)
+	bool					m_isForceAttacking;
 };
 EMPTY_DTOR(AIAttackApproachTargetState)
 
@@ -525,11 +525,11 @@ private:
 
 	Coord3D				m_prevVictimPos;									///< Where we think our victim is
 	UnsignedInt		m_approachTimestamp;							///< When we last computed an approach goal
-	Bool					m_follow;													///< If true, follow object until it dies
-	Bool					m_isAttackingObject;							///< If false, attacking position
-	Bool					m_stopIfInRange;									///< If true, we check and stop as soon we can fire.  Used when we have to path to the object instead of to a firing position.
-	Bool					m_isInitialApproach;							///< If true, we can attack other units along the way. We will check for them every N frames (N specified in AI.ini)
-	Bool					m_isForceAttacking;
+	bool					m_follow;													///< If true, follow object until it dies
+	bool					m_isAttackingObject;							///< If false, attacking position
+	bool					m_stopIfInRange;									///< If true, we check and stop as soon we can fire.  Used when we have to path to the object instead of to a firing position.
+	bool					m_isInitialApproach;							///< If true, we can attack other units along the way. We will check for them every N frames (N specified in AI.ini)
+	bool					m_isForceAttacking;
 };
 EMPTY_DTOR(AIAttackPursueTargetState)
 

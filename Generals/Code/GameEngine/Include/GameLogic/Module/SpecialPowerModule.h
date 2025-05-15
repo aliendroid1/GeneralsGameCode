@@ -82,7 +82,7 @@ public:
 	static void buildFieldParse(MultiIniFieldParse& p);
 
 	const SpecialPowerTemplate *m_specialPowerTemplate;		///< pointer to the special power template
-	Bool	m_updateModuleStartsAttack;	///< update module determines when the special power actually starts! If true, update module is required.
+	bool	m_updateModuleStartsAttack;	///< update module determines when the special power actually starts! If true, update module is required.
 	bool m_startsPaused; ///< Paused on creation, someone else will have to unpause (like upgrade module, or script)
 	AudioEventRTS					m_initiateSound;
 };

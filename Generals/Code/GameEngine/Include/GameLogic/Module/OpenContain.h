@@ -255,11 +255,11 @@ private:
 	Int									m_firePointStart;												///< start firepoint index to use when building becomes occupied
 	Int									m_firePointNext;												///< next index to place objects at
 	Int									m_firePointSize;												///< how many entries in m_firePoint are valid
-	Bool								m_noFirePointsInArt;										///< TRUE when no fire point bones exist in the art
+	bool								m_noFirePointsInArt;										///< TRUE when no fire point bones exist in the art
 
 	Coord3D							m_rallyPoint;												///< Where units should move to after they have reached the "natural" rally point
-	Bool								m_rallyPointExists;										///< Only move to the rally point if this is true
-	Bool								m_loadSoundsEnabled;								///< Don't serialize -- used for disabling sounds during payload creation.
+	bool								m_rallyPointExists;										///< Only move to the rally point if this is true
+	bool								m_loadSoundsEnabled;								///< Don't serialize -- used for disabling sounds during payload creation.
 
 };
 

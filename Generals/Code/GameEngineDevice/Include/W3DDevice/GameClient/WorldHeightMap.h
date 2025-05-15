@@ -76,7 +76,7 @@ typedef struct {
 	Real	u2, v2;	 // Lower right uv
 	Real	u3, v3;	 // Upper right uv
 	bool  flip;
-	Bool	mutant;  // Mutant mapping needed to get this to fit.
+	bool	mutant;  // Mutant mapping needed to get this to fit.
 	Short tileIndex; // Tile texture.
 } TCliffInfo;
 

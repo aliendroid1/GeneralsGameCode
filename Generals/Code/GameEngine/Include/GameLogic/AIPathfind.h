@@ -122,7 +122,7 @@ private:
 	PathNode*						m_prev;															///< previous node in the path
 	Coord3D							m_pos;															///< position of node in space
 	PathfindLayerEnum		m_layer;														///< Layer for this section.
-	Bool								m_canOptimize;											///< True if this cell can be optimized out.
+	bool								m_canOptimize;											///< True if this cell can be optimized out.
 
 	Real								m_nextOptiDist2D;										///< if nextOpti is nonnull, the dist to it.
 	Coord2D							m_nextOptiDirNorm2D;								///< if nextOpti is nonnull, normalized dir vec towards it.
@@ -185,10 +185,10 @@ protected:
 
 	PathNode*		m_path;															///< The list of PathNode objects that define the path
 	PathNode*		m_pathTail;
-	Bool				m_isOptimized;											///< True if the path has been optimized
-	Bool				m_blockedByAlly;										///< An ally needs to move off of this path.
+	bool				m_isOptimized;											///< True if the path has been optimized
+	bool				m_blockedByAlly;										///< An ally needs to move off of this path.
 	// caching info for computePointOnPath.
-	Bool										m_cpopValid;
+	bool										m_cpopValid;
 	Int											m_cpopCountdown;				///< We only return the same cpop MAX_CPOP times.  It is occasionally possible to get stuck.
 	Coord3D									m_cpopIn;
 	ClosestPointOnPathInfo	m_cpopOut;
@@ -480,8 +480,8 @@ protected:
 	zoneStorageType *m_groundWaterZones;
 	zoneStorageType *m_groundRubbleZones;
 	zoneStorageType *m_crusherZones;
-	Bool					m_interactsWithBridge;
-	Bool					m_markedPassable;
+	bool					m_interactsWithBridge;
+	bool					m_markedPassable;
 };
 typedef ZoneBlock *ZoneBlockP;
 
@@ -537,7 +537,7 @@ protected:
 	ICoord2D			m_zoneBlockExtent;				///< Zone block extents. Not the same scale as the pathfind extents.
 
 	UnsignedShort m_maxZone;								///< Max zone used.
-	Bool					m_needToCalculateZones;		///< True if terrain has changed.
+	bool					m_needToCalculateZones;		///< True if terrain has changed.
 	UnsignedShort m_zonesAllocated;
 	zoneStorageType *m_groundCliffZones;
 	zoneStorageType *m_groundWaterZones;

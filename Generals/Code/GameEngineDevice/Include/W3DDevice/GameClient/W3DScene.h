@@ -111,7 +111,7 @@ protected:
 
 protected:
 	RefRenderObjListClass	m_dynamicLightList;
-	Bool									m_drawTerrainOnly;
+	bool									m_drawTerrainOnly;
 	LightClass						*m_globalLight[LightEnvironmentClass::MAX_LIGHTS];				///< The global directional light (sun, moon) Applies to objects.
 	LightClass						*m_scratchLight; ///< a workspace for copying global lights and modifying // MLorenzen
 	Vector3 m_infantryAmbient;	///<scene ambient modified to make infantry easier to see

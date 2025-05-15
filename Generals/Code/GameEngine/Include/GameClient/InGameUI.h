@@ -193,11 +193,11 @@ public:
 	AsciiString									m_powerName;
 	ObjectID										m_id;
 	UnsignedInt									m_timestamp;									  ///< seconds shown in display string
-	Bool												m_hiddenByScript;
-	Bool												m_hiddenByScience;
- 	Bool												m_ready;											///< Stores if we were ready last draw, since readyness can change without time changing
+	bool												m_hiddenByScript;
+	bool												m_hiddenByScience;
+ 	bool												m_ready;											///< Stores if we were ready last draw, since readyness can change without time changing
 // not saved, but public
- 	Bool												m_forceUpdateText;
+ 	bool												m_forceUpdateText;
 
 };
 
@@ -216,8 +216,8 @@ public:
 	Int							y;
 	Int							width;
 	Color						textColor;
-	Bool						pause;
-	Bool						pauseMusic;
+	bool						pause;
+	bool						pauseMusic;
 	WindowLayout*	layout;
 };
 EMPTY_DTOR(PopupMessageData)
@@ -232,7 +232,7 @@ public:
 	DisplayString*	displayString;						///< display string used to render the message
 	UnsignedInt			timestamp;									///< seconds shown in display string
 	Color						color;
-	Bool						isCountdown;
+	bool						isCountdown;
 };
 EMPTY_DTOR(NamedTimerInfo)
 
@@ -497,7 +497,7 @@ public:  // ********************************************************************
 	// Drawable caption stuff
 	AsciiString	getDrawableCaptionFontName( void )	{ return m_drawableCaptionFont; }
 	Int					getDrawableCaptionPointSize( void )	{ return m_drawableCaptionPointSize; }
-	Bool				isDrawableCaptionBold( void )				{ return m_drawableCaptionBold; }
+	bool				isDrawableCaptionBold( void )				{ return m_drawableCaptionBold; }
 	Color				getDrawableCaptionColor( void )			{ return m_drawableCaptionColor; }
 
 	inline bool shouldMoveRMBScrollAnchor( void ) { return m_moveRMBScrollAnchor; }
@@ -672,8 +672,8 @@ protected:
 	// Protected Data THAT IS SAVED/LOADED ----------------------------------------------------------
 	// ----------------------------------------------------------------------------------------------
 
-	Bool												m_superweaponHiddenByScript;
-	Bool												m_inputEnabled;		/// sort of
+	bool												m_superweaponHiddenByScript;
+	bool												m_inputEnabled;		/// sort of
 
 	// ----------------------------------------------------------------------------------------------
 	// Protected Data -------------------------------------------------------------------------------
@@ -683,9 +683,9 @@ protected:
 	AsciiString									m_currentlyPlayingMovie;											///< Used to push updates to TheScriptEngine
 	DrawableList								m_selectedDrawables;													///< A list of all selected drawables.
 	DrawableList								m_selectedLocalDrawables;											///< A list of all selected drawables owned by the local player
-	Bool												m_isDragSelecting;														///< If TRUE, an area selection is in progress
+	bool												m_isDragSelecting;														///< If TRUE, an area selection is in progress
 	IRegion2D										m_dragSelectRegion;														///< if isDragSelecting is TRUE, this contains select region
-	Bool												m_displayedMaxWarning;                        ///< keeps the warning from being shown over and over
+	bool												m_displayedMaxWarning;                        ///< keeps the warning from being shown over and over
 	MoveHintStruct							m_moveHint[ MAX_MOVE_HINTS ];
 	Int													m_nextMoveHint;
 	const CommandButton *				m_pendingGUICommand;										///< GUI command that needs additional interaction from the user
@@ -693,7 +693,7 @@ protected:
 	const ThingTemplate *				m_pendingPlaceType;											///< type of built thing we're trying to place
 	ObjectID										m_pendingPlaceSourceObjectID;						///< source object of the thing constructing the item
 	Drawable **									m_placeIcon;														///< array for drawables to appear at the cursor when building in the world
-	Bool												m_placeAnchorInProgress;								///< is place angle interface for placement active
+	bool												m_placeAnchorInProgress;								///< is place angle interface for placement active
 	ICoord2D										m_placeAnchorStart;											///< place angle anchor start
 	ICoord2D										m_placeAnchorEnd;												///< place angle anchor end
 	Int													m_selectCount;													///< Number of objects currently "selected"
@@ -721,57 +721,57 @@ protected:
 	// superweapon timer font info
 	AsciiString									m_superweaponNormalFont;
 	Int													m_superweaponNormalPointSize;
-	Bool												m_superweaponNormalBold;
+	bool												m_superweaponNormalBold;
 	AsciiString									m_superweaponReadyFont;
 	Int													m_superweaponReadyPointSize;
-	Bool												m_superweaponReadyBold;
+	bool												m_superweaponReadyBold;
 
 	Int													m_superweaponLastFlashFrame;										///< for flashing the text when the weapon is ready
 	Color												m_superweaponFlashColor;
-	Bool												m_superweaponUsedFlashColor;
+	bool												m_superweaponUsedFlashColor;
 
 	NamedTimerMap								m_namedTimers;
 	Coord2D											m_namedTimerPosition;
 	Real												m_namedTimerFlashDuration;
 	Int													m_namedTimerLastFlashFrame;
 	Color												m_namedTimerFlashColor;
-	Bool												m_namedTimerUsedFlashColor;
-	Bool												m_showNamedTimers;
+	bool												m_namedTimerUsedFlashColor;
+	bool												m_showNamedTimers;
 
 	AsciiString									m_namedTimerNormalFont;
 	Int													m_namedTimerNormalPointSize;
-	Bool												m_namedTimerNormalBold;
+	bool												m_namedTimerNormalBold;
 	Color												m_namedTimerNormalColor;
 	AsciiString									m_namedTimerReadyFont;
 	Int													m_namedTimerReadyPointSize;
-	Bool												m_namedTimerReadyBold;
+	bool												m_namedTimerReadyBold;
 	Color												m_namedTimerReadyColor;
 
 	// Drawable caption data
 	AsciiString									m_drawableCaptionFont;
 	Int													m_drawableCaptionPointSize;
-	Bool												m_drawableCaptionBold;
+	bool												m_drawableCaptionBold;
 	Color												m_drawableCaptionColor;
 
 	UnsignedInt									m_tooltipsDisabledUntil;
 
 	// Military Subtitle data
 	MilitarySubtitleData *			m_militarySubtitle;		///< The pointer to subtitle class, if it's present then draw it.
-	Bool												m_isScrolling;
-	Bool												m_isSelecting;
+	bool												m_isScrolling;
+	bool												m_isSelecting;
 	MouseMode										m_mouseMode;
 	Int													m_mouseModeCursor;
 	DrawableID									m_mousedOverDrawableID;
 	Coord2D											m_scrollAmt;
-	Bool												m_isQuitMenuVisible;
-	Bool												m_messagesOn;
+	bool												m_isQuitMenuVisible;
+	bool												m_messagesOn;
 
 	Color												m_messageColor1;
 	Color												m_messageColor2;
 	ICoord2D										m_messagePosition;
 	AsciiString									m_messageFont;
 	Int													m_messagePointSize;
-	Bool												m_messageBold;
+	bool												m_messageBold;
 	Int													m_messageDelayMS;
 
 	RGBAColorInt								m_militaryCaptionColor;				///< color for the military-style caption
@@ -779,13 +779,13 @@ protected:
 
 	AsciiString									m_militaryCaptionTitleFont;
 	Int													m_militaryCaptionTitlePointSize;
-	Bool												m_militaryCaptionTitleBold;
+	bool												m_militaryCaptionTitleBold;
 
 	AsciiString									m_militaryCaptionFont;
 	Int													m_militaryCaptionPointSize;
-	Bool												m_militaryCaptionBold;
+	bool												m_militaryCaptionBold;
 
-	Bool												m_militaryCaptionRandomizeTyping;
+	bool												m_militaryCaptionRandomizeTyping;
 	Int													m_militaryCaptionDelayMS;
 	Int													m_militaryCaptionSpeed;
 
@@ -802,20 +802,20 @@ protected:
 	PopupMessageData *					m_popupMessageData;
 	Color												m_popupMessageColor;
 	
- 	Bool												m_waypointMode;			///< are we in waypoint plotting mode?
-	Bool												m_forceAttackMode;		///< are we in force attack mode?
-	Bool												m_forceMoveToMode;		///< are we in force move mode?
-	Bool												m_attackMoveToMode;	///< are we in attack move mode?
-	Bool												m_preferSelection;		///< the shift key has been depressed.
+ 	bool												m_waypointMode;			///< are we in waypoint plotting mode?
+	bool												m_forceAttackMode;		///< are we in force attack mode?
+	bool												m_forceMoveToMode;		///< are we in force move mode?
+	bool												m_attackMoveToMode;	///< are we in attack move mode?
+	bool												m_preferSelection;		///< the shift key has been depressed.
 
-	Bool												m_cameraRotatingLeft; 
+	bool												m_cameraRotatingLeft; 
 	bool 												m_cameraRotatingRight;
 	bool 												m_cameraZoomingIn;
 	bool 												m_cameraZoomingOut;
 	
-	Bool												m_drawRMBScrollAnchor;
-	Bool												m_moveRMBScrollAnchor;
-	Bool												m_clientQuiet;         ///< When the user clicks exit,restart, etc. this is set true 
+	bool												m_drawRMBScrollAnchor;
+	bool												m_moveRMBScrollAnchor;
+	bool												m_clientQuiet;         ///< When the user clicks exit,restart, etc. this is set true 
 																												///< to skip some client sounds/fx during shutdown
 
 	// World Animation Data

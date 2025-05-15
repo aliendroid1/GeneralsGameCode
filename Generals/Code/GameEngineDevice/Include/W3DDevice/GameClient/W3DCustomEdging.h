@@ -100,8 +100,8 @@ protected:
 	Int			m_curNumEdgingIndices;	///<Number of indices used in b_indexEdging;
 	Int			m_curEdgingIndexOffset;	///<First index to draw at.  We draw the trees backwards by filling up the index buffer backwards, 
 																// so any trees that don't fit are far away from the camera.
-	Bool		m_anythingChanged;	///< Set to true if visibility or sorting changed.
-	Bool		m_initialized;		///< True if the subsystem initialized.
+	bool		m_anythingChanged;	///< Set to true if visibility or sorting changed.
+	bool		m_initialized;		///< True if the subsystem initialized.
 
 	void allocateEdgingBuffers(void);							 ///< Allocates the buffers.
 	void freeEdgingBuffers(void);									 ///< Frees the index and vertex buffers.

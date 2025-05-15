@@ -43,7 +43,7 @@ class FireWeaponWhenDeadBehaviorModuleData : public BehaviorModuleData
 {
 public:
 	UpgradeMuxData				m_upgradeMuxData;
-	Bool									m_initiallyActive;
+	bool									m_initiallyActive;
 	DieMuxData						m_dieMuxData;
 	const WeaponTemplate* m_deathWeapon;						///< fire this weapon when we are damaged
 

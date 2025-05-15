@@ -85,9 +85,9 @@ typedef struct {
 	Real		cos;							///< Cosine of the rotation angle at location.
 	Int			panelStart;				///< Index of the "panel" lod.
 	TTreeType			treeType;		///< Type of tree.  Currently only 3 supported.
-	Bool		visible;					///< Visible flag, updated each frame.
-	Bool		mirrorVisible;		///< Possibly visible in mirror.
-	Bool		rotates;					///< Trees rotate to follow the camera in single panel mode, fences don't
+	bool		visible;					///< Visible flag, updated each frame.
+	bool		mirrorVisible;		///< Possibly visible in mirror.
+	bool		rotates;					///< Trees rotate to follow the camera in single panel mode, fences don't
 	SphereClass bounds;				///< Bounding sphere for culling to set the visible flag.
 	Real		sortKey;					///< Sort key, essentially the distance along the look at vector.
 } TTree;
@@ -129,10 +129,10 @@ protected:
 																// so any trees that don't fit are far away from the camera.
 	TTree	m_trees[MAX_TREES];			///< The tree buffer.  All trees are stored here.
 	Int			m_numTrees;						///< Number of trees in m_trees.
-	Bool		m_anythingChanged;	///< Set to true if visibility or sorting changed.
-	Bool		m_updateAllKeys;  ///< Set to true when the view changes.
-	Bool		m_initialized;		///< True if the subsystem initialized.
-	Bool		m_isTerrainPass;  ///< True if the terrain was drawn in this W3D scene render pass.
+	bool		m_anythingChanged;	///< Set to true if visibility or sorting changed.
+	bool		m_updateAllKeys;  ///< Set to true when the view changes.
+	bool		m_initialized;		///< True if the subsystem initialized.
+	bool		m_isTerrainPass;  ///< True if the terrain was drawn in this W3D scene render pass.
 
 	SphereClass m_typeBounds[MAX_TYPES];	///< Bounding boxes for the base tree models.
 	MeshClass *m_typeMesh[MAX_TYPES];			///< W3D mesh models for the trees.

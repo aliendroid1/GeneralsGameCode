@@ -122,7 +122,7 @@ protected:
 	Real					m_angularAccumulation;		///< How much have I rotated so I know when to bounce.
 	Real					m_angleDeltaX;						///< how much to modify x angle each frame
 	Int						m_numAngleDeltaX;					///< how many frames to tweak x angle
-	Bool					m_doBounceFX;							///< do the bounce FX if we do bounce
+	bool					m_doBounceFX;							///< do the bounce FX if we do bounce
 	UnsignedInt		m_options;								///< topple options
 	ObjectID			m_stumpID;								///< stump generated, if any
 

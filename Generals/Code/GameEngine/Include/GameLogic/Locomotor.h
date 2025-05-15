@@ -186,16 +186,16 @@ private:
 	Int												m_airborneTargetingHeight;	///< The height transition at witch I should mark myself as a AA target.
 	
 	Real											m_closeEnoughDist;			///< How close we have to approach the end of a path before stopping
-	Bool											m_isCloseEnoughDist3D;	///< And is that calculation 3D, for very rare cases that need to move straight down.
+	bool											m_isCloseEnoughDist3D;	///< And is that calculation 3D, for very rare cases that need to move straight down.
 	Real											m_ultraAccurateSlideIntoPlaceFactor;			///< how much we can fudge turning when ultra-accurate
 
-	Bool											m_locomotorWorksWhenDead;	///< should locomotor continue working even when object is "dead"?
-	Bool											m_allowMotiveForceWhileAirborne;	///< can we apply motive when airborne?
-	Bool											m_apply2DFrictionWhenAirborne;	// apply "2d friction" even when airborne... useful for realistic-looking movement
-	Bool											m_downhillOnly;	// pinewood derby, moves only by gravity pulling downhill
-	Bool											m_stickToGround;				// if true, can't leave ground
-	Bool											m_canMoveBackward;				// if true, can move backwards.
-	Bool											m_hasSuspension;				///< If true, calculate 4 wheel independent suspension values.
+	bool											m_locomotorWorksWhenDead;	///< should locomotor continue working even when object is "dead"?
+	bool											m_allowMotiveForceWhileAirborne;	///< can we apply motive when airborne?
+	bool											m_apply2DFrictionWhenAirborne;	// apply "2d friction" even when airborne... useful for realistic-looking movement
+	bool											m_downhillOnly;	// pinewood derby, moves only by gravity pulling downhill
+	bool											m_stickToGround;				// if true, can't leave ground
+	bool											m_canMoveBackward;				// if true, can move backwards.
+	bool											m_hasSuspension;				///< If true, calculate 4 wheel independent suspension values.
 	Real											m_maximumWheelExtension; ///< Maximum distance wheels can move down.  (negative value)
 	Real											m_maximumWheelCompression; ///< Maximum distance wheels can move up.  (positive value)
 	Real											m_wheelTurnAngle;				///< How far the front wheels can turn.
