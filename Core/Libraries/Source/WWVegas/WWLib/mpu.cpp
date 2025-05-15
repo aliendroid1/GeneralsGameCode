@@ -40,7 +40,16 @@
 #include	"MPU.H"
 #include "math.h"
 #include <assert.h>
-#include <Utility/intrin_compat.h>
+
+#include <cstdint>
+
+#include <intrin.h>
+
+
+#define cpuid(regs, cpuid_type) __cpuid(reinterpret_cast<int *>(regs), cpuid_type)
+
+
+
 
 typedef union {
 	LARGE_INTEGER LargeInt;
@@ -90,7 +99,7 @@ unsigned long Get_CPU_Clock(unsigned long & high)
 	int h;
 	int l;
 
-	auto tsc = _rdtsc();
+	auto tsc = __rdtsc();
 	h = tsc >> 32;
 	l = tsc & 0xFFFFFFFF;
 
@@ -126,7 +135,7 @@ static unsigned long TSC_High;
 
 void RDTSC(void)
 {
-    auto TSC = _rdtsc();
+    auto TSC = __rdtsc();
     TSC_Low = TSC & 0xFFFFFFFF;
     TSC_High = TSC >> 32;
 }
@@ -194,7 +203,7 @@ int Get_RDTSC_CPU_Speed(void)
 			QueryPerformanceCounter(&t1);
 		}
 
-		stamp0 = _rdtsc();
+		stamp0 = __rdtsc();
 
 		t0.LowPart = t1.LowPart;		// Reset Initial Time
 		t0.HighPart = t1.HighPart;
@@ -207,7 +216,7 @@ int Get_RDTSC_CPU_Speed(void)
 			QueryPerformanceCounter(&t1);
 		}
 
-		stamp1 = _rdtsc();
+		stamp1 = __rdtsc();
 
 		cycles = stamp1 - stamp0;					// # of cycles passed between reads
 

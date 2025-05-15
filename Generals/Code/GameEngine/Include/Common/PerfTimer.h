@@ -29,7 +29,16 @@
 #pragma once
 
 
-#include "Utility/intrin_compat.h"
+
+#include <cstdint>
+
+#include <intrin.h>
+
+
+#define cpuid(regs, cpuid_type) __cpuid(reinterpret_cast<int *>(regs), cpuid_type)
+
+
+
 
 
 #define NO_PERF_TIMERS

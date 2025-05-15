@@ -61,7 +61,27 @@
 #include "cpudetect.h"
 #include "hashtemplate.h"
 #include <stdio.h>
-#include <Utility/intrin_compat.h>
+
+
+
+
+
+#include <cstdint>
+
+#include <intrin.h>
+
+
+#define cpuid(regs, cpuid_type) __cpuid(reinterpret_cast<int *>(regs), cpuid_type)
+
+
+
+
+
+
+
+
+
+
 
 static SimpleDynVecClass<WWProfileHierachyNodeClass*> ProfileCollectVector;
 static double TotalFrameTimes;
@@ -101,7 +121,7 @@ inline void WWProfile_Get_Ticks(_int64 * ticks)
 #ifdef _UNIX
        *ticks = TIMEGETTIME();
 #else
-	*ticks = _rdtsc();
+	*ticks = __rdtsc();
 #endif
 }
 

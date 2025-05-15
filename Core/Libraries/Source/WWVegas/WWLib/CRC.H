@@ -42,8 +42,16 @@
 
 #include	<stdlib.h>
 
-// TheSuperHackers @compile feliwir 17/04/2025 include _ltrotl macros
-#include <Utility/intrin_compat.h>
+
+#include <cstdint>
+
+#include <intrin.h>
+
+
+#define cpuid(regs, cpuid_type) __cpuid(reinterpret_cast<int *>(regs), cpuid_type)
+
+
+
 
 /*
 **	This is a CRC engine class. It will process submitted data and generate a CRC from it.

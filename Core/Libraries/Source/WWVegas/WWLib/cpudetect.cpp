@@ -22,7 +22,16 @@
 #include "thread.h"
 #pragma warning (disable : 4201)	// Nonstandard extension - nameless struct
 #include "systimer.h"
-#include <Utility/intrin_compat.h>
+
+#include <cstdint>
+
+#include <intrin.h>
+
+
+#define cpuid(regs, cpuid_type) __cpuid(reinterpret_cast<int *>(regs), cpuid_type)
+
+
+
 
 #ifdef _WIN32
 #include <windows.h>
@@ -133,12 +142,12 @@ static unsigned Calculate_Processor_Speed(sint64& ticks_per_second)
 	sint64 timer0=0;
 	sint64 timer1=0;
 
-	timer0=_rdtsc();
+	timer0=__rdtsc();
 
 	unsigned start=TIMEGETTIME();
 	unsigned elapsed;
 	while ((elapsed=TIMEGETTIME()-start)<200) {
-		timer1=_rdtsc();
+		timer1=__rdtsc();
 	}
 
 	sint64 t=timer1-timer0;

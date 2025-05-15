@@ -24,7 +24,6 @@ target_compile_definitions(gi_always INTERFACE
     RTS_GENERALS=1
 )
 target_link_libraries(gi_always INTERFACE
-    core_utility
     gi_libraries_include
     # Must stay below so headers from game are included first
     corei_libraries_include

@@ -10,7 +10,6 @@ target_include_directories(corei_libraries_source_wwvegas INTERFACE "Libraries/S
 target_include_directories(corei_libraries_source_wwvegas_wwdebug INTERFACE "Libraries/Source/WWVegas/WWDebug")
 target_include_directories(corei_libraries_source_wwvegas_wwlib INTERFACE "Libraries/Source/WWVegas/WWLib")
 target_link_libraries(corei_always INTERFACE
-    core_utility
     corei_libraries_include
 )
 

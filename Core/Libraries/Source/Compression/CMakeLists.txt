@@ -30,7 +30,6 @@ target_include_directories(core_compression INTERFACE
 
 target_link_libraries(core_compression PRIVATE
     core_config
-    core_utility
     corei_libraries_include
 )
 

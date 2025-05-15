@@ -70,7 +70,6 @@ enum DrawableID : Int;
 
 #include <algorithm>
 #include <bitset>
-#include <Utility/hash_map_adapter.h>
 #include <list>
 #include <map>
 #include <queue>
@@ -78,6 +77,25 @@ enum DrawableID : Int;
 #include <stack>
 #include <string>
 #include <vector>
+
+
+
+
+#include <unordered_map>
+namespace std
+{
+	template <
+		class _Kty,
+		class _Ty,
+		class _Hasher = hash<_Kty>,
+		class _Keyeq = equal_to<_Kty>,
+		class _Alloc = allocator<pair<const _Kty, _Ty>>>
+	using hash_map = unordered_map<_Kty, _Ty, _Hasher, _Keyeq, _Alloc>;
+}
+
+
+
+
 
 // List of AsciiStrings to allow list of ThingTemplate names from INI and such
 typedef std::list< AsciiString >													AsciiStringList;

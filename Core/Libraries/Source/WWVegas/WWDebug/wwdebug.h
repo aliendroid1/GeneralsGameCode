@@ -43,7 +43,16 @@
 
 // TheSuperHackers @todo Recover WWDEBUG?
 #ifdef WWDEBUG
-#include <Utility/intrin_compat.h>
+
+#include <cstdint>
+
+#include <intrin.h>
+
+
+#define cpuid(regs, cpuid_type) __cpuid(reinterpret_cast<int *>(regs), cpuid_type)
+
+
+
 #endif
 
 // The macro MESSAGE allows user to put:

@@ -41,8 +41,16 @@
 
 #include "refcount.h"
 
-// TheSuperHackers @compile feliwir 17/04/2025 include __debugbreak macros
-#include <Utility/intrin_compat.h>
+
+#include <cstdint>
+
+#include <intrin.h>
+
+
+#define cpuid(regs, cpuid_type) __cpuid(reinterpret_cast<int *>(regs), cpuid_type)
+
+
+
 
 #ifndef NDEBUG
 

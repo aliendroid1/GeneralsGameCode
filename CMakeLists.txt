@@ -45,7 +45,6 @@ include(cmake/config.cmake)
 include(cmake/lzhl.cmake)
 include(cmake/zlib.cmake)
     
-add_subdirectory(Dependencies/Utility)
 
 add_subdirectory(Dependencies/dx8)
 add_subdirectory(Dependencies/bink)
