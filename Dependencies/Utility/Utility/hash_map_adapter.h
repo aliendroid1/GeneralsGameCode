@@ -21,11 +21,6 @@
 
 #pragma once
 
-#if defined(USING_STLPORT) || (defined(_MSC_VER) && _MSC_VER < 1300)
-
-#include <hash_map>
-
-#else
 
 #include <unordered_map>
 namespace std
@@ -39,4 +34,3 @@ template <
 using hash_map = unordered_map<_Kty, _Ty, _Hasher, _Keyeq, _Alloc>;
 }
 
-#endif
