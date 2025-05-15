@@ -1053,19 +1053,12 @@ set(GAMEENGINE_SRC
     Source/Precompiled/PreRTS.cpp
 )
 
-if(RTS_GAMEMEMORY_ENABLE)
-    # Uses the original Game Memory implementation.
-    list(APPEND GAMEENGINE_SRC
-        Source/Common/System/GameMemory.cpp
-        Source/Common/System/MemoryInit.cpp
-    )
-else()
-    # Uses the null implementation when disabled.
+
     list(APPEND GAMEENGINE_SRC
         Source/Common/System/GameMemoryNull.cpp
         Include/Common/GameMemoryNull.h
     )
-endif()
+
 
 
 add_library(g_gameengine STATIC)

@@ -39,7 +39,6 @@ include(FetchContent)
 
 
 
-add_library(stlport INTERFACE)
 
 include(cmake/config.cmake)
 include(cmake/lzhl.cmake)
