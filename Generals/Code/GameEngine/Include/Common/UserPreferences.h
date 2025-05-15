@@ -53,15 +53,15 @@ public:
 	UserPreferences();
 	virtual ~UserPreferences();
 
-	virtual Bool load(AsciiString fname);
-	virtual Bool write(void);
+	virtual bool load(AsciiString fname);
+	virtual bool write(void);
 	
-	Bool getBool(AsciiString key, Bool defaultValue) const;
+	bool getBool(AsciiString key, bool defaultValue) const;
 	Real getReal(AsciiString key, Real defaultValue) const;
 	Int getInt(AsciiString key, Int defaultValue) const;
 	AsciiString getAsciiString(AsciiString key, AsciiString defaultValue) const;
 
-	void setBool(AsciiString key, Bool val);
+	void setBool(AsciiString key, bool val);
 	void setReal(AsciiString key, Real val);
 	void setInt(AsciiString key, Int val);
 	void setAsciiString(AsciiString key, AsciiString val);
@@ -84,38 +84,38 @@ public:
 	void setOnlineIPAddress(AsciiString IP);	// convenience function
 	void setLANIPAddress(UnsignedInt IP);			// convenience function
 	void setOnlineIPAddress(UnsignedInt IP);	// convenience function
-	Bool getAlternateMouseModeEnabled(void);	// convenience function
+	bool getAlternateMouseModeEnabled(void);	// convenience function
 	Real getScrollFactor(void);								// convenience function
-	Bool getSendDelay(void);									// convenience function
+	bool getSendDelay(void);									// convenience function
 	Int getFirewallBehavior(void);						// convenience function
 	Short getFirewallPortAllocationDelta(void);	// convenience function
 	UnsignedShort getFirewallPortOverride(void); // convenience function
-	Bool getFirewallNeedToRefresh(void);			// convenience function
-	Bool usesSystemMapDir(void);							// convenience function
+	bool getFirewallNeedToRefresh(void);			// convenience function
+	bool usesSystemMapDir(void);							// convenience function
 	AsciiString getPreferred3DProvider(void);	// convenience function
 	AsciiString getSpeakerType(void);					// convenience function
 	Real getSoundVolume(void);								// convenience function
 	Real get3DSoundVolume(void);							// convenience function
 	Real getSpeechVolume(void);								// convenience function
 	Real getMusicVolume(void);								// convenience function
-	Bool saveCameraInReplays(void);
-	Bool useCameraInReplays(void);
+	bool saveCameraInReplays(void);
+	bool useCameraInReplays(void);
 	Int	 getStaticGameDetail(void);	// detail level selected by the user.
 	Int	 getIdealStaticGameDetail(void);	// detail level detected for user.
  	Real getGammaValue(void);
 	Int	 getTextureReduction(void);
 	void getResolution(Int *xres, Int *yres);
-	Bool get3DShadowsEnabled(void);
-	Bool get2DShadowsEnabled(void);
-	Bool getCloudShadowsEnabled(void);
-	Bool getLightmapEnabled(void);
-	Bool getSmoothWaterEnabled(void);
-	Bool getTreesEnabled(void);
-	Bool getExtraAnimationsDisabled(void);
-	Bool getDynamicLODEnabled(void);
-	Bool getFPSLimitEnabled(void);
-	Bool getNoDynamicLODEnabled(void);
-	Bool getBuildingOcclusionEnabled(void);
+	bool get3DShadowsEnabled(void);
+	bool get2DShadowsEnabled(void);
+	bool getCloudShadowsEnabled(void);
+	bool getLightmapEnabled(void);
+	bool getSmoothWaterEnabled(void);
+	bool getTreesEnabled(void);
+	bool getExtraAnimationsDisabled(void);
+	bool getDynamicLODEnabled(void);
+	bool getFPSLimitEnabled(void);
+	bool getNoDynamicLODEnabled(void);
+	bool getBuildingOcclusionEnabled(void);
 	Int getParticleCap(void);
 
 	Int	 getCampaignDifficulty(void);
@@ -134,7 +134,7 @@ public:
 	Int getPreferredFaction(void);			// convenience function
 	Int getPreferredColor(void);				// convenience function
 	AsciiString getPreferredMap(void);	// convenience function
-	Bool usesSystemMapDir(void);		// convenience function
+	bool usesSystemMapDir(void);		// convenience function
 	Int getNumRemoteIPs(void);					// convenience function
 	UnicodeString getRemoteIPEntry(Int i);	// convenience function
 };

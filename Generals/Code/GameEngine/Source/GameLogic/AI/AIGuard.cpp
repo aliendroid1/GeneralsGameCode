@@ -60,7 +60,7 @@ const Real CLOSE_ENOUGH = (25.0f);
 //#pragma MESSAGE("************************************** WARNING, optimization disabled for debugging purposes")
 #endif
 
-static Bool hasAttackedMeAndICanReturnFire( State *thisState, void* /*userData*/ )
+static bool hasAttackedMeAndICanReturnFire( State *thisState, void* /*userData*/ )
 {
 	Object *obj = thisState->getMachineOwner();
 	BodyModuleInterface *bmi = obj ? obj->getBodyModule() : NULL;
@@ -115,7 +115,7 @@ static Bool hasAttackedMeAndICanReturnFire( State *thisState, void* /*userData*/
 /**
  * This returns true if the conditions specified have been met, false otherwise.
  */
-Bool ExitConditions::shouldExit(const StateMachine* machine) const
+bool ExitConditions::shouldExit(const StateMachine* machine) const
 {
 	if (!machine->getGoalObject()) 
 	{
@@ -203,7 +203,7 @@ AIGuardMachine::~AIGuardMachine()
 }
 
 //--------------------------------------------------------------------------------------
-Bool AIGuardMachine::lookForInnerTarget(void)
+bool AIGuardMachine::lookForInnerTarget(void)
 {
 	Object* owner = getOwner();
 	if (!owner->isAbleToAttack())

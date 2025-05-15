@@ -77,8 +77,8 @@ public:
 	}
 
 	/// returns the actual amount withdrawn, which may be less than you want. (sorry, can't go into debt...)
-	UnsignedInt withdraw(UnsignedInt amountToWithdraw, Bool playSound = TRUE);
-	void deposit(UnsignedInt amountToDeposit, Bool playSound = TRUE);
+	UnsignedInt withdraw(UnsignedInt amountToWithdraw, bool playSound = TRUE);
+	void deposit(UnsignedInt amountToDeposit, bool playSound = TRUE);
 
 	void setPlayerIndex(Int ndx) { m_playerIndex = ndx; }
 	

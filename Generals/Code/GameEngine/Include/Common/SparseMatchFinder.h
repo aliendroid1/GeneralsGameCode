@@ -66,7 +66,7 @@ private:
 			return result;
 		}
 
-		Bool operator()(const BITSET& a, const BITSET& b) const
+		bool operator()(const BITSET& a, const BITSET& b) const
 		{
 			return (a == b);
 		}

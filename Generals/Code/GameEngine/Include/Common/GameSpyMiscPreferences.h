@@ -53,7 +53,7 @@ public:
 	AsciiString getCachedStats( void );
 	void setCachedStats( AsciiString val );
 
-	Bool getQuickMatchResLocked( void );
+	bool getQuickMatchResLocked( void );
 
 	Int getMaxMessagesPerUpdate( void );
 };

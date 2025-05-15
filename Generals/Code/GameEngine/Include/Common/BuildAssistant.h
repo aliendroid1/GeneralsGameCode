@@ -155,7 +155,7 @@ public:
 																								 Player *player);
 
 	/// query if we can build at this location
-	virtual Bool isLocationClearOfObjects( const Coord3D *worldPos,
+	virtual bool isLocationClearOfObjects( const Coord3D *worldPos,
 																								 const ThingTemplate *build, 
 																								 Real angle,  // angle to construct 'build' a
 																								 Object *builderObject,
@@ -177,13 +177,13 @@ public:
 	virtual inline Coord3D *getBuildLocations( void ) { return m_buildPositions; }
 
 	/// is the template a line build object, like a wall
-	virtual Bool isLineBuildTemplate( const ThingTemplate *tTemplate );
+	virtual bool isLineBuildTemplate( const ThingTemplate *tTemplate );
 
 	/// are all the requirements for making this unit satisfied
 	virtual CanMakeType canMakeUnit( Object *builder, const ThingTemplate *whatToBuild ) const;
 
 	/// are all the requirements for making this unit (except available cash) are satisfied
-	virtual Bool isPossibleToMakeUnit( Object *builder, const ThingTemplate *whatToBuild ) const;
+	virtual bool isPossibleToMakeUnit( Object *builder, const ThingTemplate *whatToBuild ) const;
 
 	/// sell an object
 	virtual void sellObject( Object *obj );
@@ -193,7 +193,7 @@ public:
 protected:
 
 	/// some objects will be "cleared" automatically when constructing
-	Bool isRemovableForConstruction( Object *obj );
+	bool isRemovableForConstruction( Object *obj );
 	
 	/// clear the area of removable objects for construction
 	void clearRemovableForConstruction( const ThingTemplate *whatToBuild, 
@@ -201,7 +201,7 @@ protected:
 
 	/// will move objects that can move out of the way.
 	/// will return false if there are objects that cannot be moved out of the way.
-	Bool moveObjectsForConstruction( const ThingTemplate *whatToBuild, 
+	bool moveObjectsForConstruction( const ThingTemplate *whatToBuild, 
 																	 const Coord3D *pos, Real angle, Player *playerToBuild );
 
 	Coord3D *m_buildPositions;			///< array used to create a line of build locations (think walls)

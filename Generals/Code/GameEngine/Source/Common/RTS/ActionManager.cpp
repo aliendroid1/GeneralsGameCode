@@ -77,7 +77,7 @@ ActionManager *TheActionManager = NULL;
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-static Bool appearsToContainFriendlies(const Object* obj, const Object* otherObject)
+static bool appearsToContainFriendlies(const Object* obj, const Object* otherObject)
 {
 	// check if the object is a container containing stealth units tricking
 	// the player into thinking it isn't actually an enemy.
@@ -97,7 +97,7 @@ static Bool appearsToContainFriendlies(const Object* obj, const Object* otherObj
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-static Bool isObjectShroudedForAction ( const Object *source, const Object *target, CommandSourceType commandSource )
+static bool isObjectShroudedForAction ( const Object *source, const Object *target, CommandSourceType commandSource )
 {
 	/// @todo - reenable this when we can avoid breaking scripted actions.
 	// In order to support ai and scripted actions in singler player, we have to disable this for now.
@@ -143,7 +143,7 @@ ActionManager::~ActionManager( void )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool ActionManager::canGetRepairedAt( const Object *obj, const Object *repairDest, CommandSourceType commandSource ) 
+bool ActionManager::canGetRepairedAt( const Object *obj, const Object *repairDest, CommandSourceType commandSource ) 
 {
 
 	// sanity
@@ -204,7 +204,7 @@ Bool ActionManager::canGetRepairedAt( const Object *obj, const Object *repairDes
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
 // note that "dest" is typically a building...
-Bool ActionManager::canTransferSuppliesAt( const Object *obj, const Object *transferDest ) 
+bool ActionManager::canTransferSuppliesAt( const Object *obj, const Object *transferDest ) 
 {
 
 	// sanity
@@ -283,7 +283,7 @@ Bool ActionManager::canTransferSuppliesAt( const Object *obj, const Object *tran
 // ------------------------------------------------------------------------------------------------
 /** Can object 'obj' dock with object 'dockDest' for any reason */
 // ------------------------------------------------------------------------------------------------
-Bool ActionManager::canDockAt( const Object *obj, const Object *dockDest, CommandSourceType commandSource )
+bool ActionManager::canDockAt( const Object *obj, const Object *dockDest, CommandSourceType commandSource )
 {
 
 	// look for a dock interface
@@ -324,7 +324,7 @@ Bool ActionManager::canDockAt( const Object *obj, const Object *dockDest, Comman
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool ActionManager::canGetHealedAt( const Object *obj, const Object *healDest, CommandSourceType commandSource ) 
+bool ActionManager::canGetHealedAt( const Object *obj, const Object *healDest, CommandSourceType commandSource ) 
 {
 
 	// sanity
@@ -376,7 +376,7 @@ Bool ActionManager::canGetHealedAt( const Object *obj, const Object *healDest, C
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool ActionManager::canRepairObject( const Object *obj, const Object *objectToRepair, CommandSourceType commandSource ) 
+bool ActionManager::canRepairObject( const Object *obj, const Object *objectToRepair, CommandSourceType commandSource ) 
 {
 
 	// sanity
@@ -446,7 +446,7 @@ Bool ActionManager::canRepairObject( const Object *obj, const Object *objectToRe
 // ------------------------------------------------------------------------------------------------
 /** Can 'obj' resume the construction of 'objectBeingConstructed' */
 // ------------------------------------------------------------------------------------------------
-Bool ActionManager::canResumeConstructionOf( const Object *obj, 
+bool ActionManager::canResumeConstructionOf( const Object *obj, 
 																						 const Object *objectBeingConstructed, 
 																						 CommandSourceType commandSource )
 {
@@ -519,7 +519,7 @@ Bool ActionManager::canResumeConstructionOf( const Object *obj,
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool ActionManager::canEnterObject( const Object *obj, const Object *objectToEnter, CommandSourceType commandSource, CanEnterType mode )
+bool ActionManager::canEnterObject( const Object *obj, const Object *objectToEnter, CommandSourceType commandSource, CanEnterType mode )
 {
 
 	// sanity
@@ -659,7 +659,7 @@ Bool ActionManager::canEnterObject( const Object *obj, const Object *objectToEnt
 	}
 	else
 	{
-		Bool checkCapacity = (mode == CHECK_CAPACITY);
+		bool checkCapacity = (mode == CHECK_CAPACITY);
 		Int containCount = contain->getContainCount();
 		Int stealthContainCount = contain->getStealthUnitsContained();
 		Int nonStealthContainCount = containCount - stealthContainCount;
@@ -760,7 +760,7 @@ CanAttackResult ActionManager::getCanAttackObject( const Object *obj, const Obje
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool ActionManager::canConvertObjectToCarBomb( const Object *obj, const Object *objectToConvert, CommandSourceType commandSource ) 
+bool ActionManager::canConvertObjectToCarBomb( const Object *obj, const Object *objectToConvert, CommandSourceType commandSource ) 
 {
 
 	// sanity
@@ -795,7 +795,7 @@ Bool ActionManager::canConvertObjectToCarBomb( const Object *obj, const Object *
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool ActionManager::canHijackVehicle( const Object *obj, const Object *objectToHijack, CommandSourceType commandSource ) //LORENZEN
+bool ActionManager::canHijackVehicle( const Object *obj, const Object *objectToHijack, CommandSourceType commandSource ) //LORENZEN
 {
 
 	int foo = 10;
@@ -870,7 +870,7 @@ Bool ActionManager::canHijackVehicle( const Object *obj, const Object *objectToH
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool ActionManager::canMakeObjectDefector( const Object *obj, const Object *objectToMakeDefector, CommandSourceType commandSource ) //LORENZEN
+bool ActionManager::canMakeObjectDefector( const Object *obj, const Object *objectToMakeDefector, CommandSourceType commandSource ) //LORENZEN
 {
 	// sanity
 	if( obj == NULL || objectToMakeDefector == NULL )
@@ -905,7 +905,7 @@ Bool ActionManager::canMakeObjectDefector( const Object *obj, const Object *obje
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
 
-Bool ActionManager::canCaptureBuilding( const Object *obj, const Object *objectToCapture, CommandSourceType commandSource )
+bool ActionManager::canCaptureBuilding( const Object *obj, const Object *objectToCapture, CommandSourceType commandSource )
 {
 
 	// sanity
@@ -914,7 +914,7 @@ Bool ActionManager::canCaptureBuilding( const Object *obj, const Object *objectT
 
 	//Make sure our object has the capability of performing this special ability.
 
-	Bool isOwnerBlackLotus = obj->hasSpecialPower( SPECIAL_BLACKLOTUS_CAPTURE_BUILDING );
+	bool isOwnerBlackLotus = obj->hasSpecialPower( SPECIAL_BLACKLOTUS_CAPTURE_BUILDING );
 
 	if( !obj->hasSpecialPower( SPECIAL_INFANTRY_CAPTURE_BUILDING ) && !isOwnerBlackLotus)
 	{
@@ -1009,7 +1009,7 @@ Bool ActionManager::canCaptureBuilding( const Object *obj, const Object *objectT
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool ActionManager::canDisableVehicleViaHacking( const Object *obj, const Object *objectToHack, CommandSourceType commandSource, Bool checkSourceRequirements)
+bool ActionManager::canDisableVehicleViaHacking( const Object *obj, const Object *objectToHack, CommandSourceType commandSource, bool checkSourceRequirements)
 {
 	// sanity
 	if( obj == NULL || objectToHack == NULL )
@@ -1090,7 +1090,7 @@ Bool ActionManager::canDisableVehicleViaHacking( const Object *obj, const Object
 // ------------------------------------------------------------------------------------------------
 /** Can 'obj' pick up the prisoner 'prisoner' */
 // ------------------------------------------------------------------------------------------------
-Bool ActionManager::canPickUpPrisoner( const Object *obj, const Object *prisoner, CommandSourceType commandSource )
+bool ActionManager::canPickUpPrisoner( const Object *obj, const Object *prisoner, CommandSourceType commandSource )
 {
 
 	// sanity
@@ -1132,7 +1132,7 @@ Bool ActionManager::canPickUpPrisoner( const Object *obj, const Object *prisoner
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool ActionManager::canStealCashViaHacking( const Object *obj, const Object *objectToHack, CommandSourceType commandSource )
+bool ActionManager::canStealCashViaHacking( const Object *obj, const Object *objectToHack, CommandSourceType commandSource )
 {
 	// sanity
 	if( obj == NULL || objectToHack == NULL )
@@ -1217,7 +1217,7 @@ Bool ActionManager::canStealCashViaHacking( const Object *obj, const Object *obj
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool ActionManager::canDisableBuildingViaHacking( const Object *obj, const Object *objectToHack, CommandSourceType commandSource )
+bool ActionManager::canDisableBuildingViaHacking( const Object *obj, const Object *objectToHack, CommandSourceType commandSource )
 {
 	// sanity
 	if( obj == NULL || objectToHack == NULL )
@@ -1286,20 +1286,20 @@ Bool ActionManager::canDisableBuildingViaHacking( const Object *obj, const Objec
 }
 
 // ------------------------------------------------------------------------------------------------
-Bool ActionManager::canBribeUnit( const Object *obj, const Object *objectToBribe, CommandSourceType commandSource )
+bool ActionManager::canBribeUnit( const Object *obj, const Object *objectToBribe, CommandSourceType commandSource )
 {
 	return FALSE;
 }
 
 // ------------------------------------------------------------------------------------------------
-Bool ActionManager::canCutBuildingPower( const Object *obj, const Object *building, CommandSourceType commandSource )
+bool ActionManager::canCutBuildingPower( const Object *obj, const Object *building, CommandSourceType commandSource )
 {
 	return FALSE;
 }
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool ActionManager::canSnipeVehicle( const Object *obj, const Object *objectToSnipe, CommandSourceType commandSource )
+bool ActionManager::canSnipeVehicle( const Object *obj, const Object *objectToSnipe, CommandSourceType commandSource )
 {
 	//Sanity check
 	if( obj == NULL || objectToSnipe == NULL )
@@ -1347,7 +1347,7 @@ Bool ActionManager::canSnipeVehicle( const Object *obj, const Object *objectToSn
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool ActionManager::canDoSpecialPowerAtLocation( const Object *obj, const Coord3D *loc, CommandSourceType commandSource, const SpecialPowerTemplate *spTemplate, const Object *objectInWay, UnsignedInt commandOptions, Bool checkSourceRequirements )
+bool ActionManager::canDoSpecialPowerAtLocation( const Object *obj, const Coord3D *loc, CommandSourceType commandSource, const SpecialPowerTemplate *spTemplate, const Object *objectInWay, UnsignedInt commandOptions, bool checkSourceRequirements )
 {
 	if (checkSourceRequirements)
 	{
@@ -1439,7 +1439,7 @@ Bool ActionManager::canDoSpecialPowerAtLocation( const Object *obj, const Coord3
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool ActionManager::canDoSpecialPowerAtObject( const Object *obj, const Object *target, CommandSourceType commandSource, const SpecialPowerTemplate *spTemplate, UnsignedInt commandOptions, Bool checkSourceRequirements )
+bool ActionManager::canDoSpecialPowerAtObject( const Object *obj, const Object *target, CommandSourceType commandSource, const SpecialPowerTemplate *spTemplate, UnsignedInt commandOptions, bool checkSourceRequirements )
 {
 	if (checkSourceRequirements)
 	{
@@ -1659,7 +1659,7 @@ Bool ActionManager::canDoSpecialPowerAtObject( const Object *obj, const Object *
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-Bool ActionManager::canDoSpecialPower( const Object *obj, const SpecialPowerTemplate *spTemplate, CommandSourceType commandSource, UnsignedInt commandOptions, Bool checkSourceRequirements )
+bool ActionManager::canDoSpecialPower( const Object *obj, const SpecialPowerTemplate *spTemplate, CommandSourceType commandSource, UnsignedInt commandOptions, bool checkSourceRequirements )
 {
 	if (checkSourceRequirements)
 	{
@@ -1721,7 +1721,7 @@ Bool ActionManager::canDoSpecialPower( const Object *obj, const SpecialPowerTemp
 }
 
 //------------------------------------------------------------------------------------------------
-Bool ActionManager::canFireWeaponAtLocation( const Object *obj, const Coord3D *loc, CommandSourceType commandSource, const WeaponSlotType slot, const Object *objectInWay )
+bool ActionManager::canFireWeaponAtLocation( const Object *obj, const Coord3D *loc, CommandSourceType commandSource, const WeaponSlotType slot, const Object *objectInWay )
 {
 	//Sanity check
 	if( obj == NULL || loc == NULL )
@@ -1740,7 +1740,7 @@ Bool ActionManager::canFireWeaponAtLocation( const Object *obj, const Coord3D *l
 }
 
 //------------------------------------------------------------------------------------------------
-Bool ActionManager::canFireWeaponAtObject( const Object *obj, const Object *target, CommandSourceType commandSource, const WeaponSlotType slot )
+bool ActionManager::canFireWeaponAtObject( const Object *obj, const Object *target, CommandSourceType commandSource, const WeaponSlotType slot )
 {
 	//Sanity check
 	if( obj == NULL || target == NULL )
@@ -1770,7 +1770,7 @@ Bool ActionManager::canFireWeaponAtObject( const Object *obj, const Object *targ
 }
 
 //------------------------------------------------------------------------------------------------
-Bool ActionManager::canFireWeapon( const Object *obj, const WeaponSlotType slot, CommandSourceType commandSource )
+bool ActionManager::canFireWeapon( const Object *obj, const WeaponSlotType slot, CommandSourceType commandSource )
 {
 	//Sanity check
 	if( obj == NULL )
@@ -1790,7 +1790,7 @@ Bool ActionManager::canFireWeapon( const Object *obj, const WeaponSlotType slot,
 }
 
 //------------------------------------------------------------------------------------------------
-Bool ActionManager::canGarrison( const Object *obj, const Object *target, CommandSourceType commandSource )
+bool ActionManager::canGarrison( const Object *obj, const Object *target, CommandSourceType commandSource )
 {
 	if (!(obj && target))
 		return false;
@@ -1828,7 +1828,7 @@ Bool ActionManager::canGarrison( const Object *obj, const Object *target, Comman
 }
 
 //------------------------------------------------------------------------------------------------
-Bool ActionManager::canPlayerGarrison( const Player *player, const Object *target, CommandSourceType commandSource )
+bool ActionManager::canPlayerGarrison( const Player *player, const Object *target, CommandSourceType commandSource )
 {
 	if (!(player && target))
 		return false;
@@ -1862,7 +1862,7 @@ Bool ActionManager::canPlayerGarrison( const Player *player, const Object *targe
 }
 
 //------------------------------------------------------------------------------------------------
-Bool ActionManager::canOverrideSpecialPowerDestination( const Object *obj, const Coord3D *loc, SpecialPowerType spType, CommandSourceType commandSource )
+bool ActionManager::canOverrideSpecialPowerDestination( const Object *obj, const Coord3D *loc, SpecialPowerType spType, CommandSourceType commandSource )
 {
 	SpecialPowerUpdateInterface* spuInterface = obj->findSpecialPowerWithOverridableDestinationActive( spType );
 	if( spuInterface )

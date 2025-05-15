@@ -110,7 +110,7 @@ protected:
 
 	char* peek() const;
 	void releaseBuffer();
-	void ensureUniqueBufferOfSize(int numCharsNeeded, Bool preserveData, const char* strToCpy, const char* strToCat);
+	void ensureUniqueBufferOfSize(int numCharsNeeded, bool preserveData, const char* strToCpy, const char* strToCat);
 
 public:
 
@@ -161,7 +161,7 @@ public:
 		Return true iff the length of the string is zero. Equivalent
 		to (getLength() == 0) but slightly more efficient.
 	*/
-	Bool isEmpty() const;
+	bool isEmpty() const;
 	/**
 		Make the string empty. Equivalent to (str = "") but slightly more efficient.
 	*/
@@ -284,26 +284,26 @@ public:
 	/**
 		return true iff self starts with the given string.
 	*/
-	Bool startsWith(const char* p) const;
-	inline Bool startsWith(const AsciiString& stringSrc) const { return startsWith(stringSrc.str()); }
+	bool startsWith(const char* p) const;
+	inline bool startsWith(const AsciiString& stringSrc) const { return startsWith(stringSrc.str()); }
 
 	/**
 		return true iff self starts with the given string. (case insensitive)
 	*/
-	Bool startsWithNoCase(const char* p) const;
-	inline Bool startsWithNoCase(const AsciiString& stringSrc) const { return startsWithNoCase(stringSrc.str()); }
+	bool startsWithNoCase(const char* p) const;
+	inline bool startsWithNoCase(const AsciiString& stringSrc) const { return startsWithNoCase(stringSrc.str()); }
 
 	/**
 		return true iff self ends with the given string.
 	*/
-	Bool endsWith(const char* p) const;
-	Bool endsWith(const AsciiString& stringSrc) const { return endsWith(stringSrc.str()); }
+	bool endsWith(const char* p) const;
+	bool endsWith(const AsciiString& stringSrc) const { return endsWith(stringSrc.str()); }
 
 	/**
 		return true iff self ends with the given string. (case insensitive)
 	*/
-	Bool endsWithNoCase(const char* p) const;
-	Bool endsWithNoCase(const AsciiString& stringSrc) const { return endsWithNoCase(stringSrc.str()); }
+	bool endsWithNoCase(const char* p) const;
+	bool endsWithNoCase(const AsciiString& stringSrc) const { return endsWithNoCase(stringSrc.str()); }
 
 	/**
 		conceptually similar to strtok():
@@ -313,16 +313,16 @@ public:
 		token was found. (note that this modifies 'this' as well, stripping
 		the token off!)
 	*/
-	Bool nextToken(AsciiString* token, const char* seps = NULL);
+	bool nextToken(AsciiString* token, const char* seps = NULL);
 
 	/**
 		return true iff the string is "NONE" (case-insensitive).
 		Hey, hokey, but we use it a ton.
 	*/
-	Bool isNone() const;
+	bool isNone() const;
 
-	Bool isNotEmpty() const { return !isEmpty(); }
-	Bool isNotNone() const { return !isNone(); }
+	bool isNotEmpty() const { return !isEmpty(); }
+	bool isNotNone() const { return !isNone(); }
 
 //
 // You might think it would be a good idea to overload the * operator
@@ -370,7 +370,7 @@ inline int AsciiString::getLength() const
 }
 
 // -----------------------------------------------------
-inline Bool AsciiString::isEmpty() const
+inline bool AsciiString::isEmpty() const
 {
 	validate();
 	return m_data == NULL || peek()[0] == 0;
@@ -477,73 +477,73 @@ inline const char* AsciiString::reverseFind(char c) const
 }
 
 // -----------------------------------------------------
-inline Bool operator==(const AsciiString& s1, const AsciiString& s2)
+inline bool operator==(const AsciiString& s1, const AsciiString& s2)
 {
 	return strcmp(s1.str(), s2.str()) == 0;
 }
 
 // -----------------------------------------------------
-inline Bool operator!=(const AsciiString& s1, const AsciiString& s2)
+inline bool operator!=(const AsciiString& s1, const AsciiString& s2)
 {
 	return strcmp(s1.str(), s2.str()) != 0;
 }
 
 // -----------------------------------------------------
-inline Bool operator<(const AsciiString& s1, const AsciiString& s2)
+inline bool operator<(const AsciiString& s1, const AsciiString& s2)
 {
 	return strcmp(s1.str(), s2.str()) < 0;
 }
 
 // -----------------------------------------------------
-inline Bool operator<=(const AsciiString& s1, const AsciiString& s2)
+inline bool operator<=(const AsciiString& s1, const AsciiString& s2)
 {
 	return strcmp(s1.str(), s2.str()) <= 0;
 }
 
 // -----------------------------------------------------
-inline Bool operator>(const AsciiString& s1, const AsciiString& s2)
+inline bool operator>(const AsciiString& s1, const AsciiString& s2)
 {
 	return strcmp(s1.str(), s2.str()) > 0;
 }
 
 // -----------------------------------------------------
-inline Bool operator>=(const AsciiString& s1, const AsciiString& s2)
+inline bool operator>=(const AsciiString& s1, const AsciiString& s2)
 {
 	return strcmp(s1.str(), s2.str()) >= 0;
 }
 
 // -----------------------------------------------------
-inline Bool operator==(const AsciiString& s1, const char* s2)
+inline bool operator==(const AsciiString& s1, const char* s2)
 {
 	return strcmp(s1.str(), s2) == 0;
 }
 
 // -----------------------------------------------------
-inline Bool operator!=(const AsciiString& s1, const char* s2)
+inline bool operator!=(const AsciiString& s1, const char* s2)
 {
 	return strcmp(s1.str(), s2) != 0;
 }
 
 // -----------------------------------------------------
-inline Bool operator<(const AsciiString& s1, const char* s2)
+inline bool operator<(const AsciiString& s1, const char* s2)
 {
 	return strcmp(s1.str(), s2) < 0;
 }
 
 // -----------------------------------------------------
-inline Bool operator<=(const AsciiString& s1, const char* s2)
+inline bool operator<=(const AsciiString& s1, const char* s2)
 {
 	return strcmp(s1.str(), s2) <= 0;
 }
 
 // -----------------------------------------------------
-inline Bool operator>(const AsciiString& s1, const char* s2)
+inline bool operator>(const AsciiString& s1, const char* s2)
 {
 	return strcmp(s1.str(), s2) > 0;
 }
 
 // -----------------------------------------------------
-inline Bool operator>=(const AsciiString& s1, const char* s2)
+inline bool operator>=(const AsciiString& s1, const char* s2)
 {
 	return strcmp(s1.str(), s2) >= 0;
 }

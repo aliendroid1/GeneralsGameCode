@@ -55,7 +55,7 @@
 /**
 	Dict provides a general utility class for maintaining 
 	a sorted key-value pair list. Keys are currently required
-	to be of type NameKeyType, and data may be Bool, int, real, 
+	to be of type NameKeyType, and data may be bool, int, real, 
 	or string.
 
 	Current implementation keeps the pairs sorted by key, and
@@ -128,7 +128,7 @@ public:
 	/**
 		Return there is a pair with the given key and datatype, return true.
 	*/
-	inline Bool known(NameKeyType key, DataType d) const
+	inline bool known(NameKeyType key, DataType d) const
 	{
 		return getType(key) == d;
 	}
@@ -144,38 +144,38 @@ public:
 		if there is no pair with the given key, or the value is 
 		not of the correct type, 0 is returned.
 	*/
-	Bool getBool(NameKeyType key, Bool* exists = NULL) const;
+	bool getBool(NameKeyType key, bool* exists = NULL) const;
 	/**
 		return the value for the pair with the given key.
 		if there is no pair with the given key, or the value is 
 		not of the correct type, 0 is returned.
 	*/
-	Int getInt(NameKeyType key, Bool* exists = NULL) const;
+	Int getInt(NameKeyType key, bool* exists = NULL) const;
 	/**
 		return the value for the pair with the given key.
 		if there is no pair with the given key, or the value is 
 		not of the correct type, 0 is returned.
 	*/
-	Real getReal(NameKeyType key, Bool* exists = NULL) const;
+	Real getReal(NameKeyType key, bool* exists = NULL) const;
 	/**
 		return the value for the pair with the given key.
 		if there is no pair with the given key, or the value is 
 		not of the correct type, "" is returned.
 	*/
-	AsciiString getAsciiString(NameKeyType key, Bool* exists = NULL) const;
+	AsciiString getAsciiString(NameKeyType key, bool* exists = NULL) const;
 	/**
 		return the value for the pair with the given key.
 		if there is no pair with the given key, or the value is 
 		not of the correct type, "" is returned.
 	*/
-	UnicodeString getUnicodeString(NameKeyType key, Bool* exists = NULL) const;
+	UnicodeString getUnicodeString(NameKeyType key, bool* exists = NULL) const;
 
 	/**
 		return the value for the pair with the given index.
 		if the index is out of range, or the value is 
 		not of the correct type, 0 is returned.
 	*/
-	Bool getNthBool(Int n) const;
+	bool getNthBool(Int n) const;
 	/**
 		return the value for the pair with the given index.
 		if the index is out of range, or the value is 
@@ -208,7 +208,7 @@ public:
 		note that when replacing a pair, the new and old
 		data types need not match.
 	*/
-	void setBool(NameKeyType key, Bool value);
+	void setBool(NameKeyType key, bool value);
 	/**
 		set the value for the pair with the given key.
 		if no such pair exists, it is created.
@@ -246,7 +246,7 @@ public:
 		remove the pair with the given key. if such a pair existed, return true.
 		if no such pair existed, return false.
 	*/
-	Bool remove(NameKeyType key);
+	bool remove(NameKeyType key);
 
 	/**
 		copy the pair with the given key from 'that', replacing any such pair in 'this'.
@@ -265,7 +265,7 @@ private:
 	Dict::DictPair *setPrep(NameKeyType key, Dict::DataType type);
 	DictPair* findPairByKey(NameKeyType key) const;
 	void releaseData();
-	DictPair *ensureUnique(int numPairsNeeded, Bool preserveData, DictPair *pairToTranslate);
+	DictPair *ensureUnique(int numPairsNeeded, bool preserveData, DictPair *pairToTranslate);
 	
 	enum DictPairKeyType
 	{
@@ -303,7 +303,7 @@ private:
 		void setNameAndType(NameKeyType key, DataType type);
 		inline DataType getType() const { return getTypeFromKey(m_key); }
 		inline NameKeyType getName() const { return getNameFromKey(m_key); }
-		inline Bool* asBool() { return (Bool*)&m_value; }
+		inline bool* asBool() { return (bool*)&m_value; }
 		inline Int* asInt() { return (Int*)&m_value; }
 		inline Real* asReal() { return (Real*)&m_value; }
 		inline AsciiString* asAsciiString() { return (AsciiString*)&m_value; }

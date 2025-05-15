@@ -51,7 +51,7 @@ class CompressionManager
 {
 public:
 
-	static Bool isDataCompressed( const void *mem, Int len );
+	static bool isDataCompressed( const void *mem, Int len );
 	static CompressionType getCompressionType( const void *mem, Int len );
 
 	static Int getMaxCompressedSize( Int uncompressedLen, CompressionType compType );

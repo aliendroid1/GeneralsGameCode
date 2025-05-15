@@ -103,7 +103,7 @@ private:
 	
 	UnsignedInt m_scrollBeginTime;	///< Begin time in frames
 	UnsignedInt m_scrollTime;				///< our totals for the scrolltime
-	Bool m_isScrolling;							///< flag to make sure we are scrolling
+	bool m_isScrolling;							///< flag to make sure we are scrolling
 
 	Int m_timeCount;								///< the current timeframe we're on
 	Int m_lastUpdate;								///< last time we updated

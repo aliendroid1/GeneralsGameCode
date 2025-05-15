@@ -125,15 +125,15 @@ public:
 	void setLocation(Coord3D *pLoc) {m_location = *pLoc;}
 	void setFlag(Int flag) {m_flags |= flag;}
 	void clearFlag(Int flag) {m_flags &= (~flag);}
-	Bool getFlag(Int flag) const {return (m_flags&flag)?true:false;}
+	bool getFlag(Int flag) const {return (m_flags&flag)?true:false;}
 	Int getFlags(void) const {return (m_flags);}
 
-	Bool isSelected(void) const {return (m_runtimeFlags & MO_SELECTED) != 0;}
-	void setSelected(Bool sel) { if (sel) m_runtimeFlags |= MO_SELECTED; else m_runtimeFlags &= ~MO_SELECTED; }
+	bool isSelected(void) const {return (m_runtimeFlags & MO_SELECTED) != 0;}
+	void setSelected(bool sel) { if (sel) m_runtimeFlags |= MO_SELECTED; else m_runtimeFlags &= ~MO_SELECTED; }
 
-	Bool isLight(void) const {return (m_runtimeFlags & MO_LIGHT) != 0;}
-	Bool isWaypoint(void) const {return (m_runtimeFlags & MO_WAYPOINT) != 0;}
-	Bool isScorch(void) const {return (m_runtimeFlags & MO_SCORCH) != 0;}
+	bool isLight(void) const {return (m_runtimeFlags & MO_LIGHT) != 0;}
+	bool isWaypoint(void) const {return (m_runtimeFlags & MO_WAYPOINT) != 0;}
+	bool isScorch(void) const {return (m_runtimeFlags & MO_SCORCH) != 0;}
 
 	void setIsLight() {m_runtimeFlags |= MO_LIGHT;}
 	void setIsWaypoint() { m_runtimeFlags |= MO_WAYPOINT; }

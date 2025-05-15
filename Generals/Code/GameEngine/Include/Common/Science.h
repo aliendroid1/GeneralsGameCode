@@ -62,7 +62,7 @@ private:
 	ScienceVec						m_rootSciences;			// this is calced at runtime, NOT read from INI
 	ScienceVec						m_prereqSciences;
 	Int										m_sciencePurchasePointCost;
-	Bool									m_grantable;
+	bool									m_grantable;
 
 	ScienceInfo() :
 		m_science(SCIENCE_INVALID),
@@ -87,13 +87,13 @@ public:
 	void reset();
 	void update() { }
 
-	Bool isValidScience(ScienceType st) const;
+	bool isValidScience(ScienceType st) const;
 
-	Bool isScienceGrantable(ScienceType st) const;
+	bool isScienceGrantable(ScienceType st) const;
 
-	Bool getNameAndDescription(ScienceType st, UnicodeString& name, UnicodeString& description) const;
+	bool getNameAndDescription(ScienceType st, UnicodeString& name, UnicodeString& description) const;
 
-	Bool playerHasPrereqsForScience(const Player* player, ScienceType st) const;
+	bool playerHasPrereqsForScience(const Player* player, ScienceType st) const;
 
 	/**
 		this is a subtle call, and should ALMOST NEVER be called by external code...
@@ -102,7 +102,7 @@ public:
 		
 		Generally, you should call getPurchasableSciences() instead of this!
 	*/
-	Bool playerHasRootPrereqsForScience(const Player* player, ScienceType st) const;
+	bool playerHasRootPrereqsForScience(const Player* player, ScienceType st) const;
 
 	Int getSciencePurchaseCost(ScienceType science) const;
 

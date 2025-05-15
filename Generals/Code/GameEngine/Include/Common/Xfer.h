@@ -145,7 +145,7 @@ public:
 	virtual void xferVersion( XferVersion *versionData, XferVersion currentVersion );
 	virtual void xferByte( Byte *byteData );
 	virtual void xferUnsignedByte( UnsignedByte *unsignedByteData );
-	virtual void xferBool( Bool *boolData );
+	virtual void xferBool( bool *boolData );
 	virtual void xferInt( Int *intData );
 	virtual void xferInt64( Int64 *int64Data );
 	virtual void xferUnsignedInt( UnsignedInt *unsignedIntData );

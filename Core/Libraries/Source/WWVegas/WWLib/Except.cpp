@@ -54,7 +54,6 @@
 #include	"assert.h"
 #include "cpudetect.h"
 #include	"Except.h"
-//#include "debug.h"
 #include "MPU.H"
 //#include "commando\nat.h"
 #include "thread.h"

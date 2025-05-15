@@ -258,10 +258,10 @@ private:
 		AsciiString m_moduleTag;
 		const ModuleData* second;
 		Int interfaceMask;
-		Bool copiedFromDefault;
-		Bool inheritable;
+		bool copiedFromDefault;
+		bool inheritable;
 
-		Nugget(const AsciiString& n, const AsciiString& moduleTag, const ModuleData* d, Int i, Bool inh) 
+		Nugget(const AsciiString& n, const AsciiString& moduleTag, const ModuleData* d, Int i, bool inh) 
 		: first(n), 
 			m_moduleTag(moduleTag), 
 			second(d), 
@@ -278,7 +278,7 @@ public:
 
 	ModuleInfo() { }
 
-	void addModuleInfo(ThingTemplate *thingTemplate, const AsciiString& name, const AsciiString& moduleTag, const ModuleData* data, Int interfaceMask, Bool inheritable);
+	void addModuleInfo(ThingTemplate *thingTemplate, const AsciiString& name, const AsciiString& moduleTag, const ModuleData* data, Int interfaceMask, bool inheritable);
 	const ModuleInfo::Nugget *getNuggetWithTag( const AsciiString& tag ) const;
 
 	Int getCount() const 
@@ -287,7 +287,7 @@ public:
 	}
 	
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
-	Bool containsPartialName(const char* n) const
+	bool containsPartialName(const char* n) const
 	{
 		for (size_t i = 0; i < m_info.size(); i++)
 			if (strstr(m_info[i].first.str(), n) != NULL)
@@ -331,15 +331,15 @@ public:
 		m_info.clear(); 
 	}
 
-	void setCopiedFromDefault(Bool v)
+	void setCopiedFromDefault(bool v)
 	{
 		for (size_t i = 0; i < m_info.size(); i++)
 			m_info[i].copiedFromDefault = v;
 	}
 
-	Bool clearModuleDataWithTag(const AsciiString& tagToClear, AsciiString& clearedModuleNameOut);
-	Bool clearCopiedFromDefaultEntries(Int interfaceMask);
-	Bool clearAiModuleInfo();
+	bool clearModuleDataWithTag(const AsciiString& tagToClear, AsciiString& clearedModuleNameOut);
+	bool clearCopiedFromDefaultEntries(Int interfaceMask);
+	bool clearAiModuleInfo();
 };
 
 //-------------------------------------------------------------------------------------------------
@@ -400,18 +400,18 @@ public:
 	EditorSortingType getEditorSorting() const { return (EditorSortingType)m_editorSorting; }
 
 	/// return true iff the template has the specified kindOf flag set.
-	inline Bool isKindOf(KindOfType t) const 
+	inline bool isKindOf(KindOfType t) const 
 	{ 
 		return TEST_KINDOFMASK(m_kindof, t); 
 	}
 
 	/// convenience for doing multiple kindof testing at once.
-	inline Bool isKindOfMulti(const KindOfMaskType& mustBeSet, const KindOfMaskType& mustBeClear) const 
+	inline bool isKindOfMulti(const KindOfMaskType& mustBeSet, const KindOfMaskType& mustBeClear) const 
 	{ 		
 		return TEST_KINDOFMASK_MULTI(m_kindof, mustBeSet, mustBeClear);
 	}
 
-	inline Bool isAnyKindOf( const KindOfMaskType& anyKindOf ) const
+	inline bool isAnyKindOf( const KindOfMaskType& anyKindOf ) const
 	{
 		return TEST_KINDOFMASK_ANY(m_kindof, anyKindOf);
 	}
@@ -428,7 +428,7 @@ public:
 
 	Real getFenceXOffset() const { return m_fenceXOffset; }  // return fence offset
 
-	Bool isBridge() const { return m_isBridge; }  // return fence offset
+	bool isBridge() const { return m_isBridge; }  // return fence offset
 
 	// Only Object can ask this.  Everyone else should ask the Object.  In fact, you really should ask the Object everything.
 	Real friend_getVisionRange() const { return m_visionRange; }  ///< get vision range
@@ -460,7 +460,7 @@ public:
 
 	Int getExperienceValue(Int level) const { return m_experienceValues[level]; }
 	Int getExperienceRequired(Int level) const {return m_experienceRequired[level]; }
-	Bool isTrainable() const{return m_isTrainable; }
+	bool isTrainable() const{return m_isTrainable; }
 
 	const AudioEventRTS *getVoiceSelect() const								{ return getAudio(TTAUDIO_voiceSelect); }
 	const AudioEventRTS *getVoiceGroupSelect() const					{ return getAudio(TTAUDIO_voiceGroupSelect); }
@@ -568,7 +568,7 @@ public:
 	*/
 	const ThingTemplate *getBuildFacilityTemplate( const Player *player ) const;
 
-	Bool isBuildableItem(void) const;
+	bool isBuildableItem(void) const;
 
 	/// calculate how long (in logic frames) it will take the given player to build this unit
 	Int calcTimeToBuild( const Player* player) const;
@@ -585,7 +585,7 @@ public:
 	const FieldParse* getFieldParse() const { return s_objectFieldParseTable; }
 	const FieldParse* getReskinFieldParse() const { return s_objectReskinFieldParseTable; }
 
-	Bool isBuildFacility() const { return m_isBuildFacility; }
+	bool isBuildFacility() const { return m_isBuildFacility; }
 	Real getPlacementViewAngle( void ) const { return m_placementViewAngle; }
 
 	Real getFactoryExitWidth() const { return m_factoryExitWidth; }
@@ -595,16 +595,16 @@ public:
 
 	void setReskinnedFrom(const ThingTemplate* tt) { DEBUG_ASSERTCRASH(m_reskinnedFrom == NULL, ("should be null")); m_reskinnedFrom = tt; }
 
-	Bool isPrerequisite() const { return m_isPrerequisite; }
+	bool isPrerequisite() const { return m_isPrerequisite; }
 
 	const WeaponTemplateSet* findWeaponTemplateSet(const WeaponSetFlags& t) const;
 	const ArmorTemplateSet* findArmorTemplateSet(const ArmorSetFlags& t) const;
 
 	// returns true iff we have at least one weaponset that contains a weapon.
 	// returns false if we have no weaponsets, or they are all empty.
-	Bool canPossiblyHaveAnyWeapon() const;
+	bool canPossiblyHaveAnyWeapon() const;
 
-	Bool isEquivalentTo(const ThingTemplate* tt) const;
+	bool isEquivalentTo(const ThingTemplate* tt) const;
 
 	UnsignedByte getCrushableLevel() const { return m_crushableLevel; }
 	UnsignedByte getCrusherLevel() const { return m_crusherLevel; }
@@ -641,7 +641,7 @@ protected:
 	static void parseReplaceModule(INI *ini, void *instance, void *store, const void *userData);	
 	static void parseInheritableModule(INI *ini, void *instance, void *store, const void *userData);	
 
-	Bool removeModuleInfo(const AsciiString& moduleToRemove, AsciiString& clearedModuleNameOut);
+	bool removeModuleInfo(const AsciiString& moduleToRemove, AsciiString& clearedModuleNameOut);
 
 private:
 	static const FieldParse s_objectFieldParseTable[];		///< the parse table
@@ -727,14 +727,14 @@ private:
 	UnsignedShort		m_threatValue;								///< Threat map info
 	UnsignedShort		m_maxSimultaneousOfType;			///< max simultaneous of this unit we can have (per player) at one time. (0 == unlimited)
 
-	// ---- Bool-sized things
-	Bool					m_isPrerequisite;							///< Is this thing considered in a prerequisite for any other thing?
-	Bool					m_isBridge;										///< True if this model is a bridge.
- 	Bool					m_isBuildFacility;						///< is this the build facility for something? (calculated based on other template's prereqs)
-	Bool					m_isTrainable;								///< Whether or not I can even gain experience
-	Bool					m_isForbidden;								///< useful when overriding in <mapfile>.ini
-	Bool					m_armorCopiedFromDefault;
-	Bool					m_weaponsCopiedFromDefault;
+	// ---- bool-sized things
+	bool					m_isPrerequisite;							///< Is this thing considered in a prerequisite for any other thing?
+	bool					m_isBridge;										///< True if this model is a bridge.
+ 	bool					m_isBuildFacility;						///< is this the build facility for something? (calculated based on other template's prereqs)
+	bool					m_isTrainable;								///< Whether or not I can even gain experience
+	bool					m_isForbidden;								///< useful when overriding in <mapfile>.ini
+	bool					m_armorCopiedFromDefault;
+	bool					m_weaponsCopiedFromDefault;
 
 	// ---- Byte-sized things
 	Byte					m_radarPriority;						///< does object appear on radar, and if so at what priority

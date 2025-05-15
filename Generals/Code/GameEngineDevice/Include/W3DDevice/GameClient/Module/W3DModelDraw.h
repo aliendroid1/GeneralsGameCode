@@ -102,10 +102,10 @@ private:
 #endif
 	Real									m_distanceCovered;		// if nonzero, the distance covered by a single loop of the anim
 	mutable Real					m_naturalDurationInMsec;
-	Bool									m_isIdleAnim;					// if true, we pick another animation at random when this one completes
+	bool									m_isIdleAnim;					// if true, we pick another animation at random when this one completes
 
 public:
-	W3DAnimationInfo(const AsciiString& name, Bool isIdle, Real distanceCovered);
+	W3DAnimationInfo(const AsciiString& name, bool isIdle, Real distanceCovered);
 	W3DAnimationInfo(const W3DAnimationInfo &r);
 	W3DAnimationInfo &operator=(const W3DAnimationInfo& r);
 
@@ -113,7 +113,7 @@ public:
 	
 	HAnimClass* getAnimHandle() const;
 	const AsciiString& getName() const { return m_name; }
-	Bool isIdleAnim() const { return m_isIdleAnim; }
+	bool isIdleAnim() const { return m_isIdleAnim; }
 	Real getDistanceCovered() const { return m_distanceCovered; }
 	Real getNaturalDurationInMsec() const { return m_naturalDurationInMsec; }
 
@@ -144,7 +144,7 @@ struct ModelConditionInfo
 	struct HideShowSubObjInfo
 	{
 		AsciiString subObjName;
-		Bool hide;
+		bool hide;
 	};
 
 	struct TurretInfo
@@ -195,7 +195,7 @@ struct ModelConditionInfo
 #endif
 		}
 
-		void setMuzzleFlashHidden(RenderObjClass *fullObject, Bool hide) const;
+		void setMuzzleFlashHidden(RenderObjClass *fullObject, bool hide) const;
 	}; 
 	typedef std::vector<WeaponBarrelInfo>	WeaponBarrelInfoVec;
 
@@ -225,7 +225,7 @@ struct ModelConditionInfo
 	mutable PristineBoneInfoMap				m_pristineBones;
 	mutable TurretInfo								m_turrets[MAX_TURRETS];
 	mutable WeaponBarrelInfoVec				m_weaponBarrelInfoVec[WEAPONSLOT_COUNT];
-	mutable Bool											m_hasRecoilBonesOrMuzzleFlashes[WEAPONSLOT_COUNT];
+	mutable bool											m_hasRecoilBonesOrMuzzleFlashes[WEAPONSLOT_COUNT];
 	mutable Byte											m_validStuff;
 
 	enum
@@ -253,9 +253,9 @@ struct ModelConditionInfo
 #endif
 
 	const Matrix3D* findPristineBone(NameKeyType boneName, Int* boneIndex) const;
-	Bool findPristineBonePos(NameKeyType boneName, Coord3D& pos) const;
+	bool findPristineBonePos(NameKeyType boneName, Coord3D& pos) const;
 	void addPublicBone(const AsciiString& boneName) const;
-	Bool matchesMode(Bool night, Bool snowy) const;
+	bool matchesMode(bool night, bool snowy) const;
 
 	void validateStuff(RenderObjClass* robj, Real scale, const std::vector<AsciiString>& extraPublicBones) const;
 
@@ -298,16 +298,16 @@ public:
 	Real															m_recoilSettle;
 	StaticGameLODLevel								m_minLODRequired;				///< minumum game LOD level necessary to use this module.
 	ModelConditionFlags								m_ignoreConditionStates;
-	Bool															m_okToChangeModelColor;
-	Bool															m_animationsRequirePower;///< Should UnderPowered disable type pause animations in this draw module?
+	bool															m_okToChangeModelColor;
+	bool															m_animationsRequirePower;///< Should UnderPowered disable type pause animations in this draw module?
 #ifdef CACHE_ATTACH_BONE
-	mutable Bool											m_attachToDrawableBoneOffsetValid;
+	mutable bool											m_attachToDrawableBoneOffsetValid;
 #endif
 	mutable Byte											m_validated;
 
 	W3DModelDrawModuleData();
 	~W3DModelDrawModuleData();
-	void validateStuffForTimeAndWeather(const Drawable* draw, Bool night, Bool snowy) const;
+	void validateStuffForTimeAndWeather(const Drawable* draw, bool night, bool snowy) const;
 	static void buildFieldParse(MultiIniFieldParse& p);
  	AsciiString getBestModelNameForWB(const ModelConditionFlags& c) const;
 	const ModelConditionInfo* findBestInfo(const ModelConditionFlags& c) const;
@@ -346,7 +346,7 @@ public:
 
 	/// the draw method
 	virtual void doDrawModule(const Matrix3D* transformMtx);
-	virtual void setShadowsEnabled(Bool enable);
+	virtual void setShadowsEnabled(bool enable);
 	virtual void releaseShadows(void);	///< frees all shadow resources used by this module - used by Options screen.
 	virtual void allocateShadows(void); ///< create shadow resources if not already present. Used by Options screen.
 
@@ -355,29 +355,29 @@ public:
 	void getRenderCostRecursive(RenderCost & rc,RenderObjClass * robj) const; 
 #endif
 
-	virtual void setFullyObscuredByShroud(Bool fullyObscured);
+	virtual void setFullyObscuredByShroud(bool fullyObscured);
 	virtual void setTerrainDecal(TerrainDecalType type);
 
-	virtual Bool isVisible() const;
+	virtual bool isVisible() const;
 	virtual void reactToTransformChange(const Matrix3D* oldMtx, const Coord3D* oldPos, Real oldAngle);
 	virtual void reactToGeometryChange() { }
 
 	// this method must ONLY be called from the client, NEVER From the logic, not even indirectly.
-	virtual Bool clientOnly_getRenderObjInfo(Coord3D* pos, Real* boundingSphereRadius, Matrix3D* transform) const;
+	virtual bool clientOnly_getRenderObjInfo(Coord3D* pos, Real* boundingSphereRadius, Matrix3D* transform) const;
 	virtual Int getPristineBonePositionsForConditionState(const ModelConditionFlags& condition, const char* boneNamePrefix, Int startIndex, Coord3D* positions, Matrix3D* transforms, Int maxBones) const;
 	virtual Int getCurrentBonePositions(const char* boneNamePrefix, Int startIndex, Coord3D* positions, Matrix3D* transforms, Int maxBones) const;
-	virtual Bool getCurrentWorldspaceClientBonePositions(const char* boneName, Matrix3D& transform) const;
-	virtual Bool getProjectileLaunchOffset(const ModelConditionFlags& condition, WeaponSlotType wslot, Int specificBarrelToUse, Matrix3D* launchPos, WhichTurretType tur, Coord3D* turretRotPos, Coord3D* turretPitchPos = NULL) const;
+	virtual bool getCurrentWorldspaceClientBonePositions(const char* boneName, Matrix3D& transform) const;
+	virtual bool getProjectileLaunchOffset(const ModelConditionFlags& condition, WeaponSlotType wslot, Int specificBarrelToUse, Matrix3D* launchPos, WhichTurretType tur, Coord3D* turretRotPos, Coord3D* turretPitchPos = NULL) const;
 	virtual void updateProjectileClipStatus( UnsignedInt shotsRemaining, UnsignedInt maxShots, WeaponSlotType slot ); ///< This will do the show/hide work if ProjectileBoneFeedbackEnabled is set.
 	virtual void updateDrawModuleSupplyStatus( Int maxSupply, Int currentSupply ); ///< This will do visual feedback on Supplies carried
 	virtual void notifyDrawModuleDependencyCleared( ){}///< if you were waiting for something before you drew, it's ready now
 
-	virtual void setHidden(Bool h);
+	virtual void setHidden(bool h);
 	virtual void replaceModelConditionState(const ModelConditionFlags& c);
 	virtual void replaceIndicatorColor(Color color);
-	virtual Bool handleWeaponFireFX(WeaponSlotType wslot, Int specificBarrelToUse, const FXList* fxl, Real weaponSpeed, const Coord3D* victimPos, Real damageRadius);
+	virtual bool handleWeaponFireFX(WeaponSlotType wslot, Int specificBarrelToUse, const FXList* fxl, Real weaponSpeed, const Coord3D* victimPos, Real damageRadius);
 	virtual Int getBarrelCount(WeaponSlotType wslot) const;
-	virtual void setSelectable(Bool selectable); // Change the selectability of the model.
+	virtual void setSelectable(bool selectable); // Change the selectability of the model.
 
 	/**
 		This call says, "I want the current animation (if any) to take n frames to complete a single cycle". 
@@ -397,10 +397,10 @@ public:
 	/**
 	  This call is used to pause or resume an animation.
 	*/
-	virtual void setPauseAnimation(Bool pauseAnim);
+	virtual void setPauseAnimation(bool pauseAnim);
 
 	virtual void updateSubObjects();
-	virtual void showSubObject( const AsciiString& name, Bool show );
+	virtual void showSubObject( const AsciiString& name, bool show );
 
 #ifdef ALLOW_ANIM_INQUIRIES
 // srj sez: not sure if this is a good idea, for net sync reasons...
@@ -412,7 +412,7 @@ public:
 
 	///@todo: I had to make this public because W3DDevice needs access for casting shadows -MW 
 	inline RenderObjClass *getRenderObject() { return m_renderObject; }
-	virtual Bool updateBonesForClientParticleSystems( void );///< this will reposition particle systems on the fly ML
+	virtual bool updateBonesForClientParticleSystems( void );///< this will reposition particle systems on the fly ML
 
 	virtual void onDrawableBoundToObject();
 	virtual void setTerrainDecalSize(Real x, Real y);
@@ -434,10 +434,10 @@ protected:
 	virtual void adjustTransformMtx(Matrix3D& mtx) const;
 
 	Real getCurAnimDistanceCovered() const;
-	Bool setCurAnimDurationInMsec(Real duration);
+	bool setCurAnimDurationInMsec(Real duration);
 
 
-	inline Bool getFullyObscuredByShroud() const { return m_fullyObscuredByShroud; }
+	inline bool getFullyObscuredByShroud() const { return m_fullyObscuredByShroud; }
 
 private:
 
@@ -484,17 +484,17 @@ private:
 	Int														m_hexColor;
 	Int														m_whichAnimInCurState;						///< the index of the currently playing anim in cur state (if any)
 	WeaponRecoilInfoVec						m_weaponRecoilInfoVec[WEAPONSLOT_COUNT];
-	Bool													m_needRecalcBoneParticleSystems;
-	Bool													m_fullyObscuredByShroud;
-	Bool													m_shadowEnabled;	///< cached state of shadow.  Used to determine if shadows should be enabled via options screen.
+	bool													m_needRecalcBoneParticleSystems;
+	bool													m_fullyObscuredByShroud;
+	bool													m_shadowEnabled;	///< cached state of shadow.  Used to determine if shadows should be enabled via options screen.
 	RenderObjClass*								m_renderObject;										///< W3D Render object for this drawable
 	Shadow*												m_shadow;													///< Updates/Renders shadows of this object
 	Shadow*												m_terrainDecal;
 	TerrainTracksRenderObjClass*	m_trackRenderObject;							///< This is rendered under object
 	ParticleSystemIDVec						m_particleSystemIDs;							///< The ID numbers of the particle systems currently running.
 	std::vector<ModelConditionInfo::HideShowSubObjInfo>		m_subObjectVec;
-	Bool													m_hideHeadlights;
-	Bool													m_pauseAnimation;
+	bool													m_hideHeadlights;
+	bool													m_pauseAnimation;
 	Int														m_animationMode;
 
 	void adjustAnimation(const ModelConditionInfo* prevState, Real prevAnimFraction);
@@ -507,9 +507,9 @@ private:
 	void doStartOrStopParticleSys();
 	void adjustAnimSpeedToMovementSpeed();
 	static void hideAllMuzzleFlashes(const ModelConditionInfo* state, RenderObjClass* renderObject);
-	void hideAllHeadlights(Bool hide);
+	void hideAllHeadlights(bool hide);
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)	//art wants to see buildings without flags as a test.
-	void hideGarrisonFlags(Bool hide);
+	void hideGarrisonFlags(bool hide);
 #endif
 };
 

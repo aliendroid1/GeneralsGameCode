@@ -260,7 +260,7 @@ class Checkpointable
 {
 private:
 	BlockCheckpointInfo	*m_firstCheckpointInfo;		///< head of the linked list of checkpoint infos for this pool/dma
-	Bool								m_cpiEverFailed;					///< flag to detect if we ran out of memory accumulating checkpoint info.
+	bool								m_cpiEverFailed;					///< flag to detect if we ran out of memory accumulating checkpoint info.
 
 protected:
 
@@ -385,7 +385,7 @@ public:
 
 	#ifdef MEMORYPOOL_DEBUG
 		/// return true iff this block was allocated by this pool.
-		Bool debugIsBlockInPool(void *pBlock);
+		bool debugIsBlockInPool(void *pBlock);
 	#endif
 };
 
@@ -471,10 +471,10 @@ public:
 	#ifdef MEMORYPOOL_DEBUG
 
 		/// return true iff this block was allocated by this dma
-		Bool debugIsBlockInDma(void *pBlock);
+		bool debugIsBlockInDma(void *pBlock);
 
 		/// return true iff the pool is a subpool of this dma
-		Bool debugIsPoolInDma(MemoryPool *pool);
+		bool debugIsPoolInDma(MemoryPool *pool);
 
 	#endif	// MEMORYPOOL_DEBUG
 };
@@ -556,7 +556,7 @@ public:
 		void debugMemoryVerify();
 
 		/// return true iff the block was allocated by any pool or dma owned by this factory.
-		Bool debugIsBlockInAnyPool(void *pBlock);
+		bool debugIsBlockInAnyPool(void *pBlock);
 
 		/// return the tag string for the block. 
 		const char *debugGetBlockTagString(void *pBlock);
@@ -798,7 +798,7 @@ extern void initMemoryManager();
 	return true if initMemoryManager() has been called.
 	return false if only preMainInitMemoryManager() has been called.
 */
-extern Bool isMemoryManagerOfficiallyInited();
+extern bool isMemoryManagerOfficiallyInited();
 
 /**
 	similar to initMemoryManager, but this should be used if the memory manager must be initialized

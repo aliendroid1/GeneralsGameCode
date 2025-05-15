@@ -102,21 +102,21 @@ struct StaticGameLODInfo
 	Int m_sampleCount3D; ///<How many 3-D (World) samples should we allow simultaneously (Note: Hardware may support less than the desired number)
 	Int m_streamCount; ///<How many streaming audio things should we allow simultaneously (Note: Hardware may support less than the desired number)
 	Int m_maxParticleCount; ///<maximum number of particles that can exist
-	Bool m_useShadowVolumes;	///<use volumetric shadows if available.
-	Bool m_useShadowDecals;	///<use 2D Decal shadows.
-	Bool m_useCloudMap;	///<use cloud shadows scrolling over terrain.
-	Bool m_useLightMap;	///<use noise pattern over terrain to break up tiling.
-	Bool m_showSoftWaterEdge;	///<feather water edge if supported by hardware.
+	bool m_useShadowVolumes;	///<use volumetric shadows if available.
+	bool m_useShadowDecals;	///<use 2D Decal shadows.
+	bool m_useCloudMap;	///<use cloud shadows scrolling over terrain.
+	bool m_useLightMap;	///<use noise pattern over terrain to break up tiling.
+	bool m_showSoftWaterEdge;	///<feather water edge if supported by hardware.
 	Int m_maxTankTrackEdges;	///<maximum length of tank track
 	Int m_maxTankTrackOpaqueEdges;	///<maximum length of tank track before it starts fading.
 	Int m_maxTankTrackFadeDelay;	///<maximum amount of time a tank track segment remains visible.
-	Bool m_useBuildupScaffolds;		///<draw scaffold during structure building.
-	Bool m_useTreeSway;		///<sway trees to simulate wind.
-	Bool m_useEmissiveNightMaterials; ///<perform second lighting pass on night buildings. 
+	bool m_useBuildupScaffolds;		///<draw scaffold during structure building.
+	bool m_useTreeSway;		///<sway trees to simulate wind.
+	bool m_useEmissiveNightMaterials; ///<perform second lighting pass on night buildings. 
 	Int m_textureReduction;	///<reduce texture resolution by dividing in half n times.
-	Bool m_useFpsLimit;	///<don't lock fps to 30hz
-	Bool m_enableDynamicLOD;	///<don't do dynamic lod based on current fps.
-	Bool m_useTrees;			///<don't include trees on map.
+	bool m_useFpsLimit;	///<don't lock fps to 30hz
+	bool m_enableDynamicLOD;	///<don't do dynamic lod based on current fps.
+	bool m_useTrees;			///<don't include trees on map.
 
 };
 
@@ -162,18 +162,18 @@ public:
 	const char *getStaticGameLODLevelName(StaticGameLODLevel level);
 	const char *getDynamicGameLODLevelName(DynamicGameLODLevel level);
 	StaticGameLODLevel findStaticLODLevel(void);	///< calculate the optimal static LOD level for this system.
-	Bool setStaticLODLevel(StaticGameLODLevel level);	///< set the current static LOD level.
+	bool setStaticLODLevel(StaticGameLODLevel level);	///< set the current static LOD level.
 	StaticGameLODLevel getStaticLODLevel(void) { return m_currentStaticLOD;}
 	DynamicGameLODLevel findDynamicLODLevel(Real averageFPS);	///<given an average fps, return the optimal dynamic LOD.
-	Bool setDynamicLODLevel(DynamicGameLODLevel level);	///< set the current dynamic LOD level.
+	bool setDynamicLODLevel(DynamicGameLODLevel level);	///< set the current dynamic LOD level.
 	DynamicGameLODLevel getDynamicLODLevel(void) { return m_currentDynamicLOD;}
 	void init(void);	///<initialize tables of preset LOD's.
 	void setCurrentTextureReduction(Int val) {m_currentTextureReduction = val;}
 	Int getCurrentTextureReduction(void) {return m_currentTextureReduction;}
 	Int getStaticGameLODIndex(AsciiString name);
 	Int getDynamicGameLODIndex(AsciiString name);
-	inline Bool isParticleSkipped(void);
-	inline Bool isDebrisSkipped(void);
+	inline bool isParticleSkipped(void);
+	inline bool isDebrisSkipped(void);
 	inline Real getSlowDeathScale(void);
 	inline ParticlePriorityType getMinDynamicParticlePriority(void);		///<priority at which particles will still render at current FPS.
 	inline ParticlePriorityType	getMinDynamicParticleSkipPriority(void);	///<priority at which particles will never be skipped at any FPS.
@@ -181,9 +181,9 @@ public:
 	Int getLevelTextureReduction(StaticGameLODLevel level);	///<return texture reduction specified in INI for this game detail.
 	LODPresetInfo *newLODPreset(StaticGameLODLevel index);
 	BenchProfile *newBenchProfile(void);
-	Bool didMemPass( void );
+	bool didMemPass( void );
 	void setReallyLowMHz(Int mhz) { m_reallyLowMHz = mhz; }
-	Bool isReallyLowMHz() const { return m_cpuFreq < m_reallyLowMHz; }
+	bool isReallyLowMHz() const { return m_cpuFreq < m_reallyLowMHz; }
 
 	StaticGameLODInfo m_staticGameLODInfo[STATIC_GAME_LOD_COUNT];
 	DynamicGameLODInfo m_dynamicGameLODInfo[DYNAMIC_GAME_LOD_COUNT];
@@ -205,9 +205,9 @@ protected:
 	Real m_slowDeathScale;			///<values < 1.0f are used to accelerate deaths
 	ParticlePriorityType m_minDynamicParticlePriority;	///<only priorities above/including this value are allowed to render.
 	ParticlePriorityType m_minDynamicParticleSkipPriority;	///<priorities above/including this value never skip particles.
-	Bool m_videoPassed;
-	Bool m_cpuPassed;
-	Bool m_memPassed;
+	bool m_videoPassed;
+	bool m_cpuPassed;
+	bool m_memPassed;
 	Int m_numLevelPresets[STATIC_GAME_LOD_CUSTOM];
 	Int m_numBenchProfiles;
 	StaticGameLODLevel m_idealDetailLevel;
@@ -223,12 +223,12 @@ protected:
 	Int m_reallyLowMHz;
 };
 
-Bool GameLODManager::isParticleSkipped(void)
+bool GameLODManager::isParticleSkipped(void)
 {
 	return (++m_numParticleGenerations & m_dynamicParticleSkipMask) != m_dynamicParticleSkipMask;
 }
 
-Bool GameLODManager::isDebrisSkipped(void)
+bool GameLODManager::isDebrisSkipped(void)
 {
 	return (++m_numDebrisGenerations & m_dynamicDebrisSkipMask) != m_dynamicDebrisSkipMask;
 }

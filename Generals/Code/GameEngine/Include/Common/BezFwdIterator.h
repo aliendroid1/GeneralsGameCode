@@ -44,7 +44,7 @@ class BezFwdIterator
 		BezFwdIterator(Int stepsDesired, const BezierSegment *bezSeg);
 	
 		void start(void);
-		Bool done(void);
+		bool done(void);
 		const Coord3D& getCurrent(void) const;
 
 		void next(void);

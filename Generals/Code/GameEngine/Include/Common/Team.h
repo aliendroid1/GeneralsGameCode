@@ -135,7 +135,7 @@ public:
 	TCreateUnitsInfo	m_unitsInfo[MAX_UNIT_TYPES];	///< Quantity of units to create or build.
 	Int								m_numUnitsInfo;								///< Number of entries in m_unitsInfo
 	Coord3D						m_homeLocation;								///< Spawn location for team.
-	Bool							m_hasHomeLocation;						///< True is m_homeLocation is valid.
+	bool							m_hasHomeLocation;						///< True is m_homeLocation is valid.
 	AsciiString				m_scriptOnCreate;							///< Script executed when team is created.
 	AsciiString				m_scriptOnIdle;								///< Script executed when team is idle.
 	Int								m_initialIdleFrames;					///< Number of frames to continue recruiting after the minimum team size is achieved.
@@ -144,13 +144,13 @@ public:
 	AsciiString				m_scriptOnUnitDestroyed;			///< Script executed each time a unit on this team dies.
 	AsciiString				m_scriptOnDestroyed;					///< Script executed m_destroyedThreshold of member units are destroyed.
 	Real							m_destroyedThreshold;					///< OnDestroyed threshold - 1.0 = 100% = all destroyed, .5 = 50% = half of the units destroyed, 0 = useless.
-	Bool							m_isAIRecruitable;						///< True if other ai teams can recruit.
-	Bool							m_isBaseDefense;							///< True if is base defense team.
-	Bool							m_isPerimeterDefense;					///< True if is a perimeter base defense team.
-	Bool							m_automaticallyReinforce;			///< True is team automatically tries to reinforce.
-	Bool							m_transportsReturn;						///< True if transports return to base after unloading.
-	Bool							m_avoidThreats;								///< True if the team avoids threats.
-	Bool							m_attackCommonTarget;					///< True if the team attacks the same target unit.
+	bool							m_isAIRecruitable;						///< True if other ai teams can recruit.
+	bool							m_isBaseDefense;							///< True if is base defense team.
+	bool							m_isPerimeterDefense;					///< True if is a perimeter base defense team.
+	bool							m_automaticallyReinforce;			///< True is team automatically tries to reinforce.
+	bool							m_transportsReturn;						///< True if transports return to base after unloading.
+	bool							m_avoidThreats;								///< True if the team avoids threats.
+	bool							m_attackCommonTarget;					///< True if the team attacks the same target unit.
 	Int								m_maxInstances;								///< Maximum number of instances of a team that is not singleton.
 	mutable Int				m_productionPriority;					///< Production priority.
 	Int								m_productionPrioritySuccessIncrease; ///< Production priority increase on success.
@@ -159,13 +159,13 @@ public:
 
 	AsciiString				m_transportUnitType;					///< Unit used to transport the team.
 	AsciiString				m_startReinforceWaypoint;			///< Waypoint where the reinforcement team starts.
-	Bool							m_teamStartsFull;							///< If true, team loads into member transports.
-	Bool							m_transportsExit;							///< True if the transports leave after deploying team.	
+	bool							m_teamStartsFull;							///< If true, team loads into member transports.
+	bool							m_transportsExit;							///< True if the transports leave after deploying team.	
 	VeterancyLevel		m_veterancy;								///< Veterancy level;
 
 	// Production scripts stuff
 	AsciiString				m_productionCondition;				///< Script that contains the production conditions.
-	Bool							m_executeActions;							///< If this is true, then when the production condition becomes true, we also execute the actions.
+	bool							m_executeActions;							///< If this is true, then when the production condition becomes true, we also execute the actions.
 
 	AsciiString				m_teamGenericScripts[MAX_GENERIC_SCRIPTS];
 protected:
@@ -199,17 +199,17 @@ private:
 
 	AsciiString		m_state;						///< Name of the current AI state.
 
-	Bool					m_enteredOrExited;  ///< True if a team member entered or exited a trigger area this frame.
-	Bool					m_active;						///< True if a team is complete.  False while members are being added.
-	Bool					m_created;					///< True when first activated.
+	bool					m_enteredOrExited;  ///< True if a team member entered or exited a trigger area this frame.
+	bool					m_active;						///< True if a team is complete.  False while members are being added.
+	bool					m_created;					///< True when first activated.
 
 	// Enemy sighted & All Clear:
-	Bool					m_checkEnemySighted;///< True if we have an on enemy sighted or all clear script.
-	Bool					m_seeEnemy;					///< True if we see an enemy.
-	Bool					m_prevSeeEnemy;			///< Last value.
+	bool					m_checkEnemySighted;///< True if we have an on enemy sighted or all clear script.
+	bool					m_seeEnemy;					///< True if we see an enemy.
+	bool					m_prevSeeEnemy;			///< Last value.
 
 	// Idle flag.
-	Bool					m_wasIdle;					///< True if idle last frame.
+	bool					m_wasIdle;					///< True if idle last frame.
 
 	// On %Destroyed
 	Int					m_destroyThreshold;
@@ -219,11 +219,11 @@ private:
 	const Waypoint *m_currentWaypoint;
 
 	// Should check/Execute generic script
-	Bool					m_shouldAttemptGenericScript[MAX_GENERIC_SCRIPTS];
+	bool					m_shouldAttemptGenericScript[MAX_GENERIC_SCRIPTS];
 
 	// Recruitablity.
-	Bool				m_isRecruitablitySet;	///< If false, recruitability is team proto value.  If true, m_isRecruitable.
-	Bool				m_isRecruitable;
+	bool				m_isRecruitablitySet;	///< If false, recruitability is team proto value.  If true, m_isRecruitable.
+	bool				m_isRecruitable;
 
 	// Attack target.
 	ObjectID		m_commonAttackTarget;
@@ -294,7 +294,7 @@ public:
 	/** 
 		Set the team's AI recruitablity.
 	*/
-	void setRecruitable(Bool recruitable) {m_isRecruitablitySet = true; m_isRecruitable = recruitable;}
+	void setRecruitable(bool recruitable) {m_isRecruitablitySet = true; m_isRecruitable = recruitable;}
 
 	/** 
 		Set the team's target object.
@@ -314,12 +314,12 @@ public:
 	/** 
 		Is this team active?
 	*/
-	Bool isActive(void) {return m_active;}
+	bool isActive(void) {return m_active;}
 
 	/** 
 		Is this team just createc?  (stays true one logic frame.)
 	*/
-	Bool isCreated(void) {return m_created;}
+	bool isCreated(void) {return m_created;}
 
 	/** 
 		Note that a team member entered or exited a trigger area.
@@ -329,7 +329,7 @@ public:
 	/** 
 		Did a team member enter or exit a trigger area.
 	*/
-	Bool didEnterOrExit(void) {return m_enteredOrExited;}
+	bool didEnterOrExit(void) {return m_enteredOrExited;}
 
 	/** 
 		Clear the flag that a team member entered or exited a trigger area.
@@ -339,13 +339,13 @@ public:
 
 	void notifyTeamOfObjectDeath( void );
 
-	Bool didAllEnter(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const;					///< All members entered the area
-	Bool didPartialEnter(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const;			///< One member entered the area
-	Bool didAllExit(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const;					///< All members exited the area
-	Bool didPartialExit(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const;			///< One member exited the area
-	Bool allInside(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const;						///< All members are inside the area
-	Bool someInsideSomeOutside(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const;///< One or more in, one or more out.
-	Bool noneInside(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const;					///< No members are in the area.
+	bool didAllEnter(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const;					///< All members entered the area
+	bool didPartialEnter(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const;			///< One member entered the area
+	bool didAllExit(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const;					///< All members exited the area
+	bool didPartialExit(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const;			///< One member exited the area
+	bool allInside(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const;						///< All members are inside the area
+	bool someInsideSomeOutside(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const;///< One or more in, one or more out.
+	bool noneInside(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const;					///< No members are in the area.
 
 	Object * tryToRecruit(const ThingTemplate *, const Coord3D *teamHome, Real maxDist); ///< Try to recruit the closest unit of this thing type.  Return true if successful.
 
@@ -371,7 +371,7 @@ public:
 		remove all special relations for 'this' if that==null.
 		return true if anything removed.
 	*/
-	Bool removeOverrideTeamRelationship( TeamID teamID );
+	bool removeOverrideTeamRelationship( TeamID teamID );
 
 	/**
 		set a special relationship between this team and that Player, that overrides
@@ -386,7 +386,7 @@ public:
 		remove all special relations for 'this' if that==null.
 		return true if anything removed.
 	*/
-	Bool removeOverridePlayerRelationship( Int playerIndex );
+	bool removeOverridePlayerRelationship( Int playerIndex );
 
 	/**
 		a convenience routine to count the number of owned objects that match a set of ThingTemplates.
@@ -394,7 +394,7 @@ public:
 		size. It fills in the array to the correct counts. This is handy because we must traverse
 		the team's list-of-objects only once.
 	*/
-	void countObjectsByThingTemplate(Int numTmplates, const ThingTemplate* const* things, Bool ignoreDead, Int *counts, Bool ignoreUnderConstruction = TRUE ) const;
+	void countObjectsByThingTemplate(Int numTmplates, const ThingTemplate* const* things, bool ignoreDead, Int *counts, bool ignoreUnderConstruction = TRUE ) const;
 	
 	
 	/**
@@ -420,37 +420,37 @@ public:
 	/**
 		a convenience routine to quickly check if any buildings are owned.
 	*/
-	Bool hasAnyBuildings(void) const;
+	bool hasAnyBuildings(void) const;
 
 	/**
 		a convenience routine to quickly check if any buildings with a specific KindOfType flag are owned.
 	*/
-	Bool hasAnyBuildings(KindOfMaskType kindOf) const;
+	bool hasAnyBuildings(KindOfMaskType kindOf) const;
 
 	/**
 		a convenience routine to quickly check if any units are owned.
 	*/
-	Bool hasAnyUnits(void) const;
+	bool hasAnyUnits(void) const;
 
 	/**
 		a convenience routine to quickly check if any objects are owned.
 	*/
-	Bool hasAnyObjects(void) const;
+	bool hasAnyObjects(void) const;
 
 	/**
 		a convenience routine to quickly check if all the units are idle.
 	*/
-	Bool isIdle(void) const;		
+	bool isIdle(void) const;		
 
 	/**
 		a convenience routine to quickly check if any objects are in a trigger area.
 	*/
-	Bool unitsEntered(PolygonTrigger *pTrigger) const;
+	bool unitsEntered(PolygonTrigger *pTrigger) const;
 
 	/**
 		a convenience routine to quickly check if any buildfacilities are owned.
 	*/
-	Bool hasAnyBuildFacility(void) const;
+	bool hasAnyBuildFacility(void) const;
 
 	/**
 		Move team to destination.
@@ -460,7 +460,7 @@ public:
 	/**
 		a convenience routine to quickly destroy a team.
 	*/
-	Bool damageTeamMembers(Real amount);
+	bool damageTeamMembers(Real amount);
 
 	/**
 		a convenience routine to destroy this team. The team goes through all shutdown stuff.
@@ -468,7 +468,7 @@ public:
 		deleted on the next update, if it is a deletable team.
 		IgnoreDead lets you not delete people who are dying anyway.  Needed for scripts.
 	*/
-	void deleteTeam(Bool ignoreDead = FALSE);
+	void deleteTeam(bool ignoreDead = FALSE);
 
 	/**
 		a convenience routine used to estimate the team's position by just returning the position
@@ -523,14 +523,14 @@ public:
 	TeamPrototype( TeamFactory *tf, 
 								 const AsciiString& name, 
 								 Player *ownerPlayer, 
-								 Bool isSingleton, 
+								 bool isSingleton, 
 								 Dict *d,
 								 TeamPrototypeID id );
 	// virtual destructor prototype provided by memory pool object
 
 	inline TeamPrototypeID getID() const { return m_id; }
 	inline const AsciiString& getName() const { return m_name; }
-	inline Bool getIsSingleton() const { return (m_flags & TEAM_SINGLETON) != 0; }
+	inline bool getIsSingleton() const { return (m_flags & TEAM_SINGLETON) != 0; }
 	inline const TeamTemplateInfo *getTemplateInfo(void) const {return &m_teamTemplate;}
 	/**
 		return the team's owner (backtracking up if necessary)
@@ -550,12 +550,12 @@ public:
 	/** 
 		Evaluate team's production condition.
 	*/
-	Bool evaluateProductionCondition(void);
+	bool evaluateProductionCondition(void);
 
 	/**
 		count for all the team instances belonging to this prototype.
 	*/
-	void countObjectsByThingTemplate(Int numTmplates, const ThingTemplate* const* things, Bool ignoreDead, Int *counts, Bool ignoreUnderConstruction = TRUE ) const;
+	void countObjectsByThingTemplate(Int numTmplates, const ThingTemplate* const* things, bool ignoreDead, Int *counts, bool ignoreUnderConstruction = TRUE ) const;
 
 	/**
 		count the buildings owned by this Team template
@@ -588,27 +588,27 @@ public:
 	/**
 		a convenience routine to quickly check if any buildings are owned.
 	*/
-	Bool hasAnyBuildings(void) const;		
+	bool hasAnyBuildings(void) const;		
 
 	/**
 		a convenience routine to quickly check if any buildings with a specific KindOfType flag are owned.
 	*/
-	Bool hasAnyBuildings(KindOfMaskType kindOf) const;
+	bool hasAnyBuildings(KindOfMaskType kindOf) const;
 
 	/**
 		a convenience routine to quickly check if any units are owned.
 	*/
-	Bool hasAnyUnits(void) const;		
+	bool hasAnyUnits(void) const;		
 
 	/**
 		a convenience routine to quickly check if any objects are owned.
 	*/
-	Bool hasAnyObjects(void) const;		
+	bool hasAnyObjects(void) const;		
 
 	/**
 		a convenience routine to quickly check if any buildfacilities are owned.
 	*/
-	Bool hasAnyBuildFacility(void) const;
+	bool hasAnyBuildFacility(void) const;
 
 	/**
 		a convenience routine to quickly destroy a team.
@@ -661,10 +661,10 @@ private:
 	AsciiString						m_name;						///< name of the team(s) produced
 	Int										m_flags;					///< misc team flags
 
-	Bool									m_productionConditionAlwaysFalse; ///< Flag set to true if we don't have a production condition.
+	bool									m_productionConditionAlwaysFalse; ///< Flag set to true if we don't have a production condition.
 	Script								*m_productionConditionScript; ///< Script to evaluate for production condition.
 	
-	Bool									m_retrievedGenericScripts;
+	bool									m_retrievedGenericScripts;
 	Script								*m_genericScriptsToRun[MAX_GENERIC_SCRIPTS];
 	
 	TeamTemplateInfo			m_teamTemplate;						///< Team template info.
@@ -694,7 +694,7 @@ public:
 	void initFromSides(SidesList *sides);
 
 	/// create a new TeamPrototype and if singleton, a team.
-	void initTeam(const AsciiString& name, const AsciiString& owner, Bool isSingleton, Dict *d);
+	void initTeam(const AsciiString& name, const AsciiString& owner, bool isSingleton, Dict *d);
 
 	/// return the TeamPrototype with the given name. if none exists, return null.
 	TeamPrototype *findTeamPrototype(const AsciiString& name);

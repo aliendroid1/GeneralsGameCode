@@ -53,7 +53,7 @@ class DockUpdateModuleData : public UpdateModuleData
 {
 public:
 	Int m_numberApproachPositionsData; // A positive number is an absolute, DYNAMIC_APPROACH_VECTOR_FLAG means dynamic vector
-	Bool m_isAllowPassthrough;
+	bool m_isAllowPassthrough;
 
 	DockUpdateModuleData();
 	static void buildFieldParse(MultiIniFieldParse& p);
@@ -75,27 +75,27 @@ public:
 	/** Returns true if it is okay for the docker to approach and prepare to dock.
 			False could mean the queue is full, for example.
 	*/
-	virtual Bool isClearToApproach( Object const* docker ) const;
+	virtual bool isClearToApproach( Object const* docker ) const;
 
 	/** Give me a Queue point to drive to, and record that that point is taken.
 			Returning NULL means there are none free
 	*/
-	virtual Bool reserveApproachPosition( Object* docker, Coord3D *position, Int *index );
+	virtual bool reserveApproachPosition( Object* docker, Coord3D *position, Int *index );
 
 	/** Give me the next Queue point to drive to, and record that that point is taken.
 	*/
-	virtual Bool advanceApproachPosition( Object* docker, Coord3D *position, Int *index );
+	virtual bool advanceApproachPosition( Object* docker, Coord3D *position, Int *index );
 
 	/** Return true when it is OK for docker to begin entering the dock 
 			The Dock will lift the restriction on one particular docker on its own, 
 			so you must continually ask.
 	*/
-	virtual Bool isClearToEnter( Object const* docker ) const;
+	virtual bool isClearToEnter( Object const* docker ) const;
 
 	/** Return true when it is OK for docker to request a new Approach position.  The dock is in
 			charge of keeping track of holes in the line, but the docker will remind us of their spot.
 	*/
-	virtual Bool isClearToAdvance( Object const* docker, Int dockerIndex ) const;
+	virtual bool isClearToAdvance( Object const* docker, Int dockerIndex ) const;
 
 	/** Give me the point that is the start of your docking path
 			Returning NULL means there is none free
@@ -120,14 +120,14 @@ public:
 
 	virtual void cancelDock( Object* docker );	///< Clear me from any reserved points, and if I was the reason you were Busy, you aren't anymore.
 
-	virtual Bool isDockOpen( void ) { return m_dockOpen; }				///< Is the dock open to accepting dockers
-	virtual void setDockOpen( Bool open ) { m_dockOpen = open; }	///< Open/Close the dock
+	virtual bool isDockOpen( void ) { return m_dockOpen; }				///< Is the dock open to accepting dockers
+	virtual void setDockOpen( bool open ) { m_dockOpen = open; }	///< Open/Close the dock
 
-	virtual Bool isAllowPassthroughType();	///< Not all docks allow you to path through them in your AIDock machine
+	virtual bool isAllowPassthroughType();	///< Not all docks allow you to path through them in your AIDock machine
 
-	virtual Bool isRallyPointAfterDockType(){return FALSE;} ///< A minority of docks want to give you a final command to their rally point
+	virtual bool isRallyPointAfterDockType(){return FALSE;} ///< A minority of docks want to give you a final command to their rally point
 	
-	virtual void setDockCrippled( Bool setting ); ///< Game Logic can set me as inoperative.  I get to decide what that means.
+	virtual void setDockCrippled( bool setting ); ///< Game Logic can set me as inoperative.  I get to decide what that means.
 
 	virtual UpdateSleepTime update();	///< In charge of lifting dock restriction for one registered as Approached if all is ready
 
@@ -141,17 +141,17 @@ protected:
 	Int m_numberApproachPositionBones;
 
 	// These are real variables local to my specific needs here in DockUpdate
-	Bool m_positionsLoaded;	///< FALSE until we have loaded all the docking positions
+	bool m_positionsLoaded;	///< FALSE until we have loaded all the docking positions
 
 	VecCoord3D m_approachPositions;
 	ObjectIDVector m_approachPositionOwners;	///< Who is in or at least reserved each spot
-	BoolVector m_approachPositionReached;			///< Which positions have actually been reached 
+	boolVector m_approachPositionReached;			///< Which positions have actually been reached 
 
 	ObjectID m_activeDocker;	///< we could expand this to multiple dock paths since we always get docker in our methods
-	Bool m_dockerInside; ///< This is true while our active docker is between Enter and Exit. This is shorter than activeDocker's lifetime as it doesn't include approach to enter
-	Bool m_dockCrippled; ///< Has game logic set me as crippled?
+	bool m_dockerInside; ///< This is true while our active docker is between Enter and Exit. This is shorter than activeDocker's lifetime as it doesn't include approach to enter
+	bool m_dockCrippled; ///< Has game logic set me as crippled?
 
-	Bool m_dockOpen;  ///< Is the dock open for dockers
+	bool m_dockOpen;  ///< Is the dock open for dockers
 
 	void loadDockPositions();  ///< load all the dock positions 
 	Coord3D computeApproachPosition( Int positionIndex, Object *forWhom ); ///< Do a smart lookup of this bone position

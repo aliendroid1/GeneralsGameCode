@@ -45,15 +45,15 @@ class TunnelTracker : public MemoryPoolObject,
 public:
 	TunnelTracker();
 	// contain list access
-	void iterateContained( ContainIterateFunc func, void *userData, Bool reverse );
+	void iterateContained( ContainIterateFunc func, void *userData, bool reverse );
 	UnsignedInt getContainCount() const { return m_containListSize; }
 	Int getContainMax() const;
 	const ContainedItemsList* getContainedItemsList() const { return &m_containList; }	
 
-	Bool isValidContainerFor(const Object* obj, Bool checkCapacity) const;
+	bool isValidContainerFor(const Object* obj, bool checkCapacity) const;
 	void addToContainList( Object *obj );				///< add 'obj' to contain list
-	void removeFromContain( Object *obj, Bool exposeStealthUnits = FALSE );	///< remove 'obj' from contain list
-	Bool isInContainer( Object *obj );				///< Is this thing inside?
+	void removeFromContain( Object *obj, bool exposeStealthUnits = FALSE );	///< remove 'obj' from contain list
+	bool isInContainer( Object *obj );				///< Is this thing inside?
 
 	void onTunnelCreated( const Object *newTunnel );		///< A tunnel was made
 	void onTunnelDestroyed( const Object *deadTunnel );	///< A tunnel was destroyed

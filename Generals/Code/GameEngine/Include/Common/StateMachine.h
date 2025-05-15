@@ -59,7 +59,7 @@ class Object;
 
 enum { MACHINE_DONE_STATE_ID = 999998, INVALID_STATE_ID = 999999 };
 typedef UnsignedInt StateID;									///< used to denote individual states
-typedef Bool (*StateTransFuncPtr)( State *state, void* userData );
+typedef bool (*StateTransFuncPtr)( State *state, void* userData );
 
 /**
  * State return codes
@@ -153,10 +153,10 @@ public:
 	virtual void onExit( StateExitType status ) { }											///< executed once when leaving state
 	virtual StateReturnType update() = 0;	///< implements this state's behavior, decides when to change state
 
-	virtual Bool isIdle() const { return false; }
-	virtual Bool isAttack() const { return false; }
+	virtual bool isIdle() const { return false; }
+	virtual bool isAttack() const { return false; }
 	//Definition of busy -- when explicitly in the busy state. Moving or attacking is not considered busy!
-	virtual Bool isBusy() const { return false; }
+	virtual bool isBusy() const { return false; }
 
 	inline StateMachine* getMachine() { return m_machine; }		///< return the machine this state is part of
 	inline StateID getID() const { return m_ID; }			///< get this state's id 
@@ -262,12 +262,12 @@ public:
 	virtual StateReturnType setState( StateID newStateID );			///< change the current state of the machine (which may cause further state changes, due to onEnter)
 
 	StateID getCurrentStateID() const { return m_currentState ? m_currentState->getID() : INVALID_STATE_ID; }	///< return the id of the current state of the machine
-	Bool isInIdleState() const { return m_currentState ? m_currentState->isIdle() : true; }	// stateless things are considered 'idle'
-	Bool isInAttackState() const { return m_currentState ? m_currentState->isAttack() : true; }	// stateless things are considered 'idle'
-	Bool isInForceAttackState() const { return m_currentState ? m_currentState->isIdle() : true; }	// stateless things are considered 'idle'
+	bool isInIdleState() const { return m_currentState ? m_currentState->isIdle() : true; }	// stateless things are considered 'idle'
+	bool isInAttackState() const { return m_currentState ? m_currentState->isAttack() : true; }	// stateless things are considered 'idle'
+	bool isInForceAttackState() const { return m_currentState ? m_currentState->isIdle() : true; }	// stateless things are considered 'idle'
 
 	//Definition of busy -- when explicitly in the busy state. Moving or attacking is not considered busy!
-	Bool isInBusyState() const { return m_currentState ? m_currentState->isBusy() : false; }	// stateless things are not considered 'busy'
+	bool isInBusyState() const { return m_currentState ? m_currentState->isBusy() : false; }	// stateless things are not considered 'busy'
 
 	// no, this is now deprecated. you should strive to avoid having to get the current state.
 	// try to make do with getCurrentStateID() or isInIdleState() instead. (srj)
@@ -293,7 +293,7 @@ public:
 #endif
 	}
 
-	Bool isLocked() const { return m_locked; }
+	bool isLocked() const { return m_locked; }
 
 	/**
 	 * Get the object that "owns" this machine.
@@ -309,7 +309,7 @@ public:
 	const Object *getGoalObject() const;
 	void setGoalPosition( const Coord3D *pos );
 	const Coord3D *getGoalPosition() const { return &m_goalPosition; }
-	Bool isGoalObjectDestroyed() const;  ///< Returns true if we had a goal object, but it has been destroyed. 
+	bool isGoalObjectDestroyed() const;  ///< Returns true if we had a goal object, but it has been destroyed. 
 	
 	virtual void halt(void); ///< Stops the state machine & disables it in preparation for deleting it.
 
@@ -323,13 +323,13 @@ public:
 #endif
 
 #ifdef STATE_MACHINE_DEBUG
-	Bool getWantsDebugOutput() const;
-	void setDebugOutput( Bool output ) { m_debugOutput = output; }
+	bool getWantsDebugOutput() const;
+	void setDebugOutput( bool output ) { m_debugOutput = output; }
 	void setName( AsciiString name) {m_name = name;}
 	inline AsciiString getName() const {return m_name;}
 	virtual AsciiString getCurrentStateName() const { return m_currentState ? m_currentState->getName() : AsciiString::TheEmptyString;}
 #else
-	inline Bool getWantsDebugOutput() const { return false; }
+	inline bool getWantsDebugOutput() const { return false; }
 	inline AsciiString getCurrentStateName() const { return AsciiString::TheEmptyString;}
 #endif
 
@@ -372,11 +372,11 @@ private:
 	ObjectID			m_goalObjectID;										///< the object of interest for this state
 	Coord3D				m_goalPosition;										///< the position of interest for this state
 
-	Bool					m_locked;													///< whether this machine is locked or not
-	Bool					m_defaultStateInited;							///< if initDefaultState has been called
+	bool					m_locked;													///< whether this machine is locked or not
+	bool					m_defaultStateInited;							///< if initDefaultState has been called
 
 #ifdef STATE_MACHINE_DEBUG
-	Bool					m_debugOutput;
+	bool					m_debugOutput;
 	AsciiString		m_name;													///< Human readable name of this state - for debugging.  jba.
 	const char*		m_lockedby;
 #endif

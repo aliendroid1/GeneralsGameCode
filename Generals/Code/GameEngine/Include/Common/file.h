@@ -115,8 +115,8 @@ class File : public MemoryPoolObject
 
 		AsciiString	m_nameStr;						///< Stores file name
 		Int					m_access;									///< How the file was opened
-		Bool				m_open;										///< Has the file been opened
-		Bool				m_deleteOnClose;					///< delete File object on close()
+		bool				m_open;										///< Has the file been opened
+		bool				m_deleteOnClose;					///< delete File object on close()
 		
 		
 		File();											///< This class can only used as a base class
@@ -125,8 +125,8 @@ class File : public MemoryPoolObject
 	public:
 		
 
-						Bool	eof();
-		virtual Bool	open( const Char *filename, Int access = 0 );				///< Open a file for access
+						bool	eof();
+		virtual bool	open( const Char *filename, Int access = 0 );				///< Open a file for access
 		virtual void	close( void );																			///< Close the file !!! File object no longer valid after this call !!!
 
 		virtual Int		read( void *buffer, Int bytes ) = NULL ;						/**< Read the specified number of bytes from the file in to the 
@@ -149,11 +149,11 @@ class File : public MemoryPoolObject
 																																				*/
 		virtual void	nextLine(Char *buf = NULL, Int bufSize = 0) = 0;		///< reads until it reaches a new-line character
 
-		virtual Bool	scanInt(Int &newInt) = 0;														///< read an integer from the current file position.
-		virtual Bool	scanReal(Real &newReal) = 0;												///< read a real number from the current file position.
-		virtual Bool	scanString(AsciiString &newString) = 0;							///< read a string from the current file position.
+		virtual bool	scanInt(Int &newInt) = 0;														///< read an integer from the current file position.
+		virtual bool	scanReal(Real &newReal) = 0;												///< read a real number from the current file position.
+		virtual bool	scanString(AsciiString &newString) = 0;							///< read a string from the current file position.
 
-		virtual Bool	print ( const Char *format, ...);										///< Prints formated string to text file
+		virtual bool	print ( const Char *format, ...);										///< Prints formated string to text file
 		virtual Int		size( void );																				///< Returns the size of the file
 		virtual Int		position( void );																		///< Returns the current read/write position
 

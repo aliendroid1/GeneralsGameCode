@@ -84,11 +84,11 @@ class SoundManager : public SubsystemInterface
 		virtual AsciiString getFilenameForPlayFromAudioEvent( const AudioEventRTS *eventToGetFrom );
 
 		// called by this class and MilesAudioManager to determine if a sound can still be played
-		virtual Bool canPlayNow( AudioEventRTS *event );
+		virtual bool canPlayNow( AudioEventRTS *event );
 
 	protected:
-		virtual Bool violatesVoice( AudioEventRTS *event );
-		virtual Bool isInterrupting( AudioEventRTS *event );
+		virtual bool violatesVoice( AudioEventRTS *event );
+		virtual bool isInterrupting( AudioEventRTS *event );
 		
 
 	protected:

@@ -150,7 +150,7 @@ class AudioManager : public SubsystemInterface
 		virtual void stopAudio( AudioAffect which ) = 0;
 		virtual void pauseAudio( AudioAffect which ) = 0;
 		virtual void resumeAudio( AudioAffect which ) = 0;
-		virtual void pauseAmbient( Bool shouldPause ) = 0;
+		virtual void pauseAmbient( bool shouldPause ) = 0;
 
 		// for focus issues
 		virtual void loseFocus( void );
@@ -161,8 +161,8 @@ class AudioManager : public SubsystemInterface
 		virtual void removeAudioEvent( AudioHandle audioEvent );	///< Remove an audio event, stop for instance.
 		virtual void killAudioEventImmediately( AudioHandle audioEvent ) = 0;
 
-		virtual Bool isValidAudioEvent( const AudioEventRTS *eventToCheck ) const;	///< validate that this piece of audio exists
-		virtual Bool isValidAudioEvent( AudioEventRTS *eventToCheck ) const;	///< validate that this piece of audio exists
+		virtual bool isValidAudioEvent( const AudioEventRTS *eventToCheck ) const;	///< validate that this piece of audio exists
+		virtual bool isValidAudioEvent( AudioEventRTS *eventToCheck ) const;	///< validate that this piece of audio exists
 
 		// add tracks during INIification
 		void addTrackName( const AsciiString& trackName );
@@ -172,11 +172,11 @@ class AudioManager : public SubsystemInterface
 		// changing music tracks
 		virtual void nextMusicTrack( void ) = 0;
 		virtual void prevMusicTrack( void ) = 0;
-		virtual Bool isMusicPlaying( void ) const = 0;
-		virtual Bool hasMusicTrackCompleted( const AsciiString& trackName, Int numberOfTimes ) const = 0;
+		virtual bool isMusicPlaying( void ) const = 0;
+		virtual bool hasMusicTrackCompleted( const AsciiString& trackName, Int numberOfTimes ) const = 0;
 		virtual AsciiString getMusicTrackName( void ) const = 0;
 
-		virtual void setAudioEventEnabled( AsciiString eventToAffect, Bool enable );
+		virtual void setAudioEventEnabled( AsciiString eventToAffect, bool enable );
 		virtual void setAudioEventVolumeOverride( AsciiString eventToAffect, Real newVolume );
 		virtual void removeAudioEvent( AsciiString eventToRemove );
 		virtual void removeDisabledEvents();
@@ -186,7 +186,7 @@ class AudioManager : public SubsystemInterface
 
 		///< Return whether the current audio is playing or not. 
 		///< NOTE NOTE NOTE !!DO NOT USE THIS IN FOR GAMELOGIC PURPOSES!! NOTE NOTE NOTE
-		virtual Bool isCurrentlyPlaying( AudioHandle handle );
+		virtual bool isCurrentlyPlaying( AudioHandle handle );
 
 		// Device Dependent open and close functions
 		virtual void openDevice( void ) = 0;
@@ -215,18 +215,18 @@ class AudioManager : public SubsystemInterface
 		virtual UnsignedInt getNumStreams( void ) const = 0;
 
 		// Device Dependent calls to determine sound prioritization info
-		virtual Bool doesViolateLimit( AudioEventRTS *event ) const = 0;
-		virtual Bool isPlayingLowerPriority( AudioEventRTS *event ) const = 0;
-		virtual Bool isPlayingAlready( AudioEventRTS *event ) const = 0;
-		virtual Bool isObjectPlayingVoice( UnsignedInt objID ) const = 0;
+		virtual bool doesViolateLimit( AudioEventRTS *event ) const = 0;
+		virtual bool isPlayingLowerPriority( AudioEventRTS *event ) const = 0;
+		virtual bool isPlayingAlready( AudioEventRTS *event ) const = 0;
+		virtual bool isObjectPlayingVoice( UnsignedInt objID ) const = 0;
 
 		virtual void adjustVolumeOfPlayingAudio(AsciiString eventName, Real newVolume) = 0;
 		virtual void removePlayingAudio( AsciiString eventName ) = 0;
 		virtual void removeAllDisabledAudio() = 0;
 		
 		// Is the audio device on? We can skip a lot of audio processing if not.
-		virtual Bool isOn( AudioAffect whichToGet ) const;
-		virtual void setOn( Bool turnOn, AudioAffect whichToAffect );
+		virtual bool isOn( AudioAffect whichToGet ) const;
+		virtual void setOn( bool turnOn, AudioAffect whichToAffect );
 
 		// Set and get the device Volume
 		virtual void setVolume( Real volume, AudioAffect whichToAffect );
@@ -236,7 +236,7 @@ class AudioManager : public SubsystemInterface
 		// on zoom.
 		virtual void set3DVolumeAdjustment( Real volumeAdjustment );
 
-    virtual Bool has3DSensitiveStreamsPlaying( void ) const = 0;
+    virtual bool has3DSensitiveStreamsPlaying( void ) const = 0;
 
  		virtual void *getHandleForBink( void ) = 0;
  		virtual void releaseHandleForBink( void ) = 0;
@@ -249,7 +249,7 @@ class AudioManager : public SubsystemInterface
 		virtual void setListenerPosition( const Coord3D *newListenerPos, const Coord3D *newListenerOrientation );
 		virtual const Coord3D *getListenerPosition( void ) const;
 
-		virtual AudioRequest *allocateAudioRequest( Bool useAudioEvent );
+		virtual AudioRequest *allocateAudioRequest( bool useAudioEvent );
 		virtual void releaseAudioRequest( AudioRequest *requestToRelease );
 		virtual void appendAudioRequest( AudioRequest *m_request );
 		virtual void processRequestList( void );
@@ -271,11 +271,11 @@ class AudioManager : public SubsystemInterface
 
 		const AudioEventRTS *getValidSilentAudioEvent() const { return m_silentAudioEvent; }
 
-		virtual void setHardwareAccelerated(Bool accel) { m_hardwareAccel = accel; }
-		virtual Bool getHardwareAccelerated() { return m_hardwareAccel; }
+		virtual void setHardwareAccelerated(bool accel) { m_hardwareAccel = accel; }
+		virtual bool getHardwareAccelerated() { return m_hardwareAccel; }
 
-		virtual void setSpeakerSurround(Bool surround) { m_surroundSpeakers = surround; }
-		virtual Bool getSpeakerSurround() { return m_surroundSpeakers; }
+		virtual void setSpeakerSurround(bool surround) { m_surroundSpeakers = surround; }
+		virtual bool getSpeakerSurround() { return m_surroundSpeakers; }
 
 		virtual void refreshCachedVariables();
 
@@ -289,11 +289,11 @@ class AudioManager : public SubsystemInterface
 		// For the file cache to know when to remove files.
 		virtual void closeAnySamplesUsingFile( const void *fileToClose ) = 0;
 		
-		virtual Bool isMusicAlreadyLoaded(void) const;
-		virtual Bool isMusicPlayingFromCD(void) const { return m_musicPlayingFromCD; }
+		virtual bool isMusicAlreadyLoaded(void) const;
+		virtual bool isMusicPlayingFromCD(void) const { return m_musicPlayingFromCD; }
 
-		Bool getDisallowSpeech( void ) const { return m_disallowSpeech; }
-		void setDisallowSpeech( Bool disallowSpeech ) { m_disallowSpeech = disallowSpeech; }	
+		bool getDisallowSpeech( void ) const { return m_disallowSpeech; }
+		void setDisallowSpeech( bool disallowSpeech ) { m_disallowSpeech = disallowSpeech; }	
 
 		// For Worldbuilder, to build lists from which to select
 		virtual void findAllAudioEventsOfType( AudioType audioType, std::vector<AudioEventInfo*>& allEvents );
@@ -303,13 +303,13 @@ class AudioManager : public SubsystemInterface
 	protected:
 
 		// Is the currently selected provider actually HW accelerated?
-		virtual Bool isCurrentProviderHardwareAccelerated();
+		virtual bool isCurrentProviderHardwareAccelerated();
 	
 		// Is the currently selected speaker type Surround sound?
-		virtual Bool isCurrentSpeakerTypeSurroundSound();
+		virtual bool isCurrentSpeakerTypeSurroundSound();
 
 		// Should this piece of audio play on the local machine?
-		virtual Bool shouldPlayLocally(const AudioEventRTS *audioEvent);
+		virtual bool shouldPlayLocally(const AudioEventRTS *audioEvent);
 
 		// Set the Listening position for the device
 		virtual void setDeviceListenerPosition( void ) = 0;
@@ -359,17 +359,17 @@ class AudioManager : public SubsystemInterface
 		Real *m_savedValues;
 
 		// Group of 8
-		Bool m_speechOn						: 1;
-		Bool m_soundOn						: 1;
-		Bool m_sound3DOn					: 1;
-		Bool m_musicOn						: 1;
-		Bool m_volumeHasChanged		: 1;
-		Bool m_hardwareAccel			: 1;
-		Bool m_surroundSpeakers		: 1;
-		Bool m_musicPlayingFromCD : 1;
+		bool m_speechOn						: 1;
+		bool m_soundOn						: 1;
+		bool m_sound3DOn					: 1;
+		bool m_musicOn						: 1;
+		bool m_volumeHasChanged		: 1;
+		bool m_hardwareAccel			: 1;
+		bool m_surroundSpeakers		: 1;
+		bool m_musicPlayingFromCD : 1;
 
 		// Next 8
-		Bool m_disallowSpeech			: 1;
+		bool m_disallowSpeech			: 1;
 };
 
 extern AudioManager *TheAudio;

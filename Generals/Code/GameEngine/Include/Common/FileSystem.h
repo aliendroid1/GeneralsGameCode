@@ -128,13 +128,13 @@ public:
 	void update();
 
 	File* openFile( const Char *filename, Int access = 0 );		///< opens a File interface to the specified file
-	Bool doesFileExist(const Char *filename) const;								///< returns TRUE if the file exists.  filename should have no directory.
-	void getFileListInDirectory(const AsciiString& directory, const AsciiString& searchName, FilenameList &filenameList, Bool searchSubdirectories) const; ///< search the given directory for files matching the searchName (egs. *.ini, *.rep).  Possibly search subdirectories.
-	Bool getFileInfo(const AsciiString& filename, FileInfo *fileInfo) const; ///< fills in the FileInfo struct for the file given. returns TRUE if successful.
+	bool doesFileExist(const Char *filename) const;								///< returns TRUE if the file exists.  filename should have no directory.
+	void getFileListInDirectory(const AsciiString& directory, const AsciiString& searchName, FilenameList &filenameList, bool searchSubdirectories) const; ///< search the given directory for files matching the searchName (egs. *.ini, *.rep).  Possibly search subdirectories.
+	bool getFileInfo(const AsciiString& filename, FileInfo *fileInfo) const; ///< fills in the FileInfo struct for the file given. returns TRUE if successful.
 
-	Bool createDirectory(AsciiString directory); ///< create a directory of the given name.
+	bool createDirectory(AsciiString directory); ///< create a directory of the given name.
 
-	Bool areMusicFilesOnCD();
+	bool areMusicFilesOnCD();
 	void loadMusicFilesFromCD();
 	void unloadMusicFilesFromCD();
 protected:

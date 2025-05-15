@@ -46,10 +46,10 @@ public:
 	virtual void update() = 0;
 
 	virtual File * openFile(const Char *filename, Int access = 0) = 0;
-	virtual Bool doesFileExist(const Char *filename) const = 0;
-	virtual void getFileListInDirectory(const AsciiString& currentDirectory, const AsciiString& originalDirectory, const AsciiString& searchName, FilenameList &filenameList, Bool searchSubdirectories) const = 0; ///< search the given directory for files matching the searchName (egs. *.ini, *.rep).  Possibly search subdirectories.
-	virtual Bool getFileInfo(const AsciiString& filename, FileInfo *fileInfo) const = 0; ///< see FileSystem.h
-	virtual Bool createDirectory(AsciiString directory) = 0; ///< see FileSystem.h
+	virtual bool doesFileExist(const Char *filename) const = 0;
+	virtual void getFileListInDirectory(const AsciiString& currentDirectory, const AsciiString& originalDirectory, const AsciiString& searchName, FilenameList &filenameList, bool searchSubdirectories) const = 0; ///< search the given directory for files matching the searchName (egs. *.ini, *.rep).  Possibly search subdirectories.
+	virtual bool getFileInfo(const AsciiString& filename, FileInfo *fileInfo) const = 0; ///< see FileSystem.h
+	virtual bool createDirectory(AsciiString directory) = 0; ///< see FileSystem.h
 
 protected:
 };

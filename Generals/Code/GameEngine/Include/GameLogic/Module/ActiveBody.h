@@ -79,7 +79,7 @@ public:
 	virtual Real getHealth() const;													///< get current health
 	virtual BodyDamageType getDamageState() const;
 	virtual void setDamageState( BodyDamageType newState );	///< control damage state directly.  Will adjust hitpoints.
-	virtual void setAflame( Bool setting );///< This is a major change like a damage state.  
+	virtual void setAflame( bool setting );///< This is a major change like a damage state.  
 
 	virtual const DamageInfo *getLastDamageInfo() const { return &m_lastDamageInfo; }	///< return info on last damage dealt to this object
 	virtual UnsignedInt getLastDamageTimestamp() const { return m_lastDamageTimestamp; }	///< return frame of last damage dealt
@@ -95,17 +95,17 @@ public:
 	virtual void setInitialHealth(Int initialPercent); ///< Sets the inital load health %.
 	virtual void setMaxHealth( Real maxHealth, MaxHealthChangeType healthChangeType = SAME_CURRENTHEALTH ); ///< Sets the inital max health
 
-	virtual Bool getFrontCrushed() const { return m_frontCrushed; }
-	virtual Bool getBackCrushed() const { return m_backCrushed; }
+	virtual bool getFrontCrushed() const { return m_frontCrushed; }
+	virtual bool getBackCrushed() const { return m_backCrushed; }
 
-	virtual void setFrontCrushed(Bool v) { m_frontCrushed = v; }
-	virtual void setBackCrushed(Bool v) { m_backCrushed = v; }
+	virtual void setFrontCrushed(bool v) { m_frontCrushed = v; }
+	virtual void setBackCrushed(bool v) { m_backCrushed = v; }
 
 	virtual Real getMaxHealth() const;  ///< return max health
 	virtual Real getInitialHealth() const;  // return initial health
 
-	virtual void setIndestructible( Bool indestructible );
-	virtual Bool isIndestructible( void ) const { return m_indestructible; }
+	virtual void setIndestructible( bool indestructible );
+	virtual bool isIndestructible( void ) const { return m_indestructible; }
 
 	virtual void internalChangeHealth( Real delta );								///< change health
 

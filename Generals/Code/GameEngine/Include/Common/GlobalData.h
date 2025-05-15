@@ -71,7 +71,7 @@ public:
 	void reset();
 	void update() { }
 
-	Bool setTimeOfDay( TimeOfDay tod );		///< Use this function to set the Time of day;
+	bool setTimeOfDay( TimeOfDay tod );		///< Use this function to set the Time of day;
 
 	static void parseGameDataDefinition( INI* ini );
 
@@ -89,47 +89,47 @@ public:
 
 	AsciiString m_mapName;  ///< hack for now, this whole this is going away
 	AsciiString m_moveHintName;
-	Bool m_useTrees;
-	Bool m_useTreeSway;
-	Bool m_useDrawModuleLOD;
-	Bool m_useFpsLimit;
-	Bool m_dumpAssetUsage;
+	bool m_useTrees;
+	bool m_useTreeSway;
+	bool m_useDrawModuleLOD;
+	bool m_useFpsLimit;
+	bool m_dumpAssetUsage;
 	Int m_framesPerSecondLimit;
 	Int	m_chipSetType;	///<See W3DShaderManager::ChipsetType for options
-	Bool m_windowed;
+	bool m_windowed;
 	Int m_xResolution;
 	Int m_yResolution;
 	Int m_maxShellScreens;  ///< this many shells layouts can be loaded at once
-	Bool m_useCloudMap;
+	bool m_useCloudMap;
 	Int  m_use3WayTerrainBlends;	///< 0 is none, 1 is normal, 2 is debug.
-	Bool m_useLightMap;
-	Bool m_bilinearTerrainTex;
-	Bool m_trilinearTerrainTex;
-	Bool m_multiPassTerrain;
-	Bool m_adjustCliffTextures;
-	Bool m_stretchTerrain;
-	Bool m_useHalfHeightMap;
-	Bool m_drawEntireTerrain;
+	bool m_useLightMap;
+	bool m_bilinearTerrainTex;
+	bool m_trilinearTerrainTex;
+	bool m_multiPassTerrain;
+	bool m_adjustCliffTextures;
+	bool m_stretchTerrain;
+	bool m_useHalfHeightMap;
+	bool m_drawEntireTerrain;
 	_TerrainLOD m_terrainLOD;
-	Bool m_enableDynamicLOD;
-	Bool m_enableStaticLOD;
+	bool m_enableDynamicLOD;
+	bool m_enableStaticLOD;
 	Int m_terrainLODTargetTimeMS;
-	Bool m_useAlternateMouse;
-	Bool m_rightMouseAlwaysScrolls;
-	Bool m_useWaterPlane;
-	Bool m_useCloudPlane;
-	Bool m_useShadowVolumes;
-	Bool m_useShadowDecals;
+	bool m_useAlternateMouse;
+	bool m_rightMouseAlwaysScrolls;
+	bool m_useWaterPlane;
+	bool m_useCloudPlane;
+	bool m_useShadowVolumes;
+	bool m_useShadowDecals;
 	Int  m_textureReductionFactor;	//how much to cut texture resolution: 2 is half, 3 is quarter, etc.
-	Bool m_enableBehindBuildingMarkers;
+	bool m_enableBehindBuildingMarkers;
 	Real m_waterPositionX;
 	Real m_waterPositionY;
 	Real m_waterPositionZ;
 	Real m_waterExtentX;	
 	Real m_waterExtentY;
 	Int	m_waterType;
-	Bool m_showSoftWaterEdge;
-	Bool m_usingWaterTrackEditor;
+	bool m_showSoftWaterEdge;
+	bool m_usingWaterTrackEditor;
 
 	Int m_featherWater;
 
@@ -168,9 +168,9 @@ public:
 	Real m_stealthFriendlyOpacity;
 	UnsignedInt m_defaultOcclusionDelay;	///<time to delay building occlusion after object is created.
 
-	Bool m_preloadAssets;
-	Bool m_preloadEverything;			///< Preload everything, everywhere (for debugging only)
-	Bool m_preloadReport;					///< dump a log of all W3D assets that are being preloaded.
+	bool m_preloadAssets;
+	bool m_preloadEverything;			///< Preload everything, everywhere (for debugging only)
+	bool m_preloadReport;					///< dump a log of all W3D assets that are being preloaded.
 
 	Real m_partitionCellSize;
 
@@ -199,10 +199,10 @@ public:
 
 	TimeOfDay	m_timeOfDay;
 	Weather m_weather;
-	Bool m_makeTrackMarks;
-	Bool m_hideGarrisonFlags;
-	Bool m_forceModelsToFollowTimeOfDay;
-	Bool m_forceModelsToFollowWeather;
+	bool m_makeTrackMarks;
+	bool m_hideGarrisonFlags;
+	bool m_forceModelsToFollowTimeOfDay;
+	bool m_forceModelsToFollowWeather;
 
 	TerrainLighting	m_terrainLighting[TIME_OF_DAY_COUNT][MAX_GLOBAL_LIGHTS];
 	TerrainLighting	m_terrainObjectsLighting[TIME_OF_DAY_COUNT][MAX_GLOBAL_LIGHTS];
@@ -229,35 +229,35 @@ public:
 	Int m_maxRoadIndex;
 	Int m_maxRoadTypes;
 
-	Bool m_audioOn;
-	Bool m_musicOn;
-	Bool m_soundsOn;
-	Bool m_sounds3DOn;
-	Bool m_speechOn;
-	Bool m_videoOn;
-	Bool m_disableCameraMovement;
+	bool m_audioOn;
+	bool m_musicOn;
+	bool m_soundsOn;
+	bool m_sounds3DOn;
+	bool m_speechOn;
+	bool m_videoOn;
+	bool m_disableCameraMovement;
 
-	Bool m_useFX;									///< If false, don't render effects
-	Bool m_showClientPhysics;
-	Bool m_showTerrainNormals;
+	bool m_useFX;									///< If false, don't render effects
+	bool m_showClientPhysics;
+	bool m_showTerrainNormals;
 
 	UnsignedInt m_noDraw;					///< Used to disable drawing, to profile game logic code.
 	AIDebugOptions m_debugAI;			///< Used to display AI debug information
-	Bool m_debugSupplyCenterPlacement; ///< Dumps to log everywhere it thinks about placing a supply center
-	Bool m_debugAIObstacles;			///< Used to display AI obstacle debug information
-	Bool m_showObjectHealth;			///< debug display object health
-	Bool m_scriptDebug;						///< Should we attempt to load the script debugger window (.DLL)
-	Bool m_particleEdit;					///< Should we attempt to load the particle editor (.DLL)
-	Bool m_displayDebug;					///< Used to display display debug info
-	Bool m_winCursors;						///< Should we force use of windows cursors?
-	Bool m_constantDebugUpdate;		///< should we update the debug stats constantly, vs every 2 seconds?
-	Bool m_showTeamDot;						///< Shows the little colored team dot representing which team you are controlling.
+	bool m_debugSupplyCenterPlacement; ///< Dumps to log everywhere it thinks about placing a supply center
+	bool m_debugAIObstacles;			///< Used to display AI obstacle debug information
+	bool m_showObjectHealth;			///< debug display object health
+	bool m_scriptDebug;						///< Should we attempt to load the script debugger window (.DLL)
+	bool m_particleEdit;					///< Should we attempt to load the particle editor (.DLL)
+	bool m_displayDebug;					///< Used to display display debug info
+	bool m_winCursors;						///< Should we force use of windows cursors?
+	bool m_constantDebugUpdate;		///< should we update the debug stats constantly, vs every 2 seconds?
+	bool m_showTeamDot;						///< Shows the little colored team dot representing which team you are controlling.
 	
 #ifdef DUMP_PERF_STATS
-	Bool m_dumpPerformanceStatistics;
+	bool m_dumpPerformanceStatistics;
 #endif
 	
-	Bool m_forceBenchmark;	///<forces running of CPU detection benchmark, even on known cpu's.
+	bool m_forceBenchmark;	///<forces running of CPU detection benchmark, even on known cpu's.
 
 	Int m_fixedSeed;							///< fixed random seed for game logic (less than 0 to disable)
 
@@ -290,7 +290,7 @@ public:
 
 	UnsignedInt m_defaultIP;			///< preferred IP address for LAN
 	UnsignedInt m_firewallBehavior;	///< Last detected firewall behavior
-	Bool m_firewallSendDelay;			///< Use send delay for firewall connection negotiations
+	bool m_firewallSendDelay;			///< Use send delay for firewall connection negotiations
 	UnsignedInt m_firewallPortOverride;	///< User-specified port to be used
 	Short m_firewallPortAllocationDelta; ///< the port allocation delta last detected.
 
@@ -313,8 +313,8 @@ public:
 	Real m_verticalScrollSpeedFactor;		///< Seperated because of our aspect ratio
 	Real m_scrollAmountCutoff;				///< Scroll speed to not adjust camera height
 	Real m_cameraAdjustSpeed;					///< Rate at which we adjust camera height
-	Bool m_enforceMaxCameraHeight;		///< Enfoce max camera height while scrolling?
-	Bool m_buildMapCache;
+	bool m_enforceMaxCameraHeight;		///< Enfoce max camera height while scrolling?
+	bool m_buildMapCache;
 	AsciiString m_initialFile;				///< If this is specified, load a specific map/replay from the command-line
 	AsciiString m_pendingFile;				///< If this is specified, use this map at the next game start
 
@@ -325,13 +325,13 @@ public:
 	Real m_defaultStructureRubbleHeight;	///< for rubbled structures, compress height to this if none specified
 
 	AsciiString m_shellMapName;				///< Holds the shell map name
-	Bool m_shellMapOn;								///< User can set the shell map not to load
-	Bool m_playIntro;									///< Flag to say if we're to play the intro or not
-	Bool m_playSizzle;								///< Flag to say whether we play the sizzle movie after the logo movie.
-	Bool m_afterIntro;								///< we need to tell the game our intro is done
-	Bool m_allowExitOutOfMovies;			///< flag to allow exit out of movies only after the Intro has played
+	bool m_shellMapOn;								///< User can set the shell map not to load
+	bool m_playIntro;									///< Flag to say if we're to play the intro or not
+	bool m_playSizzle;								///< Flag to say whether we play the sizzle movie after the logo movie.
+	bool m_afterIntro;								///< we need to tell the game our intro is done
+	bool m_allowExitOutOfMovies;			///< flag to allow exit out of movies only after the Intro has played
 
-	Bool m_loadScreenRender;						///< flag to disallow rendering of almost everything during a loadscreen
+	bool m_loadScreenRender;						///< flag to disallow rendering of almost everything during a loadscreen
 
 	Real m_keyboardScrollFactor;			///< Factor applied to game scrolling speed via keyboard scrolling
 	Real m_keyboardDefaultScrollFactor;			///< Factor applied to game scrolling speed via keyboard scrolling
@@ -339,11 +339,11 @@ public:
   Real m_musicVolumeFactor;         ///< Factor applied to loudness of music volume
   Real m_SFXVolumeFactor;           ///< Factor applied to loudness of SFX volume
   Real m_voiceVolumeFactor;         ///< Factor applied to loudness of voice volume
-  Bool m_3DSoundPref;               ///< Whether user wants to use 3DSound or not
+  bool m_3DSoundPref;               ///< Whether user wants to use 3DSound or not
 
-	Bool m_animateWindows;						///< Should we animate window transitions?
+	bool m_animateWindows;						///< Should we animate window transitions?
 
-	Bool m_incrementalAGPBuf;
+	bool m_incrementalAGPBuf;
 	
 	UnsignedInt m_iniCRC;							///< CRC of important INI files
 	UnsignedInt m_exeCRC;							///< CRC of the executable
@@ -356,7 +356,7 @@ public:
 	Int m_maxUnitSelectSounds;				// max number of select sounds to play per selection
 
 	Real m_selectionFlashSaturationFactor; /// how colorful should the selection flash be? 0-4
-	Bool m_selectionFlashHouseColor ;  /// skip the house color and just use white.
+	bool m_selectionFlashHouseColor ;  /// skip the house color and just use white.
 
 	Real m_cameraAudibleRadius;				///< If the camera is being used as the position of audio, then how far can we hear?
 	Real m_groupMoveClickToGatherFactor; /** if you take all the selected units and calculate the smallest possible rectangle 
@@ -366,12 +366,12 @@ public:
 																			 smaller area within the rectangle to order the gather. */
 
 	Int m_antiAliasBoxValue;          ///< value of selected antialias from combo box in options menu
-	Bool m_languageFilterPref;        ///< Bool if user wants to filter language
-	Bool m_loadScreenDemo;						///< Bool if true, run the loadscreen demo movie
-	Bool m_disableRender;							///< if true, no rendering!
+	bool m_languageFilterPref;        ///< bool if user wants to filter language
+	bool m_loadScreenDemo;						///< bool if true, run the loadscreen demo movie
+	bool m_disableRender;							///< if true, no rendering!
 
-	Bool m_saveCameraInReplay;
-	Bool m_useCameraInReplay;
+	bool m_saveCameraInReplay;
+	bool m_useCameraInReplay;
 
 	Real m_shakeSubtleIntensity;			///< Intensity for shaking a camera with SHAKE_SUBTLE
 	Real m_shakeNormalIntensity;			///< Intensity for shaking a camera with SHAKE_NORMAL
@@ -401,10 +401,10 @@ public:
 	Real m_standardMinefieldDistance;
 
 	
-	Bool m_showMetrics;								///< whether or not to show the metrics.
+	bool m_showMetrics;								///< whether or not to show the metrics.
 	Int m_defaultStartingCash;				///< The amount of cash a player starts with by default.
 	
-	Bool m_debugShowGraphicalFramerate;		///< Whether or not to show the graphical framerate bar.
+	bool m_debugShowGraphicalFramerate;		///< Whether or not to show the graphical framerate bar.
 
 	Int m_powerBarBase;										///< Logrithmic base for the power bar scale
 	Real m_powerBarIntervals;							///< how many logrithmic intervals the width will be divided into
@@ -413,7 +413,7 @@ public:
 
 	UnsignedInt m_unlookPersistDuration;	///< How long after unlook until the sighting info executes the undo
 
-	Bool m_shouldUpdateTGAToDDS;					///< Should we attempt to update old TGAs to DDS stuff on loadup?
+	bool m_shouldUpdateTGAToDDS;					///< Should we attempt to update old TGAs to DDS stuff on loadup?
 	
 	UnsignedInt m_doubleClickTimeMS;	///< What is the maximum amount of time that can seperate two clicks in order
 																		///< for us to generate a double click message?
@@ -438,44 +438,44 @@ public:
   Int					m_playStats;									///< Int whether we want to log play stats or not, if <= 0 then we don't log
 
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
-	Bool m_wireframe;
-	Bool m_stateMachineDebug;
-	Bool m_useCameraConstraints;
-	Bool m_specialPowerUsesDelay;
-	Bool m_shroudOn;
-	Bool m_fogOfWarOn;
-	Bool m_jabberOn;
-	Bool m_munkeeOn;
-	Bool m_allowUnselectableSelection;			///< Are we allowed to select things that are unselectable?
-	Bool m_disableCameraFade;								///< if true, script commands affecting camera are disabled
-	Bool m_disableScriptedInputDisabling;		///< if true, script commands can't disable input
-	Bool m_disableMilitaryCaption;					///< if true, military briefings go fast
+	bool m_wireframe;
+	bool m_stateMachineDebug;
+	bool m_useCameraConstraints;
+	bool m_specialPowerUsesDelay;
+	bool m_shroudOn;
+	bool m_fogOfWarOn;
+	bool m_jabberOn;
+	bool m_munkeeOn;
+	bool m_allowUnselectableSelection;			///< Are we allowed to select things that are unselectable?
+	bool m_disableCameraFade;								///< if true, script commands affecting camera are disabled
+	bool m_disableScriptedInputDisabling;		///< if true, script commands can't disable input
+	bool m_disableMilitaryCaption;					///< if true, military briefings go fast
 	Int m_benchmarkTimer;										///< how long to play the game in benchmark mode?
-	Bool m_checkForLeaks;
-	Bool m_vTune;
-	Bool m_debugCamera;						///< Used to display Camera debug information
-	Bool m_debugVisibility;						///< Should we actively debug the visibility
+	bool m_checkForLeaks;
+	bool m_vTune;
+	bool m_debugCamera;						///< Used to display Camera debug information
+	bool m_debugVisibility;						///< Should we actively debug the visibility
 	Int m_debugVisibilityTileCount;		///< How many tiles we should show when debugging visibility
 	Real m_debugVisibilityTileWidth;	///< How wide should these tiles be?
 	Int m_debugVisibilityTileDuration;	///< How long should these tiles stay around, in frames?
-	Bool m_debugThreatMap;						///< Should we actively debug the threat map
+	bool m_debugThreatMap;						///< Should we actively debug the threat map
 	UnsignedInt m_maxDebugThreat;			///< This value (and any values greater) will appear full RED.
 	Int m_debugThreatMapTileDuration;	///< How long should these tiles stay around, in frames?
-	Bool m_debugCashValueMap;					///< Should we actively debug the threat map
+	bool m_debugCashValueMap;					///< Should we actively debug the threat map
 	UnsignedInt m_maxDebugValue;			///< This value (and any values greater) will appear full GREEN.
 	Int m_debugCashValueMapTileDuration;	///< How long should these tiles stay around, in frames?
 	RGBColor m_debugVisibilityTargettableColor;	///< What color should the targettable cells be?
 	RGBColor m_debugVisibilityDeshroudColor;			///< What color should the deshrouding cells be?
 	RGBColor m_debugVisibilityGapColor;					///< What color should the gap generator cells be?
-	Bool m_debugProjectilePath;						///< Should we actively debug the bezier paths on projectiles
+	bool m_debugProjectilePath;						///< Should we actively debug the bezier paths on projectiles
 	Real m_debugProjectileTileWidth;			///< How wide should these tiles be?
 	Int m_debugProjectileTileDuration;		///< How long should these tiles stay around, in frames?
 	RGBColor m_debugProjectileTileColor;	///< What color should these tiles be?
-	Bool m_showCollisionExtents;	///< Used to display collision extents
-  Bool m_showAudioLocations;    ///< Used to display audio markers and ambient sound radii
-	Bool m_saveStats;
-	Bool m_saveAllStats;
-	Bool m_useLocalMOTD;
+	bool m_showCollisionExtents;	///< Used to display collision extents
+  bool m_showAudioLocations;    ///< Used to display audio markers and ambient sound radii
+	bool m_saveStats;
+	bool m_saveAllStats;
+	bool m_useLocalMOTD;
 	AsciiString m_baseStatsDir;
 	AsciiString m_MOTDPath;
 	Int m_latencyAverage;					///< Average latency to insert
@@ -483,19 +483,19 @@ public:
 	Int m_latencyPeriod;					///< Period of sinusoidal modulation of latency
 	Int m_latencyNoise;						///< Max amplitude of jitter to throw in
 	Int m_packetLoss;							///< Percent of packets to drop
-	Bool m_extraLogging;					///< More expensive debug logging to catch crashes.
+	bool m_extraLogging;					///< More expensive debug logging to catch crashes.
 #endif
 
 #ifdef DEBUG_CRASHING
-	Bool m_debugIgnoreAsserts;						///< Ignore all asserts.
+	bool m_debugIgnoreAsserts;						///< Ignore all asserts.
 #endif
 
 #ifdef DEBUG_STACKTRACE
-	Bool m_debugIgnoreStackTrace;					///< No stacktraces for asserts.
+	bool m_debugIgnoreStackTrace;					///< No stacktraces for asserts.
 #endif
 
-	Bool				m_isBreakableMovie;							///< if we enter a breakable movie, set this flag
-	Bool				m_breakTheMovie;								///< The user has hit escape!
+	bool				m_isBreakableMovie;							///< if we enter a breakable movie, set this flag
+	bool				m_breakTheMovie;								///< The user has hit escape!
 	
 	AsciiString m_modDir;
 	AsciiString m_modBIG;

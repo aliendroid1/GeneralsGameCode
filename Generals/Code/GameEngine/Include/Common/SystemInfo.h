@@ -31,7 +31,7 @@
 #ifndef __SYSTEMINFO_H__
 #define __SYSTEMINFO_H__
 
-extern const Bool TheSystemIsUnicode;
+extern const bool TheSystemIsUnicode;
 
 
 

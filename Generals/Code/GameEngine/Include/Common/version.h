@@ -51,8 +51,8 @@ public:
 	AsciiString getAsciiBuildUser( void );					///< Return a string with the build user
 	UnicodeString getUnicodeBuildUser( void );			///< Return a string with the build user
 
-	Bool showFullVersion( void ) { return m_showFullVersion; }
-	void setShowFullVersion( Bool val ) { m_showFullVersion = val; }
+	bool showFullVersion( void ) { return m_showFullVersion; }
+	void setShowFullVersion( bool val ) { m_showFullVersion = val; }
 
 	void setVersion(Int major, Int minor, Int buildNum,
 		Int localBuildNum, AsciiString user, AsciiString location,
@@ -67,7 +67,7 @@ private:
 	AsciiString m_buildUser;
 	AsciiString m_buildTime;
 	AsciiString m_buildDate;
-	Bool m_showFullVersion;
+	bool m_showFullVersion;
 };
 
 extern Version *TheVersion;	///< The Version singleton

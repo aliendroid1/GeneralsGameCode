@@ -81,7 +81,7 @@ public:
 	virtual void update( void );
 
 	/// validate the tables and make sure all entries are unique
-	Bool validate( void );
+	bool validate( void );
 
 	/// get internal function table
 	TableEntry *getTable( TableIndex index );

@@ -126,7 +126,7 @@ extern void initMemoryManager();
 	return true if initMemoryManager() has been called.
 	return false if only preMainInitMemoryManager() has been called.
 */
-extern Bool isMemoryManagerOfficiallyInited();
+extern bool isMemoryManagerOfficiallyInited();
 
 /**
 	Shut down the memory manager. Throw away TheMemoryPoolFactory and 

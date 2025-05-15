@@ -66,22 +66,22 @@ typedef BitFlags<DISABLED_COUNT>	DisabledMaskType;
 #define MAKE_DISABLED_MASK4(k,a,b,c) DisabledMaskType(DisabledMaskType::kInit, (k), (a), (b), (c))
 #define MAKE_DISABLED_MASK5(k,a,b,c,d) DisabledMaskType(DisabledMaskType::kInit, (k), (a), (b), (c), (d))
 
-inline Bool TEST_DISABLEDMASK(const DisabledMaskType& m, DisabledType t) 
+inline bool TEST_DISABLEDMASK(const DisabledMaskType& m, DisabledType t) 
 { 
 	return m.test(t); 
 }
 
-inline Bool TEST_DISABLEDMASK_ANY(const DisabledMaskType& m, const DisabledMaskType& mask) 
+inline bool TEST_DISABLEDMASK_ANY(const DisabledMaskType& m, const DisabledMaskType& mask) 
 { 
 	return m.anyIntersectionWith(mask);
 }
 
-inline Bool TEST_DISABLEDMASK_MULTI(const DisabledMaskType& m, const DisabledMaskType& mustBeSet, const DisabledMaskType& mustBeClear)
+inline bool TEST_DISABLEDMASK_MULTI(const DisabledMaskType& m, const DisabledMaskType& mustBeSet, const DisabledMaskType& mustBeClear)
 {
 	return m.testSetAndClear(mustBeSet, mustBeClear);
 }
 
-inline Bool DISABLEDMASK_ANY_SET(const DisabledMaskType& m) 
+inline bool DISABLEDMASK_ANY_SET(const DisabledMaskType& m) 
 { 
 	return m.any(); 
 }

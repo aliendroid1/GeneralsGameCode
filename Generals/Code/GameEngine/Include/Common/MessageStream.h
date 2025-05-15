@@ -53,7 +53,7 @@ union GameMessageArgumentType														///< Union of possible data for given
 {
 	Int							integer;
 	Real 						real;
-	Bool						boolean;
+	bool						boolean;
 	ObjectID				objectID;									
 	DrawableID			drawableID;									
 	UnsignedInt			teamID;	
@@ -451,10 +451,10 @@ public:
 		*/
 		MSG_BEGIN_NETWORK_MESSAGES = 1000,					///< MARKER TO DELINEATE MESSAGES THAT GO OVER THE NETWORK
 //*********************************************************************************************************
-		MSG_CREATE_SELECTED_GROUP,									/**< (Bool createNewGroup, objectID1, objectID2, ... objectIDN)
+		MSG_CREATE_SELECTED_GROUP,									/**< (bool createNewGroup, objectID1, objectID2, ... objectIDN)
 																									* The selected team is created/augmented with the given team members
 																									*/
-		MSG_CREATE_SELECTED_GROUP_NO_SOUND,					/**< (Bool createNewGroup, objectID1, objectID2, ... objectIDN)
+		MSG_CREATE_SELECTED_GROUP_NO_SOUND,					/**< (bool createNewGroup, objectID1, objectID2, ... objectIDN)
 																									* The selected team is created/augmented with the given team members.
 																									* Do not play their selection sounds.
 																									*/
@@ -600,7 +600,7 @@ public:
 	// access methods for GameMessageArgumentType enum
 	void appendIntegerArgument( Int arg );
 	void appendRealArgument( Real arg );
-	void appendBooleanArgument( Bool arg );
+	void appendBooleanArgument( bool arg );
 	void appendDrawableIDArgument( DrawableID arg );
 	void appendObjectIDArgument( ObjectID arg );
 	void appendTeamIDArgument( UnsignedInt arg );
@@ -666,7 +666,7 @@ public:
 	virtual void appendMessage( GameMessage *msg );			///< Add message to end of the list
 	virtual void insertMessage( GameMessage *msg, GameMessage *messageToInsertAfter );	// Insert message after messageToInsertAfter.
 	virtual void removeMessage( GameMessage *msg );			///< Remove message from the list
-	virtual Bool containsMessageOfType( GameMessage::Type type );	///< Return true if a message of type is in the message stream
+	virtual bool containsMessageOfType( GameMessage::Type type );	///< Return true if a message of type is in the message stream
 
 
 
@@ -677,7 +677,7 @@ protected:
 
 /** 
 	What to do with a GameMessage after a translator has handled it.
-	Use a custom enum (rather than a Bool) to make the code more obvious.
+	Use a custom enum (rather than a bool) to make the code more obvious.
 */
 enum GameMessageDisposition : Int
 {

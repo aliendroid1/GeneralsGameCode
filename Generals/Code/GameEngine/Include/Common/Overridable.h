@@ -47,7 +47,7 @@ class Overridable : public MemoryPoolObject
 
 	private:
 		Overridable *m_nextOverride;
-		Bool m_isOverride;
+		bool m_isOverride;
 
 	public:
 		Overridable() : m_nextOverride(NULL), m_isOverride(false) {}

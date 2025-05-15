@@ -66,8 +66,8 @@ void BitFlags<NUMBITS>::parse(INI* ini, AsciiString* str)
 	if (str)
 		str->clear();
 
-	Bool foundNormal = false;
-	Bool foundAddOrSub = false;
+	bool foundNormal = false;
+	bool foundAddOrSub = false;
 
 	// loop through all tokens
 	for (const char *token = ini->getNextTokenOrNull(); token != NULL; token = ini->getNextTokenOrNull())
@@ -191,7 +191,7 @@ void BitFlags<NUMBITS>::xfer(Xfer* xfer)
 			xfer->xferAsciiString( &string );
 
 			// set in our mask type data
-			Bool valid = setBitByName( string.str() );
+			bool valid = setBitByName( string.str() );
 			if (!valid)
 			{
 				DEBUG_CRASH(("invalid bit name %s",string.str()));

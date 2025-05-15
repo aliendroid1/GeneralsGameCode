@@ -87,7 +87,7 @@ const char *CompressionManager::getDecompressionNameByType( CompressionType comp
 
 // ---------------------------------------------------------------------------------------
 
-Bool CompressionManager::isDataCompressed( const void *mem, Int len )
+bool CompressionManager::isDataCompressed( const void *mem, Int len )
 {
 	CompressionType t = getCompressionType(mem, len);
 	return t != COMPRESSION_NONE;
@@ -241,7 +241,7 @@ Int CompressionManager::compressData( CompressionType compType, void *srcVoid, I
 	{
 		memcpy(dest, "NOX\0", 4);
 		*(Int *)(dest+4) = 0;
-		Bool ret = CompressMemory(src, srcLen, dest+8, destLen);
+		bool ret = CompressMemory(src, srcLen, dest+8, destLen);
 		if (ret)
 		{
 			*(Int *)(dest+4) = srcLen;
@@ -316,7 +316,7 @@ Int CompressionManager::decompressData( void *srcVoid, Int srcLen, void *destVoi
 
 	if (compType == COMPRESSION_NOXLZH)
 	{
-		Bool ret = DecompressMemory(src+8, srcLen-8, dest, destLen);
+		bool ret = DecompressMemory(src+8, srcLen-8, dest, destLen);
 		if (ret)
 			return destLen;
 		else

@@ -92,17 +92,17 @@
 	extern Int lastCRCDebugFrame;
 	extern Int lastCRCDebugIndex;
 	
-	extern Bool g_verifyClientCRC;
-	extern Bool g_clientDeepCRC;
+	extern bool g_verifyClientCRC;
+	extern bool g_clientDeepCRC;
 
-	extern Bool g_crcModuleDataFromClient;
-	extern Bool g_crcModuleDataFromLogic;
+	extern bool g_crcModuleDataFromClient;
+	extern bool g_crcModuleDataFromLogic;
 
-	extern Bool g_keepCRCSaves;
-	extern Bool g_saveDebugCRCPerFrame;
+	extern bool g_keepCRCSaves;
+	extern bool g_saveDebugCRCPerFrame;
 	extern AsciiString g_saveDebugCRCPerFrameDir;
 
-	extern Bool g_logObjectCRCs;
+	extern bool g_logObjectCRCs;
 
 #else // DEBUG_CRC
 
@@ -128,6 +128,6 @@
 
 extern Int NET_CRC_INTERVAL;
 extern Int REPLAY_CRC_INTERVAL;
-extern Bool TheDebugIgnoreSyncErrors;
+extern bool TheDebugIgnoreSyncErrors;
 
 #endif // __CRCDEBUG_H__

@@ -133,12 +133,12 @@ public:
 		m_bits.set(idx12);
 	}
 
-	inline Bool operator==(const BitFlags& that) const
+	inline bool operator==(const BitFlags& that) const
 	{
 		return this->m_bits == that.m_bits;
 	}
 
-	inline Bool operator!=(const BitFlags& that) const
+	inline bool operator!=(const BitFlags& that) const
 	{
 		return this->m_bits != that.m_bits;
 	}
@@ -148,13 +148,13 @@ public:
 		m_bits.set(i, val);
 	}
 
-	inline Bool test(Int i) const
+	inline bool test(Int i) const
 	{
 		return m_bits.test(i);
 	}
 
 	//Tests for any bits that are set in both.
-	inline Bool testForAny( const BitFlags& that ) const
+	inline bool testForAny( const BitFlags& that ) const
 	{
 		BitFlags tmp = *this;
 		tmp.m_bits &= that.m_bits;
@@ -162,7 +162,7 @@ public:
 	} 
 
 	//All argument bits must be set in our bits too in order to return TRUE
-	inline Bool testForAll( const BitFlags& that ) const
+	inline bool testForAll( const BitFlags& that ) const
 	{
 		DEBUG_ASSERTCRASH( that.any(), ("BitFlags::testForAll is always true if you ask about zero flags.  Did you mean that?") );
 
@@ -173,7 +173,7 @@ public:
 	}
 
 	//None of the argument bits must be set in our bits in order to return TRUE
-	inline Bool testForNone( const BitFlags& that ) const
+	inline bool testForNone( const BitFlags& that ) const
 	{
 		BitFlags tmp = *this;
 		tmp.m_bits &= that.m_bits;
@@ -190,7 +190,7 @@ public:
 		return m_bits.count();
 	}
 
-	inline Bool any() const
+	inline bool any() const
 	{
 		return m_bits.any();
 	}
@@ -220,7 +220,7 @@ public:
 		return tmp.m_bits.count();
 	} 
 
-	inline Bool anyIntersectionWith(const BitFlags& that) const
+	inline bool anyIntersectionWith(const BitFlags& that) const
 	{
 		/// @todo srj -- improve me.
 		BitFlags tmp = that;
@@ -244,7 +244,7 @@ public:
 		m_bits |= set.m_bits;
 	}
 
-	inline Bool testSetAndClear(const BitFlags& mustBeSet, const BitFlags& mustBeClear) const
+	inline bool testSetAndClear(const BitFlags& mustBeSet, const BitFlags& mustBeClear) const
 	{
 		/// @todo srj -- improve me.
 		BitFlags tmp = *this;
@@ -289,7 +289,7 @@ public:
     return test(i) ? s_bitNameList[i] : NULL;
   }
 
-  Bool setBitByName(const char* token) 
+  bool setBitByName(const char* token) 
   {
     Int i = getSingleBitFromName(token);
 		if (i >= 0)

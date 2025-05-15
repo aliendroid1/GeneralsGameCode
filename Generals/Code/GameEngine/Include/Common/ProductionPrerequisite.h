@@ -72,7 +72,7 @@ public:
 	void addSciencePrereq( ScienceType science ) { m_prereqSciences.push_back(science); }
 
 	void resetUnits( void ) { m_prereqUnits.clear(); }
-	void addUnitPrereq( AsciiString units, Bool orUnitWithPrevious );
+	void addUnitPrereq( AsciiString units, bool orUnitWithPrevious );
 	void addUnitPrereq( const std::vector<AsciiString>& units );
 
 	/// called after all ThingTemplates have been loaded.
@@ -83,7 +83,7 @@ public:
 	UnicodeString getRequiresList(const Player *player) const;
 
 	/// return true iff the player satisfies our set of prerequisites
-	Bool isSatisfied(const Player *player) const;
+	bool isSatisfied(const Player *player) const;
 
 	/** 
 		return the BuildFacilityTemplate, if any. 

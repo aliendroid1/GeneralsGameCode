@@ -36,12 +36,12 @@
 /**
 	* Get a string from the registry
 	*/
-Bool GetStringFromRegistry(AsciiString path, AsciiString key, AsciiString& val);
+bool GetStringFromRegistry(AsciiString path, AsciiString key, AsciiString& val);
 
 /**
 	* Get an unsigned int from the registry
 	*/
-Bool GetUnsignedIntFromRegistry(AsciiString path, AsciiString key, UnsignedInt& val);
+bool GetUnsignedIntFromRegistry(AsciiString path, AsciiString key, UnsignedInt& val);
 
 AsciiString GetRegistryLanguage(void); // convenience function
 AsciiString GetRegistryGameName(void); // convenience function

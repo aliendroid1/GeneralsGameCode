@@ -64,22 +64,22 @@ typedef BitFlags<UPGRADE_MAX_COUNT>	UpgradeMaskType;
 #define MAKE_UPGRADE_MASK4(k,a,b,c) UpgradeMaskType(UpgradeMaskType::kInit, (k), (a), (b), (c))
 #define MAKE_UPGRADE_MASK5(k,a,b,c,d) UpgradeMaskType(UpgradeMaskType::kInit, (k), (a), (b), (c), (d))
 
-inline Bool TEST_UPGRADE_MASK( const UpgradeMaskType& m, Int index ) 
+inline bool TEST_UPGRADE_MASK( const UpgradeMaskType& m, Int index ) 
 { 
 	return m.test( index ); 
 }
 
-inline Bool TEST_UPGRADE_MASK_ANY( const UpgradeMaskType& m, const UpgradeMaskType& mask ) 
+inline bool TEST_UPGRADE_MASK_ANY( const UpgradeMaskType& m, const UpgradeMaskType& mask ) 
 { 
 	return m.anyIntersectionWith( mask );
 }
 
-inline Bool TEST_UPGRADE_MASK_MULTI( const UpgradeMaskType& m, const UpgradeMaskType& mustBeSet, const UpgradeMaskType& mustBeClear )
+inline bool TEST_UPGRADE_MASK_MULTI( const UpgradeMaskType& m, const UpgradeMaskType& mustBeSet, const UpgradeMaskType& mustBeClear )
 {
 	return m.testSetAndClear( mustBeSet, mustBeClear );
 }
 
-inline Bool UPGRADE_MASK_ANY_SET( const UpgradeMaskType& m) 
+inline bool UPGRADE_MASK_ANY_SET( const UpgradeMaskType& m) 
 { 
 	return m.any(); 
 }
@@ -243,7 +243,7 @@ public:
 	UpgradeTemplate *newUpgrade( const AsciiString& name );				///< allocate, link, and return new upgrade
 
 	/// does this player have all the necessary things to make this upgrade
-	Bool canAffordUpgrade( Player *player, const UpgradeTemplate *upgradeTemplate, Bool displayReason = FALSE ) const;
+	bool canAffordUpgrade( Player *player, const UpgradeTemplate *upgradeTemplate, bool displayReason = FALSE ) const;
 	std::vector<AsciiString> getUpgradeNames( void ) const;	// For WorldBuilder only!!!
 
 	static void parseUpgradeDefinition( INI *ini );
@@ -257,7 +257,7 @@ protected:
 
 	UpgradeTemplate *m_upgradeList;										///< list of all upgrades we can have
 	Int m_nextTemplateMaskBit;												///< Each instantiated UpgradeTemplate will be given a Int64 bit as an identifier
-	Bool buttonImagesCached;
+	bool buttonImagesCached;
 
 };
 

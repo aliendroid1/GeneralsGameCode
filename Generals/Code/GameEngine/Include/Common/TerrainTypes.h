@@ -123,13 +123,13 @@ public:
 	inline AsciiString getName( void ) { return m_name; }
 
 	/// get whether this terrain is blend edge terrain.
-	inline Bool isBlendEdge( void ) { return m_blendEdgeTexture; }
+	inline bool isBlendEdge( void ) { return m_blendEdgeTexture; }
 
 	/// get the type of this terrain
 	inline TerrainClass getClass( void ) { return m_class; }
 
 	/// get the construction restrictions
-	inline Bool getRestrictConstruction( void ) { return m_restrictConstruction; }
+	inline bool getRestrictConstruction( void ) { return m_restrictConstruction; }
 
 	/// get the texture file for this terrain
 	inline AsciiString getTexture( void ) { return m_texture; }
@@ -150,10 +150,10 @@ public:
 	inline void friend_setClass( TerrainClass terrainClass ) { m_class = terrainClass; }
 
 	/// set the restrict construction flag, for use by terrain collection only
-	inline void friend_setRestrictConstruction( Bool restrict ) { m_restrictConstruction = restrict; }
+	inline void friend_setRestrictConstruction( bool restrict ) { m_restrictConstruction = restrict; }
 
 	/// set whether this terrain is blend edge terrain, for use by terrain collection only
-	inline void friend_setBlendEdge( Bool isBlend ) { m_blendEdgeTexture = isBlend; }
+	inline void friend_setBlendEdge( bool isBlend ) { m_blendEdgeTexture = isBlend; }
 
 	/// get the parsing table for INI
 	const FieldParse *getFieldParse( void ) { return m_terrainTypeFieldParseTable; }
@@ -162,9 +162,9 @@ protected:
 
 	AsciiString m_name;								///< terrain entry name
 	AsciiString m_texture;						///< texture.tga file for terrain
-	Bool m_blendEdgeTexture;					///< contains custom blend edges
+	bool m_blendEdgeTexture;					///< contains custom blend edges
 	TerrainClass m_class;							///< type classification of name
-	Bool m_restrictConstruction;			///< do not allow construction on this terrain tile
+	bool m_restrictConstruction;			///< do not allow construction on this terrain tile
 	TerrainType *m_next;							///< next in terrain list
 
 	// for parsing from INI

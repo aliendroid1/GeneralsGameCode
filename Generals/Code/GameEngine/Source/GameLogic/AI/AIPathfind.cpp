@@ -284,7 +284,7 @@ void Path::xfer( Xfer *xfer )
 			xfer->xferCoord3D(&pos);
 			PathfindLayerEnum layer = node->getLayer();
 			xfer->xferUser(&layer, sizeof(layer));
-			Bool canOpt = node->getCanOptimize();
+			bool canOpt = node->getCanOptimize();
 			xfer->xferBool(&canOpt);
 			Int id = -1;
 			if (node->getNextOptimized()) {
@@ -305,7 +305,7 @@ void Path::xfer( Xfer *xfer )
 			xfer->xferCoord3D(&pos);
 			PathfindLayerEnum layer;
 			xfer->xferUser(&layer, sizeof(layer));
-			Bool canOpt;
+			bool canOpt;
 			xfer->xferBool(&canOpt);
 			Int optID = -1;
 			xfer->xferInt(&optID);
@@ -454,14 +454,14 @@ void Path::updateLastNode( const Coord3D *pos )
 /**
  * Optimize the path by checking line of sight
  */
-void Path::optimize( const Object *obj, LocomotorSurfaceTypeMask acceptableSurfaces, Bool blocked )
+void Path::optimize( const Object *obj, LocomotorSurfaceTypeMask acceptableSurfaces, bool blocked )
 {
 	PathNode *node, *anchor;
 
 	// start with first node in the path
 	anchor = getFirstNode();
 
-	Bool firstNode = true;
+	bool firstNode = true;
 	PathfindLayerEnum firstLayer = anchor->getLayer();
 
 	// backwards.
@@ -473,7 +473,7 @@ void Path::optimize( const Object *obj, LocomotorSurfaceTypeMask acceptableSurfa
 	while( anchor != getLastNode() )
 	{
 		// find the farthest node in the path that has a clear line-of-sight to this anchor
-		Bool optimizedSegment = false;
+		bool optimizedSegment = false;
 		PathfindLayerEnum layer = anchor->getLayer();
 		PathfindLayerEnum curLayer = anchor->getLayer();
 		Int count = 0;
@@ -503,7 +503,7 @@ void Path::optimize( const Object *obj, LocomotorSurfaceTypeMask acceptableSurfa
 		//PathfindLayerEnum curLayer = LAYER_GROUND;
 		for( ; node != anchor; node = node->getPrevious() )		
 		{
-			Bool isPassable = false;
+			bool isPassable = false;
 			//CRCDEBUG_LOG(("Path::optimize() calling isLinePassable()\n"));
 			if (TheAI->pathfinder()->isLinePassable( obj, acceptableSurfaces, layer, *anchor->getPosition(), 
 				*node->getPosition(), blocked, false))
@@ -518,7 +518,7 @@ void Path::optimize( const Object *obj, LocomotorSurfaceTypeMask acceptableSurfa
 			if (!isPassable) {
 				Int dx = node->getPosition()->x - anchor->getPosition()->x;
 				Int dy = node->getPosition()->y - anchor->getPosition()->y;
-				Bool mightBePassable = false;
+				bool mightBePassable = false;
 				if (IABS(dx)==PATHFIND_CELL_SIZE && IABS(dy)==PATHFIND_CELL_SIZE) {
 					isPassable = true;
 				}
@@ -582,7 +582,7 @@ void Path::optimize( const Object *obj, LocomotorSurfaceTypeMask acceptableSurfa
 /**
  * Optimize the path by checking line of sight
  */
-void Path::optimizeGroundPath( Bool crusher, Int pathDiameter )
+void Path::optimizeGroundPath( bool crusher, Int pathDiameter )
 {
 	PathNode *node, *anchor;
 
@@ -596,7 +596,7 @@ void Path::optimizeGroundPath( Bool crusher, Int pathDiameter )
 	while( anchor != getLastNode() )
 	{
 		// find the farthest node in the path that has a clear line-of-sight to this anchor
-		Bool optimizedSegment = false;
+		bool optimizedSegment = false;
 		PathfindLayerEnum layer = anchor->getLayer();
 		PathfindLayerEnum curLayer = anchor->getLayer();
 		Int count = 0;
@@ -620,7 +620,7 @@ void Path::optimizeGroundPath( Bool crusher, Int pathDiameter )
 		// find the farthest node in the path that has a clear line-of-sight to this anchor
 		for( ; node != anchor; node = node->getPrevious() )		
 		{
-			Bool isPassable = false;
+			bool isPassable = false;
 			//CRCDEBUG_LOG(("Path::optimize() calling isLinePassable()\n"));
 			if (TheAI->pathfinder()->isGroundPathPassable( crusher, *anchor->getPosition(), layer,
 				*node->getPosition(), pathDiameter))
@@ -631,7 +631,7 @@ void Path::optimizeGroundPath( Bool crusher, Int pathDiameter )
 			if (!isPassable) {
 				Int dx = node->getPosition()->x - anchor->getPosition()->x;
 				Int dy = node->getPosition()->y - anchor->getPosition()->y;
-				Bool mightBePassable = false;
+				bool mightBePassable = false;
 				PathNode *tmpNode;
 				if (dx==0) {
 					mightBePassable = true;
@@ -702,7 +702,7 @@ void Path::optimizeGroundPath( Bool crusher, Int pathDiameter )
 	m_isOptimized = true;
 }
 
-inline Bool isReallyClose(const Coord3D& a, const Coord3D& b)
+inline bool isReallyClose(const Coord3D& a, const Coord3D& b)
 {
 	const Real CLOSE_ENOUGH = 0.1f;
 	return 
@@ -912,7 +912,7 @@ void Path::computePointOnPath(
 		if (k > 1.0f)
 			k = 1.0f;
 
-		Bool gotPos = false;
+		bool gotPos = false;
 		CRCDEBUG_LOG(("Path::computePointOnPath() calling isLinePassable() 1\n"));
 		if (TheAI->pathfinder()->isLinePassable( obj, locomotorSet.getValidSurfaces(), out.layer, pos, *nextNodePos, 
 			false, true )) 
@@ -920,7 +920,7 @@ void Path::computePointOnPath(
 			out.posOnPath = *nextNodePos;
 			gotPos = true;
 
-			Bool tryAhead = alongPathDist > segmentLength * 0.5;
+			bool tryAhead = alongPathDist > segmentLength * 0.5;
 			if (closeNext->getCanOptimize() == false) 
 			{
 				tryAhead = false; // don't go past no-opt nodes.
@@ -932,7 +932,7 @@ void Path::computePointOnPath(
 			if (obj->getLayer()!=LAYER_GROUND) {
 				tryAhead = false;
 			}
-			Bool veryClose = false;
+			bool veryClose = false;
 			if (segmentLength-alongPathDist<1.0f) {
 				tryAhead = true;
 				veryClose = true;
@@ -1044,7 +1044,7 @@ Real Path::computeFlightDistToGoal( const Coord3D *pos, Coord3D& goalPos )
 	const PathNode *nextNode = curNode->getNextOptimized();
 	goalPos = *curNode->getPosition();
 	Real distance = 0;
-	Bool useNext = true;
+	bool useNext = true;
 	while (nextNode) {
 
 		if (useNext) {
@@ -1184,7 +1184,7 @@ PathfindCell::~PathfindCell( void )
 { 	
 	if (m_info) PathfindCellInfo::releaseACellInfo(m_info);
 	m_info = NULL;
-	static Bool warn = true;
+	static bool warn = true;
 	if (warn) {
 		warn = false;
 		DEBUG_LOG( ("PathfindCell::~PathfindCell m_info Allocated."));
@@ -1214,7 +1214,7 @@ void PathfindCell::reset( )
 /**
  * Reset the pathfinding values in the cell.
  */
-Bool PathfindCell::startPathfind( PathfindCell *goalCell  ) 
+bool PathfindCell::startPathfind( PathfindCell *goalCell  ) 
 { 
 	DEBUG_ASSERTCRASH(m_info, ("Has to have info."));
 	m_info->m_nextOpen = NULL;
@@ -1265,7 +1265,7 @@ void PathfindCell::clearParentCell( void  )
 /**
  * Allocates an info record for a cell.
  */
-Bool PathfindCell::allocateInfo( const ICoord2D &pos ) 
+bool PathfindCell::allocateInfo( const ICoord2D &pos ) 
 { 
 	if (!m_info) {
 		m_info = PathfindCellInfo::getACellInfo(this, pos);
@@ -1424,13 +1424,13 @@ void PathfindCell::setPosUnit(ObjectID unitID, const ICoord2D &pos )
 /**
  * Flag this cell as an obstacle, from the given one
  */
-void PathfindCell::setTypeAsObstacle( Object *obstacle, Bool isFence, const ICoord2D &pos )
+void PathfindCell::setTypeAsObstacle( Object *obstacle, bool isFence, const ICoord2D &pos )
 {
 	if (m_type!=PathfindCell::CELL_CLEAR && m_type != PathfindCell::CELL_IMPASSABLE) {
 		return;
 	}
 
-	Bool isRubble = false;
+	bool isRubble = false;
 	if (obstacle->getBodyModule() && obstacle->getBodyModule()->getDamageState() == BODY_RUBBLE) 
 	{
 		isRubble = true;
@@ -1742,7 +1742,7 @@ UnsignedInt PathfindCell::costSoFar( PathfindCell *parent )
 }
 
 
-inline Bool typesMatch(const PathfindCell &targetCell, const PathfindCell &sourceCell) {
+inline bool typesMatch(const PathfindCell &targetCell, const PathfindCell &sourceCell) {
 	PathfindCell::CellType targetType = targetCell.getType();
 	PathfindCell::CellType srcType = sourceCell.getType();
 	if (targetType == srcType) return true;
@@ -1750,7 +1750,7 @@ inline Bool typesMatch(const PathfindCell &targetCell, const PathfindCell &sourc
 	return false;
 }
 
-inline Bool waterGround(const PathfindCell &targetCell, const PathfindCell &sourceCell) {
+inline bool waterGround(const PathfindCell &targetCell, const PathfindCell &sourceCell) {
 	PathfindCell::CellType targetType = targetCell.getType();
 	PathfindCell::CellType srcType = sourceCell.getType();
 	if ( (targetType==PathfindCell::CELL_CLEAR && 
@@ -1765,7 +1765,7 @@ inline Bool waterGround(const PathfindCell &targetCell, const PathfindCell &sour
 	return false;
 }
 
-inline Bool groundRubble(const PathfindCell &targetCell, const PathfindCell &sourceCell) {
+inline bool groundRubble(const PathfindCell &targetCell, const PathfindCell &sourceCell) {
 	PathfindCell::CellType targetType = targetCell.getType();
 	PathfindCell::CellType srcType = sourceCell.getType();
 	if ( (targetType==PathfindCell::CELL_CLEAR && 
@@ -1780,7 +1780,7 @@ inline Bool groundRubble(const PathfindCell &targetCell, const PathfindCell &sou
 	return false;
 }
 
-inline Bool terrain(const PathfindCell &targetCell, const PathfindCell &sourceCell) {
+inline bool terrain(const PathfindCell &targetCell, const PathfindCell &sourceCell) {
 	Int targetType = targetCell.getType();
 	Int srcType = sourceCell.getType();
 	if (targetType == PathfindCell::CELL_OBSTACLE) targetType = PathfindCell::CELL_CLEAR;
@@ -1791,7 +1791,7 @@ inline Bool terrain(const PathfindCell &targetCell, const PathfindCell &sourceCe
 	return false;
 }
 
-inline Bool crusherGround(const PathfindCell &targetCell, const PathfindCell &sourceCell) {
+inline bool crusherGround(const PathfindCell &targetCell, const PathfindCell &sourceCell) {
 	Int targetType = targetCell.getType();
 	Int srcType = sourceCell.getType();
 	if (targetType==PathfindCell::CELL_OBSTACLE) {
@@ -1811,7 +1811,7 @@ inline Bool crusherGround(const PathfindCell &targetCell, const PathfindCell &so
 	return false;
 }
 
-inline Bool groundCliff(const PathfindCell &targetCell, const PathfindCell &sourceCell) {
+inline bool groundCliff(const PathfindCell &targetCell, const PathfindCell &sourceCell) {
 	PathfindCell::CellType targetType = targetCell.getType();
 	PathfindCell::CellType srcType = sourceCell.getType();
 	
@@ -2041,7 +2041,7 @@ void ZoneBlock::blockCalculateZones(PathfindCell **map, PathfindLayer layers[], 
 // Return the zone at this location.
 //
 zoneStorageType ZoneBlock::getEffectiveZone( LocomotorSurfaceTypeMask acceptableSurfaces, 
-																					 Bool crusher, zoneStorageType zone) const
+																					 bool crusher, zoneStorageType zone) const
 {
 	DEBUG_ASSERTCRASH(zone, ("Zone not set"));
 	if (acceptableSurfaces&LOCOMOTORSURFACE_AIR) return 1; // air is all zone 1.
@@ -2580,7 +2580,7 @@ void PathfindZoneManager::setAllPassable( )
 //
 // Set the passable flag for the block at this location.
 //
-void PathfindZoneManager::setPassable(Int cellX, Int cellY, Bool passable) 
+void PathfindZoneManager::setPassable(Int cellX, Int cellY, bool passable) 
 {
 	Int blockX = cellX/ZONE_BLOCK_SIZE;
 	Int blockY = cellY/ZONE_BLOCK_SIZE;
@@ -2599,7 +2599,7 @@ void PathfindZoneManager::setPassable(Int cellX, Int cellY, Bool passable)
 //
 // Get the passable flag for the block at this location.
 //
-Bool PathfindZoneManager::isPassable(Int cellX, Int cellY) const
+bool PathfindZoneManager::isPassable(Int cellX, Int cellY) const
 {
 	Int blockX = cellX/ZONE_BLOCK_SIZE;
 	Int blockY = cellY/ZONE_BLOCK_SIZE;
@@ -2618,7 +2618,7 @@ Bool PathfindZoneManager::isPassable(Int cellX, Int cellY) const
 //
 // Get the passable flag for the block at this location.
 //
-Bool PathfindZoneManager::clipIsPassable(Int cellX, Int cellY) const
+bool PathfindZoneManager::clipIsPassable(Int cellX, Int cellY) const
 {
 	Int blockX = cellX/ZONE_BLOCK_SIZE;
 	Int blockY = cellY/ZONE_BLOCK_SIZE;

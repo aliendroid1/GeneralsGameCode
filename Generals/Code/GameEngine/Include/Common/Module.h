@@ -108,7 +108,7 @@ public:
 	void setModuleTagNameKey( NameKeyType key ) { m_moduleTagNameKey = key; }
 	NameKeyType getModuleTagNameKey() const { return m_moduleTagNameKey; }
 
-	virtual Bool isAiModuleData() const { return false; }
+	virtual bool isAiModuleData() const { return false; }
 	
 	// ugh, hack
 	virtual const W3DModelDrawModuleData* getAsW3DModelDrawModuleData() const { return NULL; }

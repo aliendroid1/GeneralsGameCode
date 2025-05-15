@@ -151,22 +151,22 @@ typedef BitFlags<KINDOF_COUNT>	KindOfMaskType;
 
 #define MAKE_KINDOF_MASK(k) KindOfMaskType(KindOfMaskType::kInit, (k))
 
-inline Bool TEST_KINDOFMASK(const KindOfMaskType& m, KindOfType t) 
+inline bool TEST_KINDOFMASK(const KindOfMaskType& m, KindOfType t) 
 { 
 	return m.test(t); 
 }
 
-inline Bool TEST_KINDOFMASK_ANY(const KindOfMaskType& m, const KindOfMaskType& mask) 
+inline bool TEST_KINDOFMASK_ANY(const KindOfMaskType& m, const KindOfMaskType& mask) 
 { 
 	return m.anyIntersectionWith(mask);
 }
 
-inline Bool TEST_KINDOFMASK_MULTI(const KindOfMaskType& m, const KindOfMaskType& mustBeSet, const KindOfMaskType& mustBeClear)
+inline bool TEST_KINDOFMASK_MULTI(const KindOfMaskType& m, const KindOfMaskType& mustBeSet, const KindOfMaskType& mustBeClear)
 {
 	return m.testSetAndClear(mustBeSet, mustBeClear);
 }
 
-inline Bool KINDOFMASK_ANY_SET(const KindOfMaskType& m) 
+inline bool KINDOFMASK_ANY_SET(const KindOfMaskType& m) 
 { 
 	return m.any(); 
 }

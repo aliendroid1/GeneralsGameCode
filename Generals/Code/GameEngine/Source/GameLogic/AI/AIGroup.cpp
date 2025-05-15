@@ -153,7 +153,7 @@ Real AIGroup::getSpeed( void )
 /**
  * Return true if object is in this group
  */
-Bool AIGroup::isMember( Object *obj )
+bool AIGroup::isMember( Object *obj )
 {
 	std::list<Object *>::iterator i = std::find( m_memberList.begin(), m_memberList.end(), obj );
 
@@ -203,7 +203,7 @@ void AIGroup::add( Object *obj )
 /**
  * Remove object from group
  */
-Bool AIGroup::remove( Object *obj )
+bool AIGroup::remove( Object *obj )
 {
 //	DEBUG_LOG(("***AIGROUP %x is removing Object %x (%s).\n", this, obj, obj->getTemplate()->getName().str()));
 	std::list<Object *>::iterator i = std::find( m_memberList.begin(), m_memberList.end(), obj );
@@ -235,7 +235,7 @@ Bool AIGroup::remove( Object *obj )
 /**
  * If the group contains any objects not owned by ownerPlayer, return TRUE.
  */
-Bool AIGroup::containsAnyObjectsNotOwnedByPlayer( const Player *ownerPlayer )
+bool AIGroup::containsAnyObjectsNotOwnedByPlayer( const Player *ownerPlayer )
 {
 	ListObjectPtrIt it;
 
@@ -256,7 +256,7 @@ Bool AIGroup::containsAnyObjectsNotOwnedByPlayer( const Player *ownerPlayer )
 /**
  * Remove any objects that aren't owned by the player, and return true if the group was destroyed due to emptiness
  */
-Bool AIGroup::removeAnyObjectsNotOwnedByPlayer( const Player *ownerPlayer )
+bool AIGroup::removeAnyObjectsNotOwnedByPlayer( const Player *ownerPlayer )
 {
 	ListObjectPtrIt it;
 
@@ -286,7 +286,7 @@ Bool AIGroup::removeAnyObjectsNotOwnedByPlayer( const Player *ownerPlayer )
 /**
  * Compute the centroid of the group
  */
-Bool AIGroup::getCenter( Coord3D *center )
+bool AIGroup::getCenter( Coord3D *center )
 {
 	Int count = 0;
 	center->x = 0.0f;
@@ -341,7 +341,7 @@ Bool AIGroup::getCenter( Coord3D *center )
 	return count > 0;
 }
 
-Bool AIGroup::getMinMaxAndCenter( Coord2D *min, Coord2D *max, Coord3D *center )
+bool AIGroup::getMinMaxAndCenter( Coord2D *min, Coord2D *max, Coord3D *center )
 {
 	Int count = 0;
 	min->x = 1e10f;
@@ -389,7 +389,7 @@ Bool AIGroup::getMinMaxAndCenter( Coord2D *min, Coord2D *max, Coord3D *center )
 	center->x /= count;
 	center->y /= count;
 	center->z /= count;
-	Bool isFormation = (id!=NO_FORMATION_ID);
+	bool isFormation = (id!=NO_FORMATION_ID);
 	if (count<2) isFormation = false;
 	return isFormation;
 }
@@ -468,7 +468,7 @@ Int AIGroup::getCount( void )
 /**
  * Returns true if the group has no members
  */
-Bool AIGroup::isEmpty( void )
+bool AIGroup::isEmpty( void )
 {
 	return m_memberList.empty();
 }
@@ -478,7 +478,7 @@ Bool AIGroup::isEmpty( void )
  * this object such that it keeps its relative position with the group.
  */
 void AIGroup::computeIndividualDestination( Coord3D *dest, const Coord3D *groupDest, 
-																					 Object *obj, const Coord3D *center, Bool isFormation )
+																					 Object *obj, const Coord3D *center, bool isFormation )
 {
 	Coord2D v;
 
@@ -525,7 +525,7 @@ static const Int PATH_DIAMETER_IN_CELLS = 6;
 /**
  * Move to given position(s)
  */
-Bool AIGroup::friend_computeGroundPath( const Coord3D *pos, CommandSourceType cmdSource )
+bool AIGroup::friend_computeGroundPath( const Coord3D *pos, CommandSourceType cmdSource )
 
 {
 
@@ -541,7 +541,7 @@ Bool AIGroup::friend_computeGroundPath( const Coord3D *pos, CommandSourceType cm
 
 	if (TheGlobalData->m_debugAI==AI_DEBUG_TERRAIN) return false;
 
-	Bool closeEnough = false;
+	bool closeEnough = false;
 	getMinMaxAndCenter( &min, &max, &center );
 	Real distSqr = 4*sqr(TheAI->getAiData()->m_distanceRequiresGroup);
 
@@ -612,7 +612,7 @@ Bool AIGroup::friend_computeGroundPath( const Coord3D *pos, CommandSourceType cm
 	}
 
 	if (!closeEnough) {
-		Bool isPassable = true;
+		bool isPassable = true;
 		// see if all units have an unobstructed path to the center.  
 		// If so, then they are close enough.
 		for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
@@ -647,7 +647,7 @@ Bool AIGroup::friend_computeGroundPath( const Coord3D *pos, CommandSourceType cm
 /**
  * Move to given position(s)
  */
-Bool AIGroup::friend_moveInfantryToPos( const Coord3D *pos, CommandSourceType cmdSource )
+bool AIGroup::friend_moveInfantryToPos( const Coord3D *pos, CommandSourceType cmdSource )
 
 {
 	if (m_groundPath==NULL) return false;
@@ -706,7 +706,7 @@ Bool AIGroup::friend_moveInfantryToPos( const Coord3D *pos, CommandSourceType cm
 	endVectorNormal.y = endVector.x;
 	endVectorNormal.normalize();
 
-	Bool useEndVector = false;
+	bool useEndVector = false;
 	Int unitsToPath = 0;
 	// Move.
 	MemoryPoolObjectHolder iterHolder;
@@ -1056,7 +1056,7 @@ void AIGroup::friend_moveFormationToPos( const Coord3D *pos, CommandSourceType c
 		}
 		Object *theUnit = (*i);
 		AIUpdateInterface *ai = theUnit->getAIUpdateInterface();
-		Bool isDifferentFormation = false;
+		bool isDifferentFormation = false;
 		Coord2D offset;
 		if (isDifferentFormation) {
 			Coord3D pos = *theUnit->getPosition();
@@ -1102,7 +1102,7 @@ void AIGroup::friend_moveFormationToPos( const Coord3D *pos, CommandSourceType c
 /**
  * Move to given position(s)
  */
-Bool AIGroup::friend_moveVehicleToPos( const Coord3D *pos, CommandSourceType cmdSource )
+bool AIGroup::friend_moveVehicleToPos( const Coord3D *pos, CommandSourceType cmdSource )
 
 {
 
@@ -1171,7 +1171,7 @@ Bool AIGroup::friend_moveVehicleToPos( const Coord3D *pos, CommandSourceType cmd
 	endVectorNormal.normalize();
 
 	Int unitsToPath = 0;
-	Bool useEndVector = false;
+	bool useEndVector = false;
 	// Move.
 	MemoryPoolObjectHolder iterHolder;
 	SimpleObjectIterator *iter = newInstance(SimpleObjectIterator);
@@ -1476,18 +1476,18 @@ Bool AIGroup::friend_moveVehicleToPos( const Coord3D *pos, CommandSourceType cmd
 /**
  * Move to given position(s)
  */
-void AIGroup::groupMoveToPosition( const Coord3D *pos, Bool addWaypoint, CommandSourceType cmdSource )
+void AIGroup::groupMoveToPosition( const Coord3D *pos, bool addWaypoint, CommandSourceType cmdSource )
 {
-	Bool didInfantry = false;
-	Bool didVehicles = false;
+	bool didInfantry = false;
+	bool didVehicles = false;
 	// compute current centroid of the team
 	Coord3D center;
 	Coord2D min;
 	Coord2D max;
 	Coord3D dest;
-	Bool tightenGroup = FALSE;
+	bool tightenGroup = FALSE;
 
-	Bool isFormation = getMinMaxAndCenter( &min, &max, &center );
+	bool isFormation = getMinMaxAndCenter( &min, &max, &center );
 	if (addWaypoint) isFormation = false;
 	if (!addWaypoint && !isFormation) {
 		friend_computeGroundPath(pos, cmdSource);
@@ -1592,7 +1592,7 @@ void AIGroup::groupMoveToPosition( const Coord3D *pos, Bool addWaypoint, Command
 	// Works better if you let the near units get the first paths... jba.
 	// Move the ones nearest the goal first.  Reduces collision problems later.
 	Object *theUnit;
-	Bool firstUnit = true;
+	bool firstUnit = true;
 	for (theUnit = iter->first(); theUnit; theUnit = iter->next())
 	{
 		theUnit->setFormationID(NO_FORMATION_ID);
@@ -1713,10 +1713,10 @@ void AIGroup::groupScatter( CommandSourceType cmdSource )
 /**
  * Move to given position(s), tightening the formation
  */
-void AIGroup::groupTightenToPosition( const Coord3D *pos, Bool addWaypoint, CommandSourceType cmdSource )
+void AIGroup::groupTightenToPosition( const Coord3D *pos, bool addWaypoint, CommandSourceType cmdSource )
 {		
 	//Kris: Disabled (because its not used to make a logical difference)
-	//Bool outsideOfBounds = true;
+	//bool outsideOfBounds = true;
 	Coord3D center;
 	Coord2D min;
 	Coord2D max;
@@ -1962,7 +1962,7 @@ void AIGroup::groupFollowPath( const std::vector<Coord3D>* path, Object *ignoreO
 /**
  * Attack given object
  */
-void AIGroup::groupAttackObjectPrivate( Bool forced, Object *victim, Int maxShotsToFire, CommandSourceType cmdSource )
+void AIGroup::groupAttackObjectPrivate( bool forced, Object *victim, Int maxShotsToFire, CommandSourceType cmdSource )
 {
 	if (!victim) {
 		// Hard to kill em if they're already dead.  jba
@@ -2436,7 +2436,7 @@ void AIGroup::groupCreateFormation( CommandSourceType cmdSource )				///< Create
 	Coord3D center;
 	Coord2D min;
 	Coord2D max;
-	Bool isFormation = getMinMaxAndCenter( &min, &max, &center );
+	bool isFormation = getMinMaxAndCenter( &min, &max, &center );
 	std::list<Object *>::iterator i;
 	FormationID id = TheAI->getNextFormationID();
 
@@ -2588,7 +2588,7 @@ void AIGroup::groupDoSpecialPowerAtObject( UnsignedInt specialPowerID, Object *t
 }
 
 #ifdef ALLOW_SURRENDER
-void AIGroup::groupSurrender( const Object *objWeSurrenderedTo, Bool surrender, CommandSourceType cmdSource )
+void AIGroup::groupSurrender( const Object *objWeSurrenderedTo, bool surrender, CommandSourceType cmdSource )
 {
 	//This is currently only activated via test key
 	std::list<Object *>::iterator i;
@@ -2822,7 +2822,7 @@ AttitudeType AIGroup::getAttitude( void ) const
 	return ATTITUDE_PASSIVE;
 }
 
-void AIGroup::setMineClearingDetail( Bool set )
+void AIGroup::setMineClearingDetail( bool set )
 {
 	std::list<Object *>::iterator i;
 	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
@@ -2834,9 +2834,9 @@ void AIGroup::setMineClearingDetail( Bool set )
 	}
 }
 
-Bool AIGroup::setWeaponLockForGroup( WeaponSlotType weaponSlot, WeaponLockType lockType )
+bool AIGroup::setWeaponLockForGroup( WeaponSlotType weaponSlot, WeaponLockType lockType )
 {
-	Bool any = false;
+	bool any = false;
 	std::list<Object *>::iterator i;
 	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
@@ -2919,9 +2919,9 @@ void AIGroup::queueUpgrade( const UpgradeTemplate *upgrade )
 }
 
 //------------------------------------------------------------------------------------------------------------
-Bool AIGroup::isIdle( void ) const
+bool AIGroup::isIdle( void ) const
 {
-	Bool isIdle = true;
+	bool isIdle = true;
 	std::list<Object *>::const_iterator i;
 	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
@@ -2950,9 +2950,9 @@ Bool AIGroup::isIdle( void ) const
 //------------------------------------------------------------------------------------------------------------
 //Definition of busy -- when explicitly in the busy state. Moving or attacking is not considered busy!
 //------------------------------------------------------------------------------------------------------------
-Bool AIGroup::isBusy( void ) const
+bool AIGroup::isBusy( void ) const
 {
-	Bool isBusy = true;
+	bool isBusy = true;
 	std::list<Object *>::const_iterator i;
 	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{
@@ -2984,9 +2984,9 @@ Bool AIGroup::isBusy( void ) const
 //------------------------------------------------------------------------------------------------------------
 // return true iff all group members are dead
 //------------------------------------------------------------------------------------------------------------
-Bool AIGroup::isGroupAiDead( void ) const
+bool AIGroup::isGroupAiDead( void ) const
 {
-	Bool isDead = true;
+	bool isDead = true;
 	std::list<Object *>::const_iterator i;
 	for( i = m_memberList.begin(); i != m_memberList.end(); ++i )
 	{

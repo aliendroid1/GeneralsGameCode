@@ -290,14 +290,14 @@ struct Coord3D
 		z *= scale;
 	}
 
-	Bool equals( const Coord3D &r )
+	bool equals( const Coord3D &r )
 	{
 		return (x == r.x && 
 						y == r.y &&
 						z == r.z);
 	}
 
-	Bool operator==( const Coord3D &r ) const
+	bool operator==( const Coord3D &r ) const
 	{
 		return (x == r.x &&
 						y == r.y &&
@@ -328,12 +328,12 @@ struct Region3D
 	Real depth( void ) const { return hi.z - lo.z; }
 
 	void zero() { lo.zero(); hi.zero(); }
-	Bool isInRegionNoZ( const Coord3D *query ) const
+	bool isInRegionNoZ( const Coord3D *query ) const
 	{
 		return (lo.x < query->x) && (query->x < hi.x) 
 						&& (lo.y < query->y) && (query->y < hi.y);
 	}
-	Bool isInRegionWithZ( const Coord3D *query ) const
+	bool isInRegionWithZ( const Coord3D *query ) const
 	{
 		return (lo.x < query->x) && (query->x < hi.x) 
 						&& (lo.y < query->y) && (query->y < hi.y)

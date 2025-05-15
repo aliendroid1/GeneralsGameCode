@@ -91,7 +91,7 @@ public:
 		AsciiString name;										///< Logical name of track
 		AsciiString filename;								///< Filename with extension of music track
 		Real				volume;									///< Mixing level for this track
-		Bool				ambient;								///< Game info about this track(public)
+		bool				ambient;								///< Game info about this track(public)
 
 		MusicTrack *next;
 		MusicTrack *prev;

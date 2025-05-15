@@ -507,7 +507,7 @@ private:
 public:
 	PartitionFilterLiveMapEnemies(const Object *obj) : m_obj(obj) { }
 
-	virtual Bool allow(Object *objOther)
+	virtual bool allow(Object *objOther)
 	{
 		// this is way fast (bit test) so do it first.
 		if (objOther->isEffectivelyDead())
@@ -537,7 +537,7 @@ private:
 public:
 	PartitionFilterWithinAttackRange(const Object* obj) : m_obj(obj) { }
 
-	virtual Bool allow(Object* objOther)
+	virtual bool allow(Object* objOther)
 	{
 		for (Int i = 0; i < WEAPONSLOT_COUNT;	i++ )
 		{
@@ -814,7 +814,7 @@ Real AI::getAdjustedVisionRangeForObject(const Object *object, Int factorsToCons
 
 	if (factorsToConsider & AI_VISIONFACTOR_OWNERTYPE) 
 	{
-		Bool playerIsHuman = (moodMatrixVal & MM_Controller_Player) != 0;
+		bool playerIsHuman = (moodMatrixVal & MM_Controller_Player) != 0;
 
 		if (playerIsHuman) 
 		{

@@ -87,22 +87,22 @@ typedef BitFlags<OBJECT_STATUS_COUNT>	ObjectStatusMaskType;
 #define MAKE_OBJECT_STATUS_MASK4(k,a,b,c) ObjectStatusMaskType(ObjectStatusMaskType::kInit, (k), (a), (b), (c))
 #define MAKE_OBJECT_STATUS_MASK5(k,a,b,c,d) ObjectStatusMaskType(ObjectStatusMaskType::kInit, (k), (a), (b), (c), (d))
 
-inline Bool TEST_OBJECT_STATUS_MASK( const ObjectStatusMaskType& m, ObjectStatusTypes t ) 
+inline bool TEST_OBJECT_STATUS_MASK( const ObjectStatusMaskType& m, ObjectStatusTypes t ) 
 { 
 	return m.test( t ); 
 }
 
-inline Bool TEST_OBJECT_STATUS_MASK_ANY( const ObjectStatusMaskType& m, const ObjectStatusMaskType& mask ) 
+inline bool TEST_OBJECT_STATUS_MASK_ANY( const ObjectStatusMaskType& m, const ObjectStatusMaskType& mask ) 
 { 
 	return m.anyIntersectionWith( mask );
 }
 
-inline Bool TEST_OBJECT_STATUS_MASK_MULTI( const ObjectStatusMaskType& m, const ObjectStatusMaskType& mustBeSet, const ObjectStatusMaskType& mustBeClear )
+inline bool TEST_OBJECT_STATUS_MASK_MULTI( const ObjectStatusMaskType& m, const ObjectStatusMaskType& mustBeSet, const ObjectStatusMaskType& mustBeClear )
 {
 	return m.testSetAndClear( mustBeSet, mustBeClear );
 }
 
-inline Bool OBJECT_STATUS_MASK_ANY_SET( const ObjectStatusMaskType& m) 
+inline bool OBJECT_STATUS_MASK_ANY_SET( const ObjectStatusMaskType& m) 
 { 
 	return m.any(); 
 }

@@ -344,8 +344,8 @@ void ActiveBody::attemptDamage( DamageInfo *damageInfo )
 	if( obj->isEffectivelyDead() )
 		return;
 
-	Bool alreadyHandled = FALSE;
-	Bool allowModifier = TRUE;
+	bool alreadyHandled = FALSE;
+	bool allowModifier = TRUE;
 	Real amount = m_curArmor.adjustDamage(damageInfo->in.m_damageType, damageInfo->in.m_amount);
 
 	switch( damageInfo->in.m_damageType )
@@ -758,7 +758,7 @@ void ActiveBody::createParticleSystems( const AsciiString &boneBaseName,
 	// create, in which case we place the particle systems at random bone locations
 	// but don't want to repeat any
 	//
-	Bool usedBoneIndices[ MAX_BONES ] = { FALSE };
+	bool usedBoneIndices[ MAX_BONES ] = { FALSE };
 	
 	// create the particle systems
 	const Coord3D *pos;
@@ -1037,7 +1037,7 @@ Real ActiveBody::getInitialHealth() const
 // ------------------------------------------------------------------------------------------------
 /** Set or unset the overridable indestructible flag in the body */
 // ------------------------------------------------------------------------------------------------
-void ActiveBody::setIndestructible( Bool indestructible )
+void ActiveBody::setIndestructible( bool indestructible )
 {
 
 	m_indestructible = indestructible;
@@ -1166,7 +1166,7 @@ void ActiveBody::onVeterancyLevelChanged( VeterancyLevel oldLevel, VeterancyLeve
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-void ActiveBody::setAflame( Bool )
+void ActiveBody::setAflame( bool )
 {
 
 	//

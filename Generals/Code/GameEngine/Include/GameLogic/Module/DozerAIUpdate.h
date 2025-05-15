@@ -53,9 +53,9 @@ public:
 
 	//-----------------------------------------------------------------------------------------------
 	// state transition conditions
-	static Bool isBuildMostImportant( State *thisState, void* userData );
-	static Bool isRepairMostImportant( State *thisState, void* userData );
-	static Bool isFortifyMostImportant( State *thisState, void* userData );
+	static bool isBuildMostImportant( State *thisState, void* userData );
+	static bool isRepairMostImportant( State *thisState, void* userData );
+	static bool isFortifyMostImportant( State *thisState, void* userData );
 
 protected:
 	// snapshot interface
@@ -122,21 +122,21 @@ public:
 	virtual Object *construct( const ThingTemplate *what, 
 														 const Coord3D *pos, Real angle, 
 														 Player *owningPlayer,
-														 Bool isRebuild ) = 0;
+														 bool isRebuild ) = 0;
 
 
 	// get task information
 	virtual DozerTask getMostRecentCommand( void ) = 0;				///< return task that was most recently issued
-	virtual Bool isTaskPending( DozerTask task ) = 0;					///< is there a desire to do the requested task
+	virtual bool isTaskPending( DozerTask task ) = 0;					///< is there a desire to do the requested task
 	virtual ObjectID getTaskTarget( DozerTask task ) = 0;			///< get target of task
-	virtual Bool isAnyTaskPending( void ) = 0;								///< is there any dozer task pending
+	virtual bool isAnyTaskPending( void ) = 0;								///< is there any dozer task pending
 
 	virtual DozerTask getCurrentTask( void ) const = 0;							///< return the current task we're doing
 	// the following should only be used from inside the Dozer state machine!
 	// !!! *DO NOT CALL THIS AND SET THE TASK DIRECTLY TO AFFECT BEHAVIOR* !!! ///
 	virtual void setCurrentTask( DozerTask task ) = 0;				///< set the current task of the dozer
 
-	virtual Bool getIsRebuild( void ) = 0;										///< get whether or not this is a rebuild.
+	virtual bool getIsRebuild( void ) = 0;										///< get whether or not this is a rebuild.
 
 	// task actions
 	virtual void newTask( DozerTask task, Object *target ) = 0;	///< set a desire to do the requrested task
@@ -155,7 +155,7 @@ public:
 	virtual DozerBuildSubTask getBuildSubTask( void ) = 0;
 
 	// repairing
-	virtual Bool canAcceptNewRepair( Object *obj ) = 0;
+	virtual bool canAcceptNewRepair( Object *obj ) = 0;
 	virtual void createBridgeScaffolding( Object *bridgeTower ) = 0;
 	virtual void removeBridgeScaffolding( Object *bridgeTower ) = 0;
 
@@ -198,7 +198,7 @@ class DozerAIUpdate : public AIUpdateInterface, public DozerAIInterface
 	MAKE_STANDARD_MODULE_MACRO_WITH_MODULE_DATA( DozerAIUpdate, DozerAIUpdateModuleData )
 
 public:
-	static Bool findGoodBuildOrRepairPosition(const Object* me, const Object* target, Coord3D& positionOut);
+	static bool findGoodBuildOrRepairPosition(const Object* me, const Object* target, Coord3D& positionOut);
 	static Object* findGoodBuildOrRepairPositionAndTarget(Object* me, Object* target, Coord3D& positionOut);
 
 public:
@@ -224,18 +224,18 @@ public:
 	virtual Object* construct( const ThingTemplate *what, 
 														 const Coord3D *pos, Real angle, 
 														 Player *owningPlayer,
-														 Bool isRebuild );								///< construct an object
+														 bool isRebuild );								///< construct an object
 
 
 	// get task information
 	virtual DozerTask getMostRecentCommand( void );				///< return task that was most recently issued
-	virtual Bool isTaskPending( DozerTask task );					///< is there a desire to do the requested task
+	virtual bool isTaskPending( DozerTask task );					///< is there a desire to do the requested task
 	virtual ObjectID getTaskTarget( DozerTask task );			///< get target of task
-	virtual Bool isAnyTaskPending( void );								///< is there any dozer task pending
+	virtual bool isAnyTaskPending( void );								///< is there any dozer task pending
 	virtual DozerTask getCurrentTask( void ) const { return m_currentTask; }	///< return the current task we're doing
 	virtual void setCurrentTask( DozerTask task ) { m_currentTask = task; }	///< set the current task of the dozer
 
-	virtual Bool getIsRebuild( void ) { return m_isRebuild; }	///< get whether or not this building is a rebuild.
+	virtual bool getIsRebuild( void ) { return m_isRebuild; }	///< get whether or not this building is a rebuild.
 
 	// task actions
 	virtual void newTask( DozerTask task, Object *target );	///< set a desire to do the requrested task
@@ -256,7 +256,7 @@ public:
 	virtual UpdateSleepTime update( void );											///< the update entry point
 
 	// repairing
-	virtual Bool canAcceptNewRepair( Object *obj );
+	virtual bool canAcceptNewRepair( Object *obj );
 	virtual void createBridgeScaffolding( Object *bridgeTower );
 	virtual void removeBridgeScaffolding( Object *bridgeTower );
 
@@ -284,7 +284,7 @@ protected:
 	DozerPrimaryStateMachine *m_dozerMachine;  ///< the custom state machine for Dozer behavior
 	DozerTask m_currentTask;						///< current task the dozer is attending to (if any)
 	AudioEventRTS	m_buildingSound;			///< sound is pulled from the object we are building!
-	Bool m_isRebuild;										///< is this a rebuild of a previous building?
+	bool m_isRebuild;										///< is this a rebuild of a previous building?
 
 	//
 	// the following info array can be used if we want to have more complicated approaches
@@ -292,7 +292,7 @@ protected:
 	//
 	struct DozerDockPointInfo
 	{
-		Bool valid;						///< this point has been set and is valid
+		bool valid;						///< this point has been set and is valid
 		Coord3D location;			///< WORLD location
 	} m_dockPoint[ DOZER_NUM_TASKS ][ DOZER_NUM_DOCK_POINTS ];
 

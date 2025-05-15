@@ -110,7 +110,7 @@ protected:
 
 	WideChar* peek() const;
 	void releaseBuffer();
-	void ensureUniqueBufferOfSize(int numCharsNeeded, Bool preserveData, const WideChar* strToCpy, const WideChar* strToCat);
+	void ensureUniqueBufferOfSize(int numCharsNeeded, bool preserveData, const WideChar* strToCpy, const WideChar* strToCat);
 
 public:
 
@@ -161,7 +161,7 @@ public:
 		Return true iff the length of the string is zero. Equivalent
 		to (getLength() == 0) but slightly more efficient.
 	*/
-	Bool isEmpty() const;
+	bool isEmpty() const;
 	/**
 		Make the string empty. Equivalent to (str = "") but slightly more efficient.
 	*/
@@ -274,7 +274,7 @@ public:
 		token was found. (note that this modifies 'this' as well, stripping
 		the token off!)
 	*/
-	Bool nextToken(UnicodeString* token, UnicodeString delimiters = UnicodeString::TheEmptyString);
+	bool nextToken(UnicodeString* token, UnicodeString delimiters = UnicodeString::TheEmptyString);
 
 //
 // You might think it would be a good idea to overload the * operator
@@ -320,7 +320,7 @@ inline int UnicodeString::getLength() const
 }
 
 // -----------------------------------------------------
-inline Bool UnicodeString::isEmpty() const
+inline bool UnicodeString::isEmpty() const
 {
 	validate();
 	return m_data == NULL || peek()[0] == 0;
@@ -415,37 +415,37 @@ inline int UnicodeString::compareNoCase(const WideChar* s) const
 }
 
 // -----------------------------------------------------
-inline Bool operator==(const UnicodeString& s1, const UnicodeString& s2)
+inline bool operator==(const UnicodeString& s1, const UnicodeString& s2)
 {
 	return wcscmp(s1.str(), s2.str()) == 0;
 }
 
 // -----------------------------------------------------
-inline Bool operator!=(const UnicodeString& s1, const UnicodeString& s2)
+inline bool operator!=(const UnicodeString& s1, const UnicodeString& s2)
 {
 	return wcscmp(s1.str(), s2.str()) != 0;
 }
 
 // -----------------------------------------------------
-inline Bool operator<(const UnicodeString& s1, const UnicodeString& s2)
+inline bool operator<(const UnicodeString& s1, const UnicodeString& s2)
 {
 	return wcscmp(s1.str(), s2.str()) < 0;
 }
 
 // -----------------------------------------------------
-inline Bool operator<=(const UnicodeString& s1, const UnicodeString& s2)
+inline bool operator<=(const UnicodeString& s1, const UnicodeString& s2)
 {
 	return wcscmp(s1.str(), s2.str()) <= 0;
 }
 
 // -----------------------------------------------------
-inline Bool operator>(const UnicodeString& s1, const UnicodeString& s2)
+inline bool operator>(const UnicodeString& s1, const UnicodeString& s2)
 {
 	return wcscmp(s1.str(), s2.str()) > 0;
 }
 
 // -----------------------------------------------------
-inline Bool operator>=(const UnicodeString& s1, const UnicodeString& s2)
+inline bool operator>=(const UnicodeString& s1, const UnicodeString& s2)
 {
 	return wcscmp(s1.str(), s2.str()) >= 0;
 }

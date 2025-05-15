@@ -95,10 +95,10 @@ public:
 	inline Int getInitialCreditsMax( void ) { return m_initialCreditsMax; }
 	inline Int getStartCountdownTimerSeconds( void ) { return m_startCountdownTimerSeconds; }
 	inline Int getMaxBeaconsPerPlayer( void ) { return m_maxBeaconsPerPlayer; }
-	inline Bool isShroudInMultiplayer( void ) { return m_isShroudInMultiplayer; }
-	inline Bool showRandomPlayerTemplate( void ) { return m_showRandomPlayerTemplate; }
-	inline Bool showRandomStartPos( void ) { return m_showRandomStartPos; }
-	inline Bool showRandomColor( void ) { return m_showRandomColor; }
+	inline bool isShroudInMultiplayer( void ) { return m_isShroudInMultiplayer; }
+	inline bool showRandomPlayerTemplate( void ) { return m_showRandomPlayerTemplate; }
+	inline bool showRandomStartPos( void ) { return m_showRandomStartPos; }
+	inline bool showRandomColor( void ) { return m_showRandomColor; }
 
 	inline Int getNumColors( void ) 
 	{
@@ -114,10 +114,10 @@ private:
 	Int m_initialCreditsMax;
 	Int m_startCountdownTimerSeconds;
 	Int m_maxBeaconsPerPlayer;
-	Bool m_isShroudInMultiplayer;
-	Bool m_showRandomPlayerTemplate;
-	Bool m_showRandomStartPos;
-	Bool m_showRandomColor;
+	bool m_isShroudInMultiplayer;
+	bool m_showRandomPlayerTemplate;
+	bool m_showRandomStartPos;
+	bool m_showRandomColor;
 
 	MultiplayerColorList m_colorList;
 	Int m_numColors;

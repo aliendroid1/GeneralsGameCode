@@ -67,7 +67,7 @@ public:
 	int	Get_Int( const char * name, int def_value = 0 );
 	void	Set_Int( const char * name, int value );
 
-	// Bool data type access
+	// bool data type access
 	bool	Get_Bool( const char * name, bool def_value = false );
 	void	Set_Bool( const char * name, bool value );
 

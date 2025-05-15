@@ -85,7 +85,7 @@ public:
 		m_center.zero();
 	}
 
-	virtual Bool shouldExit(const StateMachine* machine) const;
+	virtual bool shouldExit(const StateMachine* machine) const;
 };
 
 
@@ -130,7 +130,7 @@ public:
 	GuardMode getGuardMode() const { return m_guardMode; }
 	void setGuardMode(GuardMode guardMode) { m_guardMode = guardMode; }
 
-	Bool lookForInnerTarget(void);
+	bool lookForInnerTarget(void);
 
 	static Real getStdGuardRange(const Object* obj);
 };

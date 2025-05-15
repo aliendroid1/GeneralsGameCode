@@ -163,12 +163,12 @@ class ArchiveFileSystem : public SubsystemInterface
 	// File operations
 	virtual File*					openFile( const Char *filename, Int access = 0);	///< Search Archive files for specified file name and open it if found
 	virtual void					closeAllFiles( void ) = 0;									///< Close all files associated with ArchiveFiles
-	virtual Bool					doesFileExist(const Char *filename) const;		///< return true if that file exists in an archive file somewhere.
+	virtual bool					doesFileExist(const Char *filename) const;		///< return true if that file exists in an archive file somewhere.
 
-	void					getFileListInDirectory(const AsciiString& currentDirectory, const AsciiString& originalDirectory, const AsciiString& searchName, FilenameList &filenameList, Bool searchSubdirectories) const; ///< search the given directory for files matching the searchName (egs. *.ini, *.rep).  Possibly search subdirectories.  Scans each Archive file.
-	Bool					getFileInfo(const AsciiString& filename, FileInfo *fileInfo) const; ///< see FileSystem.h
+	void					getFileListInDirectory(const AsciiString& currentDirectory, const AsciiString& originalDirectory, const AsciiString& searchName, FilenameList &filenameList, bool searchSubdirectories) const; ///< search the given directory for files matching the searchName (egs. *.ini, *.rep).  Possibly search subdirectories.  Scans each Archive file.
+	bool					getFileInfo(const AsciiString& filename, FileInfo *fileInfo) const; ///< see FileSystem.h
 	
-	virtual Bool	loadBigFilesFromDirectory(AsciiString dir, AsciiString fileMask, Bool overwrite = FALSE) = 0;
+	virtual bool	loadBigFilesFromDirectory(AsciiString dir, AsciiString fileMask, bool overwrite = FALSE) = 0;
 
 	// Unprotected this for copy-protection routines
 	AsciiString						getArchiveFilenameForFile(const AsciiString& filename) const;
@@ -176,7 +176,7 @@ class ArchiveFileSystem : public SubsystemInterface
 	void loadMods( void );
 
 protected:
-	virtual void					loadIntoDirectoryTree(const ArchiveFile *archiveFile, const AsciiString& archiveFilename, Bool overwrite = FALSE);	///< load the archive file's header information and apply it to the global archive directory tree.
+	virtual void					loadIntoDirectoryTree(const ArchiveFile *archiveFile, const AsciiString& archiveFilename, bool overwrite = FALSE);	///< load the archive file's header information and apply it to the global archive directory tree.
 
 	ArchiveFileMap m_archiveFileMap;
 	ArchivedDirectoryInfo m_rootDirectory;

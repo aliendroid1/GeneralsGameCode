@@ -117,7 +117,7 @@ void AIDockMachine::loadPostProcess( void )
 
 // State transition conditions ----------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-/* static */ Bool AIDockMachine::ableToAdvance( State *thisState, void* userData )
+/* static */ bool AIDockMachine::ableToAdvance( State *thisState, void* userData )
 {
 	Object *goalObject = thisState->getMachineGoalObject();
 	AIDockMachine *myMachine = (AIDockMachine *)thisState->getMachine();
@@ -187,7 +187,7 @@ StateReturnType AIDockApproachState::onEnter( void )
 	}
 
 	// get a good place to wait from the dock
-	Bool reserved = dock->reserveApproachPosition( getMachineOwner(), &m_goalPosition, &(( (AIDockMachine*)getMachine() )->m_approachPosition) );
+	bool reserved = dock->reserveApproachPosition( getMachineOwner(), &m_goalPosition, &(( (AIDockMachine*)getMachine() )->m_approachPosition) );
 	if( reserved == FALSE )
 	{
 		// dock is full
@@ -343,7 +343,7 @@ StateReturnType AIDockAdvancePositionState::onEnter( void )
 	}
 
 	// get a good place to wait from the dock
-	Bool reserved = dock->advanceApproachPosition( getMachineOwner(), &m_goalPosition, &(( (AIDockMachine*)getMachine() )->m_approachPosition) );
+	bool reserved = dock->advanceApproachPosition( getMachineOwner(), &m_goalPosition, &(( (AIDockMachine*)getMachine() )->m_approachPosition) );
 	if( reserved == FALSE )
 	{
 		// dock is full
@@ -641,7 +641,7 @@ struct DroneInfo
 {
 	Object *owner;
 	Object *drone;
-	Bool found;
+	bool found;
 };
 
 void findDrone( Object *obj, void *droneInfo )

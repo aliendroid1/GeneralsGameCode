@@ -70,7 +70,7 @@ class IgnorePreferences : public UserPreferences
 public:
 	IgnorePreferences();
 	virtual ~IgnorePreferences();
-	void setIgnore(const AsciiString& userName, Int profileID, Bool ignore);
+	void setIgnore(const AsciiString& userName, Int profileID, bool ignore);
 	IgnorePrefMap getIgnores(void);
 
 };

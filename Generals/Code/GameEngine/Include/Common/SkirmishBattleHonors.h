@@ -68,13 +68,13 @@ public:
 	Int getChallengeMedals(void) const;
 
 	void setBuiltSCUD(void);
-	Bool builtSCUD(void) const;
+	bool builtSCUD(void) const;
 
 	void setBuiltParticleCannon(void);
-	Bool builtParticleCannon(void) const;
+	bool builtParticleCannon(void) const;
 
 	void setBuiltNuke(void);
-	Bool builtNuke(void) const;
+	bool builtNuke(void) const;
 
 	void setHonors(Int mask);
 	Int getHonors(void) const;
@@ -90,7 +90,7 @@ public:
 };
 
 void ResetBattleHonorInsertion(void);
-void InsertBattleHonor(GameWindow *list, const Image *image, Bool enabled, Int itemData, Int& row, Int& column, UnicodeString text = UnicodeString::TheEmptyString);
+void InsertBattleHonor(GameWindow *list, const Image *image, bool enabled, Int itemData, Int& row, Int& column, UnicodeString text = UnicodeString::TheEmptyString);
 void BattleHonorTooltip(GameWindow *window,
 												WinInstanceData *instData,
 												UnsignedInt mouse);

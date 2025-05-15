@@ -86,7 +86,7 @@ class GeometryInfo : public Snapshot
 {
 private:
 	GeometryType m_type;
-	Bool m_isSmall;						///< if true, geometry is assumed to fit in a single partition cell
+	bool m_isSmall;						///< if true, geometry is assumed to fit in a single partition cell
 	Real m_height;
 	Real m_majorRadius;
 	Real m_minorRadius;
@@ -111,7 +111,7 @@ public:
 	static void parseGeometryMajorRadius( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ );
 	static void parseGeometryMinorRadius( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ );
 
-	GeometryInfo(GeometryType type, Bool isSmall, Real height, Real majorRadius, Real minorRadius)
+	GeometryInfo(GeometryType type, bool isSmall, Real height, Real majorRadius, Real minorRadius)
 	{
 		// Added by Sadullah Nader
 		// Initializations missing and needed
@@ -122,7 +122,7 @@ public:
 		set(type, isSmall, height, majorRadius, minorRadius);
 	}
 
-	void set(GeometryType type, Bool isSmall, Real height, Real majorRadius, Real minorRadius);
+	void set(GeometryType type, bool isSmall, Real height, Real majorRadius, Real minorRadius);
 
 	// bleah, icky but needed for legacy code
 	inline void setMajorRadius(Real majorRadius)
@@ -139,7 +139,7 @@ public:
 	}
 
 	inline GeometryType getGeomType() const { return m_type; }
-	inline Bool getIsSmall() const { return m_isSmall; }
+	inline bool getIsSmall() const { return m_isSmall; }
 	inline Real getMajorRadius() const { return m_majorRadius; }	// x-axis
 	inline Real getMinorRadius() const { return m_minorRadius; }	// y-axis
 	
@@ -150,7 +150,7 @@ public:
 	inline Real getBoundingCircleRadius() const { return m_boundingCircleRadius; }
 	inline Real getBoundingSphereRadius() const { return m_boundingSphereRadius; }
 
-	Bool isIntersectedByLineSegment(const Coord3D& loc, const Coord3D& from, const Coord3D& to) const;
+	bool isIntersectedByLineSegment(const Coord3D& loc, const Coord3D& from, const Coord3D& to) const;
 
 	Real getFootprintArea() const;
 
@@ -182,7 +182,7 @@ public:
 
 	void clipPointToFootprint(const Coord3D& geomCenter, Coord3D& ptToClip) const;
 
-	Bool isPointInFootprint(const Coord3D& geomCenter, const Coord3D& pt) const;
+	bool isPointInFootprint(const Coord3D& geomCenter, const Coord3D& pt) const;
 
 	// given an object with this geom, SET how far above the object's canonical position its max z should extend.
 	void setMaxHeightAbovePosition(Real z);

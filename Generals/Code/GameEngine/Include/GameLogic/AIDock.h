@@ -64,7 +64,7 @@ public:
 	 */
 	AIDockMachine( Object *owner );
 
-	static Bool ableToAdvance( State *thisState, void* userData ); // Condition for scooting forward in line while waiting
+	static bool ableToAdvance( State *thisState, void* userData ); // Condition for scooting forward in line while waiting
 	virtual void halt(void); ///< Stops the state machine & disables it in preparation for deleting it.
 
 	Int m_approachPosition;	///< The Approach Position I am holding, to make scoot forward checks quicker.

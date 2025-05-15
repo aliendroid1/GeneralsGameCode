@@ -71,38 +71,38 @@ public:
 	virtual void update( void ) { };						///< subsystem interface
 
 	//Single unit to unit check
-	Bool canGetRepairedAt( const Object *obj, const Object *repairDest, CommandSourceType commandSource );
-	Bool canTransferSuppliesAt( const Object *obj, const Object *transferDest );
-	Bool canDockAt( const Object *obj, const Object *dockDest, CommandSourceType commandSource );
-	Bool canGetHealedAt( const Object *obj, const Object *healDest, CommandSourceType commandSource );
-	Bool canRepairObject( const Object *obj, const Object *objectToRepair, CommandSourceType commandSource );
-	Bool canResumeConstructionOf( const Object *obj, const Object *objectBeingConstructed, CommandSourceType commandSource );
-	Bool canEnterObject( const Object *obj, const Object *objectToEnter, CommandSourceType commandSource, CanEnterType mode );
+	bool canGetRepairedAt( const Object *obj, const Object *repairDest, CommandSourceType commandSource );
+	bool canTransferSuppliesAt( const Object *obj, const Object *transferDest );
+	bool canDockAt( const Object *obj, const Object *dockDest, CommandSourceType commandSource );
+	bool canGetHealedAt( const Object *obj, const Object *healDest, CommandSourceType commandSource );
+	bool canRepairObject( const Object *obj, const Object *objectToRepair, CommandSourceType commandSource );
+	bool canResumeConstructionOf( const Object *obj, const Object *objectBeingConstructed, CommandSourceType commandSource );
+	bool canEnterObject( const Object *obj, const Object *objectToEnter, CommandSourceType commandSource, CanEnterType mode );
 	CanAttackResult getCanAttackObject( const Object *obj, const Object *objectToAttack, CommandSourceType commandSource, AbleToAttackType attackType );
-	Bool canConvertObjectToCarBomb( const Object *obj, const Object *objectToConvert, CommandSourceType commandSource );
-	Bool canHijackVehicle( const Object *obj, const Object *ObjectToHijack, CommandSourceType commandSource ); // LORENZEN
-	Bool canCaptureBuilding( const Object *obj, const Object *objectToCapture, CommandSourceType commandSource );
-	Bool canDisableVehicleViaHacking( const Object *obj, const Object *objectToHack, CommandSourceType commandSource, Bool checkSourceRequirements = true );
+	bool canConvertObjectToCarBomb( const Object *obj, const Object *objectToConvert, CommandSourceType commandSource );
+	bool canHijackVehicle( const Object *obj, const Object *ObjectToHijack, CommandSourceType commandSource ); // LORENZEN
+	bool canCaptureBuilding( const Object *obj, const Object *objectToCapture, CommandSourceType commandSource );
+	bool canDisableVehicleViaHacking( const Object *obj, const Object *objectToHack, CommandSourceType commandSource, bool checkSourceRequirements = true );
 #ifdef ALLOW_SURRENDER
-	Bool canPickUpPrisoner( const Object *obj, const Object *prisoner, CommandSourceType commandSource );
+	bool canPickUpPrisoner( const Object *obj, const Object *prisoner, CommandSourceType commandSource );
 #endif
-	Bool canStealCashViaHacking( const Object *obj, const Object *objectToHack, CommandSourceType commandSource );
-	Bool canSnipeVehicle( const Object *obj, const Object *objectToSnipe, CommandSourceType commandSource );
-	Bool canBribeUnit( const Object *obj, const Object *objectToBribe, CommandSourceType commandSource );
-	Bool canCutBuildingPower( const Object *obj, const Object *building, CommandSourceType commandSource );
-	Bool canDisableBuildingViaHacking( const Object *obj, const Object *objectToHack, CommandSourceType commandSource );
-	Bool canDoSpecialPowerAtLocation( const Object *obj, const Coord3D *loc, CommandSourceType commandSource, const SpecialPowerTemplate *spTemplate, const Object *objectInWay, UnsignedInt commandOptions, Bool checkSourceRequirements = true );
-	Bool canDoSpecialPowerAtObject( const Object *obj, const Object *target, CommandSourceType commandSource, const SpecialPowerTemplate *spTemplate, UnsignedInt commandOptions, Bool checkSourceRequirements = true);
-  Bool canDoSpecialPower( const Object *obj, const SpecialPowerTemplate *spTemplate, CommandSourceType commandSource, UnsignedInt commandOptions, Bool checkSourceRequirements = true );
-	Bool canMakeObjectDefector( const Object *obj, const Object *objectToMakeDefector, CommandSourceType commandSource );
-	Bool canFireWeaponAtLocation( const Object *obj, const Coord3D *loc, CommandSourceType commandSource, const WeaponSlotType slot, const Object *objectInWay );
-	Bool canFireWeaponAtObject( const Object *obj, const Object *target, CommandSourceType commandSource, const WeaponSlotType slot );
-  Bool canFireWeapon( const Object *obj, const WeaponSlotType slot, CommandSourceType commandSource );
-	Bool canGarrison( const Object *obj, const Object *target, CommandSourceType commandSource );
-	Bool canOverrideSpecialPowerDestination( const Object *obj, const Coord3D *loc, SpecialPowerType spType, CommandSourceType commandSource );
+	bool canStealCashViaHacking( const Object *obj, const Object *objectToHack, CommandSourceType commandSource );
+	bool canSnipeVehicle( const Object *obj, const Object *objectToSnipe, CommandSourceType commandSource );
+	bool canBribeUnit( const Object *obj, const Object *objectToBribe, CommandSourceType commandSource );
+	bool canCutBuildingPower( const Object *obj, const Object *building, CommandSourceType commandSource );
+	bool canDisableBuildingViaHacking( const Object *obj, const Object *objectToHack, CommandSourceType commandSource );
+	bool canDoSpecialPowerAtLocation( const Object *obj, const Coord3D *loc, CommandSourceType commandSource, const SpecialPowerTemplate *spTemplate, const Object *objectInWay, UnsignedInt commandOptions, bool checkSourceRequirements = true );
+	bool canDoSpecialPowerAtObject( const Object *obj, const Object *target, CommandSourceType commandSource, const SpecialPowerTemplate *spTemplate, UnsignedInt commandOptions, bool checkSourceRequirements = true);
+	bool canDoSpecialPower( const Object *obj, const SpecialPowerTemplate *spTemplate, CommandSourceType commandSource, UnsignedInt commandOptions, bool checkSourceRequirements = true );
+	bool canMakeObjectDefector( const Object *obj, const Object *objectToMakeDefector, CommandSourceType commandSource );
+	bool canFireWeaponAtLocation( const Object *obj, const Coord3D *loc, CommandSourceType commandSource, const WeaponSlotType slot, const Object *objectInWay );
+	bool canFireWeaponAtObject( const Object *obj, const Object *target, CommandSourceType commandSource, const WeaponSlotType slot );
+	bool canFireWeapon( const Object *obj, const WeaponSlotType slot, CommandSourceType commandSource );
+	bool canGarrison( const Object *obj, const Object *target, CommandSourceType commandSource );
+	bool canOverrideSpecialPowerDestination( const Object *obj, const Coord3D *loc, SpecialPowerType spType, CommandSourceType commandSource );
 
 	//Player to unit check
-	Bool canPlayerGarrison( const Player *player, const Object *target, CommandSourceType commandSource );
+	bool canPlayerGarrison( const Player *player, const Object *target, CommandSourceType commandSource );
 
 protected:
 

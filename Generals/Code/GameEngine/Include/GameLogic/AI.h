@@ -193,14 +193,14 @@ public:
 
 	Real m_maxRecruitDistance; // Maximum distance away that units can be recruited.
 	Real m_repulsedDistance; // How far a repulsed unit will run past vision range before stopping.
-	Bool m_enableRepulsors; // Is repulsion enabled?
+	bool m_enableRepulsors; // Is repulsion enabled?
 
-	Bool m_forceSkirmishAI; // If true, forces skirmish ai instead of solo ai for development until the skirmish ui is done.  jba.
-	Bool m_rotateSkirmishBases; // If true, rotates skirmish ai bases to face the center of the map. jba.
+	bool m_forceSkirmishAI; // If true, forces skirmish ai instead of solo ai for development until the skirmish ui is done.  jba.
+	bool m_rotateSkirmishBases; // If true, rotates skirmish ai bases to face the center of the map. jba.
 
-	Bool m_attackUsesLineOfSight; // If true, attack for units with KINDOF_ATTACK_NEEDS_LINE_OF_SIGHT  uses line of sight. jba.
+	bool m_attackUsesLineOfSight; // If true, attack for units with KINDOF_ATTACK_NEEDS_LINE_OF_SIGHT  uses line of sight. jba.
 
-	Bool m_attackIgnoreInsignificantBuildings; // If true, attack for ALL UNITS ignores buildings that are hostile that are not significant. jkmcd
+	bool m_attackIgnoreInsignificantBuildings; // If true, attack for ALL UNITS ignores buildings that are hostile that are not significant. jkmcd
 
 	// Group pathfind info.
 	Int	 m_minInfantryForGroup;		// We need at least this many to do it.
@@ -691,7 +691,7 @@ public:
 		aiDoCommand(&parms);
 	}
 
-	inline void aiEvacuate( Bool exposeStealthUnits, CommandSourceType cmdSource )
+	inline void aiEvacuate( bool exposeStealthUnits, CommandSourceType cmdSource )
 	{
 		AICommandParms parms(AICMD_EVACUATE, cmdSource);
 		if( exposeStealthUnits )
@@ -842,7 +842,7 @@ public:
 class AIGroup : public MemoryPoolObject, public Snapshot
 {
 private:
-	void groupAttackObjectPrivate( Bool forced, Object *victim, Int maxShotsToFire, CommandSourceType cmdSource );					///< attack given object
+	void groupAttackObjectPrivate( bool forced, Object *victim, Int maxShotsToFire, CommandSourceType cmdSource );					///< attack given object
 
 public:
 
@@ -851,13 +851,13 @@ public:
 	void xfer( Xfer *xfer );
 	void loadPostProcess( void );
 
-	void groupMoveToPosition( const Coord3D *pos, Bool addWaypoint, CommandSourceType cmdSource );
+	void groupMoveToPosition( const Coord3D *pos, bool addWaypoint, CommandSourceType cmdSource );
 	void groupMoveToAndEvacuate( const Coord3D *pos, CommandSourceType cmdSource );			///< move to given position(s)
 	void groupMoveToAndEvacuateAndExit( const Coord3D *pos, CommandSourceType cmdSource );			///< move to given position & unload transport.
 	void groupIdle(CommandSourceType cmdSource);						///< Enter idle state.
 	void groupScatter(CommandSourceType cmdSource);						///< Enter idle state.
 	void groupCreateFormation(CommandSourceType cmdSource); ///< Make the current selection a user formation.
-	void groupTightenToPosition( const Coord3D *pos, Bool addWaypoint, CommandSourceType cmdSource );			///< move to given position(s)
+	void groupTightenToPosition( const Coord3D *pos, bool addWaypoint, CommandSourceType cmdSource );			///< move to given position(s)
 	void groupFollowWaypointPath( const Waypoint *way, CommandSourceType cmdSource );///< start following the path from the given point
 	void groupFollowWaypointPathAsTeam( const Waypoint *way, CommandSourceType cmdSource );///< start following the path from the given point
 	void groupFollowWaypointPathExact( const Waypoint *way, CommandSourceType cmdSource );///< start following the path from the given point
@@ -894,7 +894,7 @@ public:
 	void groupDoSpecialPowerAtObject( UnsignedInt specialPowerID, Object *object, UnsignedInt commandOptions ); 
 	void groupDoSpecialPowerAtLocation( UnsignedInt specialPowerID, const Coord3D *location, Real angle, const Object *object, UnsignedInt commandOptions );
 #ifdef ALLOW_SURRENDER
-	void groupSurrender( const Object *objWeSurrenderedTo, Bool surrender, CommandSourceType cmdSource );
+	void groupSurrender( const Object *objWeSurrenderedTo, bool surrender, CommandSourceType cmdSource );
 #endif
 	void groupCheer( CommandSourceType cmdSource );
 	void groupSell( CommandSourceType cmdSource );
@@ -913,10 +913,10 @@ public:
 	void setAttitude( AttitudeType tude );	///< set the behavior modifier for this agent
 	AttitudeType getAttitude( void ) const;				///< get the current behavior modifier state	
 
-	Bool isIdle() const;
+	bool isIdle() const;
 	//Definition of busy -- when explicitly in the busy state. Moving or attacking is not considered busy!
-	Bool isBusy() const;
-	Bool isGroupAiDead() const;
+	bool isBusy() const;
+	bool isGroupAiDead() const;
 
 	// Returns an object that can perform the special power. Useful for making queries on the Action Manager
 	Object *getSpecialPowerSourceObject( UnsignedInt specialPowerID );
@@ -925,27 +925,27 @@ public:
 	Object *getCommandButtonSourceObject( GUICommandType type );
 
 	// Group methods --------------------------------------------------------------------------------
-	Bool isMember( Object *obj );						///< return true if object is in this group
+	bool isMember( Object *obj );						///< return true if object is in this group
 
 	Real getSpeed( void );									///< return the speed of the group's slowest member
-	Bool getCenter( Coord3D *center );				///< compute centroid of group
-	Bool getMinMaxAndCenter( Coord2D *min, Coord2D *max, Coord3D *center );
+	bool getCenter( Coord3D *center );				///< compute centroid of group
+	bool getMinMaxAndCenter( Coord2D *min, Coord2D *max, Coord3D *center );
 	void computeIndividualDestination( Coord3D *dest, const Coord3D *groupDest, 
-		Object *obj, const Coord3D *center, Bool isFormation ); ///< compute destination of individual object, based on group destination
+		Object *obj, const Coord3D *center, bool isFormation ); ///< compute destination of individual object, based on group destination
 	Int getCount( void );										///< return the number of objects in the group
-	Bool isEmpty( void );										///< returns true if the group has no members
+	bool isEmpty( void );										///< returns true if the group has no members
 	void queueUpgrade( const UpgradeTemplate *upgrade );	///< queue an upgrade
 
 	void add( Object *obj );								///< add object to group
 	
 	// returns true if remove destroyed the group for us.
-	Bool remove( Object *obj);
+	bool remove( Object *obj);
 	
 	// If the group contains any objects not owned by ownerPlayer, return TRUE.
-	Bool containsAnyObjectsNotOwnedByPlayer( const Player *ownerPlayer );
+	bool containsAnyObjectsNotOwnedByPlayer( const Player *ownerPlayer );
 
 	// Remove any objects that aren't owned by the player, and return true if the group was destroyed due to emptiness
-	Bool removeAnyObjectsNotOwnedByPlayer( const Player *ownerPlayer );
+	bool removeAnyObjectsNotOwnedByPlayer( const Player *ownerPlayer );
 	
 	UnsignedInt getID( void );
 		
@@ -954,8 +954,8 @@ public:
 
 	void recomputeGroupSpeed() { m_dirty = true; }
 
-	void setMineClearingDetail( Bool set );
-	Bool setWeaponLockForGroup( WeaponSlotType weaponSlot, WeaponLockType lockType ); ///< Set the groups' weapon choice.  
+	void setMineClearingDetail( bool set );
+	bool setWeaponLockForGroup( WeaponSlotType weaponSlot, WeaponLockType lockType ); ///< Set the groups' weapon choice.  
 	void releaseWeaponLockForGroup(WeaponLockType lockType);///< Clear each guys weapon choice
 	void setWeaponSetFlag( WeaponSetType wst );
 
@@ -964,10 +964,10 @@ protected:
 
 	ListObjectPtrIt internalRemove(ListObjectPtrIt iterToRemove);
 
-	Bool friend_moveInfantryToPos( const Coord3D *pos, CommandSourceType cmdSource );
-	Bool friend_moveVehicleToPos( const Coord3D *pos, CommandSourceType cmdSource );
+	bool friend_moveInfantryToPos( const Coord3D *pos, CommandSourceType cmdSource );
+	bool friend_moveVehicleToPos( const Coord3D *pos, CommandSourceType cmdSource );
 	void friend_moveFormationToPos( const Coord3D *pos, CommandSourceType cmdSource );
-	Bool friend_computeGroundPath( const Coord3D *pos, CommandSourceType cmdSource );
+	bool friend_computeGroundPath( const Coord3D *pos, CommandSourceType cmdSource );
 
 private:
 	// AIGroups must be created through TheAI->createGroup()
@@ -980,7 +980,7 @@ private:
 	UnsignedInt	m_memberListSize;	 					///< the size of the list of member Objects
 
 	Real m_speed;														///< maximum speed of group (slowest member)
-	Bool m_dirty;														///< "dirty bit" - if true then group speed, leader, needs recompute
+	bool m_dirty;														///< "dirty bit" - if true then group speed, leader, needs recompute
 
 	UnsignedInt m_id;												///< the unique ID of this group
 	Path *m_groundPath;											///< Group ground path.

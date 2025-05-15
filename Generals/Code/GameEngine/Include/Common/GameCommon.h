@@ -256,13 +256,13 @@ enum AbleToAttackType : Int
 };
 
 //-------------------------------------------------------------------------------------------------
-inline Bool isForcedAttack(AbleToAttackType t)
+inline bool isForcedAttack(AbleToAttackType t)
 {
 	return (((Int)t) & _ATTACK_FORCED) != 0;
 }
 
 //-------------------------------------------------------------------------------------------------
-inline Bool isContinuedAttack(AbleToAttackType t)
+inline bool isContinuedAttack(AbleToAttackType t)
 {
 	return (((Int)t) & _ATTACK_CONTINUED) != 0;
 }
@@ -275,7 +275,7 @@ typedef UnsignedInt VeterancyLevelFlags;
 const VeterancyLevelFlags VETERANCY_LEVEL_FLAGS_ALL = 0xffffffff;
 const VeterancyLevelFlags VETERANCY_LEVEL_FLAGS_NONE = 0x00000000;
 
-inline Bool getVeterancyLevelFlag(VeterancyLevelFlags flags, VeterancyLevel dt)
+inline bool getVeterancyLevelFlag(VeterancyLevelFlags flags, VeterancyLevel dt)
 {
 	return (flags & (1UL << (dt - 1))) != 0;
 }
@@ -306,7 +306,7 @@ public:																																								\
 		DEBUG_ASSERTCRASH(!BOGUSPTR(m_dlinkhead_##LISTNAME.m_head), ("bogus head ptr"));	\
 		return m_dlinkhead_##LISTNAME.m_head;																							\
 	}																																										\
-	inline Bool isInList_##LISTNAME(OBJCLASS* o) const																	\
+	inline bool isInList_##LISTNAME(OBJCLASS* o) const																	\
 	{																																										\
 		DEBUG_ASSERTCRASH(!BOGUSPTR(m_dlinkhead_##LISTNAME.m_head), ("bogus head ptr"));	\
 		return o->dlink_isInList_##LISTNAME(&m_dlinkhead_##LISTNAME.m_head);							\
@@ -371,7 +371,7 @@ public:																	\
 		m_dlink_##LISTNAME.m_next = m_dlink_##LISTNAME.m_prev;																	\
 		m_dlink_##LISTNAME.m_prev = originalNext;																								\
 	}																																													\
-	Bool dlink_isInList_##LISTNAME(OBJCLASS* const* pListHead) const										\
+	bool dlink_isInList_##LISTNAME(OBJCLASS* const* pListHead) const										\
 	{																																													\
 		DEBUG_ASSERTCRASH(!BOGUSPTR(*pListHead) && !BOGUSPTR(m_dlink_##LISTNAME.m_next) && !BOGUSPTR(m_dlink_##LISTNAME.m_prev), ("bogus ptrs")); \
 		return *pListHead == this || m_dlink_##LISTNAME.m_prev || m_dlink_##LISTNAME.m_next;		\
@@ -439,7 +439,7 @@ public:
 			m_cur = callMemberFunction(*m_cur, m_getNextFunc)();
 	}
 	
-	Bool done() const
+	bool done() const
 	{ 
 		return m_cur == NULL; 
 	}

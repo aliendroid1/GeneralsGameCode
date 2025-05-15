@@ -108,7 +108,7 @@ public:
 	inline RadarObject *friend_getNext( void ) { return m_next; }
 	inline const RadarObject *friend_getNext( void ) const { return m_next; }
 
-	Bool isTemporarilyHidden() const;
+	bool isTemporarilyHidden() const;
 
 protected:
 
@@ -166,27 +166,27 @@ public:
 	virtual void update( void );														///< subsystem per frame update
 
 	// is the game window parameter the radar window
-	Bool isRadarWindow( GameWindow *window ) { return (m_radarWindow == window) && (m_radarWindow != NULL); }
+	bool isRadarWindow( GameWindow *window ) { return (m_radarWindow == window) && (m_radarWindow != NULL); }
 
-	Bool radarToWorld( const ICoord2D *radar, Coord3D *world );		///< radar point to world point on terrain
-	Bool worldToRadar( const Coord3D *world, ICoord2D *radar );		///< translate world point to radar (x,y)
-	Bool localPixelToRadar( const ICoord2D *pixel, ICoord2D *radar );	///< translate pixel (with UL of radar being (0,0)) to logical radar coords
-	Bool screenPixelToWorld( const ICoord2D *pixel, Coord3D *world ); ///< translate pixel (with UL of the screen being (0,0)) to world position in the world
+	bool radarToWorld( const ICoord2D *radar, Coord3D *world );		///< radar point to world point on terrain
+	bool worldToRadar( const Coord3D *world, ICoord2D *radar );		///< translate world point to radar (x,y)
+	bool localPixelToRadar( const ICoord2D *pixel, ICoord2D *radar );	///< translate pixel (with UL of radar being (0,0)) to logical radar coords
+	bool screenPixelToWorld( const ICoord2D *pixel, Coord3D *world ); ///< translate pixel (with UL of the screen being (0,0)) to world position in the world
 	Object *objectUnderRadarPixel( const ICoord2D *pixel );				///< return the object (if any) represented by the pixel coords passed in
 	void findDrawPositions( Int startX, Int startY, Int width, Int height, 
 													ICoord2D *ul, ICoord2D *lr );					///< make translation for screen area of radar square to scaled aspect ratio preserving points inside the radar area
 
 	// priority inquiry
-	Bool isPriorityVisible( RadarPriorityType priority ) const;		///< is the priority passed in a "visible" one on the radar
+	bool isPriorityVisible( RadarPriorityType priority ) const;		///< is the priority passed in a "visible" one on the radar
 
 	// radar events
 	void createEvent( const Coord3D *world, RadarEventType type, Real secondsToLive = 4.0f );	///< create radar event at location in world
 	void createPlayerEvent( Player *player, const Coord3D *world, RadarEventType type, Real secondsToLive = 4.0f );  ///< create radar event using player colors
 
-	Bool getLastEventLoc( Coord3D *eventPos );							///< get last event loc (if any)
+	bool getLastEventLoc( Coord3D *eventPos );							///< get last event loc (if any)
 	void tryUnderAttackEvent( const Object *obj );					///< try to make an "under attack" event if it's the proper time
 	void tryInfiltrationEvent( const Object *obj );					///< try to make an "infiltration" event if it's the proper time
- 	Bool tryEvent( RadarEventType event, const Coord3D *pos );	///< try to make a "stealth" event
+ 	bool tryEvent( RadarEventType event, const Coord3D *pos );	///< try to make a "stealth" event
 
 	// adding and removing objects from the radar
 	void addObject( Object *obj );													///< add object to radar
@@ -194,14 +194,14 @@ public:
 	void examineObject( Object *obj );											///< re-examine object and resort if needed
 
 	// radar options
-	void hide( Bool hide ) { m_radarHidden = hide; }				///< hide/unhide the radar
-	Bool isRadarHidden( void ) { return m_radarHidden; }		///< is radar hidden
+	void hide( bool hide ) { m_radarHidden = hide; }				///< hide/unhide the radar
+	bool isRadarHidden( void ) { return m_radarHidden; }		///< is radar hidden
 	// other radar option methods here like the ability to show a certain
 	// team, show buildings, show units at all, etc
 
 	// forcing the radar on/off regardless of player situation
-	void forceOn( Bool force ) { m_radarForceOn = force; }				///< force the radar to be on
-	Bool isRadarForced( void ) { return m_radarForceOn; }		///< is radar forced on?
+	void forceOn( bool force ) { m_radarForceOn = force; }				///< force the radar to be on
+	bool isRadarForced( void ) { return m_radarForceOn; }		///< is radar forced on?
 
 	/// refresh the water values for the radar
 	virtual void refreshTerrain( TerrainLogic *terrain );
@@ -231,7 +231,7 @@ protected:
 														const RGBAColorInt *color1, const RGBAColorInt *color2 );
 
 	void deleteListResources( void );			///< delete list radar resources used
-	Bool deleteFromList( Object *obj, RadarObject **list );	///< try to remove object from specific list
+	bool deleteFromList( Object *obj, RadarObject **list );	///< try to remove object from specific list
 
 	inline Real getTerrainAverageZ() const { return m_terrainAverageZ; }
 	inline Real getWaterAverageZ() const { return m_waterAverageZ; }
@@ -243,8 +243,8 @@ protected:
 	// search the object list for an object that maps to the given logical radar coords
 	Object *searchListForRadarLocationMatch( RadarObject *listHead, ICoord2D *radarMatch );
 
-	Bool m_radarHidden;										///< true when radar is not visible
-	Bool m_radarForceOn;									///< true when radar is forced to be on
+	bool m_radarHidden;										///< true when radar is not visible
+	bool m_radarForceOn;									///< true when radar is forced to be on
 	RadarObject *m_objectList;						///< list of objects in the radar
 	RadarObject *m_localObjectList;				/** list of objects for the local player, sorted
 																					* in exactly the same priority as the regular
@@ -265,7 +265,7 @@ protected:
 	struct RadarEvent
 	{
 		RadarEventType type;								///< type of this radar event
-		Bool active;												///< TRUE when event is "active", otherwise it's just historical information in the event array to look through
+		bool active;												///< TRUE when event is "active", otherwise it's just historical information in the event array to look through
 		UnsignedInt createFrame;						///< frame event was created on
 		UnsignedInt dieFrame;								///< frame the event will go away on
 		UnsignedInt fadeFrame;							///< start fading out on this frame
@@ -273,7 +273,7 @@ protected:
 		RGBAColorInt color2;								///< color 2 for drawing
 		Coord3D worldLoc;										///< location of event in the world
 		ICoord2D radarLoc;									///< 2D radar location of the event
-		Bool soundPlayed;										///< TRUE when we have played the radar sound for this
+		bool soundPlayed;										///< TRUE when we have played the radar sound for this
 	};
 	RadarEvent m_event[ MAX_RADAR_EVENTS ];///< our radar events
 	Int m_nextFreeRadarEvent;							///< index into m_event for where to store the next event

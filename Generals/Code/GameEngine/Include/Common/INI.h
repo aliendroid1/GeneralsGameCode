@@ -173,11 +173,11 @@ public:
 	INI();
 	~INI();
 
-	void loadDirectory( AsciiString dirName, Bool subdirs, INILoadType loadType, Xfer *pXfer );  ///< load directory of INI files
+	void loadDirectory( AsciiString dirName, bool subdirs, INILoadType loadType, Xfer *pXfer );  ///< load directory of INI files
 	void load( AsciiString filename, INILoadType loadType, Xfer *pXfer );		///< load INI file
 
-	static Bool isDeclarationOfType( AsciiString blockType, AsciiString blockName, char *bufferToCheck );
-	static Bool isEndOfBlock( char *bufferToCheck );
+	static bool isDeclarationOfType( AsciiString blockType, AsciiString blockName, char *bufferToCheck );
+	static bool isEndOfBlock( char *bufferToCheck );
 
 	// data type parsing (the highest level of what type of thing we're parsing)
 	static void parseObjectDefinition( INI *ini );
@@ -247,7 +247,7 @@ public:
 	inline const char *getSepsPercent( void ) const { return m_sepsPercent; }
 	inline const char *getSepsColon( void ) const { return m_sepsColon; }
 	inline const char *getSepsQuote( void ) { return m_sepsQuote; }
-	inline Bool isEOF( void ) const { return m_endOfFile; }
+	inline bool isEOF( void ) const { return m_endOfFile; }
 
 	void initFromINI( void *what, const FieldParse* parseTable );
 	void initFromINIMulti( void *what, const MultiIniFieldParse& parseTableList );
@@ -376,11 +376,11 @@ public:
 	static Int scanIndexList(const char* token, ConstCharPtrArray nameList);
 	static Int scanLookupList(const char* token, ConstLookupListRecArray lookupList);
 
-	static Bool scanBool(const char* token);
+	static bool scanBool(const char* token);
 
 protected:
 
-	static Bool isValidINIFilename( const char *filename ); ///< is this a valid .ini filename		
+	static bool isValidINIFilename( const char *filename ); ///< is this a valid .ini filename		
 
 	void prepFile( AsciiString filename, INILoadType loadType );
 	void unPrepFile();
@@ -398,7 +398,7 @@ protected:
 	const char *m_sepsColon;									///< m_seps with colon delimiter as well
 	const char *m_sepsQuote;									///< token to represent a quoted ascii string
 	const char *m_blockEndToken;							///< token to represent end of data block
-	Bool m_endOfFile;													///< TRUE when we've hit EOF
+	bool m_endOfFile;													///< TRUE when we've hit EOF
 #ifdef DEBUG_CRASHING
 	char m_curBlockStart[ INI_MAX_CHARS_PER_LINE ];	///< first line of cur block
 #endif

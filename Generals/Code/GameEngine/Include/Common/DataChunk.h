@@ -92,7 +92,7 @@ class DataChunkTableOfContents
 	Mapping*		m_list;																/// @TODO: This should be a hash table
 	Int					m_listLength;
 	UnsignedInt	m_nextID;											// simple ID allocator
-	Bool				m_headerOpened;
+	bool				m_headerOpened;
 
 	Mapping *findMapping( const AsciiString& name );			// return mapping data
 
@@ -104,7 +104,7 @@ public:
 	AsciiString getName( UnsignedInt id );	// convert integer identifier to name
 	UnsignedInt allocateID( const AsciiString& name );		// create new ID for given name or return existing mapping
 
-	Bool isOpenedForRead(void) {return m_headerOpened;};
+	bool isOpenedForRead(void) {return m_headerOpened;};
 
 	void write(OutputStream &out);
 	void read(ChunkInputStream &in);
@@ -149,7 +149,7 @@ struct DataChunkInfo
 	Int dataSize;
 };
 
-typedef Bool (*DataChunkParserPtr)( DataChunkInput &file, DataChunkInfo *info, void *userData );
+typedef bool (*DataChunkParserPtr)( DataChunkInput &file, DataChunkInfo *info, void *userData );
 
 //----------------------------------------------------------------------
 // UserParser
@@ -201,16 +201,16 @@ public:
 	// chunks labels match "parentLabel" (or NULL for global scope)
 	void registerParser( const AsciiString& label, const AsciiString& parentLabel, DataChunkParserPtr parser, void *userData = NULL );
 
-	Bool parse( void *userData = NULL );						// parse the chunk stream using registered parsers
+	bool parse( void *userData = NULL );						// parse the chunk stream using registered parsers
 																									// assumed to be at the start of chunk when called
 																									// can be called recursively
 
-	Bool isValidFileType(void);											///< Returns TRUE if it is our file format.
+	bool isValidFileType(void);											///< Returns TRUE if it is our file format.
 	AsciiString openDataChunk(DataChunkVersionType *ver );
 	void closeDataChunk( void );										// close chunk and move to start of next chunk
 
-	Bool atEndOfFile( void ) { return (m_file->eof()) ? true : false; }					// return true if at end of file
-	Bool atEndOfChunk( void );											// return true if all data has been read from this chunk
+	bool atEndOfFile( void ) { return (m_file->eof()) ? true : false; }					// return true if at end of file
+	bool atEndOfChunk( void );											// return true if all data has been read from this chunk
 
 	void reset( void );															// reset to just-opened state
 

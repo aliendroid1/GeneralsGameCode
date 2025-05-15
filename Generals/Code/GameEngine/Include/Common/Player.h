@@ -252,7 +252,7 @@ public:
 	inline Color getPlayerNightColor() const { return m_nightColor;}
 	/// return the type of controller
 	inline PlayerType getPlayerType() const { return m_playerType; }
-	void setPlayerType(PlayerType t, Bool skirmish);
+	void setPlayerType(PlayerType t, bool skirmish);
 
 	inline PlayerIndex getPlayerIndex() const { return m_playerIndex; }
 
@@ -261,13 +261,13 @@ public:
 	
 	/// a convenience function to test the ThingTemplate against the players canBuild flags
 	/// called by canBuild
-	Bool allowedToBuild(const ThingTemplate *tmplate) const;
+	bool allowedToBuild(const ThingTemplate *tmplate) const;
 
 	/// true if we have the prereqs for this item
-	Bool canBuild(const ThingTemplate *tmplate) const;
+	bool canBuild(const ThingTemplate *tmplate) const;
 
 	// Can we afford to build?
-	Bool canAffordBuild( const ThingTemplate *whatToBuild ) const;
+	bool canAffordBuild( const ThingTemplate *whatToBuild ) const;
 
 	/// Difficulty level for this player.
 	GameDifficulty getPlayerDifficulty(void) const;
@@ -279,9 +279,9 @@ public:
 	Object* findNaturalCommandCenter();
 
 	/// return t if the player has the given science, either intrinsically, via specialization, or via capture.
-	Bool hasScience(ScienceType t) const;
-	Bool isScienceDisabled( ScienceType t ) const;	///< Can't purchase this science because of script reasons.
-	Bool isScienceHidden( ScienceType t ) const;		///< This science is effectively hidden due to  script reasons.
+	bool hasScience(ScienceType t) const;
+	bool isScienceDisabled( ScienceType t ) const;	///< Can't purchase this science because of script reasons.
+	bool isScienceHidden( ScienceType t ) const;		///< This science is effectively hidden due to  script reasons.
 
 	//Allows scripts to make specific sciences available, hidden, or disabled. 
 	void setScienceAvailability( ScienceType science, ScienceAvailabilityType type );
@@ -289,12 +289,12 @@ public:
 	ScienceAvailabilityType getScienceAvailabilityTypeFromString( const AsciiString& name );
 
 	/// return t iff the player has all sciences that are prereqs for knowing the given science
-	Bool hasPrereqsForScience(ScienceType t) const;
+	bool hasPrereqsForScience(ScienceType t) const;
 
-	Bool hasUpgradeComplete( const UpgradeTemplate *upgradeTemplate );		///< does player have totally done and produced upgrade
-	Bool hasUpgradeComplete( UpgradeMaskType testMask );		///< does player have totally done and produced upgrade
+	bool hasUpgradeComplete( const UpgradeTemplate *upgradeTemplate );		///< does player have totally done and produced upgrade
+	bool hasUpgradeComplete( UpgradeMaskType testMask );		///< does player have totally done and produced upgrade
 	UpgradeMaskType getCompletedUpgradeMask() const { return m_upgradesCompleted; }	///< get list of upgrades that are completed
-	Bool hasUpgradeInProduction( const UpgradeTemplate *upgradeTemplate );		///< does player have this upgrade in progress right now
+	bool hasUpgradeInProduction( const UpgradeTemplate *upgradeTemplate );		///< does player have this upgrade in progress right now
 	Upgrade *addUpgrade( const UpgradeTemplate *upgradeTemplate,
 											 UpgradeStatusType status );		///< add upgrade, or update existing upgrade status
 	void removeUpgrade( const UpgradeTemplate *upgradeTemplate );	///< remove thsi upgrade from us
@@ -310,20 +310,20 @@ public:
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	/// Prereq disabling cheat key
 	void toggleIgnorePrereqs(){ m_DEMO_ignorePrereqs = !m_DEMO_ignorePrereqs; }
-	Bool ignoresPrereqs() const { return m_DEMO_ignorePrereqs; }
+	bool ignoresPrereqs() const { return m_DEMO_ignorePrereqs; }
 
 	/// No cost building cheat key
 	void toggleFreeBuild(){ m_DEMO_freeBuild = !m_DEMO_freeBuild; }
-	Bool buildsForFree() const { return m_DEMO_freeBuild; }
+	bool buildsForFree() const { return m_DEMO_freeBuild; }
 
 	/// No time building cheat key
 	void toggleInstantBuild(){ m_DEMO_instantBuild = !m_DEMO_instantBuild; }
-	Bool buildsInstantly() const { return m_DEMO_instantBuild; }
+	bool buildsInstantly() const { return m_DEMO_instantBuild; }
 #endif
 
 	///< Power just changed at all.  Didn't make two functions so you can't forget to undo something you didin one of them.
 	///< @todo Can't do edge trigger until after demo; make things check for power on creation
-	void onPowerBrownOutChange( Bool brownOut );
+	void onPowerBrownOutChange( bool brownOut );
 
 
 	///< one of my command centers just fired a special power, let us reset timers for all command centers.
@@ -334,12 +334,12 @@ public:
 	void addNewSharedSpecialPowerTimer( const SpecialPowerTemplate *temp, UnsignedInt frame );
 
 
-	void addRadar( Bool disableProof );///< One more producer of Radar exists
-	void removeRadar( Bool disableProof );///< One less thing produces radar
+	void addRadar( bool disableProof );///< One more producer of Radar exists
+	void removeRadar( bool disableProof );///< One less thing produces radar
 	void disableRadar();	///< No matter how many radar producers I have, I do not have radar
 	void enableRadar();	///< remove the restriction imposed by disableRadar
-	Bool hasRadar() const;///< A positive number of radar producers, plus my radar is not disabled
-	Bool okToPlayRadarEdgeSound();///< just like it "sounds"
+	bool hasRadar() const;///< A positive number of radar producers, plus my radar is not disabled
+	bool okToPlayRadarEdgeSound();///< just like it "sounds"
 	//Battle plans effect the players abilities... so may as well add it here. Also
 	//it's possible for multiple strategy centers to have the same plan, so we need
 	//to keep track of that like radar. Keep in mind multiple strategy centers with
@@ -350,11 +350,11 @@ public:
 	void applyBattlePlanBonusesForObject( Object *obj ) const;	//New object or converted object gaining our current battle plan bonuses.
 	void removeBattlePlanBonusesForObject( Object *obj ) const; //Object left team
 	void applyBattlePlanBonusesForPlayerObjects( const BattlePlanBonuses *bonus ); //Battle plan bonuses changing, so apply to all of our objects!
-	Bool doesObjectQualifyForBattlePlan( Object *obj ) const;
+	bool doesObjectQualifyForBattlePlan( Object *obj ) const;
 
 	// If apply is false, then we are repealing already granted bonuses.
 	// Note: Should only be called by Object.
-	void friend_applyDifficultyBonusesForObject(Object* obj, Bool apply) const;
+	void friend_applyDifficultyBonusesForObject(Object* obj, bool apply) const;
 
 	/// Decrement the ref counter on the typeof production list node
 	void removeKindOfProductionCostChange(KindOfMaskType kindOf, Real percent);
@@ -381,23 +381,23 @@ public:
 	/**
 		the given object has just become (or just ceased to be) a member of one of our teams (or subteams)
 	*/
-	void becomingTeamMember(Object *obj, Bool yes);
+	void becomingTeamMember(Object *obj, bool yes);
 
 	/**
 		this is called when the player becomes the local player (yes==true)
 		or ceases to be the local player (yes==false). you can't stop this
 		from happening; you can only react to it.
 	*/
-	void becomingLocalPlayer(Bool yes);
+	void becomingLocalPlayer(bool yes);
 
 	/// Is this player the local player?
-	Bool isLocalPlayer() const;
+	bool isLocalPlayer() const;
 
 	/// this player should be listed in the score screen.
-	void setListInScoreScreen(Bool listInScoreScreen);
+	void setListInScoreScreen(bool listInScoreScreen);
 
 	/// return TRUE if this player should be listed in the score screen.
-	Bool getListInScoreScreen();
+	bool getListInScoreScreen();
 
 	/// A unit was just created and is ready to control
 	void onUnitCreated( Object *factory, Object *unit );
@@ -406,10 +406,10 @@ public:
 	void preTeamDestroy( const Team *team );
 
 	/// Is the nearest supply source safe?
-	Bool isSupplySourceSafe( Int minSupplies );
+	bool isSupplySourceSafe( Int minSupplies );
 
 	/// Is a supply source attacked?
-	Bool isSupplySourceAttacked( void );
+	bool isSupplySourceAttacked( void );
 
 	/// Set delay between team production.
 	void setTeamDelaySeconds(Int delay);
@@ -423,13 +423,13 @@ public:
 	Player  *getCurrentEnemy( void );
 
 	/// Is this player a skirmish ai player?
-	Bool isSkirmishAIPlayer( void );
+	bool isSkirmishAIPlayer( void );
 
 	/// Have the ai check for bridges.
-	virtual Bool checkBridges(Object *unit, Waypoint *way);
+	virtual bool checkBridges(Object *unit, Waypoint *way);
 
 	/// Get the center of the ai's base.
-	virtual Bool getAiBaseCenter(Coord3D *pos);
+	virtual bool getAiBaseCenter(Coord3D *pos);
 
 	/// Have the ai check for bridges.
 	virtual void repairStructure(ObjectID structureID);
@@ -438,7 +438,7 @@ public:
 	void onStructureCreated( Object *builder, Object *structure );
 
 	/// a structure that was under construction has become completed
-	void onStructureConstructionComplete( Object *builder, Object *structure, Bool isRebuild );
+	void onStructureConstructionComplete( Object *builder, Object *structure, bool isRebuild );
 
 	/// a structure that was created has been pre-emptively removed and shouldn't be counted in the score.
 	void onStructureUndone(Object *structure);
@@ -449,7 +449,7 @@ public:
 		size. It fills in the array to the correct counts. This is handy because we must traverse
 		the player's list-of-objects only once.
 	*/
-	void countObjectsByThingTemplate(Int numTmplates, const ThingTemplate* const * things, Bool ignoreDead, Int *counts, Bool ignoreUnderConstruction = TRUE ) const;
+	void countObjectsByThingTemplate(Int numTmplates, const ThingTemplate* const * things, bool ignoreDead, Int *counts, bool ignoreUnderConstruction = TRUE ) const;
 
 	/**
 		simply returns the number of buildings owned by this player
@@ -467,27 +467,27 @@ public:
 	/**
 		a convenience routine to quickly check if any buildings are owned.
 	*/
-	Bool hasAnyBuildings(void) const;
+	bool hasAnyBuildings(void) const;
 
 	/**
 		a convenience routine to quickly check if any buildings with a specific KindOfType flag are owned.
 	*/
-	Bool hasAnyBuildings(KindOfMaskType kindOf) const;
+	bool hasAnyBuildings(KindOfMaskType kindOf) const;
 
 	/**
 		a convenience routine to quickly check if any units are owned.
 	*/
-	Bool hasAnyUnits(void) const;
+	bool hasAnyUnits(void) const;
 
 	/**
 		a convenience routine to quickly check if any objects are owned.
 	*/
-	Bool hasAnyObjects(void) const;
+	bool hasAnyObjects(void) const;
 
 	/**
 		a convenience routine to quickly check if any buildfacilities are owned.
 	*/
-	Bool hasAnyBuildFacility(void) const;
+	bool hasAnyBuildFacility(void) const;
 
 	/**
 		a convenience routine to quickly update the state flags on all teams.
@@ -520,9 +520,9 @@ public:
 
 	/// set the relationship between this->that. (note that this doesn't affect the that->this relationship.)
 	void setPlayerRelationship(const Player *that, Relationship r);
-	Bool removePlayerRelationship(const Player *that);
+	bool removePlayerRelationship(const Player *that);
 	void setTeamRelationship(const Team *that, Relationship r);
-	Bool removeTeamRelationship(const Team *that);
+	bool removeTeamRelationship(const Team *that);
 
 	void addTeamToList(TeamPrototype* team);
 	void removeTeamFromList(TeamPrototype* team);
@@ -533,11 +533,11 @@ public:
 	inline Int getMpStartIndex(void) {return m_mpStartIndex;}
 
 	/// Set that all units should begin hunting.
-	void setUnitsShouldHunt(Bool unitsShouldHunt, CommandSourceType source);
-	Bool getUnitsShouldHunt() const { return m_unitsShouldHunt; }
+	void setUnitsShouldHunt(bool unitsShouldHunt, CommandSourceType source);
+	bool getUnitsShouldHunt() const { return m_unitsShouldHunt; }
 	
 	/// All of our units are new spied upon; they sight for the given enemy
-	void setUnitsVisionSpied( Bool setting, PlayerIndex byWhom );
+	void setUnitsVisionSpied( bool setting, PlayerIndex byWhom );
 
 	/// This will be asked by units when they look to get extra people to sight for
 	PlayerMaskType getVisionSpiedMask() const;
@@ -546,7 +546,7 @@ public:
 	void killPlayer(void);
 
 	/// Enabled/Disable all objects of type templateTypeToAffect
-	void setObjectsEnabled(AsciiString templateTypeToAffect, Bool enable);
+	void setObjectsEnabled(AsciiString templateTypeToAffect, bool enable);
 
 	/// Build an instance of a specific team.  Gets passed to aiPlayer.
 	void buildSpecificTeam(TeamPrototype *teamProto);
@@ -561,21 +561,21 @@ public:
 	void buildUpgrade(const AsciiString &upgrade);
 
 	/// Build base defense on front or flank of base.  Gets passed to aiPlayer.
-	void buildBaseDefense(Bool flank);
+	void buildBaseDefense(bool flank);
 
 	/// Build structure type on front or flank of base.  Gets passed to aiPlayer.
-	void buildBaseDefenseStructure(const AsciiString &thingName, Bool flank);
+	void buildBaseDefenseStructure(const AsciiString &thingName, bool flank);
 
 	/// Recruits an instance of a specific team.  Gets passed to aiPlayer.
 	void recruitSpecificTeam(TeamPrototype *teamProto, Real recruitRadius);
 
 	/// Enable/Disable the construction of units
-	Bool getCanBuildUnits(void) { return m_canBuildUnits; }
-	void setCanBuildUnits(Bool canProduce) { m_canBuildUnits = canProduce; }
+	bool getCanBuildUnits(void) { return m_canBuildUnits; }
+	void setCanBuildUnits(bool canProduce) { m_canBuildUnits = canProduce; }
 	
 	/// Enable/Disable the construction of base buildings.
-	Bool getCanBuildBase(void) { return m_canBuildBase; }
-	void setCanBuildBase(Bool canProduce) { m_canBuildBase = canProduce; }
+	bool getCanBuildBase(void) { return m_canBuildBase; }
+	void setCanBuildBase(bool canProduce) { m_canBuildBase = canProduce; }
 
 	/// Transfer all assets from player that to this
 	void transferAssetsFromThat(Player* that);
@@ -586,15 +586,15 @@ public:
 	void garrisonAllUnits(CommandSourceType source);
 	void ungarrisonAllUnits(CommandSourceType source);
 
-	void setUnitsShouldIdleOrResume(Bool idle);
+	void setUnitsShouldIdleOrResume(bool idle);
 	
-	Bool isPlayableSide( void ) const;
+	bool isPlayableSide( void ) const;
 
-	Bool isPlayerObserver( void ) const; // Favor !isActive() - this is used for Observer GUI mostly, not in-game stuff
-	Bool isPlayerDead(void) const; // Favor !isActive() - this is used so OCLs don't give us stuff after death.
-	Bool isPlayerActive(void) const;
+	bool isPlayerObserver( void ) const; // Favor !isActive() - this is used for Observer GUI mostly, not in-game stuff
+	bool isPlayerDead(void) const; // Favor !isActive() - this is used so OCLs don't give us stuff after death.
+	bool isPlayerActive(void) const;
 
-	Bool didPlayerPreorder( void ) const { return m_isPreorder; }
+	bool didPlayerPreorder( void ) const { return m_isPreorder; }
 
 	/// Grab the scorekeeper so we can score up in here!
 	ScoreKeeper* getScoreKeeper( void ) { return &m_scoreKeeper; }
@@ -627,7 +627,7 @@ public:
 	void removeObjectFromHotkeySquad(Object *objToRemove);
 	
 	void setAttackedBy( Int playerNdx );
-	Bool getAttackedBy( Int playerNdx ) const;
+	bool getAttackedBy( Int playerNdx ) const;
 	UnsignedInt getAttackedFrame(void) {return m_attackedFrame;}  // Return last frame attacked.
 
 	Real getCashBounty() const { return m_cashBountyPercent; }
@@ -644,7 +644,7 @@ private:
 	 this call externally, you probably don't... you should probably be
 	 using grantScience() instead.
 	*/
-	Bool addScience(ScienceType science);
+	bool addScience(ScienceType science);
 
 public:
 	Int getSkillPoints() const						{ return m_skillPoints; }
@@ -655,13 +655,13 @@ public:
 	UnicodeString getGeneralName() const	{ return m_generalName; }	
 	void setGeneralName( UnicodeString name ){ m_generalName = name;	}
 	/// returns TRUE if rank level really changed.
-	Bool setRankLevel(Int level);
+	bool setRankLevel(Int level);
 
 	/// returns TRUE if the player gained/lost levels as a result.
-	Bool addSkillPoints(Int delta);
+	bool addSkillPoints(Int delta);
 
 	/// returns TRUE if the player gained/lost levels as a result.
-	Bool addSkillPointsForKill(const Object* killer, const Object* victim);
+	bool addSkillPointsForKill(const Object* killer, const Object* victim);
 
 	void addSciencePurchasePoints(Int delta);
 	
@@ -678,7 +678,7 @@ public:
 		attempt to purchase the science, but use prereqs, and charge points.
 		return true if successful.
 	*/
-	Bool attemptToPurchaseScience(ScienceType science);
+	bool attemptToPurchaseScience(ScienceType science);
 
 	/** 
 		grant the science, ignore prereqs & charge no points,
@@ -686,10 +686,10 @@ public:
 		are not allowed)
 		return true if successful.
 	*/
-	Bool grantScience(ScienceType science);
+	bool grantScience(ScienceType science);
 
 	/** return true attemptToPurchaseScience() would succeed for this science. */
-	Bool isCapableOfPurchasingScience(ScienceType science) const;
+	bool isCapableOfPurchasingScience(ScienceType science) const;
 
 protected:
 
@@ -715,7 +715,7 @@ private:
 	Upgrade*										m_upgradeList;								///< list of all upgrades this player has
 	Int													m_radarCount;									///< # of facilities that have a radar under the players control
 	Int													m_disableProofRadarCount;			///< # of disable proof radars.  A disable proof one will be in both refcounts
-	Bool												m_radarDisabled;							///< The radar is disabled regardless of the number of radar objects
+	bool												m_radarDisabled;							///< The radar is disabled regardless of the number of radar objects
 	Int													m_bombardBattlePlans;					///< Number of strategy centers with active bombardment plan
 	Int													m_holdTheLineBattlePlans;			///< Number of strategy centers with active hold the line plan
 	Int													m_searchAndDestroyBattlePlans;///< Number of strategy centers with active search and destroy plan
@@ -750,16 +750,16 @@ private:
 	PlayerRelationMap			*m_playerRelations;						///< allies & enemies
 	TeamRelationMap				*m_teamRelations;							///< allies & enemies
 
-	Bool									m_canBuildUnits;		///< whether the current player is allowed to build units
-	Bool									m_canBuildBase;			///< whether the current player is allowed to build Base buildings
-	Bool									m_observer;
-	Bool									m_isPreorder;
+	bool									m_canBuildUnits;		///< whether the current player is allowed to build units
+	bool									m_canBuildBase;			///< whether the current player is allowed to build Base buildings
+	bool									m_observer;
+	bool									m_isPreorder;
 	Real									m_skillPointsModifier;	///< Multiplied by skill points before they are applied
 
-	Bool									m_listInScoreScreen;	///< should this player be listed in the score screen or not.
-	Bool									m_unitsShouldHunt;
+	bool									m_listInScoreScreen;	///< should this player be listed in the score screen or not.
+	bool									m_unitsShouldHunt;
 
-	Bool									m_attackedBy[MAX_PLAYER_COUNT];	///< For each player, have they attacked me?
+	bool									m_attackedBy[MAX_PLAYER_COUNT];	///< For each player, have they attacked me?
 	UnsignedInt						m_attackedFrame;	///< Last frame attacked.
 	Int										m_visionSpiedBy[MAX_PLAYER_COUNT];  ///< Reference count of having units spied on by players.
 	PlayerMaskType				m_visionSpiedMask;	///< For quick lookup and edge triggered maintenance
@@ -768,9 +768,9 @@ private:
 
 	/// @todo REMOVE (not disable) these cheat keys
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
-	Bool									m_DEMO_ignorePrereqs;		///< Can I ignore prereq checks?
-	Bool									m_DEMO_freeBuild;				///< Can I build everything for no money?
-	Bool									m_DEMO_instantBuild;		///< Can I build anything in one frame?
+	bool									m_DEMO_ignorePrereqs;		///< Can I ignore prereq checks?
+	bool									m_DEMO_freeBuild;				///< Can I build everything for no money?
+	bool									m_DEMO_instantBuild;		///< Can I build anything in one frame?
 #endif
 
 	ScoreKeeper						m_scoreKeeper;					///< The local scorekeeper for this player
@@ -787,7 +787,7 @@ private:
 	Squad									*m_squads[NUM_HOTKEY_SQUADS];	///< The hotkeyed squads
 	Squad									*m_currentSelection;		///< This player's currently selected group
 
-	Bool									m_isPlayerDead;
+	bool									m_isPlayerDead;
 };
 
 #endif // _PLAYER_H_

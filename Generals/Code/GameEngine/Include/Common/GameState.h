@@ -67,7 +67,7 @@ struct SaveDate
 {
 
 	SaveDate() { year = month = day = dayOfWeek = hour = minute = second = milliseconds = 0; }
-	Bool isNewerThan( SaveDate *other );
+	bool isNewerThan( SaveDate *other );
 
 	UnsignedShort year;
 	UnsignedShort month;
@@ -175,20 +175,20 @@ public:
 	void addPostProcessSnapshot( Snapshot *snapshot );					///< add snapshot to post process laod	
 
 	// manipulating files
-	Bool doesSaveGameExist( AsciiString filename );							///< does the save file exist
+	bool doesSaveGameExist( AsciiString filename );							///< does the save file exist
 	void populateSaveGameListbox( GameWindow *listbox, SaveLoadLayoutType layoutType );	///< populate listbox with available save games
 	void getSaveGameInfoFromFile( AsciiString filename, SaveGameInfo *saveGameInfo );		///< get save game info from file
 
 	void friend_xferSaveDataForCRC( Xfer *xfer, SnapshotType which );		///< This should only be called to DeepCRC sanity checking
 
-	Bool isInLoadGame(void) { return m_isInLoadGame; } // Brutal hack to allow bone pos validation while loading games
+	bool isInLoadGame(void) { return m_isInLoadGame; } // Brutal hack to allow bone pos validation while loading games
 
 	void setPristineMapName( AsciiString name ) { m_gameInfo.pristineMapName = name; }
 	AsciiString getPristineMapName( void ) { return m_gameInfo.pristineMapName; }
 
 	AsciiString getSaveDirectory() const;
 	AsciiString getFilePathInSaveDirectory(const AsciiString& leaf) const;
-	Bool isInSaveDirectory(const AsciiString& path) const;
+	bool isInSaveDirectory(const AsciiString& path) const;
 
 	AsciiString realMapPathToPortableMapPath(const AsciiString& in) const;
 	AsciiString portableMapPathToRealMapPath(const AsciiString& in) const;
@@ -233,7 +233,7 @@ private:
 
 	AvailableGameInfo *m_availableGames;		///< list of available games we can save over or load from
 
-	Bool m_isInLoadGame; // Brutal hack to allow bone pos validation while loading games
+	bool m_isInLoadGame; // Brutal hack to allow bone pos validation while loading games
 };
 
 // EXTERNALS //////////////////////////////////////////////////////////////////////////////////////

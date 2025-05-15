@@ -67,17 +67,17 @@ public:
 
 	// Methods dealing with playback.
 	void updatePlayback();														///< The update function for playing back a file.
-	Bool playbackFile(AsciiString filename);					///< Starts playback of the specified file.
-	Bool testVersionPlayback(AsciiString filename);   ///< Returns if the playback is a valid playback file for this version or not.
+	bool playbackFile(AsciiString filename);					///< Starts playback of the specified file.
+	bool testVersionPlayback(AsciiString filename);   ///< Returns if the playback is a valid playback file for this version or not.
 	AsciiString getCurrentReplayFilename( void );			///< valid during playback only
 	void stopPlayback();															///< Stops playback.  Its fine to call this even if not playing back a file.
 #if defined RTS_DEBUG || defined RTS_INTERNAL
-	Bool analyzeReplay( AsciiString filename );
-	Bool isAnalysisInProgress( void );
+	bool analyzeReplay( AsciiString filename );
+	bool isAnalysisInProgress( void );
 #endif
 
 public:
-	void handleCRCMessage(UnsignedInt newCRC, Int playerIndex, Bool fromPlayback);
+	void handleCRCMessage(UnsignedInt newCRC, Int playerIndex, bool fromPlayback);
 protected:
 	CRCInfo *m_crcInfo;
 public:
@@ -86,7 +86,7 @@ public:
 	struct ReplayHeader
 	{
 		AsciiString filename;
-		Bool forPlayback;
+		bool forPlayback;
 		UnicodeString replayName;
 		SYSTEMTIME timeVal;
 		UnicodeString versionString;
@@ -97,13 +97,13 @@ public:
 		time_t startTime;
 		time_t endTime;
 		UnsignedInt frameDuration;
-		Bool quitEarly;
-		Bool desyncGame;
-		Bool playerDiscons[MAX_SLOTS];
+		bool quitEarly;
+		bool desyncGame;
+		bool playerDiscons[MAX_SLOTS];
 		AsciiString gameOptions;
 		Int localPlayerIndex;
 	};
-	Bool readReplayHeader( ReplayHeader& header );
+	bool readReplayHeader( ReplayHeader& header );
 
 	RecorderModeType getMode();												///< Returns the current operating mode.
 	void initControls();															///< Show or Hide the Replay controls
@@ -114,7 +114,7 @@ public:
 
 	GameInfo *getGameInfo( void ) { return &m_gameInfo; }	///< Returns the slot list for playback game start
 
-	Bool isMultiplayer( void );												///< is this a multiplayer game (record OR playback)?
+	bool isMultiplayer( void );												///< is this a multiplayer game (record OR playback)?
 
 	Int getGameMode( void ) { return m_originalGameMode; }
 
@@ -146,9 +146,9 @@ protected:
 	AsciiString m_currentReplayFilename;							///< valid during playback only
 
 	ReplayGameInfo m_gameInfo;
-	Bool m_wasDesync;
+	bool m_wasDesync;
 
-	Bool m_doingAnalysis;
+	bool m_doingAnalysis;
 
 	Int m_originalGameMode; // valid in replays
 

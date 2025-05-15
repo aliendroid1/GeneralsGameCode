@@ -63,20 +63,20 @@ public:
 	AsciiString getPreferredMap(void);
 	void setPreferredMap(AsciiString val);
 
-	Bool usesSystemMapDir(void);
-	void setUsesSystemMapDir(Bool val);
+	bool usesSystemMapDir(void);
+	void setUsesSystemMapDir(bool val);
 
-	Bool usesLongGameList(void);
-	void setUsesLongGameList(Bool val);
+	bool usesLongGameList(void);
+	void setUsesLongGameList(bool val);
 
-	Bool allowsObservers(void);
-	void setAllowsObserver(Bool val);
+	bool allowsObservers(void);
+	void setAllowsObserver(bool val);
 
-	Bool getDisallowAsianText( void );
-	void setDisallowAsianText(Bool val);
+	bool getDisallowAsianText( void );
+	void setDisallowAsianText(bool val);
 
-	Bool getDisallowNonAsianText( void );
-	void setDisallowNonAsianText( Bool val );
+	bool getDisallowNonAsianText( void );
+	void setDisallowNonAsianText( bool val );
 
 };
 

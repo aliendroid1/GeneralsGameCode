@@ -75,8 +75,8 @@ class ChunkInputStream : public InputStream{
 public:
 	virtual Int read(void *pData, Int numBytes) = 0;
 	virtual UnsignedInt tell(void) = 0;
-	virtual Bool absoluteSeek(UnsignedInt pos) = 0;
-	virtual Bool eof(void) = 0;
+	virtual bool absoluteSeek(UnsignedInt pos) = 0;
+	virtual bool eof(void) = 0;
 };
 
 /** An instance of InputStream that uses a FILE* to read data. */
@@ -89,12 +89,12 @@ protected:
 public:
 	CachedFileInputStream(void);
 	~CachedFileInputStream(void);
-	Bool open(AsciiString path);	///< Returns true if open succeeded.
+	bool open(AsciiString path);	///< Returns true if open succeeded.
 	void close(void);  ///< Explict close.  Destructor closes if file is left open.
 	virtual Int read(void *pData, Int numBytes);
 	virtual UnsignedInt tell(void);
-	virtual Bool absoluteSeek(UnsignedInt pos);
-	virtual Bool eof(void);
+	virtual bool absoluteSeek(UnsignedInt pos);
+	virtual bool eof(void);
 	void rewind(void);
 };
 
@@ -107,12 +107,12 @@ protected:
 public:
 	FileInputStream(void);
 	~FileInputStream(void);
-	Bool open(AsciiString path);	///< Returns true if open succeeded.
+	bool open(AsciiString path);	///< Returns true if open succeeded.
 	void close(void);  ///< Explict close.  Destructor closes if file is left open.
 	virtual Int read(void *pData, Int numBytes);
 	virtual UnsignedInt tell(void);
-	virtual Bool absoluteSeek(UnsignedInt pos);
-	virtual Bool eof(void);
+	virtual bool absoluteSeek(UnsignedInt pos);
+	virtual bool eof(void);
 	void rewind(void);
 };
 */

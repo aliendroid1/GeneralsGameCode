@@ -45,6 +45,7 @@
 #pragma once
 
 #ifndef __STLTYPEDEFS_H__
+
 #define __STLTYPEDEFS_H__
 
 //-----------------------------------------------------------------------------
@@ -123,9 +124,9 @@ typedef std::pair<AsciiString, Object*>										NamedRequest;
 typedef std::vector<NamedRequest>													VecNamedRequests;
 typedef std::vector<NamedRequest>::iterator								VecNamedRequestsIt;
 
-// Rumor has it that a Vector of Bools gets stored as a bitfield internally.
-typedef std::vector<Bool>																	BoolVector;
-typedef std::vector<Bool>::iterator												BoolVectorIterator;
+// Rumor has it that a Vector of bools gets stored as a bitfield internally.
+typedef std::vector<bool>																	boolVector;
+typedef std::vector<bool>::iterator												BoolVectorIterator;
 
 typedef std::map< NameKeyType, Real, std::less<NameKeyType> > ProductionChangeMap;
 typedef std::map< NameKeyType, VeterancyLevel, std::less<NameKeyType> > ProductionVeterancyMap;
@@ -150,7 +151,7 @@ namespace rts
 	// the case of pointers.)
 	template<typename T> struct equal_to
 	{
-		Bool operator()(const T& __t1, const T& __t2) const
+		bool operator()(const T& __t1, const T& __t2) const
 		{
 			return (__t1 == __t2);
 		}
@@ -200,7 +201,7 @@ namespace rts
 	// they are ot be used in lots of places.)
 	template<> struct equal_to<const char*>
 	{
-		Bool operator()(const char* s1, const char* s2) const
+		bool operator()(const char* s1, const char* s2) const
 		{
 			return strcmp(s1, s2) == 0;
 		}
@@ -210,20 +211,14 @@ namespace rts
 	{
 		size_t operator()(const AsciiString& ast) const
 		{
-#ifdef USING_STLPORT
-			std::hash<const char *> tmp;
-			return tmp((const char *) ast.str());
-#else
-			// TheSuperHackers @bugfix xezon 16/03/2024 Re-implements hash function that works with non-STLPort.
 			std::hash<std::string_view> hasher;
 			return hasher(std::string_view(ast.str(), ast.getLength()));
-#endif
 		}
 	};
 
 	template<> struct equal_to<AsciiString>
 	{
-		Bool operator()(const AsciiString& __t1, const AsciiString& __t2) const
+		bool operator()(const AsciiString& __t1, const AsciiString& __t2) const
 		{
 			return (__t1 == __t2);
 		}

@@ -56,19 +56,19 @@ struct FieldParse;
 
 #define MAKE_SPECIALPOWER_MASK(k) SpecialPowerMaskType(SpecialPowerMaskType::kInit, (k))
 
-inline Bool TEST_SPECIALPOWERMASK(const SpecialPowerMaskType& m, SpecialPowerType t) 
+inline bool TEST_SPECIALPOWERMASK(const SpecialPowerMaskType& m, SpecialPowerType t) 
 { 
 	return m.test(t); 
 }
-inline Bool TEST_SPECIALPOWERMASK_ANY(const SpecialPowerMaskType& m, const SpecialPowerMaskType& mask) 
+inline bool TEST_SPECIALPOWERMASK_ANY(const SpecialPowerMaskType& m, const SpecialPowerMaskType& mask) 
 { 
 	return m.anyIntersectionWith(mask);
 }
-inline Bool TEST_SPECIALPOWERMASK_MULTI(const SpecialPowerMaskType& m, const SpecialPowerMaskType& mustBeSet, const SpecialPowerMaskType& mustBeClear)
+inline bool TEST_SPECIALPOWERMASK_MULTI(const SpecialPowerMaskType& m, const SpecialPowerMaskType& mustBeSet, const SpecialPowerMaskType& mustBeClear)
 {
 	return m.testSetAndClear(mustBeSet, mustBeClear);
 }
-inline Bool SPECIALPOWERMASK_ANY_SET(const SpecialPowerMaskType& m) 
+inline bool SPECIALPOWERMASK_ANY_SET(const SpecialPowerMaskType& m) 
 { 
 	return m.any(); 
 }
@@ -117,13 +117,13 @@ public:
 	ScienceType getRequiredScience( void ) const { return getFO()->m_requiredScience; }
 	const AudioEventRTS *getInitiateSound( void ) const { return &getFO()->m_initiateSound; }
 	const AudioEventRTS *getInitiateAtTargetSound( void ) const { return &getFO()->m_initiateAtLocationSound; }
-	Bool hasPublicTimer( void ) const { return getFO()->m_publicTimer; }
-	Bool isSharedNSync( void ) const { return getFO()->m_sharedNSync; }
+	bool hasPublicTimer( void ) const { return getFO()->m_publicTimer; }
+	bool isSharedNSync( void ) const { return getFO()->m_sharedNSync; }
 	UnsignedInt getDetectionTime( void ) const { return getFO()->m_detectionTime; }
 	UnsignedInt getViewObjectDuration( void ) const { return getFO()->m_viewObjectDuration; }
 	Real getViewObjectRange( void ) const { return getFO()->m_viewObjectRange; }
 	Real getRadiusCursorRadius() const { return getFO()->m_radiusCursorRadius; }
-	Bool isShortcutPower() const { return getFO()->m_shortcutPower; }
+	bool isShortcutPower() const { return getFO()->m_shortcutPower; }
 
 private: 
 
@@ -141,9 +141,9 @@ private:
 	UnsignedInt				m_viewObjectDuration;	///< Lifetime of a looking object we slap down so you can watch the effect
 	Real							m_viewObjectRange;		///< And how far that object can see.
 	Real							m_radiusCursorRadius;	///< size of radius cursor, if any
-	Bool							m_publicTimer;				///< display a countdown timer for this special power for all to see
-	Bool							m_sharedNSync;				///< If true, this is a special that is shared between all of a player's command centers
-	Bool							m_shortcutPower;		///< Is this shortcut power capable of being fired by the side panel?
+	bool							m_publicTimer;				///< display a countdown timer for this special power for all to see
+	bool							m_sharedNSync;				///< If true, this is a special that is shared between all of a player's command centers
+	bool							m_shortcutPower;		///< Is this shortcut power capable of being fired by the side panel?
 
 	static const FieldParse m_specialPowerFieldParse[];		///< the parse table
 
@@ -168,7 +168,7 @@ public:
 	const SpecialPowerTemplate *getSpecialPowerTemplateByIndex( UnsignedInt index ); // for WorldBuilder
 
 	/// does the object (and therefore the player) meet all the requirements to use this power
-	Bool canUseSpecialPower( Object *obj, const SpecialPowerTemplate *specialPowerTemplate );
+	bool canUseSpecialPower( Object *obj, const SpecialPowerTemplate *specialPowerTemplate );
 
 	Int getNumSpecialPowers( void ); // for WorldBuilder
 

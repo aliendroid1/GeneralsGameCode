@@ -54,8 +54,8 @@ public:
 		AudioEventRTS *m_pendingEvent;
 		AudioHandle m_handleToInteractOn;
 	};
-	Bool m_usePendingEvent;
-	Bool m_requiresCheckForSample;
+	bool m_usePendingEvent;
+	bool m_requiresCheckForSample;
 };
 
 #endif // _AUDIOREQUEST_H_

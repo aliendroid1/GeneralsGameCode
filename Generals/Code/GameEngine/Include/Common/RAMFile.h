@@ -87,20 +87,20 @@ class RAMFile : public File
 		//virtual				~RAMFile();
 
 
-		virtual Bool	open( const Char *filename, Int access = 0 );				///< Open a file for access
+		virtual bool	open( const Char *filename, Int access = 0 );				///< Open a file for access
 		virtual void	close( void );																			///< Close the file
 		virtual Int		read( void *buffer, Int bytes );										///< Read the specified number of bytes in to buffer: See File::read
 		virtual Int		write( const void *buffer, Int bytes );							///< Write the specified number of bytes from the buffer: See File::write
 		virtual Int		seek( Int new_pos, seekMode mode = CURRENT );				///< Set file position: See File::seek
 		virtual void	nextLine(Char *buf = NULL, Int bufSize = 0);				///< moves current position to after the next new-line
 
-		virtual Bool	scanInt(Int &newInt);																///< return what gets read as an integer from the current memory position.
-		virtual Bool	scanReal(Real &newReal);														///< return what gets read as a float from the current memory position.
-		virtual Bool	scanString(AsciiString &newString);									///< return what gets read as a string from the current memory position.
+		virtual bool	scanInt(Int &newInt);																///< return what gets read as an integer from the current memory position.
+		virtual bool	scanReal(Real &newReal);														///< return what gets read as a float from the current memory position.
+		virtual bool	scanString(AsciiString &newString);									///< return what gets read as a string from the current memory position.
 
-		virtual Bool	open( File *file );																	///< Open file for fast RAM access
-		virtual Bool	openFromArchive(File *archiveFile, const AsciiString& filename, Int offset, Int size); ///< copy file data from the given file at the given offset for the given size.
-		virtual Bool	copyDataToFile(File *localFile);										///< write the contents of the RAM file to the given local file.  This could be REALLY slow.
+		virtual bool	open( File *file );																	///< Open file for fast RAM access
+		virtual bool	openFromArchive(File *archiveFile, const AsciiString& filename, Int offset, Int size); ///< copy file data from the given file at the given offset for the given size.
+		virtual bool	copyDataToFile(File *localFile);										///< write the contents of the RAM file to the given local file.  This could be REALLY slow.
 
 		/**
 			Allocate a buffer large enough to hold entire file, read 

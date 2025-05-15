@@ -42,8 +42,8 @@ struct AudioSettings
 	AsciiString m_musicFolder;
 	AsciiString m_streamingFolder;
 	AsciiString m_soundsExtension;
-	Bool m_useDigital;
-	Bool m_useMidi;
+	bool m_useDigital;
+	bool m_useMidi;
 	Int m_outputRate;
 	Int m_outputBits;
 	Int m_outputChannels;

@@ -82,7 +82,7 @@ class	LListNode
 		LListNode			*m_prev;				///< Previous node in list
 		Int						m_pri;					///< Node's priority, used for sorting
 		void					*m_item;				///< Item we are referencing if any
-		Bool					m_autoDelete;		///< destroy() should call delete
+		bool					m_autoDelete;		///< destroy() should call delete
 		
 	public:
 
@@ -94,8 +94,8 @@ class	LListNode
 		LListNode*		prev( void );											///< Returns previous node in list
 		LListNode*		loopNext( void );									///< Returns next node in list, warpping round to start of list if nessecary
 		LListNode*		loopPrev( void );									///< Returns previous node in list, wrapping round to end of list if nessecary
-		Bool					inList( void );										///< Returns whether or not node in list
-		Bool					isHead( void );										///< Returns whether or not this node is the head/tail node
+		bool					inList( void );										///< Returns whether or not node in list
+		bool					isHead( void );										///< Returns whether or not this node is the head/tail node
 		Int						priority( void );									///< Returns node's priority
 		void					setPriority( Int new_pri );				///< Sets node's priority
 		void*					item( void );											///< Returns the item this links to, if any
@@ -128,7 +128,7 @@ class	LList
 
 		LListNode			m_head;								///< List head node
 		SortMode			m_sortMode;						///< What sorting method to use for this list's Add() operation
-		Bool					m_addToEndOfGroup;		///< Add nodes to end of group of nodes with same priority
+		bool					m_addToEndOfGroup;		///< Add nodes to end of group of nodes with same priority
 
 
 	public:
@@ -147,11 +147,11 @@ class	LList
 		LListNode*		lastNode( void );												///< Returns last node in list
 		LListNode*		getNode( Int index );										///< Returns node in list addressed by the zero-based index passed
 		void					setSortMode( SortMode new_mode );				///< Sets the sorting mode for the Add() operation
-		void					addToEndOfGroup( Bool yes = TRUE );			///< Add node to end or start of group with same priority
-		Bool					isEmpty( void );												///< Returns whether or not the the list is empty
+		void					addToEndOfGroup( bool yes = TRUE );			///< Add node to end or start of group with same priority
+		bool					isEmpty( void );												///< Returns whether or not the the list is empty
 		void					clear( void );													///< Deletes all items in the list. Use with care!!
 		void					merge( LList *list );										///< Move the contents of the specified list in to this list
-		Bool					hasItem( void *item );									///< Tests if list has the specified item
+		bool					hasItem( void *item );									///< Tests if list has the specified item
 		LListNode*		findItem( void *item );									///< Returns the LListNode that references item
 		void					destroy( void );												///< Free up the list items
 
@@ -161,8 +161,8 @@ class	LList
 //           Inlining                                                       
 //----------------------------------------------------------------------------
 
-inline		Bool					LListNode::inList( void ) { return m_prev != this; };
-inline		Bool					LListNode::isHead( void ) { return ( m_item == (void*)&this->m_item ); }; 
+inline		bool					LListNode::inList( void ) { return m_prev != this; };
+inline		bool					LListNode::isHead( void ) { return ( m_item == (void*)&this->m_item ); }; 
 inline		Int						LListNode::priority( void ) { return m_pri; };
 inline		void					LListNode::setPriority( Int new_pri ) { m_pri = new_pri; };
 inline		void					LListNode::autoDelete( void ) { m_autoDelete = TRUE; };
@@ -175,7 +175,7 @@ inline		void					LList::addToTail( LListNode *new_node ) { m_head.insert( new_no
 inline		LListNode*		LList::firstNode( void ) { return m_head.next();} ;												
 inline		LListNode*		LList::lastNode( void ) { return m_head.prev();} ;												
 inline		void					LList::setSortMode( SortMode new_mode ) { m_sortMode = new_mode; };						
-inline		Bool					LList::isEmpty( void ) { return !m_head.inList(); };											
+inline		bool					LList::isEmpty( void ) { return !m_head.inList(); };											
 inline		void					LList::destroy( void ) { clear();};
 
 #endif	//	__GDF_LIST_H_

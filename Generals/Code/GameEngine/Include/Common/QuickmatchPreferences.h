@@ -47,8 +47,8 @@ public:
 	QuickMatchPreferences();
 	virtual ~QuickMatchPreferences();
 
-	void setMapSelected(const AsciiString& mapName, Bool selected);
-	Bool isMapSelected(const AsciiString& mapName);
+	void setMapSelected(const AsciiString& mapName, bool selected);
+	bool isMapSelected(const AsciiString& mapName);
 
 	void setLastLadder(const AsciiString& addr, UnsignedShort port);
 	AsciiString getLastLadderAddr( void );

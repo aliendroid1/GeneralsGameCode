@@ -76,7 +76,7 @@ DEFINE_KEY(teamOwner)
 
 /**
 	Which: Team
-	Type: Bool
+	Type: bool
 	Usage: if true, only one instance of this team can be made.
 */
 DEFINE_KEY(teamIsSingleton)
@@ -297,28 +297,28 @@ DEFINE_KEY(teamAllClearScript)
 
 /**
 	Which: Team
-	Type: Bool
+	Type: bool
 	Usage: True if team auto reinforces.
 */
 DEFINE_KEY(teamAutoReinforce)
 
 /**
 	Which: Team
-	Type: Bool
+	Type: bool
 	Usage: True if team can be recruited from by other ai teams.
 */
 DEFINE_KEY(teamIsAIRecruitable)
 
 /**
 	Which: Team
-	Type: Bool
+	Type: bool
 	Usage: True if team can be recruited from by other ai teams.
 */
 DEFINE_KEY(teamIsBaseDefense)
 
 /**
 	Which: Team
-	Type: Bool
+	Type: bool
 	Usage: True if team can be recruited from by other ai teams.
 */
 DEFINE_KEY(teamIsPerimeterDefense)
@@ -332,21 +332,21 @@ DEFINE_KEY(teamAggressiveness)
 
 /**
 	Which: Team
-	Type: Bool
+	Type: bool
 	Usage: True if transports return to base.
 */
 DEFINE_KEY(teamTransportsReturn)
 
 /**
 	Which: Team
-	Type: Bool
+	Type: bool
 	Usage: True if the team avoids threats.
 */
 DEFINE_KEY(teamAvoidThreats)
 
 /**
 	Which: Team
-	Type: Bool
+	Type: bool
 	Usage: True if the team attacks the same target when auto-acquiring targets.
 */
 DEFINE_KEY(teamAttackCommonTarget)
@@ -409,14 +409,14 @@ DEFINE_KEY(teamReinforcementOrigin)
 
 /**
 	Which: Team
-	Type: Bool
+	Type: bool
 	Usage: Team's starts full flag (pack into transports) for reinforcement teams.
 */
 DEFINE_KEY(teamStartsFull)
 
 /**
 	Which: Team
-	Type: Bool
+	Type: bool
 	Usage: Team's transports exit (leave the map) flag for reinforcement teams.
 */
 DEFINE_KEY(teamTransportsExit)
@@ -430,7 +430,7 @@ DEFINE_KEY(teamVeterancy)
 
 /**
 	Which: Team
-	Type: Bool
+	Type: bool
 	Usage: Does the team execute the actions in 
 */
 DEFINE_KEY(teamExecutesActionsOnCreate)
@@ -530,7 +530,7 @@ DEFINE_KEY(waypointPathLabel3)
 
 /**
 	Which: MapObject Properties
-	Type: Bool
+	Type: bool
 	Usage: If object is a waypoint, bi-directional flag.
 */
 DEFINE_KEY(waypointPathBiDirectional)
@@ -545,7 +545,7 @@ DEFINE_KEY(objectName)
 
 /**
 	Which: MapObject Properties
-	Type: Bool
+	Type: bool
 	Usage: Flag whether the object should be exported with a script list.
 */
 DEFINE_KEY(exportWithScript)
@@ -566,35 +566,35 @@ DEFINE_KEY(objectMaxHPs)
 
 /**
 	Which: MapObject Properties
-	Type: Bool
+	Type: bool
 	Usage: Is the object enabled
 */
 DEFINE_KEY(objectEnabled)
 
 /**
 	Which: MapObject Properties
-	Type: Bool
+	Type: bool
 	Usage: Can the object be destroyed
 */
 DEFINE_KEY(objectIndestructible)
 
 /**
 	Which: MapObject Properties
-	Type: Bool
+	Type: bool
 	Usage: Can the AI sell this object for some loot
 */
 DEFINE_KEY(objectUnsellable)
 
 /**
 	Which: MapObject Properties
-	Type: Bool
+	Type: bool
 	Usage: Can this object be acquired by the player (but not auto-acquired by AI).
 */
 DEFINE_KEY(objectTargetable)
 
 /**
 	Which: MapObject Properties
-	Type: Bool
+	Type: bool
 	Usage: Does the object have power? It is thought this will not be used
 */
 DEFINE_KEY(objectPowered)
@@ -636,21 +636,21 @@ DEFINE_KEY(objectGroupNumber)
 
 /**
 	Which: MapObject Properties
-	Type: Bool
+	Type: bool
 	Usage: Can this object be recruited by the AI?
 */
 DEFINE_KEY(objectRecruitableAI)
 
 /**
 	Which: MapObject Properties
-	Type: Bool
+	Type: bool
 	Usage: Can this object be selected?
 */
 DEFINE_KEY(objectSelectable)
 
 /**
 	Which: MapObject Properties
-	Type: Bool
+	Type: bool
 	Usage: What veterancy does this object have: 0 green, 1 normal, 2 veteran, 3 elite
 */
 DEFINE_KEY(objectVeterancy)
@@ -730,14 +730,14 @@ DEFINE_KEY(playerName)
 
 /**
 	Which: Player Properties
-	Type: Bool
+	Type: bool
 	Usage: true if this player is to be human-controlled. false if computer-controlled.
 */
 DEFINE_KEY(playerIsHuman)
 
 /**
 	Which: Player Properties
-	Type: Bool
+	Type: bool
 	Usage: true if this player is in skirmish or multiplayer, rather than solo.
 */
 DEFINE_KEY(playerIsSkirmish)
@@ -807,14 +807,14 @@ DEFINE_KEY(skirmishDifficulty)
 
 /**
 	Which: Player Properties
-	Type: Bool
+	Type: bool
 	Usage: (optional) if present, signifies if the player is the local player
 */
 DEFINE_KEY(multiplayerIsLocal)
 
 /**
 	Which: Player Properties
-	Type: Bool
+	Type: bool
 	Usage: (optional) if present, signifies if the player has preordered
 */
 DEFINE_KEY(playerIsPreorder)

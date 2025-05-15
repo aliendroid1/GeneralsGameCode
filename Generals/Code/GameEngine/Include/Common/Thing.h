@@ -104,9 +104,9 @@ public:
 	const ThingTemplate *getTemplate() const;
 
 	// convenience method for patching isKindOf thru to template.
-	Bool isKindOf(KindOfType t) const;
-	Bool isKindOfMulti(const KindOfMaskType& mustBeSet, const KindOfMaskType& mustBeClear) const;
-	Bool isAnyKindOf(const KindOfMaskType& anyKindOf) const;
+	bool isKindOf(KindOfType t) const;
+	bool isKindOfMulti(const KindOfMaskType& mustBeSet, const KindOfMaskType& mustBeClear) const;
+	bool isAnyKindOf(const KindOfMaskType& anyKindOf) const;
 
 	// physical properties
 	void setPosition( const Coord3D *pos );
@@ -128,13 +128,13 @@ public:
 	Real getHeightAboveTerrain() const;
 	Real getHeightAboveTerrainOrWater() const;
 
-	Bool isAboveTerrain() const { return getHeightAboveTerrain() > 0.0f; }
-	Bool isAboveTerrainOrWater() const { return getHeightAboveTerrainOrWater() > 0.0f; }
+	bool isAboveTerrain() const { return getHeightAboveTerrain() > 0.0f; }
+	bool isAboveTerrainOrWater() const { return getHeightAboveTerrainOrWater() > 0.0f; }
 
  	/** Ground vehicles moving down a slope will get slightly above the terrain.
 	If we treat this as airborne, then they slide down slopes.  This checks whether
 	they are high enough that we should let them act like they're flying. jba. */
-	Bool isSignificantlyAboveTerrain() const ;
+	bool isSignificantlyAboveTerrain() const ;
 
 	void convertBonePosToWorldPos(const Coord3D* bonePos, const Matrix3D* boneTransform, Coord3D* worldPos, Matrix3D* worldTransform) const;
 

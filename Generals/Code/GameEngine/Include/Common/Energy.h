@@ -82,10 +82,10 @@ public:
 	/// return current energy consumption in kilowatts
 	Int getConsumption() const { return m_energyConsumption; }
 
-	Bool hasSufficientPower(void) const;
+	bool hasSufficientPower(void) const;
 	
 	// If adding is false, we're supposed to be removing this.
-	void adjustPower(Int powerDelta, Bool adding);
+	void adjustPower(Int powerDelta, bool adding);
 
 	/// new 'obj' will now add/subtract from this energy construct
 	void objectEnteringInfluence( Object *obj );

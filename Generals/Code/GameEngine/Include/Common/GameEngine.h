@@ -75,13 +75,13 @@ public:
 																								 It will not return until the game exits. */
 	virtual void setFramesPerSecondLimit( Int fps );	///< Set the maximum rate engine updates are allowed to occur
 	virtual Int  getFramesPerSecondLimit( void );			///< Get maxFPS.  Not inline since it is called from another lib.
-	virtual void setQuitting( Bool quitting );				///< set quitting status
-	virtual Bool getQuitting(void);						///< is app getting ready to quit.
+	virtual void setQuitting( bool quitting );				///< set quitting status
+	virtual bool getQuitting(void);						///< is app getting ready to quit.
 
-	virtual Bool isMultiplayerSession( void );
+	virtual bool isMultiplayerSession( void );
 	virtual void serviceWindowsOS(void) {};		///< service the native OS
-	virtual Bool isActive(void) {return m_isActive;}	///< returns whether app has OS focus.
-	virtual void setIsActive(Bool isActive) { m_isActive = isActive; };
+	virtual bool isActive(void) {return m_isActive;}	///< returns whether app has OS focus.
+	virtual void setIsActive(bool isActive) { m_isActive = isActive; };
 	virtual void checkAbnormalQuitting(void);	///< check if user is quitting at an unusual time - as in cheating!
 
 protected:
@@ -101,12 +101,12 @@ protected:
 	virtual AudioManager *createAudioManager( void ) = 0;				///< Factory for Audio Manager
 
 	Int m_maxFPS;																									///< Maximum frames per second allowed
-  Bool m_quitting;  ///< true when we need to quit the game
-	Bool m_isActive;	///< app has OS focus.
+  bool m_quitting;  ///< true when we need to quit the game
+	bool m_isActive;	///< app has OS focus.
 
 };
-inline void GameEngine::setQuitting( Bool quitting ) { m_quitting = quitting; }
-inline Bool GameEngine::getQuitting(void) { return m_quitting; }
+inline void GameEngine::setQuitting( bool quitting ) { m_quitting = quitting; }
+inline bool GameEngine::getQuitting(void) { return m_quitting; }
 
 // the game engine singleton
 extern GameEngine *TheGameEngine;

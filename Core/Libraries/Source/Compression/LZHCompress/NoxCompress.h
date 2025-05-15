@@ -28,13 +28,13 @@
 #define LZH_EXTENSION ".nxz"
 #define RUL_EXTENSION ".rul"
 
-Bool DecompressFile		(char *infile, char *outfile);
-Bool CompressFile			(char *infile, char *outfile);
-Bool CompressPacket		(char *inPacket, char *outPacket);
-Bool DecompressPacket	(char *inPacket, char *outPacket);
+bool DecompressFile		(char *infile, char *outfile);
+bool CompressFile			(char *infile, char *outfile);
+bool CompressPacket		(char *inPacket, char *outPacket);
+bool DecompressPacket	(char *inPacket, char *outPacket);
 UnsignedInt CalcNewSize		(UnsignedInt rawSize);
 
-Bool DecompressMemory		(void *inBufferVoid, Int inSize, void *outBufferVoid, Int& outSize);
-Bool CompressMemory			(void *inBufferVoid, Int inSize, void *outBufferVoid, Int& outSize);
+bool DecompressMemory		(void *inBufferVoid, Int inSize, void *outBufferVoid, Int& outSize);
+bool CompressMemory			(void *inBufferVoid, Int inSize, void *outBufferVoid, Int& outSize);
 
 #endif // __compress_h

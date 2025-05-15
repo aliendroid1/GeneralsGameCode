@@ -99,7 +99,7 @@ public:
 	void setNextPlayPortion( PortionToPlay ptp );
 	
 	void decreaseLoopCount( void );
-	Bool hasMoreLoops( void ) const;
+	bool hasMoreLoops( void ) const;
 	
 	void setAudioEventInfo( const AudioEventInfo *eventInfo ) const;
 	const AudioEventInfo *getAudioEventInfo( void ) const;
@@ -113,7 +113,7 @@ public:
 	void setObjectID( ObjectID objID );
 	ObjectID getObjectID( void );
 
-	Bool isDead() const { return m_ownerType == OT_Dead; }
+	bool isDead() const { return m_ownerType == OT_Dead; }
 	OwnerType getOwnerType() const { return m_ownerType; }
 	
 	void setDrawableID( DrawableID drawID );
@@ -125,14 +125,14 @@ public:
 	void setHandleToKill( AudioHandle handleToKill );
 	AudioHandle getHandleToKill( void ) const;
 
-	void setShouldFade( Bool shouldFade );
-	Bool getShouldFade( void ) const;
+	void setShouldFade( bool shouldFade );
+	bool getShouldFade( void ) const;
 
-	void setIsLogicalAudio( Bool isLogicalAudio );
-	Bool getIsLogicalAudio( void ) const;
+	void setIsLogicalAudio( bool isLogicalAudio );
+	bool getIsLogicalAudio( void ) const;
 
-	Bool isPositionalAudio( void ) const;
-	Bool isCurrentlyPlaying( void ) const;
+	bool isPositionalAudio( void ) const;
+	bool isCurrentlyPlaying( void ) const;
 
 	AudioPriority getAudioPriority( void ) const;
 	void setAudioPriority( AudioPriority newPriority );
@@ -146,8 +146,8 @@ public:
 	Int getPlayingAudioIndex( void ) { return m_playingAudioIndex; };
 	void setPlayingAudioIndex( Int pai )  { m_playingAudioIndex = pai; };
 
-	Bool getUninterruptable( ) const { return m_uninterruptable; }
-	void setUninterruptable( Bool uninterruptable ) { m_uninterruptable = uninterruptable; } 
+	bool getUninterruptable( ) const { return m_uninterruptable; }
+	void setUninterruptable( bool uninterruptable ) { m_uninterruptable = uninterruptable; } 
 
 
 	// This will retrieve the appropriate position based on type.	
@@ -155,7 +155,7 @@ public:
 
 	// This will return the directory leading up to the appropriate type, including the trailing '\\'
 	// If localized is true, we'll append a language specifc directory to the end of the path.
-	AsciiString generateFilenamePrefix( AudioType audioTypeToPlay, Bool localized );
+	AsciiString generateFilenamePrefix( AudioType audioTypeToPlay, bool localized );
 	AsciiString generateFilenameExtension( AudioType audioTypeToPlay );
 protected:
 	void adjustForLocalization( AsciiString &strToAdjust );
@@ -184,9 +184,9 @@ protected:
 	};
 	OwnerType m_ownerType;
 
-	Bool m_shouldFade;							///< This should fade in or out (if it is starting or stopping)
-	Bool m_isLogicalAudio;					///< Should probably only be true for scripted sounds
-	Bool m_uninterruptable;
+	bool m_shouldFade;							///< This should fade in or out (if it is starting or stopping)
+	bool m_isLogicalAudio;					///< Should probably only be true for scripted sounds
+	bool m_uninterruptable;
 
 	// Playing attributes
 	Real m_pitchShift;							///< Pitch shift that should occur on this piece of audio

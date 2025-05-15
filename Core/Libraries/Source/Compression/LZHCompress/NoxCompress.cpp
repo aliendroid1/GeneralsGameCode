@@ -38,7 +38,7 @@
 #define DbgFree free
 #define DEBUG_LOG(x) {}
 
-Bool DecompressFile		(char *infile, char *outfile)
+bool DecompressFile		(char *infile, char *outfile)
 {
 	UnsignedInt	rawSize = 0, compressedSize = 0;
 	FILE *inFilePtr = NULL;
@@ -52,7 +52,7 @@ Bool DecompressFile		(char *infile, char *outfile)
 	// Parameter checking
 	 
 	if (( infile == NULL ) || ( outfile == NULL ))
-		return FALSE;
+		return false;
 
 	inFilePtr = fopen( infile, "rb" );
 	if ( inFilePtr )
@@ -74,7 +74,7 @@ Bool DecompressFile		(char *infile, char *outfile)
 		outBlock= (char *) DbgMalloc( rawSize );
 
 		if (( inBlock == NULL ) || ( outBlock == NULL ))
-			return FALSE;
+			return false;
 
 		// Read in a big chunk o file
 		NoxRead(inBlock, 1, compressedSize, inFilePtr);
@@ -110,20 +110,20 @@ Bool DecompressFile		(char *infile, char *outfile)
 			fclose(outFilePtr);
 		}
 		else
-			return FALSE;
+			return false;
 
 		// Clean up this mess
 		DbgFree(inBlock);
 		DbgFree(outBlock);
-		return TRUE;
+		return true;
 
 	} // End of if fileptr
 
-	return FALSE;
+	return false;
 }
 
 
-Bool CompressFile			(char *infile, char *outfile)
+bool CompressFile			(char *infile, char *outfile)
 {
 	UnsignedInt	rawSize = 0;
 	UnsignedInt compressedSize = 0, compressed = 0, i = 0;
@@ -137,7 +137,7 @@ Bool CompressFile			(char *infile, char *outfile)
 	// Parameter checking
 	 
 	if (( infile == NULL ) || ( outfile == NULL ))
-		return FALSE;
+		return false;
 
 	// Allocate the appropriate amount of memory
 	inFilePtr = fopen( infile, "rb" );
@@ -153,7 +153,7 @@ Bool CompressFile			(char *infile, char *outfile)
 		outBlock= (char *) DbgMalloc( LZHLCompressorCalcMaxBuf( rawSize ));
 
 		if (( inBlock == NULL ) || ( outBlock == NULL ))
-			return FALSE;
+			return false;
 
 		// Read in a big chunk o file
 		NoxRead(inBlock, 1, rawSize, inFilePtr);
@@ -180,35 +180,35 @@ Bool CompressFile			(char *infile, char *outfile)
 			fclose(outFilePtr);
 		}
 		else
-			return FALSE;
+			return false;
 
 		// Clean up
 		DbgFree(inBlock);
 		DbgFree(outBlock);
-		return TRUE;
+		return true;
 	}
 
-	return FALSE;
+	return false;
 }
 
-Bool CompressPacket		(char *inPacket, char *outPacket)
+bool CompressPacket		(char *inPacket, char *outPacket)
 {
 	// Parameter checking
 	 
 	if (( inPacket == NULL ) || ( outPacket == NULL ))
-		return FALSE;
+		return false;
 
-	return TRUE;
+	return true;
 }
 
 
-Bool DecompressPacket	(char *inPacket, char *outPacket)
+bool DecompressPacket	(char *inPacket, char *outPacket)
 {
 	// Parameter checking
 	 
 	if (( inPacket == NULL ) || ( outPacket == NULL ))
-		return FALSE;
-	return TRUE;
+		return false;
+	return true;
 }
 
 
@@ -217,7 +217,7 @@ UnsignedInt CalcNewSize		(UnsignedInt rawSize)
 	return LZHLCompressorCalcMaxBuf(rawSize);
 }
 
-Bool DecompressMemory		(void *inBufferVoid, Int inSize, void *outBufferVoid, Int& outSize)
+bool DecompressMemory		(void *inBufferVoid, Int inSize, void *outBufferVoid, Int& outSize)
 {
 	UnsignedByte *inBuffer = (UnsignedByte *)inBufferVoid;
 	UnsignedByte *outBuffer = (UnsignedByte *)outBufferVoid;
@@ -229,7 +229,7 @@ Bool DecompressMemory		(void *inBufferVoid, Int inSize, void *outBufferVoid, Int
 	// Parameter checking
 	 
 	if (( inBuffer == NULL ) || ( outBuffer == NULL ) || ( inSize < 4 ) || ( outSize == 0 ))
-		return FALSE;
+		return false;
 
 	// Get compressed size of file.
 	compressedSize = inSize;
@@ -260,11 +260,11 @@ Bool DecompressMemory		(void *inBufferVoid, Int inSize, void *outBufferVoid, Int
 
 	outSize = rawSize;
 
-	return TRUE;
+	return true;
 
 }
 
-Bool CompressMemory			(void *inBufferVoid, Int inSize, void *outBufferVoid, Int& outSize)
+bool CompressMemory			(void *inBufferVoid, Int inSize, void *outBufferVoid, Int& outSize)
 {
 	UnsignedByte *inBuffer = (UnsignedByte *)inBufferVoid;
 	UnsignedByte *outBuffer = (UnsignedByte *)outBufferVoid;
@@ -276,7 +276,7 @@ Bool CompressMemory			(void *inBufferVoid, Int inSize, void *outBufferVoid, Int&
 	// Parameter checking
 	 
 	if (( inBuffer == NULL ) || ( outBuffer == NULL ) || ( inSize < 4 ) || ( outSize == 0 ))
-		return FALSE;
+		return false;
 
 	rawSize = inSize;
 
@@ -293,5 +293,5 @@ Bool CompressMemory			(void *inBufferVoid, Int inSize, void *outBufferVoid, Int&
 
 	outSize = compressedSize;
 
-	return TRUE;
+	return true;
 }

@@ -53,7 +53,7 @@ public:
 	ArchiveFile();
 	virtual ~ArchiveFile();
 
-	virtual Bool					getFileInfo( const AsciiString& filename, FileInfo *fileInfo) const = 0;	///< fill in the fileInfo struct with info about the file requested.
+	virtual bool					getFileInfo( const AsciiString& filename, FileInfo *fileInfo) const = 0;	///< fill in the fileInfo struct with info about the file requested.
 	virtual File*					openFile( const Char *filename, Int access = 0) = 0;	///< Open the specified file within the archive file
 	virtual void					closeAllFiles( void ) = 0;									///< Close all file opened in this archive file
 	virtual AsciiString		getName( void ) = 0;												///< Returns the name of the archive file
@@ -62,8 +62,8 @@ public:
 	virtual void					close( void ) = 0;													///< Close this archive file
 	void									attachFile(File *file);
 
-	void									getFileListInDirectory(const AsciiString& currentDirectory, const AsciiString& originalDirectory, const AsciiString& searchName, FilenameList &filenameList, Bool searchSubdirectories) const;
-	void									getFileListInDirectory(const DetailedArchivedDirectoryInfo *dirInfo, const AsciiString& currentDirectory, const AsciiString& searchName, FilenameList &filenameList, Bool searchSubdirectories) const;
+	void									getFileListInDirectory(const AsciiString& currentDirectory, const AsciiString& originalDirectory, const AsciiString& searchName, FilenameList &filenameList, bool searchSubdirectories) const;
+	void									getFileListInDirectory(const DetailedArchivedDirectoryInfo *dirInfo, const AsciiString& currentDirectory, const AsciiString& searchName, FilenameList &filenameList, bool searchSubdirectories) const;
 
 	void									addFile(const AsciiString& path, const ArchivedFileInfo *fileInfo); ///< add this file to our directory tree.
 

@@ -73,7 +73,7 @@ public:
 	
 	virtual void doDrawModule(const Matrix3D* transformMtx) = 0;
 
-	virtual void setShadowsEnabled(Bool enable) = 0;
+	virtual void setShadowsEnabled(bool enable) = 0;
 	virtual void releaseShadows(void) = 0;	///< frees all shadow resources used by this module - used by Options screen.
 	virtual void allocateShadows(void) = 0; ///< create shadow resources if not already present. Used by Options screen.
 
@@ -85,14 +85,14 @@ public:
 	virtual void setTerrainDecalSize(Real x, Real y) {};
 	virtual void setTerrainDecalOpacity(Real o) {};
 
-	virtual void setFullyObscuredByShroud(Bool fullyObscured) = 0;
+	virtual void setFullyObscuredByShroud(bool fullyObscured) = 0;
 	
-	virtual Bool isVisible() const { return true; }	///< for limiting tree sway, etc to visible objects
+	virtual bool isVisible() const { return true; }	///< for limiting tree sway, etc to visible objects
 
 	virtual void reactToTransformChange(const Matrix3D* oldMtx, const Coord3D* oldPos, Real oldAngle) = 0;
 	virtual void reactToGeometryChange() = 0;
 	
-	virtual Bool isLaser() const { return false; }
+	virtual bool isLaser() const { return false; }
 
 	// interface acquisition
 	virtual ObjectDrawInterface* getObjectDrawInterface() { return NULL; }
@@ -156,7 +156,7 @@ class ObjectDrawInterface
 public:
 
 	// this method must ONLY be called from the client, NEVER From the logic, not even indirectly.
-	virtual Bool clientOnly_getRenderObjInfo(Coord3D* pos, Real* boundingSphereRadius, Matrix3D* transform) const = 0;
+	virtual bool clientOnly_getRenderObjInfo(Coord3D* pos, Real* boundingSphereRadius, Matrix3D* transform) const = 0;
 	/**
 		Find the bone(s) with the given name and return their positions and/or transforms in the given arrays.
 		We look for a bone named "boneNamePrefixQQ", where QQ is 01, 02, 03, etc, starting at the
@@ -172,19 +172,19 @@ public:
 	*/
 	virtual Int getPristineBonePositionsForConditionState(const ModelConditionFlags& condition, const char* boneNamePrefix, Int startIndex, Coord3D* positions, Matrix3D* transforms, Int maxBones) const = 0;
 	virtual Int getCurrentBonePositions(const char* boneNamePrefix, Int startIndex, Coord3D* positions, Matrix3D* transforms, Int maxBones) const = 0;
-	virtual Bool getCurrentWorldspaceClientBonePositions(const char* boneName, Matrix3D& transform) const = 0;
-	virtual Bool getProjectileLaunchOffset(const ModelConditionFlags& condition, WeaponSlotType wslot, Int specificBarrelToUse, Matrix3D* launchPos, WhichTurretType tur, Coord3D* turretRotPos, Coord3D* turretPitchPos) const = 0;
+	virtual bool getCurrentWorldspaceClientBonePositions(const char* boneName, Matrix3D& transform) const = 0;
+	virtual bool getProjectileLaunchOffset(const ModelConditionFlags& condition, WeaponSlotType wslot, Int specificBarrelToUse, Matrix3D* launchPos, WhichTurretType tur, Coord3D* turretRotPos, Coord3D* turretPitchPos) const = 0;
 	virtual void updateProjectileClipStatus( UnsignedInt shotsRemaining, UnsignedInt maxShots, WeaponSlotType slot ) = 0; ///< This will do the show/hide work if ProjectileBoneFeedbackEnabled is set.
 	virtual void updateDrawModuleSupplyStatus( Int maxSupply, Int currentSupply ) = 0; ///< This will do visual feedback on Supplies carried
 	virtual void notifyDrawModuleDependencyCleared( ) = 0; ///< if you were waiting for something before you drew, it's ready now
 
-	virtual void setHidden(Bool h) = 0;
+	virtual void setHidden(bool h) = 0;
 	virtual void replaceModelConditionState(const ModelConditionFlags& a) = 0;
 	virtual void replaceIndicatorColor(Color color) = 0;
-	virtual Bool handleWeaponFireFX(WeaponSlotType wslot, Int specificBarrelToUse, const FXList* fxl, Real weaponSpeed, const Coord3D* victimPos, Real damageRadius) = 0;
+	virtual bool handleWeaponFireFX(WeaponSlotType wslot, Int specificBarrelToUse, const FXList* fxl, Real weaponSpeed, const Coord3D* victimPos, Real damageRadius) = 0;
 	virtual Int getBarrelCount(WeaponSlotType wslot) const = 0;
 
-	virtual void setSelectable(Bool selectable) = 0;
+	virtual void setSelectable(bool selectable) = 0;
 
 	/**
 		This call says, "I want the current animation (if any) to take n frames to complete a single cycle". 
@@ -200,15 +200,15 @@ public:
 		"inbetween", it is included in the completion time.
 	*/
 	virtual void setAnimationCompletionTime(UnsignedInt numFrames) = 0;
-	virtual Bool updateBonesForClientParticleSystems( void ) = 0;///< this will reposition particle systems on the fly ML
+	virtual bool updateBonesForClientParticleSystems( void ) = 0;///< this will reposition particle systems on the fly ML
 	
 	/**
 	  This call is used to pause or resume an animation.
 	*/
-	virtual void setPauseAnimation(Bool pauseAnim) = 0;
+	virtual void setPauseAnimation(bool pauseAnim) = 0;
 
 	virtual void updateSubObjects() = 0;
-	virtual void showSubObject( const AsciiString& name, Bool show ) = 0;
+	virtual void showSubObject( const AsciiString& name, bool show ) = 0;
 
 	/**
 		This call asks, "In the current animation (if any) how far along are you, from 0.0f to 1.0f". 

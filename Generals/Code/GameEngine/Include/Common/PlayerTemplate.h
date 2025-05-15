@@ -100,8 +100,8 @@ public:
 	inline const ProductionChangeMap& getProductionCostChanges() const { return m_productionCostChanges; }
 	inline const ProductionChangeMap& getProductionTimeChanges() const { return m_productionTimeChanges; }
 	inline const ProductionVeterancyMap& getProductionVeterancyLevels() const { return m_productionVeterancyLevels; }
-	inline Bool isObserver() const { return m_observer; }
-	inline Bool isPlayableSide() const { return m_playableSide; }
+	inline bool isObserver() const { return m_observer; }
+	inline bool isPlayableSide() const { return m_playableSide; }
 
 	inline AsciiString getScoreScreen (void ) const { return m_scoreScreenImage;	}
 	inline AsciiString getLoadScreen (void ) const { return m_loadScreenImage;	}
@@ -161,8 +161,8 @@ private:
 	AsciiString				m_specialPowerShortcutWinName;			///< The name of the window we'll be using for the shortcut bar
 	Int								m_specialPowerShortcutButtonCount;	///< The number of buttons located on the shortcut bar
 	AsciiString				m_loadScreenMusic;									///< the load screen music we want to play
-	Bool							m_observer;
-	Bool							m_playableSide;
+	bool							m_observer;
+	bool							m_playableSide;
 
 	Int								m_intrinsicSPP;
 
