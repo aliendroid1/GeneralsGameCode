@@ -1401,7 +1401,7 @@ void RecorderClass::readArgument(GameMessageArgumentDataType type, GameMessage *
 #ifdef DEBUG_LOGGING
 		if (m_doingAnalysis)
 		{
-			DEBUG_LOG(("Bool argument: %d\n", thebool));
+			DEBUG_LOG(("bool argument: %d\n", thebool));
 		}
 #endif
 	} else if (type == ARGUMENTDATATYPE_OBJECTID) {

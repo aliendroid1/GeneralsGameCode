@@ -65,8 +65,8 @@ struct UnicodeStringsEqual
 	}
 };
 
-typedef std::map<UnicodeString, Bool, UnicodeStringLessThan> LangMap;
-typedef std::map<UnicodeString, Bool, UnicodeStringLessThan>::iterator LangMapIter;
+typedef std::map<UnicodeString, bool, UnicodeStringLessThan> LangMap;
+typedef std::map<UnicodeString, bool, UnicodeStringLessThan>::iterator LangMapIter;
 
 static const int LANGUAGE_XOR_KEY = 0x5555;
 static const char BadWordFileName[] = "langdata.dat";

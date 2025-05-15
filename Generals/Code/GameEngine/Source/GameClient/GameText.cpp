@@ -1364,7 +1364,7 @@ AsciiStringVec& GameTextManager::getStringsWithLabelPrefix(AsciiString label)
 // GameTextManager::readLine
 //============================================================================
 
-Bool	GameTextManager::readLine( char *buffer, Int max, File *file )
+bool	GameTextManager::readLine( char *buffer, Int max, File *file )
 {
 	Int ok = FALSE;
 

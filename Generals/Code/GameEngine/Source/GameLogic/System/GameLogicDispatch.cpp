@@ -1009,7 +1009,7 @@ void GameLogic::logicMessageDispatcher( GameMessage *msg, void *userData )
 			if( currentlySelectedGroup )
 			{
 				//Coord3D pos;
-				//Bool hasArgs = FALSE;
+				//bool hasArgs = FALSE;
 				//hasArgs = (msg->getArgumentCount() > 0);
 
 				//if (hasArgs)

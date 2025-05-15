@@ -2364,7 +2364,7 @@ void	W3DShadowTextureManager::registerMissing( const char * name )
 	missingTextureTable->Add( NEW MissingTextureClass( name ) );
 }
 
-Bool	W3DShadowTextureManager::isMissing( const char * name )
+bool	W3DShadowTextureManager::isMissing( const char * name )
 {
 	return ( missingTextureTable->Find( name ) != NULL );
 }

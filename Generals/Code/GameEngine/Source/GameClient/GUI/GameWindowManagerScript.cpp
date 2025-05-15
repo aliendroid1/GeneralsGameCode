@@ -292,7 +292,7 @@ static void readUntilSemicolon( File *fp, char *buffer, int maxBufLen )
 
 // scanBool ===================================================================
 //=============================================================================
-static Int scanBool( const char *source, Bool& val )
+static Int scanBool( const char *source, bool& val )
 {
 	Int temp = 0;
 	Int ret = sscanf( source, "%d", &temp );

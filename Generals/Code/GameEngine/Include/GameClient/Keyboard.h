@@ -136,15 +136,15 @@ protected:
 
 	UnsignedShort m_modifiers;
 	// internal keyboard data members
-	//Bool m_capsState;			// 1 if caps lock is on
-	//Bool m_shiftState;		// 1 if either shift key is pressed
-	//Bool m_shift2State;		// 1 if secondary shift key is pressed
-	//Bool m_lShiftState;		// 1 if left state is down
-	//Bool m_rShiftState;		// 1 if right shift is down
-	//Bool m_lControlState; // 1 if left control is down
-	//Bool m_rControlState; // 1 if right control is down
-	//Bool m_lAltState;			// 1 if left alt is down
-	//Bool m_rAltState;			// 1 if right alt is down
+	//bool m_capsState;			// 1 if caps lock is on
+	//bool m_shiftState;		// 1 if either shift key is pressed
+	//bool m_shift2State;		// 1 if secondary shift key is pressed
+	//bool m_lShiftState;		// 1 if left state is down
+	//bool m_rShiftState;		// 1 if right shift is down
+	//bool m_lControlState; // 1 if left control is down
+	//bool m_rControlState; // 1 if right control is down
+	//bool m_lAltState;			// 1 if left alt is down
+	//bool m_rAltState;			// 1 if right alt is down
 	UnsignedByte m_shift2Key;  // what key is the secondary shift key
 
 	enum { NUM_KEYS  = 256 };

@@ -1515,31 +1515,31 @@ void RailroadBehavior::xfer( Xfer *xfer )
 		//Int m_waitAtStationTimer;
 		xfer->xferInt( &m_waitAtStationTimer );
 		
-		//Bool m_carriagesCreated; ///< TRUE once we have made all the cars in the train
+		//bool m_carriagesCreated; ///< TRUE once we have made all the cars in the train
 		xfer->xferBool( &m_carriagesCreated );
 		
-		//Bool m_hasEverBeenHitched; /// has somebody ever hitched me? Remains true, even after puller dies.
+		//bool m_hasEverBeenHitched; /// has somebody ever hitched me? Remains true, even after puller dies.
 		xfer->xferBool( &m_hasEverBeenHitched );
 	
-		//Bool m_waitingInWings; /// I have not entered the real track yet, so leave me alone
+		//bool m_waitingInWings; /// I have not entered the real track yet, so leave me alone
 		xfer->xferBool( &m_waitingInWings );
 		
-		//Bool m_endOfLine;				/// I have reached the end of a non looping track
+		//bool m_endOfLine;				/// I have reached the end of a non looping track
 		xfer->xferBool( &m_endOfLine );
 		
-		//Bool m_isLocomotive; ///< Am I a locomotive, 
+		//bool m_isLocomotive; ///< Am I a locomotive, 
 		xfer->xferBool( &m_isLocomotive );
 		
-		//Bool m_isLeadCarraige; ///< Am the carraige in front,  
+		//bool m_isLeadCarraige; ///< Am the carraige in front,  
 		xfer->xferBool( &m_isLeadCarraige );
 		
 		//Int m_wantsToBeLeadCarraige; ///< Am the carraige in front,  
 		xfer->xferInt( &m_wantsToBeLeadCarraige );
 		
-		//Bool m_disembark; ///< If I wait at a station, I should also evacuate everybody when I get theres
+		//bool m_disembark; ///< If I wait at a station, I should also evacuate everybody when I get theres
 		xfer->xferBool( &m_disembark );
 		
-		//Bool m_inTunnel; ///< Am I in a tunnel, so I wil not snap to ground height, until the next waypoint, 
+		//bool m_inTunnel; ///< Am I in a tunnel, so I wil not snap to ground height, until the next waypoint, 
 		xfer->xferBool( &m_inTunnel );
 		
 		//ConductorState m_conductorState;
@@ -1583,7 +1583,7 @@ void RailroadBehavior::loadPostProcess( void )
 	// extend base class
 	PhysicsBehavior::loadPostProcess();
 
-	//Bool m_trackDataLoaded; ///< have I TRIED to load track data, yet? I only try once!
+	//bool m_trackDataLoaded; ///< have I TRIED to load track data, yet? I only try once!
 	m_trackDataLoaded = FALSE;
 
 

@@ -1014,7 +1014,7 @@ bool Object::canCrushOrSquish(Object *otherObj, CrushSquishTestType testType ) c
 		//      move to the target. I don't think it's the right place to check for this because
 		//      the semantics check to see if we can squish something -- not approach it. However
 		//      I'm not moving it for fear of some major breakage! -- KM
-		//Bool squisher = crusherLevel > 0;
+		//bool squisher = crusherLevel > 0;
 		//if( !squisher )
 		//{
 		//	Weapon *weapon = getCurrentWeapon();

@@ -64,7 +64,7 @@ public:
 	virtual RenderObjClass * Create_Render_Obj(const char * name);
 	// unique to W3DAssetManager
 	virtual HAnimClass *	Get_HAnim(const char * name);
-	virtual bool Load_3D_Assets( const char * filename ); // This CANNOT be Bool, as it will not inherit properly if you make bool == Int
+	virtual bool Load_3D_Assets( const char * filename ); // This CANNOT be bool, as it will not inherit properly if you make bool == Int
 	virtual TextureClass *			Get_Texture(
 		const char * filename, 
 		MipCountType mip_level_count=MIP_LEVELS_ALL,
@@ -83,9 +83,9 @@ public:
 	int replacePrototypeTexture(RenderObjClass *robj, const char * oldname, const char * newname);
 
 private:
-	void Make_Mesh_Unique(RenderObjClass *robj,Bool geometry, bool colors);
-	void Make_HLOD_Unique(RenderObjClass *robj,Bool geometry, bool colors);
-	void Make_Unique(RenderObjClass *robj,Bool geometry, bool colors);
+	void Make_Mesh_Unique(RenderObjClass *robj,bool geometry, bool colors);
+	void Make_HLOD_Unique(RenderObjClass *robj,bool geometry, bool colors);
+	void Make_Unique(RenderObjClass *robj,bool geometry, bool colors);
 
 	//'Generals' customizations
 	int Recolor_Asset(RenderObjClass *robj, const int color);

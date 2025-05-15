@@ -3854,7 +3854,7 @@ void	W3DShadowGeometryManager::Register_Missing( const char * name )
 	MissingGeomTable->Add( NEW MissingGeomClass( name ) );
 }
 
-Bool	W3DShadowGeometryManager::Is_Missing( const char * name )
+bool	W3DShadowGeometryManager::Is_Missing( const char * name )
 {
 	return ( MissingGeomTable->Find( name ) != NULL );
 }

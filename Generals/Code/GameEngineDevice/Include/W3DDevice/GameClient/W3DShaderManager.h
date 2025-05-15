@@ -176,7 +176,7 @@ public:
 	virtual Int init(void);			///<perform any one time initialization and validation
 	virtual Int shutdown(void);		///<release resources used by shader
 	virtual bool preRender(bool &skipRender, CustomScenePassModes &scenePassMode); ///< Set up at start of render.  Only applies to screen filter shaders.
-	virtual bool postRender(enum FilterModes mode, Coord2D &scrollDelta,Bool &doExtraRender); ///< Called after render.  Only applies to screen filter shaders.
+	virtual bool postRender(enum FilterModes mode, Coord2D &scrollDelta,bool &doExtraRender); ///< Called after render.  Only applies to screen filter shaders.
 	virtual bool setup(enum FilterModes mode){return true;} ///< Called when the filter is started, one time before the first prerender.
 	static void setFadeParameters(Int fadeFrames, Int direction)
 	{
@@ -199,7 +199,7 @@ public:
 	virtual Int init(void);			///<perform any one time initialization and validation
 	virtual Int shutdown(void);		///<release resources used by shader
 	virtual bool preRender(bool &skipRender, CustomScenePassModes &scenePassMode); ///< Set up at start of render.  Only applies to screen filter shaders.
-	virtual bool postRender(enum FilterModes mode, Coord2D &scrollDelta,Bool &doExtraRender); ///< Called after render.  Only applies to screen filter shaders.
+	virtual bool postRender(enum FilterModes mode, Coord2D &scrollDelta,bool &doExtraRender); ///< Called after render.  Only applies to screen filter shaders.
 	virtual bool setup(enum FilterModes mode){return true;} ///< Called when the filter is started, one time before the first prerender.
 protected:
 	virtual Int set(enum FilterModes mode);		///<setup shader for the specified rendering pass.
@@ -214,7 +214,7 @@ public:
 	virtual Int init(void);			///<perform any one time initialization and validation
 	virtual Int shutdown(void);		///<release resources used by shader
 	virtual bool preRender(bool &skipRender, CustomScenePassModes &scenePassMode); ///< Set up at start of render.  Only applies to screen filter shaders.
-	virtual bool postRender(enum FilterModes mode, Coord2D &scrollDelta,Bool &doExtraRender); ///< Called after render.  Only applies to screen filter shaders.
+	virtual bool postRender(enum FilterModes mode, Coord2D &scrollDelta,bool &doExtraRender); ///< Called after render.  Only applies to screen filter shaders.
 	virtual bool setup(enum FilterModes mode){return true;} ///< Called when the filter is started, one time before the first prerender.
 	static void setFadeParameters(Int fadeFrames, Int direction)
 	{

@@ -229,7 +229,7 @@ Int File::position( void )
 // File::print
 //============================================================================
 
-Bool	File::print ( const Char *format, ...)
+bool	File::print ( const Char *format, ...)
 {
 	Char buffer[10*1024];
 	Int len;
@@ -254,6 +254,6 @@ Bool	File::print ( const Char *format, ...)
 	return (write ( buffer, len ) == len);
 }
 
-Bool	File::eof() {
+bool	File::eof() {
 	return (position() == size());
 }

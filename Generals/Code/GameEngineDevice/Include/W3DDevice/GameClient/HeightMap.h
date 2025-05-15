@@ -121,7 +121,7 @@ public:
 	virtual RenderObjClass *	Clone(void) const;
 	virtual int						Class_ID(void) const;
 	virtual void					Render(RenderInfoClass & rinfo);
-	virtual bool					Cast_Ray(RayCollisionTestClass & raytest); // This CANNOT be Bool, as it will not inherit properly if you make bool == Int
+	virtual bool					Cast_Ray(RayCollisionTestClass & raytest); // This CANNOT be bool, as it will not inherit properly if you make bool == Int
 ///@todo: Add methods for collision detection with terrain
 //	virtual bool					Cast_AABox(AABoxCollisionTestClass & boxtest);
 //	virtual bool					Cast_OBBox(OBBoxCollisionTestClass & boxtest);

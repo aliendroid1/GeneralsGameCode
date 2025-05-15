@@ -200,7 +200,7 @@ void		W3DVideoBuffer::unlock( void )
 // W3DVideoBuffer::valid
 //============================================================================
 
-Bool		W3DVideoBuffer::valid( void )
+bool		W3DVideoBuffer::valid( void )
 {
 	return m_texture != NULL;
 }

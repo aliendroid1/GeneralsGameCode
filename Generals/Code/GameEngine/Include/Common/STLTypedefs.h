@@ -125,7 +125,7 @@ typedef std::vector<NamedRequest>													VecNamedRequests;
 typedef std::vector<NamedRequest>::iterator								VecNamedRequestsIt;
 
 // Rumor has it that a Vector of bools gets stored as a bitfield internally.
-typedef std::vector<bool>																	boolVector;
+typedef std::vector<bool>																	BoolVector;
 typedef std::vector<bool>::iterator												BoolVectorIterator;
 
 typedef std::map< NameKeyType, Real, std::less<NameKeyType> > ProductionChangeMap;

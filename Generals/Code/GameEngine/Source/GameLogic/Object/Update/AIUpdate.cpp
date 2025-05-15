@@ -4831,10 +4831,10 @@ void AIUpdateInterface::xfer( Xfer *xfer )
 	// Not needed - jba.
 	//Int					m_blockedFrames;						///< Number of frames we've been blocked.
 	//Real				m_curMaxBlockedSpeed;				///< Max speed we can have and not run into blocking things.
-	//Bool				m_isBlocked;
-	//Bool				m_isBlockedAndStuck;				///< True if we are stuck & need to recompute path.
-	//Bool				m_isInUpdate;
-	//Bool				m_fixLocoInPostProcess;
+	//bool				m_isBlocked;
+	//bool				m_isBlockedAndStuck;				///< True if we are stuck & need to recompute path.
+	//bool				m_isInUpdate;
+	//bool				m_fixLocoInPostProcess;
 
 	xfer->xferUnsignedInt(&m_ignoreCollisionsUntil);
 	xfer->xferUnsignedInt(&m_queueForPathFrame);

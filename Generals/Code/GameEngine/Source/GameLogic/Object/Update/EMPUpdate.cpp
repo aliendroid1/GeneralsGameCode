@@ -61,7 +61,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 //	Static member initialization
 ///////////////////////////////////////////////////////////////////////////////////////////
-//Bool	EMPUpdate::s_lastInstanceSpunPositive	= FALSE;
+//bool	EMPUpdate::s_lastInstanceSpunPositive	= FALSE;
 
 //-------------------------------------------------------------------------------------------------
 static void saturateRGB(RGBColor& color, Real factor)

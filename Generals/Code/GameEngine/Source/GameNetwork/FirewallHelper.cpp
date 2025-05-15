@@ -601,7 +601,7 @@ void FirewallHelperClass::readFirewallBehavior(void)
  * HISTORY:                                                                                    *
  *   3/15/01 12:30PM ST : Created                                                              *
  *=============================================================================================*/
-void FirewallHelperClass::detectFirewallBehavior(/*Bool &canRecord*/)
+void FirewallHelperClass::detectFirewallBehavior(/*bool &canRecord*/)
 {
 	m_behavior = FIREWALL_TYPE_SIMPLE;
 

@@ -1376,7 +1376,7 @@ void PartitionCell::removeShrouder( Int playerIndex )
 }
 
 //-----------------------------------------------------------------------------
-//Bool PartitionCell::isShroudedForPlayer( Int playerIndex ) const
+//bool PartitionCell::isShroudedForPlayer( Int playerIndex ) const
 //{
 	// There isn't an absolute answer.  This cell is only shrouded in regards to a person
 //	return (m_shroudLevel[playerIndex].m_currentShroud == 1);
@@ -4393,7 +4393,7 @@ Int PartitionManager::iterateCellsBreadthFirst(const Coord3D *pos, CellBreadthFi
 	Int cellX, cellY;
 	ThePartitionManager->worldToCell(pos->x, pos->y, &cellX, &cellY);
 	
-	// Note, bool. not Bool, cause bool will cause this to be a bitfield.
+	// Note, bool. not bool, cause bool will cause this to be a bitfield.
 	std::vector<bool> bitField;
 	Int cellCount = m_cellCountX * m_cellCountY;
 	bitField.resize(cellCount);

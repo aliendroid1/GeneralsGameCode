@@ -145,7 +145,7 @@ protected:
 
 	VecCoord3D m_approachPositions;
 	ObjectIDVector m_approachPositionOwners;	///< Who is in or at least reserved each spot
-	boolVector m_approachPositionReached;			///< Which positions have actually been reached 
+	BoolVector m_approachPositionReached;			///< Which positions have actually been reached 
 
 	ObjectID m_activeDocker;	///< we could expand this to multiple dock paths since we always get docker in our methods
 	bool m_dockerInside; ///< This is true while our active docker is between Enter and Exit. This is shorter than activeDocker's lifetime as it doesn't include approach to enter

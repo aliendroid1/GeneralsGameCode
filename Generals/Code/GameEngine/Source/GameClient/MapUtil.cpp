@@ -635,7 +635,7 @@ bool MapCache::loadUserMaps()
 	return parsedAMap;
 }
 
-//Bool MapCache::addMap( AsciiString dirName, AsciiString fname, WinTimeStamp timestamp, UnsignedInt filesize, bool isOfficial )
+//bool MapCache::addMap( AsciiString dirName, AsciiString fname, WinTimeStamp timestamp, UnsignedInt filesize, bool isOfficial )
 bool MapCache::addMap( AsciiString dirName, AsciiString fname, FileInfo *fileInfo, bool isOfficial)
 {
 	if (fileInfo == NULL) {

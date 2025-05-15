@@ -96,7 +96,7 @@ public:
 	Int	 getTextureWidth(void)		{return m_dstTextureWidth;}	///<internal use by the shader system.
 	Int	 getTextureHeight(void)		{return m_dstTextureHeight;}
 	W3DShroudLevel getShroudLevel(Int x, Int y);
-	void setShroudLevel(Int x, Int y, W3DShroudLevel,Bool textureOnly=FALSE);
+	void setShroudLevel(Int x, Int y, W3DShroudLevel,bool textureOnly=FALSE);
 	void setShroudFilter(bool enable);	///<turns on bilinear filtering of shroud cells.
 	void setBorderShroudLevel(W3DShroudLevel level);	///<color that will appear in unused border terrain.
 	Real	getDrawOriginX(void)	{return m_drawOriginX;}	///<returns ws origin of first pixel in shroud texture.			

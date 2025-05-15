@@ -247,7 +247,7 @@ class FirewallHelperClass {
 	private:
 
 		Int getNATPortAllocationScheme(Int numPorts, UnsignedShort *originalPorts, UnsignedShort *mangledPorts, bool &relativeDelta, bool &looksGood);
-		void detectFirewallBehavior(/*Bool &canRecord*/);
+		void detectFirewallBehavior(/*bool &canRecord*/);
 		bool getReferencePort(void);
 
 		SpareSocketStruct * findSpareSocketByPort(UnsignedShort port);

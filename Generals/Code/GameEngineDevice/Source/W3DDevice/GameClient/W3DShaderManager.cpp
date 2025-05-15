@@ -174,7 +174,7 @@ bool ScreenBWFilter::preRender(bool &skipRender, CustomScenePassModes &scenePass
 	return true;
 }
 
-bool ScreenBWFilter::postRender(enum FilterModes mode, Coord2D &scrollDelta,Bool &doExtraRender)
+bool ScreenBWFilter::postRender(enum FilterModes mode, Coord2D &scrollDelta,bool &doExtraRender)
 {
 	IDirect3DTexture8 * tex =	W3DShaderManager::endRenderToTexture();
 	DEBUG_ASSERTCRASH(tex, ("Require rendered texture."));
@@ -356,7 +356,7 @@ bool ScreenBWFilterDOT3::preRender(bool &skipRender, CustomScenePassModes &scene
 	return true;
 }
 
-bool ScreenBWFilterDOT3::postRender(enum FilterModes mode, Coord2D &scrollDelta,Bool &doExtraRender)
+bool ScreenBWFilterDOT3::postRender(enum FilterModes mode, Coord2D &scrollDelta,bool &doExtraRender)
 {
 	IDirect3DTexture8 * tex =	W3DShaderManager::endRenderToTexture();
 	DEBUG_ASSERTCRASH(tex, ("Require rendered texture."));
@@ -605,7 +605,7 @@ bool ScreenCrossFadeFilter::preRender(bool &skipRender, CustomScenePassModes &sc
 	return true;
 }
 
-bool ScreenCrossFadeFilter::postRender(enum FilterModes mode, Coord2D &scrollDelta,Bool &doExtraRender)
+bool ScreenCrossFadeFilter::postRender(enum FilterModes mode, Coord2D &scrollDelta,bool &doExtraRender)
 {
 	IDirect3DTexture8 * tex;
 
@@ -787,7 +787,7 @@ bool ScreenMotionBlurFilter::preRender(bool &skipRender, CustomScenePassModes &s
 	return true;
 }
 
-bool ScreenMotionBlurFilter::postRender(enum FilterModes mode, Coord2D &scrollDelta,Bool &doExtraRender)
+bool ScreenMotionBlurFilter::postRender(enum FilterModes mode, Coord2D &scrollDelta,bool &doExtraRender)
 {
 	IDirect3DTexture8 * tex =	W3DShaderManager::endRenderToTexture();
 	DEBUG_ASSERTCRASH(tex, ("Require rendered texture."));

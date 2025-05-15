@@ -825,7 +825,7 @@ WindowMsgHandledType GadgetListBoxInput( GameWindow *window, UnsignedInt msg,
 					break;
 			}
 			
-			//Bool dblClicked = FALSE;
+			//bool dblClicked = FALSE;
 			if( list->doubleClickTime + doubleClickTime > timeGetTime() && 
 					(i == oldPos || (oldPos == -1 && ( i>=0 && i<list->endPos ) )) )
 			{
