@@ -83,9 +83,6 @@ public:
 	bool canHijackVehicle( const Object *obj, const Object *ObjectToHijack, CommandSourceType commandSource ); // LORENZEN
 	bool canCaptureBuilding( const Object *obj, const Object *objectToCapture, CommandSourceType commandSource );
 	bool canDisableVehicleViaHacking( const Object *obj, const Object *objectToHack, CommandSourceType commandSource, bool checkSourceRequirements = true );
-#ifdef ALLOW_SURRENDER
-	bool canPickUpPrisoner( const Object *obj, const Object *prisoner, CommandSourceType commandSource );
-#endif
 	bool canStealCashViaHacking( const Object *obj, const Object *objectToHack, CommandSourceType commandSource );
 	bool canSnipeVehicle( const Object *obj, const Object *objectToSnipe, CommandSourceType commandSource );
 	bool canBribeUnit( const Object *obj, const Object *objectToBribe, CommandSourceType commandSource );
@@ -93,7 +90,7 @@ public:
 	bool canDisableBuildingViaHacking( const Object *obj, const Object *objectToHack, CommandSourceType commandSource );
 	bool canDoSpecialPowerAtLocation( const Object *obj, const Coord3D *loc, CommandSourceType commandSource, const SpecialPowerTemplate *spTemplate, const Object *objectInWay, UnsignedInt commandOptions, bool checkSourceRequirements = true );
 	bool canDoSpecialPowerAtObject( const Object *obj, const Object *target, CommandSourceType commandSource, const SpecialPowerTemplate *spTemplate, UnsignedInt commandOptions, bool checkSourceRequirements = true);
-	bool canDoSpecialPower( const Object *obj, const SpecialPowerTemplate *spTemplate, CommandSourceType commandSource, UnsignedInt commandOptions, bool checkSourceRequirements = true );
+	bool canDoSpecialPower(const Object* obj, const SpecialPowerTemplate* spTemplate, CommandSourceType commandSource, UnsignedInt commandOptions, bool checkSourceRequirements = true) { return false; };	// @todo add proper definition
 	bool canMakeObjectDefector( const Object *obj, const Object *objectToMakeDefector, CommandSourceType commandSource );
 	bool canFireWeaponAtLocation( const Object *obj, const Coord3D *loc, CommandSourceType commandSource, const WeaponSlotType slot, const Object *objectInWay );
 	bool canFireWeaponAtObject( const Object *obj, const Object *target, CommandSourceType commandSource, const WeaponSlotType slot );

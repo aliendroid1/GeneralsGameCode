@@ -36,6 +36,7 @@
 #include <string.h>
 
 #include <cstdint>
+#include <cstddef>
 
 /*
 **	Turn off some unneeded warnings.
@@ -131,7 +132,6 @@ typedef int16_t						Short;					// 2 bytes
 typedef unsigned char	            UnsignedByte;			// 1 byte		USED TO BE "Byte"
 typedef char						Byte;					// 1 byte		USED TO BE "SignedByte"
 typedef char						Char;					// 1 byte of text
-//typedef bool						bool;					// 
 // note, the types below should use "long long", but MSVC doesn't support it yet
 typedef int64_t						Int64;						// 8 bytes
 typedef uint64_t					UnsignedInt64;	  	        // 8 bytes
