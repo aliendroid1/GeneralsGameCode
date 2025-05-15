@@ -175,7 +175,7 @@ public: // AIPlayer interface, may be overridden by AISkirmishPlayer.  jba.
 
 	virtual void buildSpecificAITeam(TeamPrototype *teamProto, bool priorityBuild); ///< Builds this team immediately.
 
-	virtual void buildAIBaseDefense(Bool flank); ///< Builds base defense on front or flank of base.
+	virtual void buildAIBaseDefense(bool flank); ///< Builds base defense on front or flank of base.
 
 	virtual void buildAIBaseDefenseStructure(const AsciiString &thingName, bool flank); ///< Builds base defense on front or flank of base.
 

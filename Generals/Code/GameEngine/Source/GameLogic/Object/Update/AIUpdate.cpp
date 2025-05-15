@@ -799,7 +799,7 @@ Real AIUpdateInterface::getCurLocomotorSpeed() const
 }
 
 //=============================================================================
-void AIUpdateInterface::setLocomotorUpgrade(Bool set)
+void AIUpdateInterface::setLocomotorUpgrade(bool set)
 {
 	m_upgradedLocomotors = set;
 	if (m_curLocomotorSet == LOCOMOTORSET_NORMAL || m_curLocomotorSet == LOCOMOTORSET_NORMAL_UPGRADED)

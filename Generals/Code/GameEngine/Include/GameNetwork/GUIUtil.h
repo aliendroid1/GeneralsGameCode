@@ -48,7 +48,7 @@ void UpdateSlotList( GameInfo *myGame, GameWindow *comboPlayer[],
 										GameWindow *comboTeam[], GameWindow *buttonAccept[], 
 										GameWindow *buttonStart, GameWindow *buttonMapStartPosition[] );
 
-void EnableAcceptControls(Bool Enabled, GameInfo *myGame, GameWindow *comboPlayer[],
+void EnableAcceptControls(bool Enabled, GameInfo *myGame, GameWindow *comboPlayer[],
 										GameWindow *comboColor[], GameWindow *comboPlayerTemplate[],
 										GameWindow *comboTeam[], GameWindow *buttonAccept[], GameWindow *buttonStart,
 										GameWindow *buttonMapStartPosition[], Int slotNum = -1);

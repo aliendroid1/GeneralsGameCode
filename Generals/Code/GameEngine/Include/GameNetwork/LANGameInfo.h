@@ -117,7 +117,7 @@ public:
 	}
 
 	/// set whether or not this is a direct connect game or not.
-	inline void setIsDirectConnect(Bool isDirectConnect)
+	inline void setIsDirectConnect(bool isDirectConnect)
 	{
 		m_isDirectConnect = isDirectConnect;
 	}
@@ -173,7 +173,7 @@ private:
 };
 
 void LANDisplayGameList( GameWindow *gameListbox, LANGameInfo *gameList );	///< Displays the list of games in a listbox, preserving selections
-void LANEnableStartButton(Bool enabled);
+void LANEnableStartButton(bool enabled);
 
 void LANDisplaySlotList( void );		///< Displays the slot list according to TheLANGameInfo
 void LANDisplayGameOptions( void );	///< Displays the game options according to TheLANGameInfo

@@ -121,7 +121,7 @@ class UDP
   Int             SetOutputBuffer(UnsignedInt bytes);
   int              GetInputBuffer(void);
   int              GetOutputBuffer(void);
-	Int						AllowBroadcasts(Bool status);
+	Int						AllowBroadcasts(bool status);
 };
 
 #ifdef DEBUG_LOGGING

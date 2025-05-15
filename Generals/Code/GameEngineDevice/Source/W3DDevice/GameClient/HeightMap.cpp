@@ -2509,7 +2509,7 @@ void HeightMapRenderObjClass::updateShorelineTiles(Int minX, Int minY, Int maxX,
 }
 
 /** Generate a lookup table for arbitrary angled impassable area viewing. */
-void HeightMapRenderObjClass::updateViewImpassableAreas(Bool partial, Int minX, Int maxX, Int minY, Int maxY)
+void HeightMapRenderObjClass::updateViewImpassableAreas(bool partial, Int minX, Int maxX, Int minY, Int maxY)
 {
 	Int xSize = m_map->getXExtent();
 	Int ySize = m_map->getYExtent();

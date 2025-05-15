@@ -468,7 +468,7 @@ void MissileAIUpdate::doIgnitionState()
 }
 
 //-------------------------------------------------------------------------------------------------
-void MissileAIUpdate::doAttackState(Bool turnOK)
+void MissileAIUpdate::doAttackState(bool turnOK)
 {	
 	Locomotor* curLoco = getCurLocomotor();
 

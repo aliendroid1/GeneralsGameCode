@@ -1338,7 +1338,7 @@ void SkirmishGameOptionsMenuShutdown( WindowLayout *layout, void *userData )
 	TheMouse->setCursor(Mouse::ARROW);
 	TheMouse->setMouseText(UnicodeString::TheEmptyString,NULL,NULL);
   // if we are shutting down for an immediate pop, skip the animations
-	bool popImmediate = *(Bool *)userData;
+	bool popImmediate = *(bool *)userData;
 	if( popImmediate )
 	{
 
@@ -1448,7 +1448,7 @@ WindowMsgHandledType SkirmishGameOptionsMenuSystem( GameWindow *window, Unsigned
 			{	
 				// if we're givin the opportunity to take the keyboard focus we must say we want it
 				if( mData1 == TRUE )
-					*(Bool *)mData2 = TRUE;
+					*(bool *)mData2 = TRUE;
 
 				return MSG_HANDLED;
 			}//case GWM_INPUT_FOCUS:

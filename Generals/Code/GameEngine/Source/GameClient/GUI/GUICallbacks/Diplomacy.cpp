@@ -404,7 +404,7 @@ WindowMsgHandledType DiplomacySystem( GameWindow *window, UnsignedInt msg,
 		{	
 			// if we're given the opportunity to take the keyboard focus we must say we don't want it
 			if( mData1 == TRUE )
-				*(Bool *)mData2 = FALSE;
+				*(bool *)mData2 = FALSE;
 
 			return MSG_HANDLED;
 		}//case GWM_INPUT_FOCUS:

@@ -77,11 +77,11 @@ public:
 	virtual void capture( void );										///< capture the mouse
 	virtual void releaseCapture( void );						///< release mouse capture
 
-	virtual void setVisibility(Bool visible);
+	virtual void setVisibility(bool visible);
 
 	/// add an event from a win32 window procedure
 	void addWin32Event( UINT msg, WPARAM wParam, LPARAM lParam, DWORD time );
-	void lostFocus (Bool state) { m_lostFocus = state;}
+	void lostFocus (bool state) { m_lostFocus = state;}
 
 protected:
 

@@ -287,7 +287,7 @@ extern GameSpyInfoInterface *TheGameSpyInfo;
 void WOLDisplayGameOptions( void );
 void WOLDisplaySlotList( void );
 bool GetLocalChatConnectionAddress(AsciiString serverName, UnsignedShort serverPort, UnsignedInt& localIP);
-void SetLobbyAttemptHostJoin(Bool start);
+void SetLobbyAttemptHostJoin(bool start);
 void SendStatsToOtherPlayers(const GameInfo *game);
 
 class PSPlayerStats;

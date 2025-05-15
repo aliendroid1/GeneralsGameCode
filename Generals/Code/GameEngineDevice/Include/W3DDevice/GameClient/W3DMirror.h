@@ -72,7 +72,7 @@ public:
 	///allocate W3D resources needed to render mirror
 	Int init(Real waterLevel, Real dx, Real dy, SceneClass *parentScene);
 	static void setTimeOfDay(TimeOfDay tod)	{m_tod=tod;}	///<change sky/water for time of day
-	void toggleCloudLayer(Bool state)	{	m_useCloudLayer=state;}	///<enables/disables the cloud layer
+	void toggleCloudLayer(bool state)	{	m_useCloudLayer=state;}	///<enables/disables the cloud layer
 
 protected:
 	DX8IndexBufferClass			*m_indexBuffer;	///<indices defining quad

@@ -219,7 +219,7 @@ void HordeUpdate::joinOrLeaveHorde(SimpleObjectIterator *iter, bool join)
 }
 
 //-------------------------------------------------------------------------------------------------
-void HordeUpdate::showHideFlag(Bool show)
+void HordeUpdate::showHideFlag(bool show)
 {
 	const HordeUpdateModuleData* d = getHordeUpdateModuleData();
 	if (!d->m_flagSubObjNames.empty())

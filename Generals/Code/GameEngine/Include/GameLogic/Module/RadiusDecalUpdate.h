@@ -74,7 +74,7 @@ public:
 
 	//void createRadiusDecal( const Coord3D& pos );
 	void createRadiusDecal( const RadiusDecalTemplate& tmpl, Real radius, const Coord3D& pos );
-	void killWhenNoLongerAttacking(Bool v) { m_killWhenNoLongerAttacking = v; }
+	void killWhenNoLongerAttacking(bool v) { m_killWhenNoLongerAttacking = v; }
 	void killRadiusDecal(); 
 
 	virtual UpdateSleepTime update( void );

@@ -308,7 +308,7 @@ void Eva::setShouldPlay(EvaMessage messageToPlay)
 }
 
 //-------------------------------------------------------------------------------------------------
-void Eva::setEvaEnabled(Bool enabled)
+void Eva::setEvaEnabled(bool enabled)
 {
 	// clear out any waiting messages.
 	for (Int i = EVA_FIRST; i < EVA_COUNT; ++i) {

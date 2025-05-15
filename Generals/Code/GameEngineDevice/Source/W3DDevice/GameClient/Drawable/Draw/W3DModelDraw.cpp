@@ -413,7 +413,7 @@ void ModelConditionInfo::addPublicBone(const AsciiString& boneName) const
 }
 
 //-------------------------------------------------------------------------------------------------
-bool ModelConditionInfo::matchesMode(Bool night, bool snowy) const
+bool ModelConditionInfo::matchesMode(bool night, bool snowy) const
 {
 	for (std::vector<ModelConditionFlags>::const_iterator it = m_conditionsYesVec.begin(); 
 				it != m_conditionsYesVec.end(); 
@@ -1785,7 +1785,7 @@ void W3DModelDraw::doStartOrStopParticleSys()
 }
 
 //-------------------------------------------------------------------------------------------------
-void W3DModelDraw::setHidden(Bool hidden)
+void W3DModelDraw::setHidden(bool hidden)
 {
 	if (m_renderObject)
 		m_renderObject->Set_Hidden(hidden);
@@ -1842,7 +1842,7 @@ void W3DModelDraw::allocateShadows(void)
 }
 
 //-------------------------------------------------------------------------------------------------
-void W3DModelDraw::setShadowsEnabled(Bool enable)
+void W3DModelDraw::setShadowsEnabled(bool enable)
 {
 	if (m_shadow)
 		m_shadow->enableShadowRender(enable);
@@ -1901,7 +1901,7 @@ void W3DModelDraw::getRenderCostRecursive(RenderCost & rc,RenderObjClass * robj)
 #endif //RTS_DEBUG || RTS_INTERNAL
 
 //-------------------------------------------------------------------------------------------------
-void W3DModelDraw::setFullyObscuredByShroud(Bool fullyObscured)
+void W3DModelDraw::setFullyObscuredByShroud(bool fullyObscured)
 {
 	if (m_fullyObscuredByShroud != fullyObscured)
 	{
@@ -2231,7 +2231,7 @@ Real W3DModelDraw::getCurAnimDistanceCovered() const
 	Utility function to make it easier to recursively hide all objects connected to a certain bone.
 	We will hide all objects connected to bones which are children of boneIdx
 */
-static void doHideShowBoneSubObjs(Bool state, Int numSubObjects, Int boneIdx, RenderObjClass *fullObject, const HTreeClass *htree)
+static void doHideShowBoneSubObjs(bool state, Int numSubObjects, Int boneIdx, RenderObjClass *fullObject, const HTreeClass *htree)
 {
 #if 1	//(gth) fixed and tested this version
 	for (Int i=0; i < numSubObjects; i++) 
@@ -2764,7 +2764,7 @@ void W3DModelDraw::nukeCurrentRender(Matrix3D* xform)
 
 //-------------------------------------------------------------------------------------------------
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)	//art wants to see buildings without flags as a test.
-void W3DModelDraw::hideGarrisonFlags(Bool hide)
+void W3DModelDraw::hideGarrisonFlags(bool hide)
 {
 	if (!m_renderObject)
 		return;
@@ -2791,7 +2791,7 @@ void W3DModelDraw::hideGarrisonFlags(Bool hide)
 
 //-------------------------------------------------------------------------------------------------
 /** Hides all subobjects which are headlights.  Used to disable lights on models during the day.*/
-void W3DModelDraw::hideAllHeadlights(Bool hide)
+void W3DModelDraw::hideAllHeadlights(bool hide)
 {
 	if (m_renderObject)
 	{
@@ -3138,7 +3138,7 @@ void W3DModelDraw::replaceModelConditionState(const ModelConditionFlags& c)
 }
 
 //-------------------------------------------------------------------------------------------------
-void W3DModelDraw::setSelectable(Bool selectable)
+void W3DModelDraw::setSelectable(bool selectable)
 {
 	// set collision type for render object.  Used by WW3D2 collision code.
 	if( m_renderObject )
@@ -3723,7 +3723,7 @@ void W3DModelDraw::setAnimationCompletionTime(UnsignedInt numFrames)
 }
 
 //-------------------------------------------------------------------------------------------------
-void W3DModelDraw::setPauseAnimation(Bool pauseAnim)
+void W3DModelDraw::setPauseAnimation(bool pauseAnim)
 {
 	if (m_pauseAnimation == pauseAnim) 
 	{

@@ -1156,7 +1156,7 @@ void ConnectionManager::sendRemoteCommand(NetCommandRef *msg) {
  * Update the connections. Tell them to do the receive and send.  Also relay
  * commands to their final destinations as necessary.
  */
-void ConnectionManager::update(Bool isInGame) {
+void ConnectionManager::update(bool isInGame) {
 //
 // 1. do this
 // 2. do that

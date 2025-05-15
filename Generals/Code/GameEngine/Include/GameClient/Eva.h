@@ -158,7 +158,7 @@ class Eva : public SubsystemInterface
 
 		void setShouldPlay(EvaMessage messageToPlay);
 
-		void setEvaEnabled(Bool enabled);
+		void setEvaEnabled(bool enabled);
 
 	protected: 	// Note: These are all protected. They should *NEVER* be made public. They are for internal use only
 		bool isTimeForCheck(EvaMessage messageToTest, UnsignedInt currentFrame) const;

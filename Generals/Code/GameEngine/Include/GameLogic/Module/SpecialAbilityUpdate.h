@@ -222,7 +222,7 @@ protected:
 	void killSpecialObjects();
 
 	bool handlePackingProcessing();
-	void startPacking(Bool success);
+	void startPacking(bool success);
 	void startUnpacking();
 	bool needToPack() const;
 	bool needToUnpack() const;

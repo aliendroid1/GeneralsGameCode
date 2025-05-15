@@ -1286,7 +1286,7 @@ void W3DView::setFadeParameters(Int fadeFrames, Int direction)
 	ScreenCrossFadeFilter::setFadeParameters(fadeFrames,direction);
 }
 
-void W3DView::set3DWireFrameMode(Bool enable)
+void W3DView::set3DWireFrameMode(bool enable)
 {
 	m_nextWireFrameEnabled = enable;
 }
@@ -2681,7 +2681,7 @@ void W3DView::moveCameraAlongWaypointPath(Waypoint *pWay, Int milliseconds, Int 
 /** Calculates angles and distances for moving along a waypoint path.  Sets up parameters that get
  * evaluated in draw(). */
 // ------------------------------------------------------------------------------------------------
-void W3DView::setupWaypointPath(Bool orient)
+void W3DView::setupWaypointPath(bool orient)
 {
 	m_mcwpInfo.curSegment = 1;
 	m_mcwpInfo.curSegDistance = 0;

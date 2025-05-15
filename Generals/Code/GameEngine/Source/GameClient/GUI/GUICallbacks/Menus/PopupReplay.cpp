@@ -79,14 +79,14 @@ static const time_t s_fileSavePopupDuration = 1000;
 
 // PUBLIC FUNCTIONS ///////////////////////////////////////////////////////////////////////////////
 extern void PopulateReplayFileListbox(GameWindow *listbox);
-extern void ScoreScreenEnableControls(Bool enable);
+extern void ScoreScreenEnableControls(bool enable);
 extern UnicodeString GetReplayFilenameFromListbox(GameWindow *listbox, Int index);
 extern std::string LastReplayFileName;
 
 //-------------------------------------------------------------------------------------------------
 /** Show or hide the "Replay Saved" popup */
 //-------------------------------------------------------------------------------------------------
-void ShowReplaySavedPopup(Bool show)
+void ShowReplaySavedPopup(bool show)
 {
 	if (replaySavedParent != NULL) {
 		if (show) {
@@ -368,7 +368,7 @@ WindowMsgHandledType PopupReplaySystem( GameWindow *window, UnsignedInt msg,
 
 			// if we're givin the opportunity to take the keyboard focus we must say we want it
 			if( mData1 == TRUE )
-				*(Bool *)mData2 = TRUE;
+				*(bool *)mData2 = TRUE;
 
 			break;
 

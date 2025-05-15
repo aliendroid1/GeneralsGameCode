@@ -1932,7 +1932,7 @@ Object *AIPlayer::findSupplyCenter(Int minimumCash)
 // ------------------------------------------------------------------------------------------------
 /**  Build a base defense. */
 // ------------------------------------------------------------------------------------------------
-void AIPlayer::buildAIBaseDefense(Bool flank)
+void AIPlayer::buildAIBaseDefense(bool flank)
 {
 	//
 	AsciiString teamStr = "Error : Solo ai doesn't support buildAIBaseDefense. '";

@@ -85,14 +85,14 @@ W3DDebrisDraw::~W3DDebrisDraw(void)
 }
 
 //-------------------------------------------------------------------------------------------------
-void W3DDebrisDraw::setShadowsEnabled(Bool enable)
+void W3DDebrisDraw::setShadowsEnabled(bool enable)
 {
 	if (m_shadow)
 		m_shadow->enableShadowRender(enable);
 }
 
 //-------------------------------------------------------------------------------------------------
-void W3DDebrisDraw::setFullyObscuredByShroud(Bool fullyObscured)
+void W3DDebrisDraw::setFullyObscuredByShroud(bool fullyObscured)
 {
 	if (m_shadow)
 		m_shadow->enableShadowInvisible(fullyObscured);

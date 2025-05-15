@@ -394,7 +394,7 @@ public:
 	void markAsDead( void );
 
 	bool isRecruitable(void) const {return m_isRecruitable;}
-	void setIsRecruitable(Bool isRecruitable) {m_isRecruitable = isRecruitable;}
+	void setIsRecruitable(bool isRecruitable) {m_isRecruitable = isRecruitable;}
 
 	Real getDesiredSpeed() const { return m_desiredSpeed; }
 	void setDesiredSpeed( Real speed ) { m_desiredSpeed = speed; }	///< how fast we want to go
@@ -521,7 +521,7 @@ public:
 	// if we are attacking a position (and NOT an object), return it. otherwise return null.
 	const Coord3D *getCurrentVictimPos( void ) const;	
 
-	void setLocomotorUpgrade(Bool set);
+	void setLocomotorUpgrade(bool set);
 
 	// This function is used to notify the unit that it may have a target of opportunity to attack.
 	void wakeUpAndAttemptToTarget( void );

@@ -198,7 +198,7 @@ void W3DTankDraw::stopMoveDebris( void )
 }
 
 //-------------------------------------------------------------------------------------------------
-void W3DTankDraw::setHidden(Bool h)
+void W3DTankDraw::setHidden(bool h)
 {
 	W3DModelDraw::setHidden(h);
 	if (h)
@@ -208,7 +208,7 @@ void W3DTankDraw::setHidden(Bool h)
 }
 
 //-------------------------------------------------------------------------------------------------
-void W3DTankDraw::setFullyObscuredByShroud(Bool fullyObscured)
+void W3DTankDraw::setFullyObscuredByShroud(bool fullyObscured)
 {
 	if (fullyObscured != getFullyObscuredByShroud())
 	{

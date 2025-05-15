@@ -31,7 +31,7 @@
 /**
  * Constructor.  isLocal tells it whether its the frame data manager for the local player or not.
  */
-FrameDataManager::FrameDataManager(Bool isLocal) {
+FrameDataManager::FrameDataManager(bool isLocal) {
 	m_isLocal = isLocal;
 	
 	m_frameData = NEW FrameData[FRAME_DATA_LENGTH];

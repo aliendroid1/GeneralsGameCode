@@ -105,9 +105,9 @@ public:
 	inline void setID(Int id) { m_id = id; }
 	inline Int getID( void ) const { return m_id; }
 
-	inline void setHasPassword(Bool val) { m_requiresPassword = val; }
+	inline void setHasPassword(bool val) { m_requiresPassword = val; }
 	inline bool getHasPassword(void) const { return m_requiresPassword; }
-	inline void setAllowObservers(Bool val) { m_allowObservers = val; }
+	inline void setAllowObservers(bool val) { m_allowObservers = val; }
 	inline bool getAllowObservers(void) const { return m_allowObservers; }
 
 	inline void setVersion(UnsignedInt val) { m_version = val; }

@@ -642,7 +642,7 @@ void InGameUI::showObjectSuperweaponDisplayByScript(const Object *obj)
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-void InGameUI::setSuperweaponDisplayEnabledByScript(Bool enable)
+void InGameUI::setSuperweaponDisplayEnabledByScript(bool enable)
 {
 	m_superweaponHiddenByScript = !enable;
 }
@@ -5460,7 +5460,7 @@ WindowMsgHandledType IdleWorkerSystem( GameWindow *window, UnsignedInt msg,
 		{	
 			// if we're givin the opportunity to take the keyboard focus we must say we don't want it
 			if( mData1 == TRUE )
-				*(Bool *)mData2 = FALSE;
+				*(bool *)mData2 = FALSE;
 		}
 		//---------------------------------------------------------------------------------------------
 		case GBM_SELECTED:

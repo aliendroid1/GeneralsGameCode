@@ -2238,7 +2238,7 @@ const Coord3D* Team::getEstimateTeamPosition(void)
 }
 
 // ------------------------------------------------------------------------
-void Team::deleteTeam(Bool ignoreDead)
+void Team::deleteTeam(bool ignoreDead)
 {
 	// First off, if this Team is the Player's default team, we need to Evacuate everyone or else
 	// Garrisoned buildings will fall victim to this deletion as well, since they were added to the

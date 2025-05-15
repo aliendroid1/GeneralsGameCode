@@ -257,7 +257,7 @@ void SaveLoadMenuFullScreenInit( WindowLayout *layout, void *userData )
 void SaveLoadMenuShutdown( WindowLayout *layout, void *userData )
 {
 	
-	bool popImmediate = *(Bool *)userData;
+	bool popImmediate = *(bool *)userData;
 	if( popImmediate )
 	{
 
@@ -533,7 +533,7 @@ WindowMsgHandledType SaveLoadMenuSystem( GameWindow *window, UnsignedInt msg,
 
 			// if we're givin the opportunity to take the keyboard focus we must say we want it
 			if( mData1 == TRUE )
-				*(Bool *)mData2 = TRUE;
+				*(bool *)mData2 = TRUE;
 
 			break;
 

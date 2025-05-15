@@ -112,7 +112,7 @@ void createGame( void );
 
 static bool isPopulatingLadderBox = false;
 
-void CustomMatchHideHostPopup(Bool hide)
+void CustomMatchHideHostPopup(bool hide)
 {
 	if (!parentPopup)
 		return;
@@ -433,7 +433,7 @@ WindowMsgHandledType PopupHostGameSystem( GameWindow *window, UnsignedInt msg, W
 
 			// if we're givin the opportunity to take the keyboard focus we must say we want it
 			if( mData1 == TRUE )
-				*(Bool *)mData2 = TRUE;
+				*(bool *)mData2 = TRUE;
 
 			break;
 

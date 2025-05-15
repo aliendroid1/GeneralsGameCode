@@ -69,8 +69,8 @@ public:
 	//Added By Sadullah Nader
 	//added for fix to the drag selection when entering control bar
 	//changes the mode of drag selecting to it's opposite
-	void setDragSelecting(Bool dragSelect);
-	void setLeftMouseButton(Bool state);
+	void setDragSelecting(bool dragSelect);
+	void setLeftMouseButton(bool state);
 };	
 
 bool CanSelectDrawable( const Drawable *draw, bool dragSelecting );

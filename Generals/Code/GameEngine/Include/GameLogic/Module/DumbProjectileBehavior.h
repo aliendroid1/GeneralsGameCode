@@ -115,7 +115,7 @@ private:
 	Int										m_currentFlightPathStep;	///< Our current index in the flight path vector.  Quicker than popping off.
 	WeaponBonusConditionFlags		m_extraBonusFlags;
 
-	bool calcFlightPath(Bool recalcNumSegments);
+	bool calcFlightPath(bool recalcNumSegments);
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	void displayFlightPath();	///< Uses little debug icons in worldspace to show the path chosen when it is decided upon
 #endif

@@ -70,7 +70,7 @@ public:
 public:
 	virtual void					On_Frame_Update(void); 
 
-	void setEnabled(Bool enabled) { m_enabled = enabled; m_decayRange = false; m_decayFrameCount = 0; m_decayColor = false; m_increaseFrameCount = 0;};
+	void setEnabled(bool enabled) { m_enabled = enabled; m_decayRange = false; m_decayFrameCount = 0; m_decayColor = false; m_increaseFrameCount = 0;};
 	bool isEnabled(void) {return m_enabled;};
 
 

@@ -131,11 +131,11 @@ public:
 	AsciiString getTriggerName(void)  const {return m_triggerName;} ///< Gets the trigger name.
 	bool pointInTrigger(ICoord3D &point) const;
 	bool doExportWithScripts(void) const {return m_exportWithScripts;} 
-	void setDoExportWithScripts(Bool val) {m_exportWithScripts = val;} 
+	void setDoExportWithScripts(bool val) {m_exportWithScripts = val;} 
 	bool isWaterArea(void) const {return m_isWaterArea;} 
-	void setWaterArea(Bool val) {m_isWaterArea = val;} 
+	void setWaterArea(bool val) {m_isWaterArea = val;} 
 	bool isRiver(void) const {return m_isRiver;} 
-	void setRiver(Bool val) {m_isRiver = val;} 
+	void setRiver(bool val) {m_isRiver = val;} 
 	Int getRiverStart(void) const {return m_riverStart;} 
 	void setRiverStart(Int val) {m_riverStart = val;} 
 	const WaterHandle* getWaterHandle(void) const;

@@ -59,7 +59,7 @@ public:
 	virtual void closeWindows( bool suppressNewWindows ) = 0;
 
 	// Called by the script engine in postProcessLoad()
-	virtual void doEnableOrDisableObjectDifficultyBonuses(Bool enableBonuses) = 0;
+	virtual void doEnableOrDisableObjectDifficultyBonuses(bool enableBonuses) = 0;
 };  // end class ScriptActionsInterface
 extern ScriptActionsInterface *TheScriptActions;   ///< singleton definition
 
@@ -84,7 +84,7 @@ public:
 	void executeAction( ScriptAction *pAction );
 	void closeWindows( bool suppressNewWindows );
 
-	void doEnableOrDisableObjectDifficultyBonuses(Bool enableBonuses);
+	void doEnableOrDisableObjectDifficultyBonuses(bool enableBonuses);
 
 protected:
 
@@ -98,7 +98,7 @@ protected: // helper functions
 	void changeObjectPanelFlagForSingleObject(Object *obj, const AsciiString& flagToChange, bool newVal );
 
 protected:
-	void doChooseVictimAlwaysUsesNormal(Bool enable);
+	void doChooseVictimAlwaysUsesNormal(bool enable);
 	void doDebugMessage(const AsciiString& msg, bool pause);
 	void doPlaySoundEffect(const AsciiString& sound);
 	void doMoveCameraTo(const AsciiString& waypoint, Real sec, Real cameraStutterSec);
@@ -138,7 +138,7 @@ protected:
 	void doBuildBuilding(const AsciiString& buildingType);
 	void doBuildSupplyCenter(const AsciiString& playerName, const AsciiString& buildingType, Int cash);
 	void doBuildUpgrade(const AsciiString& playerName, const AsciiString& upgrade);
-	void doBuildBaseDefense(Bool flank);
+	void doBuildBaseDefense(bool flank);
 	void doBuildBaseStructure(const AsciiString& buildingType, bool flank);
 	void createUnitOnTeamAt(const AsciiString& unitName, const AsciiString& objType, const AsciiString& teamName, const AsciiString& waypoint);
 	void doNamedAttackArea(const AsciiString& unitName, const AsciiString& areaName);
@@ -172,9 +172,9 @@ protected:
 
 	void doPlayerGarrisonAllBuildings(const AsciiString& playerName);
 	void doPlayerExitAllBuildings(const AsciiString& playerName);
-	void doLetterBoxMode(Bool startLetterbox);	// if true, start it. If false, end it.
-	void doBlackWhiteMode(Bool startBWMode, Int frames);	// if true, start it. If false, end it.
-	void doSkyBox(Bool showSkyBox);	// if true, start it. If false, end it.
+	void doLetterBoxMode(bool startLetterbox);	// if true, start it. If false, end it.
+	void doBlackWhiteMode(bool startBWMode, Int frames);	// if true, start it. If false, end it.
+	void doSkyBox(bool showSkyBox);	// if true, start it. If false, end it.
 	
 	void doFreezeTime( void );
 	void doUnfreezeTime( void );
@@ -268,7 +268,7 @@ protected:
 	void doPlayerTransferAssetsToPlayer(const AsciiString& playerSrcName, const AsciiString& playerDstName);
 	void doNamedTransferAssetsToPlayer(const AsciiString& unitName, const AsciiString& playerDstName);
 	void excludePlayerFromScoreScreen(const AsciiString& playerName);
-	void enableScoring(Bool score);
+	void enableScoring(bool score);
 	void updatePlayerRelationTowardPlayer(const AsciiString& playerSrcName, Int relationType, const AsciiString& playerDestPlayer);
 	void doRadarCreateEvent(Coord3D *pos, Int eventType);
 	void doRadarDisable(void);
@@ -285,12 +285,12 @@ protected:
 	void doDisableInput();
 	void doEnableInput();
 	void doSetBorderShroud( bool setting );
-	void doAmbientSoundsPause(Bool pausing);	// if true, then pause, if false then resume.
+	void doAmbientSoundsPause(bool pausing);	// if true, then pause, if false then resume.
 	void doMusicTrackChange(const AsciiString& newTrackName, bool fadeout, bool fadein);
 	void doRevealMapEntire(const AsciiString& playerName);
 	void doRevealMapEntirePermanently( bool reveal, const AsciiString& playerName );
 	void doShroudMapEntire(const AsciiString& playerName);
-	void doCameraMotionBlur(Bool zoomIn, bool saturate);
+	void doCameraMotionBlur(bool zoomIn, bool saturate);
 	void doCameraMotionBlurJump(const AsciiString& waypointName, bool saturate);
 	void doRadarRefresh( void );
 	void doNamedStop(const AsciiString& unitName);
@@ -357,10 +357,10 @@ protected:
 	void doObjectTypeListMaintenance(const AsciiString& objectList, const AsciiString& objectType, bool addObject);
 	void doRevealMapAtWaypointPermanent(const AsciiString& waypointName, Real radiusToReveal, const AsciiString& playerName, const AsciiString& lookName);
 	void doUndoRevealMapAtWaypointPermanent(const AsciiString& lookName);
-	void doEvaEnabledDisabled(Bool setEnabled);
-	void doSetOcclusionMode(Bool setEnabled);
-	void doSetDrawIconUIMode(Bool setEnabled);
-	void doSetDynamicLODMode(Bool setEnabled);
+	void doEvaEnabledDisabled(bool setEnabled);
+	void doSetOcclusionMode(bool setEnabled);
+	void doSetDrawIconUIMode(bool setEnabled);
+	void doSetDynamicLODMode(bool setEnabled);
 	void doAffectObjectPanelFlagsUnit(const AsciiString& unitName, const AsciiString& flagName, bool enable);
 	void doAffectObjectPanelFlagsTeam(const AsciiString& teamName, const AsciiString& flagName, bool enable);
 	void doGuardSupplyCenter(const AsciiString& teamName, Int supplies);

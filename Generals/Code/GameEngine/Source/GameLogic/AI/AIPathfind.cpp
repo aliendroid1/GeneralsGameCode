@@ -3169,7 +3169,7 @@ void PathfindLayer::classifyWallCells(ObjectID *wallPieces, Int numPieces)
 /**
  * Relassifies the pathfind cells for the destroyed bridge layer.
  */
-bool PathfindLayer::setDestroyed(Bool destroyed)
+bool PathfindLayer::setDestroyed(bool destroyed)
 {
 	if (destroyed == m_destroyed) return false;
 	
@@ -5018,7 +5018,7 @@ bool Pathfinder::adjustTargetDestination(const Object *obj, const Object *target
 	return false;
 }
 
-bool Pathfinder::checkForPossible(Bool isCrusher, Int fromZone,  bool center, const LocomotorSet& locomotorSet, 
+bool Pathfinder::checkForPossible(bool isCrusher, Int fromZone,  bool center, const LocomotorSet& locomotorSet, 
 																	Int cellX, Int cellY, PathfindLayerEnum layer, Coord3D *dest, bool startingInObstacle) 
 {
 	PathfindCell *goalCell = getCell(layer, cellX, cellY);
@@ -6213,7 +6213,7 @@ Path *Pathfinder::internalFindPath( Object *obj, const LocomotorSet& locomotorSe
  * Checks to see if there is enough path width at this cell for ground
  * movement.  Returns the width available.
  */
-Int Pathfinder::clearCellForDiameter(Bool crusher, Int cellX, Int cellY, PathfindLayerEnum layer, Int pathDiameter)	  
+Int Pathfinder::clearCellForDiameter(bool crusher, Int cellX, Int cellY, PathfindLayerEnum layer, Int pathDiameter)	  
 {
 	Int radius = pathDiameter/2;
 	Int numCellsAbove = radius;
@@ -6278,7 +6278,7 @@ Int Pathfinder::clearCellForDiameter(Bool crusher, Int cellX, Int cellY, Pathfin
 /**
  * Work backwards from goal cell to construct final path.
  */
-Path *Pathfinder::buildGroundPath(Bool isCrusher, const Coord3D *fromPos, PathfindCell *goalCell, bool center, Int pathDiameter )
+Path *Pathfinder::buildGroundPath(bool isCrusher, const Coord3D *fromPos, PathfindCell *goalCell, bool center, Int pathDiameter )
 {
 	DEBUG_ASSERTCRASH( goalCell, ("Pathfinder::buildActualPath: goalCell == NULL") );
 

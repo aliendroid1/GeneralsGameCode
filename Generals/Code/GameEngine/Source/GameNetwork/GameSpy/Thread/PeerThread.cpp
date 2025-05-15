@@ -280,7 +280,7 @@ public:
 	void clearPlayerStats(RoomType roomType);
 #endif // USE_BROADCAST_KEYS
 
-	void setSawCompleteGameList(Bool val) { m_sawCompleteGameList = val; }
+	void setSawCompleteGameList(bool val) { m_sawCompleteGameList = val; }
 	bool getSawCompleteGameList() { return m_sawCompleteGameList; }
 
 private:

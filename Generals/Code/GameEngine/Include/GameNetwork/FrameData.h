@@ -48,7 +48,7 @@ public:
 
 	UnsignedInt getFrame();
 	void setFrame(UnsignedInt frame);
-	FrameDataReturnType allCommandsReady(Bool debugSpewage);
+	FrameDataReturnType allCommandsReady(bool debugSpewage);
 	NetCommandList * getCommandList();
 	void setFrameCommandCount(UnsignedInt totalCommandCount);
 	UnsignedInt getFrameCommandCount();

@@ -501,7 +501,7 @@ int UDP::GetOutputBuffer(void)
    return(arg);
 }
 
-Int UDP::AllowBroadcasts(Bool status)
+Int UDP::AllowBroadcasts(bool status)
 {
 	int retval;
 	BOOL val = status;

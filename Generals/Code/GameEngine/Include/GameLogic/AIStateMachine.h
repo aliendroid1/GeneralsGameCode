@@ -266,7 +266,7 @@ public:
 
 protected:
 
-	void setAdjustsDestination(Bool b) { m_adjustDestinations = b; }
+	void setAdjustsDestination(bool b) { m_adjustDestinations = b; }
 	bool getAdjustsDestination() const;
 
 	void setGoalPos(const Coord3D* pos) { m_goalPosition = *pos; }
@@ -638,7 +638,7 @@ protected:
 	const bool m_isFollowWaypointPathState;	// derived classes should set this false.
 
 protected:
-	void computeGoal(Bool useGroupOffsets);
+	void computeGoal(bool useGroupOffsets);
 	Real calcExtraPathDistance(void);
 	const Waypoint *getNextWaypoint(void);
 	bool hasNextWaypoint(void);
@@ -814,8 +814,8 @@ public:
 protected:
 
 	Int getCurPathIndex() const { return m_index; }
-	void setAdjustFinalDestination(Bool b) { m_adjustFinal = b; }
-	void setAdjustFinalDestinationEvenIfNotDoingGroundMovement(Bool b) { m_adjustFinalOverride = b; }
+	void setAdjustFinalDestination(bool b) { m_adjustFinal = b; }
+	void setAdjustFinalDestinationEvenIfNotDoingGroundMovement(bool b) { m_adjustFinalOverride = b; }
 
 protected:
 	// snapshot interface

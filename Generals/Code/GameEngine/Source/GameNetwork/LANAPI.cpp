@@ -1280,7 +1280,7 @@ bool LANAPI::AmIHost( void )
 	return m_currentGame && m_currentGame->getIP(0) == m_localIP;
 }
 
-void LANAPI::setIsActive(Bool isActive) {
+void LANAPI::setIsActive(bool isActive) {
 	DEBUG_LOG(("LANAPI::setIsActive - entering\n"));
 	if (isActive != m_isActive) {
 		DEBUG_LOG(("LANAPI::setIsActive - m_isActive changed to %s\n", isActive ? "TRUE" : "FALSE"));

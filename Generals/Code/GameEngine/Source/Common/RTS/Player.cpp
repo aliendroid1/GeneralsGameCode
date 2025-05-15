@@ -1058,7 +1058,7 @@ void Player::becomingTeamMember(Object *obj, bool yes)
 }
 
 //=============================================================================
-void Player::becomingLocalPlayer(Bool yes)
+void Player::becomingLocalPlayer(bool yes)
 {
 	if (yes)
 	{
@@ -1555,7 +1555,7 @@ bool Player::isLocalPlayer() const
 }
 
 //=============================================================================
-void Player::setListInScoreScreen(Bool listInScoreScreen)
+void Player::setListInScoreScreen(bool listInScoreScreen)
 {
 	m_listInScoreScreen = listInScoreScreen;
 }
@@ -1619,7 +1619,7 @@ void Player::friend_setSkillset(Int skillSet)
 }
 
 //=============================================================================
-void Player::setUnitsShouldHunt(Bool unitsShouldHunt, CommandSourceType source)
+void Player::setUnitsShouldHunt(bool unitsShouldHunt, CommandSourceType source)
 {
 	m_unitsShouldHunt = unitsShouldHunt;
 
@@ -1875,7 +1875,7 @@ void Player::ungarrisonAllUnits(CommandSourceType source)
 
 
 //=============================================================================
-void Player::setUnitsShouldIdleOrResume(Bool idle)
+void Player::setUnitsShouldIdleOrResume(bool idle)
 {
 	for (PlayerTeamList::iterator it = m_playerTeamPrototypes.begin(); 
 			 it != m_playerTeamPrototypes.end(); ++it) 
@@ -1969,7 +1969,7 @@ void Player::buildSpecificTeam( TeamPrototype *teamProto)
 }
 
 //=============================================================================
-void Player::buildBaseDefense(Bool flank) 
+void Player::buildBaseDefense(bool flank) 
 {
 	if (m_ai) 
 	{

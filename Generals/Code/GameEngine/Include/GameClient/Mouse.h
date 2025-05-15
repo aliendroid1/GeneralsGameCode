@@ -270,7 +270,7 @@ public:
 	MouseCursor getMouseCursor(void) { return m_currentCursor; }	///< get the current mouse cursor image type
 	virtual void setRedrawMode(RedrawMode mode)	{m_currentRedrawMode=mode;} ///<set cursor drawing method.
 	virtual RedrawMode getRedrawMode(void) { return m_currentRedrawMode; } //get cursor drawing method
-	virtual void setVisibility(Bool visible) { m_visible = visible; } // set visibility for load screens, etc
+	virtual void setVisibility(bool visible) { m_visible = visible; } // set visibility for load screens, etc
 	inline bool getVisibility(void) { return m_visible; } // get visibility state
 	
 	void drawTooltip( void );					///< draw the tooltip text

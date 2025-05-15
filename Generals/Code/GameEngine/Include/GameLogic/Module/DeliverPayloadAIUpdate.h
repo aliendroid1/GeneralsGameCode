@@ -352,8 +352,8 @@ public:
 
 	void killDeliveryDecal();
 
-	void friend_setFreeToExit(Bool f) { m_freeToExit = f; }
-	void friend_setAcceptingCommands(Bool f) { m_acceptingCommands = f; }
+	void friend_setFreeToExit(bool f) { m_freeToExit = f; }
+	void friend_setAcceptingCommands(bool f) { m_acceptingCommands = f; }
 
 protected:
 

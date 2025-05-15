@@ -97,7 +97,7 @@ W3DProjectileStreamDraw::W3DProjectileStreamDraw( Thing *thing, const ModuleData
 	m_linesValid = 0;
 }
 
-void W3DProjectileStreamDraw::setFullyObscuredByShroud(Bool fullyObscured)
+void W3DProjectileStreamDraw::setFullyObscuredByShroud(bool fullyObscured)
 {
 	if (fullyObscured)
 	{	//we need to remove all our lines from the scene because they are hidden

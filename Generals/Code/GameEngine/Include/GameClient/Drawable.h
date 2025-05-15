@@ -357,13 +357,13 @@ public:
 	void setShroudClearFrame( UnsignedInt frame )  { m_shroudClearFrame = frame; }
 	UnsignedInt getShroudClearFrame( void ) { return m_shroudClearFrame; }
  
-	void setShadowsEnabled(Bool enable);
+	void setShadowsEnabled(bool enable);
 	bool getShadowsEnabled() const { return BitIsSet(m_status, DRAWABLE_STATUS_SHADOWS); }
 
 	void releaseShadows(void);	///< frees all shadow resources used by this module - used by Options screen.
 	void allocateShadows(void); ///< create shadow resources if not already present. Used by Options screen.
 
-	void setFullyObscuredByShroud(Bool fullyObscured);
+	void setFullyObscuredByShroud(bool fullyObscured);
 	inline bool getFullyObscuredByShroud(void) {return m_drawableFullyObscuredByShroud;}
 
 	bool getDrawsInMirror() const { return BitIsSet(m_status, DRAWABLE_STATUS_DRAWS_IN_MIRROR) || isKindOf(KINDOF_CAN_CAST_REFLECTIONS); }

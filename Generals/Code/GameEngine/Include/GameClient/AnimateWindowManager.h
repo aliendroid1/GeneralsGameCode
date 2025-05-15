@@ -134,7 +134,7 @@ public:
 	void	setStartTime( UnsignedInt t);						///< Set the start time of the time-based anim
 	void	setEndTime( UnsignedInt t);							///< Set the end time of the time-based anim
 
-	void setFinished(Bool finished);							///< Set if the animation has finished
+	void setFinished(bool finished);							///< Set if the animation has finished
 	bool isFinished( void );											///< Return if the animation has finished or not.
 	void setNeedsToFinish( bool needsToFinish);		///< set if we need this animation to finish for the manager to return true
 	bool needsToFinish( void );										///< set if the animation has finished

@@ -504,7 +504,7 @@ public:
 	/// mark the given module as being "dirty", needing recalcing during next update phase.
 	// if needToUpdateCells is true, we'll recalc the partition cells it touches and do collision testing.
 	// if needToUpdateCells is false, we'll just do the collision testing.
-	void makeDirty(Bool needToUpdateCells);
+	void makeDirty(bool needToUpdateCells);
 
 	bool isInNeedOfUpdatingCells() const { return m_dirtyStatus == NEED_CELL_UPDATE_AND_COLLISION_CHECK; }
 	bool isInNeedOfCollisionCheck() const { return m_dirtyStatus != NOT_DIRTY; }
@@ -948,7 +948,7 @@ private:
 	bool m_allowNonBuildings;
 	bool m_allowInsignificant;
 public:
-	PartitionFilterInsignificantBuildings(Bool allowNonBuildings, bool allowInsignificant) : 
+	PartitionFilterInsignificantBuildings(bool allowNonBuildings, bool allowInsignificant) : 
 			m_allowNonBuildings(allowNonBuildings), m_allowInsignificant(allowInsignificant) {}
 protected:
 	virtual bool allow( Object *other );
@@ -1270,7 +1270,7 @@ protected:
 	friend void hLineAddValue(Int x1, Int x2, Int y, void *threatValueParms);
 	friend void hLineRemoveValue(Int x1, Int x2, Int y, void *threatValueParms);
 
-	void processPendingUndoShroudRevealQueue(Bool considerTimestamp = TRUE);				///< keep popping and processing untill you get to one that is in the future
+	void processPendingUndoShroudRevealQueue(bool considerTimestamp = TRUE);				///< keep popping and processing untill you get to one that is in the future
 	void resetPendingUndoShroudRevealQueue();					///< Just delete everything in the queue without doing anything with them
 
 public:
@@ -1538,7 +1538,7 @@ private:
 	Int								m_cnt;
 	Int								m_axis;
 	Int								m_iter;
-	PartitionCell *nextCell(Bool skipEmpties);
+	PartitionCell *nextCell(bool skipEmpties);
 public:
 	CellOutwardIterator(PartitionManager *mgr, Int x, Int y);
 	~CellOutwardIterator();

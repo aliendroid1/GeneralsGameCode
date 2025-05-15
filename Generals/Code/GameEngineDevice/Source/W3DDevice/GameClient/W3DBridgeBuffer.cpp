@@ -134,7 +134,7 @@ W3DBridge::~W3DBridge(void)
 /** Renders the bride.  It is assumed that the shared vertex and index buffers
 are already set.  */
 //=============================================================================
-void W3DBridge::renderBridge(Bool wireframe)
+void W3DBridge::renderBridge(bool wireframe)
 {
 	if (m_visible && m_numPolygons && m_numVertex) {
 		if (!wireframe) DX8Wrapper::Set_Texture(0,m_bridgeTexture);

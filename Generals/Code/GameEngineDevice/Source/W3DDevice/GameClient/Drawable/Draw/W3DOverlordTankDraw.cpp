@@ -93,7 +93,7 @@ void W3DOverlordTankDraw::doDrawModule(const Matrix3D* transformMtx)
 }
 
 //-------------------------------------------------------------------------------------------------
-void W3DOverlordTankDraw::setHidden(Bool h)
+void W3DOverlordTankDraw::setHidden(bool h)
 {
 	W3DTankDraw::setHidden(h);
 

@@ -2251,13 +2251,13 @@ void JetAIUpdate::aiDoCommand(const AICommandParms* parms)
 }
 
 //-------------------------------------------------------------------------------------------------
-void JetAIUpdate::friend_setAllowAirLoco(Bool allowAirLoco) 
+void JetAIUpdate::friend_setAllowAirLoco(bool allowAirLoco) 
 { 
 	setFlag(ALLOW_AIR_LOCO, allowAirLoco); 
 }
 
 //-------------------------------------------------------------------------------------------------
-void JetAIUpdate::friend_enableAfterburners(Bool v)
+void JetAIUpdate::friend_enableAfterburners(bool v)
 {
 	Object* jet = getObject();
 	if (v)

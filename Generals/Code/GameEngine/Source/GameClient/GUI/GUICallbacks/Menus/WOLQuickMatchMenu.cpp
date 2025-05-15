@@ -166,7 +166,7 @@ static bool isInfoShown(void)
 	return FALSE;
 }
 
-static void hideInfoGadgets(Bool doIt)
+static void hideInfoGadgets(bool doIt)
 {
 	static NameKeyType parentStatsID = NAMEKEY("WOLQuickMatchMenu.wnd:ParentStats");
 	GameWindow *parentStats = TheWindowManager->winGetWindowFromId( parentWOLQuickMatch, parentStatsID );
@@ -176,7 +176,7 @@ static void hideInfoGadgets(Bool doIt)
 	}
 }
 
-static void hideOptionsGadgets(Bool doIt)
+static void hideOptionsGadgets(bool doIt)
 {
 	static NameKeyType parentOptionsID = NAMEKEY("WOLQuickMatchMenu.wnd:ParentOptions");
 	GameWindow *parentOptions = TheWindowManager->winGetWindowFromId( parentWOLQuickMatch, parentOptionsID );
@@ -200,7 +200,7 @@ static void hideOptionsGadgets(Bool doIt)
 	}
 }
 
-static void enableOptionsGadgets(Bool doIt)
+static void enableOptionsGadgets(bool doIt)
 {
 #ifdef PERF_TEST
 	s_inQM = !doIt;
@@ -964,7 +964,7 @@ void WOLQuickMatchMenuShutdown( WindowLayout *layout, void *userData )
 	isShuttingDown = true;
 
 	// if we are shutting down for an immediate pop, skip the animations
-	bool popImmediate = *(Bool *)userData;
+	bool popImmediate = *(bool *)userData;
 	if( popImmediate )
 	{
 
@@ -1478,7 +1478,7 @@ WindowMsgHandledType WOLQuickMatchMenuSystem( GameWindow *window, UnsignedInt ms
 			{	
 				// if we're givin the opportunity to take the keyboard focus we must say we want it
 				if( mData1 == TRUE )
-					*(Bool *)mData2 = TRUE;
+					*(bool *)mData2 = TRUE;
 
 				return MSG_HANDLED;
 			}//case GWM_INPUT_FOCUS:

@@ -63,7 +63,7 @@ public:	// AIPlayer interface methods.
 
 	virtual void buildSpecificAIBuilding(const AsciiString &thingName); ///< Builds this building as soon as possible.
 
-	virtual void buildAIBaseDefense(Bool flank); ///< Builds base defense on front or flank of base.
+	virtual void buildAIBaseDefense(bool flank); ///< Builds base defense on front or flank of base.
 
 	virtual void buildAIBaseDefenseStructure(const AsciiString &thingName, bool flank); ///< Builds base defense on front or flank of base.
 

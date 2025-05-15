@@ -127,7 +127,7 @@ private:
 	void doPrelaunchState();
 	void doLaunchState();
 	void doIgnitionState();
-	void doAttackState(Bool turnOK);
+	void doAttackState(bool turnOK);
 	void doKillState();
 	void doKillSelfState();
 	void doDeadState();

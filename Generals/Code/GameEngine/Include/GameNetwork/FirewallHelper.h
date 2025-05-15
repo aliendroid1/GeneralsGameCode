@@ -191,7 +191,7 @@ class FirewallHelperClass {
 		FirewallBehaviorType getFirewallBehavior(void);
 		void writeFirewallBehavior(void);
 
-		void flagNeedToRefresh(Bool flag);
+		void flagNeedToRefresh(bool flag);
 
 		static void getManglerName(Int manglerIndex, Char *nameBuf);
 		bool sendToManglerFromPort(UnsignedInt address, UnsignedShort port, UnsignedShort packetID, bool blitzme = FALSE);

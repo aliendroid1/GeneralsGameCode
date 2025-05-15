@@ -98,7 +98,7 @@ public:
 		return m_nextOpti; 
 	}
 
-	void setCanOptimize(Bool canOpt) { m_canOptimize = canOpt;}
+	void setCanOptimize(bool canOpt) { m_canOptimize = canOpt;}
 	bool getCanOptimize( void ) const { return m_canOptimize;}
 
 	/// given a list, prepend this node, return new list
@@ -155,7 +155,7 @@ public:
 
 	void prependNode( const Coord3D *pos, PathfindLayerEnum layer );				///< Create a new node at the head of the path
 	void appendNode( const Coord3D *pos, PathfindLayerEnum layer );				///< Create a new node at the end of the path
-	void setBlockedByAlly(Bool blocked) {m_blockedByAlly = blocked;}
+	void setBlockedByAlly(bool blocked) {m_blockedByAlly = blocked;}
 	bool getBlockedByAlly(void) {return m_blockedByAlly;}
 	void optimize( const Object *obj, LocomotorSurfaceTypeMask acceptableSurfaces, bool blocked );			///< Optimize the path to discard redundant nodes
 
@@ -323,7 +323,7 @@ public:
 	inline UnsignedShort getYIndex(void) const {return m_info->m_pos.y;}
 
 	inline bool isBlockedByAlly(void) const {return m_info->m_blockedByAlly;}
-	inline void setBlockedByAlly(Bool blocked)  {m_info->m_blockedByAlly = (blocked!=0);}
+	inline void setBlockedByAlly(bool blocked)  {m_info->m_blockedByAlly = (blocked!=0);}
 
 	inline bool getOpen(void) const {return m_info->m_open;}
 	inline bool getClosed(void) const {return m_info->m_closed;}
@@ -340,7 +340,7 @@ public:
 
 	bool startPathfind( PathfindCell *goalCell ); 
 	bool getPinched(void) const {return m_pinched;}
-	void setPinched(Bool pinch) {m_pinched = pinch;	}
+	void setPinched(bool pinch) {m_pinched = pinch;	}
 
 	bool allocateInfo(const ICoord2D &pos);
 	void releaseInfo(void);
@@ -395,7 +395,7 @@ public:
 	void allocateCellsForWallLayer(const IRegion2D *extent, ObjectID *wallPieces, Int numPieces);
 	void classifyCells();
 	void classifyWallCells(ObjectID *wallPieces, Int numPieces);
-	bool setDestroyed(Bool destroyed);
+	bool setDestroyed(bool destroyed);
 	bool isUnused(void); // True if it doesn't contain a bridge.
 	bool isDestroyed(void) {return m_destroyed;} // True if it has been destroyed.
 	PathfindCell *getCell(Int x, Int y);
@@ -459,10 +459,10 @@ public:
 
 	void clearMarkedPassable(void) {m_markedPassable = false;}
 	bool isPassable(void) {return m_markedPassable;}
-	void setPassable(Bool pass) {m_markedPassable = pass;}
+	void setPassable(bool pass) {m_markedPassable = pass;}
 
 	bool getInteractsWithBridge(void) const {return m_interactsWithBridge;}
-	void setInteractsWithBridge(Bool interacts) {m_interactsWithBridge = interacts;}
+	void setInteractsWithBridge(bool interacts) {m_interactsWithBridge = interacts;}
 
 protected:
 	void allocateZones(void);
@@ -740,7 +740,7 @@ protected:
 	bool checkForTarget(const Object *obj, 	Int cellX, Int cellY, const Weapon *weapon,
 																const Object *victim, const Coord3D *victimPos,
 																Int iRadius, bool center,Coord3D *dest) ;
-	bool checkForPossible(Bool isCrusher, Int fromZone,  bool center, const LocomotorSet& locomotorSet, 
+	bool checkForPossible(bool isCrusher, Int fromZone,  bool center, const LocomotorSet& locomotorSet, 
 		Int cellX, Int cellY, PathfindLayerEnum layer, Coord3D *dest, bool startingInObstacle) ;
 	void getRadiusAndCenter(const Object *obj, Int &iRadius, bool &center);
 	void adjustCoordToCell(Int cellX, Int cellY, bool centerInCell, Coord3D &pos, PathfindLayerEnum layer);

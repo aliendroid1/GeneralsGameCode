@@ -189,7 +189,7 @@ public:
 
 	bool isInvisible( void );										///< return true if this particle is invisible
 	inline bool isCulled (void) {return m_isCulled;}				///< return true if the particle falls off the edge of the screen
-	inline void setIsCulled (Bool enable) { m_isCulled = enable;}		///< set particle to not visible because it's outside view frustum
+	inline void setIsCulled (bool enable) { m_isCulled = enable;}		///< set particle to not visible because it's outside view frustum
 
 	void controlParticleSystem( ParticleSystem *sys ) { m_systemUnderControl = sys; }
 	void detachControlledParticleSystem( void ) { m_systemUnderControl = NULL; }

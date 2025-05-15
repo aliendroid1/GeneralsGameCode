@@ -91,8 +91,8 @@ public:
 	virtual void updateOrphanedObjects(int *playerIndexList, int numNonLocalPlayers);
 	virtual void releasePartitionData(void);	///<saves data needed to later rebuild partition manager data.
 	virtual void restorePartitionData(void);	///<restores ghost objects into the partition manager.
-	inline void lockGhostObjects(Bool enableLock) {m_lockGhostObjects=enableLock;}	///<temporary lock on creating new ghost objects. Only used by map border resizing!
-	inline void saveLockGhostObjects(Bool enableLock) {m_saveLockGhostObjects=enableLock;}
+	inline void lockGhostObjects(bool enableLock) {m_lockGhostObjects=enableLock;}	///<temporary lock on creating new ghost objects. Only used by map border resizing!
+	inline void saveLockGhostObjects(bool enableLock) {m_saveLockGhostObjects=enableLock;}
 protected:
 	virtual void crc( Xfer *xfer );
 	virtual void xfer( Xfer *xfer );

@@ -84,11 +84,11 @@ extern bool contextCommandForNewSelection(const DrawableList *currentlySelectedD
 
 //-------------------------------------------------------------------------------------------------
 // Returns ORed picktypes.
-extern UnsignedInt getPickTypesForContext(Bool forceAttackMode);
+extern UnsignedInt getPickTypesForContext(bool forceAttackMode);
 
 //-------------------------------------------------------------------------------------------------
 // Returns ORed picktypes based on the current selection.
-extern UnsignedInt getPickTypesForCurrentSelection(Bool forceAttackMode);
+extern UnsignedInt getPickTypesForCurrentSelection(bool forceAttackMode);
 
 
 //-------------------------------------------------------------------------------------------------

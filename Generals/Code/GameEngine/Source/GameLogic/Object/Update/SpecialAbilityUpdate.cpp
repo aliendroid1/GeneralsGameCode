@@ -634,7 +634,7 @@ bool SpecialAbilityUpdate::needToUnpack() const
 }
 
 //-------------------------------------------------------------------------------------------------
-void SpecialAbilityUpdate::startPacking(Bool success)
+void SpecialAbilityUpdate::startPacking(bool success)
 {
 	const SpecialAbilityUpdateModuleData* data = getSpecialAbilityUpdateModuleData();
 	m_packingState = STATE_PACKING;

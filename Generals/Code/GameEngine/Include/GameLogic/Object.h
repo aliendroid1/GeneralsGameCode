@@ -247,12 +247,12 @@ public:
 	bool isNeutralControlled() const;
 	
 	bool getIsUndetectedDefector(void) const { return BitIsSet(m_privateStatus, UNDETECTED_DEFECTOR); }
-	void friend_setUndetectedDefector(Bool status);
+	void friend_setUndetectedDefector(bool status);
 
 	inline bool isOffMap() const { return BitIsSet(m_privateStatus, OFF_MAP); }
 
 	inline bool isCaptured() const { return BitIsSet(m_privateStatus, CAPTURED); }
-	void setCaptured(Bool isCaptured);
+	void setCaptured(bool isCaptured);
 
 	inline const GeometryInfo& getGeometryInfo() const { return m_geometryInfo; }
 	void setGeometryInfo(const GeometryInfo& geom);
@@ -336,7 +336,7 @@ public:
 	// It defaults to the thingTemplate->isKindof(KINDOF_SELECTABLE), however, it can be overridden on an 
 	// object by object basis.  Finally, it can be temporarily overriden by the OBJECT_STATUS_UNSELECTABLE. 
 	// jba.
-	void setSelectable(Bool selectable);
+	void setSelectable(bool selectable);
 	bool isSelectable() const;
 	
 	bool isMassSelectable() const;
@@ -356,7 +356,7 @@ public:
 	bool getHealthBoxDimensions(Real &healthBoxHeight, Real &healthBoxWidth) const;
 
 	inline bool isEffectivelyDead() const { return (m_privateStatus & EFFECTIVELY_DEAD) != 0; }
-	void setEffectivelyDead(Bool dead);
+	void setEffectivelyDead(bool dead);
 
 	void markSingleUseCommandUsed() { m_singleUseCommandUsed = true; }
 	bool hasSingleUseCommandBeenUsed() const { return m_singleUseCommandUsed; }
@@ -444,7 +444,7 @@ public:
  	bool canProduceUpgrade( const UpgradeTemplate *upgrade );
 
 	// Weapons & Damage -------------------------------------------------------------------------------------------------
-	void reloadAllAmmo(Bool now);
+	void reloadAllAmmo(bool now);
 	bool isOutOfAmmo() const;
 	bool hasAnyWeapon() const;
 	bool hasAnyDamageWeapon() const; //Kris: a should be used for real weapons that directly inflict damage... not deploy, hack, etc.
@@ -580,7 +580,7 @@ public:
 	bool isNonFactionStructure(void) const;
 
 	bool getReceivingDifficultyBonus() const { return m_isReceivingDifficultyBonus; }
-	void setReceivingDifficultyBonus(Bool receive);
+	void setReceivingDifficultyBonus(bool receive);
 
 	inline UnsignedInt getSafeOcclusionFrame(void) { return m_safeOcclusionFrame; }	//< this is an object specific frame at which it's safe to enable building occlusion.
 	inline void	setSafeOcclusionFrame(UnsignedInt frame) { m_safeOcclusionFrame = frame;} 
@@ -597,7 +597,7 @@ protected:
 
 	void setOrRestoreTeam( Team* team, bool restoring );
 
-	void onDisabledEdge(Bool becomingDisabled);
+	void onDisabledEdge(bool becomingDisabled);
 	// All of our cheating for radars and power go here.
 
 

@@ -830,7 +830,7 @@ void Drawable::setTerrainDecalFadeTarget(Real target, Real rate)
 }
 
 //-------------------------------------------------------------------------------------------------
-void Drawable::setShadowsEnabled(Bool enable)
+void Drawable::setShadowsEnabled(bool enable)
 {
 	// set status bit
 	if( enable )
@@ -865,7 +865,7 @@ void Drawable::allocateShadows(void)
 }
 
 //-------------------------------------------------------------------------------------------------
-void Drawable::setFullyObscuredByShroud(Bool fullyObscured)
+void Drawable::setFullyObscuredByShroud(bool fullyObscured)
 {
 	if (m_drawableFullyObscuredByShroud != fullyObscured)
 	{

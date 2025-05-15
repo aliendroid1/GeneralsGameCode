@@ -171,7 +171,7 @@ WaterRenderObjClass *TheWaterRenderObj=NULL; ///<global water rendering object
 
 #define SAFE_RELEASE(p)      { if(p) { (p)->Release(); (p)=NULL; } }
 
-void doSkyBoxSet(Bool startDraw)
+void doSkyBoxSet(bool startDraw)
 {
 	if (TheWritableGlobalData)
 		TheWritableGlobalData->m_drawSkyBox = startDraw;
@@ -1116,7 +1116,7 @@ void WaterRenderObjClass::reset( void )
 		m_waterTrackSystem->reset();
 } 
 
-void WaterRenderObjClass::enableWaterGrid(Bool state)
+void WaterRenderObjClass::enableWaterGrid(bool state)
 {
 	m_doWaterGrid = state;
 

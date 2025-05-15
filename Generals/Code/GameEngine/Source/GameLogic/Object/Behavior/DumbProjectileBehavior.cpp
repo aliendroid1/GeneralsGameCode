@@ -401,7 +401,7 @@ void DumbProjectileBehavior::projectileFireAtObjectOrPosition( const Object *vic
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-bool DumbProjectileBehavior::calcFlightPath(Bool recalcNumSegments)
+bool DumbProjectileBehavior::calcFlightPath(bool recalcNumSegments)
 {
 	const DumbProjectileBehaviorModuleData* d = getDumbProjectileBehaviorModuleData();
 

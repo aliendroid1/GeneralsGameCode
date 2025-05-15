@@ -116,7 +116,7 @@ void PopulateCustomLadderListBox( GameWindow *win );
 void HandleQMLadderSelection(Int ladderID);
 void HandleCustomLadderSelection(Int ladderID);
 
-void CustomMatchHideHostPopup(Bool hide);
+void CustomMatchHideHostPopup(bool hide);
 
 static void populateLadderComboBox( void )
 {
@@ -362,7 +362,7 @@ WindowMsgHandledType PopupLadderSelectSystem( GameWindow *window, UnsignedInt ms
 		{
 			// if we're given the opportunity to take the keyboard focus we must say we want it
 			if( mData1 == TRUE )
-				*(Bool *)mData2 = TRUE;
+				*(bool *)mData2 = TRUE;
 			break;
 		}  // end input
     //----------------------------------------------------------------------------------------------

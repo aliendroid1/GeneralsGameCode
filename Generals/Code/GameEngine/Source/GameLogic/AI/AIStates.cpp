@@ -3761,7 +3761,7 @@ Real AIFollowWaypointPathState::calcExtraPathDistance(void)
 }
 
 //----------------------------------------------------------------------------------------------------------
-void AIFollowWaypointPathState::computeGoal(Bool useGroupOffsets)
+void AIFollowWaypointPathState::computeGoal(bool useGroupOffsets)
 {
 	if (m_currentWaypoint == NULL)
 		return;

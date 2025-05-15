@@ -556,7 +556,7 @@ Player *AISkirmishPlayer::getAiEnemy(void)
 /** 
 	Build base defense structures on the front or flank of the base.  
 */
-void AISkirmishPlayer::buildAIBaseDefense(Bool flank)
+void AISkirmishPlayer::buildAIBaseDefense(bool flank)
 {
 	const AISideInfo *resInfo = TheAI->getAiData()->m_sideInfo;
 	AsciiString defenseTemplateName;

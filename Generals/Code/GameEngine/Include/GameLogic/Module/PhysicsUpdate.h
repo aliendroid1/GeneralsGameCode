@@ -167,16 +167,16 @@ public:
 		Also, allowToFall is reset to "false" when you hit the ground, so you can set it with
 		(relatively) little fear.
 	*/
-	void setAllowToFall(Bool allow) { setFlag(ALLOW_TO_FALL, allow); }
-	void setStickToGround(Bool allow) { setFlag(STICK_TO_GROUND, allow); }
-	void setAllowBouncing(Bool allow) { setFlag(ALLOW_BOUNCE, allow); }
-	void setAllowCollideForce(Bool allow) { setFlag(ALLOW_COLLIDE_FORCE, allow); }
-	void setAllowAirborneFriction(Bool allow) { setFlag(APPLY_FRICTION2D_WHEN_AIRBORNE, allow); }
-	void setImmuneToFallingDamage(Bool allow) { setFlag(IMMUNE_TO_FALLING_DAMAGE, allow); }
+	void setAllowToFall(bool allow) { setFlag(ALLOW_TO_FALL, allow); }
+	void setStickToGround(bool allow) { setFlag(STICK_TO_GROUND, allow); }
+	void setAllowBouncing(bool allow) { setFlag(ALLOW_BOUNCE, allow); }
+	void setAllowCollideForce(bool allow) { setFlag(ALLOW_COLLIDE_FORCE, allow); }
+	void setAllowAirborneFriction(bool allow) { setFlag(APPLY_FRICTION2D_WHEN_AIRBORNE, allow); }
+	void setImmuneToFallingDamage(bool allow) { setFlag(IMMUNE_TO_FALLING_DAMAGE, allow); }
 
 	bool getAllowToFall() const { return getFlag(ALLOW_TO_FALL); }
 
-	void setIsInFreeFall(Bool allow) { setFlag(IS_IN_FREEFALL, allow); }
+	void setIsInFreeFall(bool allow) { setFlag(IS_IN_FREEFALL, allow); }
 	bool getIsInFreeFall() const { return getFlag(IS_IN_FREEFALL); }
 
 	void setExtraBounciness(Real b) { m_extraBounciness = b; }

@@ -152,7 +152,7 @@ public:
 	virtual bool setViewFilter(	enum FilterTypes filter) { return FALSE;}			///< Turns on viewport special effect (black & white mode)
 
 	virtual void setFadeParameters(Int fadeFrames, Int direction) { };
-	virtual void set3DWireFrameMode(Bool enable) { };
+	virtual void set3DWireFrameMode(bool enable) { };
 
  	virtual void resetCamera(const Coord3D *location, Int frames) {}; ///< Move camera to location, and reset to default angle & zoom.
  	virtual void rotateCamera(Real rotations, Int frames) {}; ///< Rotate camera about current viewpoint.

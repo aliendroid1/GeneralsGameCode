@@ -111,7 +111,7 @@ public:
 
 protected:
 
-	void showHideFlag(Bool show);
+	void showHideFlag(bool show);
 	void joinOrLeaveHorde(SimpleObjectIterator *iter, bool join);
 
 private:

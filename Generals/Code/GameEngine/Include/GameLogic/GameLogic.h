@@ -170,16 +170,16 @@ public:
 	bool isInShellGame( void );
 	bool isInMultiplayerGame( void );
 	bool isLoadingGame();
-	void enableScoring(Bool score) { m_isScoringEnabled = score; }
+	void enableScoring(bool score) { m_isScoringEnabled = score; }
 	bool isScoringEnabled() const { return m_isScoringEnabled; }
 
-	void setShowBehindBuildingMarkers(Bool b) { m_showBehindBuildingMarkers = b; }
+	void setShowBehindBuildingMarkers(bool b) { m_showBehindBuildingMarkers = b; }
 	bool getShowBehindBuildingMarkers() const { return m_showBehindBuildingMarkers; }
 
-	void setDrawIconUI(Bool b) { m_drawIconUI = b; }
+	void setDrawIconUI(bool b) { m_drawIconUI = b; }
 	bool getDrawIconUI() const { return m_drawIconUI; }
 
-	void setShowDynamicLOD(Bool b) { m_showDynamicLOD = b; }
+	void setShowDynamicLOD(bool b) { m_showDynamicLOD = b; }
 	bool getShowDynamicLOD() const { return m_showDynamicLOD; }
 
 	void setHulkMaxLifetimeOverride(Int b) { m_scriptHulkMaxLifetimeOverride = b; }
@@ -190,7 +190,7 @@ public:
 	void updateObjectsChangedTriggerAreas(void) {m_frameObjectsChangedTriggerAreas = m_frame;}
 	UnsignedInt getFrameObjectsChangedTriggerAreas(void) {return m_frameObjectsChangedTriggerAreas;}
 
-	void clearGameData(Bool showScoreScreen = TRUE);														///< Clear the game data
+	void clearGameData(bool showScoreScreen = TRUE);														///< Clear the game data
 	void closeWindows( void );
 
 	void sendObjectCreated( Object *obj );

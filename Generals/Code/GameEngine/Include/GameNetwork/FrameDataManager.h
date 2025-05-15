@@ -35,7 +35,7 @@ class FrameDataManager : public MemoryPoolObject
 {
 	MEMORY_POOL_GLUE_WITH_USERLOOKUP_CREATE(FrameDataManager, "FrameDataManager")		
 public:
-	FrameDataManager(Bool isLocal);
+	FrameDataManager(bool isLocal);
 	//virtual ~FrameDataManager();
 
 	void init();
@@ -43,7 +43,7 @@ public:
 	void update();
 
 	void addNetCommandMsg(NetCommandMsg *msg);
-	void setIsLocal(Bool isLocal);
+	void setIsLocal(bool isLocal);
 	FrameDataReturnType allCommandsReady(UnsignedInt frame, bool debugSpewage);
 	NetCommandList * getFrameCommandList(UnsignedInt frame);
 	UnsignedInt getCommandCount(UnsignedInt frame);

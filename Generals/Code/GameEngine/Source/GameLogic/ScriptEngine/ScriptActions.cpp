@@ -1091,7 +1091,7 @@ void ScriptActions::doBuildUpgrade(const AsciiString& player, const AsciiString&
 //-------------------------------------------------------------------------------------------------
 /** doBuildBaseDefense */
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doBuildBaseDefense(Bool flank)
+void ScriptActions::doBuildBaseDefense(bool flank)
 {
 	// This action ALWAYS occur on the current player.
 	Player *thePlayer = TheScriptEngine->getCurrentPlayer();
@@ -2745,7 +2745,7 @@ void ScriptActions::excludePlayerFromScoreScreen(const AsciiString& playerName)
 //-------------------------------------------------------------------------------------------------
 /** excludePlayerFromScoreScreen */
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::enableScoring(Bool score)
+void ScriptActions::enableScoring(bool score)
 {
 	TheGameLogic->enableScoring(score);
 }
@@ -2870,7 +2870,7 @@ void ScriptActions::doCameraMotionBlurJump(const AsciiString& waypointName, bool
 //-------------------------------------------------------------------------------------------------
 /** doCameraMotionBlurJump - zoom in at the current location, jump to waypoint, and zoom out.*/
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doCameraMotionBlur(Bool zoomIn, bool saturate)
+void ScriptActions::doCameraMotionBlur(bool zoomIn, bool saturate)
 {
 	if (TheTacticalView->setViewFilter(FT_VIEW_MOTION_BLUR_FILTER))
 	{
@@ -3189,7 +3189,7 @@ void ScriptActions::doResumeSupplyTruckingForIdleUnits(const AsciiString& player
 //-------------------------------------------------------------------------------------------------
 /** doAmbientSoundsPause */
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doAmbientSoundsPause(Bool pausing)	// if true, then pause, if false then resume.
+void ScriptActions::doAmbientSoundsPause(bool pausing)	// if true, then pause, if false then resume.
 {
 	TheAudio->pauseAmbient(pausing);
 }
@@ -3517,7 +3517,7 @@ void ScriptActions::doPlayerExitAllBuildings(const AsciiString& playerName)
 //-------------------------------------------------------------------------------------------------
 /** doLetterBoxMode */
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doLetterBoxMode(Bool startLetterbox)
+void ScriptActions::doLetterBoxMode(bool startLetterbox)
 {
 	if (startLetterbox)
 	{
@@ -3534,7 +3534,7 @@ void ScriptActions::doLetterBoxMode(Bool startLetterbox)
 //-------------------------------------------------------------------------------------------------
 /** doBlackWhiteMode */
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doBlackWhiteMode(Bool startBWMode, Int frames)
+void ScriptActions::doBlackWhiteMode(bool startBWMode, Int frames)
 {
 	if (startBWMode)
 	{
@@ -3554,9 +3554,9 @@ void ScriptActions::doBlackWhiteMode(Bool startBWMode, Int frames)
 //-------------------------------------------------------------------------------------------------
 /** doSkyBox */
 //-------------------------------------------------------------------------------------------------
-extern void doSkyBoxSet(Bool startDraw);	//hack to avoid including globaldata here.
+extern void doSkyBoxSet(bool startDraw);	//hack to avoid including globaldata here.
 
-void ScriptActions::doSkyBox(Bool startDraw)
+void ScriptActions::doSkyBox(bool startDraw)
 {
 	if (startDraw)
 	{
@@ -5565,25 +5565,25 @@ void ScriptActions::doUndoRevealMapAtWaypointPermanent(const AsciiString& lookNa
 }
 
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doEvaEnabledDisabled(Bool setEnabled)
+void ScriptActions::doEvaEnabledDisabled(bool setEnabled)
 {
 	TheEva->setEvaEnabled(setEnabled);
 }
 
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doSetOcclusionMode(Bool setEnabled)
+void ScriptActions::doSetOcclusionMode(bool setEnabled)
 {
 	TheGameLogic->setShowBehindBuildingMarkers(setEnabled);
 }
 
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doSetDrawIconUIMode(Bool setEnabled)
+void ScriptActions::doSetDrawIconUIMode(bool setEnabled)
 {
 	TheGameLogic->setDrawIconUI(setEnabled);
 }
 
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doSetDynamicLODMode(Bool setEnabled)
+void ScriptActions::doSetDynamicLODMode(bool setEnabled)
 {
 	TheGameLogic->setShowDynamicLOD(setEnabled);
 }
@@ -5863,7 +5863,7 @@ void ScriptActions::deleteAllUnmanned()
 }
 
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doEnableOrDisableObjectDifficultyBonuses(Bool enableBonuses)
+void ScriptActions::doEnableOrDisableObjectDifficultyBonuses(bool enableBonuses)
 {
 	// Loops over every object in the game, applying bonuses or not.
 	Object *obj = TheGameLogic->getFirstObject();
@@ -5877,7 +5877,7 @@ void ScriptActions::doEnableOrDisableObjectDifficultyBonuses(Bool enableBonuses)
 }
 
 //-------------------------------------------------------------------------------------------------
-void ScriptActions::doChooseVictimAlwaysUsesNormal(Bool enable)
+void ScriptActions::doChooseVictimAlwaysUsesNormal(bool enable)
 {
 	TheScriptEngine->setChooseVictimAlwaysUsesNormal(enable);
 }

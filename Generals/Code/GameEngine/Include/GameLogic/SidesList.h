@@ -313,13 +313,13 @@ public:
 	void setNextBuildList(BuildListInfo *pNext) {m_nextBuildList = pNext;}
 	void setLocation(Coord3D loc) {m_location = loc;}
 	void setAngle(Real angle) {m_angle = angle;}
-	void setInitiallyBuilt(Bool built) {m_isInitiallyBuilt = built;}
+	void setInitiallyBuilt(bool built) {m_isInitiallyBuilt = built;}
 	void setBuildingName(AsciiString name) {m_buildingName = name;}
 	void setScript(AsciiString script) {m_script = script;}
 	void setHealth(Int health) {m_health = health;}
-	void setWhiner(Bool whiner) {m_whiner = whiner;}
-	void setUnsellable(Bool unsellable) {m_unsellable = unsellable;}
-	void setRepairable(Bool repairable) {m_repairable = repairable;}
+	void setWhiner(bool whiner) {m_whiner = whiner;}
+	void setUnsellable(bool unsellable) {m_unsellable = unsellable;}
+	void setRepairable(bool repairable) {m_repairable = repairable;}
 
 public:
 	BuildListInfo *getNext(void) const {return m_nextBuildList;}
@@ -344,7 +344,7 @@ public:
 	void setShadowObj(Shadow *pObj) {m_shadowObj = pObj;}
 	Shadow *getShadowObj(void) {return m_shadowObj;}
 
-	void setSelected(Bool sel) {m_selected = sel;}
+	void setSelected(bool sel) {m_selected = sel;}
 	bool isSelected(void) {return m_selected;}
 
 	// used by the solo AI
@@ -354,13 +354,13 @@ public:
 	UnsignedInt getObjectTimestamp( void ) const { return m_objectTimestamp; }
 	bool isBuildable( void );															///< returns true if has enough rebuilds left to build again
 	bool isUnderConstruction(void) {return m_underConstruction;}
-	void setUnderConstruction(Bool construction) { m_underConstruction=construction;}
+	void setUnderConstruction(bool construction) { m_underConstruction=construction;}
 	void markPriorityBuild(void) {m_priorityBuild = true; }
 	bool isPriorityBuild(void) {return m_priorityBuild;}
 	bool isAutomaticBuild(void) {return m_automaticallyBuild;}
 
 	bool isSupplyBuilding(void) {return m_isSupplyBuilding;}
-	void setSupplyBuilding(Bool isSupply) {m_isSupplyBuilding = isSupply;}
+	void setSupplyBuilding(bool isSupply) {m_isSupplyBuilding = isSupply;}
 	ObjectID getGathererID(Int ndx) {if (ndx>=0 && ndx < MAX_RESOURCE_GATHERERS) return m_resourceGatherers[ndx]; return INVALID_ID;}
 	void setGathererID(Int ndx, ObjectID id)  {if (ndx>=0 && ndx < MAX_RESOURCE_GATHERERS) m_resourceGatherers[ndx] = id;}
 	Int getDesiredGatherers(void) {return m_desiredGatherers;};

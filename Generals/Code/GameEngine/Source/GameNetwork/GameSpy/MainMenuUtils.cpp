@@ -251,7 +251,7 @@ static void startOnline( void )
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-static void queuePatch(Bool mandatory, AsciiString downloadURL)
+static void queuePatch(bool mandatory, AsciiString downloadURL)
 {
 	QueuedDownload q;
 	bool success = TRUE;

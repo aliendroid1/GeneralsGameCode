@@ -365,7 +365,7 @@ void Win32Mouse::addWin32Event( UINT msg, WPARAM wParam, LPARAM lParam, DWORD ti
 
 extern HINSTANCE ApplicationHInstance;
 
-void Win32Mouse::setVisibility(Bool visible)
+void Win32Mouse::setVisibility(bool visible)
 {
 	//Extend
 	Mouse::setVisibility(visible);

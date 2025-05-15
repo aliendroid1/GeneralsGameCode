@@ -87,7 +87,7 @@ static AsciiString intAsStr(Int val)
 	return ret;
 }
 
-static AsciiString boolAsStr(Bool val)
+static AsciiString boolAsStr(bool val)
 {
 	AsciiString ret;
 	ret.format("%d", val);
@@ -558,7 +558,7 @@ bool CustomMatchPreferences::usesSystemMapDir(void)
 	return FALSE;
 }
 
-void CustomMatchPreferences::setUsesSystemMapDir(Bool val)
+void CustomMatchPreferences::setUsesSystemMapDir(bool val)
 {
 	AsciiString s;
 	s.format("%d", val);
@@ -578,7 +578,7 @@ bool CustomMatchPreferences::usesLongGameList(void)
 	return FALSE;
 }
 
-void CustomMatchPreferences::setUsesLongGameList(Bool val)
+void CustomMatchPreferences::setUsesLongGameList(bool val)
 {
 	AsciiString s;
 	s.format("%d", val);
@@ -597,7 +597,7 @@ bool CustomMatchPreferences::allowsObservers(void)
 	return FALSE;
 }
 
-void CustomMatchPreferences::setAllowsObserver(Bool val)
+void CustomMatchPreferences::setAllowsObserver(bool val)
 {
 	AsciiString s;
 	s.format("%d", val);
@@ -623,7 +623,7 @@ bool CustomMatchPreferences::getDisallowAsianText( void )
 	return FALSE;
 }
 
-void CustomMatchPreferences::setDisallowAsianText(Bool val)
+void CustomMatchPreferences::setDisallowAsianText(bool val)
 {
 	AsciiString s;
 	s.format("%d", val);

@@ -89,8 +89,8 @@ public:
 		Shadow(void) : m_diffuse(0xffffffff), m_color(0xffffffff), m_opacity (0x000000ff), m_localAngle(0.0f) {}
 
 		///<if this is set, then no render will occur, even if enableShadowRender() is enabled. Used by Shroud.
-		void enableShadowInvisible(Bool isEnabled);	
-		void enableShadowRender(Bool isEnabled);
+		void enableShadowInvisible(bool isEnabled);	
+		void enableShadowRender(bool isEnabled);
 		bool isRenderEnabled(void) {return m_isEnabled;}
 		bool isInvisibleEnabled(void) {return m_isInvisibleEnabled;}
 		virtual void release(void)=0;	///<release this shadow from suitable manager.
@@ -140,12 +140,12 @@ protected:
 
 
 
-inline void Shadow::enableShadowRender(Bool isEnabled)
+inline void Shadow::enableShadowRender(bool isEnabled)
 {
 	m_isEnabled=isEnabled;
 }
 
-inline void Shadow::enableShadowInvisible(Bool isEnabled)
+inline void Shadow::enableShadowInvisible(bool isEnabled)
 {
 	m_isInvisibleEnabled=isEnabled;
 }

@@ -207,7 +207,7 @@ void W3DTankTruckDraw::tossEmitters()
 }
 
 //-------------------------------------------------------------------------------------------------
-void W3DTankTruckDraw::setFullyObscuredByShroud(Bool fullyObscured)
+void W3DTankTruckDraw::setFullyObscuredByShroud(bool fullyObscured)
 {
 	if (fullyObscured != getFullyObscuredByShroud())
 	{
@@ -386,7 +386,7 @@ void W3DTankTruckDraw::updateBones( void ) {
 }
 
 //-------------------------------------------------------------------------------------------------
-void W3DTankTruckDraw::setHidden(Bool h)
+void W3DTankTruckDraw::setHidden(bool h)
 {
 	W3DModelDraw::setHidden(h);
 	if (h)

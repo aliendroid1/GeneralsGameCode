@@ -185,10 +185,10 @@ public:
 	virtual bool isCurrentlyFerryingSupplies() const;
 	virtual Real getWarehouseScanDistance() const; ///< How far can I look for a warehouse?
 
-	virtual void setForceBusyState(Bool v) { m_forcedBusyPending = v; } 
+	virtual void setForceBusyState(bool v) { m_forcedBusyPending = v; } 
 	virtual bool isForcedIntoBusyState() const { return m_forcedBusyPending; }
 
-	virtual void setForceWantingState(Bool v){ m_forcePending = v; }
+	virtual void setForceWantingState(bool v){ m_forcePending = v; }
 	virtual bool isForcedIntoWantingState() const { return m_forcePending; }
 	virtual ObjectID getPreferredDockID() const { return m_preferredDock; }
 	virtual UnsignedInt getActionDelayForDock( Object *dock );

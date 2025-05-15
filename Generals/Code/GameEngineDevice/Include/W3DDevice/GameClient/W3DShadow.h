@@ -42,7 +42,7 @@ public:
 	W3DShadowManager( void );
 	~W3DShadowManager( void );
 	bool init( void );	///<initialize resources used by manager, must have valid D3D device.
-	void queueShadows(Bool state) {m_isShadowScene=state;}	///<flags system to process shadows on next render call.
+	void queueShadows(bool state) {m_isShadowScene=state;}	///<flags system to process shadows on next render call.
 
 	// shadow list management
 	void Reset( void );

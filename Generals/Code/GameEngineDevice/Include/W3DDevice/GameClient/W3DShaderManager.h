@@ -122,7 +122,7 @@ class W3DFilterInterface
 public:
 	virtual Int init(void) = 0;			///<perform any one time initialization and validation
 	virtual Int shutdown(void) { return TRUE;};			///<release resources used by shader
-	virtual bool preRender(Bool &skipRender, CustomScenePassModes &scenePassMode) {skipRender=false; return false;} ///< Set up at start of render.  Only applies to screen filter shaders.
+	virtual bool preRender(bool &skipRender, CustomScenePassModes &scenePassMode) {skipRender=false; return false;} ///< Set up at start of render.  Only applies to screen filter shaders.
 	virtual bool postRender(enum FilterModes mode, Coord2D &scrollDelta, bool &doExtraRender){return false;} ///< Called after render.  Only applies to screen filter shaders.
 	virtual bool setup(enum FilterModes mode){return false;} ///< Called when the filter is started, one time before the first prerender.
 protected:
@@ -141,7 +141,7 @@ public:
 	virtual Int init(void);			///<perform any one time initialization and validation
 	virtual void reset(void);		///<do any custom resetting necessary to bring W3D in sync.
 	virtual Int shutdown(void);		///<release resources used by shader
-	virtual bool preRender(Bool &skipRender, CustomScenePassModes &scenePassMode); ///< Set up at start of render.  Only applies to screen filter shaders.
+	virtual bool preRender(bool &skipRender, CustomScenePassModes &scenePassMode); ///< Set up at start of render.  Only applies to screen filter shaders.
 	virtual bool postRender(enum FilterModes mode, Coord2D &scrollDelta, bool &doExtraRender); ///< Called after render.  Only applies to screen filter shaders.
 	virtual bool setup(enum FilterModes mode); ///< Called when the filter is started, one time before the first prerender.
 	ScreenMotionBlurFilter();
@@ -175,7 +175,7 @@ class ScreenBWFilter : public W3DFilterInterface
 public:
 	virtual Int init(void);			///<perform any one time initialization and validation
 	virtual Int shutdown(void);		///<release resources used by shader
-	virtual bool preRender(Bool &skipRender, CustomScenePassModes &scenePassMode); ///< Set up at start of render.  Only applies to screen filter shaders.
+	virtual bool preRender(bool &skipRender, CustomScenePassModes &scenePassMode); ///< Set up at start of render.  Only applies to screen filter shaders.
 	virtual bool postRender(enum FilterModes mode, Coord2D &scrollDelta,Bool &doExtraRender); ///< Called after render.  Only applies to screen filter shaders.
 	virtual bool setup(enum FilterModes mode){return true;} ///< Called when the filter is started, one time before the first prerender.
 	static void setFadeParameters(Int fadeFrames, Int direction)
@@ -198,7 +198,7 @@ class ScreenBWFilterDOT3 : public ScreenBWFilter
 public:
 	virtual Int init(void);			///<perform any one time initialization and validation
 	virtual Int shutdown(void);		///<release resources used by shader
-	virtual bool preRender(Bool &skipRender, CustomScenePassModes &scenePassMode); ///< Set up at start of render.  Only applies to screen filter shaders.
+	virtual bool preRender(bool &skipRender, CustomScenePassModes &scenePassMode); ///< Set up at start of render.  Only applies to screen filter shaders.
 	virtual bool postRender(enum FilterModes mode, Coord2D &scrollDelta,Bool &doExtraRender); ///< Called after render.  Only applies to screen filter shaders.
 	virtual bool setup(enum FilterModes mode){return true;} ///< Called when the filter is started, one time before the first prerender.
 protected:
@@ -213,7 +213,7 @@ class ScreenCrossFadeFilter : public W3DFilterInterface
 public:
 	virtual Int init(void);			///<perform any one time initialization and validation
 	virtual Int shutdown(void);		///<release resources used by shader
-	virtual bool preRender(Bool &skipRender, CustomScenePassModes &scenePassMode); ///< Set up at start of render.  Only applies to screen filter shaders.
+	virtual bool preRender(bool &skipRender, CustomScenePassModes &scenePassMode); ///< Set up at start of render.  Only applies to screen filter shaders.
 	virtual bool postRender(enum FilterModes mode, Coord2D &scrollDelta,Bool &doExtraRender); ///< Called after render.  Only applies to screen filter shaders.
 	virtual bool setup(enum FilterModes mode){return true;} ///< Called when the filter is started, one time before the first prerender.
 	static void setFadeParameters(Int fadeFrames, Int direction)

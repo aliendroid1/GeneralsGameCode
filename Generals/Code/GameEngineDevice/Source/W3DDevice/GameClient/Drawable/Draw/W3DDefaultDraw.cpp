@@ -120,7 +120,7 @@ W3DDefaultDraw::~W3DDefaultDraw(void)
 }
 
 //-------------------------------------------------------------------------------------------------
-void W3DDefaultDraw::setShadowsEnabled(Bool enable)
+void W3DDefaultDraw::setShadowsEnabled(bool enable)
 {
 #ifdef LOAD_TEST_ASSETS
 	if (m_shadow)
@@ -129,7 +129,7 @@ void W3DDefaultDraw::setShadowsEnabled(Bool enable)
 }
 
 //-------------------------------------------------------------------------------------------------
-void W3DDefaultDraw::setFullyObscuredByShroud(Bool fullyObscured)
+void W3DDefaultDraw::setFullyObscuredByShroud(bool fullyObscured)
 {
 #ifdef LOAD_TEST_ASSETS
 	if (m_shadow)

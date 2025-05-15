@@ -104,7 +104,7 @@ void FrameData::setFrame(UnsignedInt frame) {
 /**
  * Returns true if all the frame command count is equal to the number of commands that have been received.
  */
-FrameDataReturnType FrameData::allCommandsReady(Bool debugSpewage) {
+FrameDataReturnType FrameData::allCommandsReady(bool debugSpewage) {
 	if (m_frameCommandCount == m_commandCount) {
 		m_lastFailedFrameCC = -2;
 		m_lastFailedCC = -2;

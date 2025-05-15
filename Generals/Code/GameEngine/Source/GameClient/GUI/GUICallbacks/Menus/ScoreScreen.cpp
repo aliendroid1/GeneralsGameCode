@@ -151,7 +151,7 @@ void initReplaySinglePlayer(void);
 void grabMultiPlayerInfo( void );
 void grabSinglePlayerInfo( void );
 void hideWindows( Int pos );
-void ScoreScreenEnableControls(Bool enable);
+void ScoreScreenEnableControls(bool enable);
 void setObserverWindows( Player *player, Int i );
 enum {
 	SCORESCREEN_SINGLEPLAYER = 0,
@@ -194,7 +194,7 @@ void startNextCampaignGame(void)
 }
 
 
-void ScoreScreenEnableControls(Bool enable)
+void ScoreScreenEnableControls(bool enable)
 {
 	// if we are using the button, do the enable thing.
 	if ((buttonOk != NULL) && (buttonOk->winIsHidden() == FALSE)) {
@@ -433,7 +433,7 @@ WindowMsgHandledType ScoreScreenSystem( GameWindow *window, UnsignedInt msg,
 
 			// if we're givin the opportunity to take the keyboard focus we must say we want it
 			if( mData1 == TRUE )
-				*(Bool *)mData2 = TRUE;
+				*(bool *)mData2 = TRUE;
 
 			break;
 		}  // end input

@@ -729,7 +729,7 @@ void WOLLoginMenuShutdown( WindowLayout *layout, void *userData )
 	}
 
 	// if we are shutting down for an immediate pop, skip the animations
-	bool popImmediate = *(Bool *)userData;
+	bool popImmediate = *(bool *)userData;
 	if( popImmediate )
 	{
 
@@ -1027,7 +1027,7 @@ WindowMsgHandledType WOLLoginMenuSystem( GameWindow *window, UnsignedInt msg,
 			{	
 				// if we're givin the opportunity to take the keyboard focus we must say we want it
 				if( mData1 == TRUE )
-					*(Bool *)mData2 = TRUE;
+					*(bool *)mData2 = TRUE;
 
 				return MSG_HANDLED;
 			}//case GWM_INPUT_FOCUS:

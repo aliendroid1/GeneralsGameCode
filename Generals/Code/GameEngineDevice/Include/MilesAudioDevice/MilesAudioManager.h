@@ -214,8 +214,8 @@ class MilesAudioManager : public AudioManager
 		void adjustRequest( AudioRequest *req );
 		bool checkForSample( AudioRequest *req );
 
-		virtual void setHardwareAccelerated(Bool accel);
-		virtual void setSpeakerSurround(Bool surround);
+		virtual void setHardwareAccelerated(bool accel);
+		virtual void setSpeakerSurround(bool surround);
 		
 		virtual void setPreferredProvider(AsciiString provider) { m_pref3DProvider = provider; }
 		virtual void setPreferredSpeaker(AsciiString speakerType) { m_prefSpeaker = speakerType; }

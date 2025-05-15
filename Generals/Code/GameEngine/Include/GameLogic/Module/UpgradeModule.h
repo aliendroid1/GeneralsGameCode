@@ -118,7 +118,7 @@ public:
 
 protected:
 
-	void setUpgradeExecuted(Bool e) { m_upgradeExecuted = e; }
+	void setUpgradeExecuted(bool e) { m_upgradeExecuted = e; }
 	virtual void upgradeImplementation( ) = 0; ///< Here's the actual work of Upgrading
 	virtual void getUpgradeActivationMasks(UpgradeMaskType& activation, UpgradeMaskType& conflicting) const = 0; ///< Here's the actual work of Upgrading
 	virtual void performUpgradeFX() = 0;	///< perform the associated fx list

@@ -166,8 +166,8 @@ public:
 	virtual void setInitialHealth(Int initialPercent)  = 0;
 	virtual void setMaxHealth( Real maxHealth, MaxHealthChangeType healthChangeType = SAME_CURRENTHEALTH )  = 0;
 
-	virtual void setFrontCrushed(Bool v) = 0;
-	virtual void setBackCrushed(Bool v) = 0;
+	virtual void setFrontCrushed(bool v) = 0;
+	virtual void setBackCrushed(bool v) = 0;
 	
 	virtual void applyDamageScalar( Real scalar ) = 0;
 	virtual Real getDamageScalar() const = 0;
@@ -253,8 +253,8 @@ public:
 	virtual void setInitialHealth(Int initialPercent)  {  } ///< Sets the inital load health %.
 	virtual void setMaxHealth(Real maxHealth, MaxHealthChangeType healthChangeType = SAME_CURRENTHEALTH )  {  } ///< Sets the max health.
 
-	virtual void setFrontCrushed(Bool v) { DEBUG_CRASH(("you should never call this for generic Bodys")); }
-	virtual void setBackCrushed(Bool v) { DEBUG_CRASH(("you should never call this for generic Bodys")); }
+	virtual void setFrontCrushed(bool v) { DEBUG_CRASH(("you should never call this for generic Bodys")); }
+	virtual void setBackCrushed(bool v) { DEBUG_CRASH(("you should never call this for generic Bodys")); }
 
 
 	virtual void setIndestructible( bool indestructible ) { }

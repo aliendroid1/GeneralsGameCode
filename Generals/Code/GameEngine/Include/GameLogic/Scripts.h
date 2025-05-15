@@ -140,9 +140,9 @@ public:
 			const AsciiString& playerTemplateName, const AsciiString& newPlayerName) const;		// note, duplicates just this node, not the full list.
 
 	void setName(AsciiString name) { m_groupName = name;}
-	void setActive(Bool active) { m_isGroupActive = active;}
-	void setSubroutine(Bool subr) { m_isGroupSubroutine = subr;}
-	void setWarnings(Bool warnings) { m_hasWarnings = warnings;}
+	void setActive(bool active) { m_isGroupActive = active;}
+	void setSubroutine(bool subr) { m_isGroupSubroutine = subr;}
+	void setWarnings(bool warnings) { m_hasWarnings = warnings;}
 	void setNextGroup(ScriptGroup *pGr) {m_nextGroup = pGr;}
 
 	AsciiString getName(void) const { return m_groupName;}
@@ -566,7 +566,7 @@ public:
 
 public:
 	void setNextAction(ScriptAction *pAct) {m_nextAction = pAct;}
-	void setWarnings(Bool warnings) { m_hasWarnings = warnings;}
+	void setWarnings(bool warnings) { m_hasWarnings = warnings;}
 	ScriptActionType getActionType(void) {return m_actionType;}
 	ScriptAction * getNext(void) {return m_nextAction;}
 	AsciiString getUiText(void);				
@@ -637,16 +637,16 @@ public:
 
 public:
 	void setName(AsciiString name) { m_scriptName = name;}
-	void setWarnings(Bool warnings) { m_hasWarnings = warnings;}
+	void setWarnings(bool warnings) { m_hasWarnings = warnings;}
 	void setComment(AsciiString comment) { m_comment = comment;}
 	void setActionComment(AsciiString comment) { m_actionComment = comment;}
 	void setConditionComment(AsciiString comment) { m_conditionComment = comment;}
-	void setActive(Bool active) { m_isActive = active;}
-	void setOneShot(Bool one) { m_isOneShot = one;}
-	void setEasy(Bool easy) { m_easy = easy;}
-	void setNormal(Bool normal) { m_normal = normal;}
-	void setHard(Bool hard) { m_hard = hard;}
-	void setSubroutine(Bool subr) { m_isSubroutine = subr;}
+	void setActive(bool active) { m_isActive = active;}
+	void setOneShot(bool one) { m_isOneShot = one;}
+	void setEasy(bool easy) { m_easy = easy;}
+	void setNormal(bool normal) { m_normal = normal;}
+	void setHard(bool hard) { m_hard = hard;}
+	void setSubroutine(bool subr) { m_isSubroutine = subr;}
 	void setNextScript(Script *pScr) {m_nextScript = pScr;}
 	void setOrCondition(OrCondition *pCond) {m_condition = pCond;}
 	void setAction(ScriptAction *pAction) {m_action = pAction;}
@@ -989,7 +989,7 @@ public:
 
 public:
 	void setNextCondition(Condition *pScr) {m_nextAndCondition = pScr;}
-	void setWarnings(Bool warnings) { m_hasWarnings = warnings;}
+	void setWarnings(bool warnings) { m_hasWarnings = warnings;}
 	enum ConditionType getConditionType(void) {return m_conditionType;}
 	Condition * getNext(void) {return m_nextAndCondition;}
 	AsciiString getUiText(void);				

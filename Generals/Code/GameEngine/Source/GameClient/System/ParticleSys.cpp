@@ -1352,7 +1352,7 @@ void ParticleSystem::setSlave( ParticleSystem *slave )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-void ParticleSystem::setSaveable(Bool b)
+void ParticleSystem::setSaveable(bool b)
 {
 	m_isSaveable = b;
 	if (m_slaveSystem)

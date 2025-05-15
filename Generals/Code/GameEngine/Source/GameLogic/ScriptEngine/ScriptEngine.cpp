@@ -7394,7 +7394,7 @@ bool ScriptEngine::getEnableVTune() const
 #endif
 }
 
-void ScriptEngine::setEnableVTune(Bool value)
+void ScriptEngine::setEnableVTune(bool value)
 {
 #ifdef DO_VTUNE_STUFF
 	st_EnableVTune = value;

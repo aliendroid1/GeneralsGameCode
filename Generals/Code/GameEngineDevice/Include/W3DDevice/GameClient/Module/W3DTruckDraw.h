@@ -90,9 +90,9 @@ public:
 	W3DTruckDraw( Thing *thing, const ModuleData* moduleData );
 	// virtual destructor prototype provided by memory pool declaration
 
-	virtual void setHidden(Bool h);
+	virtual void setHidden(bool h);
 	virtual void doDrawModule(const Matrix3D* transformMtx);
-	virtual void setFullyObscuredByShroud(Bool fullyObscured);
+	virtual void setFullyObscuredByShroud(bool fullyObscured);
 	virtual void reactToGeometryChange() { }
 
 protected:

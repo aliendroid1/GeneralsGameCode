@@ -77,8 +77,8 @@ public:
 
 	void setTargetObject( const Object *object );
 	Object* getTargetObject() const;
-	void setUpdate(Bool u ) {m_update = u;} 
-	void setIsInVehicle(Bool i ) {m_isInVehicle = i;} 
+	void setUpdate(bool u ) {m_update = u;} 
+	void setIsInVehicle(bool i ) {m_isInVehicle = i;} 
 
 private:
 

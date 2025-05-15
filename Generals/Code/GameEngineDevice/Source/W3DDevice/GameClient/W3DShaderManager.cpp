@@ -167,7 +167,7 @@ Int ScreenBWFilter::init(void)
 	return TRUE;
 }
 
-bool ScreenBWFilter::preRender(Bool &skipRender, CustomScenePassModes &scenePassMode)
+bool ScreenBWFilter::preRender(bool &skipRender, CustomScenePassModes &scenePassMode)
 {
 	skipRender = false;
 	W3DShaderManager::startRenderToTexture();
@@ -349,7 +349,7 @@ Int ScreenBWFilterDOT3::init(void)
 	return TRUE;
 }
 
-bool ScreenBWFilterDOT3::preRender(Bool &skipRender, CustomScenePassModes &scenePassMode)
+bool ScreenBWFilterDOT3::preRender(bool &skipRender, CustomScenePassModes &scenePassMode)
 {
 	skipRender = false;
 	W3DShaderManager::startRenderToTexture();
@@ -591,7 +591,7 @@ bool ScreenCrossFadeFilter::updateFadeLevel(void)
 	return true;
 }
 
-bool ScreenCrossFadeFilter::preRender(Bool &skipRender, CustomScenePassModes &scenePassMode)
+bool ScreenCrossFadeFilter::preRender(bool &skipRender, CustomScenePassModes &scenePassMode)
 {
 	if (updateFadeLevel())
 	{	//if fade has not completed
@@ -780,7 +780,7 @@ Int ScreenMotionBlurFilter::init(void)
 	return true;
 }
 
-bool ScreenMotionBlurFilter::preRender(Bool &skipRender, CustomScenePassModes &scenePassMode)
+bool ScreenMotionBlurFilter::preRender(bool &skipRender, CustomScenePassModes &scenePassMode)
 {
 	skipRender = m_skipRender;
 	W3DShaderManager::startRenderToTexture();

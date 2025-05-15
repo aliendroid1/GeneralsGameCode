@@ -90,7 +90,7 @@ public:
 	virtual Int getDisplayModeCount(void) {return 0;}	///<return number of display modes/resolutions supported by video card.
 	virtual void getDisplayModeDescription(Int modeIndex, Int *xres, Int *yres, Int *bitDepth) {}	///<return description of mode
  	virtual void setGamma(Real gamma, Real bright, Real contrast, bool calibrate) {};
-	virtual bool testMinSpecRequirements(Bool *videoPassed, bool *cpuPassed, bool *memPassed,StaticGameLODLevel *idealVideoLevel=NULL, Real *cpuTime=NULL) {*videoPassed=*cpuPassed=*memPassed=true; return true;}
+	virtual bool testMinSpecRequirements(bool *videoPassed, bool *cpuPassed, bool *memPassed,StaticGameLODLevel *idealVideoLevel=NULL, Real *cpuTime=NULL) {*videoPassed=*cpuPassed=*memPassed=true; return true;}
 	virtual void doSmartAssetPurgeAndPreload(const char* usageFileName) = 0;
 #if defined(RTS_DEBUG) || defined(RTS_INTERNAL)
 	virtual void dumpAssetUsage(const char* mapname) = 0;
@@ -172,7 +172,7 @@ public:
 	virtual void takeScreenShot(void) = 0;										///< saves screenshot to a file
 	virtual void toggleMovieCapture(void) = 0;							///< starts saving frames to an avi or frame sequence
 	virtual void toggleLetterBox(void) = 0;										///< enabled letter-boxed display
-	virtual void enableLetterBox(Bool enable) = 0;						///< forces letter-boxed display on/off
+	virtual void enableLetterBox(bool enable) = 0;						///< forces letter-boxed display on/off
 	virtual bool isLetterBoxFading( void ) { return FALSE; }	///< returns true while letterbox fades in/out
 
 	virtual void setCinematicText( AsciiString string ) { m_cinematicText = string; }

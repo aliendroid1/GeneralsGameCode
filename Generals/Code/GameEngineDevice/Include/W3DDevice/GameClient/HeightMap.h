@@ -159,7 +159,7 @@ public:
 
 	/// Update the macro texture (pass 3).
 	void updateMacroTexture(AsciiString textureName);
-	void doTextures(Bool flag) {m_disableTextures = !flag;};
+	void doTextures(bool flag) {m_disableTextures = !flag;};
 	/// Update the diffuse value from static light info for one vertex.
 	void doTheLight(VERTEX_FORMAT *vb, Vector3*light, Vector3*normal, RefRenderObjListIterator *pLightsIterator, UnsignedByte alpha);
 	void addScorch(Vector3 location, Real radius, Scorches type);
@@ -182,7 +182,7 @@ public:
 	W3DShroud *getShroud()	{return m_shroud;}
 	void renderExtraBlendTiles(void);			///< render 3-way blend tiles that have blend of 3 textures.
 	void updateShorelineTiles(Int minX, Int minY, Int maxX, Int maxY, WorldHeightMap *pMap);	///<figure out which tiles on this map cross water plane
-	void updateViewImpassableAreas(Bool partial = FALSE, Int minX = 0, Int maxX = 0, Int minY = 0, Int maxY = 0);
+	void updateViewImpassableAreas(bool partial = FALSE, Int minX = 0, Int maxX = 0, Int minY = 0, Int maxY = 0);
 	void clearAllScorches(void);
 	void setTimeOfDay( TimeOfDay tod );
 	void staticLightingChanged(void);
@@ -206,7 +206,7 @@ public:
 	bool isClearLineOfSight(const Coord3D& pos, const Coord3D& posOther) const;
 
 	bool getShowImpassableAreas(void) {return m_showImpassableAreas;}
-	void setShowImpassableAreas(Bool show) {m_showImpassableAreas = show;}
+	void setShowImpassableAreas(bool show) {m_showImpassableAreas = show;}
 
 	bool showAsVisibleCliff(Int xIndex, Int yIndex) const;
 	

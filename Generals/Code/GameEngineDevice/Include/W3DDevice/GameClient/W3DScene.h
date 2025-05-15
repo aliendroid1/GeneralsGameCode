@@ -79,7 +79,7 @@ public:
 
 	void Flush(RenderInfoClass & rinfo);	//draw queued up models.
 	/// Drawing control method
-	void drawTerrainOnly(Bool draw) {m_drawTerrainOnly = draw;};
+	void drawTerrainOnly(bool draw) {m_drawTerrainOnly = draw;};
 
 	/// Drawing control method
 	void renderSpecificDrawables(RenderInfoClass &rinfo, Int numDrawables, Drawable **theDrawables) ;

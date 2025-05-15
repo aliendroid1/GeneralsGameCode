@@ -2544,7 +2544,7 @@ bool MilesAudioManager::checkForSample( AudioRequest *req )
 }
 
 //-------------------------------------------------------------------------------------------------
-void MilesAudioManager::setHardwareAccelerated(Bool accel)
+void MilesAudioManager::setHardwareAccelerated(bool accel)
 {
 	// Extends
 	bool retEarly = (accel == m_hardwareAccel);
@@ -2571,7 +2571,7 @@ void MilesAudioManager::setHardwareAccelerated(Bool accel)
 }
 
 //-------------------------------------------------------------------------------------------------
-void MilesAudioManager::setSpeakerSurround(Bool surround)
+void MilesAudioManager::setSpeakerSurround(bool surround)
 {
 	// Extends
 	bool retEarly = (surround == m_surroundSpeakers);

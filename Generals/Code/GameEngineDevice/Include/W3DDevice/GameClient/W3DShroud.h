@@ -49,7 +49,7 @@ public:
 	W3DShroudMaterialPassClass(void) : m_isTransparentObjectPass(FALSE) {}
 	virtual void	Install_Materials(void) const;
 	virtual void	UnInstall_Materials(void) const;
-	void enableTransparentObjectPass(Bool enable) {m_isTransparentObjectPass = enable;}
+	void enableTransparentObjectPass(bool enable) {m_isTransparentObjectPass = enable;}
 protected:
 	//customized version to deal with transparent (alpha-tested) polys.
 	bool m_isTransparentObjectPass;
@@ -67,7 +67,7 @@ public:
 	virtual void	Install_Materials(void) const;
 	virtual void	UnInstall_Materials(void) const;
 	void	setTexture(TextureClass *texture)	{m_texture=texture;}
-	void	setAllowUninstall(Bool state)	{ m_allowUninstall = state;}
+	void	setAllowUninstall(bool state)	{ m_allowUninstall = state;}
 
 protected:
 	TextureClass *m_texture;	///<texture to be projected.
@@ -97,7 +97,7 @@ public:
 	Int	 getTextureHeight(void)		{return m_dstTextureHeight;}
 	W3DShroudLevel getShroudLevel(Int x, Int y);
 	void setShroudLevel(Int x, Int y, W3DShroudLevel,Bool textureOnly=FALSE);
-	void setShroudFilter(Bool enable);	///<turns on bilinear filtering of shroud cells.
+	void setShroudFilter(bool enable);	///<turns on bilinear filtering of shroud cells.
 	void setBorderShroudLevel(W3DShroudLevel level);	///<color that will appear in unused border terrain.
 	Real	getDrawOriginX(void)	{return m_drawOriginX;}	///<returns ws origin of first pixel in shroud texture.			
 	Real	getDrawOriginY(void)	{return m_drawOriginY;}	///<returns ws origin of first pixel in shroud texture.			

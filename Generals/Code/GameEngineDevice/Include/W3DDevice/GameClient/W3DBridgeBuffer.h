@@ -138,8 +138,8 @@ public:
 	void clearBridge(void);		///< Frees all objects associated with a bridge.
 	bool isVisible(void) {return m_visible;};
 	bool isEnabled(void) {return m_enabled;};
-	void setEnabled(Bool enable) {m_enabled = enable;};
-	void renderBridge(Bool wireframe);
+	void setEnabled(bool enable) {m_enabled = enable;};
+	void renderBridge(bool wireframe);
 	void getBridgeInfo(BridgeInfo *pInfo);
 };
 

@@ -1086,7 +1086,7 @@ CellOutwardIterator::~CellOutwardIterator()
 }
 
 //-----------------------------------------------------------------------------
-PartitionCell *CellOutwardIterator::nextCell(Bool skipEmpties)
+PartitionCell *CellOutwardIterator::nextCell(bool skipEmpties)
 {
 
 try_again:
@@ -2193,7 +2193,7 @@ theObjName = obj->getTemplate()->getName();
 }
 
 //-----------------------------------------------------------------------------
-void PartitionData::makeDirty(Bool needToUpdateCells)
+void PartitionData::makeDirty(bool needToUpdateCells)
 {
 	//DEBUG_LOG(("makeDirty for pd %08lx obj %08lx\n",this,m_object));
 	if (!ThePartitionManager->isInListDirtyModules(this))

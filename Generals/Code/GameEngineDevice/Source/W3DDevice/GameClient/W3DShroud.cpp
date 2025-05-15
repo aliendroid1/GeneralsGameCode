@@ -759,7 +759,7 @@ void W3DShroud::interpolateFogLevels(RECT *rect)
 }
 
 //-----------------------------------------------------------------------------
-void W3DShroud::setShroudFilter(Bool enable)
+void W3DShroud::setShroudFilter(bool enable)
 {
 	if (enable)
 		m_shroudFilter=TextureFilterClass::FILTER_TYPE_DEFAULT;

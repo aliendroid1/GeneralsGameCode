@@ -212,7 +212,7 @@ bool CanSelectDrawable( const Drawable *draw, bool dragSelecting )
 //-----------------------------------------------------------------------------
 static bool canSelectWrapper( Drawable *draw, void *userData )
 {
-	bool dragSelecting = *((Bool *)userData);
+	bool dragSelecting = *((bool *)userData);
 	return CanSelectDrawable( draw, dragSelecting );
 }
 
@@ -1218,18 +1218,18 @@ GameMessageDisposition SelectionTranslator::translateGameMessage(const GameMessa
 
 //Added By Sadullah Nader
 
-//setDragSelecting(Bool dragSelect)
+//setDragSelecting(bool dragSelect)
 //Added to fix the drag selection problem in control bar
 ////////////////////////////////////////////////////////////////////////
-void SelectionTranslator::setDragSelecting(Bool dragSelect)
+void SelectionTranslator::setDragSelecting(bool dragSelect)
 {
 	m_dragSelecting = dragSelect; 
 }
 
-//setLeftMouseButton(Bool state)
+//setLeftMouseButton(bool state)
 //Added to turn of Left button down when left button goes up
 ////////////////////////////////////////////////////////////////////////
-void SelectionTranslator::setLeftMouseButton(Bool state)
+void SelectionTranslator::setLeftMouseButton(bool state)
 {
 	m_leftMouseButtonIsDown = state;
 }

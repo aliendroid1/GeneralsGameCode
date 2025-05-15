@@ -319,7 +319,7 @@ public:
 	bool friend_turnTowardsAngle(Real desiredAngle, Real rateModifier, Real relThresh);
 	bool friend_turnTowardsPitch(Real pitch, Real rateModifier);
 	bool friend_getPositiveSweep() const { return m_positiveSweep; }
-	void friend_setPositiveSweep(Bool b) { m_positiveSweep = b; }
+	void friend_setPositiveSweep(bool b) { m_positiveSweep = b; }
 	bool friend_isSweepEnabled() const;
 	WhichTurretType friend_getWhichTurret() const { return m_whichTurret; }
 #ifdef INTER_TURRET_DELAY

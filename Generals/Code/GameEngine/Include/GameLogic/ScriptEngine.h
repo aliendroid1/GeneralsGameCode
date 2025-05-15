@@ -254,10 +254,10 @@ public:
 	virtual Player *getCurrentPlayer(void); ///<  Gets the player that owns the current script.  May be null.
 	virtual Player *getPlayerFromAsciiString(const AsciiString& skirmishPlayerString);
 
-	void setObjectsShouldReceiveDifficultyBonus(Bool receive) { m_objectsShouldReceiveDifficultyBonus = receive; }
+	void setObjectsShouldReceiveDifficultyBonus(bool receive) { m_objectsShouldReceiveDifficultyBonus = receive; }
 	bool getObjectsShouldReceiveDifficultyBonus() const { return m_objectsShouldReceiveDifficultyBonus; }
 
-	void setChooseVictimAlwaysUsesNormal(Bool receive) { m_ChooseVictimAlwaysUsesNormal = receive; }
+	void setChooseVictimAlwaysUsesNormal(bool receive) { m_ChooseVictimAlwaysUsesNormal = receive; }
 	bool getChooseVictimAlwaysUsesNormal() const { return m_ChooseVictimAlwaysUsesNormal; }
 
 	bool hasShownMPLocalDefeatWindow(void);
@@ -349,7 +349,7 @@ public:
 	void createNamedCache( void );
 
 	///Begin VTUNE
-	void setEnableVTune(Bool value);
+	void setEnableVTune(bool value);
 	bool getEnableVTune() const;
 	///End VTUNE
 //#if defined(RTS_DEBUG) || defined(RTS_INTERNAL)

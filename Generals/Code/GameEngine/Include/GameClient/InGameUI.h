@@ -366,7 +366,7 @@ public:  // ********************************************************************
 	virtual void toggleMessages( void ) { m_messagesOn = 1 - m_messagesOn; }	///< toggle messages on/off
 	virtual bool isMessagesOn( void ) { return m_messagesOn; }	///< are the display messages on
 	void freeMessageResources( void );				///< free resources for the ui messages
-	Color getMessageColor(Bool altColor) { return (altColor)?m_messageColor2:m_messageColor1; }
+	Color getMessageColor(bool altColor) { return (altColor)?m_messageColor2:m_messageColor1; }
 	
 	// interface for military style messages
 	virtual void militarySubtitle( const AsciiString& label, Int duration );			// time in milliseconds
@@ -541,8 +541,8 @@ public:  // ********************************************************************
 	bool getDrawRMBScrollAnchor() const { return m_drawRMBScrollAnchor; }
 	bool getMoveRMBScrollAnchor() const { return m_moveRMBScrollAnchor; }
 
-	void setDrawRMBScrollAnchor(Bool b) { m_drawRMBScrollAnchor = b; }
-	void setMoveRMBScrollAnchor(Bool b) { m_moveRMBScrollAnchor = b; }
+	void setDrawRMBScrollAnchor(bool b) { m_drawRMBScrollAnchor = b; }
+	void setMoveRMBScrollAnchor(bool b) { m_moveRMBScrollAnchor = b; }
 
 private:
 	virtual Int getIdleWorkerCount( void );

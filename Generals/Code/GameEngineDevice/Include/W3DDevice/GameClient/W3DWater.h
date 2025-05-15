@@ -104,10 +104,10 @@ public:
 	void reset( void );  ///< reset any resources we need to
 	void load(void);	///< load/setup any map dependent features
 	void update( void ); ///< update phase of the water
-	void enableWaterGrid(Bool state);	///< used to active custom water for special maps. (i.e DAM).
+	void enableWaterGrid(bool state);	///< used to active custom water for special maps. (i.e DAM).
 	void updateMapOverrides(void);	///< used to update any map specific map overrides for water appearance.
 	void setTimeOfDay(TimeOfDay tod); ///<change sky/water for time of day
-	void toggleCloudLayer(Bool state)	{	m_useCloudLayer=state;}	///<enables/disables the cloud layer
+	void toggleCloudLayer(bool state)	{	m_useCloudLayer=state;}	///<enables/disables the cloud layer
 	void updateRenderTargetTextures(CameraClass *cam);	///< renders into any required textures.	
 	void ReleaseResources(void);	///< Release all dx8 resources so the device can be reset.
 	void ReAcquireResources(void);  ///< Reacquire all resources after device reset.

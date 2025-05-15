@@ -462,7 +462,7 @@ void Shell::showShell( bool runInit )
 	m_isShellActive = TRUE;
 }  // end showShell
 
-void Shell::showShellMap(Bool useShellMap )
+void Shell::showShellMap(bool useShellMap )
 {
 	// we don't want any of this to show if we're loading straight into a file
 	if(TheGlobalData->m_initialFile.isNotEmpty() || !TheGameLogic )

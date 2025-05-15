@@ -1541,7 +1541,7 @@ void W3DDisplay::toggleLetterBox(void)
 	m_letterBoxFadeStartTime = timeGetTime();
 }
 
-void W3DDisplay::enableLetterBox(Bool enable)
+void W3DDisplay::enableLetterBox(bool enable)
 {
 	if (enable)
 	{

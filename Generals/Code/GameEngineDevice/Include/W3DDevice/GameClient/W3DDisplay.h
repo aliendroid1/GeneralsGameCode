@@ -125,7 +125,7 @@ public:
 	virtual void toggleMovieCapture(void);			//enable AVI or frame capture mode.
 
 	virtual void toggleLetterBox(void);	///<enabled letter-boxed display
-	virtual void enableLetterBox(Bool enable);	///<forces letter-boxed display on/off
+	virtual void enableLetterBox(bool enable);	///<forces letter-boxed display on/off
 
 	virtual bool isLetterBoxFading(void);	///<returns true while letterbox fades in/out
 

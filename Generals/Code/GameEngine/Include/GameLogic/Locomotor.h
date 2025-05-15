@@ -292,7 +292,7 @@ public:
 	inline void setMaxAcceleration(Real accel) { m_maxAccel = accel; }
 	inline void setMaxBraking(Real braking) { m_maxBraking = braking; }
 	inline void setMaxTurnRate(Real turn) { m_maxTurnRate = turn; }
-	inline void setAllowInvalidPosition(Bool allow) { setFlag(ALLOW_INVALID_POSITION, allow); }
+	inline void setAllowInvalidPosition(bool allow) { setFlag(ALLOW_INVALID_POSITION, allow); }
 	inline void setCloseEnoughDist( Real dist ) { m_closeEnoughDist = dist; }
 	inline void setCloseEnoughDist3D( bool setting ) { setFlag(IS_CLOSE_ENOUGH_DIST_3D, setting); }
 
@@ -314,7 +314,7 @@ public:
 		this is used mainly for force missiles to swoop in on their target, and to force airplane takeoff/landing
 		to go smoothly.
 	*/
-	inline void setUsePreciseZPos(Bool u) { setFlag(PRECISE_Z_POS, u); }
+	inline void setUsePreciseZPos(bool u) { setFlag(PRECISE_Z_POS, u); }
 
 	/**
     when off (the default), units slow down as they approach their target. 
@@ -323,7 +323,7 @@ public:
     this is useful mainly in some weird, temporary situations where we know we are
     going to follow this move with another one...	or for carbombs.
 	*/
-	inline void setNoSlowDownAsApproachingDest(Bool u) { setFlag(NO_SLOW_DOWN_AS_APPROACHING_DEST, u); }
+	inline void setNoSlowDownAsApproachingDest(bool u) { setFlag(NO_SLOW_DOWN_AS_APPROACHING_DEST, u); }
 
 	/**
     when off (the default), units do their normal stuff.
@@ -336,7 +336,7 @@ public:
 		For ground units, it also allows units to have a destination off of a pathfing grid.
 
 	*/
-	inline void setUltraAccurate(Bool u) { setFlag(ULTRA_ACCURATE, u); }
+	inline void setUltraAccurate(bool u) { setFlag(ULTRA_ACCURATE, u); }
 	inline bool isUltraAccurate() const { return getFlag(ULTRA_ACCURATE); }
 
 	inline bool isMovingBackwards(void) const {return getFlag(MOVING_BACKWARDS);}

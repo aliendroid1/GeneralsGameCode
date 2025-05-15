@@ -51,10 +51,10 @@ public:
 	// virtual destructor prototype provided by memory pool declaration
 
 	virtual void doDrawModule(const Matrix3D* transformMtx);
-	virtual void setShadowsEnabled(Bool enable) { }
+	virtual void setShadowsEnabled(bool enable) { }
 	virtual void releaseShadows(void) {};	///< we don't care about preserving temporary shadows.	
 	virtual void allocateShadows(void) {};	///< we don't care about preserving temporary shadows.
-	virtual void setFullyObscuredByShroud(Bool fullyObscured) { }
+	virtual void setFullyObscuredByShroud(bool fullyObscured) { }
 	virtual void reactToTransformChange(const Matrix3D* oldMtx, const Coord3D* oldPos, Real oldAngle);
 	virtual void reactToGeometryChange() { }
 

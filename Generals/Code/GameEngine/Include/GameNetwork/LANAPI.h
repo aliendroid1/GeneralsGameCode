@@ -67,7 +67,7 @@ public:
 	virtual void reset( void ) = 0;															///< reset the logic system
 	virtual void update( void ) = 0;														///< update the world
 
-	virtual void setIsActive(Bool isActive ) = 0;								///< Tell TheLAN whether or not the app is active.
+	virtual void setIsActive(bool isActive ) = 0;								///< Tell TheLAN whether or not the app is active.
 
 	// Possible types of chat messages
 	enum ChatType
@@ -160,7 +160,7 @@ public:
 	virtual void reset( void );															///< reset the logic system
 	virtual void update( void );														///< update the world
 
-	virtual void setIsActive(Bool isActive);								///< tell TheLAN whether or not
+	virtual void setIsActive(bool isActive);								///< tell TheLAN whether or not
 
 	// Request functions generate network traffic
 	virtual void RequestLocations( void );																				///< Request everybody to respond with where they are

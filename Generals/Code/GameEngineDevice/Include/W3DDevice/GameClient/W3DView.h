@@ -209,7 +209,7 @@ public:
 	virtual enum FilterModes getViewFilterMode(void) {return m_viewFilterMode;}			///< Turns on viewport special effect (black & white mode)
 	virtual enum FilterTypes getViewFilterType(void) {return m_viewFilter;}			///< Turns on viewport special effect (black & white mode)
 	virtual void setFadeParameters(Int fadeFrames, Int direction);
-	virtual void set3DWireFrameMode(Bool enable);	///<enables custom wireframe rendering of 3D viewport
+	virtual void set3DWireFrameMode(bool enable);	///<enables custom wireframe rendering of 3D viewport
 
 	bool updateCameraMovements(void); 
 	virtual void forceCameraConstraintRecalc(void) { calcCameraConstraints(); }
@@ -269,7 +269,7 @@ private:
 	void calcCameraConstraints() ;			///< recalc m_cameraConstraint
 	void moveAlongWaypointPath(Int milliseconds); ///< Move camera along path.
 	void getPickRay(const ICoord2D *screen, Vector3 *rayStart, Vector3 *rayEnd);	///<returns a line segment (ray) originating at the given screen position
-	void setupWaypointPath(Bool orient);					///< Calculates distances & angles for moving along a waypoint path.
+	void setupWaypointPath(bool orient);					///< Calculates distances & angles for moving along a waypoint path.
 	void rotateCameraOneFrame(void);							///< Do one frame of a rotate camera movement.
 	void zoomCameraOneFrame(void);							///< Do one frame of a zoom camera movement.
 	void pitchCameraOneFrame(void);							///< Do one frame of a pitch camera movement.

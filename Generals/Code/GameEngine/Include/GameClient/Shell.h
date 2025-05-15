@@ -125,7 +125,7 @@ public:
 	virtual void update( void );		
 	//===============================================================================================
 
-	void showShellMap(Bool useShellMap );										///< access function to turn on and off the shell map
+	void showShellMap(bool useShellMap );										///< access function to turn on and off the shell map
 
 	void hide( bool hide );																	///< show/hide all shell layouts
 

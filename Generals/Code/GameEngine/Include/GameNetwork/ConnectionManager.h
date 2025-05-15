@@ -55,7 +55,7 @@ public:
 
 	virtual void init();				///< Initialize this instance.
 	virtual void reset();				///< Take this instance back to the initial state.
-	virtual void update(Bool isInGame);			///< Service the Connections being managed by this instance.
+	virtual void update(bool isInGame);			///< Service the Connections being managed by this instance.
 
 	// End SubsystemInterface functions
 

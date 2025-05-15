@@ -553,7 +553,7 @@ void FirewallHelperClass::writeFirewallBehavior(void)
  * HISTORY:                                                                                    *
  *   2/19/03 4:30PM BGC : Created                                                              *
  *=============================================================================================*/
-void FirewallHelperClass::flagNeedToRefresh(Bool flag)
+void FirewallHelperClass::flagNeedToRefresh(bool flag)
 {
 	OptionPreferences pref;
 

@@ -113,14 +113,14 @@ public:
 	Real friend_getParkingOffset() const { return getJetAIUpdateModuleData()->m_parkingOffset; }
 	UnsignedInt friend_getTakeoffPause() const { return getJetAIUpdateModuleData()->m_takeoffPause; }
 	void friend_setGoalPath( const std::vector<Coord3D>* path ) { getStateMachine()->setGoalPath(path); }
-	void friend_setTakeoffInProgress(Bool v) { setFlag(TAKEOFF_IN_PROGRESS, v); }
-	void friend_setLandingInProgress(Bool v) { setFlag(LANDING_IN_PROGRESS, v); }
-	void friend_setTaxiInProgress(Bool v) { setFlag(TAXI_IN_PROGRESS, v); }
-	void friend_setUseSpecialReturnLoco(Bool v) { setFlag(USE_SPECIAL_RETURN_LOCO, v); }
-	void friend_setAllowCircling(Bool v) { setFlag(ALLOW_CIRCLING, v); }
+	void friend_setTakeoffInProgress(bool v) { setFlag(TAKEOFF_IN_PROGRESS, v); }
+	void friend_setLandingInProgress(bool v) { setFlag(LANDING_IN_PROGRESS, v); }
+	void friend_setTaxiInProgress(bool v) { setFlag(TAXI_IN_PROGRESS, v); }
+	void friend_setUseSpecialReturnLoco(bool v) { setFlag(USE_SPECIAL_RETURN_LOCO, v); }
+	void friend_setAllowCircling(bool v) { setFlag(ALLOW_CIRCLING, v); }
 	const Coord3D& friend_getLandingPosForHelipadStuff() const { return m_landingPosForHelipadStuff; }
-	void friend_enableAfterburners(Bool v);
-	void friend_setAllowAirLoco(Bool a);
+	void friend_enableAfterburners(bool v);
+	void friend_setAllowAirLoco(bool a);
 	bool friend_isTakeoffOrLandingInProgress() const
 	{
 		return (getFlag(TAKEOFF_IN_PROGRESS) || getFlag(LANDING_IN_PROGRESS));

@@ -1083,7 +1083,7 @@ void Object::topple( const Coord3D *toppleDirection, Real toppleSpeed, UnsignedI
 }  // end topple
 
 //=============================================================================
-void Object::reloadAllAmmo(Bool now)
+void Object::reloadAllAmmo(bool now)
 {
 	m_weaponSet.reloadAllAmmo(this, now);
 }
@@ -1779,7 +1779,7 @@ void Object::healCompletely()
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-void Object::setEffectivelyDead(Bool dead)
+void Object::setEffectivelyDead(bool dead)
 {
 	if (dead)
 		BitSet(m_privateStatus, EFFECTIVELY_DEAD);
@@ -1794,7 +1794,7 @@ void Object::setEffectivelyDead(Bool dead)
 }
 
 //-------------------------------------------------------------------------------------------------
-void Object::setCaptured(Bool isCaptured)
+void Object::setCaptured(bool isCaptured)
 {
 	if (isCaptured)
 		BitSet(m_privateStatus, CAPTURED);
@@ -1834,7 +1834,7 @@ bool Object::isNonFactionStructure(void) const
 }
 
 //-------------------------------------------------------------------------------------------------
-void Object::setReceivingDifficultyBonus(Bool receive)
+void Object::setReceivingDifficultyBonus(bool receive)
 {
 	if (receive == m_isReceivingDifficultyBonus) {
 		return;
@@ -2713,7 +2713,7 @@ void Object::friend_bindToDrawable( Drawable *draw )
 }	
 
 //-------------------------------------------------------------------------------------------------
-void Object::setSelectable(Bool selectable) 
+void Object::setSelectable(bool selectable) 
 { 
 	m_isSelectable = selectable; 
 	if (m_drawable)
@@ -3301,7 +3301,7 @@ void Object::friend_adjustPowerForPlayer( bool incoming )
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 //-------------------------------------------------------------------------------------------------
-void Object::onDisabledEdge(Bool becomingDisabled)
+void Object::onDisabledEdge(bool becomingDisabled)
 {
 	Player* controller = getControllingPlayer();
 	// can be called during game teardown, thus controller can be null

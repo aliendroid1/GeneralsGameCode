@@ -172,9 +172,9 @@ public:
 	virtual bool isCurrentlyFerryingSupplies() const = 0;
 	virtual Real getWarehouseScanDistance() const = 0; ///< How far can I look for a warehouse?
 
-	virtual void setForceWantingState(Bool v) = 0;
+	virtual void setForceWantingState(bool v) = 0;
 	virtual bool isForcedIntoWantingState() const = 0;
-	virtual void setForceBusyState(Bool v) = 0;
+	virtual void setForceBusyState(bool v) = 0;
 	virtual bool isForcedIntoBusyState() const = 0;
 	virtual ObjectID getPreferredDockID() const = 0;
 	virtual UnsignedInt getActionDelayForDock( Object *dock ) = 0;
@@ -207,10 +207,10 @@ public:
 	virtual bool isCurrentlyFerryingSupplies() const;
 	virtual Real getWarehouseScanDistance() const; ///< How far can I look for a warehouse?
 
-	virtual void setForceWantingState(Bool v) { m_forcePending = v; } // When a Supply Center creates us (or maybe other sources later), we need to hop into autopilot mode.
+	virtual void setForceWantingState(bool v) { m_forcePending = v; } // When a Supply Center creates us (or maybe other sources later), we need to hop into autopilot mode.
 	virtual bool isForcedIntoWantingState() const { return m_forcePending; }
 
-	virtual void setForceBusyState(Bool v) { m_forcedBusyPending = v; } 
+	virtual void setForceBusyState(bool v) { m_forcedBusyPending = v; } 
 	virtual bool isForcedIntoBusyState() const { return m_forcedBusyPending; }
 
 	virtual ObjectID getPreferredDockID() const { return m_preferredDock; }

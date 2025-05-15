@@ -40,7 +40,7 @@
 extern void CreateLANGameInfoWindow( GameWindow *sizeAndPosWin );
 extern void DestroyGameInfoWindow(void);
 extern void RefreshGameInfoWindow(GameInfo *gameInfo, UnicodeString gameName);
-extern void HideGameInfoWindow(Bool hide);
+extern void HideGameInfoWindow(bool hide);
 
 #endif // __GAMEINFOWINDOW_H_
 
