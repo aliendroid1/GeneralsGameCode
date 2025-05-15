@@ -90,7 +90,7 @@ public:
 	bool canDisableBuildingViaHacking( const Object *obj, const Object *objectToHack, CommandSourceType commandSource );
 	bool canDoSpecialPowerAtLocation( const Object *obj, const Coord3D *loc, CommandSourceType commandSource, const SpecialPowerTemplate *spTemplate, const Object *objectInWay, UnsignedInt commandOptions, bool checkSourceRequirements = true );
 	bool canDoSpecialPowerAtObject( const Object *obj, const Object *target, CommandSourceType commandSource, const SpecialPowerTemplate *spTemplate, UnsignedInt commandOptions, bool checkSourceRequirements = true);
-	bool canDoSpecialPower(const Object* obj, const SpecialPowerTemplate* spTemplate, CommandSourceType commandSource, UnsignedInt commandOptions, bool checkSourceRequirements = true) { return false; };	// @todo add proper definition
+	bool canDoSpecialPower(const Object* obj, const SpecialPowerTemplate* spTemplate, CommandSourceType commandSource, UnsignedInt commandOptions, bool checkSourceRequirements = true);
 	bool canMakeObjectDefector( const Object *obj, const Object *objectToMakeDefector, CommandSourceType commandSource );
 	bool canFireWeaponAtLocation( const Object *obj, const Coord3D *loc, CommandSourceType commandSource, const WeaponSlotType slot, const Object *objectInWay );
 	bool canFireWeaponAtObject( const Object *obj, const Object *target, CommandSourceType commandSource, const WeaponSlotType slot );
