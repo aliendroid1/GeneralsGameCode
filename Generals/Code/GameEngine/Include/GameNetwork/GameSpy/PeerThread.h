@@ -34,7 +34,7 @@
 #include "gamespy/peer/peer.h"
 #include "GameNetwork/NetworkDefs.h"
 
-enum SerialAuthResult CPP_11(: Int)
+enum SerialAuthResult : Int
 {
 	SERIAL_NONEXISTENT,
 	SERIAL_AUTHFAILED,
@@ -175,7 +175,7 @@ public:
 
 //-------------------------------------------------------------------------
 
-enum DisconnectReason CPP_11(: Int)
+enum DisconnectReason : Int
 {
 	DISCONNECT_NICKTAKEN = 1,
 	DISCONNECT_BADNICK,
@@ -199,7 +199,7 @@ enum DisconnectReason CPP_11(: Int)
 	DISCONNECT_MAX,
 };
 
-enum QMStatus CPP_11(: Int)
+enum QMStatus : Int
 {
 	QM_IDLE,
 	QM_JOININGQMCHANNEL,

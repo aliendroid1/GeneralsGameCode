@@ -58,8 +58,8 @@ class WorkerAIInterface;
 class HackInternetAIInterface;
 class AssaultTransportAIInterface;
 
-enum AIStateType CPP_11(: Int);
-enum ObjectID CPP_11(: Int);
+enum AIStateType : Int;
+enum ObjectID : Int;
 
 
 //-------------------------------------------------------------------------------------------------
@@ -70,7 +70,7 @@ const Real FAST_AS_POSSIBLE = 999999.0f;
 // Note: these values are saved in save files, so you MUST NOT REMOVE OR CHANGE
 // existing values!
 //
-enum LocomotorSetType CPP_11(: Int)
+enum LocomotorSetType : Int
 {
 	LOCOMOTORSET_INVALID = -1,
 
@@ -87,7 +87,7 @@ enum LocomotorSetType CPP_11(: Int)
 };
 
 //-------------------------------------------------------------------------------------------------
-enum GuardTargetType CPP_11(: Int)
+enum GuardTargetType : Int
 { 
 	GUARDTARGET_LOCATION,	// Guard a coord3d
 	GUARDTARGET_OBJECT,		// Guard an object
@@ -111,7 +111,7 @@ static const char *TheLocomotorSetNames[] =
 };
 #endif 
 
-enum AutoAcquireStates CPP_11(: Int)
+enum AutoAcquireStates : Int
 {
 	AAS_Idle											= 0x01,
 	AAS_Idle_Stealthed						= 0x02,
@@ -135,7 +135,7 @@ static const char *TheAutoAcquireEnemiesNames[] =
 
 
 //-------------------------------------------------------------------------------------------------
-enum MoodMatrixParameters CPP_11(: Int)
+enum MoodMatrixParameters : Int
 {
 	// Controller_Player and Controller_AI are mutually exclusive
 	MM_Controller_Player		= 0x00000001,
@@ -159,7 +159,7 @@ enum MoodMatrixParameters CPP_11(: Int)
 };
 
 //-------------------------------------------------------------------------------------------------
-enum MoodMatrixAction CPP_11(: Int)
+enum MoodMatrixAction : Int
 {
 	MM_Action_Idle,
 	MM_Action_Move,
@@ -168,7 +168,7 @@ enum MoodMatrixAction CPP_11(: Int)
 };
 
 //-------------------------------------------------------------------------------------------------
-enum MoodActionAdjustment CPP_11(: Int)
+enum MoodActionAdjustment : Int
 {
 	MAA_Action_Ok										= 0x00000001,
 	MAA_Action_To_Idle							= 0x00000002,
@@ -214,7 +214,7 @@ private:
 };
 
 //-------------------------------------------------------------------------------------------------
-enum AIFreeToExitType CPP_11(: Int) // Note - written out in save/load xfer, don't change these numbers.  jba.
+enum AIFreeToExitType : Int // Note - written out in save/load xfer, don't change these numbers.  jba.
 {
 	FREE_TO_EXIT=0,
 	NOT_FREE_TO_EXIT=1,

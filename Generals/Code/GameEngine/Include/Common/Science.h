@@ -40,7 +40,7 @@
 class Player;
 
 //-------------------------------------------------------------------------------------------------
-enum ScienceType CPP_11(: Int)
+enum ScienceType : Int
 {
 	SCIENCE_INVALID = -1
 };

@@ -80,7 +80,7 @@ class ProcessAnimateWindow;
 // TYPE DEFINES ///////////////////////////////////////////////////////////////
 //-----------------------------------------------------------------------------
 
-enum AnimTypes CPP_11(: Int)
+enum AnimTypes : Int
 {
 	WIN_ANIMATION_NONE = 0,
 	WIN_ANIMATION_SLIDE_RIGHT,

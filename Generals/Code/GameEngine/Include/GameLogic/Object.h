@@ -103,18 +103,18 @@ class ObjectRepulsorHelper;
 class ObjectWeaponStatusHelper;
 class ObjectDefectionHelper;
 
-enum CommandSourceType CPP_11(: Int);
-enum DamageType CPP_11(: Int);
-enum HackerAttackMode CPP_11(: Int);
-enum NameKeyType CPP_11(: Int);
-enum SpecialPowerType CPP_11(: Int);
-enum WeaponBonusConditionType CPP_11(: Int);
-enum WeaponChoiceCriteria CPP_11(: Int);
-enum WeaponSetConditionType CPP_11(: Int);
-enum WeaponSetType CPP_11(: Int);
-enum WeaponStatus CPP_11(: Int);
-enum RadarPriorityType CPP_11(: Int);
-enum CanAttackResult CPP_11(: Int);
+enum CommandSourceType : Int;
+enum DamageType : Int;
+enum HackerAttackMode : Int;
+enum NameKeyType : Int;
+enum SpecialPowerType : Int;
+enum WeaponBonusConditionType : Int;
+enum WeaponChoiceCriteria : Int;
+enum WeaponSetConditionType : Int;
+enum WeaponSetType : Int;
+enum WeaponStatus : Int;
+enum RadarPriorityType : Int;
+enum CanAttackResult : Int;
 
 // For ObjectStatusTypes
 #include "Common/ObjectStatusTypes.h"
@@ -141,7 +141,7 @@ struct TTriggerInfo
 //----------------------------------------------------
 
 
-enum CrushSquishTestType CPP_11(: Int)
+enum CrushSquishTestType : Int
 {
 	TEST_CRUSH_ONLY, 
 	TEST_SQUISH_ONLY, 

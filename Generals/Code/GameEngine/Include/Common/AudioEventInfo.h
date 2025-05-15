@@ -41,7 +41,7 @@
 struct FieldParse;
 
 // USEFUL DECLARATIONS ////////////////////////////////////////////////////////////////////////////
-enum AudioType CPP_11(: Int)
+enum AudioType : Int
 {
 	AT_Music,
 	AT_Streaming,
@@ -49,7 +49,7 @@ enum AudioType CPP_11(: Int)
 };
 
 extern const char *theAudioPriorityNames[];
-enum AudioPriority CPP_11(: Int)
+enum AudioPriority : Int
 {
 	AP_LOWEST,
 	AP_LOW,
@@ -59,7 +59,7 @@ enum AudioPriority CPP_11(: Int)
 };
 
 extern const char *theSoundTypeNames[];
-enum SoundType CPP_11(: Int)
+enum SoundType : Int
 {
 	ST_UI										= 0x0001,
 	ST_WORLD								= 0x0002,
@@ -73,7 +73,7 @@ enum SoundType CPP_11(: Int)
 };
 
 extern const char *theAudioControlNames[];
-enum AudioControl CPP_11(: Int)
+enum AudioControl : Int
 {
 	AC_LOOP									= 0x0001,
 	AC_RANDOM								= 0x0002,

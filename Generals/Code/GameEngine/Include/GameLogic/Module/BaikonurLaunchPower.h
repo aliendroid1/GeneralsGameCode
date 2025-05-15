@@ -53,7 +53,7 @@
 class Object;
 class SpecialPowerTemplate;
 struct FieldParse;
-enum ScienceType CPP_11(: Int);
+enum ScienceType : Int;
 
 class BaikonurLaunchPowerModuleData : public SpecialPowerModuleData
 {

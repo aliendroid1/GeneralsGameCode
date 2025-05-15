@@ -27,7 +27,7 @@
 #include "GameNetwork/NetworkDefs.h"
 #include "GameNetwork/NAT.h"
 
-enum EstablishConnectionsMenuStateType CPP_11(: Int) {
+enum EstablishConnectionsMenuStateType : Int {
 	ESTABLISHCONNECTIONSMENUSTATETYPE_SCREENON,
 	ESTABLISHCONNECTIONSMENUSTATETYPE_SCREENOFF
 };

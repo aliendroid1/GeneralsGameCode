@@ -36,13 +36,13 @@
 #ifndef _GAME_LOD_H_
 #define _GAME_LOD_H_
 
-enum ParticlePriorityType CPP_11(: Int);
+enum ParticlePriorityType : Int;
 
 #define MAX_LOD_PRESETS_PER_LEVEL	32	//number of hardware configs preset for each low,medium,high
 #define MAX_BENCH_PROFILES	16
 
 //Make sure this enum stays in sync with GameLODNames[]
-enum StaticGameLODLevel CPP_11(: Int)
+enum StaticGameLODLevel : Int
 {
 	STATIC_GAME_LOD_UNKNOWN=-1,
 	STATIC_GAME_LOD_LOW,
@@ -52,7 +52,7 @@ enum StaticGameLODLevel CPP_11(: Int)
 	STATIC_GAME_LOD_COUNT
 };
 
-enum DynamicGameLODLevel CPP_11(: Int)
+enum DynamicGameLODLevel : Int
 {
 	DYNAMIC_GAME_LOD_UNKNOWN=-1,
 	DYNAMIC_GAME_LOD_LOW,
@@ -63,7 +63,7 @@ enum DynamicGameLODLevel CPP_11(: Int)
 };
 
 //Make sure this stays in sync with CPUNames[] in gamelod.cpp
-enum CpuType CPP_11(: Int)
+enum CpuType : Int
 {
 	XX,	//unknown type
 	P3,
@@ -72,7 +72,7 @@ enum CpuType CPP_11(: Int)
 };
 
 //Keep this in sync with VideoNames in Gamelod.cpp
-enum ChipsetType CPP_11(: Int)
+enum ChipsetType : Int
 {	DC_UNKNOWN,
 	DC_VOODOO2,
 	DC_VOODOO3,

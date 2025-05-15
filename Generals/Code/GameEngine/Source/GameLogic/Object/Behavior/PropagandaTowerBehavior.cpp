@@ -52,7 +52,7 @@
 
 
 // FORWARD REFERENCES /////////////////////////////////////////////////////////////////////////////
-enum ObjectID CPP_11(: Int);
+enum ObjectID : Int;
 
 // ------------------------------------------------------------------------------------------------
 /** This class is used to track objects as they exit our area of influence */

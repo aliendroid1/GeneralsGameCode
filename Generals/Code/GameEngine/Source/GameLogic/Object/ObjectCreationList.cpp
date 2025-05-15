@@ -685,7 +685,7 @@ private:
 EMPTY_DTOR(ApplyRandomForceNugget)
 
 //-------------------------------------------------------------------------------------------------
-enum DebrisDisposition CPP_11(: Int)
+enum DebrisDisposition : Int
 {
 	LIKE_EXISTING						= 0x00000001,
 	ON_GROUND_ALIGNED				= 0x00000002,

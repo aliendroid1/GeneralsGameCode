@@ -34,7 +34,7 @@
 #include "GameClient/InGameUI.h"
 
 
-enum MappableKeyCategories CPP_11(: Int)
+enum MappableKeyCategories : Int
 {
 	CATEGORY_CONTROL = 0,
 	CATEGORY_INFORMATION,
@@ -67,7 +67,7 @@ static const LookupListRec CategoryListName[] =
 // in particular, "modifier" keys and keypad keys aren't
 // available. Note that MappableKeyType is a SUBSET of
 // KeyDefType; this is extremely important to maintain!
-enum MappableKeyType CPP_11(: Int)
+enum MappableKeyType : Int
 {
 	MK_ESC					= KEY_ESC,
 	MK_BACKSPACE		= KEY_BACKSPACE,
@@ -250,7 +250,7 @@ static const LookupListRec KeyNames[] =
 };
 
 // -------------------------------------------------------------------------------
-enum MappableKeyTransition CPP_11(: Int)
+enum MappableKeyTransition : Int
 {
 	DOWN,
 	UP,
@@ -267,7 +267,7 @@ static const LookupListRec TransitionNames[] =
 
 // -------------------------------------------------------------------------------
 // an easier-to-type subset of the KEY_STATE stuff.
-enum MappableKeyModState CPP_11(: Int)
+enum MappableKeyModState : Int
 {
 	NONE							= 0,
 	CTRL							= KEY_STATE_LCONTROL,
@@ -296,7 +296,7 @@ static const LookupListRec ModifierNames[] =
 
 // -------------------------------------------------------------------------------
 // CommandUsableInType sets in what state the commands are allowed.
-enum CommandUsableInType CPP_11(: Int)
+enum CommandUsableInType : Int
 {
 	COMMANDUSABLE_NONE				= 0,
 

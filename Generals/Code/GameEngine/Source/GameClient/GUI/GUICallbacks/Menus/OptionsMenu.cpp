@@ -210,7 +210,7 @@ extern void DoResolutionDialog();
 static Bool ignoreSelected = FALSE;
 WindowLayout *OptionsLayout = NULL;
 
-enum Detail CPP_11(: Int)
+enum Detail : Int
 {
 	HIGHDETAIL = 0,
 	MEDIUMDETAIL,
@@ -1387,7 +1387,7 @@ void OptionsMenuInit( WindowLayout *layout, void *userData )
 
 	Color color =  GameMakeColor(255,255,255,255);
 
-  enum AliasingMode CPP_11(: Int)
+  enum AliasingMode : Int
   {
     OFF = 0,
     LOW,

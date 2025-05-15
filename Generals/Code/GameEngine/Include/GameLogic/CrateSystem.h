@@ -36,7 +36,7 @@
 #include "Common/Overridable.h"
 #include "Common/Override.h"
 
-enum ScienceType CPP_11(: Int);
+enum ScienceType : Int;
 
 struct crateCreationEntry
 {

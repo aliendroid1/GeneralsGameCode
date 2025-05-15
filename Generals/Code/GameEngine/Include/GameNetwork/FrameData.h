@@ -31,7 +31,7 @@
 #include "Lib/BaseType.h"
 #include "GameNetwork/NetCommandList.h"
 
-enum FrameDataReturnType CPP_11(: Int) {
+enum FrameDataReturnType : Int {
 	FRAMEDATA_NOTREADY,
 	FRAMEDATA_RESEND,
 	FRAMEDATA_READY

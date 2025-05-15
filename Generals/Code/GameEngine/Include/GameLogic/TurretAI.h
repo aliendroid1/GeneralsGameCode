@@ -42,7 +42,7 @@ const Real DEFAULT_PITCH_RATE = 0.01f;
  * Each of these constants will be associated with an instance of a State class
  * in a given StateMachine.
  */
-enum TurretStateType CPP_11(: Int)
+enum TurretStateType : Int
 {
 	TURRETAI_IDLE,
 	TURRETAI_IDLESCAN,
@@ -248,7 +248,7 @@ public:
 EMPTY_DTOR(TurretAIData)
 
 //-----------------------------------------------------------------------------------------------------
-enum TurretTargetType CPP_11(: Int)
+enum TurretTargetType : Int
 {
 	TARGET_NONE,
 	TARGET_OBJECT,

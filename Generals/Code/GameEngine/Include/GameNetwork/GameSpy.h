@@ -118,7 +118,7 @@ void ListGroupRoomsCallback(PEER peer, PEERBool success,
 														int maxWaiting, int numGames,
 														int numPlaying, void * param);					///< Called while listing group rooms
 
-enum GameSpyColors CPP_11(: Int) {
+enum GameSpyColors : Int {
 	GSCOLOR_DEFAULT = 0,
 	GSCOLOR_CURRENTROOM,
 	GSCOLOR_ROOM,

@@ -77,7 +77,7 @@ WaterTracksRenderSystem *TheWaterTracksRenderSystem=NULL;	///< singleton for tra
 
 static Bool pauseWaves=FALSE;
 
-enum waveType CPP_11(: Int)
+enum waveType : Int
 {
 	WaveTypeFirst,
 	WaveTypePond=WaveTypeFirst,

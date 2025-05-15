@@ -50,7 +50,7 @@ class WeaponTemplate;
 	* enumeration being in sequential order
 	*/
 //-------------------------------------------------------------------------------------------------
-enum BodyDamageType CPP_11(: Int)
+enum BodyDamageType : Int
 {
 	BODY_PRISTINE,				///< unit should appear in pristine condition
 	BODY_DAMAGED,					///< unit has been damaged
@@ -72,7 +72,7 @@ static const char* TheBodyDamageTypeNames[] =
 };
 #endif
 
-enum MaxHealthChangeType CPP_11(: Int)
+enum MaxHealthChangeType : Int
 {
 	SAME_CURRENTHEALTH,
 	PRESERVE_RATIO,

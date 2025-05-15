@@ -40,7 +40,7 @@
 //-------------------------------------------------------------------------------------------------
 /** Object status types */
 //-------------------------------------------------------------------------------------------------
-enum ObjectStatusTypes CPP_11(: Int)
+enum ObjectStatusTypes : Int
 {
 	//These are saved. Do not insert or remove any!
 

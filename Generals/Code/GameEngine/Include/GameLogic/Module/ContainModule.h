@@ -40,10 +40,10 @@ class Player;
 class ExitInterface;
 class Matrix3D;
 class Weapon;
-enum CommandSourceType CPP_11(: Int);
+enum CommandSourceType : Int;
 
 //-------------------------------------------------------------------------------------------------
-enum ObjectEnterExitType CPP_11(: Int)
+enum ObjectEnterExitType : Int
 {
 	WANTS_TO_ENTER,
 	WANTS_TO_EXIT,

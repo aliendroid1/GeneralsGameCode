@@ -39,7 +39,7 @@
 class Transport;
 class GameSlot;
 
-enum NATStateType CPP_11(: Int) {
+enum NATStateType : Int {
 	NATSTATE_IDLE,
 	NATSTATE_DOCONNECTIONPATHS,
 	NATSTATE_WAITFORSTATS,
@@ -47,7 +47,7 @@ enum NATStateType CPP_11(: Int) {
 	NATSTATE_FAILED
 };
 
-enum NATConnectionState CPP_11(: Int) {
+enum NATConnectionState : Int {
 	NATCONNECTIONSTATE_NOSTATE,
 	NATCONNECTIONSTATE_WAITINGTOBEGIN,
 //	NATCONNECTIONSTATE_NETGEARDELAY,

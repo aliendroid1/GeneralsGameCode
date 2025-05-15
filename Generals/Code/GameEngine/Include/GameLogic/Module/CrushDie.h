@@ -42,7 +42,7 @@
 // FORWARD REFERENCES /////////////////////////////////////////////////////////////////////////////
 class Thing;
 
-enum CrushEnum CPP_11(: Int)
+enum CrushEnum : Int
 {
 	TOTAL_CRUSH,
 	BACK_END_CRUSH,

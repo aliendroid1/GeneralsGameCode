@@ -66,7 +66,7 @@ class WindowLayout;
 class TerrainLogic;
 class GhostObjectManager;
 class CommandButton;
-enum BuildableStatus CPP_11(: Int);
+enum BuildableStatus : Int;
 
 typedef const CommandButton* ConstCommandButtonPtr;
 

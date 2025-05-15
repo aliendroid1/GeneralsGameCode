@@ -34,7 +34,7 @@
 
 // if it is set by the options panel, use the system setting parameter. Otherwise, this will be 
 // appended to whatever the current system volume is.
-enum AudioAffect CPP_11(: Int)
+enum AudioAffect : Int
 {
 	AudioAffect_Music		= 0x01,
 	AudioAffect_Sound		= 0x02,

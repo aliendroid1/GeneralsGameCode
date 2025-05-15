@@ -64,10 +64,10 @@ class DamageInfo;
 class ParticleSystemTemplate;
 class CommandButton;
 class Waypoint;
-enum CommandOption CPP_11(: Int);
+enum CommandOption : Int;
 
 //-------------------------------------------------------------------------------------------------
-enum UpdateSleepTime CPP_11(: Int) 
+enum UpdateSleepTime : Int 
 { 
 	UPDATE_SLEEP_INVALID	= 0,
 	UPDATE_SLEEP_NONE			= 1,
@@ -84,7 +84,7 @@ enum UpdateSleepTime CPP_11(: Int)
 // in an efficient way while still maintaining order-dependency; you should
 // really never specify anything other than PHASE_NORMAL without very
 // careful deliberation. If you need to, talk it over with folks first. (srj)
-enum SleepyUpdatePhase CPP_11(: Int)
+enum SleepyUpdatePhase : Int
 {
 	// reserve 2 bits for phase. this still leaves us 30 bits for frame counter,
 	// which, at 30fps, will still run for ~414 days without overflowing...
@@ -333,7 +333,7 @@ public:
 };
 
 //-------------------------------------------------------------------------------------------------
-enum ExitDoorType CPP_11(: Int)
+enum ExitDoorType : Int
 {
 	DOOR_1 = 0,
 	DOOR_2 = 1,

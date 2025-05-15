@@ -43,12 +43,12 @@ class ThingTemplate;
 class UpgradeTemplate;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-enum ProductionID CPP_11(: Int)
+enum ProductionID : Int
 {
 	PRODUCTIONID_INVALID = 0
 };
 
-enum ProductionType CPP_11(: Int)
+enum ProductionType : Int
 {
 	PRODUCTION_INVALID = 0,
 	PRODUCTION_UNIT,
@@ -141,7 +141,7 @@ public:
 };
 
 //-------------------------------------------------------------------------------------------------
-enum CanMakeType CPP_11(: Int);
+enum CanMakeType : Int;
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------

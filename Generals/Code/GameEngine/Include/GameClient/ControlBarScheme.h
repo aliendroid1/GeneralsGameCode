@@ -63,7 +63,7 @@
 class AsciiString;
 class playerTemplate;
 class Image;
-enum TimeOfDay CPP_11(: Int);
+enum TimeOfDay : Int;
 
 //-----------------------------------------------------------------------------
 // TYPE DEFINES ///////////////////////////////////////////////////////////////

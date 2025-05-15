@@ -42,7 +42,7 @@ class DamageInfo;
 class SpecialPowerTemplate;
 class SpecialPowerModule;
 class FXList;
-enum SpecialPowerType CPP_11(: Int);
+enum SpecialPowerType : Int;
 
 #define SPECIAL_ABILITY_HUGE_DISTANCE 10000000.0f
 

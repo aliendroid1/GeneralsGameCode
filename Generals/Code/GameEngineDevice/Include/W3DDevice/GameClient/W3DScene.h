@@ -49,7 +49,7 @@
 class W3DDynamicLight;
 class LightClass;
 class Drawable;
-enum CustomScenePassModes CPP_11(: Int);
+enum CustomScenePassModes : Int;
 class MaterialPassClass;
 class W3DShroudMaterialPassClass;
 class W3DMaskMaterialPassClass;

@@ -37,7 +37,7 @@ class GameWindow;
 class	Team;
 class View;
 
-enum AudioAffect CPP_11(: Int);
+enum AudioAffect : Int;
 
 //-----------------------------------------------------------------------------
 // ScriptActionsInterface

@@ -61,7 +61,7 @@
 
 // TYPE DEFINES ///////////////////////////////////////////////////////////////
 
-enum MouseButtonState CPP_11(: Int)
+enum MouseButtonState : Int
 {
 	MBS_Up = 0,
 	MBS_Down,

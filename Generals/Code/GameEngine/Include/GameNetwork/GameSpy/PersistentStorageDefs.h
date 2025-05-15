@@ -31,7 +31,7 @@
 #ifndef __PERSISTENTSTORAGEDEFS_H__
 #define __PERSISTENTSTORAGEDEFS_H__
 
-enum LocaleType CPP_11(: Int)
+enum LocaleType : Int
 {
     LOC_UNKNOWN = 0,
     LOC_MIN = 1,

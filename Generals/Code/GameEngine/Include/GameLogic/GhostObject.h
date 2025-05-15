@@ -43,8 +43,8 @@
 
 class Object;
 class PartitionData;
-enum GeometryType CPP_11(: Int);
-enum ObjectID CPP_11(: Int);
+enum GeometryType : Int;
+enum ObjectID : Int;
 
 class GhostObject : public Snapshot
 {

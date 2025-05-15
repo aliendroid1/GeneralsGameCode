@@ -36,7 +36,7 @@
 #include "GameLogic/Damage.h"
 #include "GameLogic/Module/BehaviorModule.h"
 
-enum BodyDamageType CPP_11(: Int);
+enum BodyDamageType : Int;
 
 //-------------------------------------------------------------------------------------------------
 /** OBJECT DAMAGE MODULE base class */

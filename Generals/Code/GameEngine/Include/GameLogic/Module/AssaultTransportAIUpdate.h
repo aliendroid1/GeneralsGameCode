@@ -37,7 +37,7 @@
 #include "GameLogic/Module/AIUpdate.h"
 
 //-------------------------------------------------------------------------------------------------
-enum AssaultStateTypes CPP_11(: Int)
+enum AssaultStateTypes : Int
 {
 	IDLE,							          ///< Not doing anything.
 	ASSAULTING,						      ///< Transport is waiting while troops do fighting.

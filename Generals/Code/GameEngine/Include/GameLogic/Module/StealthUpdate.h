@@ -37,7 +37,7 @@
 
 // FORWARD REFERENCES /////////////////////////////////////////////////////////////////////////////
 class Thing;
-enum StealthLookType CPP_11(: Int);
+enum StealthLookType : Int;
 class FXList;
 
 enum

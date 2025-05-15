@@ -49,7 +49,7 @@ class STLSpecialAlloc;
 #include <direct.h>
 #include <excpt.h>
 #include <float.h>
-#include <Utility/fstream_adapter.h>
+#include <fstream>
 #include <imagehlp.h>
 #include <io.h>
 #include <limits.h>

@@ -31,7 +31,7 @@
 #ifndef _AUDIOHANDLESPECIALVALUES_H_
 #define _AUDIOHANDLESPECIALVALUES_H_
 
-enum AudioHandleSpecialValues CPP_11(: Int)
+enum AudioHandleSpecialValues : Int
 {
 	AHSV_Error					= 0x00,
 	AHSV_NoSound,

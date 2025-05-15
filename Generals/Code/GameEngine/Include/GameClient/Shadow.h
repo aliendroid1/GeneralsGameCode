@@ -38,7 +38,7 @@
 //
 
 // shadow bit flags, keep this in sync with TheShadowNames
-enum ShadowType CPP_11(: Int)
+enum ShadowType : Int
 {
 	SHADOW_NONE											=	0x00000000, 
 	SHADOW_DECAL										=	0x00000001,		//shadow decal applied via modulate blend

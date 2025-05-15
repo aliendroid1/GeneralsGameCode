@@ -42,12 +42,12 @@
 class INI;
 class Xfer;
 class File;
-enum ScienceType CPP_11(: Int);
+enum ScienceType : Int;
 
 //-------------------------------------------------------------------------------------------------
 /** These control the behavior of loading the INI data into items */
 //-------------------------------------------------------------------------------------------------
-enum INILoadType CPP_11(: Int)
+enum INILoadType : Int
 {	
 	INI_LOAD_INVALID,						///< invalid load type
 	INI_LOAD_OVERWRITE,					///< create new or load *over* existing data instance

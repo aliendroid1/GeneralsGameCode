@@ -28,7 +28,7 @@ class AudioEventRTS;
 
 enum { MAXPROVIDERS = 64 };
 
-enum PlayingAudioType CPP_11(: Int)
+enum PlayingAudioType : Int
 {
 	PAT_Sample,
 	PAT_3DSample,
@@ -36,14 +36,14 @@ enum PlayingAudioType CPP_11(: Int)
 	PAT_INVALID
 };
 
-enum PlayingStatus CPP_11(: Int)
+enum PlayingStatus : Int
 {
 	PS_Playing,
 	PS_Stopped,
 	PS_Paused
 };
 
-enum PlayingWhich CPP_11(: Int)
+enum PlayingWhich : Int
 {
 	PW_Attack,
 	PW_Sound,

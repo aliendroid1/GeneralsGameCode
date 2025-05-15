@@ -54,8 +54,8 @@ class TracerDrawInterface;
 class RopeDrawInterface;
 class LaserDrawInterface;
 class FXList;
-enum TerrainDecalType CPP_11(: Int);
-enum ShadowType CPP_11(: Int);
+enum TerrainDecalType : Int;
+enum ShadowType : Int;
 
 //class ModelConditionFlags;
 

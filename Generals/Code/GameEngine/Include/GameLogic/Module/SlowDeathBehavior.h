@@ -48,7 +48,7 @@ typedef std::vector<const ObjectCreationList*> OCLVec;
 typedef std::vector<const WeaponTemplate*> WeaponTemplateVec;
 
 //-------------------------------------------------------------------------------------------------
-enum SlowDeathPhaseType CPP_11(: Int)
+enum SlowDeathPhaseType : Int
 {
 	SDPHASE_INITIAL = 0,
 	SDPHASE_MIDPOINT,
