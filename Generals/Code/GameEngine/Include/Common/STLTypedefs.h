@@ -99,34 +99,34 @@ namespace std
 
 
 // List of AsciiStrings to allow list of ThingTemplate names from INI and such
-typedef std::list< AsciiString >													AsciiStringList;
-typedef std::list< AsciiString >::iterator								AsciiStringListIterator;
-typedef std::list< AsciiString >::const_iterator					AsciiStringListConstIterator;
+typedef std::list< AsciiString >						AsciiStringList;
+typedef std::list< AsciiString >::iterator				AsciiStringListIterator;
+typedef std::list< AsciiString >::const_iterator		AsciiStringListConstIterator;
 
 // One is used in GameLogic to keep track of objects to be destroyed
-typedef std::list<Object *>																ObjectPointerList;
-typedef std::list<Object *>::iterator											ObjectPointerListIterator;
+typedef std::list<Object *>								ObjectPointerList;
+typedef std::list<Object *>::iterator					ObjectPointerListIterator;
 
-typedef std::vector<ObjectID>															ObjectIDVector;
-typedef std::vector<ObjectID>::iterator										ObjectIDVectorIterator;
+typedef std::vector<ObjectID>							ObjectIDVector;
+typedef std::vector<ObjectID>::iterator					ObjectIDVectorIterator;
 
 // Terribly useful, especially with Bezier curves
 typedef std::vector<Coord3D> VecCoord3D;
 typedef VecCoord3D::iterator VecCoord3DIt;
 
 // Used for cursor->3D position request caching in the heightmap
-typedef std::pair<ICoord2D, Coord3D>											PosRequest;
-typedef std::vector<PosRequest>														VecPosRequests;
-typedef std::vector<PosRequest>::iterator									VecPosRequestsIt;
+typedef std::pair<ICoord2D, Coord3D>					PosRequest;
+typedef std::vector<PosRequest>							VecPosRequests;
+typedef std::vector<PosRequest>::iterator				VecPosRequestsIt;
 
 // Used to cache off names of objects for faster lookup
-typedef std::pair<AsciiString, Object*>										NamedRequest;
-typedef std::vector<NamedRequest>													VecNamedRequests;
-typedef std::vector<NamedRequest>::iterator								VecNamedRequestsIt;
+typedef std::pair<AsciiString, Object*>					NamedRequest;
+typedef std::vector<NamedRequest>						VecNamedRequests;
+typedef std::vector<NamedRequest>::iterator				VecNamedRequestsIt;
 
 // Rumor has it that a Vector of bools gets stored as a bitfield internally.
-typedef std::vector<bool>																	BoolVector;
-typedef std::vector<bool>::iterator												BoolVectorIterator;
+typedef std::vector<bool>								BoolVector;
+typedef std::vector<bool>::iterator						BoolVectorIterator;
 
 typedef std::map< NameKeyType, Real, std::less<NameKeyType> > ProductionChangeMap;
 typedef std::map< NameKeyType, VeterancyLevel, std::less<NameKeyType> > ProductionVeterancyMap;

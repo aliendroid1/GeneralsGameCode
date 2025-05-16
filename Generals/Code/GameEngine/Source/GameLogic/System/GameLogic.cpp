@@ -1056,7 +1056,7 @@ void GameLogic::startNewGame( bool saveGame )
 		else
 		{
 			DEBUG_LOG(("Starting gamespy game\n"));
-			TheGameInfo = game = TheGameSpyGame;	/// @todo: MDC add back in after demo
+			TheGameInfo = game = TheLAN->GetMyGame();	/// @todo: MDC add back in after demo
 		}
 	}
 	else

@@ -489,7 +489,9 @@ bool DX8Wrapper::Create_Device(void)
 	if (caps.DevCaps&D3DDEVCAPS_HWTRANSFORMANDLIGHT) 
 		Vertex_Processing_Behavior=D3DCREATE_MIXED_VERTEXPROCESSING;
 
-#ifdef CREATE_DX8_MULTI_THREADED
+
+
+#if 1
 	Vertex_Processing_Behavior|=D3DCREATE_MULTITHREADED;
 	_DX8SingleThreaded=false;
 #else
@@ -849,7 +851,7 @@ bool DX8Wrapper::Set_Render_Device(int dev, int width, int height, int bits, int
 	Init_D3DPRESENT_PARAMETERS(ResolutionWidth, ResolutionHeight, IsWindowed);	// Initialize values for D3DPRESENT_PARAMETERS members.
 
 	// Set up the buffer formats.  Several issues here:
-	if (IsWindowed) // if in windowed mode, the backbuffer must use the current display format the depth buffer must use
+	if (IsWindowed || true) // if in windowed mode, the backbuffer must use the current display format the depth buffer must use
 	{
 
 		D3DDISPLAYMODE desktop_mode;
@@ -858,21 +860,21 @@ bool DX8Wrapper::Set_Render_Device(int dev, int width, int height, int bits, int
 
 		DisplayFormat = _PresentParameters.BackBufferFormat = desktop_mode.Format;
 	
-		switch (_PresentParameters.BackBufferFormat) // In windowed mode, define the bitdepth from desktop mode (as it can't be changed)
-		{
-			case D3DFMT_X8R8G8B8: BitDepth = 32; break;
-			case D3DFMT_A8R8G8B8: BitDepth = 32; break;
-			case D3DFMT_R8G8B8:   BitDepth = 32; break;
-			case D3DFMT_A4R4G4B4: BitDepth = 16; break;
-			case D3DFMT_A1R5G5B5: BitDepth = 16; break;
-			case D3DFMT_R5G6B5:   BitDepth = 16; break;
-			case D3DFMT_L8:       BitDepth = 8;  break;
-			case D3DFMT_A8:       BitDepth = 8;  break;
-			case D3DFMT_P8:       BitDepth = 8;  break;
-			default:	return false; // Unknown backbuffer format probably means the device can't do windowed
-		}
+		//switch (_PresentParameters.BackBufferFormat) // In windowed mode, define the bitdepth from desktop mode (as it can't be changed)
+		//{
+		//	case D3DFMT_X8R8G8B8: BitDepth = 32; break;
+		//	case D3DFMT_A8R8G8B8: BitDepth = 32; break;
+		//	case D3DFMT_R8G8B8:   BitDepth = 32; break;
+		//	case D3DFMT_A4R4G4B4: BitDepth = 16; break;
+		//	case D3DFMT_A1R5G5B5: BitDepth = 16; break;
+		//	case D3DFMT_R5G6B5:   BitDepth = 16; break;
+		//	case D3DFMT_L8:       BitDepth = 8;  break;
+		//	case D3DFMT_A8:       BitDepth = 8;  break;
+		//	case D3DFMT_P8:       BitDepth = 8;  break;
+		//	default:	return false; // Unknown backbuffer format probably means the device can't do windowed
+		//}
 
-		if (BitDepth == 32 && D3DInterface->CheckDeviceType(0, D3DDEVTYPE_HAL, desktop_mode.Format, D3DFMT_A8R8G8B8, TRUE) == D3D_OK)
+		if (D3DInterface->CheckDeviceType(0, D3DDEVTYPE_HAL, desktop_mode.Format, D3DFMT_A8R8G8B8, TRUE) == D3D_OK)
 			_PresentParameters.BackBufferFormat = D3DFMT_A8R8G8B8; //promote 32-bit modes to include destination alpha
 
 		
