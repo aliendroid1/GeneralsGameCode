@@ -42,7 +42,6 @@
 #include "w3derr.h"
 #include "scene.h"
 #include "texture.h"
-#include "wwprofile.h"
 #include <limits.h>
 #include <gcd_lcm.h>
 #include "texture.h"
@@ -506,7 +505,7 @@ void ParticleEmitterClass::Set_Velocity_Inheritance_Factor(float inh_factor)
 // buffer On_Frame_Update() function to avoid order dependence.
 void ParticleEmitterClass::Emit(void)
 {
-	WWPROFILE("PartlicleEmitter::Emit");
+	//////WWPROFILE("PartlicleEmitter::Emit");
 #ifdef WWDEBUG
 	if (DebugDisable == true) {
 		return;

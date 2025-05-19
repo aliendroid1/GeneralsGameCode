@@ -38,9 +38,7 @@
 #include "wwmath.h"
 #include "wwhack.h"
 #include "lookuptable.h"
-#include <stdlib.h>
-#include "wwdebug.h"
-#include "wwprofile.h"
+
 
 // TODO: convert to use loouptablemanager...
 float _FastAcosTable[ARC_TABLE_SIZE];

@@ -48,7 +48,7 @@
 #include "vertmaterial.h"
 #include "dx8fvf.h"
 //#include "dx8caps.h"
-//#include "wwprofile.h"
+
 #include "wwmemlog.h"
 #include "assetmgr.h"
 

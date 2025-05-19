@@ -119,7 +119,6 @@
 #include "visrasterizer.h"
 #include "wwmemlog.h"
 #include <stdio.h>
-#include <wwprofile.h>
 
 
 bool MeshClass::Legacy_Meshes_Fogged = true;
@@ -658,7 +657,7 @@ int MeshClass::Get_Num_Polys(void) const
  *=============================================================================================*/
 void MeshClass::Render(RenderInfoClass & rinfo)
 {
-	WWPROFILE("Mesh::Render");
+	//////WWPROFILE("Mesh::Render");
 	if (Is_Not_Hidden_At_All() == false) {
 		return;
 	}

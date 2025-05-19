@@ -44,7 +44,6 @@
 #include "bound.h"
 #include "simplevec.h"
 #include "sphere.h"
-#include "wwprofile.h"
 #include <limits.h>
 #include "vp.h"
 #include "texture.h"
@@ -684,7 +683,7 @@ int ParticleBufferClass::Get_Particle_Count(void) const
 
 void ParticleBufferClass::Render(RenderInfoClass & rinfo)
 {
-	WWPROFILE("ParticleBuffer::Render");	
+	//////WWPROFILE("ParticleBuffer::Render");	
 
 	unsigned int sort_level = SORT_LEVEL_NONE;
 

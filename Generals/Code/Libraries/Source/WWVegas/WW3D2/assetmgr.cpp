@@ -109,7 +109,6 @@
 #include <windows.h>
 #include <stdio.h>
 #include <d3dx8core.h>
-#include "wwprofile.h"
 #include "assetstatus.h"
 #include "ringobj.h"
 #include "sphereobj.h"
@@ -438,7 +437,6 @@ void WW3DAssetManager::Free(void)
  *=============================================================================================*/
 void WW3DAssetManager::Free_Assets(void)
 {
-	WWPROFILE( "WW3DAssetManager::Free_Assets" );
 
 	// delete all of the prototypes
 	int count = Prototypes.Count();
@@ -643,7 +641,6 @@ bool WW3DAssetManager::Load_3D_Assets( const char * filename )
  *=============================================================================================*/
 bool WW3DAssetManager::Load_3D_Assets(FileClass & w3dfile)
 {
-	WWPROFILE( "WW3DAssetManager::Load_3D_Assets" );
 	if (!w3dfile.Open()) {
 		return false;
 	}
@@ -694,7 +691,6 @@ bool WW3DAssetManager::Load_3D_Assets(FileClass & w3dfile)
  *=============================================================================================*/
 bool WW3DAssetManager::Load_Prototype(ChunkLoadClass & cload)
 {
-	WWPROFILE( "WW3DAssetManager::Load_Prototype" );
 	WWMEMLOG(MEM_GEOMETRY);
 
 	/*
@@ -781,7 +777,6 @@ bool WW3DAssetManager::Load_Prototype(ChunkLoadClass & cload)
  *=============================================================================================*/
 RenderObjClass * WW3DAssetManager::Create_Render_Obj(const char * name)
 {
-	WWPROFILE( "WW3DAssetManager::Create_Render_Obj" );
 	WWMEMLOG(MEM_GEOMETRY);
 
 	// Try to find a prototype
@@ -960,7 +955,6 @@ AssetIterator * WW3DAssetManager::Create_Font3DData_Iterator(void)
  *=============================================================================================*/
 HAnimClass *	WW3DAssetManager::Get_HAnim(const char * name)
 {
-	WWPROFILE( "WW3DAssetManager::Get_HAnim" );
 
 	// Try to find the hanim
 	HAnimClass * anim = HAnimManager.Get_Anim(name);
@@ -1014,7 +1008,6 @@ HAnimClass *	WW3DAssetManager::Get_HAnim(const char * name)
  *=============================================================================================*/
 HTreeClass *	WW3DAssetManager::Get_HTree(const char * name)
 {
-	WWPROFILE( "WW3DAssetManager::Get_HTree" );
 
 	// Try to find the htree
 	HTreeClass * htree = HTreeManager.Get_Tree(name);
@@ -1105,7 +1098,6 @@ TextureClass * WW3DAssetManager::Get_Texture
 	bool allow_reduction
 )
 {
-	WWPROFILE( "WW3DAssetManager::Get_Texture 1" );
 
 	/*
 	** We cannot currently mip-map bumpmaps
@@ -1344,7 +1336,6 @@ void WW3DAssetManager::Log_All_Textures(void)
  *=============================================================================================*/
 Font3DInstanceClass * WW3DAssetManager::Get_Font3DInstance( const char *name )
 {
-	WWPROFILE( "WW3DAssetManager::Get_Font3DInstance" );
 	return NEW_REF( Font3DInstanceClass, ( name ));
 }
 
@@ -1363,7 +1354,6 @@ Font3DInstanceClass * WW3DAssetManager::Get_Font3DInstance( const char *name )
  *=============================================================================================*/
 Font3DDataClass * WW3DAssetManager::Get_Font3DData( const char *name )
 {
-	WWPROFILE( "WW3DAssetManager::Get_Font3DData" );
 	// loop through and see if the Font3D we are looking for has already been
 	// allocated and thus we can just return it.
 	for (	SLNode<Font3DDataClass> *node = Font3DDatas.Head(); node; node = node->Next()) {
@@ -1471,7 +1461,6 @@ void	WW3DAssetManager::Release_Unused_Font3DDatas( void )
  *=============================================================================================*/
 FontCharsClass *	WW3DAssetManager::Get_FontChars( const char * name, int point_size, bool is_bold )
 {
-	WWPROFILE( "WW3DAssetManager::Get_FontChars" );
 
 	// loop through and see if we already have the font chars and we can just return it.
 	for ( int i = 0; i < FontCharsList.Count(); i++ ) {

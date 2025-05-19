@@ -93,7 +93,6 @@
 #include "shader.h"
 #include "vertmaterial.h"
 #include "wwdebug.h"
-#include "wwprofile.h"
 #include "wwmemlog.h"
 #include "shattersystem.h"
 #include "textureloader.h"
@@ -800,7 +799,6 @@ WW3DErrorType WW3D::Begin_Render(bool clear,bool clearz,const Vector3 & color, f
 		return(WW3D_ERROR_OK);
 	}
 
-	WWPROFILE("WW3D::Begin_Render");
 	WWASSERT(IsInitted);
 	HRESULT hr;
 
@@ -942,7 +940,6 @@ WW3DErrorType WW3D::Render(SceneClass * scene,CameraClass * cam,bool clear,bool 
 		return(WW3D_ERROR_OK);
 	}
 
-	WWPROFILE("WW3D::Render");
 	WWMEMLOG(MEM_GAMEDATA);
 	WWASSERT(IsInitted);
 	WWASSERT(IsRendering);
@@ -1010,12 +1007,10 @@ WW3DErrorType WW3D::Render(
 		return(WW3D_ERROR_OK);
 	}
 
-	WWPROFILE("WW3D::Render");
 	WWASSERT(IsInitted);
 	WWASSERT(IsRendering);
 
 	{
-		WWPROFILE("On_Frame_Update");
 		rinfo.Camera.On_Frame_Update();
 	}
 
@@ -1087,7 +1082,6 @@ WW3DErrorType WW3D::End_Render(bool flip_frame)
 		return(WW3D_ERROR_OK);
 	}
 
-	WWPROFILE("WW3D::End_Render");
 
 	WWASSERT(IsRendering);
 	WWASSERT(IsInitted);
@@ -1100,14 +1094,12 @@ WW3DErrorType WW3D::End_Render(bool flip_frame)
 	IsRendering = false;
 
 	{
-		WWPROFILE("DX8Wrapper::End_Scene");
 		DX8Wrapper::End_Scene(flip_frame);
 	}
 
 	FrameCount++;
 
 	{
-		WWPROFILE("End_Statistics");
 		Debug_Statistics::End_Statistics();
 	}
 
@@ -1678,7 +1670,6 @@ void WW3D::Update_Movie_Capture( void )
 {
 #ifdef _WINDOWS
 	WWASSERT( IsCapturing);
-	WWPROFILE("WW3D::Update_Movie_Capture");
 	WWDEBUG_SAY(( "Updating\n"));
 
 		// Lock front buffer and copy

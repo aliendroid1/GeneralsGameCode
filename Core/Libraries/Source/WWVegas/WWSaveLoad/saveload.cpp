@@ -43,7 +43,6 @@
 #include "wwdebug.h"
 #include "saveloadstatus.h"
 #include "wwhack.h"
-#include "wwprofile.h"
 
 #pragma warning(disable:4201) // warning C4201: nonstandard extension used : nameless struct/union
 #include <windows.h>
@@ -72,36 +71,29 @@ bool SaveLoadSystemClass::Save (ChunkSaveClass &csave,SaveLoadSubSystemClass & s
 
 bool SaveLoadSystemClass::Load (ChunkLoadClass &cload,bool auto_post_load)
 {
-	WWLOG_PREPARE_TIME_AND_MEMORY("SaveLoadSystemClass::Load");
 	PointerRemapper.Reset();
-	WWLOG_INTERMEDIATE("PointerRemapper.Reset()");
 	bool ok = true;
 
 	// Load each chunk we encounter and link the manager into the PostLoad list
 	while (cload.Open_Chunk ()) {
 		SaveLoadStatus::Inc_Status_Count();		// Count the sub systems loaded
 		SaveLoadSubSystemClass *sys = Find_Sub_System(cload.Cur_Chunk_ID ());
-		WWLOG_INTERMEDIATE("Find_Sub_System");
 		if (sys != NULL) {
 //WWRELEASE_SAY(("			Name: %s\n",sys->Name()));
 			INIT_SUB_STATUS(sys->Name());
 			ok &= sys->Load(cload);
-			WWLOG_INTERMEDIATE(sys->Name());
 		}
 		cload.Close_Chunk();
 	}
 
 	// Process all of the pointer remap requests
 	PointerRemapper.Process();
-	WWLOG_INTERMEDIATE("PointerRemapper.Process()");
 	PointerRemapper.Reset();
-	WWLOG_INTERMEDIATE("PointerRemapper.Reset()");
 
 	// Call PostLoad on each PersistClass that wanted post-load
 	if (auto_post_load) {
 		Post_Load_Processing(NULL);
 	}
-	WWLOG_INTERMEDIATE("PostLoadProcessing");
 
 	return ok;
 }

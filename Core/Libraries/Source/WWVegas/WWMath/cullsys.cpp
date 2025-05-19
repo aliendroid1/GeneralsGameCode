@@ -36,7 +36,6 @@
 
 #include "cullsys.h"
 #include "wwdebug.h"
-#include "wwprofile.h"
 
 
 /*************************************************************************
@@ -62,8 +61,6 @@ CullableClass::~CullableClass(void)
 void CullableClass::Set_Cull_Box(const AABoxClass & box,bool just_loaded)
 {
 	CullBox = box;
-	
-	WWPROFILE("Cullable::Set_Cull_Box");
 
 	// Just_loaded flag allows us to update the box without notifying the
 	// culling system.  Use this when you've saved and loaded the linkage 

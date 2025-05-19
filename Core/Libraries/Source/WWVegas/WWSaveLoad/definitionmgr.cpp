@@ -45,8 +45,6 @@
 #include "wwmemlog.h"
 #include "twiddler.h"
 #include <string.h>
-#include "wwprofile.h"
-
 
 //////////////////////////////////////////////////////////////////////////////////
 //	Global instance

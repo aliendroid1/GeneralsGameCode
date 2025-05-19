@@ -63,7 +63,6 @@
 #include "sortingrenderer.h"
 #include "texture.h"
 #include "scene.h"
-#include "wwprofile.h"
 #include <cstdio>
 #include <limits.h>
 
@@ -885,7 +884,6 @@ RenderObjClass* DazzleRenderObjClass::Clone(void) const
 // ----------------------------------------------------------------------------
 void DazzleRenderObjClass::Render(RenderInfoClass & rinfo)
 {
-	WWPROFILE("Dazzle::Render");
 	if (Is_Not_Hidden_At_All()) {
 
 		// First check if the dazzle is blinking and is "off"

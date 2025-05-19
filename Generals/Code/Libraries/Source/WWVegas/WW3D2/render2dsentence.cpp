@@ -37,7 +37,6 @@
 #include "render2dsentence.h"
 #include "surfaceclass.h"
 #include "texture.h"
-#include "wwprofile.h"
 #include "wwmemlog.h"
 #include "dx8wrapper.h"
 

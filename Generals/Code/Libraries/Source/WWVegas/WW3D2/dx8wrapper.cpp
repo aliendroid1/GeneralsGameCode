@@ -69,7 +69,6 @@
 #include <stdio.h>
 #include <d3dx8core.h>
 #include "pot.h"
-#include "wwprofile.h"
 #include "ffactory.h"
 #include "dx8caps.h"
 #include "formconv.h"
@@ -1548,7 +1547,7 @@ void DX8Wrapper::End_Scene(bool flip_frames)
 		DX8_Assert();
 		HRESULT hr;
 		{
-			WWPROFILE("DX8Device::Present()");
+			//////WWPROFILE("DX8Device::Present()");
 			hr=_Get_D3D_Device8()->Present(NULL, NULL, NULL, NULL);
 		}
 

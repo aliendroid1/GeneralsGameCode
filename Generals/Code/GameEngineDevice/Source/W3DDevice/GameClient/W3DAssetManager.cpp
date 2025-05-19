@@ -60,7 +60,6 @@
 #include "textureloader.h"
 #include "ww3dformat.h"
 #include "colorspace.h"
-#include <wwprofile.h>
 #include "wwmemlog.h"
 #include "ffactory.h"
 #include "font3d.h"
@@ -173,7 +172,7 @@ TextureClass *W3DAssetManager::Get_Texture(
 	GetPrecisionTimer(&startTime64);
 	#endif
 
-	WWPROFILE( "WW3DAssetManager::Get_Texture 1" );
+	////WWPROFILE( "WW3DAssetManager::Get_Texture 1" );
 
 	/*
 	** Bail if the user isn't really asking for anything
@@ -733,7 +732,7 @@ RenderObjClass * W3DAssetManager::Create_Render_Obj(
 
 	// create a new one based on exisiting prototype
 
-	WWPROFILE( "WW3DAssetManager::Create_Render_Obj" );
+	////WWPROFILE( "WW3DAssetManager::Create_Render_Obj" );
 	WWMEMLOG(MEM_GEOMETRY);
 
 	// Try to find a prototype
@@ -997,7 +996,7 @@ HAnimClass *	W3DAssetManager::Get_HAnim(const char * name)
 	__int64 startTime64,endTime64;
 	GetPrecisionTimer(&startTime64);
 #endif
-	WWPROFILE( "WW3DAssetManager::Get_HAnim" );
+	////WWPROFILE( "WW3DAssetManager::Get_HAnim" );
 
 	HAnimClass *anim=WW3DAssetManager::Get_HAnim(name);
 #ifdef DUMP_PERF_STATS
@@ -1330,7 +1329,7 @@ RenderObjClass * W3DAssetManager::Create_Render_Obj(const char * name,float scal
 	// create a new one based on
 	// exisiting prototype
 
-	WWPROFILE( "WW3DAssetManager::Create_Render_Obj" );
+	////WWPROFILE( "WW3DAssetManager::Create_Render_Obj" );
 	WWMEMLOG(MEM_GEOMETRY);
 
 	// Try to find a prototype
@@ -1397,7 +1396,7 @@ RenderObjClass * W3DAssetManager::Create_Render_Obj(const char * name,float scal
 
 TextureClass * W3DAssetManager::Get_Texture_With_HSV_Shift(const char * filename, const Vector3 &hsv_shift, MipCountType mip_level_count)
 {
-	WWPROFILE( "W3DAssetManager::Get_Texture with HSV shift" );
+	////WWPROFILE( "W3DAssetManager::Get_Texture with HSV shift" );
 
 	bool is_hsv_shift = (WWMath::Fabs(hsv_shift.X - ident_HSV.X) > H_epsilon ||
 		WWMath::Fabs(hsv_shift.Y - ident_HSV.Y) > S_epsilon || WWMath::Fabs(hsv_shift.Z - ident_HSV.Z) > V_epsilon);

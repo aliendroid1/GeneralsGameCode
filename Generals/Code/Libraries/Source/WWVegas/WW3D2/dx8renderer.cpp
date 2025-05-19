@@ -47,7 +47,6 @@
 //#include "dx8fvf.h"
 //#include "dx8caps.h"
 #include "wwdebug.h"
-#include "wwprofile.h"
 #include "wwmemlog.h"
 #include "rinfo.h"
 #include "statistics.h"
@@ -2084,7 +2083,6 @@ static void Render_FVF_Category_Container_List(FVFCategoryList& list)
 
 void DX8MeshRendererClass::Flush(void)
 {
-	WWPROFILE("DX8MeshRenderer::Flush");
 	if (!camera) return;
 	Log_Statistics_String(true);	
 

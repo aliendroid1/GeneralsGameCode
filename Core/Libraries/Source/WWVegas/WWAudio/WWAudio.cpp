@@ -54,7 +54,6 @@
 #include "LogicalListener.h"
 #include "definitionclassids.h"
 #include "wwmemlog.h"
-#include "wwprofile.h"
 
 
 #ifdef G_CODE_BASE
