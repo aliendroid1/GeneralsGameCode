@@ -4,8 +4,8 @@ set(WWDEBUG_SRC
     wwhack.h
     wwmemlog.cpp
     wwmemlog.h
-    wwprofile.cpp
-    wwprofile.h
+    #wwprofile.cpp
+    #wwprofile.h
 )
 
 add_library(core_wwdebug STATIC)
