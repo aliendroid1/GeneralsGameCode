@@ -19,8 +19,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
 # Contains internal libraries
 add_subdirectory(Libraries)
 
-# Base GameEngine library
-add_subdirectory(GameEngine)
 
 
 

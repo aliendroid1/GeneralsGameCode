@@ -1074,13 +1074,16 @@ target_include_directories(g_gameengine PRIVATE
 )
 
 target_link_libraries(g_gameengine PRIVATE
-    corei_gameengine_private
     gi_always
 )
 
 target_link_libraries(g_gameengine PUBLIC
-    corei_gameengine_public
+    core_compression
     g_wwvegas
+    core_config
+    core_browserdispatch
+    d3d8lib
+    gamespy::gamespy
 )
 
 target_precompile_headers(g_gameengine PRIVATE Include/Precompiled/PreRTS.h)
