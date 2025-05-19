@@ -64,15 +64,10 @@ bool CachedFileInputStream::open(AsciiString path)
 		m_pos=0;
 	}
 
-	if (CompressionManager::isDataCompressed(m_buffer, m_size) == 0)
-	{
-		//DEBUG_LOG(("CachedFileInputStream::open() - file %s is uncompressed at %d bytes!\n", path.str(), m_size));
-	}
-	else
+	if (CompressionManager::isDataCompressed(m_buffer, m_size))
 	{
 		Int uncompLen = CompressionManager::getUncompressedSize(m_buffer, m_size);
-		//DEBUG_LOG(("CachedFileInputStream::open() - file %s is compressed!  It should go from %d to %d\n", path.str(),
-		//	m_size, uncompLen));
+		DEBUG_LOG(("CachedFileInputStream::open() - file %s is compressed!  It should go from %d to %d\n", path.str(),m_size, uncompLen));
 		char *uncompBuffer = NEW char[uncompLen];
 		Int actualLen = CompressionManager::decompressData(m_buffer, m_size, uncompBuffer, uncompLen);
 		if (actualLen == uncompLen)
@@ -89,16 +84,9 @@ bool CachedFileInputStream::open(AsciiString path)
 			delete[] uncompBuffer;
 		}
 	}
-	//if (m_size >= 4)
-	//{
-	//	DEBUG_LOG(("File starts as '%c%c%c%c'\n", m_buffer[0], m_buffer[1],
-	//		m_buffer[2], m_buffer[3]));
-	//}
 
 	if (file)
-	{
 		file->close();
-	}
 	return m_size != 0;
 }
 

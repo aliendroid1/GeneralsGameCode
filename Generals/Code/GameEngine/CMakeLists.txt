@@ -588,7 +588,7 @@ set(GAMEENGINE_SRC
     Source/Common/System/AsciiString.cpp
     Source/Common/System/BuildAssistant.cpp
     Source/Common/System/CDManager.cpp
-    Source/Common/System/CopyProtection.cpp
+    
     Source/Common/System/CriticalSection.cpp
     Source/Common/System/DataChunk.cpp
     Source/Common/System/Debug.cpp

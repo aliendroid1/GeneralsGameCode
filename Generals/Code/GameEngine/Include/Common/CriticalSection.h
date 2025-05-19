@@ -44,34 +44,22 @@ class CriticalSection
 	public:
 		CriticalSection()
 		{
-			#ifdef PERF_TIMERS
-			AutoPerfGather a(TheCritSecPerfGather);
-			#endif
 			InitializeCriticalSection( &m_windowsCriticalSection );
 		}
 
 		virtual ~CriticalSection()
 		{
-			#ifdef PERF_TIMERS
-			AutoPerfGather a(TheCritSecPerfGather);
-			#endif
 			DeleteCriticalSection( &m_windowsCriticalSection );
 		}
 
 	public:	// Use these when entering/exiting a critical section.
 		void enter( void ) 
 		{ 
-			#ifdef PERF_TIMERS
-			AutoPerfGather a(TheCritSecPerfGather);
-			#endif
 			EnterCriticalSection( &m_windowsCriticalSection );
 		}
 		
 		void exit( void )
 		{
-			#ifdef PERF_TIMERS
-			AutoPerfGather a(TheCritSecPerfGather);
-			#endif
 			LeaveCriticalSection( &m_windowsCriticalSection );
 		}
 };

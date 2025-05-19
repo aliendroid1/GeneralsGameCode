@@ -25,7 +25,6 @@
 
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
-#include "Compression.h"
 #include "strtok_r.h"
 #include "Common/AudioEventRTS.h"
 #include "Common/CRCDebug.h"
