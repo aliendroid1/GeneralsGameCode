@@ -1,7 +1,7 @@
 set(WWDEBUG_SRC
     wwdebug.cpp
     wwdebug.h
-    wwhack.h
+    
  #   wwmemlog.cpp
  #   wwmemlog.h
 )

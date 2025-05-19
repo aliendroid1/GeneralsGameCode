@@ -42,7 +42,6 @@
 #include "chunkio.h"
 #include "wwdebug.h"
 #include "saveloadstatus.h"
-#include "wwhack.h"
 
 #pragma warning(disable:4201) // warning C4201: nonstandard extension used : nameless struct/union
 #include <windows.h>
@@ -292,8 +291,3 @@ void SaveLoadSystemClass::Unlink_Factory(PersistFactoryClass * fact)
 	fact->NextFactory = NULL;
 }
 
-void Force_Link_WWSaveLoad (void)
-{
-	FORCE_LINK( Twiddler );
-	return ;
-}

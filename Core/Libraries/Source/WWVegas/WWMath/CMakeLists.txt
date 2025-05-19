@@ -4,11 +4,11 @@ set(WWMATH_SRC
     aabtreecull.cpp
     aabtreecull.h
     aaplane.h
-    cardinalspline.cpp
-    cardinalspline.h
+    #cardinalspline.cpp
+    #cardinalspline.h
     castres.h
-    catmullromspline.cpp
-    catmullromspline.h
+   # catmullromspline.cpp
+    #catmullromspline.h
     colmath.cpp
     colmath.h
     colmathaabox.cpp
@@ -36,8 +36,8 @@ set(WWMATH_SRC
     frustum.h
     gridcull.cpp
     gridcull.h
-    hermitespline.cpp
-    hermitespline.h
+    #hermitespline.cpp
+    #hermitespline.h
     lineseg.cpp
     lineseg.h
     lookuptable.cpp
@@ -60,8 +60,8 @@ set(WWMATH_SRC
     quat.h
     rect.h
     sphere.h
-    tcbspline.cpp
-    tcbspline.h
+    #tcbspline.cpp
+    #tcbspline.h
     tri.cpp
     tri.h
     v3_rnd.cpp

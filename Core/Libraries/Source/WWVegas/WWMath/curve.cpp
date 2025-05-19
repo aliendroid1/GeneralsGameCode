@@ -41,12 +41,10 @@
 #include "wwdebug.h"
 #include "persistfactory.h"
 #include "wwmathids.h"
-#include "wwhack.h"
 
 /*
 ** Force-Link this module because the linker can't detect that we actually need it...
 */
-DECLARE_FORCE_LINK(curve);
 
 /*
 ** Persist factories and chunk-id's used to save and load.

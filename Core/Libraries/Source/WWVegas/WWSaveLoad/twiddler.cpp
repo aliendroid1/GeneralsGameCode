@@ -41,11 +41,10 @@
 #include "simpledefinitionfactory.h"
 #include "persistfactory.h"
 #include "win.h"
-#include "wwhack.h"
+
 #include "systimer.h"
 
 
-DECLARE_FORCE_LINK( Twiddler )
 
 //////////////////////////////////////////////////////////////////////////////////
 //	Constants

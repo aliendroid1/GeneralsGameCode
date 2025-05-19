@@ -29,8 +29,8 @@ set(WWSAVELOAD_SRC
     saveloadsubsystem.h
     simpledefinitionfactory.h
     simpleparameter.h
-    twiddler.cpp
-    twiddler.h
+    #twiddler.cpp
+    #twiddler.h
     wwsaveload.cpp
     wwsaveload.h
 )

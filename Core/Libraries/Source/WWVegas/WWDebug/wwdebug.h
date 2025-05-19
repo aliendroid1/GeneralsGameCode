@@ -34,9 +34,9 @@
  * Functions:                                                                                  *
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-#if _MSC_VER >= 1000
+
 #pragma once
-#endif // _MSC_VER >= 1000
+
 
 #ifndef WWDEBUG_H
 #define WWDEBUG_H
@@ -44,12 +44,9 @@
 // TheSuperHackers @todo Recover WWDEBUG?
 #ifdef WWDEBUG
 
-#include <cstdint>
 
 #include <intrin.h>
 
-
-#define cpuid(regs, cpuid_type) __cpuid(reinterpret_cast<int *>(regs), cpuid_type)
 
 
 
@@ -180,12 +177,7 @@ void					WWDebug_DBWin32_Message_Handler( const char * message);
 /*
 ** The WWDEBUG_PROFILE macros can be used to time blocks of code
 */
-#ifdef WWDEBUG
-#define WWDEBUG_PROFILE_START(x)				WWDebug_Profile_Start(x)
-#define WWDEBUG_PROFILE_STOP(x) 				WWDebug_Profile_Stop(x)
-#else
 #define WWDEBUG_PROFILE_START(x)				
 #define WWDEBUG_PROFILE_STOP(x)
-#endif
 
 #endif
