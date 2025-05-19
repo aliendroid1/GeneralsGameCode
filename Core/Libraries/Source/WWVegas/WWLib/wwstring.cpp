@@ -35,7 +35,6 @@
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 #include "wwstring.h"
-#include "wwmemlog.h"
 #include "mutex.h"
 #include <stdio.h>
 
@@ -65,7 +64,7 @@ unsigned StringClass::ReservedMask=0;
 void
 StringClass::Get_String (int length, bool is_temp)
 {
-	WWMEMLOG(MEM_STRINGS);
+	//WWMEMLOG(MEM_STRINGS);
 
 	if (!is_temp && length == 0) {
 		m_Buffer = m_EmptyString;
@@ -136,7 +135,7 @@ StringClass::Get_String (int length, bool is_temp)
 void
 StringClass::Resize (int new_len)
 {
-	WWMEMLOG(MEM_STRINGS);
+	//WWMEMLOG(MEM_STRINGS);
 
 	int allocated_len = Get_Allocated_Length ();
 	if (new_len > allocated_len) {
@@ -166,7 +165,7 @@ StringClass::Resize (int new_len)
 void
 StringClass::Uninitialised_Grow (int new_len)
 {
-	WWMEMLOG(MEM_STRINGS);
+	//WWMEMLOG(MEM_STRINGS);
 
 	int allocated_len = Get_Allocated_Length ();
 	if (new_len > allocated_len) {

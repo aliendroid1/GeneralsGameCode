@@ -48,7 +48,6 @@
 #include <string.h>
 #include "htree.h"
 #include "chunkio.h"
-#include "wwmemlog.h"
 #include "w3dexclusionlist.h"
 
 
@@ -182,7 +181,6 @@ void HTreeManagerClass::Free_All_Trees_With_Exclusion_List(const W3DExclusionLis
  *=============================================================================================*/
 int HTreeManagerClass::Load_Tree(ChunkLoadClass & cload)
 {
-	WWMEMLOG(MEM_ANIMATION);
 	HTreeClass * newtree = W3DNEW HTreeClass;
 
 	if (newtree == NULL) {

@@ -42,7 +42,6 @@
 #include "chunkio.h"
 #include "persistfactory.h"
 #include "Threads.h"
-#include "wwmemlog.h"
 
 
 DEFINE_AUTO_POOL(SoundSceneClass::AudibleInfoClass, 64);
@@ -83,7 +82,7 @@ SoundSceneClass::SoundSceneClass (void)
 		m_MaxExtents (500, 500, 500),
 		m_IsBatchMode (false)
 {	
-	WWMEMLOG(MEM_SOUND);
+	//WWMEMLOG(MEM_SOUND);
 	m_Listener = W3DNEW Listener3DClass;
 	m_DynamicCullingSystem.Re_Partition (m_MinExtents, m_MaxExtents, 100.00F);	
 	m_LogicalCullingSystem.Re_Partition (m_MinExtents, m_MaxExtents, 100.00F);
@@ -524,7 +523,7 @@ SoundSceneClass::Add_Sound
 )
 {
 	//WWPROFILE ("Add_Sound");
-	WWMEMLOG(MEM_SOUND);
+	//WWMEMLOG(MEM_SOUND);
 
 	WWASSERT (sound_obj != NULL);
 	if (sound_obj != NULL && sound_obj->Is_In_Scene () == false) {

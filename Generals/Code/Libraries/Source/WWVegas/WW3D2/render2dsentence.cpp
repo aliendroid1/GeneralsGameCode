@@ -37,7 +37,6 @@
 #include "render2dsentence.h"
 #include "surfaceclass.h"
 #include "texture.h"
-#include "wwmemlog.h"
 #include "dx8wrapper.h"
 
 #ifdef RTS_INTERNAL
@@ -345,7 +344,7 @@ Render2DSentenceClass::Release_Pending_Surfaces (void)
 void
 Render2DSentenceClass::Build_Textures (void)
 {
-	WWMEMLOG(MEM_TEXTURE);
+	//WWMEMLOG(MEM_TEXTURE);
 
 	//
 	//	Make sure we unlock the current surface

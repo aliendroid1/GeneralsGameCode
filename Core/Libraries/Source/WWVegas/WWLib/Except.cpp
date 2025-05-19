@@ -58,7 +58,6 @@
 //#include "commando\nat.h"
 #include "thread.h"
 #include "wwdebug.h"
-#include "wwmemlog.h"
 
 #include	<conio.h>
 #include	<imagehlp.h>
@@ -888,7 +887,7 @@ int Exception_Handler(int exception_code, EXCEPTION_POINTERS *e_info)
  *=============================================================================================*/
 void Register_Thread_ID(unsigned long thread_id, char *thread_name, bool main_thread)
 {
-	WWMEMLOG(MEM_GAMEDATA);
+	//WWMEMLOG(MEM_GAMEDATA);
 	if (thread_name) {
 
 		/*

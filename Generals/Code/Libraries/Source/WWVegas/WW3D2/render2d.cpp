@@ -49,7 +49,6 @@
 #include "dx8fvf.h"
 //#include "dx8caps.h"
 
-#include "wwmemlog.h"
 #include "assetmgr.h"
 
 RectClass							Render2DClass::ScreenResolution( 0,0,0,0 );
@@ -714,7 +713,7 @@ void	Render2DTextClass::Draw_Char( WCHAR ch, unsigned long color )
 
 void	Render2DTextClass::Draw_Text( const char * text, unsigned long color )
 {
-	WWMEMLOG(MEM_GEOMETRY);
+	//WWMEMLOG(MEM_GEOMETRY);
 	WideStringClass wide(0,true);
 	wide.Convert_From( text );
 	Draw_Text( wide, color );
@@ -722,7 +721,7 @@ void	Render2DTextClass::Draw_Text( const char * text, unsigned long color )
 
 void	Render2DTextClass::Draw_Text( const WCHAR * text, unsigned long color )
 {
-	WWMEMLOG(MEM_GEOMETRY);
+	//WWMEMLOG(MEM_GEOMETRY);
 
 	// Reset the Extents
 	DrawExtents = RectClass( Location, Location );

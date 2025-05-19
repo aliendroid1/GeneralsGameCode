@@ -59,7 +59,6 @@
 #include "wwmath.h"
 #include "chunkio.h"
 #include "w3d_file.h"
-#include "wwmemlog.h"
 #include "hrawanim.h"
 #include "motchan.h"
 
@@ -1197,7 +1196,7 @@ HTreeClass * HTreeClass::Create_Interpolated(const HTreeClass * tree_base,
 														   const HTreeClass * tree_b, 
 														   float a_scale, float b_scale )
 {
-	WWMEMLOG(MEM_ANIMATION);
+	//WWMEMLOG(MEM_ANIMATION);
 	assert( tree_base->NumPivots == tree_a->NumPivots );
 	assert( tree_base->NumPivots == tree_b->NumPivots );
 

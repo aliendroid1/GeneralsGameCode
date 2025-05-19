@@ -60,7 +60,6 @@
 #include "textureloader.h"
 #include "ww3dformat.h"
 #include "colorspace.h"
-#include "wwmemlog.h"
 #include "ffactory.h"
 #include "font3d.h"
 #include "render2dsentence.h"
@@ -733,7 +732,7 @@ RenderObjClass * W3DAssetManager::Create_Render_Obj(
 	// create a new one based on exisiting prototype
 
 	////WWPROFILE( "WW3DAssetManager::Create_Render_Obj" );
-	WWMEMLOG(MEM_GEOMETRY);
+	//WWMEMLOG(MEM_GEOMETRY);
 
 	// Try to find a prototype
 	PrototypeClass * proto = Find_Prototype(name);
@@ -1330,7 +1329,7 @@ RenderObjClass * W3DAssetManager::Create_Render_Obj(const char * name,float scal
 	// exisiting prototype
 
 	////WWPROFILE( "WW3DAssetManager::Create_Render_Obj" );
-	WWMEMLOG(MEM_GEOMETRY);
+	//WWMEMLOG(MEM_GEOMETRY);
 
 	// Try to find a prototype
 	PrototypeClass * proto = Find_Prototype(name);

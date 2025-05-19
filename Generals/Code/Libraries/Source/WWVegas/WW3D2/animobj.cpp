@@ -64,7 +64,6 @@
 #include "hanim.h"
 #include "hcanim.h"
 #include "ww3d.h"
-#include "wwmemlog.h"
 #include "animatedsoundmgr.h"
 
 
@@ -1122,7 +1121,7 @@ void Animatable3DObjClass::Set_Animation_Frame_Rate_Multiplier(float multiplier)
 
 void Animatable3DObjClass::Set_HTree(HTreeClass * new_htree) 
 { 
-	WWMEMLOG(MEM_ANIMATION);
+	//WWMEMLOG(MEM_ANIMATION);
 	// try to ensure that the htree we're using has the same structure...
 	WWASSERT(new_htree->Num_Pivots() == HTree->Num_Pivots()); 
 	

@@ -93,7 +93,6 @@
 #include "sphere.h"
 #include "plane.h"
 #include "wwdebug.h"
-#include "wwmemlog.h"
 #include "w3d_file.h"
 #include "vp.h"
 
@@ -1535,7 +1534,6 @@ void MeshGeometryClass::Compute_Plane(int pidx,PlaneClass * set_plane) const
  *=============================================================================================*/
 void MeshGeometryClass::Generate_Culling_Tree(void)
 {
-	WWMEMLOG(MEM_CULLINGDATA);
 	{
 		AABTreeBuilderClass builder;
 		builder.Build_AABTree(PolyCount,Poly->Get_Array(),VertexCount,Vertex->Get_Array());

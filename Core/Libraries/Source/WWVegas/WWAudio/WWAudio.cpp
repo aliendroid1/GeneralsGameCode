@@ -53,7 +53,6 @@
 #include "LogicalSound.h"
 #include "LogicalListener.h"
 #include "definitionclassids.h"
-#include "wwmemlog.h"
 
 
 #ifdef G_CODE_BASE
@@ -390,7 +389,7 @@ WWAudioClass::Get_Sound_Buffer (const char *filename, bool is_3d)
 SoundBufferClass *
 WWAudioClass::Get_Sound_Buffer (FileClass &file, const char *string_id, bool is_3d)
 {
-	WWMEMLOG(MEM_SOUND);
+	//WWMEMLOG(MEM_SOUND);
 
 	//
 	// Try to find the buffer in our cache, otherwise create a new buffer.
@@ -779,7 +778,7 @@ WWAudioClass::Create_3D_Sound
 	int				classid_hint
 )
 {
-	WWMEMLOG(MEM_SOUND);
+	//WWMEMLOG(MEM_SOUND);
 
 	// Assume failure
 	Sound3DClass *sound_obj = NULL;
@@ -2088,7 +2087,7 @@ WWAudioClass::Is_Disabled (void) const
 void
 WWAudioClass::Initialize (const char *registry_subkey_name)
 {
-	WWMEMLOG(MEM_SOUND);
+	//WWMEMLOG(MEM_SOUND);
 
 	if (Is_Disabled () == false) {
 

@@ -117,8 +117,6 @@
 #include "dx8indexbuffer.h"
 #include "dx8renderer.h"
 #include "visrasterizer.h"
-#include "wwmemlog.h"
-#include <stdio.h>
 
 
 bool MeshClass::Legacy_Meshes_Fogged = true;
@@ -541,7 +539,7 @@ void MeshClass::Compose_Deformed_Vertex_Buffer(
  *=============================================================================================*/
 void MeshClass::Create_Decal(DecalGeneratorClass * generator)
 {
-	WWMEMLOG(MEM_GEOMETRY);
+	//WWMEMLOG(MEM_GEOMETRY);
 
 	if (WW3D::Are_Decals_Enabled() == false) {
 		return;

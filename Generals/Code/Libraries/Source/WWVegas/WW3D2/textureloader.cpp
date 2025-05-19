@@ -32,7 +32,6 @@
 #include "TARGA.H"
 #include <d3dx8tex.h>
 #include <cstdio>
-#include "wwmemlog.h"
 #include "texture.h"
 #include "formconv.h"
 #include "texturethumbnail.h"
@@ -411,7 +410,6 @@ IDirect3DSurface8* TextureLoader::Load_Surface_Immediate(
 void TextureLoader::Load_Mipmap_Levels(TextureLoadTaskClass* task)
 {
 	WWASSERT(task->Peek_D3D_Texture());
-	WWMEMLOG(MEM_TEXTURE);
 
 	if (task->Peek_Texture()->Is_Compression_Allowed()) {
 		DDSFileClass dds_file(task->Peek_Texture()->Get_Full_Path(),task->Get_Reduction());

@@ -93,7 +93,6 @@
 #include "shader.h"
 #include "vertmaterial.h"
 #include "wwdebug.h"
-#include "wwmemlog.h"
 #include "shattersystem.h"
 #include "textureloader.h"
 #include "statistics.h"
@@ -821,11 +820,7 @@ WW3DErrorType WW3D::Begin_Render(bool clear,bool clearz,const Vector3 & color, f
 		return WW3D_ERROR_GENERIC;
 	}
 
-	// Memory allocation statistics
-	LastFrameMemoryAllocations=WWMemoryLogClass::Get_Allocate_Count();
-	LastFrameMemoryFrees=WWMemoryLogClass::Get_Free_Count();
-	WWMemoryLogClass::Reset_Counters();
-
+	
 	TextureLoader::Update();
 //	TextureClass::_Reset_Time_Stamp();
 	DynamicVBAccessClass::_Reset(true);
@@ -940,7 +935,7 @@ WW3DErrorType WW3D::Render(SceneClass * scene,CameraClass * cam,bool clear,bool 
 		return(WW3D_ERROR_OK);
 	}
 
-	WWMEMLOG(MEM_GAMEDATA);
+	//WWMEMLOG(MEM_GAMEDATA);
 	WWASSERT(IsInitted);
 	WWASSERT(IsRendering);
 	WWASSERT(scene);

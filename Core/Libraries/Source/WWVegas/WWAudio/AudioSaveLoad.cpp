@@ -42,7 +42,6 @@
 #include "SoundChunkIDs.h"
 #include "chunkio.h"
 #include "SoundScene.h"
-#include "wwmemlog.h"
 
 
 ///////////////////////////////////////////////////////////////////////
@@ -104,7 +103,7 @@ StaticAudioSaveLoadClass::Contains_Data (void) const
 bool
 StaticAudioSaveLoadClass::Save (ChunkSaveClass &csave)
 {
-	WWMEMLOG(MEM_SOUND);
+	//WWMEMLOG(MEM_SOUND);
 
 	bool retval = true;
 
@@ -130,7 +129,7 @@ StaticAudioSaveLoadClass::Save (ChunkSaveClass &csave)
 bool
 StaticAudioSaveLoadClass::Load (ChunkLoadClass &cload)
 {
-	WWMEMLOG(MEM_SOUND);
+	//WWMEMLOG(MEM_SOUND);
 
 	bool retval = true;
 	while (cload.Open_Chunk ()) {

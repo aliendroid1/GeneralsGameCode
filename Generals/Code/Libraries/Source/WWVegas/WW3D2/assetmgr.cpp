@@ -99,7 +99,6 @@
 #include "hlod.h"
 #include "agg_def.h"
 #include "wwstring.h"
-#include "wwmemlog.h"
 #include "dazzle.h"
 #include "dx8wrapper.h"
 #include "dx8renderer.h"
@@ -691,7 +690,7 @@ bool WW3DAssetManager::Load_3D_Assets(FileClass & w3dfile)
  *=============================================================================================*/
 bool WW3DAssetManager::Load_Prototype(ChunkLoadClass & cload)
 {
-	WWMEMLOG(MEM_GEOMETRY);
+	//WWMEMLOG(MEM_GEOMETRY);
 
 	/*
 	** Get the chunk id
@@ -777,7 +776,7 @@ bool WW3DAssetManager::Load_Prototype(ChunkLoadClass & cload)
  *=============================================================================================*/
 RenderObjClass * WW3DAssetManager::Create_Render_Obj(const char * name)
 {
-	WWMEMLOG(MEM_GEOMETRY);
+	//WWMEMLOG(MEM_GEOMETRY);
 
 	// Try to find a prototype
 	PrototypeClass * proto = Find_Prototype(name);

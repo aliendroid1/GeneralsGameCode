@@ -42,7 +42,6 @@
 #include "chunkio.h"
 #include "persistfactory.h"
 #include "wwdebug.h"
-#include "wwmemlog.h"
 #include "twiddler.h"
 #include <string.h>
 
@@ -671,7 +670,7 @@ DefinitionMgrClass::Save
 	ChunkSaveClass &	csave
 )
 {
-	WWMEMLOG(MEM_GAMEDATA);
+	//WWMEMLOG(MEM_GAMEDATA);
 	
 	bool retval = true;
 
@@ -701,7 +700,7 @@ DefinitionMgrClass::Save
 bool
 DefinitionMgrClass::Load (ChunkLoadClass &cload)
 {
-	WWMEMLOG(MEM_GAMEDATA);
+	//WWMEMLOG(MEM_GAMEDATA);
 	bool retval = true;
 
 	while (cload.Open_Chunk ()) {

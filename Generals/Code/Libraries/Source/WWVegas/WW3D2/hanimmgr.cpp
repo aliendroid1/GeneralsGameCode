@@ -53,7 +53,6 @@
 #include "hcanim.h"
 #include "hmorphanim.h"
 #include "chunkio.h"
-#include "wwmemlog.h"
 #include "w3dexclusionlist.h"
 #include "animatedsoundmgr.h"
 
@@ -117,7 +116,7 @@ HAnimManagerClass::~HAnimManagerClass(void)
  *=============================================================================================*/
 int HAnimManagerClass::Load_Anim(ChunkLoadClass & cload)
 {
-	WWMEMLOG(MEM_ANIMATION);
+	//WWMEMLOG(MEM_ANIMATION);
 
 	switch (cload.Cur_Chunk_ID()) 
 	{

@@ -47,7 +47,7 @@
 //#include "dx8fvf.h"
 //#include "dx8caps.h"
 #include "wwdebug.h"
-#include "wwmemlog.h"
+
 #include "rinfo.h"
 #include "statistics.h"
 #include "meshmdl.h"
@@ -1977,7 +1977,7 @@ void DX8MeshRendererClass::Unregister_Mesh_Type(MeshModelClass* mmc)
 
 void DX8MeshRendererClass::Register_Mesh_Type(MeshModelClass* mmc)
 {
-	WWMEMLOG(MEM_GEOMETRY);
+	//WWMEMLOG(MEM_GEOMETRY);
 #ifdef ENABLE_CATEGORY_LOG
 	WWDEBUG_SAY(("Registering mesh: %s (%d polys, %d verts + %d gap polygons)\n",mmc->Get_Name(),mmc->Get_Polygon_Count(),mmc->Get_Vertex_Count(),mmc->Get_Gap_Filler_Polygon_Count()));
 #endif
