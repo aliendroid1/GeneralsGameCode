@@ -54,7 +54,7 @@ ThumbnailClass::ThumbnailClass(const char* name, unsigned char* bitmap, unsigned
 ThumbnailClass::ThumbnailClass(const StringClass& filename)
 	:
 	Bitmap(0), 
-	Name(filename), 
+	Name(filename),
 	Allocated(false),
 	Width(0),
 	Height(0)
@@ -70,10 +70,10 @@ ThumbnailClass::ThumbnailClass(const StringClass& filename)
 		Allocated=true;
 		dds_file.Copy_Level_To_Surface(
 			0,			// Level
-			WW3D_FORMAT_A8R8G8B8, 
-			Width, 
-			Height, 
-			Bitmap, 
+			WW3D_FORMAT_A8R8G8B8,
+			Width,
+			Height,
+			Bitmap,
 			Width*4);
 	}
 	// If DDS file can't be used try loading from TGA
@@ -108,7 +108,7 @@ ThumbnailClass::ThumbnailClass(const StringClass& filename)
 
 		dest_format=WW3D_FORMAT_A8R8G8B8;
 		BitmapHandlerClass::Copy_Image(
-			Bitmap, 
+			Bitmap,
 			Width,
 			Height,
 			Width*4,

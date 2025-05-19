@@ -6,24 +6,25 @@
         "patch": 0
     },
     "configurePresets": [
-        {
-            "name": "win32-debug",
-            "hidden": false,
-            "displayName": "Windows 32bit Debug",
-            "generator": "Ninja Multi-Config",
-            "architecture": {
-                "value": "Win32",
-                "strategy": "external"
-            },
-            "binaryDir": "${sourceDir}/build/${presetName}",
-            "cacheVariables": {
-                "CMAKE_EXPORT_COMPILE_COMMANDS": "OFF",
-                "CMAKE_MSVC_DEBUG_INFORMATION_FORMAT": "$<$<CONFIG:Debug>:Embedded>",
-                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL",
-                "RTS_FLAGS": "/W3",
-                "RTS_BUILD_OPTION_DEBUG": "ON"
-            }
+      {
+        "name": "win32-debug",
+        "hidden": false,
+        "displayName": "Windows 32bit Debug",
+        "generator": "Ninja Multi-Config",
+        //"generator": "Visual Studio 17 2022",
+        "architecture": {
+          "value": "Win32",
+          "strategy": "external"
+        },
+        "binaryDir": "${sourceDir}/build/${presetName}",
+        "cacheVariables": {
+          "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+          "CMAKE_MSVC_DEBUG_INFORMATION_FORMAT": "$<$<CONFIG:Debug>:Embedded>",
+          "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL",
+          "RTS_FLAGS": "/W3",
+          "RTS_BUILD_OPTION_DEBUG": "ON"
         }
+      }
     ],
     "buildPresets": [
         {

@@ -138,26 +138,6 @@ WWINLINE void DX8_ErrorCode(unsigned res)
 #define no_EXTENDED_STATS
 // EXTENDED_STATS collects additional timing statistics by turning off parts
 // of the 3D drawing system (terrain, objects, etc.)
-#ifdef EXTENDED_STATS
-class DX8_Stats
-{
-public:
-	bool m_showingStats;
-	bool m_disableTerrain;
-	bool m_disableWater;
-	bool m_disableObjects;
-	bool m_disableOverhead;
-	bool m_disableConsole;
-	int  m_debugLinesToShow;
-	int	 m_sleepTime;
-public:
-	DX8_Stats::DX8_Stats(void) {
-		m_disableConsole = m_showingStats = m_disableTerrain = m_disableWater = m_disableOverhead = m_disableObjects = false;
-		m_sleepTime = 0;
-		m_debugLinesToShow = -1; // -1 means show all expected lines of output
-	}
-};
-#endif
 
 
 // This virtual interface was added for the Generals RTS.
@@ -810,17 +790,8 @@ WWINLINE void DX8Wrapper::Set_DX8_Light(int index, D3DLIGHT8* light)
 WWINLINE void DX8Wrapper::Set_DX8_Render_State(D3DRENDERSTATETYPE state, unsigned value)
 {
 	// Can't monitor state changes because setShader call to GERD may change the states!
-	if (RenderStates[state]==value) return;
-
-#ifdef MESH_RENDER_SNAPSHOT_ENABLED
-	if (WW3D::Is_Snapshot_Activated()) {
-		StringClass value_name(0,true);
-		Get_DX8_Render_State_Value_Name(value_name,state,value);
-		SNAPSHOT_SAY(("DX8 - SetRenderState(state: %s, value: %s)\n",
-			Get_DX8_Render_State_Name(state),
-			value_name));
-	}
-#endif
+	if (RenderStates[state]==value) 
+		return;
 
 	RenderStates[state]=value;
 	DX8CALL(SetRenderState( state, value ));
@@ -902,35 +873,6 @@ WWINLINE Vector4 DX8Wrapper::Convert_Color(unsigned color)
 	return col;
 }
 
-#if 0
-WWINLINE unsigned int DX8Wrapper::Convert_Color(const Vector3& color, const float alpha)
-{
-	WWASSERT(color.X<=1.0f);
-	WWASSERT(color.Y<=1.0f);
-	WWASSERT(color.Z<=1.0f);
-	WWASSERT(alpha<=1.0f);
-	WWASSERT(color.X>=0.0f);
-	WWASSERT(color.Y>=0.0f);
-	WWASSERT(color.Z>=0.0f);
-	WWASSERT(alpha>=0.0f);
-
-	return D3DCOLOR_COLORVALUE(color.X,color.Y,color.Z,alpha);
-}
-WWINLINE unsigned int DX8Wrapper::Convert_Color(const Vector4& color)
-{
-	WWASSERT(color.X<=1.0f);
-	WWASSERT(color.Y<=1.0f);
-	WWASSERT(color.Z<=1.0f);
-	WWASSERT(color.W<=1.0f);
-	WWASSERT(color.X>=0.0f);
-	WWASSERT(color.Y>=0.0f);
-	WWASSERT(color.Z>=0.0f);
-	WWASSERT(color.W>=0.0f);
-
-	return D3DCOLOR_COLORVALUE(color.X,color.Y,color.Z,color.W);
-}
-#else
-
 // ----------------------------------------------------------------------------
 //
 // Convert RGBA color from float vector to 32 bit integer
@@ -940,76 +882,7 @@ WWINLINE unsigned int DX8Wrapper::Convert_Color(const Vector4& color)
 
 WWINLINE unsigned int DX8Wrapper::Convert_Color(const Vector3& color,float alpha)
 {
-#if defined(_MSC_VER) && _MSC_VER < 1300
-	const float scale = 255.0;
-	unsigned int col;
-
-	// Multiply r, g, b and a components (0.0,...,1.0) by 255 and convert to integer. Or the integer values togerher
-	// such that 32 bit ingeger has AAAAAAAARRRRRRRRGGGGGGGGBBBBBBBB.
-	__asm
-	{
-		sub	esp,20					// space for a, r, g and b float plus fpu rounding mode
-
-		// Store the fpu rounding mode
-
-		fwait
-		fstcw		[esp+16]				// store control word to stack
-		mov		eax,[esp+16]		// load it to eax
-		mov		edi,eax				// take copy
-		and		eax,~(1024|2048)	// mask out certain bits
-		or			eax,(1024|2048)	// or with precision control value "truncate"
-		sub		edi,eax				// did it change?
-		jz			skip					// .. if not, skip
-		mov		[esp],eax			// .. change control word
-		fldcw		[esp]
-skip:
-
-		// Convert the color
-
-		mov	esi,dword ptr color
-		fld	dword ptr[scale]
-
-		fld	dword ptr[esi]			// r
-		fld	dword ptr[esi+4]		// g
-		fld	dword ptr[esi+8]		// b
-		fld	dword ptr[alpha]		// a
-		fld	st(4)
-		fmul	st(4),st
-		fmul	st(3),st
-		fmul	st(2),st
-		fmulp	st(1),st
-		fistp	dword ptr[esp+0]		// a
-		fistp	dword ptr[esp+4]		// b
-		fistp	dword ptr[esp+8]		// g
-		fistp	dword ptr[esp+12]		// r
-		mov	ecx,[esp]				// a
-		mov	eax,[esp+4]				// b
-		mov	edx,[esp+8]				// g
-		mov	ebx,[esp+12]			// r
-		shl	ecx,24					// a << 24
-		shl	ebx,16					// r << 16
-		shl	edx,8						//	g << 8
-		or		eax,ecx					// (a << 24) | b
-		or		eax,ebx					// (a << 24) | (r << 16) | b
-		or		eax,edx					// (a << 24) | (r << 16) | (g << 8) | b
-
-		fstp	st(0)
-
-		// Restore fpu rounding mode
-
-		cmp	edi,0					// did we change the value?
-		je		not_changed			// nope... skip now...
-		fwait
-		fldcw	[esp+16];
-not_changed:
-		add	esp,20
-
-		mov	col,eax
-	}
-	return col;
-#else
 	return color.Convert_To_ARGB(alpha);
-#endif // defined(_MSC_VER) && _MSC_VER < 1300
 }
 
 // ----------------------------------------------------------------------------
@@ -1020,54 +893,6 @@ not_changed:
 
 WWINLINE void DX8Wrapper::Clamp_Color(Vector4& color)
 {
-#if defined(_MSC_VER) && _MSC_VER < 1300
-	if (CPUDetectClass::Has_CMOV_Instruction()) {
-	__asm
-	{
-		mov	esi,dword ptr color
-
-		mov edx,0x3f800000
-
-		mov edi,dword ptr[esi]
-		mov ebx,edi
-		sar edi,31
-		not edi			// mask is now zero if negative value
-		and edi,ebx
-		cmp edi,edx		// if no less than 1.0 set to 1.0
-		cmovnb edi,edx
-		mov dword ptr[esi],edi
-
-		mov edi,dword ptr[esi+4]
-		mov ebx,edi
-		sar edi,31
-		not edi			// mask is now zero if negative value
-		and edi,ebx
-		cmp edi,edx		// if no less than 1.0 set to 1.0
-		cmovnb edi,edx
-		mov dword ptr[esi+4],edi
-
-		mov edi,dword ptr[esi+8]
-		mov ebx,edi
-		sar edi,31
-		not edi			// mask is now zero if negative value
-		and edi,ebx
-		cmp edi,edx		// if no less than 1.0 set to 1.0
-		cmovnb edi,edx
-		mov dword ptr[esi+8],edi
-
-		mov edi,dword ptr[esi+12]
-		mov ebx,edi
-		sar edi,31
-		not edi			// mask is now zero if negative value
-		and edi,ebx
-		cmp edi,edx		// if no less than 1.0 set to 1.0
-		cmovnb edi,edx
-		mov dword ptr[esi+12],edi
-	}
-	return;
-	}
-#endif // defined(_MSC_VER) && _MSC_VER < 1300
-
 	for (int i=0;i<4;++i) {
 		float f=(color[i]<0.0f) ? 0.0f : color[i];
 		color[i]=(f>1.0f) ? 1.0f : f;
@@ -1092,7 +917,7 @@ WWINLINE unsigned int DX8Wrapper::Convert_Color_Clamp(const Vector4& color)
 	return Convert_Color(reinterpret_cast<const Vector3&>(clamped_color),clamped_color[3]);
 }
 
-#endif
+
 
 
 WWINLINE void DX8Wrapper::Set_Alpha (const float alpha, unsigned int &color)
