@@ -1,8 +1,8 @@
 {
-    "version": 6,
+    "version": 9,
     "cmakeMinimumRequired": {
-        "major": 3,
-        "minor": 25,
+        "major": 4,
+        "minor": 0,
         "patch": 0
     },
     "configurePresets": [
@@ -10,7 +10,7 @@
         "name": "win32-debug",
         "hidden": false,
         "displayName": "Windows 32bit Debug",
-        "generator": "Ninja Multi-Config",
+        "generator": "Ninja",
         //"generator": "Visual Studio 17 2022",
         "architecture": {
           "value": "Win32",

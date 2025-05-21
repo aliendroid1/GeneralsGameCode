@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 4.0.0)
 
 # Use packagename_ROOT for FindPackage.
 if(POLICY CMP0074)
@@ -37,9 +37,7 @@ project(genzh LANGUAGES C CXX)
 
 include(FetchContent)
 
-
-
-
+   
 include(cmake/config.cmake)
 include(cmake/lzhl.cmake)
 include(cmake/zlib.cmake)
@@ -60,3 +58,4 @@ add_subdirectory(Generals)
 
 feature_summary(WHAT ENABLED_FEATURES DESCRIPTION "Enabled features:")
 feature_summary(WHAT DISABLED_FEATURES DESCRIPTION "Disabled features:")
+

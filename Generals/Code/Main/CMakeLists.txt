@@ -62,3 +62,4 @@ if(WIN32 OR "${CMAKE_SYSTEM}" MATCHES "Windows")
         RTS.RC
     )
 endif()
+

@@ -1,5 +1,5 @@
 add_library(d3d8lib INTERFACE)
-target_link_libraries(d3d8lib INTERFACE d3d8 d3dx8 dinput8 dxguid)
+target_link_libraries(d3d8lib INTERFACE d3d8)
 
 
 target_link_libraries(d3d8lib INTERFACE legacy_stdio_definitions)
