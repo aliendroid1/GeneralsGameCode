@@ -33,24 +33,14 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 // INCLUDES ///////////////////////////////////////////////////////////////////////////////////////
-#include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
 #include "Common/ActionManager.h"
-#include "Common/GlobalData.h"
 #include "Common/Player.h"
-#include "Common/PlayerList.h"
 #include "Common/SpecialPower.h"
-#include "Common/Team.h"
-#include "Common/ThingTemplate.h"
 
-#include "GameClient/Drawable.h"
-#include "GameClient/InGameUI.h"
 
-#include "GameLogic/Object.h"
 #include "GameLogic/PartitionManager.h"
-#include "GameLogic/Module/BodyModule.h"
 #include "GameLogic/Module/ContainModule.h"
-#include "GameLogic/Module/CollideModule.h"
 #include "GameLogic/Module/DozerAIUpdate.h"
 #include "GameLogic/Module/RailroadGuideAIUpdate.h"
 #include "GameLogic/Module/RailedTransportDockUpdate.h"
@@ -62,7 +52,6 @@
 #include "GameLogic/Module/SpecialAbilityUpdate.h"
 #include "GameLogic/Weapon.h"
 
-#include "GameLogic/ExperienceTracker.h"//LORENZEN
 
 #ifdef RTS_INTERNAL
 // for occasional debugging...

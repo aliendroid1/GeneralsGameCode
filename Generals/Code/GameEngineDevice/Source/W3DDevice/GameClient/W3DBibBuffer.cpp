@@ -47,20 +47,8 @@
 //-----------------------------------------------------------------------------
 #include "W3DDevice/GameClient/W3DBibBuffer.h"
 
-#include <stdio.h>
-#include <string.h>
-#include <assetmgr.h>
-#include <texture.h>
 #include "Common/GlobalData.h"
-#include "Common/RandomValue.h"
-#include "W3DDevice/GameClient/TerrainTex.h"
 #include "W3DDevice/GameClient/HeightMap.h"
-#include "W3DDevice/GameClient/W3DDynamicLight.h"
-#include "WW3D2/camera.h"
-#include "WW3D2/dx8wrapper.h"
-#include "WW3D2/dx8renderer.h"
-#include "WW3D2/mesh.h"
-#include "WW3D2/meshmdl.h"
 
 //-----------------------------------------------------------------------------
 //         Private Data                                                     

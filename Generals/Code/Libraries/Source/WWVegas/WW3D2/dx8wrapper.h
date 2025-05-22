@@ -812,16 +812,16 @@ WWINLINE void DX8Wrapper::Set_DX8_Texture_Stage_State(unsigned stage, D3DTEXTURE
 
 	// Can't monitor state changes because setShader call to GERD may change the states!
 	if (TextureStageStates[stage][(unsigned int)state]==value) return;
-#ifdef MESH_RENDER_SNAPSHOT_ENABLED
-	if (WW3D::Is_Snapshot_Activated()) {
-		StringClass value_name(0,true);
-		Get_DX8_Texture_Stage_State_Value_Name(value_name,state,value);
-		SNAPSHOT_SAY(("DX8 - SetTextureStageState(stage: %d, state: %s, value: %s)\n",
-			stage,
-			Get_DX8_Texture_Stage_State_Name(state),
-			value_name));
-	}
-#endif
+//#ifdef MESH_RENDER_SNAPSHOT_ENABLED
+//	if (WW3D::Is_Snapshot_Activated()) {
+//		StringClass value_name(0,true);
+//		Get_DX8_Texture_Stage_State_Value_Name(value_name,state,value);
+//		SNAPSHOT_SAY(("DX8 - SetTextureStageState(stage: %d, state: %s, value: %s)\n",
+//			stage,
+//			Get_DX8_Texture_Stage_State_Name(state),
+//			value_name));
+//	}
+//#endif
 
 	TextureStageStates[stage][(unsigned int)state]=value;
 	DX8CALL(SetTextureStageState( stage, state, value ));
@@ -959,10 +959,10 @@ WWINLINE void DX8Wrapper::Set_Shader(const ShaderClass& shader)
 	}
 	render_state.shader=shader;
 	render_state_changed|=SHADER_CHANGED;
-#ifdef MESH_RENDER_SNAPSHOT_ENABLED
-	StringClass str;
-#endif
-	SNAPSHOT_SAY(("DX8Wrapper::Set_Shader(%s)\n",shader.Get_Description(str)));
+//#ifdef MESH_RENDER_SNAPSHOT_ENABLED
+//	StringClass str;
+//#endif
+//	SNAPSHOT_SAY(("DX8Wrapper::Set_Shader(%s)\n",shader.Get_Description(str)));
 }
 
 

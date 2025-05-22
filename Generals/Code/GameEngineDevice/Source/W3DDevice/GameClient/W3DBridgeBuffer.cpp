@@ -47,27 +47,15 @@
 //-----------------------------------------------------------------------------
 #include "W3DDevice/GameClient/W3DBridgeBuffer.h"
 
-#include <stdio.h>
-#include <string.h>
 #include "W3DDevice/GameClient/W3DAssetManager.h"
-#include <texture.h>
 #include "Common/GlobalData.h"
-#include "Common/RandomValue.h"
 #include "Common/ThingFactory.h"
 #include "Common/ThingTemplate.h"
-#include "GameClient/TerrainRoads.h"
-#include "GameLogic/Damage.h"
-#include "GameLogic/Module/BodyModule.h"
 #include "W3DDevice/GameLogic/W3DTerrainLogic.h"
-#include "W3DDevice/GameClient/TerrainTex.h"
 #include "W3DDevice/GameClient/HeightMap.h"
-#include "W3DDevice/GameClient/W3DDynamicLight.h"
 #include "W3DDevice/GameClient/Module/W3DModelDraw.h"
 #include "W3DDevice/GameClient/W3DShaderManager.h"
 #include "W3DDevice/GameClient/W3DShroud.h"
-#include "WW3D2/camera.h"
-#include "WW3D2/dx8wrapper.h"
-#include "WW3D2/dx8renderer.h"
 #include "WW3D2/mesh.h"
 #include "WW3D2/meshmdl.h"
 #include "WW3D2/scene.h"

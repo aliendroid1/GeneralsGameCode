@@ -27,7 +27,6 @@
 // Author: John Ahlquist, April 2001
 
 #include "W3DDevice/GameClient/TileData.h"
-#include "W3DDevice/GameClient/WorldHeightMap.h"
 
 
 

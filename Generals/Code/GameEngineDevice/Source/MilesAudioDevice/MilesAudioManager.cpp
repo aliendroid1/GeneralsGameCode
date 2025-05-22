@@ -39,29 +39,23 @@
 /*---------------------------------------------------------------------------*/
 
 #include <dsound.h>
-#include "Lib/BaseType.h"
 #include "MilesAudioDevice/MilesAudioManager.h"
 
 #include "Common/AudioAffect.h"
 #include "Common/AudioHandleSpecialValues.h"
 #include "Common/AudioRequest.h"
 #include "Common/AudioSettings.h"
-#include "Common/AsciiString.h"
 #include "Common/AudioEventInfo.h"
 #include "Common/FileSystem.h"
-#include "Common/GameCommon.h"
 #include "Common/GameSounds.h"
 #include "Common/CRCDebug.h"
 #include "Common/GlobalData.h"
 #include "Common/ScopedMutex.h"
 
 #include "GameClient/DebugDisplay.h"
-#include "GameClient/Drawable.h"
 #include "GameClient/GameClient.h"
 #include "GameClient/VideoPlayer.h"
-#include "GameClient/View.h"
 
-#include "GameLogic/GameLogic.h"
 #include "GameLogic/TerrainLogic.h"
 
 #include "Common/file.h"

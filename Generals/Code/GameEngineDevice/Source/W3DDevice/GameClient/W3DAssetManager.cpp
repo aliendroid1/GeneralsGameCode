@@ -43,28 +43,15 @@
  * Functions:                                                                                  *
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-#include <always.h>
 #include "W3DDevice/GameClient/W3DAssetManager.h"
 #include "proto.h"
-#include "rendobj.h"
-#include <vector3.h>
 #include "mesh.h"
-#include "hlod.h"
 #include "matinfo.h"
 #include "meshmdl.h"
-#include "part_emt.h"
-#include "vertmaterial.h"
-#include "dx8wrapper.h"
-#include "texture.h"
-#include "surfaceclass.h"
 #include "textureloader.h"
-#include "ww3dformat.h"
 #include "colorspace.h"
-#include "ffactory.h"
 #include "font3d.h"
 #include "render2dsentence.h"
-#include <stdio.h>
-#include "Common/PerfTimer.h"
 #include "Common/GlobalData.h"
 
 #ifdef RTS_INTERNAL

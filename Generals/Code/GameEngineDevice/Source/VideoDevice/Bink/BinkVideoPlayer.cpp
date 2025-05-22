@@ -45,11 +45,9 @@
 //         Includes                                                      
 //----------------------------------------------------------------------------
 
-#include "Lib/BaseType.h"
 #include "VideoDevice/Bink/BinkVideoPlayer.h"
 #include "Common/AudioAffect.h"
 #include "Common/GameAudio.h"
-#include "Common/GameMemory.h"
 #include "Common/GlobalData.h"
 #include "Common/Registry.h"
 

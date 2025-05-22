@@ -47,26 +47,14 @@
 //-----------------------------------------------------------------------------
 #include "W3DDevice/GameClient/HeightMap.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <assetmgr.h>
-#include <texture.h>
-#include <tri.h>
-#include <colmath.h>
-#include <coltest.h>
-#include <rinfo.h>
 #include <camera.h>
-#include <d3dx8core.h>
 #include "Common/GlobalData.h"
-#include "Common/PerfTimer.h"
 
 #include "GameClient/TerrainVisual.h"
 #include "GameClient/View.h"
 #include "GameClient/Water.h"
 
 #include "GameLogic/AIPathfind.h"
-#include "GameLogic/TerrainLogic.h"
 #include "W3DDevice/GameClient/TerrainTex.h"
 #include "W3DDevice/GameClient/W3DDynamicLight.h"
 #include "W3DDevice/GameClient/W3DScene.h"
@@ -77,19 +65,12 @@
 #include "W3DDevice/GameClient/W3DBridgeBuffer.h"
 #include "W3DDevice/GameClient/W3DWaypointBuffer.h"
 #include "W3DDevice/GameClient/W3DCustomEdging.h"
-#include "W3DDevice/GameClient/WorldHeightMap.h"
 #include "W3DDevice/GameClient/W3DShaderManager.h"
 #include "W3DDevice/GameClient/W3DShadow.h"
 #include "W3DDevice/GameClient/W3DWater.h"
 #include "W3DDevice/GameClient/W3DShroud.h"
-#include "WW3D2/dx8wrapper.h"
-#include "WW3D2/light.h"
-#include "WW3D2/scene.h"
-#include "W3DDevice/GameClient/W3DPoly.h"
 #include "W3DDevice/GameClient/W3DCustomScene.h"
 
-#include "Common/PerfTimer.h"
-#include "Common/UnitTimings.h" //Contains the DO_UNIT_TIMINGS define jba.		 
 
 #ifdef RTS_INTERNAL
 // for occasional debugging...
