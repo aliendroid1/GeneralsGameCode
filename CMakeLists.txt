@@ -39,7 +39,7 @@ include(FetchContent)
 
    
 include(cmake/config.cmake)
-include(cmake/lzhl.cmake)
+#include(cmake/lzhl.cmake)
 include(cmake/zlib.cmake)
     
 

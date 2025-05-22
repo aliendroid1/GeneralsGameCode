@@ -22,7 +22,6 @@
 //////////////////////////////////////////////////////////////////////////////
 
 #include "Compression.h"
-#include "LZHCompress/NoxCompress.h"
 
 //#define __MACTYPES__
 
@@ -138,8 +137,8 @@ Int CompressionManager::getMaxCompressedSize( Int uncompressedLen, CompressionTy
 {
 	switch (compType)
 	{
-		case COMPRESSION_NOXLZH:
-			return CalcNewSize(uncompressedLen) + 8;
+		case COMPRESSION_NOXLZH: // not to be used
+			return 2*uncompressedLen + 64;
 
 		case COMPRESSION_BTREE:   // guessing here
 		case COMPRESSION_HUFF:    // guessing here
@@ -237,18 +236,12 @@ Int CompressionManager::compressData( CompressionType compType, void *srcVoid, I
 			return 0;
 	}
 
-	if (compType == COMPRESSION_NOXLZH)
+	if (compType == COMPRESSION_NOXLZH) // not to be used
 	{
 		memcpy(dest, "NOX\0", 4);
 		*(Int *)(dest+4) = 0;
-		bool ret = CompressMemory(src, srcLen, dest+8, destLen);
-		if (ret)
-		{
-			*(Int *)(dest+4) = srcLen;
-			return destLen + 8;
-		}
-		else
-			return 0;
+		*(Int *)(dest+4) = srcLen;
+		return destLen + 8;
 	}
 
 	if (compType >= COMPRESSION_ZLIB1 && compType <= COMPRESSION_ZLIB9)
@@ -314,13 +307,9 @@ Int CompressionManager::decompressData( void *srcVoid, Int srcLen, void *destVoi
 			return 0;
 	}
 
-	if (compType == COMPRESSION_NOXLZH)
+	if (compType == COMPRESSION_NOXLZH) // not to be used
 	{
-		bool ret = DecompressMemory(src+8, srcLen-8, dest, destLen);
-		if (ret)
-			return destLen;
-		else
-			return 0;
+			return destLen; 
 	}
 
 	if (compType >= COMPRESSION_ZLIB1 && compType <= COMPRESSION_ZLIB9)
